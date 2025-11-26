@@ -261,6 +261,7 @@ members = [
     "levanter",
     "marin",
     "marin-root",
+    "rbloom",
     "zephyr",
 ]
 overrides = [
@@ -3690,7 +3691,7 @@ quality-dedup-consolidate = [
     { name = "fasttext" },
     { name = "huggingface-hub" },
     { name = "nltk" },
-    { name = "rbloom-gcs" },
+    { name = "rbloom" },
     { name = "transformers" },
     { name = "zstandard" },
 ]
@@ -3881,7 +3882,7 @@ requires-dist = [
     { name = "pyarrow", specifier = ">=22" },
     { name = "pylatexenc", marker = "extra == 'post-training'" },
     { name = "ray", specifier = "==2.45" },
-    { name = "rbloom-gcs", marker = "extra == 'quality-dedup-consolidate'" },
+    { name = "rbloom", marker = "extra == 'quality-dedup-consolidate'", editable = "lib/rbloom" },
     { name = "readabilipy", marker = "extra == 'crawl'" },
     { name = "readabilipy", marker = "extra == 'download-transform'" },
     { name = "readability-lxml", marker = "extra == 'crawl'" },
@@ -4021,6 +4022,7 @@ dependencies = [
     { name = "haliax" },
     { name = "levanter" },
     { name = "marin" },
+    { name = "rbloom" },
     { name = "zephyr" },
 ]
 
@@ -4030,6 +4032,7 @@ requires-dist = [
     { name = "haliax", editable = "lib/haliax" },
     { name = "levanter", editable = "lib/levanter" },
     { name = "marin", editable = "lib/marin" },
+    { name = "rbloom", editable = "lib/rbloom" },
     { name = "zephyr", editable = "lib/zephyr" },
 ]
 
@@ -6560,12 +6563,8 @@ default = [
 ]
 
 [[package]]
-name = "rbloom-gcs"
-version = "1.5.6"
-source = { registry = "https://pypi.org/simple" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cc/a0/b07539f527c2dc15498f0a3ad87077785d942df47aefbec0468f270d3afd/rbloom_gcs-1.5.6-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b4d0d4d9193cb4ce7d6a95d500d1b1308c8eba7273fa0d68e1fadf1d00c3eeb7", size = 4558423, upload-time = "2025-02-05T02:40:42.774Z" },
-]
+name = "rbloom"
+source = { editable = "lib/rbloom" }
 
 [[package]]
 name = "readabilipy"

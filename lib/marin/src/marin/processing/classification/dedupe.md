@@ -72,4 +72,3 @@ ray job submit --address http://127.0.0.1:8265 --working-dir . --no-wait -- \
   --estimated_doc_count 1000000 \
   --false_positive_rate 0.001
 ```
-```
