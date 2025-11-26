@@ -23,3 +23,15 @@ Issues = "https://github.com/KenanHanke/rbloom/issues"
 
 [tool.maturin]
 sdist-include = ["LICENSE", "README.md"]
+# Avoid linking libpython, making wheels portable
+# See. https://pyo3.rs/main/building-and-distribution.html#building-python-extension-modules
+features = ["pyo3/extension-module"]
+
+[tool.uv]
+# Force rebuild if changes
+cache-keys = [
+  { glob = "**/*.rs" },
+  { file = "Cargo.toml" },
+  { file = "Cargo.lock" },
+  { file = "pyproject.toml" }
+]

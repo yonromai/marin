@@ -224,7 +224,7 @@ def operations_with_self():
     assert bloom.intersection(bloom, bloom) == bloom
 
 
-def api_suite():
+def test_api_suite():
     assert repr(Bloom(27_000, 0.0317)) == "<Bloom size_in_bits=193960 approx_items=0.0>"
 
     run_bloom_test(Bloom(13242, 0.0000001))
@@ -235,7 +235,3 @@ def api_suite():
     test_chunked_write()
 
     print("All API tests passed")
-
-
-if __name__ == "__main__":
-    api_suite()
