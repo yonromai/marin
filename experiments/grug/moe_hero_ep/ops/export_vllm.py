@@ -262,10 +262,12 @@ def submit(store_root: str, attempt: str) -> None:
                 endpoint,
                 Path.cwd(),
                 store_root,
+                # The proven v1 run used this full-node envelope. In particular,
+                # 64 GiB was OOM-killed while restoring the FP32 checkpoint.
                 ResourceConfig(
-                    cpu=8,
-                    ram="64g",
-                    disk="64g",
+                    cpu=64,
+                    ram="400g",
+                    disk="1t",
                     device=GpuConfig(variant="GB200", count=EXPORT_GPUS_PER_TASK),
                     replicas=EXPORT_TASKS,
                 ),
