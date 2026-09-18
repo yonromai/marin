@@ -24,6 +24,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from typing import cast
 
 import draccus
 import equinox as eqx
@@ -66,10 +67,8 @@ EXPORT_TASKS = EXPERT_AXIS_SIZE // EXPORT_GPUS_PER_TASK
 DEFAULT_STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-vllm-b200/hero-535b-step108000-bf16-split-v2"
 INDEX_FILENAME = "model.safetensors.index.json"
 MANIFEST_FILENAME = "export-manifest.json"
-_SPLIT_EXPERT_RE = re.compile(
-    r"^(?P<prefix>.*\.mlp\.experts)\."
-    r"(?P<projection>gate_proj|up_proj|down_proj)\.weight$"
-)
+PROGRESS_SCHEMA_VERSION = 1
+_SPLIT_EXPERT_RE = re.compile(r"^(?P<prefix>.*\.mlp\.experts)\." r"(?P<projection>gate_proj|up_proj|down_proj)\.weight$")
 
 
 def _group_name(name: str) -> str:
@@ -89,7 +88,7 @@ def _split_experts(name: str, value: np.ndarray) -> dict[str, np.ndarray]:
     }
 
 
-def _sha256(path: Path) -> str:
+def _sha256(path: Path | StoragePath) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
         while block := source.read(32 * 1024 * 1024):
@@ -98,20 +97,71 @@ def _sha256(path: Path) -> str:
 
 
 def _upload(local_path: Path, remote_path: StoragePath) -> tuple[int, str]:
-    if remote_path.exists():
-        raise FileExistsError(f"Refusing to overwrite {remote_path}")
     size = local_path.stat().st_size
     sha256 = _sha256(local_path)
+    if remote_path.exists():
+        if remote_path.size() != size or _sha256(remote_path) != sha256:
+            raise FileExistsError(f"Existing shard does not match {local_path}: {remote_path}")
+        return size, sha256
     with local_path.open("rb") as source, remote_path.open("wb") as target:
         shutil.copyfileobj(source, target, length=32 * 1024 * 1024)
     return size, sha256
 
 
-def _write_json(root: StoragePath, filename: str, value: dict) -> None:
+def _json_text(value: dict) -> str:
+    return json.dumps(value, indent=2, sort_keys=True) + "\n"
+
+
+def _write_json(root: StoragePath, filename: str, value: dict, *, allow_identical: bool = False) -> None:
     target = root / filename
+    contents = _json_text(value)
     if target.exists():
+        if allow_identical and target.read_text() == contents:
+            return
         raise FileExistsError(f"Refusing to overwrite {target}")
-    target.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    target.write_text(contents)
+
+
+def _progress_filename(group_name: str) -> str:
+    return f".export-progress-{group_name}.json"
+
+
+def _load_completed_shard(
+    root: StoragePath,
+    group_name: str,
+    export_id: str,
+) -> dict[str, object] | None:
+    progress_path = root / _progress_filename(group_name)
+    if not progress_path.exists():
+        return None
+    record = json.loads(progress_path.read_text())
+    filename = f"model-{group_name}.safetensors"
+    expected = {
+        "schema_version": PROGRESS_SCHEMA_VERSION,
+        "export_id": export_id,
+        "group_name": group_name,
+        "filename": filename,
+    }
+    for field, value in expected.items():
+        if record.get(field) != value:
+            raise ValueError(f"Export progress {progress_path} has {field}={record.get(field)!r}, expected {value!r}")
+    tensor_names = record.get("tensor_names")
+    tensor_count = record.get("tensor_count")
+    if not isinstance(tensor_names, list) or tensor_count != len(tensor_names):
+        raise ValueError(f"Export progress {progress_path} has inconsistent tensor names")
+    if len(tensor_names) != len(set(tensor_names)) or not all(isinstance(name, str) for name in tensor_names):
+        raise ValueError(f"Export progress {progress_path} has invalid tensor names")
+    shard_path = root / filename
+    if not shard_path.exists() or shard_path.size() != record.get("bytes"):
+        raise ValueError(f"Export progress {progress_path} does not match {shard_path}")
+    sha256 = record.get("sha256")
+    if not isinstance(sha256, str) or re.fullmatch(r"[0-9a-f]{64}", sha256) is None:
+        raise ValueError(f"Export progress {progress_path} has an invalid SHA-256")
+    return record
+
+
+def _manifest_shard(record: dict[str, object]) -> dict[str, object]:
+    return {field: record[field] for field in ("filename", "bytes", "sha256", "tensor_count")}
 
 
 def export(request: GoldenRequest, store_root: str) -> None:
@@ -124,8 +174,18 @@ def export(request: GoldenRequest, store_root: str) -> None:
         raise ValueError(f"Expected {EXPERT_AXIS_SIZE} export ranks, got {request.spec.batch_size}")
 
     root = StoragePath(store_root)
-    if (root / MANIFEST_FILENAME).exists() or (root / INDEX_FILENAME).exists():
+    if (root / MANIFEST_FILENAME).exists():
         raise FileExistsError(f"Refusing to overwrite an export at {store_root}")
+    export_id = hashlib.sha256(
+        json.dumps(
+            {
+                "request": request.model_dump(mode="json"),
+                "store_root": store_root,
+                "progress_schema_version": PROGRESS_SCHEMA_VERSION,
+            },
+            sort_keys=True,
+        ).encode()
+    ).hexdigest()
 
     mesh = compact_grug_mesh(expert_axis_size=EXPERT_AXIS_SIZE, replica_axis_size=1)
     with jax.set_mesh(mesh):
@@ -161,6 +221,17 @@ def export(request: GoldenRequest, store_root: str) -> None:
         with TemporaryDirectory(prefix="hero-vllm-export-") as directory:
             local_root = Path(directory)
             for group_name, names in groups.items():
+                completed = _load_completed_shard(root, group_name, export_id)
+                if completed is not None:
+                    if jax.process_index() == 0:
+                        logger.info("Reuse completed %s", completed["filename"])
+                        total_size += int(completed["bytes"])
+                        shard_records.append(_manifest_shard(completed))
+                        for name in cast(list[str], completed["tensor_names"]):
+                            weight_map[name] = str(completed["filename"])
+                    multihost_utils.sync_global_devices(f"reuse-{group_name}")
+                    continue
+
                 tensors: dict[str, np.ndarray] = {}
                 logger.info("Materialize %s (%d source tensors)", group_name, len(names))
                 for name in names:
@@ -177,15 +248,24 @@ def export(request: GoldenRequest, store_root: str) -> None:
                     local_path = local_root / filename
                     save_file(tensors, local_path, metadata={"format": "pt"})
                     size, sha256 = _upload(local_path, root / filename)
-                    total_size += size
-                    shard_records.append(
-                        {
-                            "filename": filename,
-                            "bytes": size,
-                            "sha256": sha256,
-                            "tensor_count": len(tensors),
-                        }
+                    progress = {
+                        "schema_version": PROGRESS_SCHEMA_VERSION,
+                        "export_id": export_id,
+                        "group_name": group_name,
+                        "filename": filename,
+                        "bytes": size,
+                        "sha256": sha256,
+                        "tensor_count": len(tensors),
+                        "tensor_names": sorted(tensors),
+                    }
+                    _write_json(
+                        root,
+                        _progress_filename(group_name),
+                        progress,
+                        allow_identical=True,
                     )
+                    total_size += size
+                    shard_records.append(_manifest_shard(progress))
                     for name in tensors:
                         weight_map[name] = filename
                     logger.info(
@@ -202,11 +282,12 @@ def export(request: GoldenRequest, store_root: str) -> None:
             model_config = request.spec.model
             decoded = draccus.decode(hero_recipe.GrugModelConfig, model_config)
             hf_config = decoded.to_hf_config(decoded.vocab_size).to_dict()
-            _write_json(root, "config.json", hf_config)
+            _write_json(root, "config.json", hf_config, allow_identical=True)
             _write_json(
                 root,
                 INDEX_FILENAME,
                 {"metadata": {"total_size": total_size}, "weight_map": weight_map},
+                allow_identical=True,
             )
             _write_json(
                 root,
@@ -226,9 +307,9 @@ def export(request: GoldenRequest, store_root: str) -> None:
                     "authoritative_weight_tree": "params",
                     "authoritative_weight_dtype": "float32",
                     "effective_weight_dtype": "bfloat16",
-                    "pending_qb_rule": ("applied exactly once by restore_model_state before BF16 conversion"),
+                    "pending_qb_rule": "applied exactly once by restore_model_state before BF16 conversion",
                     "pending_qb_betas_sha256": pending_qb_sha256,
-                    "expert_tensor_layout": ("experts.<global expert id>.<gate_proj|up_proj|down_proj>.weight"),
+                    "expert_tensor_layout": "experts.<global expert id>.<gate_proj|up_proj|down_proj>.weight",
                     "total_safetensors_bytes": total_size,
                     "tensor_count": len(weight_map),
                     "shards": shard_records,
