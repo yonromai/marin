@@ -59,7 +59,9 @@ logger = logging.getLogger(__name__)
 
 JOB_USER = "hero-vllm"
 EXPERT_AXIS_SIZE = 32
-EXPORT_GPUS_PER_TASK = 2
+# One task must own the full GB200 node. Two 2-GPU tasks on each node left
+# adjacent JAX ranks without an NCCL transport during checkpoint restore.
+EXPORT_GPUS_PER_TASK = 4
 EXPORT_TASKS = EXPERT_AXIS_SIZE // EXPORT_GPUS_PER_TASK
 DEFAULT_STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-vllm-b200/hero-535b-step108000-bf16-split-v2"
 INDEX_FILENAME = "model.safetensors.index.json"
