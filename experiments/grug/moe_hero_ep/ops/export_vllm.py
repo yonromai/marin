@@ -238,13 +238,17 @@ def export(request: GoldenRequest, store_root: str) -> None:
     multihost_utils.sync_global_devices("hero-vllm-export-complete")
 
 
-def submit(store_root: str) -> None:
+def submit(store_root: str, attempt: str) -> None:
     subprocess.run(["git", "diff", "--exit-code", "HEAD", "--"], check=True)
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     request = pinned_request("required", revision)
     name_digest = hashlib.sha256(
         json.dumps(
-            {"request": request.model_dump(mode="json"), "store_root": store_root},
+            {
+                "request": request.model_dump(mode="json"),
+                "store_root": store_root,
+                "attempt": attempt,
+            },
             sort_keys=True,
         ).encode()
     ).hexdigest()[:12]
@@ -277,8 +281,9 @@ def main() -> None:
         parser = argparse.ArgumentParser(description=__doc__)
         parser.add_argument("submit")
         parser.add_argument("--store-root", default=DEFAULT_STORE_ROOT)
+        parser.add_argument("--attempt", default="initial")
         args = parser.parse_args()
-        submit(args.store_root)
+        submit(args.store_root, args.attempt)
         return
     configure_logging(logging.WARNING)
     parser = argparse.ArgumentParser(description=__doc__)
