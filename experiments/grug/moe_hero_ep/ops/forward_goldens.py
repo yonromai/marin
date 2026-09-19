@@ -74,6 +74,7 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+SUBSTAGE_PROBE_RELEASE = "hero-535b-step108000-bf16-substage-probe-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -85,7 +86,7 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
-GOLDEN_MODES = ("smoke", "required", "layer-probe", "diagnostic-8192", "diagnostic-16384")
+GOLDEN_MODES = ("smoke", "required", "layer-probe", "substage-probe", "diagnostic-8192", "diagnostic-16384")
 AUTHORITATIVE_WEIGHT_KEYS = ("master_params", "params")
 
 
@@ -147,9 +148,15 @@ class TracedValues(NamedTuple):
     route_expert_ids: jax.Array
     route_combine_weights: jax.Array
     route_cutoff_gaps: jax.Array
+    embed_raw_hidden: jax.Array | None
+    embed_after_rms_hidden: jax.Array | None
     model_input_hidden: jax.Array | None
     hidden_after_attn: jax.Array | None
     hidden_after_block: jax.Array | None
+    layer0_mlp_in: jax.Array | None
+    layer0_moe_out: jax.Array | None
+    layer0_after_shared: jax.Array | None
+    layer0_after_sconv: jax.Array | None
 
 
 class ForwardSelection(NamedTuple):
@@ -199,7 +206,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe"):
+    elif mode in ("required", "layer-probe", "substage-probe"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -210,7 +217,11 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             ("context-minus-one", "neuron-associate-grub-zoo", 4095),
             ("context-exact", "neuron-associate-grub-zoo", 4096),
         )
-        release = REQUIRED_RELEASE if mode == "required" else LAYER_PROBE_RELEASE
+        release = {
+            "required": REQUIRED_RELEASE,
+            "layer-probe": LAYER_PROBE_RELEASE,
+            "substage-probe": SUBSTAGE_PROBE_RELEASE,
+        }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
@@ -397,18 +408,32 @@ def traced_forward(
     mask = AttentionMask.causal().with_segment_ids(segment_ids)
     hidden, metrics = model(tokens, mask=mask, trace_routes=True, capture_positions=capture_positions)
     forward = _project_forward(model, hidden, selection)
+    embed_raw_hidden = jax.sharding.reshard(metrics["trace_embed_raw_hidden"], P()) if capture_positions else None
+    embed_after_rms_hidden = (
+        jax.sharding.reshard(metrics["trace_embed_after_rms_hidden"], P()) if capture_positions else None
+    )
     model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
     hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
     hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
+    layer0_mlp_in = jax.sharding.reshard(metrics["trace_layer0_mlp_in"], P()) if capture_positions else None
+    layer0_moe_out = jax.sharding.reshard(metrics["trace_layer0_moe_out"], P()) if capture_positions else None
+    layer0_after_shared = jax.sharding.reshard(metrics["trace_layer0_after_shared"], P()) if capture_positions else None
+    layer0_after_sconv = jax.sharding.reshard(metrics["trace_layer0_after_sconv"], P()) if capture_positions else None
     # Process zero writes the bundle. Replication makes each global trace fully addressable there.
     return TracedValues(
         forward=forward,
         route_expert_ids=jax.sharding.reshard(metrics["route_expert_ids"], P()),
         route_combine_weights=jax.sharding.reshard(metrics["route_combine_weights"], P()),
         route_cutoff_gaps=jax.sharding.reshard(metrics["route_cutoff_gaps"], P()),
+        embed_raw_hidden=embed_raw_hidden,
+        embed_after_rms_hidden=embed_after_rms_hidden,
         model_input_hidden=model_input_hidden,
         hidden_after_attn=hidden_after_attn,
         hidden_after_block=hidden_after_block,
+        layer0_mlp_in=layer0_mlp_in,
+        layer0_moe_out=layer0_moe_out,
+        layer0_after_shared=layer0_after_shared,
+        layer0_after_sconv=layer0_after_sconv,
     )
 
 
@@ -479,6 +504,14 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         effective_router_bias = np.asarray(
             jax.sharding.reshard(model.stacked_blocks.stacked.mlp.router_bias.astype(jnp.float32), P())
         )
+        substage_probe_weights = None
+        if request.spec.mode == "substage-probe":
+            substage_probe_weights = (
+                jax.sharding.reshard(model.embed_norm.weight.astype(jnp.float32), P()),
+                jax.sharding.reshard(model.embed_gated_norm.w_down.astype(jnp.float32), P()),
+                jax.sharding.reshard(model.embed_gated_norm.w_up.astype(jnp.float32), P()),
+            )
+            jax.block_until_ready(substage_probe_weights)
 
         batch_sharding = NamedSharding(mesh, P(("replica_dcn", "data", "expert")))
         replicated = NamedSharding(mesh, P())
@@ -510,7 +543,10 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
             traced = traced_forward(
-                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
+                *args,
+                capture_positions=(
+                    LAYER_PROBE_POSITIONS if request.spec.mode in ("layer-probe", "substage-probe") else None
+                ),
             )
             jax.block_until_ready(traced)
 
@@ -552,6 +588,34 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
+            }
+        )
+    if request.spec.mode == "substage-probe":
+        if (
+            traced_host.embed_raw_hidden is None
+            or traced_host.embed_after_rms_hidden is None
+            or traced_host.model_input_hidden is None
+            or traced_host.layer0_mlp_in is None
+            or traced_host.layer0_moe_out is None
+            or traced_host.layer0_after_shared is None
+            or traced_host.layer0_after_sconv is None
+            or substage_probe_weights is None
+        ):
+            raise ValueError("Native substage probe values were not captured")
+        norm_weight, down_weight, up_weight = jax.tree.map(np.asarray, substage_probe_weights)
+        arrays.update(
+            {
+                "substage_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "substage_probe_embed_raw": traced_host.embed_raw_hidden.astype(np.float32),
+                "substage_probe_after_rms": traced_host.embed_after_rms_hidden.astype(np.float32),
+                "substage_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
+                "substage_probe_layer0_mlp_in": traced_host.layer0_mlp_in.astype(np.float32),
+                "substage_probe_layer0_moe_out": traced_host.layer0_moe_out.astype(np.float32),
+                "substage_probe_layer0_after_shared": traced_host.layer0_after_shared.astype(np.float32),
+                "substage_probe_layer0_after_sconv": traced_host.layer0_after_sconv.astype(np.float32),
+                "substage_probe_rms_weight": norm_weight.astype(np.float32),
+                "substage_probe_gated_down_weight": down_weight.astype(np.float32),
+                "substage_probe_gated_up_weight": up_weight.astype(np.float32),
             }
         )
     remote_root = prefix_join(store_root, request.bundle_id)
@@ -673,6 +737,19 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "after_block": "after MLP-branch residual",
+            "scope": "diagnostic only; original native golden bundle remains unchanged",
+        }
+    if request.spec.mode == "substage-probe":
+        manifest["substage_probe"] = {
+            "positions": list(LAYER_PROBE_POSITIONS),
+            "embed_raw": "after embedding lookup, before RMS norm",
+            "after_rms": "after embedding RMS norm, before gated norm",
+            "model_input": "after embedding gated norm, before layer 0",
+            "weights": "effective BF16 embedding RMS/gated-norm weights widened to float32",
+            "layer0_mlp_in": "after MLP RMS/gated norm, before router and experts",
+            "layer0_moe_out": "after routed experts and combine, before shared experts",
+            "layer0_after_shared": "after shared experts, before short convolution",
+            "layer0_after_sconv": "after MLP-branch short convolution, before residual",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     with TemporaryDirectory(prefix="hero-forward-goldens-") as directory:

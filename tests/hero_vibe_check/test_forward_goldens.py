@@ -63,9 +63,10 @@ def test_required_input_bank_preserves_padding_alignment_and_boundaries() -> Non
         assert np.array_equal(arrays["tokens"][boundary_rows[0], :shortest], arrays["tokens"][row, :shortest])
 
 
-def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
+@pytest.mark.parametrize("mode", ("layer-probe", "substage-probe"))
+def test_layer_probe_uses_required_inputs_under_a_distinct_release(mode: str) -> None:
     required = _request("required")
-    layer_probe = _request("layer-probe")
+    layer_probe = _request(mode)
     required_arrays, required_cases = build_inputs(required, _Tokenizer())
     layer_arrays, layer_cases = build_inputs(layer_probe, _Tokenizer())
 

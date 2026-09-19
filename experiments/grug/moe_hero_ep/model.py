@@ -1240,17 +1240,29 @@ class Block(eqx.Module):
         if capture_positions is not None:
             after_attn = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         mlp_in = self.mlp_gated_norm(self.rms_mlp(x))
+        if capture_positions is not None:
+            sampled_mlp_in = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
         token_valid = token_validity_from_attention_mask(mask, batch_size=x.shape[0], sequence_length=x.shape[1])
         mlp_out, router_stats = self.mlp(mlp_in, token_valid, trace_routes=trace_routes)
+        if capture_positions is not None:
+            sampled_moe_out = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         if self.shared is not None:
             for shared_expert in self.shared:
                 mlp_out = mlp_out + shared_expert(mlp_in, activation=ActivationFunctionEnum.silu)
+        if capture_positions is not None:
+            sampled_after_shared = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         if self.sconv_mlp is not None:
             mlp_out = self.sconv_mlp(mlp_out, sconv_segment_ids)
+        if capture_positions is not None:
+            sampled_after_sconv = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         x = x + mlp_out
         if capture_positions is not None:
             router_stats["trace_hidden_after_attn"] = after_attn
             router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
+            router_stats["trace_mlp_in"] = sampled_mlp_in
+            router_stats["trace_moe_out"] = sampled_moe_out
+            router_stats["trace_after_shared"] = sampled_after_shared
+            router_stats["trace_after_sconv"] = sampled_after_sconv
         return x, router_stats
 
 
@@ -1328,11 +1340,18 @@ class Transformer(eqx.Module):
 
         cfg = self.config
         hidden = _embedding_gather(self.token_embed, token_ids)
-        hidden = self.embed_gated_norm(self.embed_norm(hidden))
         if capture_positions is not None and (
             not capture_positions or min(capture_positions) < 0 or hidden.shape[1] <= max(capture_positions)
         ):
             raise ValueError("Layer probe positions must lie inside the input sequence")
+        embed_raw_hidden = (
+            jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
+        )
+        hidden = self.embed_norm(hidden)
+        embed_after_rms_hidden = (
+            jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
+        )
+        hidden = self.embed_gated_norm(hidden)
         model_input_hidden = (
             jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
         )
@@ -1435,9 +1454,15 @@ class Transformer(eqx.Module):
         if capture_positions is not None:
             router_metrics.update(
                 {
+                    "trace_embed_raw_hidden": embed_raw_hidden,
+                    "trace_embed_after_rms_hidden": embed_after_rms_hidden,
                     "trace_model_input_hidden": model_input_hidden,
                     "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
                     "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
+                    "trace_layer0_mlp_in": stacked_router_stats["trace_mlp_in"][0],
+                    "trace_layer0_moe_out": stacked_router_stats["trace_moe_out"][0],
+                    "trace_layer0_after_shared": stacked_router_stats["trace_after_shared"][0],
+                    "trace_layer0_after_sconv": stacked_router_stats["trace_after_sconv"][0],
                 }
             )
         hidden = self.final_gated_norm(self.final_norm(hidden))

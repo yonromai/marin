@@ -854,6 +854,12 @@ def test_block_layer_probe_samples_residuals_without_changing_output():
     np.testing.assert_array_equal(traced, baseline)
     np.testing.assert_array_equal(metrics["trace_hidden_after_block"], np.asarray(traced)[:, positions, :])
     assert metrics["trace_hidden_after_attn"].shape == (1, len(positions), cfg.hidden_dim)
+    for name in ("trace_mlp_in", "trace_moe_out", "trace_after_shared", "trace_after_sconv"):
+        assert metrics[name].shape == (1, len(positions), cfg.hidden_dim)
+    np.testing.assert_array_equal(
+        metrics["trace_hidden_after_block"],
+        metrics["trace_hidden_after_attn"] + metrics["trace_after_sconv"],
+    )
 
 
 def test_transformer_layer_probe_preserves_forward_values_through_scan():
@@ -864,13 +870,24 @@ def test_transformer_layer_probe_preserves_forward_values_through_scan():
 
     with set_mesh(mesh):
         transformer = model.Transformer.init(cfg, key=jax.random.key(62))
+        raw_embedding = transformer.token_embed[tokens]
+        after_rms = transformer.embed_norm(raw_embedding)
         baseline, _ = jax.jit(lambda ids: transformer(ids, trace_routes=True))(tokens)
         traced, metrics = jax.jit(lambda ids: transformer(ids, trace_routes=True, capture_positions=positions))(tokens)
 
     np.testing.assert_array_equal(traced, baseline)
+    np.testing.assert_array_equal(metrics["trace_embed_raw_hidden"], np.asarray(raw_embedding)[:, positions, :])
+    np.testing.assert_array_equal(metrics["trace_embed_after_rms_hidden"], np.asarray(after_rms)[:, positions, :])
     assert metrics["trace_model_input_hidden"].shape == (1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_attn"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_block"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    for name in (
+        "trace_layer0_mlp_in",
+        "trace_layer0_moe_out",
+        "trace_layer0_after_shared",
+        "trace_layer0_after_sconv",
+    ):
+        assert metrics[name].shape == (1, len(positions), cfg.hidden_dim)
 
 
 @pytest.mark.parametrize("qb_estimator", [model.QbEstimator.HIST, model.QbEstimator.TOPK])
