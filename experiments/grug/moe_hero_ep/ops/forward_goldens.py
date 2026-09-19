@@ -685,7 +685,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
     multihost_utils.sync_global_devices("hero-forward-bundle-written")
 
 
-def submit(mode: str, store_root: str) -> None:
+def submit(mode: str, store_root: str, attempt: int = 0) -> None:
+    if attempt < 0:
+        raise ValueError("Submission attempt must be nonnegative")
     subprocess.run(["git", "diff", "--exit-code", "HEAD", "--"], check=True, stdout=subprocess.DEVNULL)
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     request = pinned_request(mode, revision)
@@ -694,6 +696,8 @@ def submit(mode: str, store_root: str) -> None:
     if conditional_object(prefix_join(remote_root, MANIFEST_FILENAME)).version() is not None:
         raise FileExistsError(f"Golden bundle already exists: {remote_root}")
     name = f"hero-forward-{mode}-{digest(request.model_dump(mode='json'))[:12]}"
+    if attempt:
+        name = f"{name}-retry-{attempt}"
     with connect_controller(cluster_name=CONTROLLER_CLUSTER) as endpoint:
         with IrisClient.remote(endpoint.url, credentials=endpoint.credentials) as client:
             jobs = IrisSamplingJobs(
@@ -717,8 +721,9 @@ def main() -> None:
         parser.add_argument("submit")
         parser.add_argument("--mode", choices=GOLDEN_MODES, required=True)
         parser.add_argument("--store-root", default=STORE_ROOT)
+        parser.add_argument("--attempt", type=int, default=0)
         args = parser.parse_args()
-        submit(args.mode, args.store_root)
+        submit(args.mode, args.store_root, args.attempt)
         return
     configure_logging(logging.WARNING)
     parser = argparse.ArgumentParser(description=__doc__)
