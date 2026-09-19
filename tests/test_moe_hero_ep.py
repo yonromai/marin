@@ -834,6 +834,45 @@ def test_block_threads_attention_padding_into_moe_metrics():
     np.testing.assert_array_equal(metrics["trace_cutoff_gap"][:, 4:], 0)
 
 
+def test_block_layer_probe_samples_residuals_without_changing_output():
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = _latent_config()
+    hidden = jax.random.normal(jax.random.key(60), (1, 8, cfg.hidden_dim))
+    segment_ids = jnp.zeros((1, 8), dtype=jnp.int32)
+    mask = (
+        AttentionMask.causal()
+        .with_segment_ids(segment_ids)
+        .with_fa4_bounds(jnp.zeros_like(segment_ids), segment_ids >= 0)
+    )
+    positions = (0, 2, 7)
+
+    with set_mesh(mesh):
+        block = model.Block.init(cfg, key=jax.random.key(61))
+        baseline, _ = jax.jit(lambda x: block(x, mask, trace_routes=True))(hidden)
+        traced, metrics = jax.jit(lambda x: block(x, mask, trace_routes=True, capture_positions=positions))(hidden)
+
+    np.testing.assert_array_equal(traced, baseline)
+    np.testing.assert_array_equal(metrics["trace_hidden_after_block"], np.asarray(traced)[:, positions, :])
+    assert metrics["trace_hidden_after_attn"].shape == (1, len(positions), cfg.hidden_dim)
+
+
+def test_transformer_layer_probe_preserves_forward_values_through_scan():
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = _latent_config()
+    tokens = jnp.arange(8, dtype=jnp.int32)[None, :]
+    positions = (0, 2, 7)
+
+    with set_mesh(mesh):
+        transformer = model.Transformer.init(cfg, key=jax.random.key(62))
+        baseline, _ = jax.jit(lambda ids: transformer(ids, trace_routes=True))(tokens)
+        traced, metrics = jax.jit(lambda ids: transformer(ids, trace_routes=True, capture_positions=positions))(tokens)
+
+    np.testing.assert_array_equal(traced, baseline)
+    assert metrics["trace_model_input_hidden"].shape == (1, len(positions), cfg.hidden_dim)
+    assert metrics["trace_hidden_after_attn"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    assert metrics["trace_hidden_after_block"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+
+
 @pytest.mark.parametrize("qb_estimator", [model.QbEstimator.HIST, model.QbEstimator.TOPK])
 def test_moe_qb_estimator_ignores_padding(qb_estimator: model.QbEstimator):
     mesh = _explicit_mesh(1, 1, 1, 1)

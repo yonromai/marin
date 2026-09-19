@@ -107,6 +107,7 @@ OFFLOAD_CARRY_REMAT_MODE: RematMode = "offload_carry"
 # The per-layer residual-stream input. Plain remat holds it as the checkpoint argument, which
 # pins about 39 GiB of HBM across the hero's 48 layers.
 LAYER_CARRY_REMAT_NAME = "grug_layer_carry"
+LAYER_PROBE_POSITIONS = (0, 1, 2, 3, 4, 5, 6, 7, 2046, 2047, 2048, 2049, 4094, 4095)
 
 
 def _batch_spec() -> P:
@@ -1222,6 +1223,7 @@ class Block(eqx.Module):
         is_global: bool | jax.Array = False,
         *,
         trace_routes: bool = False,
+        capture_positions: tuple[int, ...] | None = None,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         # A remat policy acts on named intermediates, and a block argument is not one. This
         # reassignment routes every use below through the name, which lets the policy offload it.
@@ -1235,6 +1237,8 @@ class Block(eqx.Module):
         if self.sconv_attn is not None:
             attn_out = self.sconv_attn(attn_out, sconv_segment_ids)
         x = x + attn_out
+        if capture_positions is not None:
+            after_attn = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         mlp_in = self.mlp_gated_norm(self.rms_mlp(x))
         token_valid = token_validity_from_attention_mask(mask, batch_size=x.shape[0], sequence_length=x.shape[1])
         mlp_out, router_stats = self.mlp(mlp_in, token_valid, trace_routes=trace_routes)
@@ -1244,6 +1248,9 @@ class Block(eqx.Module):
         if self.sconv_mlp is not None:
             mlp_out = self.sconv_mlp(mlp_out, sconv_segment_ids)
         x = x + mlp_out
+        if capture_positions is not None:
+            router_stats["trace_hidden_after_attn"] = after_attn
+            router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         return x, router_stats
 
 
@@ -1314,6 +1321,7 @@ class Transformer(eqx.Module):
         mask: AttentionMask | jax.Array | None = None,
         *,
         trace_routes: bool = False,
+        capture_positions: tuple[int, ...] | None = None,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         if mask is None:
             mask = AttentionMask.causal()
@@ -1321,6 +1329,13 @@ class Transformer(eqx.Module):
         cfg = self.config
         hidden = _embedding_gather(self.token_embed, token_ids)
         hidden = self.embed_gated_norm(self.embed_norm(hidden))
+        if capture_positions is not None and (
+            not capture_positions or min(capture_positions) < 0 or hidden.shape[1] <= max(capture_positions)
+        ):
+            raise ValueError("Layer probe positions must lie inside the input sequence")
+        model_input_hidden = (
+            jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
+        )
 
         # Local layers use a sliding window; every global_every-th layer is full causal.
         segment_ids = None
@@ -1383,6 +1398,7 @@ class Transformer(eqx.Module):
                 use_long,
                 use_long,
                 trace_routes=trace_routes,
+                capture_positions=capture_positions,
             )
 
         hidden, stacked_router_stats = jax.lax.scan(
@@ -1414,6 +1430,14 @@ class Transformer(eqx.Module):
                     "route_expert_ids": stacked_router_stats["trace_expert_ids"],
                     "route_combine_weights": stacked_router_stats["trace_combine_weights"],
                     "route_cutoff_gaps": stacked_router_stats["trace_cutoff_gap"],
+                }
+            )
+        if capture_positions is not None:
+            router_metrics.update(
+                {
+                    "trace_model_input_hidden": model_input_hidden,
+                    "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
+                    "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
                 }
             )
         hidden = self.final_gated_norm(self.final_norm(hidden))

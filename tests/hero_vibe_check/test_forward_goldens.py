@@ -63,6 +63,19 @@ def test_required_input_bank_preserves_padding_alignment_and_boundaries() -> Non
         assert np.array_equal(arrays["tokens"][boundary_rows[0], :shortest], arrays["tokens"][row, :shortest])
 
 
+def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
+    required = _request("required")
+    layer_probe = _request("layer-probe")
+    required_arrays, required_cases = build_inputs(required, _Tokenizer())
+    layer_arrays, layer_cases = build_inputs(layer_probe, _Tokenizer())
+
+    assert layer_probe.bundle_id != required.bundle_id
+    assert layer_cases == required_cases
+    assert layer_arrays.keys() == required_arrays.keys()
+    for name in required_arrays:
+        np.testing.assert_array_equal(layer_arrays[name], required_arrays[name])
+
+
 def test_smoke_input_bank_keeps_full_hero_batch_with_short_sequences() -> None:
     arrays, cases = build_inputs(_request("smoke"), _Tokenizer())
 

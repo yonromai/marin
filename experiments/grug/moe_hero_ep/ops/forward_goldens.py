@@ -44,6 +44,7 @@ from rigging.timing import Timer, log_time
 from transformers import AutoTokenizer
 
 from experiments.grug.moe_hero_ep import hero_recipe
+from experiments.grug.moe_hero_ep.model import LAYER_PROBE_POSITIONS
 from experiments.grug.moe_hero_ep.ops.vibe_check.completions import (
     TOP_TOKEN_COUNT,
     Checkpoint,
@@ -72,6 +73,7 @@ REQUIRED_RELEASE = "hero-535b-step108000-bf16-v1"
 SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
+LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -83,7 +85,7 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
-GOLDEN_MODES = ("smoke", "required", "diagnostic-8192", "diagnostic-16384")
+GOLDEN_MODES = ("smoke", "required", "layer-probe", "diagnostic-8192", "diagnostic-16384")
 AUTHORITATIVE_WEIGHT_KEYS = ("master_params", "params")
 
 
@@ -145,6 +147,9 @@ class TracedValues(NamedTuple):
     route_expert_ids: jax.Array
     route_combine_weights: jax.Array
     route_cutoff_gaps: jax.Array
+    model_input_hidden: jax.Array | None
+    hidden_after_attn: jax.Array | None
+    hidden_after_block: jax.Array | None
 
 
 class ForwardSelection(NamedTuple):
@@ -194,7 +199,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode == "required":
+    elif mode in ("required", "layer-probe"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -205,7 +210,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             ("context-minus-one", "neuron-associate-grub-zoo", 4095),
             ("context-exact", "neuron-associate-grub-zoo", 4096),
         )
-        release = REQUIRED_RELEASE
+        release = REQUIRED_RELEASE if mode == "required" else LAYER_PROBE_RELEASE
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
@@ -386,16 +391,24 @@ def traced_forward(
     tokens: jax.Array,
     segment_ids: jax.Array,
     selection: ForwardSelection,
+    *,
+    capture_positions: tuple[int, ...] | None = None,
 ) -> TracedValues:
     mask = AttentionMask.causal().with_segment_ids(segment_ids)
-    hidden, metrics = model(tokens, mask=mask, trace_routes=True)
+    hidden, metrics = model(tokens, mask=mask, trace_routes=True, capture_positions=capture_positions)
     forward = _project_forward(model, hidden, selection)
+    model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
+    hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
+    hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
     # Process zero writes the bundle. Replication makes each global trace fully addressable there.
     return TracedValues(
         forward=forward,
         route_expert_ids=jax.sharding.reshard(metrics["route_expert_ids"], P()),
         route_combine_weights=jax.sharding.reshard(metrics["route_combine_weights"], P()),
         route_cutoff_gaps=jax.sharding.reshard(metrics["route_cutoff_gaps"], P()),
+        model_input_hidden=model_input_hidden,
+        hidden_after_attn=hidden_after_attn,
+        hidden_after_block=hidden_after_block,
     )
 
 
@@ -496,7 +509,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(*args)
+            traced = traced_forward(
+                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
+            )
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -524,6 +539,21 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
+    if request.spec.mode == "layer-probe":
+        if (
+            traced_host.model_input_hidden is None
+            or traced_host.hidden_after_attn is None
+            or traced_host.hidden_after_block is None
+        ):
+            raise ValueError("Native layer-probe values were not captured")
+        arrays.update(
+            {
+                "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
+                "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
+                "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
+            }
+        )
     remote_root = prefix_join(store_root, request.bundle_id)
     manifest = {
         "bundle_id": request.bundle_id,
@@ -636,6 +666,14 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "exceeds_training_sequence_length": input_arrays["tokens"].shape[1] > model_config.max_seq_len,
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
+        }
+    if request.spec.mode == "layer-probe":
+        manifest["layer_probe"] = {
+            "positions": list(LAYER_PROBE_POSITIONS),
+            "model_input": "after embedding RMS and gated norms, before layer 0",
+            "after_attn": "after attention-branch residual, before MLP norm",
+            "after_block": "after MLP-branch residual",
+            "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     with TemporaryDirectory(prefix="hero-forward-goldens-") as directory:
         local = Path(directory) / request.bundle_id
