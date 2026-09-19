@@ -74,6 +74,7 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -85,7 +86,7 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
-GOLDEN_MODES = ("smoke", "required", "layer-probe", "diagnostic-8192", "diagnostic-16384")
+GOLDEN_MODES = ("smoke", "required", "layer-probe", "shape-audit", "diagnostic-8192", "diagnostic-16384")
 AUTHORITATIVE_WEIGHT_KEYS = ("master_params", "params")
 
 
@@ -199,7 +200,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe"):
+    elif mode in ("required", "layer-probe", "shape-audit"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -210,7 +211,11 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             ("context-minus-one", "neuron-associate-grub-zoo", 4095),
             ("context-exact", "neuron-associate-grub-zoo", 4096),
         )
-        release = REQUIRED_RELEASE if mode == "required" else LAYER_PROBE_RELEASE
+        release = {
+            "required": REQUIRED_RELEASE,
+            "layer-probe": LAYER_PROBE_RELEASE,
+            "shape-audit": SHAPE_AUDIT_RELEASE,
+        }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
@@ -327,12 +332,22 @@ def build_inputs(request: GoldenRequest, tokenizer) -> tuple[dict[str, np.ndarra
     score_indices = np.argwhere(score_mask)
 
     first_repeat_rows = [row for row, case in enumerate(request.spec.cases) if case.id.endswith("repeat-0")]
-    full_rows = []
-    for row in first_repeat_rows:
-        length = request.spec.cases[row].valid_length
-        full_rows.append((row, length - 2))
-        if length > model.sliding_window + 1:
-            full_rows.extend((row, position) for position in range(model.sliding_window - 2, model.sliding_window + 1))
+    if request.spec.mode == "shape-audit":
+        first_repeat_set = set(first_repeat_rows)
+        full_rows = [
+            (int(row), int(target_position - 1))
+            for row, target_position in score_indices
+            if int(row) in first_repeat_set
+        ]
+    else:
+        full_rows = []
+        for row in first_repeat_rows:
+            length = request.spec.cases[row].valid_length
+            full_rows.append((row, length - 2))
+            if length > model.sliding_window + 1:
+                full_rows.extend(
+                    (row, position) for position in range(model.sliding_window - 2, model.sliding_window + 1)
+                )
     full_rows = list(dict.fromkeys(full_rows))
     arrays = {
         "tokens": tokens,
@@ -673,6 +688,11 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "after_block": "after MLP-branch residual",
+            "scope": "diagnostic only; original native golden bundle remains unchanged",
+        }
+    if request.spec.mode == "shape-audit":
+        manifest["shape_audit"] = {
+            "full_logit_selection": "every scored position in the eight distinct repeat-0 cases",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     with TemporaryDirectory(prefix="hero-forward-goldens-") as directory:
