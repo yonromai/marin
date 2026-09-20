@@ -834,6 +834,28 @@ def test_block_threads_attention_padding_into_moe_metrics():
     np.testing.assert_array_equal(metrics["trace_cutoff_gap"][:, 4:], 0)
 
 
+def test_hero_moe_preserves_normalized_fp32_combine_weights():
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = dataclasses.replace(_latent_config(), num_experts_per_token=2)
+    hidden = jax.random.normal(jax.random.key(71), (1, 8, cfg.hidden_dim)).astype(jnp.bfloat16)
+    token_valid = jnp.ones((1, 8), dtype=jnp.bool_)
+
+    with set_mesh(mesh):
+        mlp = model.MoEMLP.init(cfg, key=jax.random.key(72))
+        _, metrics = jax.jit(lambda x: mlp(x, token_valid, trace_routes=True))(hidden)
+
+    selected = np.asarray(metrics["trace_expert_ids"][0], dtype=np.int64)
+    traced = np.asarray(metrics["trace_combine_weights"][0], dtype=np.float64)
+    logits = np.asarray(hidden, dtype=np.float64).reshape(8, cfg.hidden_dim) @ np.asarray(mlp.router, dtype=np.float64)
+    chosen_logits = np.take_along_axis(logits, selected, axis=-1)
+    sigmoid = 1.0 / (1.0 + np.exp(-chosen_logits))
+    expected = 2.5 * sigmoid / sigmoid.sum(axis=-1, keepdims=True)
+    rounded_bf16 = np.asarray(jnp.asarray(expected, dtype=jnp.bfloat16), dtype=np.float64)
+
+    np.testing.assert_allclose(traced, expected, rtol=1e-5, atol=1e-5)
+    assert np.max(np.abs(traced - rounded_bf16)) > 1e-4
+
+
 def test_block_layer_probe_samples_residuals_without_changing_output():
     mesh = _explicit_mesh(1, 1, 1, 1)
     cfg = _latent_config()
