@@ -1,11 +1,12 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
-"""Capture the first residual Hero MoE's expert outputs after FP32 combine.
+"""Capture the residual layer-29 Hero MoE's expert outputs after FP32 combine.
 
 The 4095/4096-token cases have identical causal prefixes. Both are evaluated
 in the same 32-row, 32-GB200 diagnostic batch, with one row on each data rank.
-The corrected full-prefix probe first differs at layer 17, token 2476.
+The corrected full-prefix probe finds an independent MoE-output difference at
+layer 29, token 259, after identical attention and routed inputs.
 """
 
 import argparse
@@ -60,15 +61,15 @@ from experiments.grug.moe_hero_ep.ops.vibe_check.sample import COMPUTE_POLICY, r
 
 logger = logging.getLogger(__name__)
 
-STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-numerical-resolution/native-layer17-moe-audit"
-TARGET_LAYER = 17
-PROBE_POSITIONS = (2476,)
+STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-numerical-resolution/native-layer29-moe-audit"
+TARGET_LAYER = 29
+PROBE_POSITIONS = (259,)
 PAIR_ROWS = (6, 7)
 
 
 @eqx.filter_jit
-def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str, jax.Array]:
-    """Replay through layer 17 and expose its expert/combine boundary."""
+def capture_layer29(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str, jax.Array]:
+    """Replay through layer 29 and expose its expert/combine boundary."""
     # QuACK's CUTLASS dependency is available in the GB200 task image, not the
     # local CPU environment used to submit the task.
     from levanter.grug._moe.sonic_cute import _expert_mlp  # noqa: PLC0415
@@ -244,7 +245,7 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
 
 
 def _bundle_id(revision: str, attempt: int) -> str:
-    return f"hero-layer17-moe-{revision[:12]}-attempt{attempt}"
+    return f"hero-layer29-moe-{revision[:12]}-attempt{attempt}"
 
 
 def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
@@ -252,7 +253,7 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
     configure_logging(logging.INFO if jax.process_index() == 0 else logging.WARNING)
     configure_coreweave_s3()
     if jax.default_backend() != "gpu" or jax.device_count() != request.spec.batch_size:
-        raise ValueError("Native layer-17 audit requires the full 32-GB200 mesh")
+        raise ValueError("Native layer-29 audit requires the full 32-GB200 mesh")
     tokenizer = AutoTokenizer.from_pretrained(request.spec.tokenizer, revision=request.spec.tokenizer_revision)
     input_arrays, cases = build_inputs(request, tokenizer)
     mesh = compact_grug_mesh(expert_axis_size=1, replica_axis_size=1)
@@ -265,14 +266,14 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
         def batch_array(value: np.ndarray) -> jax.Array:
             return jax.make_array_from_callback(value.shape, batch_sharding, lambda index: value[index])
 
-        captured = capture_layer17(
+        captured = capture_layer29(
             model,
             batch_array(input_arrays["tokens"]),
             batch_array(input_arrays["segment_ids"]),
         )
         jax.block_until_ready(captured)
     if jax.process_index() != 0:
-        multihost_utils.sync_global_devices("hero-layer17-moe-audit-written")
+        multihost_utils.sync_global_devices("hero-layer29-moe-audit-written")
         return
     arrays = {
         key: np.asarray(value)[list(PAIR_ROWS)]
@@ -310,7 +311,7 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
         "probe_positions": list(PROBE_POSITIONS),
         "arrays": {key: {"shape": list(value.shape), "dtype": str(value.dtype)} for key, value in arrays.items()},
         "contract": (
-            "raw selected expert outputs at layer 17 / position 2476 in both original 4K cases; "
+            "raw selected expert outputs at layer 29 / position 259 in both original 4K cases; "
             "FP64 evaluation of the same BF16 expert inputs and weights, original BF16 scatter, "
             "FP32 scatter, fixed FP32 sum, and production MoE output"
         ),
@@ -318,8 +319,8 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
     with (root / "arrays.npz").open("wb") as target:
         shutil.copyfileobj(io.BytesIO(payload), target, length=8 * 1024 * 1024)
     manifest_target.write((json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode(), expected_version=None)
-    logger.info("Layer-17 MoE audit uploaded: %s", root)
-    multihost_utils.sync_global_devices("hero-layer17-moe-audit-written")
+    logger.info("Layer-29 MoE audit uploaded: %s", root)
+    multihost_utils.sync_global_devices("hero-layer29-moe-audit-written")
 
 
 def submit(store_root: str, attempt: int) -> None:
@@ -330,7 +331,7 @@ def submit(store_root: str, attempt: int) -> None:
     configure_coreweave_s3()
     if (StoragePath(prefix_join(store_root, bundle_id)) / "manifest.json").exists():
         raise FileExistsError(bundle_id)
-    name = f"hero-layer17-moe-{revision[:10]}-{attempt}"
+    name = f"hero-layer29-moe-{revision[:10]}-{attempt}"
     with connect_controller(cluster_name=CONTROLLER_CLUSTER) as endpoint:
         with IrisClient.remote(endpoint.url, credentials=endpoint.credentials) as client:
             jobs = IrisSamplingJobs(
