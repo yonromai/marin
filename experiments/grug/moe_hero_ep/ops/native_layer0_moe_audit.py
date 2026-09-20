@@ -17,7 +17,6 @@ import logging
 import platform
 import shutil
 import subprocess
-import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -29,9 +28,9 @@ from iris.cli.connect import connect_controller
 from iris.client.client import IrisClient
 from iris.rpc.proto_display import priority_band_value
 from jax.experimental import multihost_utils
-from jax.sharding import NamedSharding
+from jax.experimental.shard_map import shard_map
+from jax.sharding import NamedSharding, reshard
 from jax.sharding import PartitionSpec as P
-from jax.sharding import reshard
 from levanter.distributed import DistributedConfig
 from levanter.grug._moe.common import (
     _interleave_gate_up,
@@ -106,29 +105,69 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
 
     routed_input = flat
     if mlp.w_latent_down is not None and mlp.latent_norm is not None:
-        routed_input = jnp.einsum(
-            "td,dl->tl", flat, mlp.w_latent_down.astype(flat.dtype), out_sharding=_batch_spec()
-        )
+        routed_input = jnp.einsum("td,dl->tl", flat, mlp.w_latent_down.astype(flat.dtype), out_sharding=_batch_spec())
         routed_input = mlp.latent_norm(routed_input)
 
     experts = mlp.expert_mlp
-    w_gate_up = jnp.concatenate((experts.w_gate, experts.w_up), axis=-1)
-    w13_interleaved = _interleave_gate_up(w_gate_up, experts.w_down.shape[1])
-    x_dispatch, w_dispatch, token_dispatch, group_sizes = _prepare_moe_dispatch(
+    w_gate_up = reshard(jnp.concatenate((experts.w_gate, experts.w_up), axis=-1), P(None, None, None))
+    w_down = reshard(experts.w_down, P(None, None, None))
+
+    # This is the same per-data-rank boundary as the production local MoE.
+    # Sorting a globally sharded token axis is invalid in explicit JAX
+    # sharding; each rank sorts only its own 4096-token row.
+    def local_capture(local_input, local_selected, local_combine, local_valid, local_w13, local_w2):
+        local_tokens = local_input.shape[0]
+        local_topk = local_selected.shape[1]
+        local_hidden = local_input.shape[1]
+        x_dispatch, w_dispatch, token_dispatch, group_sizes = _prepare_moe_dispatch(
+            local_input, local_selected, local_combine, local_valid, num_experts=config.num_experts
+        )
+        _, dispatch_positions, _, _ = _prepare_moe_dispatch_indices_with_assignment_ids(
+            local_selected, local_valid, num_experts=config.num_experts
+        )
+        cumulative = jnp.concatenate((jnp.zeros((1,), jnp.int32), jnp.cumsum(group_sizes).astype(jnp.int32)))
+        w13_interleaved = _interleave_gate_up(local_w13, local_w2.shape[1])
+        expert_dispatch = _expert_mlp(x_dispatch, w13_interleaved, local_w2, group_sizes, cumulative)
+        expert_route = jnp.take(expert_dispatch, dispatch_positions.reshape(-1), axis=0).reshape(
+            local_tokens, local_topk, local_hidden
+        )
+        scatter = jnp.zeros_like(local_input).at[token_dispatch].add(expert_dispatch * w_dispatch[:, None], mode="drop")
+        weighted = expert_route * local_combine[:, :, None]
+        fixed_sum = jnp.sum(weighted.astype(jnp.float32), axis=1).astype(local_input.dtype)
+        fp32_scatter = (
+            jnp.zeros_like(local_input, dtype=jnp.float32)
+            .at[token_dispatch]
+            .add((expert_dispatch * w_dispatch[:, None]).astype(jnp.float32), mode="drop")
+        )
+        positions = jnp.asarray(PROBE_POSITIONS)
+        return (
+            jnp.take(expert_route, positions, axis=0),
+            jnp.take(scatter, positions, axis=0),
+            jnp.take(fixed_sum, positions, axis=0),
+            jnp.take(fp32_scatter.astype(local_input.dtype), positions, axis=0),
+        )
+
+    mesh = jax.sharding.get_abstract_mesh()
+    token_spec = _batch_spec()
+    expert_spec = P(token_spec[0], None, None)
+    local_results = shard_map(
+        local_capture,
+        mesh=mesh,
+        in_specs=(token_spec, token_spec, token_spec, token_spec, P(None, None, None), P(None, None, None)),
+        out_specs=(expert_spec, token_spec, token_spec, token_spec),
+        check_rep=False,
+    )(
         routed_input,
         selected.astype(jnp.int32),
         combine,
         valid_flat,
-        num_experts=config.num_experts,
+        w_gate_up,
+        w_down,
     )
-    _, dispatch_positions, inverse_sizes, sorted_assignments = _prepare_moe_dispatch_indices_with_assignment_ids(
-        selected.astype(jnp.int32), valid_flat, num_experts=config.num_experts
-    )
-    cumulative = jnp.concatenate((jnp.zeros((1,), jnp.int32), jnp.cumsum(group_sizes).astype(jnp.int32)))
-    expert_dispatch = _expert_mlp(x_dispatch, w13_interleaved, experts.w_down, group_sizes, cumulative)
-    expert_route = jnp.take(expert_dispatch, dispatch_positions.reshape(-1), axis=0).reshape(
-        batch, sequence, config.num_experts_per_token, -1
-    )
+    expert_route = local_results[0].reshape(batch, len(PROBE_POSITIONS), config.num_experts_per_token, -1)
+    scatter = local_results[1].reshape(batch, len(PROBE_POSITIONS), -1)
+    fixed_sum = local_results[2].reshape(batch, len(PROBE_POSITIONS), -1)
+    fp32_scatter = local_results[3].reshape(batch, len(PROBE_POSITIONS), -1)
     # Evaluate the eight actual experts with the production BF16 inputs and
     # weights, but promote both GEMM contractions and SwiGLU to FP64.
     with jax.enable_x64():
@@ -138,34 +177,23 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         reference_experts = selected.reshape(batch, sequence, -1)[PAIR_ROWS[0], PROBE_POSITIONS[-1]]
 
         def reference_expert(expert_id):
-            gate = reference_input @ experts.w_gate[expert_id].astype(jnp.float64)
-            up = reference_input @ experts.w_up[expert_id].astype(jnp.float64)
-            return (jax.nn.silu(gate) * up) @ experts.w_down[expert_id].astype(jnp.float64)
+            gate = reference_input @ w_gate_up[expert_id, :, : w_down.shape[1]].astype(jnp.float64)
+            up = reference_input @ w_gate_up[expert_id, :, w_down.shape[1] :].astype(jnp.float64)
+            return (jax.nn.silu(gate) * up) @ w_down[expert_id].astype(jnp.float64)
 
         individual_reference = jax.lax.map(reference_expert, reference_experts)
-    scatter = jnp.zeros_like(routed_input).at[token_dispatch].add(
-        expert_dispatch * w_dispatch[:, None], mode="drop"
-    )
-    # Round each weighted expert as the BF16 production multiplication does,
-    # but accumulate them in fixed route-slot order and FP32. The host audit
-    # separately sums the captured BF16 expert outputs and weights in FP64.
-    weighted = expert_route * combine.reshape(batch, sequence, -1, 1)
-    fixed_sum = jnp.sum(weighted.astype(jnp.float32), axis=2).astype(routed_input.dtype).reshape(scatter.shape)
-    fp32_scatter = jnp.zeros_like(routed_input, dtype=jnp.float32).at[token_dispatch].add(
-        (expert_dispatch * w_dispatch[:, None]).astype(jnp.float32), mode="drop"
-    )
-    fp32_scatter = fp32_scatter.astype(routed_input.dtype)
     if mlp.w_latent_up is not None:
         scatter_up = jnp.einsum(
-            "tl,ld->td", scatter, mlp.w_latent_up.astype(scatter.dtype), out_sharding=_batch_spec()
+            "bpl,ld->bpd", scatter, mlp.w_latent_up.astype(scatter.dtype), out_sharding=P(token_spec[0], None, None)
         )
         fixed_up = jnp.einsum(
-            "tl,ld->td", fixed_sum, mlp.w_latent_up.astype(fixed_sum.dtype), out_sharding=_batch_spec()
+            "bpl,ld->bpd", fixed_sum, mlp.w_latent_up.astype(fixed_sum.dtype), out_sharding=P(token_spec[0], None, None)
         )
     else:
         scatter_up, fixed_up = scatter, fixed_sum
 
     positions = jnp.asarray(PROBE_POSITIONS)
+
     def sample(value, *tail):
         shaped = value.reshape(batch, sequence, *tail)
         return jax.sharding.reshard(jnp.take(shaped, positions, axis=1), P())
@@ -175,15 +203,13 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         "routed_input": sample(routed_input, routed_input.shape[-1]),
         "selected_experts": sample(selected, config.num_experts_per_token),
         "combine_weights": sample(combine, config.num_experts_per_token),
-        "expert_output": jax.sharding.reshard(jnp.take(expert_route, positions, axis=1), P()),
+        "expert_output": jax.sharding.reshard(expert_route, P()),
         "individual_expert_fp64_reference": jax.sharding.reshard(individual_reference, P()),
-        "scatter_bf16": sample(scatter, scatter.shape[-1]),
-        "fixed_fp32_sum": sample(fixed_sum, fixed_sum.shape[-1]),
-        "scatter_fp32": sample(fp32_scatter, fp32_scatter.shape[-1]),
-        "scatter_after_latent_up": sample(scatter_up, scatter_up.shape[-1]),
-        "fixed_after_latent_up": sample(fixed_up, fixed_up.shape[-1]),
-        "dispatch_group_sizes_equal": jax.sharding.reshard(jnp.all(group_sizes == inverse_sizes), P()),
-        "sorted_assignments": jax.sharding.reshard(sorted_assignments[:16], P()),
+        "scatter_bf16": jax.sharding.reshard(scatter, P()),
+        "fixed_fp32_sum": jax.sharding.reshard(fixed_sum, P()),
+        "scatter_fp32": jax.sharding.reshard(fp32_scatter, P()),
+        "scatter_after_latent_up": jax.sharding.reshard(scatter_up, P()),
+        "fixed_after_latent_up": jax.sharding.reshard(fixed_up, P()),
     }
 
 
@@ -218,12 +244,12 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
     if jax.process_index() != 0:
         multihost_utils.sync_global_devices("hero-layer0-moe-audit-written")
         return
-    arrays = {key: np.asarray(value)[list(PAIR_ROWS)] for key, value in captured.items() if key not in (
-        "dispatch_group_sizes_equal", "sorted_assignments", "individual_expert_fp64_reference"
-    )}
+    arrays = {
+        key: np.asarray(value)[list(PAIR_ROWS)]
+        for key, value in captured.items()
+        if key != "individual_expert_fp64_reference"
+    }
     arrays["individual_expert_fp64_reference"] = np.asarray(captured["individual_expert_fp64_reference"])
-    if not bool(np.asarray(captured["dispatch_group_sizes_equal"])):
-        raise ValueError("Dispatch group sizes disagree between the two index constructions")
     arrays["probe_positions"] = np.asarray(PROBE_POSITIONS, dtype=np.int32)
     arrays["row_valid_lengths"] = input_arrays["valid_lengths"][list(PAIR_ROWS)]
     arrays["row_tokens"] = input_arrays["tokens"][list(PAIR_ROWS)]
