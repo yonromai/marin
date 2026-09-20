@@ -35,6 +35,7 @@ from levanter.grug._moe.ep_fixed_pooled_wave_all_to_all import (
     _receiver_ranks,
 )
 from levanter.grug._moe.ep_ragged_all_to_all import _loop_local_zeros, _LoopLocalZeroSite
+from levanter.grug._moe.scatter import _moe_mlp_local_scatter
 from levanter.grug._moe.sonic import sonic_gather_sum
 from levanter.grug.grug_moe import (
     MoEExpertMlp,
@@ -640,6 +641,37 @@ def test_moe_expert_mlp_init_matches_across_backends():
         atol=1e-5,
     )
     np.testing.assert_allclose(np.asarray(sonic_mlp.w_down), np.asarray(scatter_mlp.w_down), rtol=1e-5, atol=1e-5)
+
+
+def test_bf16_local_scatter_accumulates_weighted_experts_before_rounding():
+    # Four experts each contribute half a BF16 ULP at 1.0. A BF16 scatter that
+    # adds the base first loses them; a FP32 sum retains their combined value.
+    dtype = jnp.bfloat16
+    hidden_dim, intermediate_dim = 16, 24
+    x = jnp.zeros((1, hidden_dim), dtype=dtype).at[0, 0].set(1)
+    selected_experts = jnp.arange(8, dtype=jnp.int32)[None, :]
+    combine_weights = jnp.full((1, 8), 0.125, dtype=dtype)
+    token_valid = jnp.array([True])
+    w13 = jnp.zeros((8, hidden_dim, 2 * intermediate_dim), dtype=dtype)
+    w13 = w13.at[:, 0, 0].set(1).at[:, 0, intermediate_dim].set(1)
+    contributions = jnp.array([8.0, 0.03125, 0.03125, 0.03125, 0.03125, 0, 0, 0], dtype=dtype)
+    w2 = jnp.zeros((8, intermediate_dim, hidden_dim), dtype=dtype).at[:, 0, 0].set(contributions)
+
+    actual, dropped = _moe_mlp_local_scatter(
+        x,
+        selected_experts,
+        combine_weights,
+        token_valid,
+        w13,
+        w2,
+        activation_fn=lambda value: value,
+        num_experts=8,
+    )
+
+    assert actual.dtype == dtype
+    assert float(np.asarray(actual)[0, 0]) == 1.015625
+    np.testing.assert_array_equal(np.asarray(actual)[0, 1:], np.zeros(hidden_dim - 1))
+    assert int(dropped) == 0
 
 
 def test_moe_mlp_sonic_backend_reports_missing_optional_dependencies():
