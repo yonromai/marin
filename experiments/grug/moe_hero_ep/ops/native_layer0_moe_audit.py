@@ -155,12 +155,12 @@ def capture_layer29(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
             local_tokens, local_topk, local_hidden
         )
         scatter = jnp.zeros_like(local_input).at[token_dispatch].add(expert_dispatch * w_dispatch[:, None], mode="drop")
-        weighted = expert_route * local_combine[:, :, None]
-        fixed_sum = jnp.sum(weighted.astype(jnp.float32), axis=1).astype(local_input.dtype)
+        weighted_fp32 = expert_route.astype(jnp.float32) * local_combine[:, :, None].astype(jnp.float32)
+        fixed_sum = jnp.sum(weighted_fp32, axis=1).astype(local_input.dtype)
         fp32_scatter = (
             jnp.zeros_like(local_input, dtype=jnp.float32)
             .at[token_dispatch]
-            .add((expert_dispatch * w_dispatch[:, None]).astype(jnp.float32), mode="drop")
+            .add(expert_dispatch.astype(jnp.float32) * w_dispatch[:, None].astype(jnp.float32), mode="drop")
         )
         positions = jnp.asarray(PROBE_POSITIONS)
         return (
@@ -223,8 +223,15 @@ def capture_layer29(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         fixed_up = jnp.einsum(
             "bpl,ld->bpd", fixed_sum, mlp.w_latent_up.astype(fixed_sum.dtype), out_sharding=P(token_spec[0], None, None)
         )
+        fp32_scatter_up = jnp.einsum(
+            "bpl,ld->bpd",
+            fp32_scatter,
+            mlp.w_latent_up.astype(fp32_scatter.dtype),
+            out_sharding=P(token_spec[0], None, None),
+        )
     else:
         scatter_up, fixed_up = scatter, fixed_sum
+        fp32_scatter_up = fp32_scatter
 
     return {
         "before_attention": sample(hidden, config.hidden_dim),
@@ -240,6 +247,7 @@ def capture_layer29(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         "scatter_fp32": jax.sharding.reshard(fp32_scatter, P()),
         "scatter_after_latent_up": jax.sharding.reshard(scatter_up, P()),
         "fixed_after_latent_up": jax.sharding.reshard(fixed_up, P()),
+        "fp32_scatter_after_latent_up": jax.sharding.reshard(fp32_scatter_up, P()),
         "production_moe_out": sample(production_moe_out, config.hidden_dim),
     }
 
