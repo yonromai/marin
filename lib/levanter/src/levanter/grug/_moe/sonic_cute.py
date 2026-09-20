@@ -3,7 +3,8 @@
 
 """Local Grug MoE backend using Tri Dao's QuACK SM100 kernels (SonicMoE) on B200.
 
-Dispatch/combine as in ``scatter``, but the expert MLP GEMMs run on QuACK's
+Dispatch by expert as in ``scatter`` and combine in a fixed route order with
+Sonic's FP32 gather. The expert MLP GEMMs run on QuACK's
 gated and plain SM100 GEMMs via the vendored ``cutlass.jax.cutlass_call``
 shim. QuACK does all four activation-path grouped GEMMs (gate/up fwd fused with
 SwiGLU, down fwd, and the ``dh``/``dx`` backward matmuls); the SwiGLU backward is
@@ -30,6 +31,7 @@ from levanter.grug._moe.common import (
     _chunk_capacity_drops,
     _interleave_gate_up,
     _prepare_moe_dispatch,
+    _prepare_moe_dispatch_indices_with_assignment_ids,
     _swiglu_gate_up_backward,
     _zero_dropped_assignments,
     _zero_inactive_grouped_rows,
@@ -39,6 +41,7 @@ from levanter.grug._moe.quack_moe_cute import (
     quack_grouped_gemm,
     quack_grouped_wgrad,
 )
+from levanter.grug._moe.sonic import sonic_gather_sum
 
 # QuACK activation-path GEMM configuration, tuned at the i3072 hero shapes on one GB200.
 # Tile (256, 256) beats the (256, 128) default by 1.235x on the gated GEMM and 1.094x on the
@@ -161,9 +164,10 @@ def _moe_mlp_local_sonic_cute(
     *,
     num_experts: int,
 ) -> tuple[Float[Array, "T H"], Int[Array, ""]]:
-    x_dispatch, w_dispatch, token_dispatch, group_sizes = _prepare_moe_dispatch(
-        x, selected_experts, combine_weights, token_valid, num_experts=num_experts
+    token_ids_sort, dispatch_positions, group_sizes, _ = _prepare_moe_dispatch_indices_with_assignment_ids(
+        selected_experts, token_valid, num_experts=num_experts
     )
+    x_dispatch = x[token_ids_sort]
     x_dispatch = tree_checkpoint_name(x_dispatch, _CHECKPOINT_DISPATCH_INPUT)
     moe_dim = moe_w2.shape[1]
     w13_il = _interleave_gate_up(moe_w13, moe_dim)
@@ -174,9 +178,12 @@ def _moe_mlp_local_sonic_cute(
             _expert_mlp(x_dispatch, w13_il, moe_w2, group_sizes, cu), _CHECKPOINT_DISPATCH_OUTPUT
         )
 
-    with jax.named_scope("scatter"):
-        weighted = out_dispatch.astype(jnp.float32) * w_dispatch[:, None].astype(jnp.float32)
-        out = jnp.zeros_like(x, dtype=jnp.float32).at[token_dispatch].add(weighted, mode="drop").astype(x.dtype)
+    with jax.named_scope("gather_sum"):
+        out = sonic_gather_sum(
+            out_dispatch,
+            dispatch_positions,
+            jnp.where(token_valid[:, None], combine_weights, 0),
+        )
     return out, _zero_dropped_assignments()
 
 
