@@ -78,6 +78,8 @@ SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 GATED_NORM_FP32_ORIGINAL_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-original-v1"
 GATED_NORM_FP32_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-fresh-v1"
+GATED_NORM_FP32_SILU_ORIGINAL_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-original-v1"
+GATED_NORM_FP32_SILU_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -97,6 +99,8 @@ GOLDEN_MODES = (
     "fresh-qualification",
     "gated-norm-fp32-original",
     "gated-norm-fp32-fresh",
+    "gated-norm-fp32-silu-original",
+    "gated-norm-fp32-silu-fresh",
     "diagnostic-8192",
     "diagnostic-16384",
 )
@@ -214,7 +218,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe", "shape-audit", "gated-norm-fp32-original"):
+    elif mode in ("required", "layer-probe", "shape-audit", "gated-norm-fp32-original", "gated-norm-fp32-silu-original"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -230,8 +234,9 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "layer-probe": LAYER_PROBE_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
             "gated-norm-fp32-original": GATED_NORM_FP32_ORIGINAL_RELEASE,
+            "gated-norm-fp32-silu-original": GATED_NORM_FP32_SILU_ORIGINAL_RELEASE,
         }[mode]
-    elif mode in ("fresh-qualification", "gated-norm-fp32-fresh"):
+    elif mode in ("fresh-qualification", "gated-norm-fp32-fresh", "gated-norm-fp32-silu-fresh"):
         # Selected before examining the corrected model's outputs. The final
         # pair shares its entire causal prefix and tests the 4095/4096 edge.
         base_cases = (
@@ -247,6 +252,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
         release = {
             "fresh-qualification": FRESH_QUALIFICATION_RELEASE,
             "gated-norm-fp32-fresh": GATED_NORM_FP32_FRESH_RELEASE,
+            "gated-norm-fp32-silu-fresh": GATED_NORM_FP32_SILU_FRESH_RELEASE,
         }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)

@@ -653,7 +653,11 @@ class GatedNorm(eqx.Module):
         gate_hidden = jnp.einsum("...d,dr->...r", x, self.w_down)
         # TODO: silu activation here isn't explored, just cargo-culted from Qwen. Likely low-hanging ablation fruit
         # (e.g. compare no activation, relu, etc.).
-        gate_hidden = jax.nn.silu(gate_hidden)
+        if gate_hidden.dtype == jnp.bfloat16:
+            # BF16 sigmoid/multiply can round SiLU twice; round only its final result to BF16.
+            gate_hidden = jax.nn.silu(gate_hidden.astype(jnp.float32)).astype(jnp.bfloat16)
+        else:
+            gate_hidden = jax.nn.silu(gate_hidden)
         gate_logits = jnp.einsum("...r,rd->...d", gate_hidden, self.w_up)
         # Keep the sigmoid calculation in fp32 before rounding the gate to x's dtype.
         gate = jax.nn.sigmoid(gate_logits.astype(jnp.float32))

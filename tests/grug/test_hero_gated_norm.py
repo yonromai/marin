@@ -3,6 +3,7 @@
 
 import math
 
+import jax
 import jax.numpy as jnp
 import ml_dtypes
 import numpy as np
@@ -20,3 +21,19 @@ def test_gated_norm_bf16_sigmoid_matches_rounded_fp64() -> None:
     expected = np.asarray(1.0 / (1.0 + math.exp(4.0)), dtype=ml_dtypes.bfloat16).astype(np.float32).item()
 
     assert actual == expected
+
+
+def test_gated_norm_bf16_silu_matches_rounded_fp64() -> None:
+    down = jnp.zeros((1, 128), dtype=jnp.bfloat16).at[0, 0].set(-4)
+    up = jnp.zeros((128, 1), dtype=jnp.bfloat16).at[0, 0].set(4)
+    norm = GatedNorm(w_down=down, w_up=up)
+
+    x = jnp.ones((1, 1), dtype=jnp.bfloat16)
+    actual = np.asarray(norm(x).astype(jnp.float32)).item()
+    jitted = np.asarray(jax.jit(lambda value: norm(value))(x).astype(jnp.float32)).item()
+    silu = ml_dtypes.bfloat16(-4.0 / (1.0 + math.exp(4.0)))
+    gate_logit = ml_dtypes.bfloat16(float(silu) * 4.0)
+    expected = np.asarray(1.0 / (1.0 + math.exp(-float(gate_logit))), dtype=ml_dtypes.bfloat16).astype(np.float32).item()
+
+    assert actual == expected
+    assert jitted == expected
