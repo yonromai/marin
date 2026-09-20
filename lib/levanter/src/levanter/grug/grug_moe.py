@@ -16,6 +16,7 @@ Implementation overview:
 
 from collections.abc import Callable
 from functools import partial
+from typing import cast, overload
 
 import equinox as eqx
 import jax
@@ -62,7 +63,6 @@ from levanter.grug.sharding import (
     _value_spec_or_default,
 )
 from levanter.utils.activation import ActivationFunctionEnum
-
 
 MOE_DROPPED_ASSIGNMENTS_METRIC = "moe/dropped_assignments"
 MOE_SENDER_DROPPED_ASSIGNMENTS_METRIC = "moe/sender_dropped_assignments"
@@ -227,7 +227,12 @@ class MoEExpertMlp(eqx.Module):
         token_valid: Bool[Array, "T"] | None = None,
         mesh: jax.sharding.AbstractMesh | None = None,
         report_capacity_overflow: bool = False,
-    ) -> Float[Array, "T D"] | tuple[Float[Array, "T D"], MoeDispatchCounts]:
+        capture_local_tokens: tuple[int, ...] | None = None,
+    ) -> (
+        Float[Array, "T D"]
+        | tuple[Float[Array, "T D"], MoeDispatchCounts]
+        | tuple[Float[Array, "T D"], MoeDispatchCounts, Float[Array, "P K D"]]
+    ):
         w_gate_up = jnp.concatenate([self.w_gate, self.w_up], axis=-1)
         return moe_mlp(
             x,
@@ -244,7 +249,50 @@ class MoEExpertMlp(eqx.Module):
             report_capacity_overflow=report_capacity_overflow,
             expert_chunks=self.expert_chunks,
             num_expert_waves=self.num_expert_waves,
+            capture_local_tokens=capture_local_tokens,
         )
+
+
+@overload
+def moe_mlp(
+    x: Float[Array, "T D"],
+    selected_experts: Int[Array, "T K"],
+    combine_weights: Float[Array, "T K"],
+    w_up_gate: Float[Array, "E D I2"],
+    w_down: Float[Array, "E I D"],
+    *,
+    token_valid: Bool[Array, "T"] | None = None,
+    activation: MoeActivation = ActivationFunctionEnum.silu,
+    implementation: MoeImplementation | str | None = None,
+    mesh: jax.sharding.Mesh | jax.sharding.AbstractMesh | None = None,
+    capacity_factor: float = _DEFAULT_EP_CAPACITY_FACTOR,
+    pooled_transport_capacity_factor: float | None = None,
+    report_capacity_overflow: bool = False,
+    expert_chunks: int = 1,
+    num_expert_waves: int = 1,
+    capture_local_tokens: None = None,
+) -> Float[Array, "T D"] | tuple[Float[Array, "T D"], MoeDispatchCounts]: ...
+
+
+@overload
+def moe_mlp(
+    x: Float[Array, "T D"],
+    selected_experts: Int[Array, "T K"],
+    combine_weights: Float[Array, "T K"],
+    w_up_gate: Float[Array, "E D I2"],
+    w_down: Float[Array, "E I D"],
+    *,
+    token_valid: Bool[Array, "T"] | None = None,
+    activation: MoeActivation = ActivationFunctionEnum.silu,
+    implementation: MoeImplementation | str | None = None,
+    mesh: jax.sharding.Mesh | jax.sharding.AbstractMesh | None = None,
+    capacity_factor: float = _DEFAULT_EP_CAPACITY_FACTOR,
+    pooled_transport_capacity_factor: float | None = None,
+    report_capacity_overflow: bool = False,
+    expert_chunks: int = 1,
+    num_expert_waves: int = 1,
+    capture_local_tokens: tuple[int, ...],
+) -> tuple[Float[Array, "T D"], MoeDispatchCounts, Float[Array, "P K D"]]: ...
 
 
 @named_call
@@ -264,7 +312,12 @@ def moe_mlp(
     report_capacity_overflow: bool = False,
     expert_chunks: int = 1,
     num_expert_waves: int = 1,
-) -> Float[Array, "T D"] | tuple[Float[Array, "T D"], MoeDispatchCounts]:
+    capture_local_tokens: tuple[int, ...] | None = None,
+) -> (
+    Float[Array, "T D"]
+    | tuple[Float[Array, "T D"], MoeDispatchCounts]
+    | tuple[Float[Array, "T D"], MoeDispatchCounts, Float[Array, "P K D"]]
+):
     """Functional routed MoE MLP core used by Grug modules and benchmarks.
 
     This helper handles dispatch/permute/unpermute (+EP collectives) from
@@ -285,6 +338,10 @@ def moe_mlp(
     fixed pooled-wave implementation.
     """
     resolved_implementation = resolve_moe_implementation(implementation)
+    if capture_local_tokens is not None and (resolved_implementation != "sonic_cute" or expert_chunks != 1):
+        raise ValueError("Assignment capture requires unchunked sonic_cute")
+    if capture_local_tokens is not None and not report_capacity_overflow:
+        raise ValueError("Assignment capture requires capacity reporting")
 
     if mesh is None:
         mesh = _current_mesh()
@@ -334,7 +391,7 @@ def moe_mlp(
     expert_axis_size = _mesh_axis_size(mesh, "expert")
 
     if mesh is None or mesh.empty:
-        out, dropped = _moe_mlp_local(
+        local_result = _moe_mlp_local(
             x,
             selected_experts,
             combine_weights,
@@ -345,7 +402,16 @@ def moe_mlp(
             num_experts=num_experts,
             implementation=resolved_implementation,
             expert_chunks=expert_chunks,
+            capture_local_tokens=capture_local_tokens,
         )
+        if capture_local_tokens is not None:
+            out, dropped, assignment_outputs = cast(tuple[jax.Array, jax.Array, jax.Array], local_result)
+            return (
+                out,
+                dispatch_counts(CapacityDrops(sender_dropped=dropped, receiver_dropped=jnp.zeros_like(dropped))),
+                assignment_outputs,
+            )
+        out, dropped = cast(tuple[jax.Array, jax.Array], local_result)
         if report_capacity_overflow:
             return out, dispatch_counts(
                 CapacityDrops(sender_dropped=dropped, receiver_dropped=jnp.zeros_like(dropped))
@@ -355,6 +421,8 @@ def moe_mlp(
     batch_spec = _batch_spec_from_x(x, mesh)
 
     if has_expert_axis and expert_axis_size > 1:
+        if capture_local_tokens is not None:
+            raise ValueError("Assignment capture does not support expert parallelism")
         if expert_chunks != 1:
             raise ValueError("expert_chunks must be 1 when expert parallelism is active")
         if resolved_implementation not in _EP_MOE_IMPLEMENTATIONS:
@@ -452,7 +520,7 @@ def moe_mlp(
     w_down = _reshard_for_shard_map(w_down, mesh, w_down_spec)
 
     def local_moe(x, selected_experts, combine_weights, token_valid, w_up_gate, w_down):
-        out, dropped = _moe_mlp_local(
+        local_result = _moe_mlp_local(
             x,
             selected_experts,
             combine_weights,
@@ -463,12 +531,20 @@ def moe_mlp(
             num_experts=num_experts,
             implementation=resolved_implementation,
             expert_chunks=expert_chunks,
+            capture_local_tokens=capture_local_tokens,
         )
+        if capture_local_tokens is not None:
+            out, dropped, assignment_outputs = cast(tuple[jax.Array, jax.Array, jax.Array], local_result)
+        else:
+            out, dropped = cast(tuple[jax.Array, jax.Array], local_result)
         batch_axis_names = x_spec[0]
         if report_capacity_overflow and batch_axis_names is not None:
             dropped = jax.lax.psum(dropped, axis_name=batch_axis_names)
+        if capture_local_tokens is not None:
+            return out, dropped, assignment_outputs
         return out, dropped
 
+    out_specs = (x_spec, P(), P(x_spec[0], None, x_spec[1])) if capture_local_tokens is not None else (x_spec, P())
     shard_fn = shard_map(
         local_moe,
         mesh=mesh,
@@ -480,10 +556,18 @@ def moe_mlp(
             w_up_gate_spec,
             w_down_spec,
         ),
-        out_specs=(x_spec, P()),
+        out_specs=out_specs,
         check_vma=False,
     )
-    out, dropped = shard_fn(x, selected_experts, combine_weights, token_valid, w_up_gate, w_down)
+    shard_result = shard_fn(x, selected_experts, combine_weights, token_valid, w_up_gate, w_down)
+    if capture_local_tokens is not None:
+        out, dropped, assignment_outputs = cast(tuple[jax.Array, jax.Array, jax.Array], shard_result)
+        return (
+            out,
+            dispatch_counts(CapacityDrops(sender_dropped=dropped, receiver_dropped=jnp.zeros_like(dropped))),
+            assignment_outputs,
+        )
+    out, dropped = cast(tuple[jax.Array, jax.Array], shard_result)
     if report_capacity_overflow:
         return out, dispatch_counts(CapacityDrops(sender_dropped=dropped, receiver_dropped=jnp.zeros_like(dropped)))
     return out

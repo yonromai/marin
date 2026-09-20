@@ -27,6 +27,7 @@ from jaxtyping import Array, Bool, Float, Int
 from levanter.grug._moe.common import (
     _CHECKPOINT_DISPATCH_INPUT,
     _CHECKPOINT_DISPATCH_OUTPUT,
+    _capture_local_assignment_outputs,
     _chunk_capacity_drops,
     _interleave_gate_up,
     _prepare_moe_dispatch,
@@ -160,7 +161,8 @@ def _moe_mlp_local_sonic_cute(
     moe_w2: Float[Array, "E I H"],
     *,
     num_experts: int,
-) -> tuple[Float[Array, "T H"], Int[Array, ""]]:
+    capture_local_tokens: tuple[int, ...] | None = None,
+) -> tuple[Float[Array, "T H"], Int[Array, ""]] | tuple[Float[Array, "T H"], Int[Array, ""], Float[Array, "P K H"]]:
     x_dispatch, w_dispatch, token_dispatch, group_sizes = _prepare_moe_dispatch(
         x, selected_experts, combine_weights, token_valid, num_experts=num_experts
     )
@@ -177,6 +179,15 @@ def _moe_mlp_local_sonic_cute(
     with jax.named_scope("scatter"):
         weighted = out_dispatch.astype(jnp.float32) * w_dispatch[:, None].astype(jnp.float32)
         out = jnp.zeros_like(x, dtype=jnp.float32).at[token_dispatch].add(weighted, mode="drop").astype(x.dtype)
+    if capture_local_tokens is not None:
+        assignment_outputs = _capture_local_assignment_outputs(
+            out_dispatch,
+            selected_experts,
+            token_valid,
+            num_experts=num_experts,
+            capture_local_tokens=capture_local_tokens,
+        )
+        return out, _zero_dropped_assignments(), assignment_outputs
     return out, _zero_dropped_assignments()
 
 

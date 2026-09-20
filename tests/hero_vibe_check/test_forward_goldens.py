@@ -91,6 +91,11 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
             "gated-norm-fp32-silu-fresh-branch-probe",
             "gated-norm-fp32-silu-fresh-branch-probe-v1",
         ),
+        (
+            "fresh-qualification",
+            "gated-norm-fp32-silu-fresh-expert-probe",
+            "gated-norm-fp32-silu-fresh-expert-probe-v1",
+        ),
     ),
 )
 def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases(
@@ -111,6 +116,7 @@ def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases
 
 def test_fresh_branch_probe_selects_positions_around_first_split() -> None:
     assert _capture_positions("gated-norm-fp32-silu-fresh-branch-probe") == (2397, 2398, 2399, 2639, 2640)
+    assert _capture_positions("gated-norm-fp32-silu-fresh-expert-probe") == (2398,)
     assert _capture_positions("gated-norm-fp32-silu-fresh") is None
 
 

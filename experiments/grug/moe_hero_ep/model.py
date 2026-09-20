@@ -1040,8 +1040,17 @@ class MoEMLP(eqx.Module):
         token_valid: Bool[Array, "B S"],
         *,
         trace_routes: bool = False,
+        capture_expert_positions: tuple[int, ...] | None = None,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         b, s, _ = x.shape
+        if capture_expert_positions is not None and (
+            not capture_expert_positions
+            or min(capture_expert_positions) < 0
+            or max(capture_expert_positions) >= s
+            or b != _mesh_axis_size(get_abstract_mesh(), "data")
+            or not self.cfg.report_capacity_overflow
+        ):
+            raise ValueError("Expert capture requires valid positions, one case per data shard, and capacity reporting")
         x_flat = rearrange(x, "b s d -> (b s) d")
         token_valid_flat = rearrange(token_valid, "b s -> (b s)")
         # Accumulate the BF16 input/weight dot product in FP32. Casting the result
@@ -1153,6 +1162,10 @@ class MoEMLP(eqx.Module):
             )
             # Keep the expert input scale independent of the down-projection initialization.
             routed_input = self.latent_norm(routed_input)
+        if capture_expert_positions is not None:
+            router_stats["trace_routed_input"] = jnp.take(
+                routed_input.reshape(b, s, -1), jnp.asarray(capture_expert_positions), axis=1
+            )
         moe_out = self.expert_mlp(
             routed_input,
             selected_experts.astype(jnp.int32),
@@ -1160,9 +1173,16 @@ class MoEMLP(eqx.Module):
             token_valid=token_valid_flat,
             mesh=get_abstract_mesh(),
             report_capacity_overflow=self.cfg.report_capacity_overflow,
+            capture_local_tokens=capture_expert_positions,
         )
         if self.cfg.report_capacity_overflow:
-            routed_flat, capacity_overflow = moe_out
+            if capture_expert_positions is not None:
+                routed_flat, capacity_overflow, assignment_outputs = moe_out
+                router_stats["trace_expert_outputs"] = assignment_outputs.reshape(
+                    b, len(capture_expert_positions), self.cfg.num_experts_per_token, -1
+                )
+            else:
+                routed_flat, capacity_overflow = moe_out
             dropped_assignments = capacity_overflow.dropped
             sender_dropped_assignments = capacity_overflow.sender_dropped
             receiver_dropped_assignments = capacity_overflow.receiver_dropped
@@ -1173,6 +1193,10 @@ class MoEMLP(eqx.Module):
             sender_dropped_assignments = _zero_dropped_assignments()
             receiver_dropped_assignments = _zero_dropped_assignments()
             skipped_assignments = padding_skipped_assignments(token_valid_flat, topk=self.cfg.num_experts_per_token)
+        if capture_expert_positions is not None:
+            router_stats["trace_combined_latent"] = jnp.take(
+                routed_flat.reshape(b, s, -1), jnp.asarray(capture_expert_positions), axis=1
+            )
         router_stats["capacity_overflow"] = dropped_assignments
         router_stats["sender_capacity_overflow"] = sender_dropped_assignments
         router_stats["receiver_capacity_overflow"] = receiver_dropped_assignments
@@ -1245,9 +1269,12 @@ class Block(eqx.Module):
         trace_routes: bool = False,
         capture_positions: tuple[int, ...] | None = None,
         capture_mlp_stages: bool = False,
+        capture_expert_outputs: bool = False,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         if capture_mlp_stages and capture_positions is None:
             raise ValueError("MLP-stage capture requires positions")
+        if capture_expert_outputs and capture_positions is None:
+            raise ValueError("Expert-output capture requires positions")
         # A remat policy acts on named intermediates, and a block argument is not one. This
         # reassignment routes every use below through the name, which lets the policy offload it.
         x = tree_checkpoint_name(x, LAYER_CARRY_REMAT_NAME)
@@ -1266,7 +1293,12 @@ class Block(eqx.Module):
         if capture_positions is not None:
             router_input = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
         token_valid = token_validity_from_attention_mask(mask, batch_size=x.shape[0], sequence_length=x.shape[1])
-        mlp_out, router_stats = self.mlp(mlp_in, token_valid, trace_routes=trace_routes)
+        mlp_out, router_stats = self.mlp(
+            mlp_in,
+            token_valid,
+            trace_routes=trace_routes,
+            capture_expert_positions=capture_positions if capture_expert_outputs else None,
+        )
         if capture_mlp_stages:
             router_stats["trace_routed_mlp_output"] = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         if self.shared is not None:
@@ -1355,6 +1387,7 @@ class Transformer(eqx.Module):
         trace_routes: bool = False,
         capture_positions: tuple[int, ...] | None = None,
         capture_mlp_stages: bool = False,
+        capture_expert_outputs: bool = False,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         if mask is None:
             mask = AttentionMask.causal()
@@ -1368,6 +1401,8 @@ class Transformer(eqx.Module):
             raise ValueError("Layer probe positions must lie inside the input sequence")
         if capture_mlp_stages and capture_positions is None:
             raise ValueError("MLP-stage capture requires positions")
+        if capture_expert_outputs and capture_positions is None:
+            raise ValueError("Expert-output capture requires positions")
         model_input_hidden = (
             jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
         )
@@ -1435,6 +1470,7 @@ class Transformer(eqx.Module):
                 trace_routes=trace_routes,
                 capture_positions=capture_positions,
                 capture_mlp_stages=capture_mlp_stages,
+                capture_expert_outputs=capture_expert_outputs,
             )
 
         hidden, stacked_router_stats = jax.lax.scan(
@@ -1483,6 +1519,14 @@ class Transformer(eqx.Module):
                     "trace_routed_mlp_output": stacked_router_stats["trace_routed_mlp_output"],
                     "trace_after_shared_mlp": stacked_router_stats["trace_after_shared_mlp"],
                     "trace_after_sconv_mlp": stacked_router_stats["trace_after_sconv_mlp"],
+                }
+            )
+        if capture_expert_outputs:
+            router_metrics.update(
+                {
+                    "trace_routed_input": stacked_router_stats["trace_routed_input"],
+                    "trace_expert_outputs": stacked_router_stats["trace_expert_outputs"],
+                    "trace_combined_latent": stacked_router_stats["trace_combined_latent"],
                 }
             )
         hidden = self.final_gated_norm(self.final_norm(hidden))

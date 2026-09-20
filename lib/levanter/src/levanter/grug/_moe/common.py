@@ -259,6 +259,28 @@ def _prepare_moe_dispatch_indices_with_assignment_ids(
     return token_ids_sort, dispatch_positions, group_sizes, sorted_assignment_ids
 
 
+def _capture_local_assignment_outputs(
+    out_dispatch: Float[Array, "TK H"],
+    selected_experts: Int[Array, "T K"],
+    token_valid: Bool[Array, "T"],
+    *,
+    num_experts: int,
+    capture_local_tokens: tuple[int, ...],
+) -> Float[Array, "P K H"]:
+    if (
+        not capture_local_tokens
+        or min(capture_local_tokens) < 0
+        or max(capture_local_tokens) >= selected_experts.shape[0]
+    ):
+        raise ValueError("Captured local token positions must lie inside the MoE input")
+    # The same expert-sort construction maps each route slot back to the actual
+    # grouped-GEMM output. This stays separate from the production dispatch.
+    _, dispatch_positions, _, _ = _prepare_moe_dispatch_indices_with_assignment_ids(
+        selected_experts, token_valid, num_experts=num_experts
+    )
+    return out_dispatch[dispatch_positions[jnp.asarray(capture_local_tokens)]]
+
+
 def _assignment_validity(
     token_valid: Bool[Array, "T"],
     *,

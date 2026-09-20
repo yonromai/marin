@@ -19,6 +19,7 @@ from haliax.nn.ragged_dot import ragged_dot
 
 import levanter.grug.grug_moe as grug_moe
 from levanter.grug._moe.common import (
+    _capture_local_assignment_outputs,
     _interleave_gate_up,
     _interleave_halves,
     _prepare_moe_dispatch,
@@ -546,6 +547,24 @@ def test_prepare_moe_dispatch_indices_match_materialized_dispatch():
     np.testing.assert_array_equal(
         flat_dispatch_positions[np.asarray(sorted_assignment_ids)], expected_sorted_positions
     )
+
+
+def test_capture_local_assignment_outputs_preserves_route_slot_order():
+    selected_experts = jnp.array([[2, 0], [1, 2], [0, 1]], dtype=jnp.int32)
+    token_valid = jnp.array([True, False, True])
+    # Stable expert sorting places assignments [1, 4, 5, 0, 2, 3] in the
+    # grouped buffer; the last two are invalid and would be zeroed by QuACK.
+    out_dispatch = jnp.array([[10], [20], [30], [40], [0], [0]], dtype=jnp.bfloat16)
+    captured = jax.jit(
+        lambda outputs: _capture_local_assignment_outputs(
+            outputs,
+            selected_experts,
+            token_valid,
+            num_experts=3,
+            capture_local_tokens=(0, 2),
+        )
+    )(out_dispatch)
+    np.testing.assert_array_equal(np.asarray(captured), [[[40], [10]], [[20], [30]]])
 
 
 def _arange_w13(dtype, *, experts: int = 2, hidden: int = 3, moe_dim: int = 4) -> jax.Array:
