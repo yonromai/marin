@@ -73,7 +73,7 @@ REQUIRED_RELEASE = "hero-535b-step108000-bf16-v1"
 SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
-LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v2"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
@@ -159,6 +159,7 @@ class TracedValues(NamedTuple):
     route_cutoff_gaps: jax.Array
     model_input_hidden: jax.Array | None
     hidden_after_attn: jax.Array | None
+    router_input: jax.Array | None
     hidden_after_block: jax.Array | None
 
 
@@ -437,6 +438,7 @@ def traced_forward(
     forward = _project_forward(model, hidden, selection)
     model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
     hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
+    router_input = jax.sharding.reshard(metrics["trace_router_input"], P()) if capture_positions else None
     hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
     # Process zero writes the bundle. Replication makes each global trace fully addressable there.
     return TracedValues(
@@ -446,6 +448,7 @@ def traced_forward(
         route_cutoff_gaps=jax.sharding.reshard(metrics["route_cutoff_gaps"], P()),
         model_input_hidden=model_input_hidden,
         hidden_after_attn=hidden_after_attn,
+        router_input=router_input,
         hidden_after_block=hidden_after_block,
     )
 
@@ -581,6 +584,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
+            or traced_host.router_input is None
             or traced_host.hidden_after_block is None
         ):
             raise ValueError("Native layer-probe values were not captured")
@@ -589,6 +593,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
+                "layer_probe_router_input": traced_host.router_input.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
             }
         )
@@ -710,6 +715,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "positions": list(LAYER_PROBE_POSITIONS),
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
+            "router_input": "after MLP RMS and gated norms, directly before the router and experts",
             "after_block": "after MLP-branch residual",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }

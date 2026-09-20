@@ -70,6 +70,7 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
     layer_arrays, layer_cases = build_inputs(layer_probe, _Tokenizer())
 
     assert layer_probe.bundle_id != required.bundle_id
+    assert layer_probe.spec.release.endswith("layer-probe-v2")
     assert layer_cases == required_cases
     assert layer_arrays.keys() == required_arrays.keys()
     for name in required_arrays:

@@ -1254,6 +1254,8 @@ class Block(eqx.Module):
         if capture_positions is not None:
             after_attn = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         mlp_in = self.mlp_gated_norm(self.rms_mlp(x))
+        if capture_positions is not None:
+            router_input = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
         token_valid = token_validity_from_attention_mask(mask, batch_size=x.shape[0], sequence_length=x.shape[1])
         mlp_out, router_stats = self.mlp(mlp_in, token_valid, trace_routes=trace_routes)
         if self.shared is not None:
@@ -1264,6 +1266,7 @@ class Block(eqx.Module):
         x = x + mlp_out
         if capture_positions is not None:
             router_stats["trace_hidden_after_attn"] = after_attn
+            router_stats["trace_router_input"] = router_input
             router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         return x, router_stats
 
@@ -1451,6 +1454,7 @@ class Transformer(eqx.Module):
                 {
                     "trace_model_input_hidden": model_input_hidden,
                     "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
+                    "trace_router_input": stacked_router_stats["trace_router_input"],
                     "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
                 }
             )
