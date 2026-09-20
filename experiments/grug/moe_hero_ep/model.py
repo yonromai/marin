@@ -107,7 +107,30 @@ OFFLOAD_CARRY_REMAT_MODE: RematMode = "offload_carry"
 # The per-layer residual-stream input. Plain remat holds it as the checkpoint argument, which
 # pins about 39 GiB of HBM across the hero's 48 layers.
 LAYER_CARRY_REMAT_NAME = "grug_layer_carry"
-LAYER_PROBE_POSITIONS = (0, 1, 2, 3, 4, 5, 6, 7, 259, 2046, 2047, 2048, 2049, 2476, 4094, 4095)
+LAYER_PROBE_POSITIONS = (
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    256,
+    257,
+    258,
+    259,
+    2046,
+    2047,
+    2048,
+    2049,
+    2473,
+    2474,
+    2475,
+    2476,
+    4094,
+    4095,
+)
 
 
 def _original_4k_prefix_fingerprint_diff(hidden: jax.Array) -> jax.Array:
