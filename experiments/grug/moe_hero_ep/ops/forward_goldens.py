@@ -75,6 +75,7 @@ DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
+FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -86,7 +87,15 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
-GOLDEN_MODES = ("smoke", "required", "layer-probe", "shape-audit", "diagnostic-8192", "diagnostic-16384")
+GOLDEN_MODES = (
+    "smoke",
+    "required",
+    "layer-probe",
+    "shape-audit",
+    "fresh-qualification",
+    "diagnostic-8192",
+    "diagnostic-16384",
+)
 AUTHORITATIVE_WEIGHT_KEYS = ("master_params", "params")
 
 
@@ -216,6 +225,20 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "layer-probe": LAYER_PROBE_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
         }[mode]
+    elif mode == "fresh-qualification":
+        # Selected before examining the corrected model's outputs. The final
+        # pair shares its entire causal prefix and tests the 4095/4096 edge.
+        base_cases = (
+            ("fresh-short-fixed", "smallest-prime", 32),
+            ("fresh-padded-code", "code-shared-reference", 128),
+            ("fresh-medium-context", "context-key-location", 512),
+            ("fresh-window-minus-one", "logic-invented-rules", 2047),
+            ("fresh-window-exact", "math-addition-carry", 2048),
+            ("fresh-window-plus-one", "story-missing-bridge", 2049),
+            ("fresh-context-minus-one", "context-object-ownership", 4095),
+            ("fresh-context-exact", "context-object-ownership", 4096),
+        )
+        release = FRESH_QUALIFICATION_RELEASE
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
