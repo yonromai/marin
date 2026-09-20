@@ -118,6 +118,16 @@ def _batch_reshard(x: jax.Array) -> jax.Array:
     return reshard(x, _batch_spec())
 
 
+def _capture_flattened_positions(
+    x_flat: jax.Array, *, batch_size: int, sequence_length: int, positions: tuple[int, ...]
+) -> jax.Array:
+    # A flattened token batch can put a size-one mesh axis on the sequence axis
+    # after reshape. Canonicalize before the gather: even that size-one axis makes
+    # jnp.take's output sharding ambiguous on the full multi-device Hero mesh.
+    batched = reshard(x_flat.reshape(batch_size, sequence_length, -1), P(_BATCH_AXES, None, None))
+    return jnp.take(batched, jnp.asarray(positions), axis=1)
+
+
 def _embedding_gather(token_embed: jax.Array, token_ids: Int[Array, "B S"]) -> Float[Array, "B S D"]:
     """Look up tokens from a replicated table without a cross-rack collective."""
 
@@ -1163,8 +1173,8 @@ class MoEMLP(eqx.Module):
             # Keep the expert input scale independent of the down-projection initialization.
             routed_input = self.latent_norm(routed_input)
         if capture_expert_positions is not None:
-            router_stats["trace_routed_input"] = jnp.take(
-                routed_input.reshape(b, s, -1), jnp.asarray(capture_expert_positions), axis=1
+            router_stats["trace_routed_input"] = _capture_flattened_positions(
+                routed_input, batch_size=b, sequence_length=s, positions=capture_expert_positions
             )
         moe_out = self.expert_mlp(
             routed_input,
@@ -1194,8 +1204,8 @@ class MoEMLP(eqx.Module):
             receiver_dropped_assignments = _zero_dropped_assignments()
             skipped_assignments = padding_skipped_assignments(token_valid_flat, topk=self.cfg.num_experts_per_token)
         if capture_expert_positions is not None:
-            router_stats["trace_combined_latent"] = jnp.take(
-                routed_flat.reshape(b, s, -1), jnp.asarray(capture_expert_positions), axis=1
+            router_stats["trace_combined_latent"] = _capture_flattened_positions(
+                routed_flat, batch_size=b, sequence_length=s, positions=capture_expert_positions
             )
         router_stats["capacity_overflow"] = dropped_assignments
         router_stats["sender_capacity_overflow"] = sender_dropped_assignments

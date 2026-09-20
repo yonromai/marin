@@ -793,6 +793,48 @@ def test_hybrid_kv_branches_agree_on_sharding_when_model_axis_is_wide():
     assert result.returncode == 0, result.stderr
 
 
+def test_flattened_expert_capture_gathers_on_multidevice_mesh():
+    env = os.environ.copy()
+    env["JAX_PLATFORMS"] = "cpu"
+    env["XLA_FLAGS"] = "--xla_force_host_platform_device_count=4"
+    script = """
+        import jax
+        import jax.numpy as jnp
+        import numpy as np
+        from jax.sharding import AxisType, Mesh, NamedSharding, PartitionSpec as P, set_mesh
+
+        from experiments.grug.moe_hero_ep import model
+
+        mesh = Mesh(
+            np.asarray(jax.devices()).reshape(1, 4, 1, 1),
+            ("replica_dcn", "data", "expert", "model"),
+            axis_types=(AxisType.Explicit,) * 4,
+        )
+        values = np.arange(4 * 8 * 6, dtype=np.float32).reshape(4, 8, 6)
+        with set_mesh(mesh):
+            flat = jax.device_put(
+                values.reshape(32, 6),
+                NamedSharding(mesh, P(("replica_dcn", "data", "expert"), None)),
+            )
+            captured = jax.jit(
+                lambda x: model._capture_flattened_positions(
+                    x, batch_size=4, sequence_length=8, positions=(2, 7)
+                )
+            )(flat)
+        np.testing.assert_array_equal(np.asarray(captured), values[:, (2, 7), :])
+    """
+
+    result = subprocess.run(
+        [sys.executable, "-c", textwrap.dedent(script)],
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+
+
 def _explicit_mesh(*axis_sizes):
     return Mesh(
         np.asarray(jax.devices()).reshape(*axis_sizes),
