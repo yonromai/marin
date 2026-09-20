@@ -152,6 +152,9 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         cumulative = jnp.concatenate((jnp.zeros((1,), jnp.int32), jnp.cumsum(group_sizes).astype(jnp.int32)))
         w13_interleaved = _interleave_gate_up(local_w13, local_w2.shape[1])
         expert_dispatch = _expert_mlp(x_dispatch, w13_interleaved, local_w2, group_sizes, cumulative)
+        # Keep every combine probe on one materialized expert result. The first
+        # audit's fixed sums did not match a sum of its captured expert tensor.
+        expert_dispatch = jax.lax.optimization_barrier(expert_dispatch)
         expert_route = jnp.take(expert_dispatch, dispatch_positions.reshape(-1), axis=0).reshape(
             local_tokens, local_topk, local_hidden
         )
