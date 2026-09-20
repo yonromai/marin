@@ -1,10 +1,13 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
+import jax.numpy as jnp
 import numpy as np
 import pytest
 
 from experiments.grug.moe_hero_ep.ops.forward_goldens import (
+    SENSITIVITY_BASE_VALUE,
+    SENSITIVITY_NEXT_VALUE,
     GoldenRequest,
     _validate_authoritative_weights,
     build_inputs,
@@ -115,6 +118,38 @@ def test_smoke_input_bank_keeps_full_hero_batch_with_short_sequences() -> None:
     assert arrays["tokens"].shape == (32, 64)
     assert len(cases) == 32
     assert arrays["token_validity"].all()
+
+
+@pytest.mark.parametrize(
+    ("sensitivity_mode", "baseline_mode"),
+    (
+        ("sensitivity-smoke", "smoke"),
+        ("sensitivity-original", "required"),
+        ("sensitivity-fresh", "fresh-qualification"),
+    ),
+)
+def test_sensitivity_modes_preserve_preselected_inputs_under_distinct_releases(
+    sensitivity_mode: str, baseline_mode: str
+) -> None:
+    sensitivity = _request(sensitivity_mode)
+    baseline = _request(baseline_mode)
+    sensitivity_arrays, sensitivity_cases = build_inputs(sensitivity, _Tokenizer())
+    baseline_arrays, baseline_cases = build_inputs(baseline, _Tokenizer())
+
+    assert sensitivity.bundle_id != baseline.bundle_id
+    assert sensitivity_cases == baseline_cases
+    assert sensitivity_arrays.keys() == baseline_arrays.keys()
+    for name in baseline_arrays:
+        np.testing.assert_array_equal(sensitivity_arrays[name], baseline_arrays[name])
+
+
+def test_sensitivity_embedding_change_is_exactly_one_bf16_ulp() -> None:
+    before = np.asarray(jnp.bfloat16(SENSITIVITY_BASE_VALUE))
+    after = np.asarray(jnp.bfloat16(SENSITIVITY_NEXT_VALUE))
+
+    assert float(before) == SENSITIVITY_BASE_VALUE
+    assert float(after) == SENSITIVITY_NEXT_VALUE
+    assert int(after.view(np.uint16)) == int(before.view(np.uint16)) + 1
 
 
 @pytest.mark.parametrize(
