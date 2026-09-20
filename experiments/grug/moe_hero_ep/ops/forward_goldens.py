@@ -74,6 +74,8 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+LAYER_PROBE_CRITICAL_LAYERS = (17, 29)
+LAYER_PROBE_CRITICAL_SUBSTAGES = ("mlp_in", "moe_out", "after_shared", "after_sconv")
 SUBSTAGE_PROBE_RELEASE = "hero-535b-step108000-bf16-substage-probe-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
@@ -156,6 +158,7 @@ class TracedValues(NamedTuple):
     model_input_prefix_diff: jax.Array | None
     prefix_diff_after_attn: jax.Array | None
     prefix_diff_after_block: jax.Array | None
+    critical_substages: jax.Array | None
     layer0_mlp_in: jax.Array | None
     layer0_moe_out: jax.Array | None
     layer0_after_shared: jax.Array | None
@@ -427,6 +430,19 @@ def traced_forward(
     prefix_diff_after_block = (
         jax.sharding.reshard(metrics["trace_prefix_diff_after_block"], P()) if capture_positions else None
     )
+    critical_substages = (
+        jax.sharding.reshard(
+            jnp.stack(
+                [
+                    jnp.stack([metrics[f"trace_layer{layer}_{site}"] for site in LAYER_PROBE_CRITICAL_SUBSTAGES])
+                    for layer in LAYER_PROBE_CRITICAL_LAYERS
+                ]
+            ),
+            P(),
+        )
+        if capture_positions
+        else None
+    )
     layer0_mlp_in = jax.sharding.reshard(metrics["trace_layer0_mlp_in"], P()) if capture_positions else None
     layer0_moe_out = jax.sharding.reshard(metrics["trace_layer0_moe_out"], P()) if capture_positions else None
     layer0_after_shared = jax.sharding.reshard(metrics["trace_layer0_after_shared"], P()) if capture_positions else None
@@ -445,6 +461,7 @@ def traced_forward(
         model_input_prefix_diff=model_input_prefix_diff,
         prefix_diff_after_attn=prefix_diff_after_attn,
         prefix_diff_after_block=prefix_diff_after_block,
+        critical_substages=critical_substages,
         layer0_mlp_in=layer0_mlp_in,
         layer0_moe_out=layer0_moe_out,
         layer0_after_shared=layer0_after_shared,
@@ -598,6 +615,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             or traced_host.model_input_prefix_diff is None
             or traced_host.prefix_diff_after_attn is None
             or traced_host.prefix_diff_after_block is None
+            or traced_host.critical_substages is None
         ):
             raise ValueError("Native layer-probe values were not captured")
         arrays.update(
@@ -609,6 +627,8 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_model_input_prefix_diff": traced_host.model_input_prefix_diff,
                 "layer_probe_prefix_diff_after_attn": traced_host.prefix_diff_after_attn,
                 "layer_probe_prefix_diff_after_block": traced_host.prefix_diff_after_block,
+                "layer_probe_critical_layers": np.asarray(LAYER_PROBE_CRITICAL_LAYERS, dtype=np.int32),
+                "layer_probe_critical_substages": traced_host.critical_substages.astype(np.float32),
             }
         )
     if request.spec.mode == "substage-probe":
@@ -762,6 +782,8 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "two 32-bit modular BF16-coordinate fingerprints for original 4095/4096 "
                 "cases at every token 0..4094; collision possible, exact selected-position traces retained"
             ),
+            "critical_layers": list(LAYER_PROBE_CRITICAL_LAYERS),
+            "critical_substages": list(LAYER_PROBE_CRITICAL_SUBSTAGES),
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     if request.spec.mode == "substage-probe":

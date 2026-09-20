@@ -107,7 +107,7 @@ OFFLOAD_CARRY_REMAT_MODE: RematMode = "offload_carry"
 # The per-layer residual-stream input. Plain remat holds it as the checkpoint argument, which
 # pins about 39 GiB of HBM across the hero's 48 layers.
 LAYER_CARRY_REMAT_NAME = "grug_layer_carry"
-LAYER_PROBE_POSITIONS = (0, 1, 2, 3, 4, 5, 6, 7, 2046, 2047, 2048, 2049, 4094, 4095)
+LAYER_PROBE_POSITIONS = (0, 1, 2, 3, 4, 5, 6, 7, 259, 2046, 2047, 2048, 2049, 2476, 4094, 4095)
 
 
 def _original_4k_prefix_fingerprint_diff(hidden: jax.Array) -> jax.Array:
@@ -1492,6 +1492,14 @@ class Transformer(eqx.Module):
                     "trace_layer0_moe_out": stacked_router_stats["trace_moe_out"][0],
                     "trace_layer0_after_shared": stacked_router_stats["trace_after_shared"][0],
                     "trace_layer0_after_sconv": stacked_router_stats["trace_after_sconv"][0],
+                    "trace_layer17_mlp_in": stacked_router_stats["trace_mlp_in"][17],
+                    "trace_layer17_moe_out": stacked_router_stats["trace_moe_out"][17],
+                    "trace_layer17_after_shared": stacked_router_stats["trace_after_shared"][17],
+                    "trace_layer17_after_sconv": stacked_router_stats["trace_after_sconv"][17],
+                    "trace_layer29_mlp_in": stacked_router_stats["trace_mlp_in"][29],
+                    "trace_layer29_moe_out": stacked_router_stats["trace_moe_out"][29],
+                    "trace_layer29_after_shared": stacked_router_stats["trace_after_shared"][29],
+                    "trace_layer29_after_sconv": stacked_router_stats["trace_after_sconv"][29],
                 }
             )
         hidden = self.final_gated_norm(self.final_norm(hidden))
