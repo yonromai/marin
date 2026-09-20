@@ -758,7 +758,10 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "after_block": "after MLP-branch residual",
-            "common_prefix_equality": "exact coordinate equality of original 4095/4096 cases at every token 0..4094",
+            "common_prefix_equality": (
+                "two 32-bit modular BF16-coordinate fingerprints for original 4095/4096 "
+                "cases at every token 0..4094; collision possible, exact selected-position traces retained"
+            ),
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     if request.spec.mode == "substage-probe":

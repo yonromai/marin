@@ -110,6 +110,27 @@ LAYER_CARRY_REMAT_NAME = "grug_layer_carry"
 LAYER_PROBE_POSITIONS = (0, 1, 2, 3, 4, 5, 6, 7, 2046, 2047, 2048, 2049, 4094, 4095)
 
 
+def _original_4k_prefix_fingerprint_diff(hidden: jax.Array) -> jax.Array:
+    """Compare small per-token BF16 fingerprints across the original 4K pair.
+
+    Batch rows are sharded across all 32 devices. Reducing locally across the
+    hidden dimension *before* replicating avoids gathering the full hidden
+    vectors at every layer. Two independent uint32 modular sums make a
+    collision unlikely, but this diagnostic is not a proof of exact equality.
+    """
+    bits = jax.lax.bitcast_convert_type(hidden, jnp.uint16).astype(jnp.uint32)
+    weights = 2 * jnp.arange(hidden.shape[-1], dtype=jnp.uint32) + 1
+    fingerprints = jnp.stack(
+        (
+            jnp.sum(bits, axis=-1, dtype=jnp.uint32),
+            jnp.sum(bits * weights, axis=-1, dtype=jnp.uint32),
+        ),
+        axis=-1,
+    )
+    fingerprints = jax.sharding.reshard(fingerprints, P())
+    return jnp.any(fingerprints[6, :4095] != fingerprints[7, :4095], axis=-1)
+
+
 def _batch_spec() -> P:
     return P(_BATCH_AXES)
 
@@ -1239,11 +1260,8 @@ class Block(eqx.Module):
         x = x + attn_out
         if capture_positions is not None:
             after_attn = jnp.take(x, jnp.asarray(capture_positions), axis=1)
-            # The two original 4K cases have identical tokens through 4095. Record an
-            # exact per-token equality test over the *whole* common prefix, so a
-            # difference outside the sampled positions cannot masquerade as a later
-            # first divergence. This is diagnostic-only work.
-            prefix_diff_after_attn = jnp.any(x[6, :4095] != x[7, :4095], axis=-1)
+            # The two original 4K cases have identical tokens through 4095.
+            prefix_diff_after_attn = _original_4k_prefix_fingerprint_diff(x)
         mlp_in = self.mlp_gated_norm(self.rms_mlp(x))
         if capture_positions is not None:
             sampled_mlp_in = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
@@ -1265,7 +1283,7 @@ class Block(eqx.Module):
             router_stats["trace_hidden_after_attn"] = after_attn
             router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
             router_stats["trace_prefix_diff_after_attn"] = prefix_diff_after_attn
-            router_stats["trace_prefix_diff_after_block"] = jnp.any(x[6, :4095] != x[7, :4095], axis=-1)
+            router_stats["trace_prefix_diff_after_block"] = _original_4k_prefix_fingerprint_diff(x)
             router_stats["trace_mlp_in"] = sampled_mlp_in
             router_stats["trace_moe_out"] = sampled_moe_out
             router_stats["trace_after_shared"] = sampled_after_shared
@@ -1362,9 +1380,7 @@ class Transformer(eqx.Module):
         model_input_hidden = (
             jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
         )
-        model_input_prefix_diff = (
-            jnp.any(hidden[6, :4095] != hidden[7, :4095], axis=-1) if capture_positions is not None else None
-        )
+        model_input_prefix_diff = _original_4k_prefix_fingerprint_diff(hidden) if capture_positions is not None else None
 
         # Local layers use a sliding window; every global_every-th layer is full causal.
         segment_ids = None
