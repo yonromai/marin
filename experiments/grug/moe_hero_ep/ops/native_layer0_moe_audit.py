@@ -1,12 +1,11 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
-"""Capture the first Hero MoE's expert outputs and combine arithmetic.
+"""Capture the first residual Hero MoE's expert outputs after FP32 combine.
 
 The 4095/4096-token cases have identical causal prefixes. Both are evaluated
 in the same 32-row, 32-GB200 diagnostic batch, with one row on each data rank.
-This probe intentionally stops after layer zero; it does not treat a later
-route flip or a full-model score as evidence about the first operation.
+The corrected full-prefix probe first differs at layer 17, token 2476.
 """
 
 import argparse
@@ -45,7 +44,7 @@ from rigging.filesystem.storage_path import StoragePath, prefix_join
 from rigging.log_setup import configure_logging
 from transformers import AutoTokenizer
 
-from experiments.grug.moe_hero_ep.model import _batch_reshard, _batch_spec, _embedding_gather
+from experiments.grug.moe_hero_ep.model import _batch_reshard, _batch_spec, _embedding_gather, _long_layer_schedule
 from experiments.grug.moe_hero_ep.ops.forward_goldens import (
     CONTROLLER_CLUSTER,
     DETERMINISTIC_XLA_FLAGS,
@@ -61,14 +60,15 @@ from experiments.grug.moe_hero_ep.ops.vibe_check.sample import COMPUTE_POLICY, r
 
 logger = logging.getLogger(__name__)
 
-STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-numerical-resolution/native-layer0-moe-audit"
-PROBE_POSITIONS = (2046, 2047, 2048)
+STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-numerical-resolution/native-layer17-moe-audit"
+TARGET_LAYER = 17
+PROBE_POSITIONS = (2476,)
 PAIR_ROWS = (6, 7)
 
 
 @eqx.filter_jit
-def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str, jax.Array]:
-    """Replay the original first block and expose its expert/combine boundary."""
+def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str, jax.Array]:
+    """Replay through layer 17 and expose its expert/combine boundary."""
     # QuACK's CUTLASS dependency is available in the GB200 task image, not the
     # local CPU environment used to submit the task.
     from levanter.grug._moe.sonic_cute import _expert_mlp  # noqa: PLC0415
@@ -78,19 +78,41 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
     hidden = _embedding_gather(model.token_embed, tokens)
     hidden = model.embed_gated_norm(model.embed_norm(hidden))
     segments = _batch_reshard(segment_ids)
-    mask = AttentionMask(is_causal=True, sliding_window=config.sliding_window, segment_ids=(segments, segments))
-    bounds, valid = fa4_cute_segment_bounds(
-        mask, batch_size=batch, seq_len=sequence, sliding_window=config.sliding_window
+    short_mask = AttentionMask(is_causal=True, sliding_window=config.sliding_window, segment_ids=(segments, segments))
+    long_mask = AttentionMask(is_causal=True, sliding_window=None, segment_ids=(segments, segments))
+    short_bounds, valid = fa4_cute_segment_bounds(
+        short_mask, batch_size=batch, seq_len=sequence, sliding_window=config.sliding_window
     )
-    mask = mask.with_fa4_bounds(_batch_reshard(bounds), _batch_reshard(valid))
-    layer = model.stacked_blocks.get_layer(0)
+    long_bounds, _ = fa4_cute_segment_bounds(long_mask, batch_size=batch, seq_len=sequence, sliding_window=None)
+    short_bounds = _batch_reshard(short_bounds)
+    long_bounds = _batch_reshard(long_bounds)
+    valid = _batch_reshard(valid)
+    schedule = _long_layer_schedule(config.num_layers, config.global_every)
+
+    def prefix_step(carry, inputs):
+        block, use_long = inputs
+        bounds = jnp.where(use_long, long_bounds, short_bounds)
+        layer_mask = long_mask.with_fa4_bounds(bounds, valid)
+        next_hidden, _ = block(carry, layer_mask, use_long, use_long)
+        return next_hidden, None
+
+    prefix_blocks = jax.tree.map(
+        lambda leaf: leaf[:TARGET_LAYER] if eqx.is_array(leaf) else leaf,
+        model.stacked_blocks.stacked,
+    )
+    hidden, _ = jax.lax.scan(prefix_step, hidden, xs=(prefix_blocks, schedule[:TARGET_LAYER]))
+    layer = model.stacked_blocks.get_layer(TARGET_LAYER)
+    use_long = (TARGET_LAYER + 1) % config.global_every == 0 or TARGET_LAYER == config.num_layers - 1
+    bounds = long_bounds if use_long else short_bounds
+    mask = long_mask.with_fa4_bounds(bounds, valid)
     attention_input = layer.attn_gated_norm(layer.rms_attn(hidden))
-    attention_output = layer.attn(attention_input, mask, disable_rope=False, is_global=False)
+    attention_output = layer.attn(attention_input, mask, disable_rope=use_long, is_global=use_long)
     if layer.sconv_attn is not None:
         attention_output = layer.sconv_attn(attention_output, segments)
     after_attention = hidden + attention_output
     mlp_input = layer.mlp_gated_norm(layer.rms_mlp(after_attention))
     token_valid = token_validity_from_attention_mask(mask, batch_size=batch, sequence_length=sequence)
+    production_moe_out, _ = layer.mlp(mlp_input, token_valid)
 
     mlp = layer.mlp
     flat = mlp_input.reshape(batch * sequence, -1)
@@ -176,18 +198,23 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         selected_positions = shaped.at[:, positions].get(out_sharding=out_spec)
         return jax.sharding.reshard(selected_positions, P())
 
-    # Evaluate the eight actual experts with the production BF16 inputs and
-    # weights, but promote both GEMM contractions and SwiGLU to FP64.
+    # Evaluate the selected experts for both rows with the production BF16
+    # inputs and weights, but promote the contractions and SwiGLU to FP64.
     with jax.enable_x64():
-        reference_input = sample(routed_input, routed_input.shape[-1])[PAIR_ROWS[0], -1].astype(jnp.float64)
-        reference_experts = sample(selected, config.num_experts_per_token)[PAIR_ROWS[0], -1]
+        reference_inputs = sample(routed_input, routed_input.shape[-1])[jnp.asarray(PAIR_ROWS), -1].astype(jnp.float64)
+        reference_experts = sample(selected, config.num_experts_per_token)[jnp.asarray(PAIR_ROWS), -1]
 
-        def reference_expert(expert_id):
-            gate = reference_input @ w_gate_up[expert_id, :, : w_down.shape[1]].astype(jnp.float64)
-            up = reference_input @ w_gate_up[expert_id, :, w_down.shape[1] :].astype(jnp.float64)
-            return (jax.nn.silu(gate) * up) @ w_down[expert_id].astype(jnp.float64)
+        def reference_row(row):
+            reference_input, selected_ids = row
 
-        individual_reference = jax.lax.map(reference_expert, reference_experts)
+            def reference_expert(expert_id):
+                gate = reference_input @ w_gate_up[expert_id, :, : w_down.shape[1]].astype(jnp.float64)
+                up = reference_input @ w_gate_up[expert_id, :, w_down.shape[1] :].astype(jnp.float64)
+                return (jax.nn.silu(gate) * up) @ w_down[expert_id].astype(jnp.float64)
+
+            return jax.lax.map(reference_expert, selected_ids)
+
+        individual_reference = jax.lax.map(reference_row, (reference_inputs, reference_experts))
     if mlp.w_latent_up is not None:
         scatter_up = jnp.einsum(
             "bpl,ld->bpd", scatter, mlp.w_latent_up.astype(scatter.dtype), out_sharding=P(token_spec[0], None, None)
@@ -199,6 +226,8 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         scatter_up, fixed_up = scatter, fixed_sum
 
     return {
+        "before_attention": sample(hidden, config.hidden_dim),
+        "after_attention": sample(after_attention, config.hidden_dim),
         "mlp_input": sample(mlp_input, config.hidden_dim),
         "routed_input": sample(routed_input, routed_input.shape[-1]),
         "selected_experts": sample(selected, config.num_experts_per_token),
@@ -210,11 +239,12 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         "scatter_fp32": jax.sharding.reshard(fp32_scatter, P()),
         "scatter_after_latent_up": jax.sharding.reshard(scatter_up, P()),
         "fixed_after_latent_up": jax.sharding.reshard(fixed_up, P()),
+        "production_moe_out": sample(production_moe_out, config.hidden_dim),
     }
 
 
 def _bundle_id(revision: str, attempt: int) -> str:
-    return f"hero-layer0-moe-{revision[:12]}-attempt{attempt}"
+    return f"hero-layer17-moe-{revision[:12]}-attempt{attempt}"
 
 
 def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
@@ -222,7 +252,7 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
     configure_logging(logging.INFO if jax.process_index() == 0 else logging.WARNING)
     configure_coreweave_s3()
     if jax.default_backend() != "gpu" or jax.device_count() != request.spec.batch_size:
-        raise ValueError("Native layer-0 audit requires the full 32-GB200 mesh")
+        raise ValueError("Native layer-17 audit requires the full 32-GB200 mesh")
     tokenizer = AutoTokenizer.from_pretrained(request.spec.tokenizer, revision=request.spec.tokenizer_revision)
     input_arrays, cases = build_inputs(request, tokenizer)
     mesh = compact_grug_mesh(expert_axis_size=1, replica_axis_size=1)
@@ -235,14 +265,14 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
         def batch_array(value: np.ndarray) -> jax.Array:
             return jax.make_array_from_callback(value.shape, batch_sharding, lambda index: value[index])
 
-        captured = capture_layer0(
+        captured = capture_layer17(
             model,
             batch_array(input_arrays["tokens"]),
             batch_array(input_arrays["segment_ids"]),
         )
         jax.block_until_ready(captured)
     if jax.process_index() != 0:
-        multihost_utils.sync_global_devices("hero-layer0-moe-audit-written")
+        multihost_utils.sync_global_devices("hero-layer17-moe-audit-written")
         return
     arrays = {
         key: np.asarray(value)[list(PAIR_ROWS)]
@@ -276,17 +306,20 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
         "input_request": request.model_dump(mode="json"),
         "cases": [cases[row] for row in PAIR_ROWS],
         "array_sha256": hashlib.sha256(payload).hexdigest(),
+        "layer": TARGET_LAYER,
+        "probe_positions": list(PROBE_POSITIONS),
         "arrays": {key: {"shape": list(value.shape), "dtype": str(value.dtype)} for key, value in arrays.items()},
         "contract": (
-            "raw selected expert output before BF16 weighting, FP64 evaluation of the selected BF16 "
-            "expert inputs and weights at row 6 / position 2048, original BF16 scatter, and fixed FP32 sum"
+            "raw selected expert outputs at layer 17 / position 2476 in both original 4K cases; "
+            "FP64 evaluation of the same BF16 expert inputs and weights, original BF16 scatter, "
+            "FP32 scatter, fixed FP32 sum, and production MoE output"
         ),
     }
     with (root / "arrays.npz").open("wb") as target:
         shutil.copyfileobj(io.BytesIO(payload), target, length=8 * 1024 * 1024)
     manifest_target.write((json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode(), expected_version=None)
-    logger.info("Layer-0 MoE audit uploaded: %s", root)
-    multihost_utils.sync_global_devices("hero-layer0-moe-audit-written")
+    logger.info("Layer-17 MoE audit uploaded: %s", root)
+    multihost_utils.sync_global_devices("hero-layer17-moe-audit-written")
 
 
 def submit(store_root: str, attempt: int) -> None:
@@ -297,7 +330,7 @@ def submit(store_root: str, attempt: int) -> None:
     configure_coreweave_s3()
     if (StoragePath(prefix_join(store_root, bundle_id)) / "manifest.json").exists():
         raise FileExistsError(bundle_id)
-    name = f"hero-layer0-moe-{revision[:10]}-{attempt}"
+    name = f"hero-layer17-moe-{revision[:10]}-{attempt}"
     with connect_controller(cluster_name=CONTROLLER_CLUSTER) as endpoint:
         with IrisClient.remote(endpoint.url, credentials=endpoint.credentials) as client:
             jobs = IrisSamplingJobs(
