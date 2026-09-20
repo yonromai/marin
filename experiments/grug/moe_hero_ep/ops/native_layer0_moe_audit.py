@@ -172,7 +172,9 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
 
     def sample(value, *tail):
         shaped = value.reshape(batch, sequence, *tail)
-        return jax.sharding.reshard(jnp.take(shaped, positions, axis=1), P())
+        out_spec = P(token_spec[0], None, *([None] * len(tail)))
+        selected_positions = shaped.at[:, positions].get(out_sharding=out_spec)
+        return jax.sharding.reshard(selected_positions, P())
 
     # Evaluate the eight actual experts with the production BF16 inputs and
     # weights, but promote both GEMM contractions and SwiGLU to FP64.
