@@ -1244,7 +1244,10 @@ class Block(eqx.Module):
         *,
         trace_routes: bool = False,
         capture_positions: tuple[int, ...] | None = None,
+        capture_mlp_stages: bool = False,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
+        if capture_mlp_stages and capture_positions is None:
+            raise ValueError("MLP-stage capture requires positions")
         # A remat policy acts on named intermediates, and a block argument is not one. This
         # reassignment routes every use below through the name, which lets the policy offload it.
         x = tree_checkpoint_name(x, LAYER_CARRY_REMAT_NAME)
@@ -1264,11 +1267,17 @@ class Block(eqx.Module):
             router_input = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
         token_valid = token_validity_from_attention_mask(mask, batch_size=x.shape[0], sequence_length=x.shape[1])
         mlp_out, router_stats = self.mlp(mlp_in, token_valid, trace_routes=trace_routes)
+        if capture_mlp_stages:
+            router_stats["trace_routed_mlp_output"] = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         if self.shared is not None:
             for shared_expert in self.shared:
                 mlp_out = mlp_out + shared_expert(mlp_in, activation=ActivationFunctionEnum.silu)
+        if capture_mlp_stages:
+            router_stats["trace_after_shared_mlp"] = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         if self.sconv_mlp is not None:
             mlp_out = self.sconv_mlp(mlp_out, sconv_segment_ids)
+        if capture_mlp_stages:
+            router_stats["trace_after_sconv_mlp"] = jnp.take(mlp_out, jnp.asarray(capture_positions), axis=1)
         x = x + mlp_out
         if capture_positions is not None:
             router_stats["trace_hidden_after_attn"] = after_attn
@@ -1345,6 +1354,7 @@ class Transformer(eqx.Module):
         *,
         trace_routes: bool = False,
         capture_positions: tuple[int, ...] | None = None,
+        capture_mlp_stages: bool = False,
     ) -> tuple[Float[Array, "B S D"], dict[str, jax.Array]]:
         if mask is None:
             mask = AttentionMask.causal()
@@ -1356,6 +1366,8 @@ class Transformer(eqx.Module):
             not capture_positions or min(capture_positions) < 0 or hidden.shape[1] <= max(capture_positions)
         ):
             raise ValueError("Layer probe positions must lie inside the input sequence")
+        if capture_mlp_stages and capture_positions is None:
+            raise ValueError("MLP-stage capture requires positions")
         model_input_hidden = (
             jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
         )
@@ -1422,6 +1434,7 @@ class Transformer(eqx.Module):
                 use_long,
                 trace_routes=trace_routes,
                 capture_positions=capture_positions,
+                capture_mlp_stages=capture_mlp_stages,
             )
 
         hidden, stacked_router_stats = jax.lax.scan(
@@ -1462,6 +1475,14 @@ class Transformer(eqx.Module):
                     "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
                     "trace_router_input": stacked_router_stats["trace_router_input"],
                     "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
+                }
+            )
+        if capture_mlp_stages:
+            router_metrics.update(
+                {
+                    "trace_routed_mlp_output": stacked_router_stats["trace_routed_mlp_output"],
+                    "trace_after_shared_mlp": stacked_router_stats["trace_after_shared_mlp"],
+                    "trace_after_sconv_mlp": stacked_router_stats["trace_after_sconv_mlp"],
                 }
             )
         hidden = self.final_gated_norm(self.final_norm(hidden))

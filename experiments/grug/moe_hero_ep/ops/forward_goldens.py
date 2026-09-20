@@ -81,7 +81,9 @@ GATED_NORM_FP32_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-fresh
 GATED_NORM_FP32_SILU_ORIGINAL_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-original-v1"
 GATED_NORM_FP32_SILU_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-v1"
 GATED_NORM_FP32_SILU_FRESH_PROBE_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-probe-v1"
+GATED_NORM_FP32_SILU_FRESH_BRANCH_PROBE_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-branch-probe-v1"
 FRESH_SILU_PROBE_POSITIONS = (0, 7, 2044, 2048, 2250, 2397, 2398, 2399, 2639, 2640)
+FRESH_SILU_BRANCH_PROBE_POSITIONS = (2397, 2398, 2399, 2639, 2640)
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -104,6 +106,7 @@ GOLDEN_MODES = (
     "gated-norm-fp32-silu-original",
     "gated-norm-fp32-silu-fresh",
     "gated-norm-fp32-silu-fresh-probe",
+    "gated-norm-fp32-silu-fresh-branch-probe",
     "diagnostic-8192",
     "diagnostic-16384",
 )
@@ -172,6 +175,9 @@ class TracedValues(NamedTuple):
     hidden_after_attn: jax.Array | None
     router_input: jax.Array | None
     hidden_after_block: jax.Array | None
+    routed_mlp_output: jax.Array | None
+    after_shared_mlp: jax.Array | None
+    after_sconv_mlp: jax.Array | None
 
 
 class ForwardSelection(NamedTuple):
@@ -244,6 +250,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
         "gated-norm-fp32-fresh",
         "gated-norm-fp32-silu-fresh",
         "gated-norm-fp32-silu-fresh-probe",
+        "gated-norm-fp32-silu-fresh-branch-probe",
     ):
         # Selected before examining the corrected model's outputs. The final
         # pair shares its entire causal prefix and tests the 4095/4096 edge.
@@ -262,6 +269,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "gated-norm-fp32-fresh": GATED_NORM_FP32_FRESH_RELEASE,
             "gated-norm-fp32-silu-fresh": GATED_NORM_FP32_SILU_FRESH_RELEASE,
             "gated-norm-fp32-silu-fresh-probe": GATED_NORM_FP32_SILU_FRESH_PROBE_RELEASE,
+            "gated-norm-fp32-silu-fresh-branch-probe": GATED_NORM_FP32_SILU_FRESH_BRANCH_PROBE_RELEASE,
         }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
@@ -306,6 +314,8 @@ def _capture_positions(mode: str) -> tuple[int, ...] | None:
         return LAYER_PROBE_POSITIONS
     if mode == "gated-norm-fp32-silu-fresh-probe":
         return FRESH_SILU_PROBE_POSITIONS
+    if mode == "gated-norm-fp32-silu-fresh-branch-probe":
+        return FRESH_SILU_BRANCH_PROBE_POSITIONS
     return None
 
 
@@ -463,14 +473,24 @@ def traced_forward(
     selection: ForwardSelection,
     *,
     capture_positions: tuple[int, ...] | None = None,
+    capture_mlp_stages: bool = False,
 ) -> TracedValues:
     mask = AttentionMask.causal().with_segment_ids(segment_ids)
-    hidden, metrics = model(tokens, mask=mask, trace_routes=True, capture_positions=capture_positions)
+    hidden, metrics = model(
+        tokens,
+        mask=mask,
+        trace_routes=True,
+        capture_positions=capture_positions,
+        capture_mlp_stages=capture_mlp_stages,
+    )
     forward = _project_forward(model, hidden, selection)
     model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
     hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
     router_input = jax.sharding.reshard(metrics["trace_router_input"], P()) if capture_positions else None
     hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
+    routed_mlp_output = jax.sharding.reshard(metrics["trace_routed_mlp_output"], P()) if capture_mlp_stages else None
+    after_shared_mlp = jax.sharding.reshard(metrics["trace_after_shared_mlp"], P()) if capture_mlp_stages else None
+    after_sconv_mlp = jax.sharding.reshard(metrics["trace_after_sconv_mlp"], P()) if capture_mlp_stages else None
     # Process zero writes the bundle. Replication makes each global trace fully addressable there.
     return TracedValues(
         forward=forward,
@@ -481,6 +501,9 @@ def traced_forward(
         hidden_after_attn=hidden_after_attn,
         router_input=router_input,
         hidden_after_block=hidden_after_block,
+        routed_mlp_output=routed_mlp_output,
+        after_shared_mlp=after_shared_mlp,
+        after_sconv_mlp=after_sconv_mlp,
     )
 
 
@@ -575,6 +598,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             selection,
         )
         probe_positions = _capture_positions(request.spec.mode)
+        branch_probe = request.spec.mode == "gated-norm-fp32-silu-fresh-branch-probe"
         with log_time("Ordinary forward and compilation"):
             first = ordinary_forward(*args)
             jax.block_until_ready(first)
@@ -582,7 +606,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(*args, capture_positions=probe_positions)
+            traced = traced_forward(*args, capture_positions=probe_positions, capture_mlp_stages=branch_probe)
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -625,6 +649,20 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_router_input": traced_host.router_input.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
+            }
+        )
+    if branch_probe:
+        if (
+            traced_host.routed_mlp_output is None
+            or traced_host.after_shared_mlp is None
+            or traced_host.after_sconv_mlp is None
+        ):
+            raise ValueError("Native MLP-branch values were not captured")
+        arrays.update(
+            {
+                "layer_probe_routed_mlp_output": traced_host.routed_mlp_output.astype(np.float32),
+                "layer_probe_after_shared_mlp": traced_host.after_shared_mlp.astype(np.float32),
+                "layer_probe_after_sconv_mlp": traced_host.after_sconv_mlp.astype(np.float32),
             }
         )
     remote_root = prefix_join(store_root, request.bundle_id)
@@ -748,6 +786,13 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "router_input": "after MLP RMS and gated norms, directly before the router and experts",
             "after_block": "after MLP-branch residual",
             "scope": "diagnostic only; qualification native golden bundles remain unchanged",
+        }
+    if branch_probe:
+        manifest["mlp_branch_probe"] = {
+            "routed_mlp_output": "routed expert combine and latent expansion, before shared experts",
+            "after_shared_mlp": "after both shared experts, before MLP ShortConv",
+            "after_sconv_mlp": "after MLP ShortConv, before residual addition",
+            "scope": "diagnostic only; existing native golden bundles remain unchanged",
         }
     if request.spec.mode == "shape-audit":
         manifest["shape_audit"] = {

@@ -6,6 +6,7 @@ import pytest
 
 from experiments.grug.moe_hero_ep.ops.forward_goldens import (
     GoldenRequest,
+    _capture_positions,
     _validate_authoritative_weights,
     build_inputs,
     golden_spec,
@@ -85,6 +86,11 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
         ("required", "gated-norm-fp32-silu-original", "gated-norm-fp32-silu-original-v1"),
         ("fresh-qualification", "gated-norm-fp32-silu-fresh", "gated-norm-fp32-silu-fresh-v1"),
         ("fresh-qualification", "gated-norm-fp32-silu-fresh-probe", "gated-norm-fp32-silu-fresh-probe-v1"),
+        (
+            "fresh-qualification",
+            "gated-norm-fp32-silu-fresh-branch-probe",
+            "gated-norm-fp32-silu-fresh-branch-probe-v1",
+        ),
     ),
 )
 def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases(
@@ -101,6 +107,11 @@ def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases
     assert probe_arrays.keys() == base_arrays.keys()
     for name in base_arrays:
         np.testing.assert_array_equal(probe_arrays[name], base_arrays[name])
+
+
+def test_fresh_branch_probe_selects_positions_around_first_split() -> None:
+    assert _capture_positions("gated-norm-fp32-silu-fresh-branch-probe") == (2397, 2398, 2399, 2639, 2640)
+    assert _capture_positions("gated-norm-fp32-silu-fresh") is None
 
 
 def test_shape_audit_retains_required_scores_and_all_distinct_full_logit_rows() -> None:

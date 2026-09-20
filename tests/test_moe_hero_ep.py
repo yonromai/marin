@@ -868,10 +868,17 @@ def test_block_layer_probe_samples_residuals_without_changing_output():
         block = model.Block.init(cfg, key=jax.random.key(61))
         baseline, _ = jax.jit(lambda x: block(x, mask, trace_routes=True))(hidden)
         traced, metrics = jax.jit(lambda x: block(x, mask, trace_routes=True, capture_positions=positions))(hidden)
+        branch, branch_metrics = jax.jit(
+            lambda x: block(x, mask, trace_routes=True, capture_positions=positions, capture_mlp_stages=True)
+        )(hidden)
 
     np.testing.assert_array_equal(traced, baseline)
+    np.testing.assert_array_equal(branch, baseline)
     np.testing.assert_array_equal(metrics["trace_hidden_after_block"], np.asarray(traced)[:, positions, :])
     assert metrics["trace_hidden_after_attn"].shape == (1, len(positions), cfg.hidden_dim)
+    assert branch_metrics["trace_routed_mlp_output"].shape == (1, len(positions), cfg.hidden_dim)
+    assert branch_metrics["trace_after_shared_mlp"].shape == (1, len(positions), cfg.hidden_dim)
+    np.testing.assert_array_equal(branch_metrics["trace_after_sconv_mlp"], branch_metrics["trace_after_shared_mlp"])
 
 
 def test_transformer_layer_probe_preserves_forward_values_through_scan():
@@ -884,11 +891,18 @@ def test_transformer_layer_probe_preserves_forward_values_through_scan():
         transformer = model.Transformer.init(cfg, key=jax.random.key(62))
         baseline, _ = jax.jit(lambda ids: transformer(ids, trace_routes=True))(tokens)
         traced, metrics = jax.jit(lambda ids: transformer(ids, trace_routes=True, capture_positions=positions))(tokens)
+        branch, branch_metrics = jax.jit(
+            lambda ids: transformer(ids, trace_routes=True, capture_positions=positions, capture_mlp_stages=True)
+        )(tokens)
 
     np.testing.assert_array_equal(traced, baseline)
+    np.testing.assert_array_equal(branch, baseline)
     assert metrics["trace_model_input_hidden"].shape == (1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_attn"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_block"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    assert branch_metrics["trace_routed_mlp_output"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    assert branch_metrics["trace_after_shared_mlp"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    assert branch_metrics["trace_after_sconv_mlp"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
 
 
 @pytest.mark.parametrize("qb_estimator", [model.QbEstimator.HIST, model.QbEstimator.TOPK])
