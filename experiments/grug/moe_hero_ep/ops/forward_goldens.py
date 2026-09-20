@@ -74,6 +74,7 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+ROUTE_ORIGIN_PROBE_RELEASE = "hero-535b-step108000-fp32-router-origin-probe-v1"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
@@ -91,6 +92,7 @@ GOLDEN_MODES = (
     "smoke",
     "required",
     "layer-probe",
+    "route-origin-probe",
     "shape-audit",
     "fresh-qualification",
     "diagnostic-8192",
@@ -159,6 +161,7 @@ class TracedValues(NamedTuple):
     route_cutoff_gaps: jax.Array
     model_input_hidden: jax.Array | None
     hidden_after_attn: jax.Array | None
+    mlp_input: jax.Array | None
     hidden_after_block: jax.Array | None
 
 
@@ -209,7 +212,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe", "shape-audit"):
+    elif mode in ("required", "layer-probe", "route-origin-probe", "shape-audit"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -223,6 +226,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
         release = {
             "required": REQUIRED_RELEASE,
             "layer-probe": LAYER_PROBE_RELEASE,
+            "route-origin-probe": ROUTE_ORIGIN_PROBE_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
         }[mode]
     elif mode == "fresh-qualification":
@@ -437,6 +441,7 @@ def traced_forward(
     forward = _project_forward(model, hidden, selection)
     model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
     hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
+    mlp_input = jax.sharding.reshard(metrics["trace_mlp_input"], P()) if capture_positions else None
     hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
     # Process zero writes the bundle. Replication makes each global trace fully addressable there.
     return TracedValues(
@@ -446,6 +451,7 @@ def traced_forward(
         route_cutoff_gaps=jax.sharding.reshard(metrics["route_cutoff_gaps"], P()),
         model_input_hidden=model_input_hidden,
         hidden_after_attn=hidden_after_attn,
+        mlp_input=mlp_input,
         hidden_after_block=hidden_after_block,
     )
 
@@ -547,9 +553,12 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(
-                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
-            )
+            capture_positions = None
+            if request.spec.mode == "layer-probe":
+                capture_positions = LAYER_PROBE_POSITIONS
+            elif request.spec.mode == "route-origin-probe":
+                capture_positions = (0,)
+            traced = traced_forward(*args, capture_positions=capture_positions)
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -577,18 +586,21 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
-    if request.spec.mode == "layer-probe":
+    if request.spec.mode in ("layer-probe", "route-origin-probe"):
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
+            or traced_host.mlp_input is None
             or traced_host.hidden_after_block is None
         ):
             raise ValueError("Native layer-probe values were not captured")
+        positions = LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else (0,)
         arrays.update(
             {
-                "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "layer_probe_positions": np.asarray(positions, dtype=np.int32),
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
+                "layer_probe_mlp_input": traced_host.mlp_input.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
             }
         )
@@ -705,11 +717,12 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
         }
-    if request.spec.mode == "layer-probe":
+    if request.spec.mode in ("layer-probe", "route-origin-probe"):
         manifest["layer_probe"] = {
-            "positions": list(LAYER_PROBE_POSITIONS),
+            "positions": list(positions),
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
+            "mlp_input": "after post-attention RMS and gated norms, before MoE router",
             "after_block": "after MLP-branch residual",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }

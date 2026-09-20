@@ -854,6 +854,7 @@ def test_block_layer_probe_samples_residuals_without_changing_output():
     np.testing.assert_array_equal(traced, baseline)
     np.testing.assert_array_equal(metrics["trace_hidden_after_block"], np.asarray(traced)[:, positions, :])
     assert metrics["trace_hidden_after_attn"].shape == (1, len(positions), cfg.hidden_dim)
+    assert metrics["trace_mlp_input"].shape == (1, len(positions), cfg.hidden_dim)
 
 
 def test_transformer_layer_probe_preserves_forward_values_through_scan():
@@ -870,6 +871,7 @@ def test_transformer_layer_probe_preserves_forward_values_through_scan():
     np.testing.assert_array_equal(traced, baseline)
     assert metrics["trace_model_input_hidden"].shape == (1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_attn"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
+    assert metrics["trace_mlp_input"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
     assert metrics["trace_hidden_after_block"].shape == (cfg.num_layers, 1, len(positions), cfg.hidden_dim)
 
 

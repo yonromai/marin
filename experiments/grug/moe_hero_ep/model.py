@@ -1256,6 +1256,7 @@ class Block(eqx.Module):
         x = x + mlp_out
         if capture_positions is not None:
             router_stats["trace_hidden_after_attn"] = after_attn
+            router_stats["trace_mlp_input"] = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
             router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
         return x, router_stats
 
@@ -1443,6 +1444,7 @@ class Transformer(eqx.Module):
                 {
                     "trace_model_input_hidden": model_input_hidden,
                     "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
+                    "trace_mlp_input": stacked_router_stats["trace_mlp_input"],
                     "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
                 }
             )
