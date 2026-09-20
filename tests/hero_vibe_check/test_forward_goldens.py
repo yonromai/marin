@@ -77,6 +77,19 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
         np.testing.assert_array_equal(layer_arrays[name], required_arrays[name])
 
 
+def test_fresh_layer_probe_uses_preselected_fresh_inputs_under_a_distinct_release() -> None:
+    fresh = _request("fresh-qualification")
+    layer_probe = _request("fresh-layer-probe")
+    fresh_arrays, fresh_cases = build_inputs(fresh, _Tokenizer())
+    layer_arrays, layer_cases = build_inputs(layer_probe, _Tokenizer())
+
+    assert layer_probe.bundle_id != fresh.bundle_id
+    assert layer_cases == fresh_cases
+    assert layer_arrays.keys() == fresh_arrays.keys()
+    for name in fresh_arrays:
+        np.testing.assert_array_equal(layer_arrays[name], fresh_arrays[name])
+
+
 def test_shape_audit_retains_required_scores_and_all_distinct_full_logit_rows() -> None:
     required = _request("required")
     shape_audit = _request("shape-audit")

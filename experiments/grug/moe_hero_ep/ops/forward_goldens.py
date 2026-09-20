@@ -74,8 +74,10 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v2"
+FRESH_LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-fresh-layer-probe-v1"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
+FRESH_LAYER_PROBE_POSITIONS = tuple(sorted((*LAYER_PROBE_POSITIONS, 2044)))
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -91,6 +93,7 @@ GOLDEN_MODES = (
     "smoke",
     "required",
     "layer-probe",
+    "fresh-layer-probe",
     "shape-audit",
     "fresh-qualification",
     "diagnostic-8192",
@@ -226,7 +229,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "layer-probe": LAYER_PROBE_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
         }[mode]
-    elif mode == "fresh-qualification":
+    elif mode in ("fresh-qualification", "fresh-layer-probe"):
         # Selected before examining the corrected model's outputs. The final
         # pair shares its entire causal prefix and tests the 4095/4096 edge.
         base_cases = (
@@ -239,7 +242,10 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             ("fresh-context-minus-one", "context-object-ownership", 4095),
             ("fresh-context-exact", "context-object-ownership", 4096),
         )
-        release = FRESH_QUALIFICATION_RELEASE
+        release = {
+            "fresh-qualification": FRESH_QUALIFICATION_RELEASE,
+            "fresh-layer-probe": FRESH_LAYER_PROBE_RELEASE,
+        }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
@@ -549,10 +555,12 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         with log_time("Ordinary forward repeat"):
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
+        probe_positions = {
+            "layer-probe": LAYER_PROBE_POSITIONS,
+            "fresh-layer-probe": FRESH_LAYER_PROBE_POSITIONS,
+        }.get(request.spec.mode)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(
-                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
-            )
+            traced = traced_forward(*args, capture_positions=probe_positions)
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -580,7 +588,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
@@ -590,7 +598,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             raise ValueError("Native layer-probe values were not captured")
         arrays.update(
             {
-                "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "layer_probe_positions": np.asarray(probe_positions, dtype=np.int32),
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_router_input": traced_host.router_input.astype(np.float32),
@@ -710,9 +718,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
         }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         manifest["layer_probe"] = {
-            "positions": list(LAYER_PROBE_POSITIONS),
+            "positions": list(probe_positions),
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "router_input": "after MLP RMS and gated norms, directly before the router and experts",
