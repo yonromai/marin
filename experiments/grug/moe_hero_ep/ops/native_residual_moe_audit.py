@@ -160,7 +160,8 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         )
         scatter = jnp.zeros_like(local_input).at[token_dispatch].add(expert_dispatch * w_dispatch[:, None], mode="drop")
         weighted_fp32 = expert_route.astype(jnp.float32) * local_combine[:, :, None].astype(jnp.float32)
-        fixed_sum = jnp.sum(weighted_fp32, axis=1).astype(local_input.dtype)
+        fixed_sum_fp32 = jnp.sum(weighted_fp32, axis=1)
+        fixed_sum = fixed_sum_fp32.astype(local_input.dtype)
         fp32_scatter = (
             jnp.zeros_like(local_input, dtype=jnp.float32)
             .at[token_dispatch]
@@ -174,6 +175,9 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
             jnp.take(fixed_sum, positions, axis=0),
             jnp.take(fp32_scatter.astype(local_input.dtype), positions, axis=0),
             jnp.take(sonic_ordered, positions, axis=0),
+            jnp.take(weighted_fp32, positions, axis=0),
+            jnp.take(fixed_sum_fp32, positions, axis=0),
+            jnp.take(local_combine, positions, axis=0),
         )
 
     mesh = jax.sharding.get_abstract_mesh()
@@ -183,7 +187,16 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         local_capture,
         mesh=mesh,
         in_specs=(token_spec, token_spec, token_spec, token_spec, P(None, None, None), P(None, None, None)),
-        out_specs=(expert_spec, token_spec, token_spec, token_spec, token_spec),
+        out_specs=(
+            expert_spec,
+            token_spec,
+            token_spec,
+            token_spec,
+            token_spec,
+            expert_spec,
+            token_spec,
+            P(token_spec[0], None),
+        ),
         check_rep=False,
     )(
         routed_input,
@@ -198,6 +211,9 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
     fixed_sum = local_results[2].reshape(batch, len(PROBE_POSITIONS), -1)
     fp32_scatter = local_results[3].reshape(batch, len(PROBE_POSITIONS), -1)
     sonic_ordered = local_results[4].reshape(batch, len(PROBE_POSITIONS), -1)
+    weighted_route = local_results[5].reshape(batch, len(PROBE_POSITIONS), config.num_experts_per_token, -1)
+    fixed_sum_fp32 = local_results[6].reshape(batch, len(PROBE_POSITIONS), -1)
+    inner_combine = local_results[7].reshape(batch, len(PROBE_POSITIONS), config.num_experts_per_token)
     positions = jnp.asarray(PROBE_POSITIONS)
 
     def sample(value, *tail):
@@ -255,6 +271,9 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         "selected_experts": sample(selected, config.num_experts_per_token),
         "combine_weights": sample(combine, config.num_experts_per_token),
         "expert_output": jax.sharding.reshard(expert_route, P()),
+        "weighted_route_fp32": jax.sharding.reshard(weighted_route, P()),
+        "fixed_sum_unrounded_fp32": jax.sharding.reshard(fixed_sum_fp32, P()),
+        "combine_weights_inside_shard_map": jax.sharding.reshard(inner_combine, P()),
         "individual_expert_fp64_reference": jax.sharding.reshard(individual_reference, P()),
         "scatter_bf16": jax.sharding.reshard(scatter, P()),
         "fixed_fp32_sum": jax.sharding.reshard(fixed_sum, P()),
