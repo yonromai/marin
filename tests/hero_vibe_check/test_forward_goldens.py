@@ -77,6 +77,29 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
         np.testing.assert_array_equal(layer_arrays[name], required_arrays[name])
 
 
+@pytest.mark.parametrize(
+    ("base_mode", "probe_mode", "release_suffix"),
+    (
+        ("required", "gated-norm-fp32-original", "gated-norm-fp32-original-v1"),
+        ("fresh-qualification", "gated-norm-fp32-fresh", "gated-norm-fp32-fresh-v1"),
+    ),
+)
+def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases(
+    base_mode: str, probe_mode: str, release_suffix: str
+) -> None:
+    base = _request(base_mode)
+    probe = _request(probe_mode)
+    base_arrays, base_cases = build_inputs(base, _Tokenizer())
+    probe_arrays, probe_cases = build_inputs(probe, _Tokenizer())
+
+    assert probe.spec.release.endswith(release_suffix)
+    assert probe.bundle_id != base.bundle_id
+    assert probe_cases == base_cases
+    assert probe_arrays.keys() == base_arrays.keys()
+    for name in base_arrays:
+        np.testing.assert_array_equal(probe_arrays[name], base_arrays[name])
+
+
 def test_shape_audit_retains_required_scores_and_all_distinct_full_logit_rows() -> None:
     required = _request("required")
     shape_audit = _request("shape-audit")
