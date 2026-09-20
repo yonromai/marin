@@ -84,6 +84,7 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
         ("fresh-qualification", "gated-norm-fp32-fresh", "gated-norm-fp32-fresh-v1"),
         ("required", "gated-norm-fp32-silu-original", "gated-norm-fp32-silu-original-v1"),
         ("fresh-qualification", "gated-norm-fp32-silu-fresh", "gated-norm-fp32-silu-fresh-v1"),
+        ("fresh-qualification", "gated-norm-fp32-silu-fresh-probe", "gated-norm-fp32-silu-fresh-probe-v1"),
     ),
 )
 def test_gated_norm_fp32_modes_keep_qualification_inputs_under_distinct_releases(

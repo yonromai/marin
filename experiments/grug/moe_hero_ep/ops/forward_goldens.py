@@ -80,6 +80,8 @@ GATED_NORM_FP32_ORIGINAL_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-or
 GATED_NORM_FP32_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-fresh-v1"
 GATED_NORM_FP32_SILU_ORIGINAL_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-original-v1"
 GATED_NORM_FP32_SILU_FRESH_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-v1"
+GATED_NORM_FP32_SILU_FRESH_PROBE_RELEASE = "hero-535b-step108000-bf16-gated-norm-fp32-silu-fresh-probe-v1"
+FRESH_SILU_PROBE_POSITIONS = (0, 7, 2044, 2048, 2250, 2397, 2398, 2399, 2639, 2640)
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
 )
@@ -101,6 +103,7 @@ GOLDEN_MODES = (
     "gated-norm-fp32-fresh",
     "gated-norm-fp32-silu-original",
     "gated-norm-fp32-silu-fresh",
+    "gated-norm-fp32-silu-fresh-probe",
     "diagnostic-8192",
     "diagnostic-16384",
 )
@@ -236,7 +239,12 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "gated-norm-fp32-original": GATED_NORM_FP32_ORIGINAL_RELEASE,
             "gated-norm-fp32-silu-original": GATED_NORM_FP32_SILU_ORIGINAL_RELEASE,
         }[mode]
-    elif mode in ("fresh-qualification", "gated-norm-fp32-fresh", "gated-norm-fp32-silu-fresh"):
+    elif mode in (
+        "fresh-qualification",
+        "gated-norm-fp32-fresh",
+        "gated-norm-fp32-silu-fresh",
+        "gated-norm-fp32-silu-fresh-probe",
+    ):
         # Selected before examining the corrected model's outputs. The final
         # pair shares its entire causal prefix and tests the 4095/4096 edge.
         base_cases = (
@@ -253,6 +261,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "fresh-qualification": FRESH_QUALIFICATION_RELEASE,
             "gated-norm-fp32-fresh": GATED_NORM_FP32_FRESH_RELEASE,
             "gated-norm-fp32-silu-fresh": GATED_NORM_FP32_SILU_FRESH_RELEASE,
+            "gated-norm-fp32-silu-fresh-probe": GATED_NORM_FP32_SILU_FRESH_PROBE_RELEASE,
         }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
@@ -290,6 +299,14 @@ def golden_spec(mode: str) -> GoldenSpec:
         training_model=training_model,
         model=inference_model,
     )
+
+
+def _capture_positions(mode: str) -> tuple[int, ...] | None:
+    if mode == "layer-probe":
+        return LAYER_PROBE_POSITIONS
+    if mode == "gated-norm-fp32-silu-fresh-probe":
+        return FRESH_SILU_PROBE_POSITIONS
+    return None
 
 
 def pinned_request(mode: str, revision: str) -> GoldenRequest:
@@ -557,6 +574,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             batch_array(input_arrays["segment_ids"]),
             selection,
         )
+        probe_positions = _capture_positions(request.spec.mode)
         with log_time("Ordinary forward and compilation"):
             first = ordinary_forward(*args)
             jax.block_until_ready(first)
@@ -564,9 +582,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(
-                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
-            )
+            traced = traced_forward(*args, capture_positions=probe_positions)
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -594,7 +610,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
@@ -604,7 +620,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             raise ValueError("Native layer-probe values were not captured")
         arrays.update(
             {
-                "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "layer_probe_positions": np.asarray(probe_positions, dtype=np.int32),
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_router_input": traced_host.router_input.astype(np.float32),
@@ -724,14 +740,14 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
         }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         manifest["layer_probe"] = {
-            "positions": list(LAYER_PROBE_POSITIONS),
+            "positions": list(probe_positions),
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "router_input": "after MLP RMS and gated norms, directly before the router and experts",
             "after_block": "after MLP-branch residual",
-            "scope": "diagnostic only; original native golden bundle remains unchanged",
+            "scope": "diagnostic only; qualification native golden bundles remain unchanged",
         }
     if request.spec.mode == "shape-audit":
         manifest["shape_audit"] = {
