@@ -125,6 +125,7 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
     selected = top_indices[:, :-1]
     combine = jax.nn.sigmoid(jnp.take_along_axis(logits, selected, axis=-1))
     combine = combine * (2.5 / (jnp.sum(combine, axis=-1, keepdims=True) + 1e-9))
+    combine_unrounded = combine
     combine = combine.astype(flat.dtype)
 
     routed_input = flat
@@ -269,6 +270,7 @@ def capture_layer17(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[st
         "mlp_input": sample(mlp_input, config.hidden_dim),
         "routed_input": sample(routed_input, routed_input.shape[-1]),
         "selected_experts": sample(selected, config.num_experts_per_token),
+        "combine_weights_unrounded_fp32": sample(combine_unrounded, config.num_experts_per_token),
         "combine_weights": sample(combine, config.num_experts_per_token),
         "expert_output": jax.sharding.reshard(expert_route, P()),
         "weighted_route_fp32": jax.sharding.reshard(weighted_route, P()),
@@ -356,7 +358,8 @@ def produce(request: GoldenRequest, store_root: str, attempt: int) -> None:
         "contract": (
             "raw selected expert outputs at layer 17 / position 2473 in both original 4K cases; "
             "FP64 evaluation of the same BF16 expert inputs and weights, original BF16 scatter, "
-            "FP32 scatter, JAX FP32 sum, Sonic fixed-order FP32 gather sum, and production MoE output"
+            "FP32 scatter, JAX FP32 sum, Sonic fixed-order FP32 gather sum, unrounded combine weights, "
+            "and production MoE output"
         ),
     }
     with (root / "arrays.npz").open("wb") as target:
