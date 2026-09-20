@@ -153,6 +153,9 @@ class TracedValues(NamedTuple):
     model_input_hidden: jax.Array | None
     hidden_after_attn: jax.Array | None
     hidden_after_block: jax.Array | None
+    model_input_prefix_diff: jax.Array | None
+    prefix_diff_after_attn: jax.Array | None
+    prefix_diff_after_block: jax.Array | None
     layer0_mlp_in: jax.Array | None
     layer0_moe_out: jax.Array | None
     layer0_after_shared: jax.Array | None
@@ -415,6 +418,15 @@ def traced_forward(
     model_input_hidden = jax.sharding.reshard(metrics["trace_model_input_hidden"], P()) if capture_positions else None
     hidden_after_attn = jax.sharding.reshard(metrics["trace_hidden_after_attn"], P()) if capture_positions else None
     hidden_after_block = jax.sharding.reshard(metrics["trace_hidden_after_block"], P()) if capture_positions else None
+    model_input_prefix_diff = (
+        jax.sharding.reshard(metrics["trace_model_input_prefix_diff"], P()) if capture_positions else None
+    )
+    prefix_diff_after_attn = (
+        jax.sharding.reshard(metrics["trace_prefix_diff_after_attn"], P()) if capture_positions else None
+    )
+    prefix_diff_after_block = (
+        jax.sharding.reshard(metrics["trace_prefix_diff_after_block"], P()) if capture_positions else None
+    )
     layer0_mlp_in = jax.sharding.reshard(metrics["trace_layer0_mlp_in"], P()) if capture_positions else None
     layer0_moe_out = jax.sharding.reshard(metrics["trace_layer0_moe_out"], P()) if capture_positions else None
     layer0_after_shared = jax.sharding.reshard(metrics["trace_layer0_after_shared"], P()) if capture_positions else None
@@ -430,6 +442,9 @@ def traced_forward(
         model_input_hidden=model_input_hidden,
         hidden_after_attn=hidden_after_attn,
         hidden_after_block=hidden_after_block,
+        model_input_prefix_diff=model_input_prefix_diff,
+        prefix_diff_after_attn=prefix_diff_after_attn,
+        prefix_diff_after_block=prefix_diff_after_block,
         layer0_mlp_in=layer0_mlp_in,
         layer0_moe_out=layer0_moe_out,
         layer0_after_shared=layer0_after_shared,
@@ -580,6 +595,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
             or traced_host.hidden_after_block is None
+            or traced_host.model_input_prefix_diff is None
+            or traced_host.prefix_diff_after_attn is None
+            or traced_host.prefix_diff_after_block is None
         ):
             raise ValueError("Native layer-probe values were not captured")
         arrays.update(
@@ -588,6 +606,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
+                "layer_probe_model_input_prefix_diff": traced_host.model_input_prefix_diff,
+                "layer_probe_prefix_diff_after_attn": traced_host.prefix_diff_after_attn,
+                "layer_probe_prefix_diff_after_block": traced_host.prefix_diff_after_block,
             }
         )
     if request.spec.mode == "substage-probe":
@@ -737,6 +758,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "after_block": "after MLP-branch residual",
+            "common_prefix_equality": "exact coordinate equality of original 4095/4096 cases at every token 0..4094",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
         }
     if request.spec.mode == "substage-probe":

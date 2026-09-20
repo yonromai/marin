@@ -1239,6 +1239,11 @@ class Block(eqx.Module):
         x = x + attn_out
         if capture_positions is not None:
             after_attn = jnp.take(x, jnp.asarray(capture_positions), axis=1)
+            # The two original 4K cases have identical tokens through 4095. Record an
+            # exact per-token equality test over the *whole* common prefix, so a
+            # difference outside the sampled positions cannot masquerade as a later
+            # first divergence. This is diagnostic-only work.
+            prefix_diff_after_attn = jnp.any(x[6, :4095] != x[7, :4095], axis=-1)
         mlp_in = self.mlp_gated_norm(self.rms_mlp(x))
         if capture_positions is not None:
             sampled_mlp_in = jnp.take(mlp_in, jnp.asarray(capture_positions), axis=1)
@@ -1259,6 +1264,8 @@ class Block(eqx.Module):
         if capture_positions is not None:
             router_stats["trace_hidden_after_attn"] = after_attn
             router_stats["trace_hidden_after_block"] = jnp.take(x, jnp.asarray(capture_positions), axis=1)
+            router_stats["trace_prefix_diff_after_attn"] = prefix_diff_after_attn
+            router_stats["trace_prefix_diff_after_block"] = jnp.any(x[6, :4095] != x[7, :4095], axis=-1)
             router_stats["trace_mlp_in"] = sampled_mlp_in
             router_stats["trace_moe_out"] = sampled_moe_out
             router_stats["trace_after_shared"] = sampled_after_shared
@@ -1354,6 +1361,9 @@ class Transformer(eqx.Module):
         hidden = self.embed_gated_norm(hidden)
         model_input_hidden = (
             jnp.take(hidden, jnp.asarray(capture_positions), axis=1) if capture_positions is not None else None
+        )
+        model_input_prefix_diff = (
+            jnp.any(hidden[6, :4095] != hidden[7, :4095], axis=-1) if capture_positions is not None else None
         )
 
         # Local layers use a sliding window; every global_every-th layer is full causal.
@@ -1457,8 +1467,11 @@ class Transformer(eqx.Module):
                     "trace_embed_raw_hidden": embed_raw_hidden,
                     "trace_embed_after_rms_hidden": embed_after_rms_hidden,
                     "trace_model_input_hidden": model_input_hidden,
+                    "trace_model_input_prefix_diff": model_input_prefix_diff,
                     "trace_hidden_after_attn": stacked_router_stats["trace_hidden_after_attn"],
                     "trace_hidden_after_block": stacked_router_stats["trace_hidden_after_block"],
+                    "trace_prefix_diff_after_attn": stacked_router_stats["trace_prefix_diff_after_attn"],
+                    "trace_prefix_diff_after_block": stacked_router_stats["trace_prefix_diff_after_block"],
                     "trace_layer0_mlp_in": stacked_router_stats["trace_mlp_in"][0],
                     "trace_layer0_moe_out": stacked_router_stats["trace_moe_out"][0],
                     "trace_layer0_after_shared": stacked_router_stats["trace_after_shared"][0],
