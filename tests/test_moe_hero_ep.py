@@ -46,6 +46,24 @@ from experiments.grug.moe_hero_ep import small_scale_abl_launch as abl
 GPU_EXTRA_PYPROJECT = Path(__file__).resolve().parents[1] / "lib/marin/pyproject.toml"
 
 
+def test_exclusive_self_attention_bf16_matches_fp64_projection():
+    coordinates = np.arange(512, dtype=np.float64).reshape(4, 128)
+    values = jnp.asarray(np.sin(coordinates * 0.37), dtype=jnp.bfloat16)
+    attended = jnp.asarray(np.sin(coordinates * 0.37) + 0.01 * np.cos(coordinates * 0.19), dtype=jnp.bfloat16)
+
+    projected = jax.jit(model._exclusive_self_attention)(attended, values)
+    attended_ref = np.asarray(attended.astype(jnp.float32), dtype=np.float64)
+    values_ref = np.asarray(values.astype(jnp.float32), dtype=np.float64)
+    dot = np.sum(attended_ref * values_ref, axis=-1, keepdims=True)
+    norm_sq = np.sum(values_ref * values_ref, axis=-1, keepdims=True)
+    reference = attended_ref - (dot / (norm_sq + 1e-6)) * values_ref
+    difference = np.asarray(projected.astype(jnp.float32), dtype=np.float64) - reference
+
+    assert projected.dtype == jnp.bfloat16
+    assert np.sqrt(np.mean(difference**2)) < 3e-5
+    assert np.max(np.abs(difference)) < 1e-4
+
+
 def test_diagnostic_run_without_shape_overrides_uses_the_selected_model():
     step = launch.build_diagnostic_run(run_id="selected-default", dp_racks=1, num_steps=1, version="dev")
     config = step.build_config(StepContext.for_fingerprint(step.runtime_args, step.deps))

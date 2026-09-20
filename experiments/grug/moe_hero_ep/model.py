@@ -463,6 +463,16 @@ class ShortConv(eqx.Module):
         return short_conv(weight, x, segment_ids, batch_axes=_BATCH_AXES)
 
 
+def _exclusive_self_attention(attn_out: jax.Array, aligned_v: jax.Array) -> jax.Array:
+    """Project out each head's own value in FP32 before returning to the attention dtype."""
+    attn_dtype = attn_out.dtype
+    attn_out = attn_out.astype(jnp.float32)
+    aligned_v = aligned_v.astype(jnp.float32)
+    dot = jnp.sum(attn_out * aligned_v, axis=-1, keepdims=True)
+    v_norm_sq = jnp.sum(aligned_v * aligned_v, axis=-1, keepdims=True)
+    return (attn_out - (dot / (v_norm_sq + 1e-6)) * aligned_v).astype(attn_dtype)
+
+
 class CausalSelfAttention(eqx.Module):
     w_q: Float[Array, "D NH"]
     w_k: Float[Array, "D MH"]
@@ -592,9 +602,7 @@ class CausalSelfAttention(eqx.Module):
         # GPU XSA with GQA can give attn_out a backend-specific head sharding;
         # match v to that dynamic sharding before the per-head projection math.
         aligned_v = reshard(aligned_v, _partition_spec_of(attn_out) or P(_BATCH_AXES, None, None, "model"))
-        dot = jnp.sum(attn_out * aligned_v, axis=-1, keepdims=True)
-        v_norm_sq = jnp.sum(aligned_v * aligned_v, axis=-1, keepdims=True)
-        attn_out = attn_out - (dot / (v_norm_sq + 1e-6)) * aligned_v
+        attn_out = _exclusive_self_attention(attn_out, aligned_v)
         # Headwise gating: sigmoid(x @ attn_gate) produces one scalar per head.
         gate = 2 * jax.nn.sigmoid(jnp.einsum("bsd,dn->bsn", x, self.attn_gate))[..., None]
         attn_out = gate * attn_out
