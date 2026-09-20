@@ -175,7 +175,8 @@ def _moe_mlp_local_sonic_cute(
         )
 
     with jax.named_scope("scatter"):
-        out = jnp.zeros_like(x).at[token_dispatch].add(out_dispatch * w_dispatch[:, None], mode="drop")
+        weighted = out_dispatch.astype(jnp.float32) * w_dispatch[:, None].astype(jnp.float32)
+        out = jnp.zeros_like(x, dtype=jnp.float32).at[token_dispatch].add(weighted, mode="drop").astype(x.dtype)
     return out, _zero_dropped_assignments()
 
 
@@ -244,7 +245,7 @@ def _moe_mlp_local_sonic_cute_chunked(
     w_pad = jnp.pad(w_dispatch, (0, max_cap))
     token_pad = jnp.pad(token_dispatch, (0, max_cap))
 
-    out = jnp.zeros_like(x)
+    out = jnp.zeros_like(x, dtype=jnp.float32)
     for c, (cap, logical_cap) in enumerate(zip(physical_caps, logical_caps, strict=True)):
         lo = bounds[c]
         hi = bounds[c + 1]
@@ -280,5 +281,6 @@ def _moe_mlp_local_sonic_cute_chunked(
                 _expert_mlp(x_seg, w13_il, w2_chunk, group_sizes_c, cu_c), _CHECKPOINT_DISPATCH_OUTPUT
             )
         with jax.named_scope("scatter_chunk"):
-            out = out.at[token_seg].add(out_dispatch * w_seg[:, None], mode="drop")
-    return out, _chunk_capacity_drops(cu, bounds, logical_caps)
+            weighted = out_dispatch.astype(jnp.float32) * w_seg[:, None].astype(jnp.float32)
+            out = out.at[token_seg].add(weighted, mode="drop")
+    return out.astype(x.dtype), _chunk_capacity_drops(cu, bounds, logical_caps)
