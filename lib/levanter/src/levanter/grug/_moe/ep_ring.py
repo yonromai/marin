@@ -122,9 +122,10 @@ def _moe_mlp_ep_ring_local(
         )
 
     with jax.named_scope("scatter"):
-        out_global = jnp.zeros_like(x_global).at[token_local].add(out_dispatch * weight_dispatch[:, None], mode="drop")
+        weighted = out_dispatch.astype(jnp.float32) * weight_dispatch[:, None].astype(jnp.float32)
+        out_global = jnp.zeros_like(x_global, dtype=jnp.float32).at[token_local].add(weighted, mode="drop")
         # #2710 ring EP strategy: collect only this shard's token slice after
         # reducing contributions from experts across the EP mesh.
-        out_local = jax.lax.psum_scatter(out_global, "expert", scatter_dimension=0, tiled=True)
+        out_local = jax.lax.psum_scatter(out_global, "expert", scatter_dimension=0, tiled=True).astype(x_global.dtype)
         dropped_total = jax.lax.psum(dropped_local, _batch_axes(jax.sharding.get_abstract_mesh()))
     return out_local, CapacityDrops(sender_dropped=jnp.zeros_like(dropped_total), receiver_dropped=dropped_total)
