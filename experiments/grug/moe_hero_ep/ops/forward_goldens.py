@@ -75,6 +75,8 @@ DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
 ROUTE_ORIGIN_PROBE_RELEASE = "hero-535b-step108000-fp32-router-origin-probe-v1"
+SENSITIVITY_ORIGINAL_RELEASE = "hero-535b-step108000-bos-ulp-original-v1"
+SENSITIVITY_FRESH_RELEASE = "hero-535b-step108000-bos-ulp-fresh-v1"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
@@ -88,11 +90,19 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
+# Diagnostic only: one BF16 ULP at this immutable checkpoint's BOS embedding
+# coordinate, 0.408203125 -> 0.41015625. BOS occurs once per input row.
+SENSITIVITY_BOS_TOKEN = 128000
+SENSITIVITY_CHANNEL = 3122
+SENSITIVITY_BASE_VALUE = 0.408203125
+SENSITIVITY_NEXT_VALUE = 0.41015625
+SENSITIVITY_MODES = ("sensitivity-original", "sensitivity-fresh")
 GOLDEN_MODES = (
     "smoke",
     "required",
     "layer-probe",
     "route-origin-probe",
+    *SENSITIVITY_MODES,
     "shape-audit",
     "fresh-qualification",
     "diagnostic-8192",
@@ -212,7 +222,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe", "route-origin-probe", "shape-audit"):
+    elif mode in ("required", "layer-probe", "route-origin-probe", "shape-audit", "sensitivity-original"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -227,9 +237,10 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             "required": REQUIRED_RELEASE,
             "layer-probe": LAYER_PROBE_RELEASE,
             "route-origin-probe": ROUTE_ORIGIN_PROBE_RELEASE,
+            "sensitivity-original": SENSITIVITY_ORIGINAL_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
         }[mode]
-    elif mode == "fresh-qualification":
+    elif mode in ("fresh-qualification", "sensitivity-fresh"):
         # Selected before examining the corrected model's outputs. The final
         # pair shares its entire causal prefix and tests the 4095/4096 edge.
         base_cases = (
@@ -242,7 +253,10 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
             ("fresh-context-minus-one", "context-object-ownership", 4095),
             ("fresh-context-exact", "context-object-ownership", 4096),
         )
-        release = FRESH_QUALIFICATION_RELEASE
+        release = {
+            "fresh-qualification": FRESH_QUALIFICATION_RELEASE,
+            "sensitivity-fresh": SENSITIVITY_FRESH_RELEASE,
+        }[mode]
     elif mode == "diagnostic-8192":
         base_cases = (("context-diagnostic-8192", "neuron-associate-grub-zoo", 8192),)
         release = DIAGNOSTIC_8K_RELEASE
@@ -520,6 +534,22 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         with log_time("BF16 weight conversion"):
             model = COMPUTE_POLICY.cast_to_compute(restored.model)
             jax.block_until_ready(model)
+        sensitivity_mode = request.spec.mode in SENSITIVITY_MODES
+        perturbed_model = None
+        if sensitivity_mode:
+            if model.token_embed.dtype != jnp.bfloat16:
+                raise ValueError("The one-ULP sensitivity probe requires BF16 compute embeddings")
+            if not np.all(np.sum(input_arrays["tokens"] == SENSITIVITY_BOS_TOKEN, axis=1) == 1):
+                raise ValueError("The sensitivity probe requires exactly one BOS token per case")
+            previous = float(
+                np.asarray(jax.sharding.reshard(model.token_embed[SENSITIVITY_BOS_TOKEN, SENSITIVITY_CHANNEL], P()))
+            )
+            if previous != SENSITIVITY_BASE_VALUE:
+                raise ValueError(f"Unexpected BOS checkpoint weight: {previous}")
+            changed_embed = model.token_embed.at[SENSITIVITY_BOS_TOKEN, SENSITIVITY_CHANNEL].set(
+                jnp.bfloat16(SENSITIVITY_NEXT_VALUE)
+            )
+            perturbed_model = eqx.tree_at(lambda current: current.token_embed, model, changed_embed)
         effective_router_bias = np.asarray(
             jax.sharding.reshard(model.stacked_blocks.stacked.mlp.router_bias.astype(jnp.float32), P())
         )
@@ -556,10 +586,22 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             capture_positions = None
             if request.spec.mode == "layer-probe":
                 capture_positions = LAYER_PROBE_POSITIONS
-            elif request.spec.mode == "route-origin-probe":
+            elif request.spec.mode == "route-origin-probe" or sensitivity_mode:
                 capture_positions = (0,)
             traced = traced_forward(*args, capture_positions=capture_positions)
             jax.block_until_ready(traced)
+        sensitivity_first = sensitivity_second = sensitivity_traced = None
+        if perturbed_model is not None:
+            perturbed_args = (perturbed_model, *args[1:])
+            with log_time("One-ULP sensitivity forward"):
+                sensitivity_first = ordinary_forward(*perturbed_args)
+                jax.block_until_ready(sensitivity_first)
+            with log_time("One-ULP sensitivity repeat"):
+                sensitivity_second = ordinary_forward(*perturbed_args)
+                jax.block_until_ready(sensitivity_second)
+            with log_time("One-ULP sensitivity route trace"):
+                sensitivity_traced = traced_forward(*perturbed_args, capture_positions=(0,))
+                jax.block_until_ready(sensitivity_traced)
 
     if jax.process_index() != 0:
         # Keep every rank alive while process zero materializes, validates, compresses, and uploads
@@ -573,6 +615,17 @@ def produce(request: GoldenRequest, store_root: str) -> None:
     instrumentation = _numeric_diagnostic(first_host, traced_host.forward)
     _validate_native_diagnostic("ordinary repeat", repeatability)
     _validate_native_diagnostic("traced versus ordinary", instrumentation)
+    sensitivity_repeatability = sensitivity_instrumentation = None
+    sensitivity_host = None
+    if sensitivity_traced is not None:
+        assert sensitivity_first is not None and sensitivity_second is not None
+        sensitivity_first_host = jax.tree.map(np.asarray, sensitivity_first)
+        sensitivity_second_host = jax.tree.map(np.asarray, sensitivity_second)
+        sensitivity_host = jax.tree.map(np.asarray, sensitivity_traced)
+        sensitivity_repeatability = _numeric_diagnostic(sensitivity_first_host, sensitivity_second_host)
+        sensitivity_instrumentation = _numeric_diagnostic(sensitivity_first_host, sensitivity_host.forward)
+        _validate_native_diagnostic("one-ULP ordinary repeat", sensitivity_repeatability)
+        _validate_native_diagnostic("one-ULP traced versus ordinary", sensitivity_instrumentation)
 
     arrays = {
         **input_arrays,
@@ -586,7 +639,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
-    if request.spec.mode in ("layer-probe", "route-origin-probe"):
+    if request.spec.mode in ("layer-probe", "route-origin-probe", *SENSITIVITY_MODES):
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
@@ -602,6 +655,29 @@ def produce(request: GoldenRequest, store_root: str) -> None:
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_mlp_input": traced_host.mlp_input.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
+            }
+        )
+    if sensitivity_host is not None:
+        if (
+            sensitivity_host.model_input_hidden is None
+            or sensitivity_host.hidden_after_attn is None
+            or sensitivity_host.mlp_input is None
+            or sensitivity_host.hidden_after_block is None
+        ):
+            raise ValueError("The sensitivity trace did not capture layer boundaries")
+        arrays.update(
+            {
+                "sensitivity_target_logprobs": sensitivity_host.forward.target_logprobs.astype(np.float32),
+                "sensitivity_top_token_ids": sensitivity_host.forward.top_token_ids.astype(np.int32),
+                "sensitivity_top_logprobs": sensitivity_host.forward.top_logprobs.astype(np.float32),
+                "sensitivity_full_logits": sensitivity_host.forward.full_logits.astype(np.float32),
+                "sensitivity_route_expert_ids": sensitivity_host.route_expert_ids.astype(np.int32),
+                "sensitivity_route_combine_weights": sensitivity_host.route_combine_weights.astype(np.float32),
+                "sensitivity_route_cutoff_gaps": sensitivity_host.route_cutoff_gaps.astype(np.float32),
+                "sensitivity_model_input_hidden": sensitivity_host.model_input_hidden.astype(np.float32),
+                "sensitivity_layer_probe_after_attn": sensitivity_host.hidden_after_attn.astype(np.float32),
+                "sensitivity_layer_probe_mlp_input": sensitivity_host.mlp_input.astype(np.float32),
+                "sensitivity_layer_probe_after_block": sensitivity_host.hidden_after_block.astype(np.float32),
             }
         )
     remote_root = prefix_join(store_root, request.bundle_id)
@@ -717,7 +793,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
         }
-    if request.spec.mode in ("layer-probe", "route-origin-probe"):
+    if request.spec.mode in ("layer-probe", "route-origin-probe", *SENSITIVITY_MODES):
         manifest["layer_probe"] = {
             "positions": list(positions),
             "model_input": "after embedding RMS and gated norms, before layer 0",
@@ -725,6 +801,19 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "mlp_input": "after post-attention RMS and gated norms, before MoE router",
             "after_block": "after MLP-branch residual",
             "scope": "diagnostic only; original native golden bundle remains unchanged",
+        }
+    if sensitivity_host is not None:
+        assert sensitivity_repeatability is not None and sensitivity_instrumentation is not None
+        manifest["sensitivity"] = {
+            "kind": "one BF16 ULP in the compute copy of one BOS embedding weight",
+            "token_id": SENSITIVITY_BOS_TOKEN,
+            "channel": SENSITIVITY_CHANNEL,
+            "original_weight": SENSITIVITY_BASE_VALUE,
+            "changed_weight": SENSITIVITY_NEXT_VALUE,
+            "input_position": 0,
+            "scope": "diagnostic only; immutable checkpoint and original/fresh goldens unchanged",
+            "ordinary_repeat": sensitivity_repeatability.as_dict(),
+            "traced_versus_ordinary": sensitivity_instrumentation.as_dict(),
         }
     if request.spec.mode == "shape-audit":
         manifest["shape_audit"] = {
