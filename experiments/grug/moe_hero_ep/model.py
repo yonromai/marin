@@ -1030,8 +1030,14 @@ class MoEMLP(eqx.Module):
         b, s, _ = x.shape
         x_flat = rearrange(x, "b s d -> (b s) d")
         token_valid_flat = rearrange(token_valid, "b s -> (b s)")
-        # Keep the router path in fp32 before top-k, softmax, and QB statistics.
-        router_logits = jnp.einsum("td,de->te", x_flat, reshard(self.router, P(None, None))).astype(jnp.float32)
+        # Accumulate the BF16 input/weight dot product in FP32. Casting the result
+        # after a BF16 contraction has already rounded away near-tied route scores.
+        router_logits = jnp.einsum(
+            "td,de->te",
+            x_flat.astype(jnp.float32),
+            reshard(self.router, P(None, None)).astype(jnp.float32),
+            precision=jax.lax.Precision.HIGHEST,
+        )
         biased_logits = router_logits + jax.lax.stop_gradient(self.router_bias)
         router_probs = jax.nn.softmax(router_logits, axis=-1)
         # Select top-(K+1) on biased logits; the (K+1)-th is the QB threshold alpha.
