@@ -77,6 +77,7 @@ LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
 ROUTE_ORIGIN_PROBE_RELEASE = "hero-535b-step108000-fp32-router-origin-probe-v1"
 SENSITIVITY_ORIGINAL_RELEASE = "hero-535b-step108000-bos-ulp-original-v1"
 SENSITIVITY_FRESH_RELEASE = "hero-535b-step108000-bos-ulp-fresh-v1"
+SENSITIVITY_SMOKE_RELEASE = "hero-535b-step108000-bos-ulp-smoke-v1"
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 FRESH_QUALIFICATION_RELEASE = "hero-535b-step108000-bf16-fp32-combine-fresh-v1"
 SELECTED_CHECKPOINT_URI = (
@@ -96,7 +97,7 @@ SENSITIVITY_BOS_TOKEN = 128000
 SENSITIVITY_CHANNEL = 3122
 SENSITIVITY_BASE_VALUE = 0.408203125
 SENSITIVITY_NEXT_VALUE = 0.41015625
-SENSITIVITY_MODES = ("sensitivity-original", "sensitivity-fresh")
+SENSITIVITY_MODES = ("sensitivity-smoke", "sensitivity-original", "sensitivity-fresh")
 GOLDEN_MODES = (
     "smoke",
     "required",
@@ -219,9 +220,9 @@ def _validated_model_configs() -> tuple[dict, dict]:
 
 
 def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
-    if mode == "smoke":
+    if mode in ("smoke", "sensitivity-smoke"):
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
-        release = SMOKE_RELEASE
+        release = SMOKE_RELEASE if mode == "smoke" else SENSITIVITY_SMOKE_RELEASE
     elif mode in ("required", "layer-probe", "route-origin-probe", "shape-audit", "sensitivity-original"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
