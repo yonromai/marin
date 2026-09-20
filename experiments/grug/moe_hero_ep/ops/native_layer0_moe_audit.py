@@ -168,13 +168,17 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
     scatter = local_results[1].reshape(batch, len(PROBE_POSITIONS), -1)
     fixed_sum = local_results[2].reshape(batch, len(PROBE_POSITIONS), -1)
     fp32_scatter = local_results[3].reshape(batch, len(PROBE_POSITIONS), -1)
+    positions = jnp.asarray(PROBE_POSITIONS)
+
+    def sample(value, *tail):
+        shaped = value.reshape(batch, sequence, *tail)
+        return jax.sharding.reshard(jnp.take(shaped, positions, axis=1), P())
+
     # Evaluate the eight actual experts with the production BF16 inputs and
     # weights, but promote both GEMM contractions and SwiGLU to FP64.
     with jax.enable_x64():
-        reference_input = routed_input.reshape(batch, sequence, -1)[PAIR_ROWS[0], PROBE_POSITIONS[-1]].astype(
-            jnp.float64
-        )
-        reference_experts = selected.reshape(batch, sequence, -1)[PAIR_ROWS[0], PROBE_POSITIONS[-1]]
+        reference_input = sample(routed_input, routed_input.shape[-1])[PAIR_ROWS[0], -1].astype(jnp.float64)
+        reference_experts = sample(selected, config.num_experts_per_token)[PAIR_ROWS[0], -1]
 
         def reference_expert(expert_id):
             gate = reference_input @ w_gate_up[expert_id, :, : w_down.shape[1]].astype(jnp.float64)
@@ -191,12 +195,6 @@ def capture_layer0(model, tokens: jax.Array, segment_ids: jax.Array) -> dict[str
         )
     else:
         scatter_up, fixed_up = scatter, fixed_sum
-
-    positions = jnp.asarray(PROBE_POSITIONS)
-
-    def sample(value, *tail):
-        shaped = value.reshape(batch, sequence, *tail)
-        return jax.sharding.reshard(jnp.take(shaped, positions, axis=1), P())
 
     return {
         "mlp_input": sample(mlp_input, config.hidden_dim),
