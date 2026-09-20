@@ -223,7 +223,7 @@ def _prepare_moe_dispatch(
     token_ids = jnp.arange(tokens * topk, dtype=jnp.int32) // topk
     token_ids_sort = token_ids[sort_idx]
     x_sort = x[token_ids_sort]
-    w_sort = dispatch_weights[sort_idx].astype(x.dtype)
+    w_sort = dispatch_weights[sort_idx]
     group_sizes = jnp.bincount(expert_ids, length=num_experts).astype(jnp.int32)
     return x_sort, w_sort, token_ids_sort, group_sizes
 

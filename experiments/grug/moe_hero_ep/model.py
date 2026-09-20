@@ -1050,7 +1050,8 @@ class MoEMLP(eqx.Module):
         # Renormalize K combine weights to sum to ``_ROUTING_RENORM_SUM`` (baked in).
         denom = jnp.sum(combine_weights_f, axis=-1, keepdims=True)
         combine_weights_f = combine_weights_f * (_ROUTING_RENORM_SUM / (denom + 1e-9))
-        combine_weights = combine_weights_f.astype(x.dtype)
+        # Keep the normalized weights in FP32 through expert dispatch and accumulation.
+        combine_weights = combine_weights_f
         mesh = get_abstract_mesh()
         # Per-shard partials only; the cross-device reduction happens once after the layer scan.
         router_stats = _local_routing_stats(
@@ -1069,8 +1070,7 @@ class MoEMLP(eqx.Module):
             router_stats["trace_expert_ids"] = jnp.where(
                 trace_valid, trace_experts, jnp.asarray(-1, dtype=trace_experts.dtype)
             )
-            # Cast after the BF16 combine-weight conversion so the trace records the values
-            # supplied to expert computation while remaining portable in a NumPy archive.
+            # Record the FP32 values supplied to expert computation.
             router_stats["trace_combine_weights"] = jnp.where(
                 trace_valid, trace_weights, jnp.asarray(0, dtype=trace_weights.dtype)
             ).astype(jnp.float32)
