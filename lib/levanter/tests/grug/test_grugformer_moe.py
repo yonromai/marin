@@ -567,6 +567,18 @@ def test_capture_local_assignment_outputs_preserves_route_slot_order():
     np.testing.assert_array_equal(np.asarray(captured), [[[40], [10]], [[20], [30]]])
 
 
+@pytest.mark.parametrize(
+    ("input_spec", "expected"),
+    (
+        (P(("data",)), P(("data",), None, None)),
+        (P(("data",), None), P(("data",), None, None)),
+        (P(("data",), "model"), P(("data",), None, "model")),
+    ),
+)
+def test_assignment_capture_spec_accepts_omitted_hidden_axis(input_spec: P, expected: P):
+    assert grug_moe._assignment_capture_spec(input_spec) == expected
+
+
 def _arange_w13(dtype, *, experts: int = 2, hidden: int = 3, moe_dim: int = 4) -> jax.Array:
     values = jnp.arange(experts * hidden * 2 * moe_dim, dtype=jnp.float32)
     return values.reshape(experts, hidden, 2 * moe_dim).astype(dtype)

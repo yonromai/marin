@@ -71,6 +71,14 @@ MOE_SKIPPED_PADDING_ASSIGNMENTS_METRIC = "moe/skipped_padding_assignments"
 MOE_VALID_ASSIGNMENTS_METRIC = "moe/valid_assignments"
 
 
+def _assignment_capture_spec(x_spec: P) -> P:
+    # A rank-two token input may omit its trailing unsharded hidden axis from
+    # PartitionSpec. The captured route-slot axis is always unsharded.
+    if not 1 <= len(x_spec) <= 2:
+        raise ValueError(f"Expected a rank-two MoE input spec, got {x_spec}")
+    return P(x_spec[0], None, x_spec[1] if len(x_spec) == 2 else None)
+
+
 def moe_routing_stats(
     selected_experts: Int[Array, "T K"],
     router_probs: Float[Array, "T E"],
@@ -544,7 +552,7 @@ def moe_mlp(
             return out, dropped, assignment_outputs
         return out, dropped
 
-    out_specs = (x_spec, P(), P(x_spec[0], None, x_spec[1])) if capture_local_tokens is not None else (x_spec, P())
+    out_specs = (x_spec, P(), _assignment_capture_spec(x_spec)) if capture_local_tokens is not None else (x_spec, P())
     shard_fn = shard_map(
         local_moe,
         mesh=mesh,
