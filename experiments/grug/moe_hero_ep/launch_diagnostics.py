@@ -45,6 +45,7 @@ from experiments.grug.moe_hero_ep.hero_recipe import (
     with_transport_remat_mode,
 )
 from experiments.grug.moe_hero_ep.heuristic import build_hero_configs
+from experiments.grug.moe_hero_ep.model import RouterDotPrecision
 from experiments.grug.moe_hero_ep.train import (
     RAGGED_MOE_IMPLEMENTATION,
     GrugEvalConfig,
@@ -66,6 +67,10 @@ def build_diagnostic_run(
     dp_racks: int,
     num_steps: int,
     schedule_steps: int | None = None,
+    optimizer_batch_size: int | None = None,
+    gate_router_weight_decay: float | None = None,
+    initialize_from_checkpoint: str | None = None,
+    router_dot_precision: RouterDotPrecision = RouterDotPrecision.CURRENT,
     seed: int = 0,
     batch_size: int = HERO_EP_BATCH_SIZE,
     num_experts: int | None = None,
@@ -124,12 +129,16 @@ def build_diagnostic_run(
         raise ValueError(f"schedule_steps must be positive, got {schedule_steps}")
     if schedule_steps is not None and schedule_steps < num_steps:
         raise ValueError(f"schedule_steps={schedule_steps} must be at least num_steps={num_steps}")
+    if optimizer_batch_size is not None and optimizer_batch_size <= 0:
+        raise ValueError(f"optimizer_batch_size must be positive, got {optimizer_batch_size}")
     total_schedule_steps = schedule_steps if schedule_steps is not None else num_steps
     _, optimizer = build_hero_configs(
         num_train_steps=total_schedule_steps,
-        batch_size=batch_size,
+        batch_size=optimizer_batch_size if optimizer_batch_size is not None else batch_size,
     )
-    model = HERO_MODEL_CONFIG
+    if gate_router_weight_decay is not None:
+        optimizer = dataclasses.replace(optimizer, gate_router_weight_decay=gate_router_weight_decay)
+    model = dataclasses.replace(HERO_MODEL_CONFIG, router_dot_precision=router_dot_precision)
     overrides = {
         name: value
         for name, value in (
@@ -193,6 +202,7 @@ def build_diagnostic_run(
     experiment_flops = flops_per_example * batch_size * total_schedule_steps
 
     def build_config(ctx: StepContext) -> GrugRunConfig:
+        checkpoint_output_path = checkpoint_path or prefix_join(ctx.output_path, "checkpoints")
         trainer = hero_trainer_config(
             run_id=run_id,
             seed=seed,
@@ -236,10 +246,14 @@ def build_diagnostic_run(
                 replicate_path=ctx.output_path,
             ),
             watch=WatchConfig(interval=watch_interval),
+            load_checkpoint_path=(
+                [checkpoint_output_path, initialize_from_checkpoint] if initialize_from_checkpoint is not None else None
+            ),
+            load_checkpoint=True if initialize_from_checkpoint is not None else None,
             # Levanter's default base path is pod-local, so a preempted run would have nothing to
             # resume from. `checkpoint_path` overrides this for runs targeting disposable storage.
             checkpointer=CheckpointerConfig(
-                base_path=checkpoint_path or prefix_join(ctx.output_path, "checkpoints"),
+                base_path=checkpoint_output_path,
                 temporary_base_path=None,
                 save_interval=checkpoint_interval,
                 keep=None,
@@ -322,6 +336,30 @@ def build_diagnostic_run(
         "heuristic scales its rates from the implied token budget, so this trains the head of a long "
         "run's schedule. Defaults to --num-steps."
     ),
+)
+@click.option(
+    "--optimizer-batch-size",
+    type=click.IntRange(min=1),
+    default=None,
+    help="Use this batch size for the optimizer heuristic while training with --batch-size.",
+)
+@click.option(
+    "--gate-router-weight-decay",
+    type=click.FloatRange(min=0),
+    default=None,
+    help="Match the production gate and router weight decay when continuing its checkpoint.",
+)
+@click.option(
+    "--initialize-from-checkpoint",
+    default=None,
+    help="Restore complete training state from this checkpoint if this diagnostic has none yet.",
+)
+@click.option(
+    "--router-dot-precision",
+    type=click.Choice([mode.value for mode in RouterDotPrecision]),
+    default=RouterDotPrecision.CURRENT.value,
+    show_default=True,
+    help="Router contraction arithmetic for the precision comparison.",
 )
 @click.option(
     "--seed",
@@ -470,6 +508,10 @@ def main(
     dp_racks: int,
     num_steps: int,
     schedule_steps: int | None,
+    optimizer_batch_size: int | None,
+    gate_router_weight_decay: float | None,
+    initialize_from_checkpoint: str | None,
+    router_dot_precision: str,
     seed: int,
     batch_size: int,
     num_experts: int | None,
@@ -497,6 +539,10 @@ def main(
         dp_racks=dp_racks,
         num_steps=num_steps,
         schedule_steps=schedule_steps,
+        optimizer_batch_size=optimizer_batch_size,
+        gate_router_weight_decay=gate_router_weight_decay,
+        initialize_from_checkpoint=initialize_from_checkpoint,
+        router_dot_precision=RouterDotPrecision(router_dot_precision),
         seed=seed,
         batch_size=batch_size,
         num_experts=num_experts,

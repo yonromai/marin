@@ -130,6 +130,34 @@ def test_diagnostic_run_matches_the_d6144_rack_local_recipe():
     ]
 
 
+def test_one_rack_continuation_keeps_the_production_optimizer_schedule():
+    source = "s3://example/checkpoints/step-126000"
+    diagnostic = build_diagnostic_run(
+        run_id="test-router-continuation",
+        dp_racks=1,
+        batch_size=1024,
+        optimizer_batch_size=11264,
+        gate_router_weight_decay=0.02,
+        num_steps=126001,
+        schedule_steps=390251,
+        initialize_from_checkpoint=source,
+        version="dev",
+    )
+    ladder = build_ladder_run(run_id="test-ladder", size="d6144", version="dev")
+    diagnostic_config = diagnostic.build_config(
+        StepContext.for_fingerprint(runtime_arg_keys=diagnostic.runtime_args, deps=diagnostic.deps)
+    )
+    ladder_config = ladder.build_config(
+        StepContext.for_fingerprint(runtime_arg_keys=ladder.runtime_args, deps=ladder.deps)
+    )
+
+    assert diagnostic_config.optimizer == ladder_config.optimizer
+    assert diagnostic_config.trainer.trainer.num_train_steps == ladder_config.trainer.trainer.num_train_steps
+    assert diagnostic_config.stop_after_steps == 126001
+    assert diagnostic_config.trainer.trainer.load_checkpoint is True
+    assert diagnostic_config.trainer.trainer.load_checkpoint_path[-1] == source
+
+
 @pytest.mark.parametrize(
     ("size", "num_steps", "expected_simulated_epoching"),
     [("d2048", None, True), ("d6144", 1, True), ("d6144", None, False)],
