@@ -74,6 +74,8 @@ SMOKE_RELEASE = "hero-535b-step108000-bf16-smoke-v1"
 DIAGNOSTIC_8K_RELEASE = "hero-535b-step108000-bf16-8k-diagnostic-v1"
 DIAGNOSTIC_16K_RELEASE = "hero-535b-step108000-bf16-16k-diagnostic-v1"
 LAYER_PROBE_RELEASE = "hero-535b-step108000-bf16-layer-probe-v1"
+PAIR_LAYER18_PROBE_RELEASE = "hero-535b-step108000-bf16-pair-layer18-probe-v1"
+PAIR_LAYER18_PROBE_POSITIONS = (2477, 2478, 2479)
 SHAPE_AUDIT_RELEASE = "hero-535b-step108000-bf16-shape-audit-v1"
 SELECTED_CHECKPOINT_URI = (
     "s3://marin-us-east-02a/marin/grug/hero-ragged_a2a-nccl2307-ep-step81k/" "2026.08.19.2/checkpoints/step-108000"
@@ -86,7 +88,15 @@ TOKENIZER = "marin-community/marin-tokenizer"
 TOKENIZER_REVISION = "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2"
 NATIVE_OUTPUT_BOUND = 1e-4
 DETERMINISTIC_XLA_FLAGS = "--xla_gpu_deterministic_ops=true"
-GOLDEN_MODES = ("smoke", "required", "layer-probe", "shape-audit", "diagnostic-8192", "diagnostic-16384")
+GOLDEN_MODES = (
+    "smoke",
+    "required",
+    "layer-probe",
+    "pair-layer18-probe",
+    "shape-audit",
+    "diagnostic-8192",
+    "diagnostic-16384",
+)
 AUTHORITATIVE_WEIGHT_KEYS = ("master_params", "params")
 
 
@@ -200,7 +210,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
     if mode == "smoke":
         base_cases = (("short-fixed-continuation", "add-two-numbers", 64),)
         release = SMOKE_RELEASE
-    elif mode in ("required", "layer-probe", "shape-audit"):
+    elif mode in ("required", "layer-probe", "pair-layer18-probe", "shape-audit"):
         base_cases = (
             ("short-fixed-continuation", "add-two-numbers", 32),
             ("padded-code-continuation", "code-unique-in-order", 128),
@@ -214,6 +224,7 @@ def _mode_cases(mode: str) -> tuple[str, tuple[tuple[str, str, int], ...]]:
         release = {
             "required": REQUIRED_RELEASE,
             "layer-probe": LAYER_PROBE_RELEASE,
+            "pair-layer18-probe": PAIR_LAYER18_PROBE_RELEASE,
             "shape-audit": SHAPE_AUDIT_RELEASE,
         }[mode]
     elif mode == "diagnostic-8192":
@@ -517,6 +528,10 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             batch_array(input_arrays["segment_ids"]),
             selection,
         )
+        probe_positions = {
+            "layer-probe": LAYER_PROBE_POSITIONS,
+            "pair-layer18-probe": PAIR_LAYER18_PROBE_POSITIONS,
+        }.get(request.spec.mode)
         with log_time("Ordinary forward and compilation"):
             first = ordinary_forward(*args)
             jax.block_until_ready(first)
@@ -524,9 +539,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             second = ordinary_forward(*args)
             jax.block_until_ready(second)
         with log_time("Traced forward and compilation"):
-            traced = traced_forward(
-                *args, capture_positions=LAYER_PROBE_POSITIONS if request.spec.mode == "layer-probe" else None
-            )
+            traced = traced_forward(*args, capture_positions=probe_positions)
             jax.block_until_ready(traced)
 
     if jax.process_index() != 0:
@@ -554,7 +567,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
         "pending_qb_betas": pending_qb_betas.astype(np.float32),
         "effective_router_bias": effective_router_bias.astype(np.float32),
     }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         if (
             traced_host.model_input_hidden is None
             or traced_host.hidden_after_attn is None
@@ -563,7 +576,7 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             raise ValueError("Native layer-probe values were not captured")
         arrays.update(
             {
-                "layer_probe_positions": np.asarray(LAYER_PROBE_POSITIONS, dtype=np.int32),
+                "layer_probe_positions": np.asarray(probe_positions, dtype=np.int32),
                 "layer_probe_model_input": traced_host.model_input_hidden.astype(np.float32),
                 "layer_probe_after_attn": traced_host.hidden_after_attn.astype(np.float32),
                 "layer_probe_after_block": traced_host.hidden_after_block.astype(np.float32),
@@ -682,9 +695,9 @@ def produce(request: GoldenRequest, store_root: str) -> None:
             "runtime_length_source": "native Transformer forward derives sequence length from the input tensor",
             "scope": "diagnostic only; this result does not establish a supported context length",
         }
-    if request.spec.mode == "layer-probe":
+    if probe_positions is not None:
         manifest["layer_probe"] = {
-            "positions": list(LAYER_PROBE_POSITIONS),
+            "positions": list(probe_positions),
             "model_input": "after embedding RMS and gated norms, before layer 0",
             "after_attn": "after attention-branch residual, before MLP norm",
             "after_block": "after MLP-branch residual",

@@ -63,9 +63,10 @@ def test_required_input_bank_preserves_padding_alignment_and_boundaries() -> Non
         assert np.array_equal(arrays["tokens"][boundary_rows[0], :shortest], arrays["tokens"][row, :shortest])
 
 
-def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
+@pytest.mark.parametrize("mode", ("layer-probe", "pair-layer18-probe"))
+def test_layer_probe_uses_required_inputs_under_a_distinct_release(mode: str) -> None:
     required = _request("required")
-    layer_probe = _request("layer-probe")
+    layer_probe = _request(mode)
     required_arrays, required_cases = build_inputs(required, _Tokenizer())
     layer_arrays, layer_cases = build_inputs(layer_probe, _Tokenizer())
 
@@ -74,6 +75,9 @@ def test_layer_probe_uses_required_inputs_under_a_distinct_release() -> None:
     assert layer_arrays.keys() == required_arrays.keys()
     for name in required_arrays:
         np.testing.assert_array_equal(layer_arrays[name], required_arrays[name])
+    if mode == "pair-layer18-probe":
+        assert layer_probe.bundle_id != _request("layer-probe").bundle_id
+        np.testing.assert_array_equal(layer_arrays["tokens"][6, :4095], layer_arrays["tokens"][7, :4095])
 
 
 def test_shape_audit_retains_required_scores_and_all_distinct_full_logit_rows() -> None:
