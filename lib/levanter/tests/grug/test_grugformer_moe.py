@@ -579,6 +579,37 @@ def test_assignment_capture_spec_accepts_omitted_hidden_axis(input_spec: P, expe
     assert grug_moe._assignment_capture_spec(input_spec) == expected
 
 
+def test_local_assignment_capture_accepts_abbreviated_token_spec(monkeypatch):
+    mesh = Mesh(
+        np.asarray([jax.devices()[0]]).reshape(1, 1, 1, 1),
+        ("replica_dcn", "data", "expert", "model"),
+        axis_types=(AxisType.Explicit,) * 4,
+    )
+    token_spec = P(("replica_dcn", "data", "expert"))
+
+    def fake_local(x, selected_experts, combine_weights, token_valid, w_up_gate, w_down, **kwargs):
+        del combine_weights, token_valid, w_up_gate, w_down, kwargs
+        selected = x[jnp.asarray((1,))]
+        return x, jnp.asarray(0, jnp.int32), jnp.broadcast_to(selected[:, None, :], (1, selected_experts.shape[1], 4))
+
+    monkeypatch.setattr(grug_moe, "_moe_mlp_local", fake_local)
+    with jax.set_mesh(mesh):
+        x = jax.device_put(jnp.arange(32, dtype=jnp.float32).reshape(8, 4), NamedSharding(mesh, token_spec))
+        output, _, assignments = grug_moe.moe_mlp(
+            x,
+            jnp.zeros((8, 2), dtype=jnp.int32),
+            jnp.ones((8, 2), dtype=jnp.float32),
+            jnp.zeros((4, 4, 8), dtype=jnp.float32),
+            jnp.zeros((4, 4, 4), dtype=jnp.float32),
+            mesh=mesh,
+            implementation="sonic_cute",
+            report_capacity_overflow=True,
+            capture_local_tokens=(1,),
+        )
+    np.testing.assert_array_equal(np.asarray(output), np.asarray(x))
+    np.testing.assert_array_equal(np.asarray(assignments), np.asarray(x)[[1], None, :].repeat(2, axis=1))
+
+
 def _arange_w13(dtype, *, experts: int = 2, hidden: int = 3, moe_dim: int = 4) -> jax.Array:
     values = jnp.arange(experts * hidden * 2 * moe_dim, dtype=jnp.float32)
     return values.reshape(experts, hidden, 2 * moe_dim).astype(dtype)
