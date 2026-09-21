@@ -29,8 +29,10 @@ from levanter.grug._moe.common import (
     _CHECKPOINT_DISPATCH_OUTPUT,
     _capture_local_assignment_outputs,
     _chunk_capacity_drops,
+    _fp64_route_sum,
     _interleave_gate_up,
     _prepare_moe_dispatch,
+    _prepare_moe_dispatch_indices_with_assignment_ids,
     _swiglu_gate_up_backward,
     _zero_dropped_assignments,
     _zero_inactive_grouped_rows,
@@ -90,7 +92,7 @@ def _expert_mlp_fwd(x_dispatch, w13_il, moe_w2, group_sizes, cu):
 def _expert_mlp_bwd(res, dy):
     x_dispatch, w13_il, moe_w2, gu, h, group_sizes, cu = res
     # `dy` needs no tail mask: both consumers are bounded by `cu` (varlen-m GEMM, ragged_dot
-    # weight-grad), and the combine transpose already zeroes rows past cu[-1] via w_dispatch == 0.
+    # weight-grad), and the combine transpose zeroes rows past cu[-1] via token_valid.
     # down backward: dh via QuACK (transposed contraction), dw2 via XLA weight-grad
     dh = quack_grouped_gemm(dy, moe_w2, cu, b_major="k")
     (dw2,) = jax.vjp(lambda w: ragged_dot(h, w, group_sizes), moe_w2)[1](dy)
@@ -163,9 +165,10 @@ def _moe_mlp_local_sonic_cute(
     num_experts: int,
     capture_local_tokens: tuple[int, ...] | None = None,
 ) -> tuple[Float[Array, "T H"], Int[Array, ""]] | tuple[Float[Array, "T H"], Int[Array, ""], Float[Array, "P K H"]]:
-    x_dispatch, w_dispatch, token_dispatch, group_sizes = _prepare_moe_dispatch(
-        x, selected_experts, combine_weights, token_valid, num_experts=num_experts
+    token_ids_sort, dispatch_positions, group_sizes, _sorted_assignment_ids = (
+        _prepare_moe_dispatch_indices_with_assignment_ids(selected_experts, token_valid, num_experts=num_experts)
     )
+    x_dispatch = x[token_ids_sort]
     x_dispatch = tree_checkpoint_name(x_dispatch, _CHECKPOINT_DISPATCH_INPUT)
     moe_dim = moe_w2.shape[1]
     w13_il = _interleave_gate_up(moe_w13, moe_dim)
@@ -176,9 +179,8 @@ def _moe_mlp_local_sonic_cute(
             _expert_mlp(x_dispatch, w13_il, moe_w2, group_sizes, cu), _CHECKPOINT_DISPATCH_OUTPUT
         )
 
-    with jax.named_scope("scatter"):
-        weighted = out_dispatch.astype(jnp.float32) * w_dispatch[:, None].astype(jnp.float32)
-        out = jnp.zeros_like(x, dtype=jnp.float32).at[token_dispatch].add(weighted, mode="drop").astype(x.dtype)
+    with jax.named_scope("fixed_route_sum"):
+        out = _fp64_route_sum(out_dispatch, dispatch_positions, combine_weights, token_valid)
     if capture_local_tokens is not None:
         assignment_outputs = _capture_local_assignment_outputs(
             out_dispatch,

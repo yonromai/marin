@@ -259,6 +259,24 @@ def _prepare_moe_dispatch_indices_with_assignment_ids(
     return token_ids_sort, dispatch_positions, group_sizes, sorted_assignment_ids
 
 
+def _fp64_route_sum(
+    out_dispatch: Float[Array, "TK H"],
+    dispatch_positions: Int[Array, "T K"],
+    combine_weights: Float[Array, "T K"],
+    token_valid: Bool[Array, "T"],
+) -> Float[Array, "T H"]:
+    """Diagnostic fixed-order sum with the same BF16 weights as the scatter path."""
+    # Eight BF16 products are exactly representable in FP32, but FP32 atomic-add
+    # order can still change the once-rounded BF16 result near a midpoint.
+    with jax.enable_x64():
+        gathered = out_dispatch[dispatch_positions]
+        gathered = jnp.where(token_valid[:, None, None], gathered, 0)
+        weights = jnp.where(token_valid[:, None], combine_weights, 0).astype(out_dispatch.dtype)
+        return jnp.sum(gathered.astype(jnp.float64) * weights[:, :, None].astype(jnp.float64), axis=1).astype(
+            out_dispatch.dtype
+        )
+
+
 def _capture_local_assignment_outputs(
     out_dispatch: Float[Array, "TK H"],
     selected_experts: Int[Array, "T K"],

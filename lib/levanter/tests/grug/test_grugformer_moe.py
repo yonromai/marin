@@ -20,6 +20,7 @@ from haliax.nn.ragged_dot import ragged_dot
 import levanter.grug.grug_moe as grug_moe
 from levanter.grug._moe.common import (
     _capture_local_assignment_outputs,
+    _fp64_route_sum,
     _interleave_gate_up,
     _interleave_halves,
     _prepare_moe_dispatch,
@@ -51,6 +52,63 @@ from levanter.utils.activation import ActivationFunctionEnum
 
 _BF16_MOE_RELATIVE_TOLERANCE = 0.02
 _FP32_MOE_RELATIVE_TOLERANCE = 1e-4
+
+
+def test_fp64_route_sum_uses_bf16_weights_and_is_stable_with_padding():
+    # Captured from two otherwise identical Hero prefixes. FP32 scatter returned
+    # opposite BF16 neighbors because the exact sum is just above their midpoint.
+    expert_outputs = jnp.asarray(
+        [
+            -0.00010776519775390625,
+            -0.000400543212890625,
+            0.000545501708984375,
+            -0.00014781951904296875,
+            -3.7997961044311523e-06,
+            0.0003757476806640625,
+            -0.00119781494140625,
+            0.000736236572265625,
+        ],
+        dtype=jnp.bfloat16,
+    )
+    weights = jnp.asarray(
+        [0.1865234375, 0.1708984375, 0.2001953125, 0.8359375, 0.1884765625, 0.3125, 0.29296875, 0.314453125],
+        dtype=jnp.float32,
+    )
+    positions = jnp.arange(8, dtype=jnp.int32)[None, :]
+    combine = jax.jit(_fp64_route_sum)
+    one = combine(expert_outputs[:, None], positions, weights[None, :], jnp.asarray([True]))
+    padded = combine(
+        expert_outputs[:, None],
+        jnp.concatenate([positions, positions]),
+        jnp.stack([weights, weights]),
+        jnp.asarray([True, False]),
+    )
+    expected = -0.00010538101196289062
+    assert float(one[0, 0]) == expected
+    assert float(padded[0, 0]) == expected
+    assert float(padded[1, 0]) == 0.0
+
+
+def test_fp64_route_sum_matches_simple_weighted_reference_and_gradient():
+    outputs = jnp.asarray([[1.0, 2.0], [3.0, 4.0]], dtype=jnp.bfloat16)
+    positions = jnp.asarray([[1, 0]], dtype=jnp.int32)
+    weights = jnp.asarray([[0.3333, 0.6667]], dtype=jnp.float32)
+    valid = jnp.asarray([True])
+    actual = _fp64_route_sum(outputs, positions, weights, valid)
+    effective = np.asarray(weights.astype(jnp.bfloat16), dtype=np.float32)[0]
+    expected = jnp.asarray(
+        [[3.0 * float(effective[0]) + float(effective[1]), 4.0 * float(effective[0]) + 2.0 * float(effective[1])]],
+        dtype=jnp.bfloat16,
+    )
+    np.testing.assert_array_equal(np.asarray(actual), np.asarray(expected))
+
+    gradient = jax.grad(lambda values: _fp64_route_sum(values, positions, weights, valid).astype(jnp.float32).sum())(
+        outputs
+    )
+    np.testing.assert_array_equal(
+        np.asarray(gradient, dtype=np.float32),
+        np.asarray([[effective[1], effective[1]], [effective[0], effective[0]]], dtype=np.float32),
+    )
 
 
 def _make_dense_mesh() -> Mesh:
