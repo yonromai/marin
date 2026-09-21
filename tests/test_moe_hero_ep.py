@@ -850,6 +850,26 @@ def test_moe_qb_estimator_ignores_padding(qb_estimator: model.QbEstimator):
     np.testing.assert_allclose(padded_stats[beta_key], compact_stats[beta_key], rtol=1e-5, atol=1e-5)
 
 
+def test_router_comparison_only_adds_diagnostic_metrics():
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = dataclasses.replace(_latent_config(), router_dot_precision=model.RouterDotPrecision.PREFERRED_FP32)
+    compared_cfg = dataclasses.replace(cfg, router_compare_current=True)
+    hidden = jax.random.normal(jax.random.key(61), (1, 8, cfg.hidden_dim)).astype(jnp.bfloat16)
+    token_valid = jnp.array([[True, False, True, True, False, False, True, False]])
+
+    with set_mesh(mesh):
+        candidate = model.MoEMLP.init(cfg, key=jax.random.key(62))
+        compared = model.MoEMLP.init(compared_cfg, key=jax.random.key(62))
+        candidate_output, _ = candidate(hidden, token_valid)
+        compared_output, compared_stats = compared(hidden, token_valid)
+
+    np.testing.assert_array_equal(compared_output, candidate_output)
+    assert int(jnp.sum(compared_stats["valid_route_count_local"])) == int(jnp.sum(token_valid))
+    assert "route_order_change_count_local" in compared_stats
+    assert "route_set_change_count_local" in compared_stats
+    assert "score_diff_sq_sum_local" in compared_stats
+
+
 def test_latent_moe_shrinks_the_dispatched_width_but_not_the_token():
     # The point of LatentMoE is that the all-to-all payload narrows while the residual stream does
     # not, so the expert weights must be latent-wide and the layer output hidden-wide.

@@ -10,6 +10,7 @@ from datetime import timedelta
 import click
 from fray.cluster import ResourceConfig
 from levanter.callbacks.profiler import ProfileOptionsConfig, ProfilerConfig
+from levanter.callbacks.progress_watchdog import ProgressWatchdogConfig
 from levanter.callbacks.watch import WatchConfig
 from levanter.checkpoint import CheckpointDebugConfig, CheckpointerConfig
 from levanter.tracker.wandb import WandbConfig
@@ -19,6 +20,7 @@ from marin.experiment.cli import build_options
 from marin.experiment.namespacing import user_namespaced_name
 from rigging.filesystem.storage_path import prefix_join
 
+from experiments.grug.checkpointing import RESTORE_BARRIER_TIMEOUT
 from experiments.grug.moe_hero_ep.harrier_mix_2026_08_18 import (
     HARRIER_MIX_2026_08_18_STORE,
     HARRIER_MIX_2026_08_18_TAG,
@@ -71,6 +73,7 @@ def build_diagnostic_run(
     gate_router_weight_decay: float | None = None,
     initialize_from_checkpoint: str | None = None,
     router_dot_precision: RouterDotPrecision = RouterDotPrecision.CURRENT,
+    router_compare_current: bool = False,
     seed: int = 0,
     batch_size: int = HERO_EP_BATCH_SIZE,
     num_experts: int | None = None,
@@ -131,6 +134,8 @@ def build_diagnostic_run(
         raise ValueError(f"schedule_steps={schedule_steps} must be at least num_steps={num_steps}")
     if optimizer_batch_size is not None and optimizer_batch_size <= 0:
         raise ValueError(f"optimizer_batch_size must be positive, got {optimizer_batch_size}")
+    if router_compare_current and router_dot_precision == RouterDotPrecision.CURRENT:
+        raise ValueError("router_compare_current requires a candidate router dot")
     total_schedule_steps = schedule_steps if schedule_steps is not None else num_steps
     _, optimizer = build_hero_configs(
         num_train_steps=total_schedule_steps,
@@ -138,7 +143,11 @@ def build_diagnostic_run(
     )
     if gate_router_weight_decay is not None:
         optimizer = dataclasses.replace(optimizer, gate_router_weight_decay=gate_router_weight_decay)
-    model = dataclasses.replace(HERO_MODEL_CONFIG, router_dot_precision=router_dot_precision)
+    model = dataclasses.replace(
+        HERO_MODEL_CONFIG,
+        router_dot_precision=router_dot_precision,
+        router_compare_current=router_compare_current,
+    )
     overrides = {
         name: value
         for name, value in (
@@ -246,6 +255,15 @@ def build_diagnostic_run(
                 replicate_path=ctx.output_path,
             ),
             watch=WatchConfig(interval=watch_interval),
+            progress_watchdog=(
+                ProgressWatchdogConfig(
+                    step_timeout=timedelta(minutes=15),
+                    process_timeout=timedelta(hours=1),
+                    startup_timeout=timedelta(seconds=2 * RESTORE_BARRIER_TIMEOUT),
+                )
+                if initialize_from_checkpoint is not None
+                else ProgressWatchdogConfig()
+            ),
             load_checkpoint_path=(
                 [checkpoint_output_path, initialize_from_checkpoint] if initialize_from_checkpoint is not None else None
             ),
@@ -360,6 +378,11 @@ def build_diagnostic_run(
     default=RouterDotPrecision.CURRENT.value,
     show_default=True,
     help="Router contraction arithmetic for the precision comparison.",
+)
+@click.option(
+    "--router-compare-current/--no-router-compare-current",
+    default=False,
+    help="Count route differences from current arithmetic; adds a second router dot for diagnostics only.",
 )
 @click.option(
     "--seed",
@@ -512,6 +535,7 @@ def main(
     gate_router_weight_decay: float | None,
     initialize_from_checkpoint: str | None,
     router_dot_precision: str,
+    router_compare_current: bool,
     seed: int,
     batch_size: int,
     num_experts: int | None,
@@ -543,6 +567,7 @@ def main(
         gate_router_weight_decay=gate_router_weight_decay,
         initialize_from_checkpoint=initialize_from_checkpoint,
         router_dot_precision=RouterDotPrecision(router_dot_precision),
+        router_compare_current=router_compare_current,
         seed=seed,
         batch_size=batch_size,
         num_experts=num_experts,

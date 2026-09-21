@@ -153,6 +153,7 @@ def test_one_rack_continuation_keeps_the_production_optimizer_schedule():
 
     assert diagnostic_config.optimizer == ladder_config.optimizer
     assert diagnostic_config.trainer.trainer.num_train_steps == ladder_config.trainer.trainer.num_train_steps
+    assert diagnostic_config.trainer.trainer.progress_watchdog == ladder_config.trainer.trainer.progress_watchdog
     assert diagnostic_config.stop_after_steps == 126001
     assert diagnostic_config.trainer.trainer.load_checkpoint is True
     assert diagnostic_config.trainer.trainer.load_checkpoint_path[-1] == source

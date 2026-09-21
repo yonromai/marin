@@ -190,6 +190,7 @@ class GrugModelConfig:
     qb_estimator: QbEstimator = QbEstimator.TOPK
     qb_hist_bins: int = 1000  # bins for the QB histogram estimator; ignored by the top-k estimator
     router_dot_precision: RouterDotPrecision = RouterDotPrecision.CURRENT
+    router_compare_current: bool = False
     num_layers: int = 6
     num_heads: int = 4
     num_kv_heads: int = 1
@@ -741,6 +742,19 @@ def _summarize_router_metrics(router_metrics: dict[str, jax.Array]) -> dict[str,
         # Router bias applied to the logits is -qb_beta; log the extent of the per-expert bias.
         out["train/router/bias_min"] = -jnp.max(qb_beta)
         out["train/router/bias_max"] = -jnp.min(qb_beta)
+    if "route_order_change_count_per_layer" in router_metrics:
+        valid_routes = jnp.maximum(jnp.sum(router_metrics["valid_route_count_per_layer"]), 1)
+        out["train/router/compare_current_order_change_fraction"] = (
+            jnp.sum(router_metrics["route_order_change_count_per_layer"]) / valid_routes
+        )
+        out["train/router/compare_current_set_change_fraction"] = (
+            jnp.sum(router_metrics["route_set_change_count_per_layer"]) / valid_routes
+        )
+        out["train/router/compare_current_score_rms"] = jnp.sqrt(
+            jnp.sum(router_metrics["score_diff_sq_sum_per_layer"])
+            / (valid_routes * router_metrics["routing_counts_per_layer"].shape[-1])
+        )
+        out["train/router/compare_current_score_max_abs"] = jnp.max(router_metrics["score_diff_max_per_layer"])
     for i in range(num_layers):
         out[f"train/router/layer_{i}/routing_entropy"] = routing_entropy[i]
         out[f"train/router/layer_{i}/load_balancing_loss"] = load_balancing_loss[i]
@@ -952,6 +966,14 @@ class MoEMLP(eqx.Module):
         _topk_logits, selected_experts = jax.lax.top_k(biased_logits, self.cfg.num_experts_per_token + 1)
         qb_alpha = _topk_logits[:, -1:]
         selected_experts = selected_experts[:, :-1]
+        if self.cfg.router_compare_current:
+            if self.cfg.router_dot_precision == RouterDotPrecision.CURRENT:
+                raise ValueError("router_compare_current requires a candidate router dot")
+            current_logits = jnp.einsum("td,de->te", x_flat, router_weight).astype(jnp.float32)
+            _, current_selected = jax.lax.top_k(
+                current_logits + jax.lax.stop_gradient(self.router_bias), self.cfg.num_experts_per_token + 1
+            )
+            current_selected = jax.lax.stop_gradient(current_selected[:, :-1])
         # Sigmoid combine weights on unbiased logits for selected experts.
         unbiased_topk = jnp.take_along_axis(router_logits, selected_experts, axis=-1)
         combine_weights_f = jax.nn.sigmoid(unbiased_topk)
@@ -970,6 +992,55 @@ class MoEMLP(eqx.Module):
             batch_axes=_BATCH_AXES,
             num_experts=self.cfg.num_experts,
         )
+        if self.cfg.router_compare_current:
+
+            def _local_compare(candidate_selected, baseline_selected, candidate_logits, baseline_logits, valid):
+                valid_i = valid.astype(jnp.int32)
+                score_diff = jnp.where(valid[:, None], candidate_logits - baseline_logits, 0.0)
+                return {
+                    "route_order_change_count_local": (
+                        jnp.sum(jnp.any(candidate_selected != baseline_selected, axis=-1).astype(jnp.int32) * valid_i)
+                    )[None],
+                    "route_set_change_count_local": (
+                        jnp.sum(
+                            jnp.any(
+                                jnp.sort(candidate_selected, axis=-1) != jnp.sort(baseline_selected, axis=-1),
+                                axis=-1,
+                            ).astype(jnp.int32)
+                            * valid_i
+                        )
+                    )[None],
+                    "valid_route_count_local": jnp.sum(valid_i)[None],
+                    "score_diff_sq_sum_local": jnp.sum(jnp.square(score_diff))[None],
+                    "score_diff_max_local": jnp.max(jnp.abs(score_diff))[None],
+                }
+
+            router_stats.update(
+                shard_map(
+                    _local_compare,
+                    mesh=mesh,
+                    in_specs=(
+                        P(_BATCH_AXES, None),
+                        P(_BATCH_AXES, None),
+                        P(_BATCH_AXES, None),
+                        P(_BATCH_AXES, None),
+                        P(_BATCH_AXES),
+                    ),
+                    out_specs={
+                        "route_order_change_count_local": P(_BATCH_AXES),
+                        "route_set_change_count_local": P(_BATCH_AXES),
+                        "valid_route_count_local": P(_BATCH_AXES),
+                        "score_diff_sq_sum_local": P(_BATCH_AXES),
+                        "score_diff_max_local": P(_BATCH_AXES),
+                    },
+                )(
+                    reshard(selected_experts, P(_BATCH_AXES, None)),
+                    reshard(current_selected, P(_BATCH_AXES, None)),
+                    reshard(router_logits, P(_BATCH_AXES, None)),
+                    reshard(current_logits, P(_BATCH_AXES, None)),
+                    reshard(token_valid_flat, P(_BATCH_AXES)),
+                )
+            )
         # Sharded QB: estimate each expert's threshold beta from the margins `s - alpha`.
         s_minus_alpha = reshard(router_logits - qb_alpha, P(_BATCH_AXES, None))
         if self.cfg.qb_estimator == QbEstimator.HIST:
@@ -1305,6 +1376,20 @@ class Transformer(eqx.Module):
             "margin_min_per_layer": stacked_router_stats["margin_min"],
             "margin_max_per_layer": stacked_router_stats["margin_max"],
         }
+        if cfg.router_compare_current:
+            router_metrics["route_order_change_count_per_layer"] = jnp.sum(
+                stacked_router_stats["route_order_change_count_local"], axis=1
+            )
+            router_metrics["route_set_change_count_per_layer"] = jnp.sum(
+                stacked_router_stats["route_set_change_count_local"], axis=1
+            )
+            router_metrics["valid_route_count_per_layer"] = jnp.sum(
+                stacked_router_stats["valid_route_count_local"], axis=1
+            )
+            router_metrics["score_diff_sq_sum_per_layer"] = jnp.sum(
+                stacked_router_stats["score_diff_sq_sum_local"], axis=1
+            )
+            router_metrics["score_diff_max_per_layer"] = jnp.max(stacked_router_stats["score_diff_max_local"], axis=1)
         hidden = self.final_gated_norm(self.final_norm(hidden))
         return hidden, router_metrics
 
