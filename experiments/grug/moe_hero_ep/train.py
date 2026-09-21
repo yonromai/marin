@@ -683,10 +683,14 @@ def _apply_qb_betas(model: Transformer, qb_betas: jax.Array) -> Transformer:
     return eqx.tree_at(lambda t: t.stacked_blocks.stacked.mlp.router_bias, model, new_bias)
 
 
-def _callback_model(state: GrugTrainState, *, use_ema: bool) -> Transformer:
-    """Expose the model state that the next forward would use."""
-    model = state.ema_params if use_ema and state.ema_params is not None else state.params
-    return _apply_qb_betas(model, state.pending_qb_betas)
+def _callback_step_with_pending_qb(step, pending_qb_betas: jax.Array):
+    """Expose the model state that the next forward would use to an evaluation callback."""
+    callback_state = dataclasses.replace(
+        step.state,
+        model=_apply_qb_betas(step.model, pending_qb_betas),
+        eval_model=_apply_qb_betas(step.eval_model, pending_qb_betas),
+    )
+    return dataclasses.replace(step, state=callback_state)
 
 
 def _tree_to_memory_kind(tree, memory_kind: str):
@@ -1113,10 +1117,11 @@ def _run_grug_local(config: GrugRunConfig) -> None:
 
         state_callbacks = StateCallbackRunner[GrugTrainState](
             step_getter=lambda s: s.step,
-            model_getter=lambda s: _callback_model(s, use_ema=False),
-            eval_model_getter=lambda s: _callback_model(s, use_ema=True),
+            model_getter=lambda s: s.params,
+            eval_model_getter=lambda s: s.ema_params if s.ema_params is not None else s.params,
             opt_state_getter=lambda s: s.opt_state,
         )
+        pending_qb_betas_for_callbacks = state.pending_qb_betas
         if progress_watchdog is not None:
             state_callbacks.add_hook(progress_watchdog, every=1)
         state_callbacks.add_hook(
@@ -1180,6 +1185,15 @@ def _run_grug_local(config: GrugRunConfig) -> None:
 
                 eval_hooks.append(dropless_eval_hook)
 
+            def with_pending_qb(hook):
+                def wrapped(step, *args, **kwargs):
+                    step = _callback_step_with_pending_qb(step, pending_qb_betas_for_callbacks)
+                    return hook(step, *args, **kwargs)
+
+                return wrapped
+
+            eval_hooks = [with_pending_qb(hook) for hook in eval_hooks]
+
             if config.trainer.gc_interval is not None:
                 eval_hooks = [_collect_after_eval(hook) for hook in eval_hooks]
 
@@ -1240,6 +1254,7 @@ def _run_grug_local(config: GrugRunConfig) -> None:
                 duration = time.perf_counter() - step_start
                 hook_start = time.perf_counter()
                 with jax.profiler.TraceAnnotation("callbacks"):
+                    pending_qb_betas_for_callbacks = state.pending_qb_betas
                     state_callbacks.run(state, loss=metrics["train/loss"], step_duration=duration)
                     last_loss = metrics["train/loss"]
                     last_step_duration = duration
@@ -1300,6 +1315,7 @@ def _run_grug_local(config: GrugRunConfig) -> None:
             raise
         else:
             # Mirror classic trainer behavior: force callbacks on the last completed step.
+            pending_qb_betas_for_callbacks = state.pending_qb_betas
             state_callbacks.run(state, loss=last_loss, step_duration=last_step_duration, force=True)
             if checkpointer is not None:
                 with callbacks.progress_event_scope(

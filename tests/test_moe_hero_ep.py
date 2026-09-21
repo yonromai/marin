@@ -358,15 +358,15 @@ def _tiny_state(params, master_params):
     )
 
 
-def test_callback_models_apply_pending_query_bias(monkeypatch):
-    state = train.GrugTrainState(
-        step=jnp.array(7, dtype=jnp.int32),
-        params="params",
-        master_params=None,
-        opt_state=(),
-        ema_params="ema",
-        pending_qb_betas=jnp.array([[1.0, 3.0]]),
+def test_eval_callback_models_apply_pending_query_bias(monkeypatch):
+    captured = []
+    runner = StateCallbackRunner[SimpleNamespace](
+        step_getter=lambda s: s.step,
+        model_getter=lambda s: s.params,
+        eval_model_getter=lambda s: s.ema_params,
+        opt_state_getter=lambda s: s.opt_state,
     )
+    pending_qb_betas = jnp.array([[1.0, 3.0]])
     calls = []
 
     def apply(model, pending):
@@ -374,11 +374,17 @@ def test_callback_models_apply_pending_query_bias(monkeypatch):
         return f"applied-{model}"
 
     monkeypatch.setattr(train, "_apply_qb_betas", apply)
+    runner.add_hook(lambda step: captured.append(train._callback_step_with_pending_qb(step, pending_qb_betas)))
+    runner.run(
+        SimpleNamespace(step=jnp.array(7, dtype=jnp.int32), params="params", ema_params="ema", opt_state=()),
+        loss=0.0,
+        step_duration=0.0,
+    )
 
-    assert train._callback_model(state, use_ema=False) == "applied-params"
-    assert train._callback_model(state, use_ema=True) == "applied-ema"
+    assert captured[0].model == "applied-params"
+    assert captured[0].eval_model == "applied-ema"
     assert [model for model, _ in calls] == ["params", "ema"]
-    assert all(jnp.array_equal(pending, state.pending_qb_betas) for _, pending in calls)
+    assert all(jnp.array_equal(pending, pending_qb_betas) for _, pending in calls)
 
 
 def test_master_layout_detection_and_the_synthesize_refusal(tmp_path):
