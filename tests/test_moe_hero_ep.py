@@ -870,6 +870,31 @@ def test_router_comparison_only_adds_diagnostic_metrics():
     assert "score_diff_sq_sum_local" in compared_stats
 
 
+def test_router_comparison_score_rms_does_not_overflow_at_hero_batch_size():
+    router_metrics = {
+        "routing_entropy_per_layer": jnp.zeros((48,)),
+        "routing_counts_per_layer": jnp.zeros((48, 384)),
+        "load_balancing_loss_per_layer": jnp.zeros((48,)),
+        "router_z_loss_per_layer": jnp.zeros((48,)),
+        "capacity_overflow_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "sender_capacity_overflow_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "receiver_capacity_overflow_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "skipped_assignments_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "margin_min_per_layer": jnp.zeros((48,)),
+        "margin_max_per_layer": jnp.zeros((48,)),
+        "qb_beta_per_layer": jnp.zeros((48, 384)),
+        "route_order_change_count_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "route_set_change_count_per_layer": jnp.zeros((48,), dtype=jnp.int32),
+        "valid_route_count_per_layer": jnp.full((48,), 1024 * 4096, dtype=jnp.int32),
+        "score_diff_sq_sum_per_layer": jnp.full((48,), 1024 * 4096 * 384 * 0.01, dtype=jnp.float32),
+        "score_diff_max_per_layer": jnp.full((48,), 0.25, dtype=jnp.float32),
+    }
+
+    summarized = model._summarize_router_metrics(router_metrics)
+
+    np.testing.assert_allclose(summarized["train/router/compare_current_score_rms"], 0.1, rtol=1e-6)
+
+
 def test_latent_moe_shrinks_the_dispatched_width_but_not_the_token():
     # The point of LatentMoE is that the all-to-all payload narrows while the residual stream does
     # not, so the expert weights must be latent-wide and the layer output hidden-wide.

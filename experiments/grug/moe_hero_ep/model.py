@@ -752,7 +752,7 @@ def _summarize_router_metrics(router_metrics: dict[str, jax.Array]) -> dict[str,
         )
         out["train/router/compare_current_score_rms"] = jnp.sqrt(
             jnp.sum(router_metrics["score_diff_sq_sum_per_layer"])
-            / (valid_routes * router_metrics["routing_counts_per_layer"].shape[-1])
+            / (valid_routes.astype(jnp.float32) * router_metrics["routing_counts_per_layer"].shape[-1])
         )
         out["train/router/compare_current_score_max_abs"] = jnp.max(router_metrics["score_diff_max_per_layer"])
     for i in range(num_layers):
