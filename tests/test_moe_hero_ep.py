@@ -358,6 +358,29 @@ def _tiny_state(params, master_params):
     )
 
 
+def test_callback_models_apply_pending_query_bias(monkeypatch):
+    state = train.GrugTrainState(
+        step=jnp.array(7, dtype=jnp.int32),
+        params="params",
+        master_params=None,
+        opt_state=(),
+        ema_params="ema",
+        pending_qb_betas=jnp.array([[1.0, 3.0]]),
+    )
+    calls = []
+
+    def apply(model, pending):
+        calls.append((model, pending))
+        return f"applied-{model}"
+
+    monkeypatch.setattr(train, "_apply_qb_betas", apply)
+
+    assert train._callback_model(state, use_ema=False) == "applied-params"
+    assert train._callback_model(state, use_ema=True) == "applied-ema"
+    assert [model for model, _ in calls] == ["params", "ema"]
+    assert all(jnp.array_equal(pending, state.pending_qb_betas) for _, pending in calls)
+
+
 def test_master_layout_detection_and_the_synthesize_refusal(tmp_path):
     """A run wanting a master cannot synthesize one from a master-less checkpoint; refuse loudly.
 

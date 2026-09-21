@@ -683,6 +683,12 @@ def _apply_qb_betas(model: Transformer, qb_betas: jax.Array) -> Transformer:
     return eqx.tree_at(lambda t: t.stacked_blocks.stacked.mlp.router_bias, model, new_bias)
 
 
+def _callback_model(state: GrugTrainState, *, use_ema: bool) -> Transformer:
+    """Expose the model state that the next forward would use."""
+    model = state.ema_params if use_ema and state.ema_params is not None else state.params
+    return _apply_qb_betas(model, state.pending_qb_betas)
+
+
 def _tree_to_memory_kind(tree, memory_kind: str):
     """Move named-sharded arrays to a JAX memory kind."""
 
@@ -1107,8 +1113,8 @@ def _run_grug_local(config: GrugRunConfig) -> None:
 
         state_callbacks = StateCallbackRunner[GrugTrainState](
             step_getter=lambda s: s.step,
-            model_getter=lambda s: s.params,
-            eval_model_getter=lambda s: s.ema_params if s.ema_params is not None else s.params,
+            model_getter=lambda s: _callback_model(s, use_ema=False),
+            eval_model_getter=lambda s: _callback_model(s, use_ema=True),
             opt_state_getter=lambda s: s.opt_state,
         )
         if progress_watchdog is not None:
