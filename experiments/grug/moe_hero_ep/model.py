@@ -743,16 +743,18 @@ def _summarize_router_metrics(router_metrics: dict[str, jax.Array]) -> dict[str,
         out["train/router/bias_min"] = -jnp.max(qb_beta)
         out["train/router/bias_max"] = -jnp.min(qb_beta)
     if "route_order_change_count_per_layer" in router_metrics:
-        valid_routes = jnp.maximum(jnp.sum(router_metrics["valid_route_count_per_layer"]), 1)
+        # The production 11-rack batch has more than 2**31 valid routes across 48 layers, so cast
+        # each count before reductions rather than after an int32 sum has already overflowed.
+        valid_routes = jnp.maximum(jnp.sum(router_metrics["valid_route_count_per_layer"].astype(jnp.float32)), 1.0)
         out["train/router/compare_current_order_change_fraction"] = (
-            jnp.sum(router_metrics["route_order_change_count_per_layer"]) / valid_routes
+            jnp.sum(router_metrics["route_order_change_count_per_layer"].astype(jnp.float32)) / valid_routes
         )
         out["train/router/compare_current_set_change_fraction"] = (
-            jnp.sum(router_metrics["route_set_change_count_per_layer"]) / valid_routes
+            jnp.sum(router_metrics["route_set_change_count_per_layer"].astype(jnp.float32)) / valid_routes
         )
         out["train/router/compare_current_score_rms"] = jnp.sqrt(
             jnp.sum(router_metrics["score_diff_sq_sum_per_layer"])
-            / (valid_routes.astype(jnp.float32) * router_metrics["routing_counts_per_layer"].shape[-1])
+            / (valid_routes * router_metrics["routing_counts_per_layer"].shape[-1])
         )
         out["train/router/compare_current_score_max_abs"] = jnp.max(router_metrics["score_diff_max_per_layer"])
     for i in range(num_layers):
