@@ -705,6 +705,7 @@ def _greedy_decode(
         # The fixed decode buffer contains EOS padding after the live prefix.
         # Mark it invalid so attention and MoE dispatch see only generated tokens.
         segment_ids = jnp.where(jnp.arange(token_ids.shape[1]) <= position, 0, -1)
+        segment_ids = jnp.broadcast_to(segment_ids, token_ids.shape)
         mask = AttentionMask.causal().with_segment_ids(segment_ids)
         return the_model.logits(token_ids, mask=mask)[:, position, :].astype(jnp.float32)
 
