@@ -694,6 +694,7 @@ def _greedy_decode(
     import jax  # noqa: PLC0415
     import jax.numpy as jnp  # noqa: PLC0415
     import numpy as np  # noqa: PLC0415
+    from levanter.grug.attention import AttentionMask  # noqa: PLC0415
 
     if len(prompt_ids) + max_new_tokens > decode_seq_len:
         raise ValueError(
@@ -701,7 +702,12 @@ def _greedy_decode(
         )
 
     def position_logits_batch(the_model: Any, token_ids: Any, position: Any) -> Any:
-        return the_model.logits(token_ids)[:, position, :].astype(jnp.float32)
+        # The fixed decode buffer contains EOS padding after the live prefix.
+        # Mark it invalid so attention and MoE dispatch see only generated tokens.
+        segment_ids = jnp.where(jnp.arange(token_ids.shape[1]) <= position, 0, -1)
+        segment_ids = jnp.broadcast_to(segment_ids, token_ids.shape)
+        mask = AttentionMask.causal().with_segment_ids(segment_ids)
+        return the_model.logits(token_ids, mask=mask)[:, position, :].astype(jnp.float32)
 
     token_ids_array = np.full((batch_size, decode_seq_len), pad_token_id, dtype=np.int32)
     token_ids_array[:, : len(prompt_ids)] = np.asarray(prompt_ids, dtype=np.int32)
