@@ -144,6 +144,7 @@ def main():
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--gpu-backend", action="store_true")
     parser.add_argument("--local-rows", type=int, default=65536)
+    parser.add_argument("--activation-noise-std", type=float, default=0.0)
     parser.add_argument("--warmup", type=int, default=3)
     parser.add_argument("--repeats", type=int, default=12)
     parser.add_argument("--source-commit", required=True)
@@ -152,6 +153,8 @@ def main():
     args = parser.parse_args()
     if min(args.local_rows, args.warmup, args.repeats) < 1:
         raise ValueError("local rows, warmup and repeats must be positive")
+    if args.activation_noise_std < 0:
+        raise ValueError("activation noise standard deviation must be nonnegative")
     use_ragged_backend = not args.smoke or args.gpu_backend
     if use_ragged_backend:
         _configure_ragged_runtime()
@@ -176,6 +179,9 @@ def main():
         x = jax.make_array_from_process_local_data(
             batch_sharding, tiled, global_shape=(local_rows * jax.device_count(), hidden)
         )
+        if args.activation_noise_std:
+            noise = jax.random.normal(jax.random.PRNGKey(511), x.shape, dtype=jnp.bfloat16, out_sharding=batch_sharding)
+            x = (x.astype(jnp.float32) + args.activation_noise_std * noise.astype(jnp.float32)).astype(jnp.bfloat16)
         router_weight = jax.device_put(router_weight_host[:hidden, :experts], NamedSharding(mesh, P(None, None)))
         bias = jax.device_put(bias_host[:experts], NamedSharding(mesh, P(None)))
         token_valid = jax.jit(
@@ -207,6 +213,9 @@ def main():
         fixed_indices, fixed_gates = _routes(baseline_logits, bias)
         preferred_indices, preferred_gates = _routes(preferred_logits, bias)
         route_changes = int(np.asarray(jnp.sum(jnp.any(fixed_indices != preferred_indices, axis=1))))
+        route_set_changes = int(
+            np.asarray(jnp.sum(jnp.any(jnp.sort(fixed_indices, axis=1) != jnp.sort(preferred_indices, axis=1), axis=1)))
+        )
         gate_exact = float(np.asarray(jnp.mean(fixed_gates == preferred_gates)))
         hybrid_exact = bool(np.asarray(jnp.all(hybrid_logits == preferred_logits)))
         if not hybrid_exact:
@@ -257,6 +266,7 @@ def main():
             "process_count": jax.process_count(),
             "device_count": jax.device_count(),
             "local_rows_per_device": local_rows,
+            "activation_noise_std": args.activation_noise_std,
             "hidden": hidden,
             "latent": latent,
             "intermediate": intermediate,
@@ -268,6 +278,7 @@ def main():
             "python_version": platform.python_version(),
             "xla_flags": os.environ.get("XLA_FLAGS", ""),
             "route_order_changed_rows": route_changes,
+            "route_set_changed_rows": route_set_changes,
             "gate_exact_fraction": gate_exact,
             "hybrid_scores_exact": hybrid_exact,
             "fixed_output_max_abs": fixed_output_max_abs,
