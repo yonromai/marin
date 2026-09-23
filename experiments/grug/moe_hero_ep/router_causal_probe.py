@@ -20,16 +20,38 @@ import jax.numpy as jnp
 import numpy as np
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
+VARIANTS = ("current", "preferred_fp32", "rounded_preferred", "preferred_current_vjp")
 
-VARIANTS = ("current", "preferred_fp32", "rounded_preferred")
+
+@jax.custom_vjp
+def _preferred_current_vjp(inputs: jax.Array, weights: jax.Array) -> jax.Array:
+    # Keep preferred forward values while substituting the current backward graph.
+    return scores(inputs, weights, "preferred_fp32")
+
+
+def _preferred_current_vjp_forward(inputs: jax.Array, weights: jax.Array):
+    return scores(inputs, weights, "preferred_fp32"), (inputs, weights)
+
+
+def _preferred_current_vjp_backward(residual, cotangent):
+    inputs, weights = residual
+    _, pullback = jax.vjp(lambda x, w: scores(x, w, "current"), inputs, weights)
+    return pullback(cotangent)
+
+
+_preferred_current_vjp.defvjp(_preferred_current_vjp_forward, _preferred_current_vjp_backward)
 
 
 def scores(inputs: jax.Array, weights: jax.Array, variant: str) -> jax.Array:
+    if variant == "preferred_current_vjp":
+        return _preferred_current_vjp(inputs, weights)
+    inputs, weights = inputs.astype(jnp.bfloat16), weights.astype(jnp.bfloat16)
     if variant == "current":
         return jnp.einsum("td,de->te", inputs, weights).astype(jnp.float32)
     result = jnp.einsum("td,de->te", inputs, weights, preferred_element_type=jnp.float32)
     if variant == "rounded_preferred":
-        return result.astype(jnp.bfloat16).astype(jnp.float32)
+        # Prevent XLA from folding the round trip into a different GEMM output type.
+        return jax.lax.optimization_barrier(result).astype(jnp.bfloat16).astype(jnp.float32)
     if variant == "preferred_fp32":
         return result
     raise ValueError(variant)
@@ -92,10 +114,14 @@ def _compile(functions, arguments, output: Path, phase: str):
 def _compare_routing(inputs, weights, bias):
     values = {}
     for variant in VARIANTS:
-        values[variant] = tuple(np.asarray(x) for x in jax.jit(routing, static_argnames="variant")(
-            inputs, weights, bias, variant
-        ))
+        values[variant] = tuple(
+            np.asarray(x) for x in jax.jit(routing, static_argnames="variant")(inputs, weights, bias, variant)
+        )
     baseline = values["current"]
+    preferred = values["preferred_fp32"]
+    hybrid = values["preferred_current_vjp"]
+    if any(not np.array_equal(a, b) for a, b in zip(preferred, hybrid, strict=True)):
+        raise ValueError("Hybrid forward routing differs from preferred FP32 routing")
     result = {}
     for variant, (logits, indices, gates) in values.items():
         result[variant] = {
@@ -103,7 +129,9 @@ def _compare_routing(inputs, weights, bias):
             "score_exact_fraction_vs_current": float(np.mean(logits == baseline[0])),
             "score_max_abs_vs_current": float(np.max(np.abs(logits - baseline[0]))),
             "route_order_changed_rows": int(np.sum(np.any(indices != baseline[1], axis=1))),
-            "route_set_changed_rows": int(np.sum(np.any(np.sort(indices, axis=1) != np.sort(baseline[1], axis=1), axis=1))),
+            "route_set_changed_rows": int(
+                np.sum(np.any(np.sort(indices, axis=1) != np.sort(baseline[1], axis=1), axis=1))
+            ),
             "gate_exact_fraction_vs_current": float(np.mean(gates == baseline[2])),
             "gate_max_abs_vs_current": float(np.max(np.abs(gates.astype(np.float32) - baseline[2].astype(np.float32)))),
             "route_shape": list(indices.shape),
@@ -119,6 +147,7 @@ def main():
     parser.add_argument("--warmup", type=int, default=5)
     parser.add_argument("--repeats", type=int, default=30)
     parser.add_argument("--source-commit", required=True)
+    parser.add_argument("--master-weight", action="store_true")
     parser.add_argument("--output-prefix")
     parser.add_argument("--profile", action="store_true")
     args = parser.parse_args()
@@ -131,7 +160,7 @@ def main():
         raise ValueError("Saved activations are not BF16 values")
     indices = np.arange(args.rows) % len(saved)
     inputs = jnp.asarray(saved[indices], dtype=jnp.bfloat16)
-    weights = jnp.asarray(weight, dtype=jnp.bfloat16)
+    weights = jnp.asarray(weight, dtype=jnp.float32 if args.master_weight else jnp.bfloat16)
     router_bias = jnp.asarray(bias, dtype=jnp.float32)
     cotangent = jnp.asarray(np.sin(np.arange(args.rows * 384, dtype=np.float32).reshape(args.rows, 384) * 0.01))
     output = Path(os.environ.get("IRIS_OUTPUT_DIR", "router-causal-output"))
@@ -143,6 +172,7 @@ def main():
         "saved_valid_entries": len(saved),
         "input_dtype": str(inputs.dtype),
         "weight_dtype": str(weights.dtype),
+        "master_weight": args.master_weight,
         "input_shape": list(inputs.shape),
         "weight_shape": list(weights.shape),
         "devices": [str(device) for device in jax.devices()],
@@ -158,12 +188,41 @@ def main():
         variant: jax.jit(jax.grad(lambda x, w, dy, v=variant: jnp.sum(scores(x, w, v) * dy), argnums=(0, 1)))
         for variant in VARIANTS
     }
+    combined = {
+        variant: jax.jit(jax.value_and_grad(lambda x, w, dy, v=variant: jnp.sum(scores(x, w, v) * dy), argnums=(0, 1)))
+        for variant in VARIANTS
+    }
     for phase, functions, arguments in (
         ("forward", forward, (inputs, weights)),
         ("backward", backward, (inputs, weights, cotangent)),
+        ("combined", combined, (inputs, weights, cotangent)),
     ):
         compiled = _compile(functions, arguments, output, phase)
-        report[f"{phase}_samples"] = _time_pair(compiled, arguments, warmup=args.warmup, repeats=args.repeats, seed=31337)
+        if phase == "forward":
+            rounded = np.asarray(compiled["rounded_preferred"](*arguments))
+            preferred = np.asarray(compiled["preferred_fp32"](*arguments))
+            current = np.asarray(compiled["current"](*arguments))
+            routed_rounded = np.asarray(
+                jax.jit(routing, static_argnames="variant")(inputs, weights, router_bias, "rounded_preferred")[0]
+            )
+            report["compiled_rounding"] = {
+                "exact_fraction_vs_current": float(np.mean(rounded == current)),
+                "exact_fraction_vs_preferred": float(np.mean(rounded == preferred)),
+                "exact_fraction_vs_routing_graph": float(np.mean(rounded == routed_rounded)),
+            }
+            if report["compiled_rounding"]["exact_fraction_vs_routing_graph"] != 1.0:
+                raise ValueError("Standalone rounding differs from rounded routing graph")
+        if phase == "backward":
+            current_grads = compiled["current"](*arguments)
+            hybrid_grads = compiled["preferred_current_vjp"](*arguments)
+            report["hybrid_gradient_exact_vs_current"] = [
+                bool(np.asarray(jnp.all(a == b))) for a, b in zip(current_grads, hybrid_grads, strict=True)
+            ]
+            if not all(report["hybrid_gradient_exact_vs_current"]):
+                raise ValueError("Hybrid backward gradients differ from current gradients")
+        report[f"{phase}_samples"] = _time_pair(
+            compiled, arguments, warmup=args.warmup, repeats=args.repeats, seed=31337
+        )
         (output / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
         print(f"{phase} complete", flush=True)
         if args.profile:
