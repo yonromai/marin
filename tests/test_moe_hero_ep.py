@@ -917,6 +917,18 @@ def test_preferred_router_current_vjp_keeps_forward_and_backward_controls():
     for actual, expected in zip(hybrid_grads, current_grads, strict=True):
         np.testing.assert_array_equal(actual, expected)
 
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = dataclasses.replace(_latent_config(), router_dot_precision=model.RouterDotPrecision.PREFERRED_FP32)
+    hybrid_cfg = dataclasses.replace(cfg, router_dot_precision=model.RouterDotPrecision.PREFERRED_CURRENT_VJP)
+    hidden = x[:8][None, :, :]
+    valid = jnp.ones((1, 8), dtype=jnp.bool_)
+    with set_mesh(mesh):
+        preferred_moe = model.MoEMLP.init(cfg, key=jax.random.key(73))
+        hybrid_moe = model.MoEMLP.init(hybrid_cfg, key=jax.random.key(73))
+        preferred_output, _ = preferred_moe(hidden, valid)
+        hybrid_output, _ = hybrid_moe(hidden, valid)
+    np.testing.assert_array_equal(hybrid_output, preferred_output)
+
 
 def test_router_comparison_reductions_do_not_overflow_at_full_hero_batch_size():
     routes_per_layer = 11264 * 4096
