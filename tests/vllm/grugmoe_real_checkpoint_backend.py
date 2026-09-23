@@ -318,6 +318,7 @@ def _load_legacy_split_expert_checkpoint(checkpoint_path: str, model_cfg: Any):
     import jax  # noqa: PLC0415
     from haliax import Axis  # noqa: PLC0415
     from levanter.checkpoint import latest_checkpoint_path, load_checkpoint  # noqa: PLC0415
+    from levanter.grug.grug_moe import QBRoutedMoE  # noqa: PLC0415
     from levanter.utils.jax_utils import is_inexact_arrayish  # noqa: PLC0415
 
     class LegacySplitMoEMLP(eqx.Module):
@@ -326,7 +327,7 @@ def _load_legacy_split_expert_checkpoint(checkpoint_path: str, model_cfg: Any):
         w_gate: jax.Array
         w_up: jax.Array
         w_down: jax.Array
-        routed_moe: Any = eqx.field(static=True)
+        routed_moe: QBRoutedMoE = eqx.field(static=True)
         cfg: Any = eqx.field(static=True)
 
     def legacy_split_expert_template(cfg: Any, vocab: Axis, *, key: jax.Array):
