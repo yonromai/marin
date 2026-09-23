@@ -899,6 +899,25 @@ def test_router_comparison_only_adds_diagnostic_metrics():
     assert "score_diff_sq_sum_local" in compared_stats
 
 
+def test_preferred_router_current_vjp_keeps_forward_and_backward_controls():
+    x = jax.random.normal(jax.random.key(70), (16, 32), dtype=jnp.bfloat16)
+    weight = jax.random.normal(jax.random.key(71), (32, 16), dtype=jnp.bfloat16)
+    cotangent = jax.random.normal(jax.random.key(72), (16, 16), dtype=jnp.float32)
+
+    def current(a, b):
+        return jnp.einsum("td,de->te", a, b).astype(jnp.float32)
+
+    def preferred(a, b):
+        return jnp.einsum("td,de->te", a, b, preferred_element_type=jnp.float32)
+
+    hybrid = model._preferred_router_with_current_vjp
+    np.testing.assert_array_equal(hybrid(x, weight), preferred(x, weight))
+    current_grads = jax.grad(lambda a, b: jnp.sum(current(a, b) * cotangent), argnums=(0, 1))(x, weight)
+    hybrid_grads = jax.grad(lambda a, b: jnp.sum(hybrid(a, b) * cotangent), argnums=(0, 1))(x, weight)
+    for actual, expected in zip(hybrid_grads, current_grads, strict=True):
+        np.testing.assert_array_equal(actual, expected)
+
+
 def test_router_comparison_reductions_do_not_overflow_at_full_hero_batch_size():
     routes_per_layer = 11264 * 4096
     router_metrics = {

@@ -168,7 +168,29 @@ class QbEstimator(StrEnum):
 class RouterDotPrecision(StrEnum):
     CURRENT = "current"
     PREFERRED_FP32 = "preferred_fp32"
+    PREFERRED_CURRENT_VJP = "preferred_current_vjp"
     FP32_OPERANDS = "fp32_operands"
+
+
+@jax.custom_vjp
+def _preferred_router_with_current_vjp(x: jax.Array, weight: jax.Array) -> jax.Array:
+    return jnp.einsum("td,de->te", x, weight, preferred_element_type=jnp.float32)
+
+
+def _preferred_router_with_current_vjp_forward(x: jax.Array, weight: jax.Array):
+    scores = jnp.einsum("td,de->te", x, weight, preferred_element_type=jnp.float32)
+    return scores, (x, weight)
+
+
+def _preferred_router_with_current_vjp_backward(residual, cotangent):
+    x, weight = residual
+    _, pullback = jax.vjp(lambda a, b: jnp.einsum("td,de->te", a, b).astype(jnp.float32), x, weight)
+    return pullback(cotangent)
+
+
+_preferred_router_with_current_vjp.defvjp(
+    _preferred_router_with_current_vjp_forward, _preferred_router_with_current_vjp_backward
+)
 
 
 @dataclass(frozen=True)
@@ -953,6 +975,8 @@ class MoEMLP(eqx.Module):
             router_logits = jnp.einsum("td,de->te", x_flat, router_weight).astype(jnp.float32)
         elif self.cfg.router_dot_precision == RouterDotPrecision.PREFERRED_FP32:
             router_logits = jnp.einsum("td,de->te", x_flat, router_weight, preferred_element_type=jnp.float32)
+        elif self.cfg.router_dot_precision == RouterDotPrecision.PREFERRED_CURRENT_VJP:
+            router_logits = _preferred_router_with_current_vjp(x_flat, router_weight)
         elif self.cfg.router_dot_precision == RouterDotPrecision.FP32_OPERANDS:
             router_logits = jnp.einsum(
                 "td,de->te",
