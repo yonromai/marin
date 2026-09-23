@@ -5,6 +5,7 @@
 
 import argparse
 import hashlib
+import importlib.metadata
 import io
 import json
 import os
@@ -19,16 +20,15 @@ import jax
 import jax.numpy as jnp
 import ml_dtypes
 import numpy as np
+from iris.runtime.jax_init import initialize_jax
 from jax import P
 from jax.sharding import NamedSharding
-from iris.runtime.jax_init import initialize_jax
+from levanter.grug._moe.ep_ragged_all_to_all import RAGGED_REQUIRED_XLA_FLAGS
+from levanter.grug.grug_moe import moe_mlp
+from levanter.grug.sharding import compact_grug_mesh
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
 from experiments.grug.moe_hero_ep.router_causal_probe import scores
-from experiments.grug.moe_hero_ep.train import _apply_hero_ep_runtime_defaults, verify_ragged_pjrt
-from levanter.grug.grug_moe import moe_mlp
-from levanter.grug.sharding import compact_grug_mesh
-
 
 CASES = (
     ("natural_current", "current", False),
@@ -37,6 +37,34 @@ CASES = (
     ("fixed_current", "current", True),
     ("fixed_preferred", "preferred_fp32", True),
 )
+
+
+def _configure_ragged_runtime():
+    """Use the relevant Hero EP runtime settings without importing its training launcher."""
+    defaults = {
+        "LD_PRELOAD": "libjemalloc.so.2",
+        "MALLOC_CONF": "background_thread:true,dirty_decay_ms:0,muzzy_decay_ms:0,narenas:2",
+        "JAX_ENABLE_PGLE": "false",
+        "XLA_PJRT_GPU_HOST_MEMORY_LIMIT_GB": "192",
+        "XLA_PYTHON_CLIENT_ALLOCATOR": "cuda_async",
+        "XLA_PYTHON_CLIENT_MEM_FRACTION": "0.75",
+    }
+    for name, value in defaults.items():
+        os.environ.setdefault(name, value)
+    flags = os.environ.get("XLA_FLAGS", "").split()
+    required = (
+        "--xla_gpu_experimental_parallel_collective_overlap_limit=1",
+        "--xla_gpu_enable_latency_hiding_scheduler=true",
+        "--xla_gpu_memory_limit_slop_factor=85",
+        "--xla_gpu_enable_command_buffer=",
+        *RAGGED_REQUIRED_XLA_FLAGS,
+    )
+    required_names = {flag.partition("=")[0] for flag in required}
+    flags = [flag for flag in flags if flag.partition("=")[0] not in required_names]
+    os.environ["XLA_FLAGS"] = " ".join([*flags, *required])
+    installed = importlib.metadata.version("jax-cuda13-pjrt")
+    if not installed.startswith(f"{jax.__version__}+marin."):
+        raise RuntimeError(f"Ragged MoE requires the Marin patched PJRT; found {installed}")
 
 
 def _fixture(uri: str):
@@ -126,14 +154,8 @@ def main():
         raise ValueError("local rows, warmup and repeats must be positive")
     use_ragged_backend = not args.smoke or args.gpu_backend
     if use_ragged_backend:
-        _apply_hero_ep_runtime_defaults(
-            inline_watch_enabled=False,
-            moe_implementation="ragged_all_to_all",
-            remat_mode="offload_carry",
-        )
+        _configure_ragged_runtime()
     initialize_jax()
-    if use_ragged_backend:
-        verify_ragged_pjrt()
     hidden, latent, intermediate, experts = (32, 16, 16, 16) if args.smoke else (6144, 3072, 3072, 384)
     local_rows = 8 if args.smoke else args.local_rows
     implementation = "ragged_all_to_all" if use_ragged_backend else "fixed_all_to_all"
@@ -159,14 +181,24 @@ def main():
         token_valid = jax.jit(
             lambda: jnp.ones((x.shape[0],), dtype=jnp.bool_), out_shardings=NamedSharding(mesh, P(batch_axes))
         )()
-        w_up_gate = jax.random.normal(
-            jax.random.PRNGKey(11), (experts, latent, 2 * intermediate), dtype=jnp.float32,
-            out_sharding=expert_sharding,
-        ) * 0.005
-        w_down = jax.random.normal(
-            jax.random.PRNGKey(12), (experts, intermediate, latent), dtype=jnp.float32,
-            out_sharding=expert_sharding,
-        ) * 0.005
+        w_up_gate = (
+            jax.random.normal(
+                jax.random.PRNGKey(11),
+                (experts, latent, 2 * intermediate),
+                dtype=jnp.float32,
+                out_sharding=expert_sharding,
+            )
+            * 0.005
+        )
+        w_down = (
+            jax.random.normal(
+                jax.random.PRNGKey(12),
+                (experts, intermediate, latent),
+                dtype=jnp.float32,
+                out_sharding=expert_sharding,
+            )
+            * 0.005
+        )
         cotangent = jax.lax.stop_gradient(x[:, :latent])
         router_cotangent = jax.lax.stop_gradient(x[:, :experts].astype(jnp.float32))
         baseline_logits = scores(x, router_weight, "current")
@@ -182,17 +214,28 @@ def main():
         arguments = (x, router_weight, w_up_gate, w_down, cotangent, router_cotangent, fixed_indices, fixed_gates)
         executables = {}
         for name, variant, fixed in CASES:
-            compiled = _make_case(
-                variant, fixed, bias=bias, token_valid=token_valid, mesh=mesh,
-                capacity_factor=1.15, implementation=implementation,
-            ).lower(*arguments).compile()
+            compiled = (
+                _make_case(
+                    variant,
+                    fixed,
+                    bias=bias,
+                    token_valid=token_valid,
+                    mesh=mesh,
+                    capacity_factor=1.15,
+                    implementation=implementation,
+                )
+                .lower(*arguments)
+                .compile()
+            )
             executables[name] = compiled
             if is_leader:
                 (output_dir / f"{name}-optimized-hlo.txt").write_text(compiled.as_text())
                 print(f"compiled {name}", flush=True)
         fixed_current = executables["fixed_current"](*arguments)[0][1][0]
         fixed_preferred = executables["fixed_preferred"](*arguments)[0][1][0]
-        fixed_output_max_abs = float(np.asarray(jnp.max(jnp.abs(fixed_current.astype(jnp.float32) - fixed_preferred.astype(jnp.float32)))))
+        fixed_output_max_abs = float(
+            np.asarray(jnp.max(jnp.abs(fixed_current.astype(jnp.float32) - fixed_preferred.astype(jnp.float32))))
+        )
         if fixed_output_max_abs != 0.0:
             raise ValueError(f"Fixed downstream output differs: {fixed_output_max_abs}")
         samples = _time_cases(executables, arguments, warmup=args.warmup, repeats=args.repeats)
