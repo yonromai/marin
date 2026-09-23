@@ -3,6 +3,7 @@
 
 """Test whether vLLM can generate simple completions"""
 
+from importlib.util import find_spec
 
 import pytest
 from marin.inference.config import InferenceModelConfig
@@ -10,10 +11,10 @@ from marin.inference.vllm_server import resolve_model_name_or_path
 
 from tests.test_utils import skip_if_no_tpu
 
-try:
-    from vllm import LLM, SamplingParams
-except ImportError:
+if find_spec("vllm") is None:
     pytest.skip("vLLM is not installed", allow_module_level=True)
+
+from vllm import LLM, SamplingParams
 
 
 def run_vllm_inference(model_path, **model_init_kwargs):

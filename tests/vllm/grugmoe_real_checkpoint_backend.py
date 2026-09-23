@@ -259,9 +259,9 @@ def _real_checkpoint_model_config():
     )
 
 
-# This adapter exists only because the pinned real checkpoint predates the
-# current fused GrugMoE expert layout. Keep it backend-local unless another
-# production export path needs to support legacy split-expert checkpoints.
+# The pinned checkpoint stores expert weights directly under each MoE block.
+# Current GrugMoE nests them under expert_mlp. Keep this adapter backend-local
+# unless another export path needs the legacy checkpoint layout.
 def _legacy_split_expert_inference_state_dict(model: Any, cfg: Any, prefix: str | None = None) -> dict[str, Any]:
     from experiments.grug.moe.model import (  # noqa: PLC0415
         _linear_inference_tensor,
@@ -316,7 +316,6 @@ def _legacy_split_expert_inference_state_dict(model: Any, cfg: Any, prefix: str 
 def _load_legacy_split_expert_checkpoint(checkpoint_path: str, model_cfg: Any):
     import equinox as eqx  # noqa: PLC0415
     import jax  # noqa: PLC0415
-    import jax.numpy as jnp  # noqa: PLC0415
     from haliax import Axis  # noqa: PLC0415
     from levanter.checkpoint import latest_checkpoint_path, load_checkpoint  # noqa: PLC0415
     from levanter.utils.jax_utils import is_inexact_arrayish  # noqa: PLC0415
@@ -327,20 +326,21 @@ def _load_legacy_split_expert_checkpoint(checkpoint_path: str, model_cfg: Any):
         w_gate: jax.Array
         w_up: jax.Array
         w_down: jax.Array
+        routed_moe: Any = eqx.field(static=True)
         cfg: Any = eqx.field(static=True)
 
     def legacy_split_expert_template(cfg: Any, vocab: Axis, *, key: jax.Array):
         model = cfg.build(vocab, key=key)
         for layer_index in range(cfg.num_layers):
             expert = model.blocks[layer_index].mlp.expert_mlp
-            gate, up = jnp.split(expert.w_gate_up, [cfg.intermediate_dim], axis=-1)
             original_mlp = model.blocks[layer_index].mlp
             split_mlp = LegacySplitMoEMLP(
                 router=original_mlp.router,
                 router_bias=original_mlp.router_bias,
-                w_gate=gate,
-                w_up=up,
+                w_gate=expert.w_gate,
+                w_up=expert.w_up,
                 w_down=expert.w_down,
+                routed_moe=original_mlp.routed_moe,
                 cfg=original_mlp.cfg,
             )
             model = eqx.tree_at(lambda m, i=layer_index: m.blocks[i].mlp, model, split_mlp)
@@ -650,25 +650,25 @@ def _selected_logprob(logits: Any, token_id: int) -> float:
 
 def _executable_model_from_legacy_split(model: Any) -> Any:
     import equinox as eqx  # noqa: PLC0415
-    import jax.numpy as jnp  # noqa: PLC0415
     from levanter.grug.grug_moe import MoEExpertMlp  # noqa: PLC0415
     from levanter.utils.activation import ActivationFunctionEnum  # noqa: PLC0415
 
     from experiments.grug.moe.model import MoEMLP  # noqa: PLC0415
 
     def executable_mlp_from_legacy_split(split_mlp: Any) -> MoEMLP:
-        w_gate_up = jnp.concatenate([split_mlp.w_gate, split_mlp.w_up], axis=-1)
         expert_mlp = MoEExpertMlp(
-            w_gate_up=w_gate_up,
+            w_gate=split_mlp.w_gate,
+            w_up=split_mlp.w_up,
             w_down=split_mlp.w_down,
             implementation=split_mlp.cfg.moe_implementation,
             activation=ActivationFunctionEnum.silu,
-            capacity_factor=1.0,
+            capacity_factor=split_mlp.cfg.capacity_factor,
         )
         return MoEMLP(
             router=split_mlp.router,
             router_bias=split_mlp.router_bias,
             expert_mlp=expert_mlp,
+            routed_moe=split_mlp.routed_moe,
             cfg=split_mlp.cfg,
         )
 
