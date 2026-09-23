@@ -50,8 +50,8 @@ def scores(inputs: jax.Array, weights: jax.Array, variant: str) -> jax.Array:
         return jnp.einsum("td,de->te", inputs, weights).astype(jnp.float32)
     result = jnp.einsum("td,de->te", inputs, weights, preferred_element_type=jnp.float32)
     if variant == "rounded_preferred":
-        # Prevent XLA from folding the round trip into a different GEMM output type.
-        return jax.lax.optimization_barrier(result).astype(jnp.bfloat16).astype(jnp.float32)
+        # Keep the BF16 intermediate observable to the optimizer.
+        return jax.lax.optimization_barrier(result.astype(jnp.bfloat16)).astype(jnp.float32)
     if variant == "preferred_fp32":
         return result
     raise ValueError(variant)
@@ -210,6 +210,9 @@ def main():
                 "exact_fraction_vs_preferred": float(np.mean(rounded == preferred)),
                 "exact_fraction_vs_routing_graph": float(np.mean(rounded == routed_rounded)),
             }
+            if report["compiled_rounding"]["exact_fraction_vs_preferred"] == 1.0:
+                (output / "report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+                raise ValueError("The rounded control was optimized into the unrounded FP32 result")
             if report["compiled_rounding"]["exact_fraction_vs_routing_graph"] != 1.0:
                 raise ValueError("Standalone rounding differs from rounded routing graph")
         if phase == "backward":
