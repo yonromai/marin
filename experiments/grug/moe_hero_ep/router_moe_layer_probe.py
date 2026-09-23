@@ -93,8 +93,10 @@ def _routes(logits, bias):
     return selected, gates.astype(jnp.bfloat16)
 
 
-def _make_case(variant: str, fixed: bool, *, bias, token_valid, mesh, capacity_factor, implementation):
-    def loss(x, router_weight, w_up_gate, w_down, cotangent, router_cotangent, fixed_indices, fixed_gates):
+def _make_case(variant: str, fixed: bool, *, mesh, capacity_factor, implementation):
+    def loss(
+        x, router_weight, w_up_gate, w_down, cotangent, router_cotangent, fixed_indices, fixed_gates, bias, token_valid
+    ):
         logits = scores(x, router_weight, variant)
         if fixed:
             indices, gates = fixed_indices, fixed_gates
@@ -220,15 +222,24 @@ def main():
         hybrid_exact = bool(np.asarray(jnp.all(hybrid_logits == preferred_logits)))
         if not hybrid_exact:
             raise ValueError("Hybrid forward scores differ from preferred scores")
-        arguments = (x, router_weight, w_up_gate, w_down, cotangent, router_cotangent, fixed_indices, fixed_gates)
+        arguments = (
+            x,
+            router_weight,
+            w_up_gate,
+            w_down,
+            cotangent,
+            router_cotangent,
+            fixed_indices,
+            fixed_gates,
+            bias,
+            token_valid,
+        )
         executables = {}
         for name, variant, fixed in CASES:
             compiled = (
                 _make_case(
                     variant,
                     fixed,
-                    bias=bias,
-                    token_valid=token_valid,
                     mesh=mesh,
                     capacity_factor=1.15,
                     implementation=implementation,
