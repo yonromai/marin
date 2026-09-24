@@ -1005,6 +1005,7 @@ def _run_fixed_state_router_benchmark(
     repeats: int,
     optimizer: optax.GradientTransformation | None = None,
     ema_beta: float | None = None,
+    watch_config: WatchConfig | None = None,
     offload_opt_state: bool = False,
     master_param_mode: MasterParamMode = MasterParamMode.DEVICE,
 ) -> None:
@@ -1059,6 +1060,7 @@ def _run_fixed_state_router_benchmark(
             mp,
             z_loss_weight=z_loss_weight,
             ema_beta=ema_beta,
+            watch_config=watch_config,
             offload_opt_state=offload_opt_state,
             master_param_mode=master_param_mode,
         )
@@ -1330,6 +1332,7 @@ def _run_grug_local(config: GrugRunConfig) -> None:
                 repeats=config.fixed_state_router_benchmark_repeats,
                 optimizer=optimizer if config.fixed_state_router_benchmark_include_optimizer else None,
                 ema_beta=config.trainer.ema_beta,
+                watch_config=inline_watch_config if config.fixed_state_router_benchmark_include_optimizer else None,
                 offload_opt_state=config.trainer.offload_opt_state,
                 master_param_mode=config.trainer.master_param_mode,
             )

@@ -696,8 +696,8 @@ def test_fixed_state_router_variants_share_all_parameter_buffers():
         assert all(a is b for a, b in zip(jax.tree.leaves(original), jax.tree.leaves(variant), strict=True))
 
 
-@pytest.mark.parametrize("include_optimizer", [False, True])
-def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, include_optimizer):
+@pytest.mark.parametrize("include_optimizer,include_watch", [(False, False), (True, False), (True, True)])
+def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, include_optimizer, include_watch):
     mesh = _explicit_mesh(1, 1, 1, 1)
     cfg = _latent_config()
     with set_mesh(mesh):
@@ -718,6 +718,7 @@ def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, inclu
             z_loss_weight=1e-4,
             repeats=1,
             optimizer=optax.adam(1e-3) if include_optimizer else None,
+            watch_config=WatchConfig(interval=10) if include_watch else None,
         )
     marker = "ROUTER_FIXED_STATE_FULL_STEP_RESULT=" if include_optimizer else "ROUTER_FIXED_STATE_RESULT="
     result = next(record.message.split(marker, 1)[1] for record in caplog.records if marker in record.message)
