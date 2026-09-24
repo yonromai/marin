@@ -857,7 +857,6 @@ def _make_train_step(
     watch_config: WatchConfig | None = None,
     offload_opt_state: bool = False,
     master_param_mode: MasterParamMode = MasterParamMode.DEVICE,
-    donate_state: bool = True,
 ):
     one = jnp.array(1, dtype=jnp.int32)
     z_loss = z_loss_weight if z_loss_weight > 0 else None
@@ -869,7 +868,7 @@ def _make_train_step(
     else:
         watch_targets = ()
 
-    @functools.partial(jax.jit, donate_argnums=(0,) if donate_state else ())
+    @functools.partial(jax.jit, donate_argnums=(0,))
     def train_step(state: GrugTrainState, batch):
         # Apply pending QB betas to router biases inside JIT (avoids eager
         # host-side TPU kernel launches that can cause SPMD sync issues).
@@ -958,8 +957,41 @@ def _model_with_router_precision(model: Transformer, precision: RouterDotPrecisi
     return model_copy
 
 
+def _snapshot_process_local_state(state: GrugTrainState):
+    """Move each addressable shard to host so a donated state can be rebuilt between trials."""
+    leaves, treedef = jax.tree.flatten(state)
+    snapshot = []
+    local_bytes = 0
+    for leaf in leaves:
+        if isinstance(leaf, jax.Array):
+            shards = tuple((shard.device, np.asarray(shard.data)) for shard in leaf.addressable_shards)
+            if len(shards) != len(leaf.sharding.addressable_devices):
+                raise AssertionError("state snapshot must contain every addressable shard")
+            local_bytes += sum(data.nbytes for _, data in shards)
+            snapshot.append((leaf.shape, leaf.sharding, shards))
+        else:
+            snapshot.append(leaf)
+    if jax.process_index() == 0:
+        logger.info("Fixed-state host snapshot: %.2f GiB across %d leaves per process", local_bytes / 2**30, len(leaves))
+    return treedef, snapshot
+
+
+def _restore_process_local_state(snapshot) -> GrugTrainState:
+    treedef, leaves = snapshot
+    restored = []
+    for leaf in leaves:
+        if isinstance(leaf, tuple) and len(leaf) == 3 and isinstance(leaf[1], jax.sharding.Sharding):
+            shape, sharding, shards = leaf
+            data_by_device = dict(shards)
+            device_arrays = [jax.device_put(data_by_device[device], device) for device in sharding.addressable_devices]
+            restored.append(jax.make_array_from_single_device_arrays(shape, sharding, device_arrays))
+        else:
+            restored.append(leaf)
+    return jax.tree.unflatten(treedef, restored)
+
+
 def _run_fixed_state_router_benchmark(
-    state: GrugTrainState,
+    state_holder: list[GrugTrainState],
     batches,
     mp: jmp.Policy,
     *,
@@ -976,13 +1008,15 @@ def _run_fixed_state_router_benchmark(
     warmup_pairs = 5
     if len(batches) != warmup_pairs + repeats:
         raise ValueError("fixed-state router benchmark needs five warmup batches and one batch per timed pair")
-    models = {
-        "preferred": _model_with_router_precision(state.params, RouterDotPrecision.PREFERRED_FP32),
-        "hybrid": _model_with_router_precision(state.params, RouterDotPrecision.PREFERRED_CURRENT_VJP),
+    state = state_holder.pop()
+    checkpoint_step = int(state.step)
+    precisions = {
+        "preferred": RouterDotPrecision.PREFERRED_FP32,
+        "hybrid": RouterDotPrecision.PREFERRED_CURRENT_VJP,
     }
 
-    def variant_state(params: Transformer) -> GrugTrainState:
-        precision = params.config.router_dot_precision
+    def variant_state(base_state: GrugTrainState, precision: RouterDotPrecision) -> GrugTrainState:
+        params = _model_with_router_precision(base_state.params, precision)
 
         def swap_model(tree):
             return jax.tree.map(
@@ -994,14 +1028,24 @@ def _run_fixed_state_router_benchmark(
             )
 
         return dataclasses.replace(
-            state,
+            base_state,
             params=params,
-            master_params=swap_model(state.master_params),
-            opt_state=swap_model(state.opt_state),
-            ema_params=swap_model(state.ema_params),
+            master_params=swap_model(base_state.master_params),
+            opt_state=swap_model(base_state.opt_state),
+            ema_params=swap_model(base_state.ema_params),
         )
 
-    states = {mode: variant_state(params) for mode, params in models.items()} if optimizer is not None else {}
+    if optimizer is not None:
+        # The train step donates its input. Keep one process-local host snapshot, then move a
+        # fresh copy onto the original sharding before each timer. The caller releases its state
+        # reference through state_holder, so only one full state lives on a GPU at a time.
+        snapshot = _snapshot_process_local_state(state)
+        del state
+        gc.collect()
+        models = {}
+    else:
+        snapshot = None
+        models = {mode: _model_with_router_precision(state.params, precision) for mode, precision in precisions.items()}
 
     train_step = (
         _make_train_step(
@@ -1011,7 +1055,6 @@ def _run_fixed_state_router_benchmark(
             ema_beta=ema_beta,
             offload_opt_state=offload_opt_state,
             master_param_mode=master_param_mode,
-            donate_state=False,
         )
         if optimizer is not None
         else None
@@ -1023,9 +1066,16 @@ def _run_fixed_state_router_benchmark(
         return _loss_and_grads(params, input_batch, mp, z_loss_weight if z_loss_weight > 0 else None)
 
     def one_call(mode: str, batch) -> tuple[float, float]:
+        if train_step is not None:
+            base_state = _restore_process_local_state(snapshot)
+            call_state = variant_state(base_state, precisions[mode])
+            del base_state
+            jax.block_until_ready(call_state)
+        else:
+            call_state = None
         start = time.perf_counter()
         result = (
-            train_step(states[mode], batch)
+            train_step(call_state, batch)
             if train_step is not None
             else loss_and_grads(models[mode], batch, state.pending_qb_betas)
         )
@@ -1033,6 +1083,9 @@ def _run_fixed_state_router_benchmark(
         elapsed = time.perf_counter() - start
         loss = float(result[1]["train/loss"] if train_step is not None else result[0][0])
         del result
+        if call_state is not None:
+            del call_state
+            gc.collect()
         return elapsed, loss
 
     # Both specializations compile before any timed sample; each warmup is fully synchronized.
@@ -1064,7 +1117,7 @@ def _run_fixed_state_router_benchmark(
             marker,
             json.dumps(
                 {
-                    "checkpoint_step": int(state.step),
+                    "checkpoint_step": checkpoint_step,
                     "warmup_pairs": warmup_pairs,
                     "repeats": repeats,
                     "includes_optimizer": train_step is not None,
@@ -1261,8 +1314,10 @@ def _run_grug_local(config: GrugRunConfig) -> None:
 
         if config.fixed_state_router_benchmark_repeats:
             benchmark_batches = list(itertools.islice(iterator, config.fixed_state_router_benchmark_repeats + 5))
+            benchmark_state_holder = [state]
+            state = None
             _run_fixed_state_router_benchmark(
-                state,
+                benchmark_state_holder,
                 benchmark_batches,
                 trainer.mp,
                 z_loss_weight=config.trainer.z_loss_weight,

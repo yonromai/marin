@@ -712,7 +712,7 @@ def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, inclu
             batch_size=1, max_seq_len=cfg.max_seq_len, vocab_size=cfg.vocab_size, seed=1, mesh=mesh
         )
         train._run_fixed_state_router_benchmark(
-            state,
+            [state],
             [batch] * 6,
             jmp.get_policy("params=float32,compute=float32,output=float32"),
             z_loss_weight=1e-4,
