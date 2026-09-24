@@ -696,7 +696,8 @@ def test_fixed_state_router_variants_share_all_parameter_buffers():
         assert all(a is b for a, b in zip(jax.tree.leaves(original), jax.tree.leaves(variant), strict=True))
 
 
-def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog):
+@pytest.mark.parametrize("include_optimizer", [False, True])
+def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, include_optimizer):
     mesh = _explicit_mesh(1, 1, 1, 1)
     cfg = _latent_config()
     with set_mesh(mesh):
@@ -716,13 +717,14 @@ def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog):
             jmp.get_policy("params=float32,compute=float32,output=float32"),
             z_loss_weight=1e-4,
             repeats=1,
+            optimizer=optax.adam(1e-3) if include_optimizer else None,
         )
-    result = next(
-        record.message.split("ROUTER_FIXED_STATE_RESULT=", 1)[1]
-        for record in caplog.records
-        if "ROUTER_FIXED_STATE_RESULT=" in record.message
-    )
-    samples = json.loads(result)["samples"]
+    marker = "ROUTER_FIXED_STATE_FULL_STEP_RESULT=" if include_optimizer else "ROUTER_FIXED_STATE_RESULT="
+    result = next(record.message.split(marker, 1)[1] for record in caplog.records if marker in record.message)
+    report = json.loads(result)
+    samples = report["samples"]
+    assert report["includes_optimizer"] == include_optimizer
+    assert int(state.step) == 0
     assert len(samples) == 1
     assert samples[0]["preferred_seconds"] > 0
     assert samples[0]["hybrid_seconds"] > 0

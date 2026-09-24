@@ -96,6 +96,7 @@ def build_diagnostic_run(
     profile_start_step: int = 5,
     training_data_mode: TrainingDataMode = TrainingDataMode.MIXTURE,
     fixed_state_router_benchmark_repeats: int = 0,
+    fixed_state_router_benchmark_include_optimizer: bool = False,
     version: str | None = None,
 ) -> ArtifactStep[HeroThroughputResult]:
     """Build a bounded diagnostic run for the production EP64 hero recipe.
@@ -313,6 +314,7 @@ def build_diagnostic_run(
             ),
             stop_after_steps=num_steps,
             fixed_state_router_benchmark_repeats=fixed_state_router_benchmark_repeats,
+            fixed_state_router_benchmark_include_optimizer=fixed_state_router_benchmark_include_optimizer,
             processes_per_task=processes_per_task,
         )
 
@@ -527,6 +529,11 @@ def build_diagnostic_run(
     help="Time paired preferred and hybrid Hero loss/gradient graphs on the same restored state and batch.",
 )
 @click.option(
+    "--fixed-state-router-benchmark-include-optimizer/--no-fixed-state-router-benchmark-include-optimizer",
+    default=False,
+    help="Include the optimizer update and full train-step outputs in each fixed-state timing.",
+)
+@click.option(
     "--capacity-factor",
     type=click.FloatRange(min=0, min_open=True),
     default=HERO_MODEL_CONFIG.capacity_factor,
@@ -566,6 +573,7 @@ def main(
     profile_start_step: int,
     training_data: str,
     fixed_state_router_benchmark_repeats: int,
+    fixed_state_router_benchmark_include_optimizer: bool,
 ) -> ArtifactStep[HeroThroughputResult]:
     return build_diagnostic_run(
         run_id=run_id,
@@ -609,6 +617,7 @@ def main(
         profile_start_step=profile_start_step,
         training_data_mode=TrainingDataMode(training_data),
         fixed_state_router_benchmark_repeats=fixed_state_router_benchmark_repeats,
+        fixed_state_router_benchmark_include_optimizer=fixed_state_router_benchmark_include_optimizer,
     )
 
 

@@ -363,6 +363,7 @@ class GrugRunConfig:
     stop_after_steps: int | None = None
     # Diagnostic only: time both router gradients on the same restored params and paired batches.
     fixed_state_router_benchmark_repeats: int = 0
+    fixed_state_router_benchmark_include_optimizer: bool = False
     # GPU processes per task: > 1 runs one JAX process per GPU (multi-controller)
     # via the iris.hooks.multigpu_main supervisor instead of one process per node.
     processes_per_task: int = 1
@@ -856,6 +857,7 @@ def _make_train_step(
     watch_config: WatchConfig | None = None,
     offload_opt_state: bool = False,
     master_param_mode: MasterParamMode = MasterParamMode.DEVICE,
+    donate_state: bool = True,
 ):
     one = jnp.array(1, dtype=jnp.int32)
     z_loss = z_loss_weight if z_loss_weight > 0 else None
@@ -867,7 +869,7 @@ def _make_train_step(
     else:
         watch_targets = ()
 
-    @functools.partial(jax.jit, donate_argnums=(0,))
+    @functools.partial(jax.jit, donate_argnums=(0,) if donate_state else ())
     def train_step(state: GrugTrainState, batch):
         # Apply pending QB betas to router biases inside JIT (avoids eager
         # host-side TPU kernel launches that can cause SPMD sync issues).
@@ -957,9 +959,18 @@ def _model_with_router_precision(model: Transformer, precision: RouterDotPrecisi
 
 
 def _run_fixed_state_router_benchmark(
-    state: GrugTrainState, batches, mp: jmp.Policy, *, z_loss_weight: float, repeats: int
+    state: GrugTrainState,
+    batches,
+    mp: jmp.Policy,
+    *,
+    z_loss_weight: float,
+    repeats: int,
+    optimizer: optax.GradientTransformation | None = None,
+    ema_beta: float | None = None,
+    offload_opt_state: bool = False,
+    master_param_mode: MasterParamMode = MasterParamMode.DEVICE,
 ) -> None:
-    """Measure complete Hero loss/gradient graphs on identical params and paired inputs within one gang."""
+    """Measure Hero loss/gradient or full train graphs on identical state and paired inputs."""
     if repeats <= 0:
         raise ValueError("fixed-state router benchmark needs a positive repeat count")
     warmup_pairs = 5
@@ -970,6 +981,42 @@ def _run_fixed_state_router_benchmark(
         "hybrid": _model_with_router_precision(state.params, RouterDotPrecision.PREFERRED_CURRENT_VJP),
     }
 
+    def variant_state(params: Transformer) -> GrugTrainState:
+        precision = params.config.router_dot_precision
+
+        def swap_model(tree):
+            return jax.tree.map(
+                lambda value: (
+                    _model_with_router_precision(value, precision) if isinstance(value, Transformer) else value
+                ),
+                tree,
+                is_leaf=lambda value: isinstance(value, Transformer),
+            )
+
+        return dataclasses.replace(
+            state,
+            params=params,
+            master_params=swap_model(state.master_params),
+            opt_state=swap_model(state.opt_state),
+            ema_params=swap_model(state.ema_params),
+        )
+
+    states = {mode: variant_state(params) for mode, params in models.items()} if optimizer is not None else {}
+
+    train_step = (
+        _make_train_step(
+            optimizer,
+            mp,
+            z_loss_weight=z_loss_weight,
+            ema_beta=ema_beta,
+            offload_opt_state=offload_opt_state,
+            master_param_mode=master_param_mode,
+            donate_state=False,
+        )
+        if optimizer is not None
+        else None
+    )
+
     @jax.jit
     def loss_and_grads(params, input_batch, pending_qb_betas):
         params = _apply_qb_betas(params, pending_qb_betas)
@@ -977,10 +1024,14 @@ def _run_fixed_state_router_benchmark(
 
     def one_call(mode: str, batch) -> tuple[float, float]:
         start = time.perf_counter()
-        result = loss_and_grads(models[mode], batch, state.pending_qb_betas)
+        result = (
+            train_step(states[mode], batch)
+            if train_step is not None
+            else loss_and_grads(models[mode], batch, state.pending_qb_betas)
+        )
         jax.block_until_ready(result)
         elapsed = time.perf_counter() - start
-        loss = float(result[0][0])
+        loss = float(result[1]["train/loss"] if train_step is not None else result[0][0])
         del result
         return elapsed, loss
 
@@ -1007,13 +1058,16 @@ def _run_fixed_state_router_benchmark(
         if trial % 5 == 4 and jax.process_index() == 0:
             logger.info("Fixed-state router benchmark: %d/%d pairs", trial + 1, repeats)
     if jax.process_index() == 0:
+        marker = "ROUTER_FIXED_STATE_FULL_STEP_RESULT" if train_step is not None else "ROUTER_FIXED_STATE_RESULT"
         logger.warning(
-            "ROUTER_FIXED_STATE_RESULT=%s",
+            "%s=%s",
+            marker,
             json.dumps(
                 {
                     "checkpoint_step": int(state.step),
                     "warmup_pairs": warmup_pairs,
                     "repeats": repeats,
+                    "includes_optimizer": train_step is not None,
                     "samples": samples,
                 }
             ),
@@ -1213,6 +1267,10 @@ def _run_grug_local(config: GrugRunConfig) -> None:
                 trainer.mp,
                 z_loss_weight=config.trainer.z_loss_weight,
                 repeats=config.fixed_state_router_benchmark_repeats,
+                optimizer=optimizer if config.fixed_state_router_benchmark_include_optimizer else None,
+                ema_beta=config.trainer.ema_beta,
+                offload_opt_state=config.trainer.offload_opt_state,
+                master_param_mode=config.trainer.master_param_mode,
             )
             levanter.tracker.current_tracker().finish()
             return
