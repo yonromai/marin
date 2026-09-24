@@ -730,6 +730,21 @@ def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog, inclu
     assert samples[0]["hybrid_seconds"] > 0
 
 
+def test_fixed_state_snapshot_preserves_pinned_host_memory():
+    device = jax.devices()[0]
+    pinned_sharding = jax.sharding.SingleDeviceSharding(device).with_memory_kind("pinned_host")
+    state = {
+        "pinned": jax.device_put(np.arange(8, dtype=np.float32), pinned_sharding),
+        "device": jax.device_put(np.arange(8, dtype=np.float32), device),
+    }
+
+    restored = train._restore_process_local_state(train._snapshot_process_local_state(state))
+
+    for name in state:
+        assert restored[name].sharding.memory_kind == state[name].sharding.memory_kind
+        np.testing.assert_array_equal(np.asarray(restored[name]), np.asarray(state[name]))
+
+
 def test_eval_every_adds_the_held_out_suites_as_dependencies():
     # Held-out sets are what make a run scoreable; a throughput-only run should not pay for them.
     off = launch.build_diagnostic_run(run_id="eval-off", dp_racks=1, num_steps=1, version="dev")

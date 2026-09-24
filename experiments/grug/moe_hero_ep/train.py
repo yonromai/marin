@@ -983,7 +983,13 @@ def _restore_process_local_state(snapshot) -> GrugTrainState:
         if isinstance(leaf, tuple) and len(leaf) == 3 and isinstance(leaf[1], jax.sharding.Sharding):
             shape, sharding, shards = leaf
             data_by_device = dict(shards)
-            device_arrays = [jax.device_put(data_by_device[device], device) for device in sharding.addressable_devices]
+            device_arrays = [
+                jax.device_put(
+                    data_by_device[device],
+                    jax.sharding.SingleDeviceSharding(device).with_memory_kind(sharding.memory_kind),
+                )
+                for device in sharding.addressable_devices
+            ]
             restored.append(jax.make_array_from_single_device_arrays(shape, sharding, device_arrays))
         else:
             restored.append(leaf)
