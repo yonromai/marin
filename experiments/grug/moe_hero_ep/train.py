@@ -6,6 +6,7 @@ import functools
 import gc
 import importlib.metadata
 import itertools
+import json
 import logging
 import os
 import time
@@ -66,7 +67,13 @@ from experiments.grug.checkpointing import (
 )
 from experiments.grug.dispatch import dispatch_grug_training_run
 from experiments.grug.moe_hero_ep.coordinated_gc import GC_TIME_METRIC, GC_WARMUP_STEPS, collect_garbage, coordinated_gc
-from experiments.grug.moe_hero_ep.model import OFFLOAD_CARRY_REMAT_MODE, GrugModelConfig, RematMode, Transformer
+from experiments.grug.moe_hero_ep.model import (
+    OFFLOAD_CARRY_REMAT_MODE,
+    GrugModelConfig,
+    RematMode,
+    RouterDotPrecision,
+    Transformer,
+)
 from experiments.grug.sharding_dump import dump_grug_state_sharding_run_artifact
 
 # This file intentionally mirrors `experiments/grug/base/train.py` with
@@ -354,6 +361,8 @@ class GrugRunConfig:
     # schedule. Warmup and decay are fractions of `num_train_steps`, so training the head of a
     # long schedule requires the two to differ. None runs the whole schedule.
     stop_after_steps: int | None = None
+    # Diagnostic only: time both router gradients on the same restored params and paired batches.
+    fixed_state_router_benchmark_repeats: int = 0
     # GPU processes per task: > 1 runs one JAX process per GPU (multi-controller)
     # via the iris.hooks.multigpu_main supervisor instead of one process per node.
     processes_per_task: int = 1
@@ -930,6 +939,87 @@ def _make_train_step(
     return train_step
 
 
+def _model_with_router_precision(model: Transformer, precision: RouterDotPrecision) -> Transformer:
+    """Change only the static router choice while sharing every parameter buffer."""
+    mlp = model.stacked_blocks.stacked.mlp
+    mlp = dataclasses.replace(mlp, cfg=dataclasses.replace(mlp.cfg, router_dot_precision=precision))
+    model_copy = eqx.tree_at(lambda m: m.stacked_blocks.stacked.mlp, model, mlp)
+    model_copy = dataclasses.replace(
+        model_copy, config=dataclasses.replace(model.config, router_dot_precision=precision)
+    )
+    original_leaves = jax.tree.leaves(model)
+    new_leaves = jax.tree.leaves(model_copy)
+    if len(original_leaves) != len(new_leaves) or any(
+        a is not b for a, b in zip(original_leaves, new_leaves, strict=True)
+    ):
+        raise AssertionError("router precision copy must share every parameter buffer")
+    return model_copy
+
+
+def _run_fixed_state_router_benchmark(
+    state: GrugTrainState, batches, mp: jmp.Policy, *, z_loss_weight: float, repeats: int
+) -> None:
+    """Measure complete Hero loss/gradient graphs on identical params and paired inputs within one gang."""
+    if repeats <= 0:
+        raise ValueError("fixed-state router benchmark needs a positive repeat count")
+    warmup_pairs = 5
+    if len(batches) != warmup_pairs + repeats:
+        raise ValueError("fixed-state router benchmark needs five warmup batches and one batch per timed pair")
+    models = {
+        "preferred": _model_with_router_precision(state.params, RouterDotPrecision.PREFERRED_FP32),
+        "hybrid": _model_with_router_precision(state.params, RouterDotPrecision.PREFERRED_CURRENT_VJP),
+    }
+
+    @jax.jit
+    def loss_and_grads(params, input_batch, pending_qb_betas):
+        params = _apply_qb_betas(params, pending_qb_betas)
+        return _loss_and_grads(params, input_batch, mp, z_loss_weight if z_loss_weight > 0 else None)
+
+    def one_call(mode: str, batch) -> tuple[float, float]:
+        start = time.perf_counter()
+        result = loss_and_grads(models[mode], batch, state.pending_qb_betas)
+        jax.block_until_ready(result)
+        elapsed = time.perf_counter() - start
+        loss = float(result[0][0])
+        del result
+        return elapsed, loss
+
+    # Both specializations compile before any timed sample; each warmup is fully synchronized.
+    for batch in batches[:warmup_pairs]:
+        for mode in ("preferred", "hybrid"):
+            one_call(mode, batch)
+    samples = []
+    rng = np.random.default_rng(0)
+    for trial, batch in enumerate(batches[warmup_pairs:]):
+        order = ("preferred", "hybrid") if rng.integers(2) == 0 else ("hybrid", "preferred")
+        measurements = {mode: one_call(mode, batch) for mode in order}
+        if measurements["preferred"][1] != measurements["hybrid"][1]:
+            raise AssertionError(f"preferred and hybrid forward losses differed at trial {trial}: {measurements}")
+        samples.append(
+            {
+                "trial": trial,
+                "order": list(order),
+                "preferred_seconds": measurements["preferred"][0],
+                "hybrid_seconds": measurements["hybrid"][0],
+                "loss": measurements["preferred"][1],
+            }
+        )
+        if trial % 5 == 4 and jax.process_index() == 0:
+            logger.info("Fixed-state router benchmark: %d/%d pairs", trial + 1, repeats)
+    if jax.process_index() == 0:
+        logger.warning(
+            "ROUTER_FIXED_STATE_RESULT=%s",
+            json.dumps(
+                {
+                    "checkpoint_step": int(state.step),
+                    "warmup_pairs": warmup_pairs,
+                    "repeats": repeats,
+                    "samples": samples,
+                }
+            ),
+        )
+
+
 def _run_grug_local(config: GrugRunConfig) -> None:
     """Entry point for the grug template training loop."""
     if config.model.moe_implementation == RAGGED_MOE_IMPLEMENTATION:
@@ -1114,6 +1204,18 @@ def _run_grug_local(config: GrugRunConfig) -> None:
             assert train_loader is not None
             batch_source = train_loader.iter_from_step(int(state.step))
         iterator = LoadingTimeTrackerIterator(batch_source)
+
+        if config.fixed_state_router_benchmark_repeats:
+            benchmark_batches = list(itertools.islice(iterator, config.fixed_state_router_benchmark_repeats + 5))
+            _run_fixed_state_router_benchmark(
+                state,
+                benchmark_batches,
+                trainer.mp,
+                z_loss_weight=config.trainer.z_loss_weight,
+                repeats=config.fixed_state_router_benchmark_repeats,
+            )
+            levanter.tracker.current_tracker().finish()
+            return
 
         state_callbacks = StateCallbackRunner[GrugTrainState](
             step_getter=lambda s: s.step,

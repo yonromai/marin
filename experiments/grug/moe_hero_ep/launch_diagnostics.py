@@ -95,6 +95,7 @@ def build_diagnostic_run(
     profile_steps: int = 0,
     profile_start_step: int = 5,
     training_data_mode: TrainingDataMode = TrainingDataMode.MIXTURE,
+    fixed_state_router_benchmark_repeats: int = 0,
     version: str | None = None,
 ) -> ArtifactStep[HeroThroughputResult]:
     """Build a bounded diagnostic run for the production EP64 hero recipe.
@@ -311,6 +312,7 @@ def build_diagnostic_run(
                 else None
             ),
             stop_after_steps=num_steps,
+            fixed_state_router_benchmark_repeats=fixed_state_router_benchmark_repeats,
             processes_per_task=processes_per_task,
         )
 
@@ -519,6 +521,12 @@ def build_diagnostic_run(
     help="Use the configured mixture or reuse a deterministic synthetic batch without opening TensorStore.",
 )
 @click.option(
+    "--fixed-state-router-benchmark-repeats",
+    type=click.IntRange(min=0),
+    default=0,
+    help="Time paired preferred and hybrid Hero loss/gradient graphs on the same restored state and batch.",
+)
+@click.option(
     "--capacity-factor",
     type=click.FloatRange(min=0, min_open=True),
     default=HERO_MODEL_CONFIG.capacity_factor,
@@ -557,6 +565,7 @@ def main(
     profile_steps: int,
     profile_start_step: int,
     training_data: str,
+    fixed_state_router_benchmark_repeats: int,
 ) -> ArtifactStep[HeroThroughputResult]:
     return build_diagnostic_run(
         run_id=run_id,
@@ -599,6 +608,7 @@ def main(
         profile_steps=profile_steps,
         profile_start_step=profile_start_step,
         training_data_mode=TrainingDataMode(training_data),
+        fixed_state_router_benchmark_repeats=fixed_state_router_benchmark_repeats,
     )
 
 

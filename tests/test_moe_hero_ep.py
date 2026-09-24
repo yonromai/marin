@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import dataclasses
+import json
 import math
 import os
 import subprocess
@@ -675,6 +676,56 @@ def test_dropless_local_transform_swaps_moe_backend_and_shares_weights():
     swapped_leaves = jax.tree_util.tree_leaves(swapped)
     assert len(orig_leaves) == len(swapped_leaves)
     assert all(a is b for a, b in zip(orig_leaves, swapped_leaves, strict=True))
+
+
+def test_fixed_state_router_variants_share_all_parameter_buffers():
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    with set_mesh(mesh):
+        original = model.Transformer.init(_latent_config(), key=jax.random.key(0))
+    preferred = train._model_with_router_precision(original, model.RouterDotPrecision.PREFERRED_FP32)
+    hybrid = train._model_with_router_precision(original, model.RouterDotPrecision.PREFERRED_CURRENT_VJP)
+
+    assert original.config.router_dot_precision == model.RouterDotPrecision.CURRENT
+    assert original.stacked_blocks.stacked.mlp.cfg.router_dot_precision == model.RouterDotPrecision.CURRENT
+    for variant, precision in (
+        (preferred, model.RouterDotPrecision.PREFERRED_FP32),
+        (hybrid, model.RouterDotPrecision.PREFERRED_CURRENT_VJP),
+    ):
+        assert variant.config.router_dot_precision == precision
+        assert variant.stacked_blocks.stacked.mlp.cfg.router_dot_precision == precision
+        assert all(a is b for a, b in zip(jax.tree.leaves(original), jax.tree.leaves(variant), strict=True))
+
+
+def test_fixed_state_router_benchmark_runs_both_complete_gradients(caplog):
+    mesh = _explicit_mesh(1, 1, 1, 1)
+    cfg = _latent_config()
+    with set_mesh(mesh):
+        state = train.initial_state(
+            cfg,
+            optimizer=optax.adam(1e-3),
+            mp=jmp.get_policy("params=float32,compute=float32,output=float32"),
+            key=jax.random.key(0),
+            ema_beta=None,
+        )
+        batch = train._make_synthetic_batch(
+            batch_size=1, max_seq_len=cfg.max_seq_len, vocab_size=cfg.vocab_size, seed=1, mesh=mesh
+        )
+        train._run_fixed_state_router_benchmark(
+            state,
+            [batch] * 6,
+            jmp.get_policy("params=float32,compute=float32,output=float32"),
+            z_loss_weight=1e-4,
+            repeats=1,
+        )
+    result = next(
+        record.message.split("ROUTER_FIXED_STATE_RESULT=", 1)[1]
+        for record in caplog.records
+        if "ROUTER_FIXED_STATE_RESULT=" in record.message
+    )
+    samples = json.loads(result)["samples"]
+    assert len(samples) == 1
+    assert samples[0]["preferred_seconds"] > 0
+    assert samples[0]["hybrid_seconds"] > 0
 
 
 def test_eval_every_adds_the_held_out_suites_as_dependencies():
