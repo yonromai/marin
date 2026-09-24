@@ -1,7 +1,7 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
-"""Export the pinned full-Hero checkpoint for bounded-memory vLLM loading.
+"""Export the latest permanent full-Hero checkpoint for bounded-memory vLLM loading.
 
 This is experimental qualification tooling. It keeps the model's ordinary
 Hugging Face names except that each routed-expert bank is split into the common
@@ -48,7 +48,13 @@ from experiments.grug.moe_hero_ep.model import grugmoe_inference_state_dict
 from experiments.grug.moe_hero_ep.ops.forward_goldens import (
     CONTROLLER_CLUSTER,
     GoldenRequest,
-    pinned_request,
+    golden_spec,
+)
+from experiments.grug.moe_hero_ep.ops.vibe_check.config import (
+    TARGET_CLUSTER,
+    CheckpointRun,
+    discover_requests,
+    sampling_spec,
 )
 from experiments.grug.moe_hero_ep.ops.vibe_check.jobs import IrisSamplingJobs
 from experiments.grug.moe_hero_ep.ops.vibe_check.sample import (
@@ -64,7 +70,7 @@ EXPERT_AXIS_SIZE = 32
 # adjacent JAX ranks without an NCCL transport during checkpoint restore.
 EXPORT_GPUS_PER_TASK = 4
 EXPORT_TASKS = EXPERT_AXIS_SIZE // EXPORT_GPUS_PER_TASK
-DEFAULT_STORE_ROOT = "s3://marin-us-east-02a/marin/users/romain/hero-vllm-b200/hero-535b-step108000-bf16-split-v2"
+CURRENT_RUN = CheckpointRun("hero-main-step121638", "2026.08.19.2")
 INDEX_FILENAME = "model.safetensors.index.json"
 MANIFEST_FILENAME = "export-manifest.json"
 PROGRESS_SCHEMA_VERSION = 1
@@ -296,9 +302,7 @@ def export(request: GoldenRequest, store_root: str) -> None:
                     "created_at": datetime.now(UTC).isoformat(),
                     "asset_root": store_root,
                     "checkpoint": request.checkpoint.model_dump(mode="json"),
-                    "golden_bundle": (
-                        "s3://marin-us-east-02a/marin/reference/hero-forward/hero-535b-step108000-bf16-v1-dcfe4ced165a"
-                    ),
+                    "golden_bundle": None,
                     "source_revision": request.source_revision,
                     "task_id": os.environ.get("IRIS_TASK_ID"),
                     "process_count": jax.process_count(),
@@ -321,10 +325,26 @@ def export(request: GoldenRequest, store_root: str) -> None:
     multihost_utils.sync_global_devices("hero-vllm-export-complete")
 
 
+def current_request(revision: str) -> GoldenRequest:
+    """Pin the latest permanent checkpoint in the current Hero main line."""
+    configure_coreweave_s3()
+    discovered = discover_requests((CURRENT_RUN,), sampling_spec(), revision, target_cluster=TARGET_CLUSTER)
+    if not discovered:
+        raise ValueError(f"No permanent checkpoints found for {CURRENT_RUN.run_id}")
+    checkpoint = max((request.checkpoint for request in discovered), key=lambda item: item.step)
+    spec = golden_spec("required").model_copy(update={"release": f"hero-535b-step{checkpoint.step}-bf16-export-v1"})
+    return GoldenRequest(
+        checkpoint=checkpoint,
+        spec=spec,
+        source_revision=revision,
+        target_cluster=TARGET_CLUSTER,
+    )
+
+
 def submit(store_root: str, attempt: str) -> None:
     subprocess.run(["git", "diff", "--exit-code", "HEAD", "--"], check=True)
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-    request = pinned_request("required", revision)
+    request = current_request(revision)
     name_digest = hashlib.sha256(
         json.dumps(
             {
@@ -357,7 +377,7 @@ def submit(store_root: str, attempt: str) -> None:
                 user=JOB_USER,
                 environment_overrides={"XLA_FLAGS": "--xla_gpu_deterministic_ops=true"},
             )
-            jobs.submit(request, name, priority_band_value("interactive"))
+            jobs.submit(request, name, priority_band_value("production"))
     print(f"Submitted /{JOB_USER}/{name} for {store_root}")
 
 
@@ -365,7 +385,7 @@ def main() -> None:
     if len(sys.argv) > 1 and sys.argv[1] == "submit":
         parser = argparse.ArgumentParser(description=__doc__)
         parser.add_argument("submit")
-        parser.add_argument("--store-root", default=DEFAULT_STORE_ROOT)
+        parser.add_argument("--store-root", required=True)
         parser.add_argument("--attempt", default="initial")
         args = parser.parse_args()
         submit(args.store_root, args.attempt)
