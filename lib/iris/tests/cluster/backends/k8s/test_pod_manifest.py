@@ -15,6 +15,8 @@ from iris.cluster.backends.k8s.tasks import (
     PodConfig,
 )
 from iris.cluster.config import TaskOutputPolicy
+from iris.cluster.constraints import Constraint, ConstraintOp, merge_constraints
+from iris.cluster.controller.codec import constraints_from_json, constraints_to_json
 from iris.cluster.controller.reconcile.snapshot import TaskUpdate
 from iris.cluster.controller.task_state import RunningTaskEntry
 from iris.cluster.platforms.k8s.coreweave_topology import (
@@ -674,6 +676,61 @@ def test_constraints_to_node_selector_region():
 
     manifest = _build_pod_manifest(req, pod_config())
     assert manifest["spec"]["nodeSelector"] == {"iris.region": "US-WEST-04A"}
+
+
+@pytest.mark.parametrize("rack", ["DH1-392-US-EAST-08A", "Mixed-Case-Rack"])
+def test_named_rack_constraint_survives_storage_and_pins_gang(rack):
+    request = make_run_req("/rack-job/0")
+    request.resources.device.gpu.variant = "GB200"
+    request.resources.device.gpu.count = 4
+    request.coscheduling.group_by = "nvlink.domain"
+    submitted = Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value=rack).to_proto()
+    assert submitted.value.string_value == rack
+    stored = constraints_to_json([submitted])
+    request.constraints.extend(c.to_proto() for c in constraints_from_json(stored))
+
+    manifest = _build_pod_manifest(request, pod_config())
+    assert manifest["spec"]["nodeSelector"]["ds.coreweave.com/nvlink.domain"] == rack
+    assert manifest["metadata"]["annotations"][KUEUE_REQUIRED_TOPOLOGY] == "ds.coreweave.com/nvlink.domain"
+    assert manifest["spec"]["affinity"]["nodeAffinity"]["requiredDuringSchedulingIgnoredDuringExecution"] == {
+        "nodeSelectorTerms": [
+            {"matchExpressions": [{"key": "ds.coreweave.com/nvlink.domain", "operator": "In", "values": [rack]}]}
+        ]
+    }
+
+
+def test_unavailable_named_rack_keeps_hard_selector():
+    request = make_run_req("/rack-job/0")
+    request.constraints.append(
+        Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value="DH1-392-US-EAST-08A").to_proto()
+    )
+
+    # The fake cluster has no nodes. Iris still dispatches a Pod with a hard
+    # rack requirement that remains after Kueue updates nodeSelector.
+    manifest = _build_pod_manifest(request, pod_config())
+    assert manifest["spec"]["nodeSelector"] == {"ds.coreweave.com/nvlink.domain": "DH1-392-US-EAST-08A"}
+    manifest["spec"]["nodeSelector"]["ds.coreweave.com/nvlink.domain"] = "DH1-124-US-EAST-08A"
+    expression = manifest["spec"]["affinity"]["nodeAffinity"]["requiredDuringSchedulingIgnoredDuringExecution"][
+        "nodeSelectorTerms"
+    ][0]["matchExpressions"][0]
+    assert expression == {
+        "key": "ds.coreweave.com/nvlink.domain",
+        "operator": "In",
+        "values": ["DH1-392-US-EAST-08A"],
+    }
+
+
+def test_conflicting_named_racks_reject_dispatch():
+    request = make_run_req("/rack-job/0")
+    constraints = [
+        Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value=rack)
+        for rack in ("DH1-392-US-EAST-08A", "dh1-392-us-east-08a")
+    ]
+    request.constraints.extend(c.to_proto() for c in merge_constraints([], constraints))
+
+    update = _rejected_dispatch(request, pod_config())
+    assert "Conflicting constraints" in update.error
+    assert "nvlink.domain" in update.error
 
 
 def test_constraints_to_node_selector_multiple():

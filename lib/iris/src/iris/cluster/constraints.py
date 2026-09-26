@@ -34,7 +34,7 @@ A job's region requirement has three distinct states:
 
 from collections import defaultdict
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum, IntEnum, StrEnum
 from typing import Any, ClassVar
 
@@ -49,6 +49,8 @@ from iris.cluster.types import (
     availability_key,
 )
 from iris.rpc import job_pb2
+
+_NVLINK_DOMAIN_CONSTRAINT_KEY = "nvlink.domain"
 
 # ---------------------------------------------------------------------------
 # Step 1 types: core constraint primitives (depend only on job_pb2)
@@ -201,6 +203,9 @@ class Constraint:
     and validated at construction; downstream code can always index into
     `values` without None checks.
 
+    `rack_label` retains the case-sensitive Kubernetes label for an exact
+    `nvlink.domain` constraint; `values` stays normalized for Iris matching.
+
     Prefer ``Constraint.create(...)`` in call sites — it accepts raw
     ``value=``/``values=`` scalars and wraps them in ``AttributeValue``
     automatically. The primary constructor is used by ``from_proto`` and
@@ -222,6 +227,7 @@ class Constraint:
     op: ConstraintOp
     values: tuple[AttributeValue, ...] = ()
     mode: int = job_pb2.CONSTRAINT_MODE_REQUIRED
+    rack_label: str | None = field(default=None, repr=False)
 
     def __post_init__(self) -> None:
         lo, hi = _CONSTRAINT_ARITY[self.op]
@@ -229,6 +235,9 @@ class Constraint:
         if n < lo or (hi is not None and n > hi):
             bound = str(hi) if hi is not None else "∞"
             raise ValueError(f"Constraint op {self.op.name} requires {lo}..{bound} values, got {n}")
+        if self.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and self.op == ConstraintOp.EQ:
+            if not self.rack_label or self.rack_label.lower() != self.values[0].value:
+                raise ValueError("nvlink.domain requires an exact string rack label matching its constraint value")
 
     @property
     def is_soft(self) -> bool:
@@ -246,6 +255,9 @@ class Constraint:
                 proto.values.append(v.to_proto())
         elif self.values:
             proto.value.CopyFrom(self.values[0].to_proto())
+            if self.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and self.op == ConstraintOp.EQ:
+                assert self.rack_label is not None
+                proto.value.string_value = self.rack_label
         return proto
 
     @staticmethod
@@ -263,7 +275,10 @@ class Constraint:
             values = tuple(AttributeValue.from_proto(v) for v in proto.values)
         else:
             values = (AttributeValue.from_proto(proto.value),)
-        return Constraint(key=proto.key, op=op, values=values, mode=proto.mode)
+        rack_label = None
+        if proto.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and op == ConstraintOp.EQ and proto.value.HasField("string_value"):
+            rack_label = proto.value.string_value.strip()
+        return Constraint(key=proto.key, op=op, values=values, mode=proto.mode, rack_label=rack_label)
 
     @classmethod
     def create(
@@ -282,7 +297,8 @@ class Constraint:
         - EXISTS/NOT_EXISTS: pass neither.
 
         Raw strings are normalized (stripped + lowercased) via
-        AttributeValue.__post_init__.
+        AttributeValue.__post_init__. An exact nvlink.domain constraint also
+        retains the stripped rack label for Kubernetes placement.
         """
         if op in (ConstraintOp.EXISTS, ConstraintOp.NOT_EXISTS):
             if value is not None or values is not None:
@@ -296,7 +312,12 @@ class Constraint:
             if value is None or values is not None:
                 raise ValueError(f"op={op.name} requires value=, not values=")
             tup = (AttributeValue(value),)
-        return cls(key=key, op=op, values=tup, mode=mode)
+        rack_label = (
+            value.strip()
+            if key == _NVLINK_DOMAIN_CONSTRAINT_KEY and op == ConstraintOp.EQ and isinstance(value, str)
+            else None
+        )
+        return cls(key=key, op=op, values=tup, mode=mode, rack_label=rack_label)
 
 
 # ---------------------------------------------------------------------------
