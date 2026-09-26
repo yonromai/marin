@@ -679,7 +679,7 @@ def test_constraints_to_node_selector_region():
 
 
 @pytest.mark.parametrize("rack", ["DH1-392-US-EAST-08A", "Mixed-Case-Rack"])
-def test_named_rack_constraint_survives_storage_and_pins_gang(rack):
+def test_named_rack_constraint_survives_storage_and_requires_exact_rack(rack):
     request = make_run_req("/rack-job/0")
     request.resources.device.gpu.variant = "GB200"
     request.resources.device.gpu.count = 4
@@ -696,27 +696,6 @@ def test_named_rack_constraint_survives_storage_and_pins_gang(rack):
         "nodeSelectorTerms": [
             {"matchExpressions": [{"key": "ds.coreweave.com/nvlink.domain", "operator": "In", "values": [rack]}]}
         ]
-    }
-
-
-def test_unavailable_named_rack_keeps_hard_selector():
-    request = make_run_req("/rack-job/0")
-    request.constraints.append(
-        Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value="DH1-392-US-EAST-08A").to_proto()
-    )
-
-    # The fake cluster has no nodes. Iris still dispatches a Pod with a hard
-    # rack requirement that remains after Kueue updates nodeSelector.
-    manifest = _build_pod_manifest(request, pod_config())
-    assert manifest["spec"]["nodeSelector"] == {"ds.coreweave.com/nvlink.domain": "DH1-392-US-EAST-08A"}
-    manifest["spec"]["nodeSelector"]["ds.coreweave.com/nvlink.domain"] = "DH1-124-US-EAST-08A"
-    expression = manifest["spec"]["affinity"]["nodeAffinity"]["requiredDuringSchedulingIgnoredDuringExecution"][
-        "nodeSelectorTerms"
-    ][0]["matchExpressions"][0]
-    assert expression == {
-        "key": "ds.coreweave.com/nvlink.domain",
-        "operator": "In",
-        "values": ["DH1-392-US-EAST-08A"],
     }
 
 

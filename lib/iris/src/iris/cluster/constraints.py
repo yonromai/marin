@@ -39,6 +39,7 @@ from enum import Enum, IntEnum, StrEnum
 from typing import Any, ClassVar
 
 from iris.cluster.config import ScaleGroupResources
+from iris.cluster.platforms.k8s.coreweave_topology import COSCHEDULE_NVLINK_DOMAIN
 from iris.cluster.tpu_topology import TpuTopologyInfo, get_tpu_topology
 from iris.cluster.types import (
     AUTO_DEVICE_VARIANT,
@@ -49,8 +50,6 @@ from iris.cluster.types import (
     availability_key,
 )
 from iris.rpc import job_pb2
-
-_NVLINK_DOMAIN_CONSTRAINT_KEY = "nvlink.domain"
 
 # ---------------------------------------------------------------------------
 # Step 1 types: core constraint primitives (depend only on job_pb2)
@@ -235,7 +234,7 @@ class Constraint:
         if n < lo or (hi is not None and n > hi):
             bound = str(hi) if hi is not None else "∞"
             raise ValueError(f"Constraint op {self.op.name} requires {lo}..{bound} values, got {n}")
-        if self.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and self.op == ConstraintOp.EQ:
+        if self.key == COSCHEDULE_NVLINK_DOMAIN and self.op == ConstraintOp.EQ:
             if not self.rack_label or self.rack_label.lower() != self.values[0].value:
                 raise ValueError("nvlink.domain requires an exact string rack label matching its constraint value")
 
@@ -255,7 +254,7 @@ class Constraint:
                 proto.values.append(v.to_proto())
         elif self.values:
             proto.value.CopyFrom(self.values[0].to_proto())
-            if self.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and self.op == ConstraintOp.EQ:
+            if self.key == COSCHEDULE_NVLINK_DOMAIN and self.op == ConstraintOp.EQ:
                 assert self.rack_label is not None
                 proto.value.string_value = self.rack_label
         return proto
@@ -276,7 +275,7 @@ class Constraint:
         else:
             values = (AttributeValue.from_proto(proto.value),)
         rack_label = None
-        if proto.key == _NVLINK_DOMAIN_CONSTRAINT_KEY and op == ConstraintOp.EQ and proto.value.HasField("string_value"):
+        if proto.key == COSCHEDULE_NVLINK_DOMAIN and op == ConstraintOp.EQ and proto.value.HasField("string_value"):
             rack_label = proto.value.string_value.strip()
         return Constraint(key=proto.key, op=op, values=values, mode=proto.mode, rack_label=rack_label)
 
@@ -314,7 +313,7 @@ class Constraint:
             tup = (AttributeValue(value),)
         rack_label = (
             value.strip()
-            if key == _NVLINK_DOMAIN_CONSTRAINT_KEY and op == ConstraintOp.EQ and isinstance(value, str)
+            if key == COSCHEDULE_NVLINK_DOMAIN and op == ConstraintOp.EQ and isinstance(value, str)
             else None
         )
         return cls(key=key, op=op, values=tup, mode=mode, rack_label=rack_label)
