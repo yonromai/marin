@@ -34,7 +34,7 @@ A job's region requirement has three distinct states:
 
 from collections import defaultdict
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum, IntEnum, StrEnum
 from typing import Any, ClassVar
 
@@ -226,7 +226,7 @@ class Constraint:
     op: ConstraintOp
     values: tuple[AttributeValue, ...] = ()
     mode: int = job_pb2.CONSTRAINT_MODE_REQUIRED
-    rack_label: str | None = field(default=None, repr=False)
+    rack_label: str | None = None
 
     def __post_init__(self) -> None:
         lo, hi = _CONSTRAINT_ARITY[self.op]

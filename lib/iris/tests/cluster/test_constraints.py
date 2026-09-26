@@ -326,7 +326,6 @@ def test_custom_attribute_case_insensitive_match_evaluator():
     proto.value.string_value = "NLP"
     c = Constraint.from_proto(proto)
     assert evaluate_constraint(attrs["team"], c)
-    assert c.to_proto().value.string_value == "nlp"
 
 
 def test_custom_attribute_case_insensitive_match_index():

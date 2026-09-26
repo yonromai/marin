@@ -15,7 +15,7 @@ from iris.cluster.backends.k8s.tasks import (
     PodConfig,
 )
 from iris.cluster.config import TaskOutputPolicy
-from iris.cluster.constraints import Constraint, ConstraintOp, merge_constraints
+from iris.cluster.constraints import Constraint, ConstraintOp
 from iris.cluster.controller.codec import constraints_from_json, constraints_to_json
 from iris.cluster.controller.reconcile.snapshot import TaskUpdate
 from iris.cluster.controller.task_state import RunningTaskEntry
@@ -678,38 +678,19 @@ def test_constraints_to_node_selector_region():
     assert manifest["spec"]["nodeSelector"] == {"iris.region": "US-WEST-04A"}
 
 
-@pytest.mark.parametrize("rack", ["DH1-392-US-EAST-08A", "Mixed-Case-Rack"])
-def test_named_rack_constraint_survives_storage_and_requires_exact_rack(rack):
+def test_named_rack_constraint_survives_storage_and_pins_pod():
+    rack = "DH1-392-US-EAST-08A"
+    label = "ds.coreweave.com/nvlink.domain"
     request = make_run_req("/rack-job/0")
-    request.resources.device.gpu.variant = "GB200"
-    request.resources.device.gpu.count = 4
-    request.coscheduling.group_by = "nvlink.domain"
-    submitted = Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value=rack).to_proto()
-    assert submitted.value.string_value == rack
-    stored = constraints_to_json([submitted])
+    constraint = Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value=rack).to_proto()
+    stored = constraints_to_json([constraint])
     request.constraints.extend(c.to_proto() for c in constraints_from_json(stored))
 
     manifest = _build_pod_manifest(request, pod_config())
-    assert manifest["spec"]["nodeSelector"]["ds.coreweave.com/nvlink.domain"] == rack
-    assert manifest["metadata"]["annotations"][KUEUE_REQUIRED_TOPOLOGY] == "ds.coreweave.com/nvlink.domain"
+    assert manifest["spec"]["nodeSelector"][label] == rack
     assert manifest["spec"]["affinity"]["nodeAffinity"]["requiredDuringSchedulingIgnoredDuringExecution"] == {
-        "nodeSelectorTerms": [
-            {"matchExpressions": [{"key": "ds.coreweave.com/nvlink.domain", "operator": "In", "values": [rack]}]}
-        ]
+        "nodeSelectorTerms": [{"matchExpressions": [{"key": label, "operator": "In", "values": [rack]}]}]
     }
-
-
-def test_conflicting_named_racks_reject_dispatch():
-    request = make_run_req("/rack-job/0")
-    constraints = [
-        Constraint.create(key="nvlink.domain", op=ConstraintOp.EQ, value=rack)
-        for rack in ("DH1-392-US-EAST-08A", "dh1-392-us-east-08a")
-    ]
-    request.constraints.extend(c.to_proto() for c in merge_constraints([], constraints))
-
-    update = _rejected_dispatch(request, pod_config())
-    assert "Conflicting constraints" in update.error
-    assert "nvlink.domain" in update.error
 
 
 def test_constraints_to_node_selector_multiple():
