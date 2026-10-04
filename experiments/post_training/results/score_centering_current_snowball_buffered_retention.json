@@ -1,0 +1,88 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "state": "succeeded",
+  "qualification": "Complete buffered full retention and periodic evaluation on unchanged Snowball runtime; not confirmation quality evidence.",
+  "expected_records": 5820,
+  "audited_evaluation_records": 4796,
+  "audited_training_records": 1024,
+  "raw_grad_norms": [
+    0.15263153612613678,
+    0.15637777745723724
+  ],
+  "response_token_maxima": [
+    4096,
+    4096
+  ],
+  "training_core_seconds": [
+    146.07972895284183,
+    106.63052286184393
+  ],
+  "rollout_admission_seconds": [
+    80.54805860994384,
+    74.24790506297722
+  ],
+  "write_errors": [
+    0.0,
+    0.0
+  ],
+  "actual_consumed_loss_tokens": 1085157,
+  "actual_optimizer_age_max": 0,
+  "tasks": [
+    {
+      "task_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004/0",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791155697347,
+      "finished_at_ms": 1791157712272,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004/1",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791155697347,
+      "finished_at_ms": 1791157723363,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004/2",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791155697347,
+      "finished_at_ms": 1791157723363,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004/3",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791155697347,
+      "finished_at_ms": 1791157723363,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-buffered-retention-qualification-20261004/4",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791155697347,
+      "finished_at_ms": 1791157723363,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    }
+  ],
+  "reserved_h100_task_hours": 22.486642222222223,
+  "driver_source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-buffered-retention-qualification-20261004/ray-logs/rank0-g5303b8/session_latest/worker-f53e54a9960421ec35443610c4fac14d99508d65901f81025a19ab9e-06000000-14067.err",
+  "endpoint": "score_centering_current_snowball_buffered_retention/endpoint.json",
+  "training_records": "score_centering_current_snowball_buffered_retention/training_records.json",
+  "ages": "score_centering_current_snowball_buffered_retention/ages.json"
+}

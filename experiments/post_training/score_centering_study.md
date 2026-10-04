@@ -343,8 +343,8 @@ agree exactly; same-weight inference generation/re-read absolute mean is
 0.040030. Thus stable aggregate mismatch across ages does not establish
 negligible weight drift, and inference batching/re-read variability is substantial.
 The selected-prompt scope does not estimate the whole held-out population.
-The run costs 17.3516578 reserved H100 task-hours. Completed new qualification
-costs are **140.8492275** hours. Its [actual consumed ages](results/score_centering_current_snowball_native_components/ages.json)
+The run costs 17.3516578 reserved H100 task-hours. Through this measurement,
+completed new qualification costs were **140.8492275** hours. Its [actual consumed ages](results/score_centering_current_snowball_native_components/ages.json)
 are zero on all 2,378,214 loss tokens, with no mixed-version responses.
 Async consumed ages are separately measured through token spans and the
 applied-update ledger.
@@ -366,23 +366,40 @@ New submissions were stopped. Live driver progress, all twenty tasks and the
 absence of checkpoints were checked before withdrawing exactly these four jobs.
 They remain outside confirmation. All four terminal attempts, including initial
 evaluation and finished work that was never consumed, cost **123.6792333**
-reserved H100 task-hours. Completed new costs are therefore **264.5284608**
-hours; the buffered-retention qualification is still active and excluded from
-that terminal total. Historical costs remain separate.
+reserved H100 task-hours. Completed new costs at withdrawal were **264.5284608**
+hours. Historical costs remain separate.
 
-The [revision-two draft](results/score_centering_current_confirmation_protocol_r2.json)
+The [revision-two protocol](results/score_centering_current_confirmation_protocol_r2.json)
 changes publication scheduling through the existing buffered publisher on the
 same pinned source. All training/evaluation records are still selected, without
 byte quotas. Complete immutable evaluation membership and exact consumed
 UID/token/mask retention remain mandatory terminal checks. The
 [qualification input](configs/score_centering/current_snowball_buffered_retention.yaml)
-exercises two fresh updates and full repeated held-out evaluations at steps zero
-and two, requiring all 5,820 records. The original freeze stays intact. The
+completed two fresh updates and full repeated held-out evaluations at steps zero
+and two. All 5,820 records passed the
+[terminal audit](results/score_centering_current_snowball_buffered_retention.json):
+4,796 complete evaluation members and 1,024 exact consumed UID/token/mask
+matches. Both updates had finite nonzero gradients and 4,096-token responses.
+Their core times were 146.08 and 106.63 seconds, including rollout admission of
+80.55 seconds in the first batch. All 1,085,157 loss tokens had actual optimizer
+age zero. The qualification costs **22.4866422** reserved H100 task-hours;
+completed new costs are **287.0151031** hours across 25 attempts.
+
+Same-weight primary evaluator repeats differed by 13 and 23 answers at the two
+qualifying weight states. This is substantial measurement noise, separately from
+training-seed variation. The fixed two passes are averaged within each seed;
+final seed intervals include realized evaluator variation. The historical
+cross-model design precision remains an assumption, not a guaranteed bound or
+an acceptable quality-loss margin.
+
+The original freeze stays intact. The
 primary outcomes, contrasts, twelve seeds, forty-step horizon, runtime, and
 primary statistical analysis stay fixed; this revision was triggered by storage
-timings before any post-training held-out endpoint. Revision two is awaiting
-qualification and a new immutable publication. There is no current confirmation
-recommendation yet.
+timings before any post-training held-out endpoint in the withdrawn cohort.
+Revision two is frozen after successful qualification, under SHA
+`a2073fa93b311899230d0d0ae8563ebedf376de5d7136828b5aefa3d3044361b`.
+The twelve matched seeds and three capture companions remain to be completed.
+There is no current confirmation recommendation yet.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven

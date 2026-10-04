@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "draft_pending_buffered_retention_qualification",
+  "status": "frozen",
   "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
   "marin_base_commit": "22ed55402c665f7e3f01e8f98a35b5e8c55e328e",
   "skyrl_base_commit": "b50b5f42319758c719274bd147bf0cb3656e87c0",
@@ -118,7 +118,12 @@
     "observed_paired_sd_completed_answers": 26.057148731202346,
     "twelve_seed_expected_individual95_half_width": 16.55592244207201,
     "twelve_seed_expected_three_contrast95_half_width": 21.212437079423907,
-    "scope": "Cross-model variance assumption for design only. Historical run semantics differ; do not pool outcomes. Twelve independent new seeds target a family95 half-width below3 percentage points at the observed historical SD, improving on earlier three-seed instability. This is a precision target, not an acceptable quality-loss margin. Forty completed steps reproduce the earlier informative Qwen horizon and exceed Snowball nine-step partial evidence. Not guaranteed power, acceptable loss margin, or equivalence criterion."
+    "scope": "Cross-model variance assumption for design only. Historical run semantics differ; do not pool outcomes. Twelve independent new seeds target a family95 half-width below3 percentage points at the observed historical SD, improving on earlier three-seed instability. This is a precision target, not an acceptable quality-loss margin. Forty completed steps reproduce the earlier informative Qwen horizon and exceed Snowball nine-step partial evidence. Not guaranteed power, acceptable loss margin, or equivalence criterion.",
+    "new_Snowball_sameweight_repeat_differences": [
+      13,
+      23
+    ],
+    "new_repeat_scope": "Two qualifying weight states, not independent training seeds or confirmation outcomes. Observed repeat noise13/23answers is substantial; average the fixed two passes within each seed. Final seed confidence includes realized evaluator variability. Historical cross-model precision assumption remains explicit and is not a guaranteed bound or acceptable-loss margin."
   },
   "stopping": "Complete fixed arms, seeds and40steps without score-triggered stopping or selecting a peak. Missing/failing arms do not count as a supported negative. Routine hardware retries get fresh immutable attempt identities; semantic fixes invalidate comparison and require fresh controls. No acceptable quality-loss tolerance chosen. No merge or monitor rearm.",
   "cost_accounting": "Prior1072.548303 H100 task-hours separate. Current qualification, disabled evaluation pilot, retries, final eval, checkpoint save, discarded work and all confirmations count as new cost. Reserved allocation time primary; useful training throughput reported separately. Exclude unallocated queue intervals, preserve attempt provenance.",
@@ -496,7 +501,12 @@
     ],
     "initial_repeat_absolute_difference": 5,
     "repeat_scope": "Two greedy passes at same weights; not independent training seeds. Calibration only, excluded from confirmation.",
-    "buffered_retention": "results/score_centering_current_snowball_buffered_retention.json"
+    "buffered_retention": "results/score_centering_current_snowball_buffered_retention.json",
+    "buffered_retention_audited_records": 5820,
+    "buffered_retention_sameweight_repeat_differences": [
+      13,
+      23
+    ]
   },
   "runtime_versions": {
     "torch": "2.13.0+cu132",
@@ -737,5 +747,6 @@
   "policy_version_audit": "analyze_current_policy_versions.py",
   "policy_version_audit_sha256": "ada60b42f1f470428bd1169d17063a3b5466d850029799ed7a730bf365ca97cd",
   "terminal_collector": "collect_current_score_centering_confirmation.py",
-  "terminal_collector_sha256": "8e8dd01e9fccbb91b076801fc78a91118ff183e9f96cdaddcd20477aa42934bb"
+  "terminal_collector_sha256": "8e8dd01e9fccbb91b076801fc78a91118ff183e9f96cdaddcd20477aa42934bb",
+  "frozen_at_utc": "2026-10-04T23:57:37.331442+00:00"
 }
