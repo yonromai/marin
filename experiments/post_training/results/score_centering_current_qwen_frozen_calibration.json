@@ -1,0 +1,14 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-frozen-calibration-20261004",
+  "source_commit": "9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b",
+  "state": "succeeded",
+  "training_batches": 12,
+  "nonzero_gradient_batches": 11,
+  "task_started_at_ms": 1791146385958,
+  "task_finished_at_ms": 1791147368177,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 2.182708888888889,
+  "effective_priority": 2,
+  "native_probe": "score_centering_current_qwen_frozen_calibration/provenance.json",
+  "scope": "Fresh base-model calibration of the same fixed tokens/prefixes through12updates. Counterfactual ages, not actual consumed async token ages; no quality comparison."
+}

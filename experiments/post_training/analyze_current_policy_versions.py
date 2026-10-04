@@ -1,12 +1,15 @@
+# Copyright The Marin Authors
+# SPDX-License-Identifier: Apache-2.0
+
 """Convert consumed token versions to ages using the actual optimizer-update ledger."""
 
 from __future__ import annotations
 
 import argparse
-from collections import Counter
 import hashlib
 import json
 import math
+from collections import Counter
 from pathlib import Path
 from typing import Any
 

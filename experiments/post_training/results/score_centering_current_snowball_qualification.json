@@ -1,0 +1,60 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-qualification-20261004-customtemplate",
+  "source_commit": "b5fe333596e9359eadd3c423f4b6886ddf8b2dcf",
+  "launch_config": "../configs/score_centering/current_snowball_qualification.yaml",
+  "state": "succeeded",
+  "optimizer_batches_completed": 5,
+  "nonzero_gradient_batches": 5,
+  "raw_grad_norms": [
+    0.1583814173936844,
+    0.1879584640264511,
+    0.14925456047058105,
+    0.1907397359609604,
+    0.16478945314884186
+  ],
+  "response_lengths_mean": [
+    996.837890625,
+    960.51953125,
+    1018.86328125,
+    890.2578125,
+    831.681640625
+  ],
+  "response_lengths_max": [
+    4096,
+    4096,
+    4096,
+    4096,
+    4096
+  ],
+  "effective_job_priority": 2,
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "task_started_at_ms": [
+    1791144904182,
+    1791144904182,
+    1791144904182,
+    1791144904182,
+    1791144904182
+  ],
+  "task_finished_at_ms": [
+    1791146689553,
+    1791146689553,
+    1791146700472,
+    1791146700472,
+    1791146689553
+  ],
+  "reserved_h100_count": 40,
+  "reserved_h100_task_hours": 19.885984444444446,
+  "checkpoint_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004-customtemplate/checkpoints/global_step_5",
+  "checkpoint_files": 43,
+  "checkpoint_bytes": 939250552891,
+  "native_probe_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/mismatch_probe",
+  "native_probe_status": "complete through0..5",
+  "attention_profile_summary": "score_centering_current_snowball_attention.json",
+  "scope": "Current Snowball forward/backward with nonzero gradients, exact behavior/top32 rescoring, expert-block synchronization and new-stack checkpoint5. Restore6+7 and DP/EP token-version measurement remain to be qualified. Profiler increases the second minibatch time; these are qualification timings, not confirmation cost estimates."
+}

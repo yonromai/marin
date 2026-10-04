@@ -1,0 +1,56 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-age8-calibration-20261004",
+  "source_commit": "9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b",
+  "state": "failed",
+  "failure": "First completed training batch reached weight-sync pause, but every engine did not acknowledge within the default30 seconds. All8 engine logs eventually acknowledge; latest36.786 seconds after trainer pause start. A retry changes only deadline to120 seconds and run-owned names/paths.",
+  "trainer_pause_started_utc": "2026-10-04T20:46:38.076Z",
+  "latest_engine_pause_ack_utc": "2026-10-04T20:47:14.862Z",
+  "engine_pause_acks": [
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-56473c7dccb752547ce0eb2ca9379b97ec930a9356da7a15cdca60be-03000000-13283.err",
+      "ack_line": "2026-10-04 20:46:57.501 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-7e65325cb8285eca655307708eaabbf3595feb1135a81e7af962620d-03000000-13276.err",
+      "ack_line": "2026-10-04 20:47:04.289 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-a88281be172acb7c22f22f826a138d6607e17185a0aa9057c5f3d22c-03000000-13278.err",
+      "ack_line": "2026-10-04 20:47:12.611 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-c0ef5ce107fbec5e1525fc26bca9b03fccb98faddd5d489a7430c0fc-03000000-13282.err",
+      "ack_line": "2026-10-04 20:47:07.589 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-dbbe7ae847eb8f3abb426868a4228e7fa5829572581feb2d0bdf9e6b-03000000-13280.err",
+      "ack_line": "2026-10-04 20:46:56.926 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-f067e4f99050935a3bbb2a62995f8749863ef99d5154fe1596984b79-03000000-13277.err",
+      "ack_line": "2026-10-04 20:46:59.015 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-f0b1eb7fd15a23e5411aef6b88775072080ca0ca583e9e6e3945411d-03000000-13281.err",
+      "ack_line": "2026-10-04 20:47:14.862 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    },
+    {
+      "source": "marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-age8-calibration-20261004/ray-logs/rank1-gb99af0/session_latest/worker-f2c1d68f910346a12156cfa73fcd74a9cc8ed45df8f56c297b20fa6c-03000000-13279.err",
+      "ack_line": "2026-10-04 20:47:11.206 | INFO     | skyrl_train.inference_engines.vllm.vllm_engine:pause_generation:2147 - pause_generation() finished, mode=keep, clear_cache=True, outstanding_requests=0, EngineCore paused"
+    }
+  ],
+  "task_started_at_ms": [
+    1791146385958,
+    1791146385958
+  ],
+  "task_finished_at_ms": [
+    1791146898064,
+    1791146898064
+  ],
+  "effective_task_priorities": [
+    2,
+    2
+  ],
+  "reserved_h100_task_hours": 2.2760266666666666,
+  "scope": "One consumed age-zero batch archived, but no completed higher-age calibration. No quality claim; failed reserved compute counted."
+}

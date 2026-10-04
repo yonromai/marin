@@ -1,0 +1,117 @@
+{
+  "scope": "One complete post-warmup Megatron training minibatch on both Snowball pipeline stages (ranks0and16); actual CUDA flash forward and backward kernels. Profiling did not record input shapes; full4096 response lengths are independently verified in training metrics.",
+  "source_job": "/romain/score-centering-current-snowball-qualification-20261004-customtemplate",
+  "source_commit": "b5fe333596e9359eadd3c423f4b6886ddf8b2dcf",
+  "profiles": [
+    {
+      "iris_task": 2,
+      "policy_rank": 0,
+      "archive_uri": "s3://marin-us-east-02a/tmp/ttl=7d/iris/task-outputs/romain/score-centering-current-snowball-qualification-20261004-customtemplate/2/64398fbd2b326f97/outputs.tar.zst",
+      "archive_sha256": "db553a91a68b6b89f766bf84ccad8777f7e37e2f7b2a870fbc4bfc328b9e0463",
+      "profile_file": "attention-profile/prof_rank_0.json",
+      "events": 3067780,
+      "flash_cuda_kernels": [
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params, int)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dot_do_o_kernel<true, Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, false, true, false>(flash::Flash_bwd_params)",
+          "count": 403
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, true, true, false>(flash::Flash_bwd_params)",
+          "count": 13
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)",
+          "count": 234
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, true, true, false, false>(flash::Flash_fwd_params)",
+          "count": 26
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_combine_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, 4, 1, true>(flash::Flash_fwd_params)",
+          "count": 572
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, true, false, false, false, true, false, true, false>(flash::Flash_fwd_params)",
+          "count": 572
+        }
+      ],
+      "flash_input_dimensions": [
+        "null"
+      ],
+      "durable_archive_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/attention-profiles/task2-64398fbd2b326f97.tar.zst",
+      "archive_bytes": 54220684
+    },
+    {
+      "iris_task": 3,
+      "policy_rank": 16,
+      "archive_uri": "s3://marin-us-east-02a/tmp/ttl=7d/iris/task-outputs/romain/score-centering-current-snowball-qualification-20261004-customtemplate/3/e7c925b066e525bc/outputs.tar.zst",
+      "durable_archive_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/attention-profiles/task3-e7c925b066e525bc.tar.zst",
+      "archive_sha256": "b667b478663675553d23cc959b24a15d526e17f1ef8794acdbcbc291e8d93f19",
+      "archive_bytes": 57141609,
+      "profile_file": "attention-profile/prof_rank_16.json",
+      "events": 3222152,
+      "flash_cuda_kernels": [
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params, int)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dot_do_o_kernel<true, Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, false, true, false>(flash::Flash_bwd_params)",
+          "count": 403
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, true, true, false>(flash::Flash_bwd_params)",
+          "count": 13
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)",
+          "count": 234
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, true, true, false, false>(flash::Flash_fwd_params)",
+          "count": 26
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_combine_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, 4, 1, true>(flash::Flash_fwd_params)",
+          "count": 572
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, true, false, false, false, true, false, true, false>(flash::Flash_fwd_params)",
+          "count": 572
+        }
+      ],
+      "flash_input_dimensions": [
+        "null"
+      ]
+    }
+  ]
+}

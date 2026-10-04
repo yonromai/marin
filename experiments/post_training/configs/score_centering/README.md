@@ -20,7 +20,9 @@ four of them. Failure records and costs are in the current study.
 `current_snowball_qualification.yaml` uses the current port, the adopted Snowball
 model and the format-corrected pool. It requests 32 learner H100s plus 8 inference
 H100s, the full 4,096-token response cap and a fresh step-five checkpoint. A
-separate continuation will verify updates six and seven after restore. Its
+`current_snowball_restore.yaml` continuation verifies updates six and seven
+after restoring its new checkpoint five at the same pinned runtime. The fresh
+qualification completed five nonzero-gradient batches. Its
 optional profiler records actual forward/backward CUDA kernels on both pipeline
 stages. It pins the original named Marin template and requests 1,800 GB RAM per
 node. `current_snowball_qualification_template_failed.yaml` and
@@ -33,6 +35,16 @@ eight-H100 nodes, multiprocess vLLM, rolling batches and a lease-age limit of tw
 Its five batches recorded exact token ages and mixed generating versions
 on the real GPU runtime. Consumed token spans and the actual optimizer-update
 ledger are archived under a fresh durable run prefix.
+
+`current_qwen_frozen_calibration.yaml` extends synchronous native A/B/C scoring
+through twelve updates. `current_qwen_age8_calibration.yaml` separately measures
+actual consumed token versions under a rolling lease bound of eight. Its initial
+`current_qwen_age8_calibration_pause_failed.yaml` attempt hit a 30-second pause
+deadline; all engines acknowledged within 36.8 seconds. The fresh retry raises
+that deadline to 120 seconds. `current_snowball_token_versions.yaml` qualifies
+the observer on Snowball data/expert-parallel inference with rolling batches. These are
+exploratory calibration inputs; frozen-token counterfactual ages and actual
+consumed ages remain separate.
 
 The other files retain the historical September inputs. Their removed API keys
 are evidence of those runs and must not be used to launch the current runtime.

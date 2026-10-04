@@ -145,10 +145,30 @@ retain all five task durations and effective interactive priorities. Commit
 `b5fe3335` restores the named template byte for byte from pinned tokenizer
 `a5ca45f2`. Its prompt rendering, assistant mask, objective and exact-chat
 capability checks pass locally. The fresh Snowball input uses that commit,
-40 H100s and the current example's 1,800 GB host-memory request per node. Runtime
-qualification remains pending. Completed October attempts, including all failures
-and the invalid successful run, total **13.8068386 reserved H100 task-hours**.
-Active tasks are excluded until terminal; prior-round costs remain separate.
+40 H100s and the current example's 1,800 GB host-memory request per node. The [repaired Snowball qualification](results/score_centering_current_snowball_qualification.json)
+completed five optimizer batches with nonzero gradients (0.149–0.191). Every batch
+included responses reaching the 4,096-token cap. Checkpoint five contains policy,
+optimizer and trainer state. Both pipeline stages recorded actual CUDA Flash
+Attention forward and backward kernels in one full minibatch after warmup; the
+[profile summary](results/score_centering_current_snowball_attention.json) links
+durable raw archives and their byte hashes. Input shapes were not recorded by the
+profiler, so answer lengths come from the independent training metrics. This
+attempt cost 19.8859844 reserved H100 task-hours. The same-runtime
+[restore check](configs/score_centering/current_snowball_restore.yaml) is running
+through updates six and seven.
+
+The [complete Snowball native archive](results/score_centering_current_snowball_qualification/)
+contains eight responses and 2,477 tokens on four selected prompts. Mean absolute
+engine gap is 0.04478 (absolute p99 0.40386). At update five, stale-weight drift
+is 0.05610 and combined mismatch is 0.05735; 61.6% of tokens have opposite-signed
+components, and 12.6% exceed the 1.05 upper TIS cap. Trainer repeat scoring is
+identical. Inference generation versus re-read differs by 0.04272 in mean absolute
+logprob, so these data do not identify engine disagreement as deterministic or
+stale drift as the dominant practical source. The calibration scope is four
+prompts, not the held-out population. Completed current attempts through this
+qualification total **33.6928231 reserved H100 task-hours**, including all failures
+and the invalid successful run. Later calibration and restore costs are accounted
+separately when collected. Prior-round costs remain separate.
 
 The port now has optional token policy-version measurement. It observes accepted
 vLLM chunks before response merging and drains older frontend outputs through a
@@ -168,6 +188,31 @@ data/expert-parallel inference geometry still needs its own check. The
 cost 2.3516311 reserved H100 task-hours and completed five nonzero-gradient
 batches plus checkpoint five. These measurements qualify age instrumentation,
 not a centering quality benefit.
+
+The [twelve-update Qwen calibration](results/score_centering_current_qwen_frozen_calibration.json)
+completed twelve batches, eleven with nonzero gradients. It freshly captured
+and rescored the same 5,379 tokens under the port head. At counterfactual age
+12, mean absolute stale drift is 0.01848, combined mismatch is 0.01952 and
+57.7% of components have opposite signs; the engine gap remains 0.01613.
+These selected prompts do not show monotone drift at every update or identify
+an acceptable practical age. The run cost 2.1827089 H100 task-hours.
+
+The separate [higher-age Qwen attempt](results/score_centering_current_qwen_age8_failure.json)
+failed at its first weight-sync pause. All eight engines eventually acknowledged
+the pause; the latest arrived 36.8 seconds after its start, beyond the default
+30-second deadline. A fresh retry keeps all scientific settings and raises only
+that deadline to 120 seconds. The failed attempt cost 2.2760267 H100 task-hours.
+Completed current attempts now total **38.1515586 reserved H100 task-hours**.
+Active Snowball restore and new token-version qualifications are excluded until
+terminal. The historical 1,072.548303 hours remain separate.
+
+The held-out [membership manifest](results/score_centering_current_snowball_heldout_manifest.json)
+preserves all 1,199 original rows and their exact rendered Snowball prompt IDs.
+The primary completed-answer endpoint retains the historical 756 GSM8K and
+Math500 members. The other 443 rows use different verifier/reward scales and
+remain secondary; the 1,199-row aggregate will not silently replace that primary
+endpoint. Membership is frozen; confirmation schedules, seeds and endpoints
+still require a predeclared protocol before its runs.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven
