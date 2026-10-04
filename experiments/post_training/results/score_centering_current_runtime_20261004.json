@@ -1,0 +1,60 @@
+{
+  "scope": "one H100; locked dependency bootstrap; 4096-token TE attention forward/backward; selected logprobs",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "versions": {
+    "torch": "2.13.0+cu132",
+    "transformer-engine": "2.19.0",
+    "flash-attn": "2.8.3",
+    "megatron-core": "0.18.0",
+    "vllm": "0.0.0.dev20260929+marin.39e62869693c.cu132"
+  },
+  "flash_events": [
+    "FlashAttnFunc",
+    "FlashAttnFuncBackward",
+    "autograd::engine::evaluate_function: FlashAttnFuncBackward",
+    "flash_attn::_flash_attn_backward",
+    "flash_attn::_flash_attn_forward",
+    "void flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params, int)",
+    "void flash::flash_bwd_dot_do_o_kernel<true, Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params)",
+    "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, true, true, false>(flash::Flash_bwd_params)",
+    "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, true, true, false, false>(flash::Flash_fwd_params)"
+  ],
+  "flash_cuda_events": [
+    "void flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params, int)",
+    "void flash::flash_bwd_dot_do_o_kernel<true, Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params)",
+    "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, true, true, false>(flash::Flash_bwd_params)",
+    "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, true, true, false, false>(flash::Flash_fwd_params)"
+  ],
+  "max_selected_logprob_error": 4.76837158203125e-07,
+  "peak_cuda_allocated_bytes": 235145216,
+  "iris": {
+    "job": "/romain/score-centering-r3-runtime-20261004",
+    "cluster": "cw-rno2a",
+    "attempt_uid": "92eff69bcc7e5216",
+    "state": "succeeded",
+    "exit_code": 0,
+    "effective_priority_band": 2,
+    "effective_priority": "interactive",
+    "task_started_at_ms": 1791135717959,
+    "task_finished_at_ms": 1791135810802,
+    "task_duration_seconds": 92.843,
+    "reserved_h100_task_hours": 0.025789722222222224,
+    "resources": {
+      "h100": 1,
+      "cpu": 8,
+      "memory": "64GB",
+      "disk": "100GB"
+    },
+    "output_archive_uri": "s3://marin-us-east-02a/tmp/ttl=7d/iris/task-outputs/romain/score-centering-r3-runtime-20261004/0/92eff69bcc7e5216/outputs.tar.zst"
+  },
+  "source": {
+    "skyrl_base_commit": "b50b5f42319758c719274bd147bf0cb3656e87c0",
+    "port": "uncommitted integration branch at probe submission; source probe preserved in campaign commit",
+    "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+    "nvte_environment": {
+      "NVTE_FLASH_ATTN": "1",
+      "NVTE_FUSED_ATTN": "0",
+      "NVTE_UNFUSED_ATTN": "0"
+    }
+  }
+}

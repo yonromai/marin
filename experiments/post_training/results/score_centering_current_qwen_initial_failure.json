@@ -1,0 +1,17 @@
+{
+  "job": "/romain/score-centering-current-qwen-qualification-20261004",
+  "cluster": "cw-rno2a",
+  "source_commit": "a3b98f227afd0e3c753d6cc183445964d779dae2",
+  "source_config": "../configs/score_centering/current_qwen_qualification_initial_failed.yaml",
+  "state": "failed",
+  "exit_code": 1,
+  "optimizer_updates_completed": 0,
+  "failure": "ExactChatTransportError: the environment did not provide chat_completion_params",
+  "diagnosis": "Merged GSM8kEnv supplies exact structured-chat parameters when environment.skyrl_gym.gsm8k.structured_chat=true. Initial probe omitted that setting.",
+  "effective_priority_band": 2,
+  "gpus_per_task": 8,
+  "task_started_at_ms": 1791137424706,
+  "task_finished_at_ms": 1791137933934,
+  "reserved_h100_task_hours": 1.1316177777777778,
+  "recovery": "New run and artifact roots; explicit structured_chat=true; pinned bounded-PPO-gradient fix 188c7ecc. No historical checkpoint reused."
+}

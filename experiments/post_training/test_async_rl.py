@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from experiments.post_training import async_rl
 from experiments.post_training.curriculum_rl.launch import SNOWBALL_POLICY
 
@@ -20,7 +22,12 @@ def test_launcher_builds_complete_smoke_run(monkeypatch) -> None:
     assert run.evaluation.name == "evals/alice-async-rl-snowball-smoke/gsm8k-smoke"
 
 
-def test_a_null_buffer_is_accepted_as_one_slot_per_worker(monkeypatch) -> None:
+@pytest.mark.integration
+def test_launcher_composes_unified_rollout_buffer_config(tmp_path, monkeypatch) -> None:
+    from pathlib import Path
+    from cloud.iris.launch_config import load_launch_config
+    from marin.execution.lazy import StepContext
+
     monkeypatch.setattr("marin.experiment.namespacing.username_segment", lambda: "alice")
     monkeypatch.setattr(async_rl, "username_segment", lambda: "alice")
 
@@ -28,7 +35,13 @@ def test_a_null_buffer_is_accepted_as_one_slot_per_worker(monkeypatch) -> None:
         SNOWBALL_POLICY,
         async_rl.SMOKE_PRESET,
         version="2026.09.18",
-        settings=("trainer.fully_async.max_buffered_groups=null",),
+        settings=("trainer.rollout_buffer.max_in_flight=null",),
     )
-
-    assert run.rl.name.startswith("users/alice/checkpoints/async-rl/snowball-smoke-set-")
+    launch = run.rl.build_config(StepContext.for_fingerprint(run.rl.runtime_args, run.rl.deps))
+    path: Path = tmp_path / "launch.yaml"
+    path.write_text(launch.launch_config_yaml)
+    config = load_launch_config(path)
+    assert config.skyrl.trainer.rollout_buffer.max_in_flight is None
+    assert config.skyrl.trainer.rollout_buffer.batch_policy == "full_batch"
+    assert config.runtime.entrypoint == "skyrl_train.entrypoints.main_base"
+    assert config.skyrl.generator.weight_sync_pause.mode == "keep"

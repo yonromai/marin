@@ -1,0 +1,150 @@
+schema_version: 1
+run:
+  id: score-centering-current-qwen-qualification-20261004-chatfix
+  attempt_id: initial
+  seed: 17
+  submission: detach
+  export_hf: false
+runtime:
+  launcher_commit: 188c7ecc6aec9f503ea422a66e6c8404f413e07a
+  profile: megatron
+iris:
+  cluster: cw-rno2a
+  cluster_config: lib/iris/config/cw-rno2a.yaml
+  job_name: score-centering-current-qwen-qualification-20261004-chatfix
+  priority: interactive
+  max_retries: 0
+  timeout: 7200
+  allocation:
+    num_nodes: 1
+    gpus_per_node: 8
+    gpu_variant: H100
+    cpu: 16
+    memory: 128GB
+    disk: 500GB
+ray:
+  spill_dir: /tmp/skyrl-ray-spill
+  rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/rendezvous
+  log_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/ray-logs
+artifacts:
+  checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/checkpoints
+  export_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-chatfix/exports
+  attempts_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-chatfix/attempts
+  resolved_config_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-chatfix/resolved-launch.yaml
+  terminal_manifest_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-chatfix/terminal.json
+inputs:
+  model:
+    uri: s3://marin-us-east-02a/marin/models/curriculum-rl-qwen3-0.6b/2026.08.29/hf
+    identity: models/curriculum-rl-qwen3-0.6b@2026.08.29:b82cfcbf
+    local_path: /tmp/marinskyrl/models/curriculum-rl-qwen3-0.6b
+    tokenizer_uri: Qwen/Qwen3-0.6B
+    tokenizer_revision: c1899de
+  data_kind: parquet
+  train_data:
+    - kind: directory
+      uri: s3://marin-us-east-02a/marin/documents/curriculum-rl-pool/2026.08.29.1
+      identity: curriculum-rl-pool@2026.08.29.1
+      local_path: /tmp/marinskyrl/data/curriculum-rl-pool
+      relative_path: train.parquet
+  validation_data:
+    - kind: directory
+      uri: s3://marin-us-east-02a/marin/documents/curriculum-rl-pool/2026.08.29.1
+      identity: curriculum-rl-pool@2026.08.29.1
+      local_path: /tmp/marinskyrl/data/curriculum-rl-pool
+      relative_path: validation.parquet
+skyrl:
+  entrypoint: standard
+  context_budget:
+    request_window_tokens: 8192
+    max_new_tokens_per_turn: 4096
+    max_turns: 1
+  environment:
+    env_class: gsm8k
+    skyrl_gym:
+      gsm8k:
+        structured_chat: true
+  trajectory_runner:
+    rollout_workers: {num_workers: 2, cpus_per_worker: 1, executor_threads: 32}
+  trainer:
+    strategy: megatron
+    flash_attn: true
+    use_sample_packing: false
+    gradient_checkpointing: true
+    epochs: 50
+    max_steps: 5
+    update_epochs_per_batch: 1
+    train_batch_size: 8
+    policy_mini_batch_size: 8
+    micro_train_batch_size_per_gpu: 1
+    micro_forward_batch_size_per_gpu: 1
+    eval_before_train: false
+    eval_interval: -1
+    ckpt_interval: 5
+    resume_mode: none
+    logger: console
+    training_metrics: true
+    rollout_spans: true
+    policy_train_spans: true
+    rollout_buffer:
+      max_staleness_steps: 0
+      batch_policy: full_batch
+      max_in_flight: 8
+      object_store_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/groups
+    mismatch_probe:
+      enabled: true
+      prompts: {count: 4, samples_per_prompt: 2}
+      seed: 17
+      archive_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-chatfix/mismatch_probe
+      updates: 5
+      rescore_prefix_cache: "off"
+    algorithm:
+      advantage_estimator: grpo
+      policy_loss_type: regular
+      loss_reduction: token_mean
+      use_kl_loss: false
+      use_kl_in_reward: false
+      kl_estimator_type: k3_unbiased_gradient
+      off_policy_correction: custom
+      off_policy_correction_rules: [{kind: token, action: truncate, high: 1.05}]
+      score_centering_topk: 32
+      score_centering_enabled: true
+      eps_clip_low: 0.2
+      eps_clip_high: 0.2
+    policy:
+      sequence_parallel_size: 1
+      optimizer_config: {optimizer: AdamW, lr: 1.0e-6, weight_decay: 0.01, max_grad_norm: 1.0}
+      megatron_config:
+        tensor_model_parallel_size: 1
+        pipeline_model_parallel_size: 1
+        context_parallel_size: 1
+        expert_model_parallel_size: 1
+        expert_tensor_parallel_size: 1
+        optimizer_checkpoint_sharding_type: dp_reshardable
+        logprob_chunk_size: 512
+    placement:
+      colocate_all: true
+      policy_num_nodes: 1
+      policy_num_gpus_per_node: 8
+  generator:
+    backend: vllm
+    model_dtype: bfloat16
+    vllm_attention_backend: FLASH_ATTN
+    run_engines_locally: true
+    weight_sync_backend: nccl
+    num_inference_engines: 8
+    inference_engine_tensor_parallel_size: 1
+    inference_engine_data_parallel_size: 1
+    inference_engine_expert_parallel_size: 1
+    n_samples_per_prompt: 4
+    require_exact_chat_transport: true
+    enable_http_endpoint: true
+    use_conversation_multi_turn: true
+    chat_template: {source: name, name_or_path: qwen3_without_thinking}
+    chat_template_kwargs: {enable_thinking: false}
+    gpu_memory_utilization: 0.65
+    enable_prefix_caching: true
+    weight_sync_pause: {mode: keep, clear_cache: true}
+    engine_init_kwargs: {logprobs_mode: processed_logprobs, generation_config: vllm}
+    sampling_params: {temperature: 1.0, top_p: 1.0, logprobs: 32}
+  extra_env:
+    PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
