@@ -46,6 +46,19 @@ the observer on Snowball data/expert-parallel inference with rolling batches. Th
 exploratory calibration inputs; frozen-token counterfactual ages and actual
 consumed ages remain separate.
 
+`current_snowball_eval_evidence.yaml` checks both complete step-zero greedy
+passes, including the named repeat, with required schema-six exact-token
+retention. The preserved `current_snowball_eval_evidence_disabled.yaml` pilot
+had a negative callback interval, which disabled even initial evaluation;
+the fresh input uses a positive interval and an independent artifact identity. `current_snowball_full_batch_calibration.yaml` measures actual ages
+while retaining assigned prompt membership. Both qualify evidence before the
+new confirmation; they are not matched quality results.
+
+`current_confirmation/` contains the source-pinned matched inputs for the frozen
+confirmation protocol in `results/score_centering_current_confirmation_protocol.json`.
+The GPU evaluation evidence was audited before the protocol was frozen. It fixes all seeds, steps, named repeats, completion rules and primary
+contrasts before its jobs run.
+
 The other files retain the historical September inputs. Their removed API keys
 are evidence of those runs and must not be used to launch the current runtime.
 

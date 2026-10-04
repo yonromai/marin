@@ -1,0 +1,133 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 144877,
+      "optimizer_age_counts": {
+        "0": 144877
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    },
+    {
+      "training_step": 2,
+      "consuming_policy_version": 1,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 887386,
+      "optimizer_age_counts": {
+        "1": 887386
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 1,
+      "optimizer_age_mean": 1.0,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 1
+    },
+    {
+      "training_step": 3,
+      "consuming_policy_version": 2,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 20,
+      "loss_tokens": 113932,
+      "optimizer_age_counts": {
+        "1": 109705,
+        "2": 4227
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.0371010778359022,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 4,
+      "consuming_policy_version": 3,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 59,
+      "loss_tokens": 407198,
+      "optimizer_age_counts": {
+        "1": 153526,
+        "2": 253672
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6229696609511834,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 5,
+      "consuming_policy_version": 4,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 5,
+      "loss_tokens": 443359,
+      "optimizer_age_counts": {
+        "1": 66974,
+        "2": 376385
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.8489395726713567,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 1996752,
+    "optimizer_age_counts": {
+      "0": 144877,
+      "1": 1217591,
+      "2": 634284
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 2,
+    "optimizer_age_mean": 1.2451015449089322,
+    "optimizer_age_p50": 1,
+    "optimizer_age_p95": 2,
+    "optimizer_age_p99": 2,
+    "active_responses": 2560,
+    "mixed_policy_responses": 84,
+    "mixed_policy_response_fraction": 0.0328125
+  },
+  "inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions/step-00000001.json",
+      "sha256": "6c9eff103821d4dcb5874ce075a21c6ac76b2f56f122598c2411fa342aa0d358"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions/step-00000002.json",
+      "sha256": "596de1a9cb223ee365b3ff4a134a717a5f2f49d876ba534ed94a6ce8f93460f2"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions/step-00000003.json",
+      "sha256": "59adc81c474f722c316a0571d14cd124c4b8415c283047d69acaeb3a7f6b14ef"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions/step-00000004.json",
+      "sha256": "22ed651b3740a6081c3812a91c8e110fa270048c88f4f7e80050d7be64473197"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions/step-00000005.json",
+      "sha256": "968e58af390f202daf34e5d77865e037f3212956d4532bf9e760511d7a7f21d4"
+    }
+  ],
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-token-versions-20261004/consumed_versions"
+}

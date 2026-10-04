@@ -1,0 +1,37 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-token-versions-20261004",
+  "source_commit": "9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b",
+  "state": "succeeded",
+  "nonzero_gradient_batches": 5,
+  "raw_grad_norms": [
+    0.507713258266449,
+    0.1299193948507309,
+    0.4675899147987366,
+    0.21956132352352142,
+    0.20924709737300873
+  ],
+  "task_started_at_ms": [
+    1791147837036,
+    1791147837036,
+    1791147837036,
+    1791147837036,
+    1791147837036
+  ],
+  "task_finished_at_ms": [
+    1791149212495,
+    1791149217829,
+    1791149217829,
+    1791149217829,
+    1791149217829
+  ],
+  "reserved_h100_task_hours": 15.330291111111112,
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "ages": "score_centering_current_snowball_token_versions/ages.json",
+  "scope": "Real DP8/EP8 multiprocess token-version observer across5full4096-cap rolling batches,keep-resume and expert-block synchronization. No final checkpoint or quality comparison."
+}

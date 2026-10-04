@@ -1,0 +1,133 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 494537,
+      "optimizer_age_counts": {
+        "0": 494537
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    },
+    {
+      "training_step": 2,
+      "consuming_policy_version": 1,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 567395,
+      "optimizer_age_counts": {
+        "1": 567395
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 1,
+      "optimizer_age_mean": 1.0,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 1
+    },
+    {
+      "training_step": 3,
+      "consuming_policy_version": 2,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 13,
+      "loss_tokens": 469916,
+      "optimizer_age_counts": {
+        "1": 17616,
+        "2": 452300
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.9625124490334442,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 4,
+      "consuming_policy_version": 3,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 94,
+      "loss_tokens": 515266,
+      "optimizer_age_counts": {
+        "1": 133064,
+        "2": 382202
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.741756684896733,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 5,
+      "consuming_policy_version": 4,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 54,
+      "loss_tokens": 496935,
+      "optimizer_age_counts": {
+        "1": 33306,
+        "2": 463629
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.932977149929065,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 2544049,
+    "optimizer_age_counts": {
+      "0": 494537,
+      "1": 751381,
+      "2": 1298131
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 2,
+    "optimizer_age_mean": 1.3158720606403413,
+    "optimizer_age_p50": 2,
+    "optimizer_age_p95": 2,
+    "optimizer_age_p99": 2,
+    "active_responses": 2560,
+    "mixed_policy_responses": 161,
+    "mixed_policy_response_fraction": 0.062890625
+  },
+  "inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions/step-00000001.json",
+      "sha256": "c4fc10650d36ca5724ea15e37128ebb5546fd18466e7b5c88634b23671e3cd51"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions/step-00000002.json",
+      "sha256": "1fdb87600216e63b04852de5c2f220bad48909dbe6bd53720381e52f23573e50"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions/step-00000003.json",
+      "sha256": "75453b8dab74f932740724b3435f2521ada5c56a95932a84e9b8be5b2ab47bd6"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions/step-00000004.json",
+      "sha256": "6a94a1d78e34af3002cac00f560432a56a297aea6392add9e258fe5c2e404632"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions/step-00000005.json",
+      "sha256": "511aa641720d733878a281edc05f9f0fb88ebcaf01ba859ddf5631c7af8f293b"
+    }
+  ],
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-full-batch-calibration-20261004/consumed_versions"
+}

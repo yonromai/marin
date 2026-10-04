@@ -1,0 +1,49 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-full-batch-calibration-20261004",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "state": "succeeded",
+  "batch_policy": "full_batch",
+  "lease_bound": 2,
+  "max_in_flight": 256,
+  "nonzero_gradient_batches": 5,
+  "raw_grad_norms": [
+    0.15780474245548248,
+    0.14150400459766388,
+    0.1753516048192978,
+    0.16462163627147675,
+    0.16430054605007172
+  ],
+  "max_response_tokens": [
+    4096,
+    4096,
+    4096,
+    4096,
+    4096
+  ],
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "task_started_at_ms": [
+    1791149590829,
+    1791149590829,
+    1791149590829,
+    1791149590829,
+    1791149590829
+  ],
+  "task_finished_at_ms": [
+    1791150900554,
+    1791150911428,
+    1791150905830,
+    1791150905830,
+    1791150905830
+  ],
+  "reserved_h100_task_hours": 14.611837777777778,
+  "ages": "score_centering_current_snowball_full_batch_calibration/ages.json",
+  "training_metrics": "score_centering_current_snowball_full_batch_calibration/training_metrics.json",
+  "teardown_warning": "Inference teardown timed out after30seconds, then all actors killed and every task succeeded. All training/optimizer and immutable consumed-version records completed before cleanup.",
+  "scope": "Assigned-prompt full_batch practical older-rollout calibration, not a quality comparison. Age evidence from exact token spans and applied-update ledger, not lease setting."
+}

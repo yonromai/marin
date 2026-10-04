@@ -1,0 +1,122 @@
+{
+  "prior_rounds_reserved_h100_task_hours": 1072.548303,
+  "current_completed_reserved_h100_task_hours": 123.49756972222222,
+  "accounted_completed_attempts": 19,
+  "cost_basis": "Controller recorded reservation/task time, including initialization, qualification, evaluation, checkpointing, invalid attempts, failures and teardown. Restore PodDeleted uses actual final attempt end rather than unallocated requeue time. Active jobs excluded until terminal; no historical/current outcome pooling.",
+  "attempts": [
+    {
+      "result": "score_centering_current_qwen_age8_calibration.json",
+      "job_id": "/romain/score-centering-current-qwen-age8-calibration-20261004-pause120",
+      "reserved_h100_task_hours": 3.42082,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_qwen_age8_failure.json",
+      "job_id": "/romain/score-centering-current-qwen-age8-calibration-20261004",
+      "reserved_h100_task_hours": 2.2760266666666666,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_qwen_capturefix_failure.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004-capturefix",
+      "reserved_h100_task_hours": 1.1236822222222222,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_qwen_chatfix_failure.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004-chatfix",
+      "reserved_h100_task_hours": 1.050482222222222,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_qwen_curriculumfix_failure.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004-curriculumfix",
+      "reserved_h100_task_hours": 1.2137888888888888,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_qwen_frozen_calibration.json",
+      "job_id": "/romain/score-centering-current-qwen-frozen-calibration-20261004",
+      "reserved_h100_task_hours": 2.182708888888889,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_qwen_hostmemfix_invalid.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004-hostmemfix",
+      "reserved_h100_task_hours": 1.6288644444444444,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_qwen_initial_failure.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004",
+      "reserved_h100_task_hours": 1.1316177777777778,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_qwen_probewakefix.json",
+      "job_id": "/romain/score-centering-current-qwen-qualification-20261004-probewakefix",
+      "reserved_h100_task_hours": 1.5928266666666666,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_qwen_token_versions.json",
+      "job_id": "/romain/score-centering-current-qwen-token-versions-20261004",
+      "reserved_h100_task_hours": 2.3516311111111112,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_runtime_20261004.json",
+      "job_id": "/romain/score-centering-r3-runtime-20261004",
+      "reserved_h100_task_hours": 0.025789722222222224,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_snowball_builtin_failure.json",
+      "job_id": "/romain/score-centering-current-snowball-qualification-20261004-templatefix",
+      "reserved_h100_task_hours": 1.6513333333333333,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_snowball_eval_evidence_disabled.json",
+      "job_id": "/romain/score-centering-current-snowball-eval-evidence-20261004",
+      "reserved_h100_task_hours": 10.95623777777778,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_snowball_full_batch_calibration.json",
+      "job_id": "/romain/score-centering-current-snowball-full-batch-calibration-20261004",
+      "reserved_h100_task_hours": 14.611837777777778,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_snowball_qualification.json",
+      "job_id": "/romain/score-centering-current-snowball-qualification-20261004-customtemplate",
+      "reserved_h100_task_hours": 19.885984444444446,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_snowball_restore.json",
+      "job_id": "/romain/score-centering-current-snowball-restore-20261004",
+      "reserved_h100_task_hours": 24.427355555555554,
+      "state": "killed after completed scientific work"
+    },
+    {
+      "result": "score_centering_current_snowball_template_failure.json",
+      "job_id": "/romain/score-centering-current-snowball-qualification-20261004",
+      "reserved_h100_task_hours": 2.0368222222222223,
+      "state": "failed"
+    },
+    {
+      "result": "score_centering_current_snowball_token_versions.json",
+      "job_id": "/romain/score-centering-current-snowball-token-versions-20261004",
+      "reserved_h100_task_hours": 15.330291111111112,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_snowball_eval_evidence.json",
+      "job_id": "/romain/score-centering-current-snowball-eval-evidence-20261004-enabled",
+      "reserved_h100_task_hours": 16.59946888888889,
+      "state": "succeeded"
+    }
+  ]
+}

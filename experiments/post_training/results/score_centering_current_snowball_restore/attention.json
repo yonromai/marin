@@ -1,0 +1,45 @@
+{
+  "scope": "One surviving actual rank-zero profile after restoring checkpoint five and updating through seven. Rank-sixteen teardown archive was not retained after late pod deletion; both stages were independently demonstrated in the fresh qualification at identical runtime pin. Input shapes not recorded; answer lengths verified separately in metrics.",
+  "job_id": "/romain/score-centering-current-snowball-restore-20261004",
+  "source_commit": "b5fe333596e9359eadd3c423f4b6886ddf8b2dcf",
+  "archive_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-restore-20261004/attention-profiles/task1-8f1cce8ddc41919f.tar.zst",
+  "archive_sha256": "c7ce27c8ae37ed9bc51ccfa06922b2b503b83be0545d6b52afbd25ccb83ba1b1",
+  "profiles": [
+    {
+      "profile_file": "attention-profile/prof_rank_0.json",
+      "events": 3059436,
+      "flash_cuda_kernels": [
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_convert_dq_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params, int)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dot_do_o_kernel<true, Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> > >(flash::Flash_bwd_params)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_bwd_dq_dk_dv_loop_seqk_parallel_kernel<Flash_bwd_kernel_traits<128, 64, 128, 8, 2, 4, 2, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 8, cutlass::bfloat16_t> >, false, true, false, false, false, true, false>(flash::Flash_bwd_params)",
+          "count": 416
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, true, false, false, false, true, false, false>(flash::Flash_fwd_params)",
+          "count": 182
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_combine_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, 4, 1, true>(flash::Flash_fwd_params)",
+          "count": 650
+        },
+        {
+          "category": "kernel",
+          "name": "void flash::flash_fwd_splitkv_kernel<Flash_fwd_kernel_traits<128, 64, 128, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 64, 128, 4, cutlass::bfloat16_t> >, true, false, false, false, true, false, true, false>(flash::Flash_fwd_params)",
+          "count": 650
+        }
+      ]
+    }
+  ]
+}

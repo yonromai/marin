@@ -1,0 +1,39 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-eval-evidence-20261004-enabled",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "state": "succeeded",
+  "evidence_qualification": "passed: all1199 frozen members retained once in each separately named greedy pass",
+  "task_started_at_ms": [
+    1791150771923,
+    1791150771923,
+    1791150771923,
+    1791150771923,
+    1791150771923
+  ],
+  "task_finished_at_ms": [
+    1791152260561,
+    1791152265978,
+    1791152271138,
+    1791152260561,
+    1791152271138
+  ],
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "effective_job_priority": 2,
+  "reserved_h100_task_hours": 16.59946888888889,
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-eval-evidence-20261004-enabled/attempts/trajectories",
+  "endpoint": "score_centering_current_snowball_eval_evidence/endpoints.json",
+  "training_metrics": "score_centering_current_snowball_eval_evidence/training_metrics.json",
+  "scope": "Evidence qualification: two initial full1199 greedy passes, separately named immutable schema6 records, then one fresh training batch. Not a confirmation result.",
+  "driver_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-eval-evidence-20261004-enabled/ray-logs/rank0-g53c548/session_latest/worker-82b6ad35b9a12bf5c0de1befd957d4f3eea276f17adeaa405b77ade7-06000000-14157.err",
+  "member_result_count": 2398,
+  "primary_completed_correct_by_pass": [
+    227,
+    222
+  ]
+}

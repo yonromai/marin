@@ -1,0 +1,76 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-restore-20261004",
+  "source_commit": "b5fe333596e9359eadd3c423f4b6886ddf8b2dcf",
+  "job_state": "killed after completed scientific work",
+  "runtime_qualification": "restored checkpoint five; nonzero updates six and seven; saved checkpoint seven",
+  "raw_grad_norms": [
+    0.1755606085062027,
+    0.12614023685455322
+  ],
+  "checkpoint_step": 7,
+  "checkpoint_file_count": 43,
+  "checkpoint_bytes": 939250552870,
+  "checkpoint_root": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-restore-20261004/checkpoints/global_step_7",
+  "native_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-restore-20261004/mismatch_probe",
+  "probe_steps": [
+    5,
+    6,
+    7
+  ],
+  "task_allocated_at_ms": [
+    1791147377612,
+    1791147377612,
+    1791147377612,
+    1791147377612,
+    1791147377612
+  ],
+  "attempt_started_at_ms": [
+    1791147385781,
+    1791147385781,
+    1791147385781,
+    1791147385781,
+    1791147385781
+  ],
+  "attempt_finished_at_ms": [
+    1791149568605,
+    1791149573853,
+    1791149573853,
+    1791149573853,
+    1791149590206
+  ],
+  "attempt_terminal_states": [
+    4,
+    4,
+    4,
+    4,
+    7
+  ],
+  "attempt_terminal_reasons": [
+    "",
+    "",
+    "",
+    "",
+    "PodDeleted: pod was deleted while the attempt was active"
+  ],
+  "task_gpu_counts": [
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "reserved_h100_task_hours": 24.427355555555554,
+  "cost_basis": "First task allocation through its sole attempt end, including checkpoint load and teardown. Excludes unallocated queue time after the late pod deletion. No second attempts launched.",
+  "late_cleanup_failure": "Task four attempt zero was PodDeleted after training and checkpoint save. Iris requeued it. After live-state, driver, archive and checkpoint reconciliation, cancelled own job before a duplicate attempt. Do not call whole job succeeded.",
+  "driver_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-restore-20261004/ray-logs/rank0-g5303b8/session_latest/worker-526204d47d9997643ee7f8ed84ec9dcee626a39427cc2bc28453d30c-06000000-14196.err",
+  "provenance": "score_centering_current_snowball_restore/provenance.json",
+  "training_metrics": "score_centering_current_snowball_restore/training_metrics.json",
+  "components": "score_centering_current_snowball_restore/components.csv",
+  "checkpoint_listing_sha256": "faca5efc6750354c4c276647987de06155decae1e57b2f1e92d4e9fb06969ae4",
+  "attention": "score_centering_current_snowball_restore/attention.json",
+  "useful_answer_lengths": "Both restored training batches reach the intended 4096-token cap; full distribution preserved in training metrics.",
+  "max_response_tokens_per_batch": [
+    4096,
+    4096
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 21476,
+      "optimizer_age_counts": {
+        "0": 21476
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    },
+    {
+      "training_step": 2,
+      "consuming_policy_version": 1,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 26645,
+      "optimizer_age_counts": {
+        "1": 26645
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 1,
+      "optimizer_age_mean": 1.0,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 1
+    },
+    {
+      "training_step": 3,
+      "consuming_policy_version": 2,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 60245,
+      "optimizer_age_counts": {
+        "2": 60245
+      },
+      "optimizer_age_min": 2,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 2.0,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 4,
+      "consuming_policy_version": 3,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 75021,
+      "optimizer_age_counts": {
+        "1": 3695,
+        "2": 425,
+        "3": 70901
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 3,
+      "optimizer_age_mean": 2.8958291678330066,
+      "optimizer_age_p50": 3,
+      "optimizer_age_p95": 3,
+      "optimizer_age_p99": 3
+    },
+    {
+      "training_step": 5,
+      "consuming_policy_version": 4,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 113202,
+      "optimizer_age_counts": {
+        "4": 113202
+      },
+      "optimizer_age_min": 4,
+      "optimizer_age_max": 4,
+      "optimizer_age_mean": 4.0,
+      "optimizer_age_p50": 4,
+      "optimizer_age_p95": 4,
+      "optimizer_age_p99": 4
+    },
+    {
+      "training_step": 6,
+      "consuming_policy_version": 5,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 60487,
+      "optimizer_age_counts": {
+        "3": 6295,
+        "5": 54192
+      },
+      "optimizer_age_min": 3,
+      "optimizer_age_max": 5,
+      "optimizer_age_mean": 4.7918561013110255,
+      "optimizer_age_p50": 5,
+      "optimizer_age_p95": 5,
+      "optimizer_age_p99": 5
+    },
+    {
+      "training_step": 7,
+      "consuming_policy_version": 6,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 106864,
+      "optimizer_age_counts": {
+        "6": 106864
+      },
+      "optimizer_age_min": 6,
+      "optimizer_age_max": 6,
+      "optimizer_age_mean": 6.0,
+      "optimizer_age_p50": 6,
+      "optimizer_age_p95": 6,
+      "optimizer_age_p99": 6
+    },
+    {
+      "training_step": 8,
+      "consuming_policy_version": 7,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 95129,
+      "optimizer_age_counts": {
+        "7": 95129
+      },
+      "optimizer_age_min": 7,
+      "optimizer_age_max": 7,
+      "optimizer_age_mean": 7.0,
+      "optimizer_age_p50": 7,
+      "optimizer_age_p95": 7,
+      "optimizer_age_p99": 7
+    },
+    {
+      "training_step": 9,
+      "consuming_policy_version": 8,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 5,
+      "loss_tokens": 101946,
+      "optimizer_age_counts": {
+        "5": 801,
+        "6": 28899,
+        "7": 7406,
+        "8": 64840
+      },
+      "optimizer_age_min": 5,
+      "optimizer_age_max": 8,
+      "optimizer_age_mean": 7.336835187255998,
+      "optimizer_age_p50": 8,
+      "optimizer_age_p95": 8,
+      "optimizer_age_p99": 8
+    },
+    {
+      "training_step": 10,
+      "consuming_policy_version": 9,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 12,
+      "loss_tokens": 62803,
+      "optimizer_age_counts": {
+        "5": 1364,
+        "6": 32798,
+        "7": 28641
+      },
+      "optimizer_age_min": 5,
+      "optimizer_age_max": 7,
+      "optimizer_age_mean": 6.434326385682213,
+      "optimizer_age_p50": 6,
+      "optimizer_age_p95": 7,
+      "optimizer_age_p99": 7
+    },
+    {
+      "training_step": 11,
+      "consuming_policy_version": 10,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 14,
+      "loss_tokens": 84650,
+      "optimizer_age_counts": {
+        "5": 198,
+        "6": 15289,
+        "7": 32594,
+        "8": 36569
+      },
+      "optimizer_age_min": 5,
+      "optimizer_age_max": 8,
+      "optimizer_age_mean": 7.2467099822799765,
+      "optimizer_age_p50": 7,
+      "optimizer_age_p95": 8,
+      "optimizer_age_p99": 8
+    },
+    {
+      "training_step": 12,
+      "consuming_policy_version": 11,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 15,
+      "loss_tokens": 82156,
+      "optimizer_age_counts": {
+        "5": 141,
+        "6": 20279,
+        "7": 30236,
+        "8": 31500
+      },
+      "optimizer_age_min": 5,
+      "optimizer_age_max": 8,
+      "optimizer_age_mean": 7.1331491309216615,
+      "optimizer_age_p50": 7,
+      "optimizer_age_p95": 8,
+      "optimizer_age_p99": 8
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 890624,
+    "optimizer_age_counts": {
+      "0": 21476,
+      "1": 30340,
+      "2": 60670,
+      "3": 77196,
+      "4": 113202,
+      "5": 56696,
+      "6": 204129,
+      "7": 194006,
+      "8": 132909
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 8,
+    "optimizer_age_mean": 5.350904534348951,
+    "optimizer_age_p50": 6,
+    "optimizer_age_p95": 8,
+    "optimizer_age_p99": 8,
+    "active_responses": 384,
+    "mixed_policy_responses": 46,
+    "mixed_policy_response_fraction": 0.11979166666666667
+  },
+  "inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000001.json",
+      "sha256": "a851e86c8803d73920e93d1e9b6ab53e4a57fdb24936211c6604e60f53f2125c"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000002.json",
+      "sha256": "52781a66454b2ddb700de2d304d5f0b7d9d250baabc1008fd7f893e5bb91e6da"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000003.json",
+      "sha256": "92f26861e68c0e9bcc072d7a3e6ef0271873ca00d0e9664222344e3b46b43547"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000004.json",
+      "sha256": "e5c55dc579c2df2d4f08842e2b65c5de9424c8ba9cc6ecc06075e664a6ce3a2f"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000005.json",
+      "sha256": "5f8f9f0a406e812fee8639c39931f15d1318dd7ecf4357bcf3c3605718c358a9"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000006.json",
+      "sha256": "2dbedbafc524021fb12d0059cf0ca2820e1c9a6ad192b031d60f791f16e0d531"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000007.json",
+      "sha256": "35eadd844135ab707b8215ca3934a0b4332cc04983454b4a7d4892515edcafe3"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000008.json",
+      "sha256": "eef60653e624734c3d6a435ef33aad47b282ea3084e2e59e0147b84b99090908"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000009.json",
+      "sha256": "0cd4ae29cf9e1b0db1e2678111eddebef94a01bcb3525c77e9deb4ae6c1663b6"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000010.json",
+      "sha256": "f2bd3f4a5370b911bfe1d750116c781edacb90934a086d2f4ca6ba86aede6a30"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000011.json",
+      "sha256": "f6ba276b1fdbc9631ff5f3f0f5b799b74f374b685cf40943829a1529410c7720"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions/step-00000012.json",
+      "sha256": "2775ffce0d6f346e8fb2928d5c8eed7ad687ee69679abd60532ebc9d29fd9c3c"
+    }
+  ],
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-age8-calibration-20261004-pause120/consumed_versions"
+}

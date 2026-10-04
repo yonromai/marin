@@ -7,7 +7,7 @@ GPU work.
 
 ## October 4 continuation on the merged APIs
 
-The current port head is MarinSkyRL `9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b`,
+The current port head is MarinSkyRL `5f53efd1300ac41fcff0811db56842dacb4c735d`,
 based on merged main `b50b5f42`, and Marin at `22ed55402c665f7e3f01e8f98a35b5e8c55e328e`
 before campaign changes. Earlier configurations and measurements below retain their
 original meaning. They are historical evidence and are not pooled with current runs.
@@ -206,6 +206,23 @@ Completed current attempts now total **38.1515586 reserved H100 task-hours**.
 Active Snowball restore and new token-version qualifications are excluded until
 terminal. The historical 1,072.548303 hours remain separate.
 
+The [Qwen higher-age retry](results/score_centering_current_qwen_age8_calibration.json)
+completed twelve batches (ten with nonzero gradients) and cost 3.4208200 H100
+task-hours. Its 890,624 measured loss tokens have mean optimizer age 5.3509,
+p95 and maximum eight. Forty-six of 384 responses mix generating versions.
+This extends actual consumed-age calibration beyond the earlier mean 1.41
+under a lease limit of two; it does not establish a quality or cost benefit.
+Completed current attempts now total **41.5723786 reserved H100 task-hours**.
+
+Commit `5f53efd1` corrects retained evaluation provenance to name completed
+weights, and records each named evaluation profile in schema-six trajectory
+records. Identical repeated responses previously shared a retention identity.
+The new name makes both passes separately replayable within the existing shared
+worker sink. A local persistence check keeps both identical passes, and 33
+retention/evaluation cases pass. The [GPU evidence check](configs/score_centering/current_snowball_eval_evidence.yaml)
+will run two complete step-zero passes before confirmation; qualification runs
+retain their original pinned sources and costs.
+
 The held-out [membership manifest](results/score_centering_current_snowball_heldout_manifest.json)
 preserves all 1,199 original rows and their exact rendered Snowball prompt IDs.
 The primary completed-answer endpoint retains the historical 756 GSM8K and
@@ -213,6 +230,105 @@ Math500 members. The other 443 rows use different verifier/reward scales and
 remain secondary; the 1,199-row aggregate will not silently replace that primary
 endpoint. Membership is frozen; confirmation schedules, seeds and endpoints
 still require a predeclared protocol before its runs.
+
+The [Snowball multiprocess measurement](results/score_centering_current_snowball_token_versions.json)
+completed five nonzero-gradient batches. Its 1,996,752 consumed loss tokens have
+mean optimizer age 1.2451 (p95 and maximum two), and 84 of 2,560 responses mix
+generating versions. This validates the pinned observer with DP8/EP8,
+expert-block synchronization and keep-resume. The run cost 15.3302911 H100
+task-hours, bringing completed current costs to **56.9026697** before the
+pending restore and evaluation checks. Rolling admission selected short groups
+first; a separate full-batch calibration retains assigned prompt membership
+while measuring pre-generated older tokens. The intended matched confirmation
+uses that mode if it demonstrates useful older ages.
+
+[Endpoint analysis](analyze_current_score_centering_evaluations.py) requires
+complete primary and named-repeat passes at every declared step. It checks
+exact frozen prompt token IDs, native grading metadata, completed-weight
+versions, greedy sampling and the 4,096-token answer cap. Completed-correct
+requires an accepted normal stop, no error disposition and positive native
+verifier outcome. Truncated positive-score answers and the different secondary
+reward scales do not increase the primary endpoint. Seven independent local
+checks cover changed tokens, weights, caps, grading, missing repeats and duplicate
+records. Exact membership remains in a compressed repository artifact and a
+linked durable full manifest; all original member and token hashes are unchanged.
+
+The [new-checkpoint restore](results/score_centering_current_snowball_restore.json)
+loaded checkpoint five and completed updates six and seven with raw gradient
+norms 0.17556 and 0.12614. It saved checkpoint seven: 43 files, 939,250,552,870
+bytes, including trainer, dataloader and optimizer state. The fixed native
+archive is complete at weights five, six and seven. One pod was deleted after
+training and saving, while Iris still considered its attempt active. Iris
+requeued that task; after reconciling live state and outputs, the remaining job
+was cancelled before a duplicate attempt. The runtime phases succeeded; the
+whole job is recorded as killed after completed scientific work. Its reserved
+allocation cost was 24.4273556 H100 task-hours, excluding the unallocated requeue
+interval. Current completed costs reached 81.3300253 hours.
+
+The first [evaluation-evidence pilot](results/score_centering_current_snowball_eval_evidence_disabled.json)
+completed one training batch but ran no evaluations. Its negative callback
+interval disabled initial evaluation too. That invalid evidence attempt costs
+10.9562378 H100 task-hours and is preserved. A fresh positive-interval pilot
+checks both named passes. The resolved launcher writes retention beneath
+`artifacts.attempts_root/trajectories`, overriding the source generator path;
+the audit uses that resolved location. Current completed costs are now
+**92.2862631 H100 task-hours**, excluding active pilots and confirmation.
+The public-package launcher and endpoint suites pass 32 cases against `5f53efd1`.
+
+The [full-batch age calibration](results/score_centering_current_snowball_full_batch_calibration.json)
+completed five nonzero-gradient batches with no stale-group rejection. It used
+all 2,544,049 measured loss tokens. Their mean optimizer age is **1.31587**,
+median/p95/maximum two. In the last three batches, token-weighted means are
+1.96251, 1.74176 and 1.93298. Of 2,560 responses, 161 mix generating versions.
+All five training batches reach the intended 4,096-token cap. The average
+captured behavior tail mass varies from 1.75% to 2.42%; 19–23% of tokens have
+more than 1% outside the selected 32 candidates. This supports a practical
+older setting of lease bound two with 256 assigned groups in flight. It does
+not establish quality or bound arbitrary tail error. The run cost 14.6118378
+reserved H100 task-hours. Completed new costs are **106.8981008** hours before
+the active corrected evaluation pilot and confirmation.
+
+The frozen [confirmation protocol](results/score_centering_current_confirmation_protocol.json)
+uses twelve new paired training seeds, 40 completed training steps, fixed
+step-zero/10/20/30/40 evaluations, and two separately retained greedy passes
+at each weight. Skipped optimizer updates are tracked through the actual
+applied-update ledger. Four arms separate older TIS, older TIS+SC, fresh TIS
+and the current merged regular-PPO/no-correction incumbent. The latter two
+objective choices remain distinct. A three-seed width-zero TIS companion
+measures capture/rescoring cost. The source validator requires sampled
+logprobs even for exact chat without head capture: these width-zero arms use
+`logprobs=0`, which retains the sampled token without a positive top-K request.
+
+The six historical Qwen paired differences have sample standard deviation
+26.057 completed answers. Assuming that variance for design, twelve new
+seeds give an expected three-contrast family 95% half-width of 21.212 answers,
+**2.81 percentage points of 756**. This is a precision target, not an acceptable
+quality-loss margin or guaranteed power. Historical semantics differ, and
+these outcomes will not be pooled. The paired-seed analysis was written before
+confirmation and passes nine independent checks, including hand-calculated
+Student-t uncertainty and rejection of missing or changed evidence. The corrected GPU evaluation evidence passed before freezing this protocol;
+confirmation outcomes remain pending.
+
+The [corrected evaluation evidence](results/score_centering_current_snowball_eval_evidence.json)
+passed the exact-token audit: all 1,199 frozen members appear once in each
+separately named pass, for 2,398 schema-six records. The two primary passes
+have 227 and 222 completed-correct answers out of 756, a five-answer fixed-weight
+difference. Their completion counts are 699 and 693; each reaches the 4,096-token
+cap. This is calibration noise, excluded from confirmation. Required retention
+shutdown completed, and all five tasks and the job succeeded at effective
+interactive priority. Including both evaluations and one training batch costs
+16.5994689 reserved H100 task-hours. Completed current costs are now
+**123.4975697** hours, separately from the historical 1,072.548303.
+
+The protocol is frozen before any confirmation launch, including all 51 exact
+configuration hashes, analysis and endpoint-audit source hashes, twelve primary
+seeds and three capture-cost companions. The twelve-seed fixed design is intended
+to constrain effects of several percentage points in this measured age range;
+it cannot guarantee sensitivity to one-answer differences or establish an
+unchosen quality-loss tolerance. The additional native A/B/C check uses the
+exact confirmation multiprocess mode with fresh synchronous generation;
+its frozen-token rescores are counterfactual ages, separately from actual
+async consumed ages. Native probes explicitly reject async scheduling.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven

@@ -1,0 +1,32 @@
+{
+  "pull_request": {
+    "headRefOid": "26659be09e116b42ad91ce924dc631d31ba57b28",
+    "mergeCommit": null,
+    "mergedAt": null,
+    "state": "OPEN",
+    "url": "https://github.com/marin-community/marin/pull/9605"
+  },
+  "source_blob_sha": "4c6026c7309f1650b9006a027c9458855ffa45f6",
+  "source_html_url": "https://github.com/marin-community/marin/blob/main/experiments/post_training/async_rl.py",
+  "checked_at_utc": "2026-10-04T22:18:28.585896+00:00",
+  "selection_status": "selected merged incumbent objective for frozen current-stack comparison",
+  "merged_incumbent": {
+    "policy_loss_type": "regular",
+    "off_policy_correction": "none",
+    "use_kl_loss": false,
+    "source_file": "experiments/post_training/async_rl.py",
+    "source_lines": [
+      422,
+      424,
+      427
+    ],
+    "frozen_marin_base": "22ed55402c665f7e3f01e8f98a35b5e8c55e328e"
+  },
+  "matched_arm": "older_incumbent",
+  "comparison_scope": "Same frozen source/model/pool/optimizer/geometry/full_batch older schedule. Explicit token_mean whole-step normalization for all arms. No top-K head capture; sampled logprobs0 for exact-chat evidence. These campaign schedule/normalization/API adaptations are stated, not an unmodified performance claim for the old launcher.",
+  "separate_open_candidate": {
+    "policy_loss_type": "behavior_clip",
+    "off_policy_correction": "none",
+    "status": "open PR9605; distinct proposed candidate, not chosen incumbent or TIS control"
+  }
+}

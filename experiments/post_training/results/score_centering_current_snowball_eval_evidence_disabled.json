@@ -1,0 +1,33 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-eval-evidence-20261004",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "job_state": "succeeded",
+  "evidence_qualification": "failed: no evaluations ran",
+  "cause": "EvaluationCallback requires positive eval_steps even for eval_before_train. Config had eval_steps=-1, so neither intended initial pass ran. One training step succeeded.",
+  "config": "../configs/score_centering/current_snowball_eval_evidence_disabled.yaml",
+  "reserved_h100_task_hours": 10.95623777777778,
+  "task_started_at_ms": [
+    1791149018065,
+    1791149018065,
+    1791149018065,
+    1791149018065,
+    1791149018065
+  ],
+  "task_finished_at_ms": [
+    1791149999952,
+    1791150005170,
+    1791150005170,
+    1791150005170,
+    1791150005170
+  ],
+  "effective_priority_bands": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "actual_trajectory_root": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-eval-evidence-20261004/attempts/trajectories",
+  "launcher_path_observation": "Typed launch normalization overrides generator.output_path with artifacts.attempts_root/trajectories. Use the resolved path for archive audit.",
+  "fresh_retry": "/romain/score-centering-current-snowball-eval-evidence-20261004-enabled"
+}

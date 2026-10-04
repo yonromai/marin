@@ -1,0 +1,23 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-age8-calibration-20261004-pause120",
+  "source_commit": "9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b",
+  "state": "succeeded",
+  "training_batches": 12,
+  "nonzero_gradient_batches": 10,
+  "task_started_at_ms": [
+    1791147835764,
+    1791147835764
+  ],
+  "task_finished_at_ms": [
+    1791148602518,
+    1791148608379
+  ],
+  "reserved_h100_count": 16,
+  "reserved_h100_task_hours": 3.42082,
+  "effective_task_priorities": [
+    2,
+    2
+  ],
+  "ages": "score_centering_current_qwen_age8_calibration/ages.json",
+  "scope": "Exploratory measured token ages on Qwen through12updates at lease bound8; no matched quality experiment. All12 steps have an applied-update ledger."
+}
