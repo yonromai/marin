@@ -1,0 +1,37 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-qualification-20261004-probewakefix",
+  "source_commit": "dcd4b78fc99bb504f642d280f2278fce876e6d4f",
+  "launch_config": "../configs/score_centering/current_qwen_qualification.yaml",
+  "state": "succeeded",
+  "scope": "Qwen exact behavior/top32 capture, stored-policy selected rescoring, five optimizer batches including four nonzero-gradient batches, fixed-prefix native A/B/C scoring and new step-five checkpoint. No Snowball fit or restore claim.",
+  "nominal_optimizer_updates": 5,
+  "nonzero_gradient_updates": 4,
+  "raw_grad_norms": [
+    0.0,
+    0.22038838267326355,
+    0.22224880754947662,
+    0.19269336760044098,
+    0.4281105697154999
+  ],
+  "centering_correction_abs_means": [
+    0.0,
+    0.0017231624806299806,
+    0.000988504005363211,
+    0.0018038848647847772,
+    0.0027670987765304744
+  ],
+  "task_started_at_ms": 1791143649552,
+  "task_finished_at_ms": 1791144366324,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 1.5928266666666666,
+  "effective_job_priority": 2,
+  "effective_task_priority": 2,
+  "checkpoint_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-probewakefix/checkpoints/global_step_5",
+  "native_probe_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-probewakefix/mismatch_probe",
+  "native_probe_status": "complete",
+  "limitations": [
+    "Only four fixed prompts and eight responses; not population mismatch coverage.",
+    "Probe ages are frozen-token counterfactual optimizer ages, not consumed async token ages.",
+    "First training batch has tied rewards and zero gradient; four subsequent batches are informative."
+  ]
+}

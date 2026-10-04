@@ -1,0 +1,131 @@
+{
+  "scope": "First training row per environment in each pinned pool; prompt endings checked against native graders. This is a format audit, not a full grading-validation or held-out-membership manifest.",
+  "revisions": {
+    "2026.08.29.1": {
+      "gsm8k": {
+        "prompt": [
+          {
+            "content": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May? Let's think step by step and output the final answer after \"####\".",
+            "role": "user"
+          }
+        ],
+        "env_class": "gsm8k",
+        "reward_spec": {
+          "ground_truth": "72",
+          "method": "rule"
+        },
+        "reward_model": {
+          "ground_truth": "72"
+        },
+        "extra_info": {
+          "data_source": "g0-gsm8k",
+          "grade": 0,
+          "index": 0,
+          "split": "train"
+        }
+      },
+      "aime": {
+        "prompt": [
+          {
+            "content": "Let \\[f(x) = \\left\\{\n\\begin{array}{cl} ax+3, &\\text{ if }x>2, \\\\\nx-5 &\\text{ if } -2 \\le x \\le 2, \\\\\n2x-b &\\text{ if } x <-2.\n\\end{array}\n\\right.\\]Find $a+b$ if the piecewise function is continuous (which means that its graph can be drawn without lifting your pencil from the paper). Please reason step by step, and end your response with a final line 'Answer: <answer>'.",
+            "role": "user"
+          }
+        ],
+        "env_class": "aime",
+        "reward_spec": {
+          "ground_truth": "0",
+          "method": "rule"
+        },
+        "reward_model": {
+          "ground_truth": "0"
+        },
+        "extra_info": {
+          "data_source": "g4-math-l5",
+          "grade": 4,
+          "index": 0,
+          "split": "train"
+        }
+      }
+    },
+    "2026.09.18": {
+      "aime": {
+        "prompt": [
+          {
+            "content": "Solve the problem step by step. End with the exact final-answer line the problem requests; an automated grader reads only that line. No \\boxed{}, no text after it.",
+            "role": "system"
+          },
+          {
+            "content": "Seven red apples and two green apples are in the basket. How many apples are in the basket? Please reason step by step. End your response with one final line of the exact form 'Answer: <answer>'. The automated grader reads only that line; do not use \\boxed{}.",
+            "role": "user"
+          }
+        ],
+        "env_class": "aime",
+        "reward_spec": {
+          "ground_truth": "9",
+          "method": "rule"
+        },
+        "reward_model": {
+          "ground_truth": "9"
+        },
+        "extra_info": {
+          "data_source": "g01-asdiv-elem",
+          "grade": 1,
+          "index": 0,
+          "split": "train"
+        }
+      },
+      "gsm8k": {
+        "prompt": [
+          {
+            "content": "Solve the problem step by step. End with the exact final-answer line the problem requests; an automated grader reads only that line. No \\boxed{}, no text after it.",
+            "role": "system"
+          },
+          {
+            "content": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May? Let's think step by step. End your response with one final line of the exact form \"#### <number>\". The automated grader reads only that line; do not use \\boxed{}.",
+            "role": "user"
+          }
+        ],
+        "env_class": "gsm8k",
+        "reward_spec": {
+          "ground_truth": "72",
+          "method": "rule"
+        },
+        "reward_model": {
+          "ground_truth": "72"
+        },
+        "extra_info": {
+          "data_source": "g03-gsm8k",
+          "grade": 3,
+          "index": 0,
+          "split": "train"
+        }
+      },
+      "reasoning_gym": {
+        "prompt": [
+          {
+            "content": "Solve the problem step by step. End with the exact final-answer line the problem requests; an automated grader reads only that line. No \\boxed{}, no text after it.",
+            "role": "system"
+          },
+          {
+            "content": "State the final answer to the following arithmetic problem: 69 + 16 = Please reason step by step. End your response with one final line of the exact form 'Answer: <answer>'. The automated grader reads only that line; do not use \\boxed{}.",
+            "role": "user"
+          }
+        ],
+        "env_class": "reasoning_gym",
+        "reward_spec": {
+          "ground_truth": "{\"entry\": {\"answer\": \"85\", \"metadata\": {\"difficulty\": {\"num_digits\": [1, 2], \"num_terms\": [2, 2]}, \"expression\": \"69 + 16\", \"num_digits\": 2, \"num_terms\": 2, \"source_dataset\": \"chain_sum\", \"source_index\": 0}, \"question\": \"State the final answer to the following arithmetic problem: 69 + 16 =\"}, \"task\": \"chain_sum\"}",
+          "method": "rule"
+        },
+        "reward_model": {
+          "ground_truth": "{\"entry\": {\"answer\": \"85\", \"metadata\": {\"difficulty\": {\"num_digits\": [1, 2], \"num_terms\": [2, 2]}, \"expression\": \"69 + 16\", \"num_digits\": 2, \"num_terms\": 2, \"source_dataset\": \"chain_sum\", \"source_index\": 0}, \"question\": \"State the final answer to the following arithmetic problem: 69 + 16 =\"}, \"task\": \"chain_sum\"}"
+        },
+        "extra_info": {
+          "data_source": "g00-rg-sum-easy",
+          "grade": 0,
+          "index": 0,
+          "split": "train"
+        }
+      }
+    }
+  }
+}

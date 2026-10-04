@@ -1,0 +1,34 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-qualification-20261004",
+  "source_commit": "0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0",
+  "launch_config": "../configs/score_centering/current_snowball_qualification_template_failed.yaml",
+  "state": "failed",
+  "optimizer_updates_completed": 0,
+  "task_started_at_ms": [
+    1791142787945,
+    1791142787945,
+    1791142787945,
+    1791142787945,
+    1791142787945
+  ],
+  "task_finished_at_ms": [
+    1791142971259,
+    1791142971259,
+    1791142971259,
+    1791142971259,
+    1791142971259
+  ],
+  "reserved_h100_count": 40,
+  "reserved_h100_task_hours": 2.0368222222222223,
+  "effective_job_priority": 2,
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "failure": "ValueError: Template name marin_tokenizer not found among registered custom templates",
+  "failure_phase": "entrypoint chat-template resolution before training",
+  "root_cause": "Historical named custom template was absent from the port. The subsequent builtin-template fallback was also rejected by exact-chat validation. Commit b5fe3335 restores the byte-identical named template from pinned tokenizer a5ca45f2."
+}

@@ -1,0 +1,33 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-token-versions-20261004",
+  "source_commit": "9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b",
+  "launch_config": "../configs/score_centering/current_qwen_token_versions.yaml",
+  "state": "succeeded",
+  "optimizer_batches_completed": 5,
+  "nonzero_gradient_batches": 5,
+  "raw_grad_norms": [
+    1.0431734323501587,
+    0.519753634929657,
+    0.1552758812904358,
+    0.6452695727348328,
+    0.14288383722305298
+  ],
+  "effective_job_priority": 2,
+  "effective_task_priorities": [
+    2,
+    2
+  ],
+  "task_started_at_ms": [
+    1791145302417,
+    1791145302417
+  ],
+  "task_finished_at_ms": [
+    1791145831534,
+    1791145831534
+  ],
+  "reserved_h100_count": 16,
+  "reserved_h100_task_hours": 2.3516311111111112,
+  "consumed_version_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions",
+  "checkpoint_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-token-versions-20261004/checkpoints/global_step_5",
+  "scope": "Real pinned multiprocess vLLM on eight independent oneGPU engines; kept requests produce exact mixed-version token spans after actual trainer weight synchronization. No Snowball DP/EP observation or matched-quality claim."
+}

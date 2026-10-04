@@ -1,0 +1,34 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-qualification-20261004-templatefix",
+  "source_commit": "dcd4b78fc99bb504f642d280f2278fce876e6d4f",
+  "launch_config": "../configs/score_centering/current_snowball_qualification_builtin_failed.yaml",
+  "state": "failed",
+  "optimizer_updates_completed": 0,
+  "task_started_at_ms": [
+    1791143671742,
+    1791143671742,
+    1791143671742,
+    1791143671742,
+    1791143671742
+  ],
+  "task_finished_at_ms": [
+    1791143820362,
+    1791143820362,
+    1791143820362,
+    1791143820362,
+    1791143820362
+  ],
+  "reserved_h100_count": 40,
+  "reserved_h100_task_hours": 1.6513333333333333,
+  "effective_job_priority": 2,
+  "effective_task_priorities": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "failure": "ValueError: exact structured-chat transport with SkyRL Gym exact chat requires generator.chat_template.name_or_path=a custom template",
+  "failure_phase": "entrypoint capability validation before training",
+  "fix_source_commit": "b5fe333596e9359eadd3c423f4b6886ddf8b2dcf"
+}

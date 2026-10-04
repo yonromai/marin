@@ -1,0 +1,133 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 26962,
+      "optimizer_age_counts": {
+        "0": 26962
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    },
+    {
+      "training_step": 2,
+      "consuming_policy_version": 1,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 60092,
+      "optimizer_age_counts": {
+        "1": 60092
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 1,
+      "optimizer_age_mean": 1.0,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 1
+    },
+    {
+      "training_step": 3,
+      "consuming_policy_version": 2,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 117377,
+      "optimizer_age_counts": {
+        "2": 117377
+      },
+      "optimizer_age_min": 2,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 2.0,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 4,
+      "consuming_policy_version": 3,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 5,
+      "loss_tokens": 34832,
+      "optimizer_age_counts": {
+        "0": 1046,
+        "1": 20860,
+        "2": 12926
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.3410656867248507,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 5,
+      "consuming_policy_version": 4,
+      "optimizer_updates_applied": 1,
+      "active_responses": 32,
+      "mixed_policy_responses": 15,
+      "loss_tokens": 80710,
+      "optimizer_age_counts": {
+        "1": 51732,
+        "2": 28978
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.3590385330194523,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 319973,
+    "optimizer_age_counts": {
+      "0": 28008,
+      "1": 132684,
+      "2": 159281
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 2,
+    "optimizer_age_mean": 1.410262740918765,
+    "optimizer_age_p50": 1,
+    "optimizer_age_p95": 2,
+    "optimizer_age_p99": 2,
+    "active_responses": 160,
+    "mixed_policy_responses": 20,
+    "mixed_policy_response_fraction": 0.125
+  },
+  "inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions/step-00000001.json",
+      "sha256": "4c5f88beee042bf08f93811019c17fdc22220e336d11ebc7c13e64c62110ea7a"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions/step-00000002.json",
+      "sha256": "eea18f2dd578cd47bd4d661f9b197ef0b91e18edcf3db1cafb273862aa9d4a25"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions/step-00000003.json",
+      "sha256": "e1d4261e903dba2091075aac81de51c230747f91026362e0e9659f3241814636"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions/step-00000004.json",
+      "sha256": "06146b6fcb800288ad08ae839f44dcf04c9d04f6d788f0e4e0c7d37e7c15e77e"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions/step-00000005.json",
+      "sha256": "5f89488e146912c0bfa278f31d2d8cc540b392da49f8e931d37e2933fc34ccc6"
+    }
+  ],
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-token-versions-20261004/consumed_versions"
+}

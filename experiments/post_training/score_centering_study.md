@@ -7,7 +7,7 @@ GPU work.
 
 ## October 4 continuation on the merged APIs
 
-The new campaign freezes MarinSkyRL at `0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0`,
+The current port head is MarinSkyRL `9f88f45cfde1a2d2582bc20c2aa2c992d8d2392b`,
 based on merged main `b50b5f42`, and Marin at `22ed55402c665f7e3f01e8f98a35b5e8c55e328e`
 before campaign changes. Earlier configurations and measurements below retain their
 original meaning. They are historical evidence and are not pooled with current runs.
@@ -42,7 +42,8 @@ uses eight colocated H100s, the prior Qwen base model and `2026.08.29.1` pool, a
 4,096-token response cap, top-K 32 and five optimizer updates. The synchronous
 native mismatch probe captures fixed token/prefix rows at initial weights and scores
 them in native and repeat layouts through successive updates. Its archive and
-step-five checkpoint will qualify capture, rescoring and restore. Snowball will use
+step-five checkpoint qualify Qwen capture, rescoring and save. Restore remains a
+separate check. Snowball uses
 the format-corrected `2026.09.18` pool used by the later historical matched pairs.
 
 The initial Qwen attempt at `a3b98f22` failed before training because exact chat
@@ -106,7 +107,67 @@ killed a rollout worker when host memory reached 122.51 of the requested
 cost 1.2137889 reserved H100 task-hours. Completed October qualification
 attempts total 4.5453608 hours. The fresh retry requests
 256 GB host memory and preserves eight H100s, the objective and the 4,096-token
-response cap. Snowball's prepared input requests 512 GB per node.
+response cap.
+
+The host-memory retry exited successfully and wrote checkpoint five, but
+[its training evidence](results/score_centering_current_qwen_hostmemfix_invalid.json)
+is invalid for practical calibration. Every training behavior logprob was
+`-log(151936)` and every top-32 head contained IDs 0–31. All five batches had
+zero advantages and gradients. The native probe had slept colocated vLLM at
+level two, freeing its model weights, then woke its buffers without restoring
+those weights. Commit `dcd4b78f` resynchronizes the resident trainer policy before
+generation resumes. A regression that models freed weights fails before that
+fix and passes afterward. The invalid attempt cost 1.6288644 H100 task-hours;
+its initial nonuniform A/B capture remains usable within its four-prompt scope.
+
+The [repaired qualification](results/score_centering_current_qwen_probewakefix.json)
+completed five optimizer batches, including four with nonzero gradients
+(0.193–0.428), nonuniform captured behavior probabilities and finite centering.
+Its new checkpoint five contains policy and trainer state. Its native archive is
+complete through update five. On the same 5,379 frozen tokens, mean absolute
+engine gap is 0.01613. At update five, stale-weight drift is 0.01610 and combined
+mismatch is 0.01678. About 60.2% of tokens have opposite-signed components;
+mean canceled absolute magnitude is 0.01545. Signed reconstruction is exact.
+Trainer repeat scoring is identical, while inference generation versus re-read
+has mean absolute difference 0.01393 and absolute p99 0.12053. These fixed-token
+measurements show cancellation; four prompts do not establish population coverage
+or consumed asynchronous age. The valid attempt cost 1.5928267 H100 task-hours.
+[Component rows and full metrics](results/score_centering_current_qwen_probewakefix/)
+preserve the source archive and exact scoring steps.
+
+Two Snowball launches failed before training. The first could not resolve the
+historical `marin_tokenizer` custom name and cost 2.0368222 H100 task-hours.
+The second used the tokenizer-default path, which the merged exact-chat contract
+rejects, and cost 1.6513333 hours. The
+[first record](results/score_centering_current_snowball_template_failure.json) and
+[second record](results/score_centering_current_snowball_builtin_failure.json)
+retain all five task durations and effective interactive priorities. Commit
+`b5fe3335` restores the named template byte for byte from pinned tokenizer
+`a5ca45f2`. Its prompt rendering, assistant mask, objective and exact-chat
+capability checks pass locally. The fresh Snowball input uses that commit,
+40 H100s and the current example's 1,800 GB host-memory request per node. Runtime
+qualification remains pending. Completed October attempts, including all failures
+and the invalid successful run, total **13.8068386 reserved H100 task-hours**.
+Active tasks are excluded until terminal; prior-round costs remain separate.
+
+The port now has optional token policy-version measurement. It observes accepted
+vLLM chunks before response merging and drains older frontend outputs through a
+FIFO barrier before publishing the new version. Exact spans survive chat retries,
+trajectory assembly and selection. Immutable consumed-batch archives include the
+applied optimizer-update ledger used to convert version gaps into optimizer age.
+This requires local multiprocess vLLM and is disabled by default. Controlled CPU
+checks cover delayed frontend processing and mixed-version retries. The
+[real Qwen measurement](results/score_centering_current_qwen_token_versions/ages.json)
+records 319,973 consumed loss tokens across five rolling batches. Mean optimizer
+age is 1.4103 (range 0–2, p95 2), and 20 of 160 responses contain multiple
+generating weight versions. All spans match exact response tokens and masks.
+The applied-update ledger counts one update at each step. This validates the
+pinned multiprocess observer on eight independent one-GPU engines; Snowball's
+data/expert-parallel inference geometry still needs its own check. The
+[successful attempt](results/score_centering_current_qwen_token_versions.json)
+cost 2.3516311 reserved H100 task-hours and completed five nonzero-gradient
+batches plus checkpoint five. These measurements qualify age instrumentation,
+not a centering quality benefit.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven

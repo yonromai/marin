@@ -1,0 +1,23 @@
+{
+  "job_id": "/romain/score-centering-current-qwen-qualification-20261004-hostmemfix",
+  "source_commit": "0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0",
+  "launch_config": "../configs/score_centering/current_qwen_qualification_hostmemfix_invalid.yaml",
+  "state": "succeeded",
+  "valid_training_qualification": false,
+  "scope": "Initial exact capture, trainer scoring, optimizer execution and step5 save. Uniform post-probe behavior invalidates practical calibration and nonzero-gradient training qualification.",
+  "nominal_optimizer_updates": 5,
+  "nonzero_gradient_updates": 0,
+  "task_started_at_ms": 1791141812812,
+  "task_finished_at_ms": 1791142545801,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 1.6288644444444444,
+  "effective_job_priority": 2,
+  "effective_task_priority": 2,
+  "checkpoint_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-hostmemfix/checkpoints/global_step_5",
+  "native_probe_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-hostmemfix/mismatch_probe",
+  "native_probe_status": "complete",
+  "observed_behavior_logprob": -11.931214332580566,
+  "behavior_top32_mass": 0.00021061506413388997,
+  "root_cause": "Colocated native probe sleeps vLLM at level2, then wakes without reloading released model weights. Next training rollout samples uniformly.",
+  "fix_source_commit": "dcd4b78fc99bb504f642d280f2278fce876e6d4f"
+}

@@ -1,0 +1,12 @@
+{
+  "headRefOid": "26659be09e116b42ad91ce924dc631d31ba57b28",
+  "state": "OPEN",
+  "title": "[RL] Run async and Snowball launchers on Megatron with rollout buffers",
+  "url": "https://github.com/marin-community/marin/pull/9605",
+  "checked_at_utc": "2026-10-04T20:23:00Z",
+  "candidate_objective": {
+    "policy_loss_type": "behavior_clip",
+    "off_policy_correction": "none"
+  },
+  "selection_status": "candidate; confirmation protocol and applicable current-stack arm remain to be frozen"
+}

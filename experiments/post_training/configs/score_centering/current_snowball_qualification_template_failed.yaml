@@ -1,18 +1,18 @@
 # Runtime qualification: fresh step-five checkpoint, followed by a separate restore through steps six and seven.
 schema_version: 1
 run:
-  id: score-centering-current-snowball-qualification-20261004-customtemplate
+  id: score-centering-current-snowball-qualification-20261004
   attempt_id: initial
   seed: 17
   submission: detach
   export_hf: false
 runtime:
-  launcher_commit: b5fe333596e9359eadd3c423f4b6886ddf8b2dcf
+  launcher_commit: 0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0
   profile: megatron
 iris:
   cluster: cw-rno2a
   cluster_config: lib/iris/config/cw-rno2a.yaml
-  job_name: score-centering-current-snowball-qualification-20261004-customtemplate
+  job_name: score-centering-current-snowball-qualification-20261004
   priority: interactive
   max_retries: 0
   timeout: 21600
@@ -21,18 +21,18 @@ iris:
     gpus_per_node: 8
     gpu_variant: H100
     cpu: 32
-    memory: 1800GB
+    memory: 512GB
     disk: 500GB
 ray:
   spill_dir: /tmp/skyrl-ray-spill
-  rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004-customtemplate/rendezvous
-  log_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004-customtemplate/ray-logs
+  rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004/rendezvous
+  log_dir: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004/ray-logs
 artifacts:
-  checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004-customtemplate/checkpoints
-  export_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/exports
-  attempts_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/attempts
-  resolved_config_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/resolved-launch.yaml
-  terminal_manifest_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/terminal.json
+  checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004/checkpoints
+  export_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004/exports
+  attempts_root: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004/attempts
+  resolved_config_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004/resolved-launch.yaml
+  terminal_manifest_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004/terminal.json
 inputs:
   model:
     uri: s3://marin-us-east-02a/marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/
@@ -97,14 +97,14 @@ skyrl:
       max_staleness_steps: 0
       batch_policy: full_batch
       max_in_flight: 128
-      object_store_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004-customtemplate/groups
+      object_store_root: s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-qualification-20261004/groups
     mismatch_probe:
       enabled: true
       prompts:
         count: 4
         samples_per_prompt: 2
       seed: 17
-      archive_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004-customtemplate/mismatch_probe
+      archive_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-qualification-20261004/mismatch_probe
       updates: 5
       rescore_prefix_cache: 'off'
     algorithm:

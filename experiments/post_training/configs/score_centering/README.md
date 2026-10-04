@@ -12,14 +12,27 @@ not a confirmation quality experiment.
 `current_qwen_qualification_chatfix_failed.yaml`,
 `current_qwen_qualification_capturefix_failed.yaml` and
 `current_qwen_qualification_curriculumfix_failed.yaml` preserve the four failed
-October qualification inputs. Their failure records and costs are in the current study.
+October qualification inputs. `current_qwen_qualification_hostmemfix_invalid.yaml`
+preserves the successful exit whose post-probe behavior was uniform. The active
+Qwen input pins the repair and completed five batches with nonzero gradients in
+four of them. Failure records and costs are in the current study.
 
 `current_snowball_qualification.yaml` uses the current port, the adopted Snowball
 model and the format-corrected pool. It requests 32 learner H100s plus 8 inference
 H100s, the full 4,096-token response cap and a fresh step-five checkpoint. A
 separate continuation will verify updates six and seven after restore. Its
 optional profiler records actual forward/backward CUDA kernels on both pipeline
-stages.
+stages. It pins the original named Marin template and requests 1,800 GB RAM per
+node. `current_snowball_qualification_template_failed.yaml` and
+`current_snowball_qualification_builtin_failed.yaml` preserve the two launches
+that failed before training. The first lacked the named template; the second
+failed the exact-chat capability check.
+
+`current_qwen_token_versions.yaml` enables the new measurement on two separate
+eight-H100 nodes, multiprocess vLLM, rolling batches and a lease-age limit of two.
+Its five batches recorded exact token ages and mixed generating versions
+on the real GPU runtime. Consumed token spans and the actual optimizer-update
+ledger are archived under a fresh durable run prefix.
 
 The other files retain the historical September inputs. Their removed API keys
 are evidence of those runs and must not be used to launch the current runtime.
