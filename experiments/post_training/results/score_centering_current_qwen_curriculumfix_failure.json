@@ -1,0 +1,18 @@
+{
+  "scope": "current-stack Qwen qualification failed before first optimizer update from requested host-memory limit",
+  "job_id": "/romain/score-centering-current-qwen-qualification-20261004-curriculumfix",
+  "source_commit": "0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0",
+  "launch_config": "../configs/score_centering/current_qwen_qualification_curriculumfix_failed.yaml",
+  "state": "failed",
+  "optimizer_updates_completed": 0,
+  "task_started_at_ms": 1791140931574,
+  "task_finished_at_ms": 1791141477779,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 1.2137888888888888,
+  "effective_job_priority": 2,
+  "effective_task_priority": 2,
+  "failure": "ray.exceptions.OutOfMemoryError: host memory 122.51/128.00GB exceeded Ray threshold 0.95",
+  "failure_phase": "first training batch, RolloutWorker.__init__ killed by Ray memory monitor",
+  "root_cause": "Eight colocated learner ranks, eight vLLM engines and rollout workers exceeded 128GB host RAM. Increase requested host memory to 256GB, preserving GPU count, response cap and objective.",
+  "exception_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-curriculumfix/rendezvous/debug_artifacts/rank0-gb95a00/outcomes/skyrl-entrypoint-driver.gb95a00.2194.1791141416251133836.exception.json"
+}

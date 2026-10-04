@@ -8,7 +8,20 @@ the Marin checkout with the pinned `marinskyrl` package and
 is written to its durable `resolved_config_uri`. It is a runtime qualification,
 not a confirmation quality experiment.
 
-The remaining files retain the historical September inputs. Their removed API keys
+`current_qwen_qualification_initial_failed.yaml`,
+`current_qwen_qualification_chatfix_failed.yaml`,
+`current_qwen_qualification_capturefix_failed.yaml` and
+`current_qwen_qualification_curriculumfix_failed.yaml` preserve the four failed
+October qualification inputs. Their failure records and costs are in the current study.
+
+`current_snowball_qualification.yaml` uses the current port, the adopted Snowball
+model and the format-corrected pool. It requests 32 learner H100s plus 8 inference
+H100s, the full 4,096-token response cap and a fresh step-five checkpoint. A
+separate continuation will verify updates six and seven after restore. Its
+optional profiler records actual forward/backward CUDA kernels on both pipeline
+stages.
+
+The other files retain the historical September inputs. Their removed API keys
 are evidence of those runs and must not be used to launch the current runtime.
 
 Each JSON file copies `resolved-skyrl.json` from the corresponding

@@ -1,0 +1,21 @@
+{
+  "scope": "current-stack Qwen qualification failure before optimizer updates",
+  "job_id": "/romain/score-centering-current-qwen-qualification-20261004-chatfix",
+  "source_commit": "188c7ecc6aec9f503ea422a66e6c8404f413e07a",
+  "launch_config": "../configs/score_centering/current_qwen_qualification_chatfix_failed.yaml",
+  "state": "failed",
+  "optimizer_updates_completed": 0,
+  "task_started_at_ms": 1791138634840,
+  "task_finished_at_ms": 1791139107557,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 1.050482222222222,
+  "effective_job_priority": 2,
+  "effective_task_priority": 2,
+  "failure": "training group 0 violates resolved group invariant: fully_masked (physical_count=2, expected=2)",
+  "failure_phase": "native mismatch probe initial frozen-token collation",
+  "exception_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/rendezvous/debug_artifacts/rank0-gb960a0/outcomes/skyrl-entrypoint-driver.gb960a0.2189.1791139035072211237.exception.json",
+  "root_cause": "Chat capture requested K+1=33 candidates but vLLM max_logprobs was K=32. Every request failed validation before generation; these were masked agent-loop failures, not truncated answers or zero reward variance.",
+  "serving_error": "VLLMValidationError: Requested sample logprobs of 33, which is greater than max allowed: 32",
+  "correction_commit": "d05245ac1a5f991a8a0d041d8d780e45f5d5f620",
+  "serving_log_uri": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/qwen-qualification-20261004-chatfix/ray-logs/rank0-gb960a0/session_latest/worker-03a1f73001d0400df4bcca863e19a1a955869a2d5b5fb64ddc8d0df6-01000000-15274.err"
+}

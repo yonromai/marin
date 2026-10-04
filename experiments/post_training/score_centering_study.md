@@ -7,7 +7,7 @@ GPU work.
 
 ## October 4 continuation on the merged APIs
 
-The new campaign freezes MarinSkyRL at `188c7ecc6aec9f503ea422a66e6c8404f413e07a`,
+The new campaign freezes MarinSkyRL at `0c2f63e7f40ccb4c3e9dc16bb7837b9e202d69e0`,
 based on merged main `b50b5f42`, and Marin at `22ed55402c665f7e3f01e8f98a35b5e8c55e328e`
 before campaign changes. Earlier configurations and measurements below retain their
 original meaning. They are historical evidence and are not pooled with current runs.
@@ -59,6 +59,62 @@ It also matches TIS's upper truncation without adding a lower ratio floor. A
 full-vocabulary constant-advantage check failed on the preceding implementation
 with a maximum gradient residual of 0.2561 and passes after the fix. This changes
 no probability capture, model/runtime dependency or checkpoint layout.
+
+The structured-chat retry failed before training because chat capture requested
+33 candidates to select the natural top 32, but the merged engine initializer
+reserved only 32. vLLM rejected every request, and the runner masked those failures;
+these were neither truncated responses nor tied-reward groups. The
+[failed attempt](results/score_centering_current_qwen_chatfix_failure.json) cost
+1.0504822 reserved H100 task-hours. `d05245ac` reserves the extra candidate for
+training and evaluation capture. Thirty local engine/client tests pass. A fresh
+qualification uses that commit and a separate artifact identity. Completed current
+qualification attempts now total 2.2078897 hours; the active run is excluded until
+its task is terminal.
+
+[Native probe analysis](analyze_current_score_centering_probe.py) reads the typed
+FineStore archive and refuses incomplete capture, mismatched exact tokens/prefixes,
+or inconsistent scoring steps. It reports signed and absolute A/B/C components,
+cancellation, quantiles, repeat-layout noise and native inference re-read noise.
+Frozen-token ages are counterfactual calibration ages; they do not replace the
+consumed rollout age distribution. The archive carries no full behavior heads,
+so centering-tail coverage requires the separate learner measurements.
+
+The capacity-fixed Qwen attempt completed initial native capture and rescoring:
+eight responses contain 5,379 eligible tokens, with response lengths 174–1,568.
+Generation and trainer token IDs and prefixes match exactly. On those selected
+prompts, the mean absolute engine gap is 0.01613 and its absolute p99 is 0.15162;
+the alternate trainer packing produced identical scores. Its archive remains
+building because training then encountered an AIME row whose init metadata
+lacked the optional structured-chat request. The
+[attempt](results/score_centering_current_qwen_capturefix_failure.json) ended
+before the first optimizer update and cost 1.1236822 reserved H100 task-hours.
+Completed current qualification attempts total 3.3315719 hours.
+
+The [pool inventory](results/score_centering_current_pool_environments.json)
+shows GSM8K and AIME in the Qwen pool, plus Reasoning Gym in the Snowball pool.
+The port adds the same opt-in structured chat metadata to AIME and Reasoning
+Gym while preserving their prompts and native verification. The three affected
+environment suites pass 55 tests. The current Qwen input enables both environment
+adapters. A later Snowball qualification will enable all three. The optional
+Megatron profiler now captures one full mini-batch after warmup and saves actual
+forward/backward CUDA traces for runtime qualification.
+
+The curriculum transport retry reached the first training batch, then Ray
+killed a rollout worker when host memory reached 122.51 of the requested
+128 GB. This was a host-memory failure before any optimizer update. Its
+[record](results/score_centering_current_qwen_curriculumfix_failure.json)
+cost 1.2137889 reserved H100 task-hours. Completed October qualification
+attempts total 4.5453608 hours. The fresh retry requests
+256 GB host memory and preserves eight H100s, the objective and the 4,096-token
+response cap. Snowball's prepared input requests 512 GB per node.
+
+The affected safe Marin tests passed 2,380 cases, with nine local failures.
+All nine reproduce independently on frozen Marin main `22ed5540`: seven
+prompt-injection parameter cases lack `python3` on the explicit `/usr/bin:/bin`
+path, the C++ Codeforces check lacks its compiler toolchain, and the Harbor
+Iris-wrapper check invokes the installed `uv` instead of its test stub.
+These results establish the local baseline; campaign launcher graph and
+public-package integration checks passed.
 
 ## Historical result and recommendation on the September stack
 

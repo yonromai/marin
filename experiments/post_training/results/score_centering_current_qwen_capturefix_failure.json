@@ -1,0 +1,23 @@
+{
+  "scope": "current-stack Qwen initial native probe passed; mixed-curriculum training failed before first update",
+  "job_id": "/romain/score-centering-current-qwen-qualification-20261004-capturefix",
+  "source_commit": "d05245ac1a5f991a8a0d041d8d780e45f5d5f620",
+  "launch_config": "../configs/score_centering/current_qwen_qualification_capturefix_failed.yaml",
+  "state": "failed",
+  "optimizer_updates_completed": 0,
+  "native_probe_scored_updates": [
+    0
+  ],
+  "native_probe_hash": "sha256:da1adadabad3309d4b8bb6bfd76a3748bf6d6f1b606062110ec05860296fcc81",
+  "native_probe_status": "building (training incomplete; do not treat as completed qualification)",
+  "native_probe_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/qwen-qualification-20261004-capturefix/mismatch_probe",
+  "task_started_at_ms": 1791139682321,
+  "task_finished_at_ms": 1791140187978,
+  "reserved_h100_count": 8,
+  "reserved_h100_task_hours": 1.1236822222222222,
+  "effective_job_priority": 2,
+  "effective_task_priority": 2,
+  "failure": "ExactChatTransportError: environment did not provide chat_completion_params",
+  "failure_phase": "training curriculum rollout after successful initial probe",
+  "root_cause": "AIME environment in mixed curriculum lacks optional structured-chat init supported by GSM8K. Add same opt-in transport metadata; preserve prompts and verification."
+}

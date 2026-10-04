@@ -1,0 +1,48 @@
+{
+  "2026.08.29.1": {
+    "uri": "s3://marin-us-east-02a/marin/documents/curriculum-rl-pool/2026.08.29.1/train.parquet",
+    "rows": 10427,
+    "env_classes": {
+      "gsm8k": 2000,
+      "aime": 8427
+    },
+    "data_sources": {
+      "g0-gsm8k": 2000,
+      "g4-math-l5": 2302,
+      "g2-math-l3": 1590,
+      "g3-math-l4": 1690,
+      "g1-math-l12": 1912,
+      "g5-aime": 933
+    }
+  },
+  "2026.09.18": {
+    "uri": "s3://marin-us-east-02a/marin/documents/curriculum-rl-pool/2026.09.18/train.parquet",
+    "rows": 23265,
+    "env_classes": {
+      "aime": 17665,
+      "gsm8k": 2000,
+      "reasoning_gym": 3600
+    },
+    "data_sources": {
+      "g01-asdiv-elem": 1318,
+      "g02-asdiv-upper": 849,
+      "g02-svamp": 700,
+      "g03-gsm8k": 2000,
+      "g04-numina-cnk12": 2000,
+      "g11-numina-oly": 1500,
+      "g09-numina-amc": 1500,
+      "g08-math-l5": 2295,
+      "g06-math-l3": 1590,
+      "g07-math-l4": 1690,
+      "g05-math-l12": 1911,
+      "g10-aime": 932,
+      "g11-omni": 524,
+      "g12-omni-top": 148,
+      "g13-theoremqa": 448,
+      "g13-hardmath": 260,
+      "g00-rg-sum-easy": 1200,
+      "g01-rg-sum-med": 1200,
+      "g02-rg-sum-hard": 1200
+    }
+  }
+}
