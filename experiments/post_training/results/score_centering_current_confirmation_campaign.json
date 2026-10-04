@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "protocol_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/frozen-protocols/sha256-1c51d5e72b1da02bbed5bdc7953ac8cad08a9909269bad7b7168ef753a84ff16/protocol.json",
+  "protocol_sha256": "1c51d5e72b1da02bbed5bdc7953ac8cad08a9909269bad7b7168ef753a84ff16",
+  "first_wave_submitted_at_utc": "2026-10-04T22:25:00+00:00",
+  "confirmed_running_at_utc": "2026-10-04T22:25:48+00:00",
+  "completed_current_preconfirmation_reserved_h100_task_hours": 123.49756972222222,
+  "prior_rounds_reserved_h100_task_hours": 1072.548303,
+  "planned_total_jobs": 51,
+  "initial_wave_jobs": 4,
+  "scope": "Registry of actual submitted jobs; pending research, not terminal costs or quality conclusions. Freeze published before submission.",
+  "runs": [
+    {
+      "arm": "older_tis32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-tis32-s101-20261004",
+      "path": "configs/score_centering/current_confirmation/older_tis32_s101.yaml",
+      "sha256": "3a6760e38f93c26d73ad6806c753788190c8eafb7d96ec7ee4d5c32a3e0f5e2f",
+      "configuration_sha256": "3a6760e38f93c26d73ad6806c753788190c8eafb7d96ec7ee4d5c32a3e0f5e2f",
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "running",
+      "job_effective_priority": 2,
+      "task_effective_priorities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "task_allocated_at_ms": [
+        1791152717262,
+        1791152717262,
+        1791152717262,
+        1791152717262,
+        1791152717262
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-sc32-s101-20261004",
+      "path": "configs/score_centering/current_confirmation/older_sc32_s101.yaml",
+      "sha256": "84726f203ea5d09a1ce4636b9359e22099df5014f119da81f5fd864acfcb744e",
+      "configuration_sha256": "84726f203ea5d09a1ce4636b9359e22099df5014f119da81f5fd864acfcb744e",
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "running",
+      "job_effective_priority": 2,
+      "task_effective_priorities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "task_allocated_at_ms": [
+        1791152721923,
+        1791152721923,
+        1791152721923,
+        1791152721923,
+        1791152721923
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s101-20261004",
+      "path": "configs/score_centering/current_confirmation/fresh_tis32_s101.yaml",
+      "sha256": "9b17fc6bd959fa7c1f28a744593059df0e647b3c643a29d4c7767c6cdba2dac7",
+      "configuration_sha256": "9b17fc6bd959fa7c1f28a744593059df0e647b3c643a29d4c7767c6cdba2dac7",
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "running",
+      "job_effective_priority": 2,
+      "task_effective_priorities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "task_allocated_at_ms": [
+        1791152723361,
+        1791152723361,
+        1791152723361,
+        1791152723361,
+        1791152723361
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-incumbent-s101-20261004",
+      "path": "configs/score_centering/current_confirmation/older_incumbent_s101.yaml",
+      "sha256": "998f3801ef1c41dc1993de7173dd33b22774c2d8443fde14d95e947c47249770",
+      "configuration_sha256": "998f3801ef1c41dc1993de7173dd33b22774c2d8443fde14d95e947c47249770",
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "running",
+      "job_effective_priority": 2,
+      "task_effective_priorities": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "task_allocated_at_ms": [
+        1791152724928,
+        1791152724928,
+        1791152724928,
+        1791152724928,
+        1791152724928
+      ],
+      "scientific_work_complete": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-native-components-20261004",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "state": "succeeded",
+  "purpose": "Native A/B/C and repeat noise on exact confirmation multiprocess inference mode; fresh synchronous control with observer. Frozen token counterfactual ages0..5; actual async ages remain separate.",
+  "probe_prompts": 4,
+  "probe_responses": 8,
+  "probe_loss_tokens": 6245,
+  "raw_grad_norms": [
+    0.15017826855182648,
+    0.18780864775180817,
+    0.1781131625175476,
+    0.21330703794956207,
+    0.17608439922332764
+  ],
+  "maximum_response_tokens": [
+    4096,
+    4096,
+    4096,
+    4096,
+    4096
+  ],
+  "task_started_at_ms": [
+    1791151897728,
+    1791151897728,
+    1791151897728,
+    1791151897728,
+    1791151897728
+  ],
+  "task_finished_at_ms": [
+    1791153455995,
+    1791153461632,
+    1791153455995,
+    1791153461632,
+    1791153461632
+  ],
+  "effective_task_priority_bands": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "reserved_h100_task_hours": 17.351657777777778,
+  "components": "score_centering_current_snowball_native_components/components.csv",
+  "provenance": "score_centering_current_snowball_native_components/provenance.json",
+  "training_metrics": "score_centering_current_snowball_native_components/training_metrics.json",
+  "actual_consumed_ages": "score_centering_current_snowball_native_components/ages.json",
+  "scope": "Not a quality confirmation. Native initial A is actual generation at initial weights; B is trainer at identical initial weights; C rescores each exact token/prefix after applied updates. Stored PPO old at consumption is C, not automatically B. Includes MoE/inference repeat noise and component cancellation, not a population claim."
+}

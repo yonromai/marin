@@ -330,6 +330,35 @@ exact confirmation multiprocess mode with fresh synchronous generation;
 its frozen-token rescores are counterfactual ages, separately from actual
 async consumed ages. Native probes explicitly reject async scheduling.
 
+The [exact-mode native measurement](results/score_centering_current_snowball_native_components.json)
+completed all five nonzero-gradient updates and the immutable probe archive at
+initial weights through update five. Its four selected prompts/eight responses
+provide 6,245 eligible identical token/prefix rows. At counterfactual optimizer
+age two, mean absolute engine gap is 0.043989, stale-weight drift 0.044648,
+and combined mismatch 0.044185. Components have opposite signs on 66.8% of
+these tokens. Signed means are -0.004602 and +0.000183, whose sum is the
+combined signed mean; absolute averages do not add. At update five, stale
+absolute mean grows to 0.050571 and combined to 0.049798. Trainer repeat layouts
+agree exactly; same-weight inference generation/re-read absolute mean is
+0.040030. Thus stable aggregate mismatch across ages does not establish
+negligible weight drift, and inference batching/re-read variability is substantial.
+The selected-prompt scope does not estimate the whole held-out population.
+The run costs 17.3516578 reserved H100 task-hours. Completed new qualification
+costs are **140.8492275** hours; active confirmation costs remain separate
+until their attempts finish. Its [actual consumed ages](results/score_centering_current_snowball_native_components/ages.json)
+are zero on all 2,378,214 loss tokens, with no mixed-version responses.
+Async consumed ages are separately measured through token spans and the
+applied-update ledger.
+
+The first four seed-101 confirmation jobs started at interactive priority
+on all twenty GPU tasks. Other demand had risen, so the first wave was reduced
+from six jobs to four. Exact configuration and analysis bytes were published
+before submission under the content-addressed protocol SHA
+`1c51d5e72b1da02bbed5bdc7953ac8cad08a9909269bad7b7168ef753a84ff16`.
+The [campaign registry](results/score_centering_current_confirmation_campaign.json)
+records submitted identities. These jobs and later fixed seeds remain pending;
+there is no current confirmation recommendation yet.
+
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven
 prompt-injection parameter cases lack `python3` on the explicit `/usr/bin:/bin`
