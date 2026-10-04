@@ -344,8 +344,7 @@ agree exactly; same-weight inference generation/re-read absolute mean is
 negligible weight drift, and inference batching/re-read variability is substantial.
 The selected-prompt scope does not estimate the whole held-out population.
 The run costs 17.3516578 reserved H100 task-hours. Completed new qualification
-costs are **140.8492275** hours; active confirmation costs remain separate
-until their attempts finish. Its [actual consumed ages](results/score_centering_current_snowball_native_components/ages.json)
+costs are **140.8492275** hours. Its [actual consumed ages](results/score_centering_current_snowball_native_components/ages.json)
 are zero on all 2,378,214 loss tokens, with no mixed-version responses.
 Async consumed ages are separately measured through token spans and the
 applied-update ledger.
@@ -356,8 +355,34 @@ from six jobs to four. Exact configuration and analysis bytes were published
 before submission under the content-addressed protocol SHA
 `1c51d5e72b1da02bbed5bdc7953ac8cad08a9909269bad7b7168ef753a84ff16`.
 The [campaign registry](results/score_centering_current_confirmation_campaign.json)
-records submitted identities. These jobs and later fixed seeds remain pending;
-there is no current confirmation recommendation yet.
+records submitted identities and their later withdrawal. Full required training
+retention synchronously spawned a storage process for every prompt group.
+The four runs wrote small archives at median intervals of 5.81–5.86 seconds;
+the fresh control spent 746.85 seconds admitting its first batch, compared with
+82.16 seconds in the evaluation-only pilot. This measurement overhead dominates
+generation and would distort the scheduling/time comparison.
+
+New submissions were stopped. Live driver progress, all twenty tasks and the
+absence of checkpoints were checked before withdrawing exactly these four jobs.
+They remain outside confirmation. All four terminal attempts, including initial
+evaluation and finished work that was never consumed, cost **123.6792333**
+reserved H100 task-hours. Completed new costs are therefore **264.5284608**
+hours; the buffered-retention qualification is still active and excluded from
+that terminal total. Historical costs remain separate.
+
+The [revision-two draft](results/score_centering_current_confirmation_protocol_r2.json)
+changes publication scheduling through the existing buffered publisher on the
+same pinned source. All training/evaluation records are still selected, without
+byte quotas. Complete immutable evaluation membership and exact consumed
+UID/token/mask retention remain mandatory terminal checks. The
+[qualification input](configs/score_centering/current_snowball_buffered_retention.yaml)
+exercises two fresh updates and full repeated held-out evaluations at steps zero
+and two, requiring all 5,820 records. The original freeze stays intact. The
+primary outcomes, contrasts, twelve seeds, forty-step horizon, runtime, and
+primary statistical analysis stay fixed; this revision was triggered by storage
+timings before any post-training held-out endpoint. Revision two is awaiting
+qualification and a new immutable publication. There is no current confirmation
+recommendation yet.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven

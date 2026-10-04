@@ -19,7 +19,7 @@
       "configuration_sha256": "3a6760e38f93c26d73ad6806c753788190c8eafb7d96ec7ee4d5c32a3e0f5e2f",
       "job_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004",
       "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-      "state": "running",
+      "state": "killed",
       "job_effective_priority": 2,
       "task_effective_priorities": [
         2,
@@ -35,7 +35,62 @@
         1791152717262,
         1791152717262
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": false,
+      "excluded_from_confirmation": true,
+      "task_finished_at_ms": [
+        1791155504571,
+        1791155504571,
+        1791155504571,
+        1791155504571,
+        1791155504571
+      ],
+      "attempts": [
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004/0",
+          "attempt_id": 0,
+          "started_at_ms": 1791152727475,
+          "finished_at_ms": 1791155504571,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004/1",
+          "attempt_id": 0,
+          "started_at_ms": 1791152727475,
+          "finished_at_ms": 1791155504571,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004/2",
+          "attempt_id": 0,
+          "started_at_ms": 1791152727475,
+          "finished_at_ms": 1791155504571,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004/3",
+          "attempt_id": 0,
+          "started_at_ms": 1791152727475,
+          "finished_at_ms": 1791155504571,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s101-20261004/4",
+          "attempt_id": 0,
+          "started_at_ms": 1791152727475,
+          "finished_at_ms": 1791155504571,
+          "state": 6
+        }
+      ],
+      "reserved_h100_task_hours": 30.970100000000002,
+      "last_observed_training_steps": [],
+      "last_observed_metrics_source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-tis32-s101-20261004/ray-logs/rank0-g53c548/session_latest/worker-6a91ac5df47feec6413bb7baf7218cef01e0f5db516c9f83e258231d-06000000-14061.err",
+      "preserved_driver_evidence": {
+        "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-tis32-s101-20261004/ray-logs/rank0-g53c548/session_latest/worker-6a91ac5df47feec6413bb7baf7218cef01e0f5db516c9f83e258231d-06000000-14061.err",
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/withdrawn-driver-evidence/score-centering-current-snowball-older-tis32-s101-20261004/eca2d5f48a3529f9f163c941658146019da5bc17e733e4043c639b51e458644f.err",
+        "sha256": "eca2d5f48a3529f9f163c941658146019da5bc17e733e4043c639b51e458644f",
+        "bytes": 103577,
+        "scope": "Last uploaded source driver after withdrawal; raw source bytes preserved, not proof of every killed-process final log."
+      }
     },
     {
       "arm": "older_sc32",
@@ -46,7 +101,7 @@
       "configuration_sha256": "84726f203ea5d09a1ce4636b9359e22099df5014f119da81f5fd864acfcb744e",
       "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004",
       "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-      "state": "running",
+      "state": "killed",
       "job_effective_priority": 2,
       "task_effective_priorities": [
         2,
@@ -62,7 +117,62 @@
         1791152721923,
         1791152721923
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": false,
+      "excluded_from_confirmation": true,
+      "task_finished_at_ms": [
+        1791155504623,
+        1791155504623,
+        1791155504623,
+        1791155504623,
+        1791155504623
+      ],
+      "attempts": [
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004/0",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504623,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004/1",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504623,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004/2",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504623,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004/3",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504623,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004/4",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504623,
+          "state": 6
+        }
+      ],
+      "reserved_h100_task_hours": 30.918888888888887,
+      "last_observed_training_steps": [],
+      "last_observed_metrics_source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004/ray-logs/rank0-gb99af0/session_latest/worker-e3d3942ea458189be2f214e9d1c9b2bc16dd1df775a98a433415f361-06000000-14105.err",
+      "preserved_driver_evidence": {
+        "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004/ray-logs/rank0-gb99af0/session_latest/worker-e3d3942ea458189be2f214e9d1c9b2bc16dd1df775a98a433415f361-06000000-14105.err",
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/withdrawn-driver-evidence/score-centering-current-snowball-older-sc32-s101-20261004/52a6499b01d68f615cfe410e71cce2ce0c3467032a174acb92969f9cd98b819f.err",
+        "sha256": "52a6499b01d68f615cfe410e71cce2ce0c3467032a174acb92969f9cd98b819f",
+        "bytes": 114756,
+        "scope": "Last uploaded source driver after withdrawal; raw source bytes preserved, not proof of every killed-process final log."
+      }
     },
     {
       "arm": "fresh_tis32",
@@ -73,7 +183,7 @@
       "configuration_sha256": "9b17fc6bd959fa7c1f28a744593059df0e647b3c643a29d4c7767c6cdba2dac7",
       "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004",
       "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-      "state": "running",
+      "state": "killed",
       "job_effective_priority": 2,
       "task_effective_priorities": [
         2,
@@ -89,7 +199,64 @@
         1791152723361,
         1791152723361
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": false,
+      "excluded_from_confirmation": true,
+      "task_finished_at_ms": [
+        1791155504664,
+        1791155504664,
+        1791155504664,
+        1791155504664,
+        1791155504664
+      ],
+      "attempts": [
+        {
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004/0",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504664,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004/1",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504664,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004/2",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504664,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004/3",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504664,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s101-20261004/4",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504664,
+          "state": 6
+        }
+      ],
+      "reserved_h100_task_hours": 30.903366666666663,
+      "last_observed_training_steps": [
+        1
+      ],
+      "last_observed_metrics_source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-fresh-tis32-s101-20261004/ray-logs/rank0-gb99c40/session_latest/worker-36aff4fa8785c7e9fa18fabf2a876b8b2787cc364c3b3dd02c6e90f3-06000000-14065.err",
+      "preserved_driver_evidence": {
+        "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-fresh-tis32-s101-20261004/ray-logs/rank0-gb99c40/session_latest/worker-36aff4fa8785c7e9fa18fabf2a876b8b2787cc364c3b3dd02c6e90f3-06000000-14065.err",
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/withdrawn-driver-evidence/score-centering-current-snowball-fresh-tis32-s101-20261004/5ed13149b890898d96279939a7f528758852c0672ede84fb1196584a287a7032.err",
+        "sha256": "5ed13149b890898d96279939a7f528758852c0672ede84fb1196584a287a7032",
+        "bytes": 145193,
+        "scope": "Last uploaded source driver after withdrawal; raw source bytes preserved, not proof of every killed-process final log."
+      }
     },
     {
       "arm": "older_incumbent",
@@ -100,7 +267,7 @@
       "configuration_sha256": "998f3801ef1c41dc1993de7173dd33b22774c2d8443fde14d95e947c47249770",
       "job_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004",
       "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-      "state": "running",
+      "state": "killed",
       "job_effective_priority": 2,
       "task_effective_priorities": [
         2,
@@ -116,7 +283,229 @@
         1791152724928,
         1791152724928
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": false,
+      "excluded_from_confirmation": true,
+      "task_finished_at_ms": [
+        1791155504747,
+        1791155504747,
+        1791155504747,
+        1791155504747,
+        1791155504747
+      ],
+      "attempts": [
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004/0",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504747,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004/1",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504747,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004/2",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504747,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004/3",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504747,
+          "state": 6
+        },
+        {
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s101-20261004/4",
+          "attempt_id": 0,
+          "started_at_ms": 1791152733623,
+          "finished_at_ms": 1791155504747,
+          "state": 6
+        }
+      ],
+      "reserved_h100_task_hours": 30.88687777777778,
+      "last_observed_training_steps": [],
+      "last_observed_metrics_source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s101-20261004/ray-logs/rank0-g1cc692/session_latest/worker-05b667485c4b675a85f6b48942bb8d3cbfbbec8c8a967402de4972d7-06000000-14199.err",
+      "preserved_driver_evidence": {
+        "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s101-20261004/ray-logs/rank0-g1cc692/session_latest/worker-05b667485c4b675a85f6b48942bb8d3cbfbbec8c8a967402de4972d7-06000000-14199.err",
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/withdrawn-driver-evidence/score-centering-current-snowball-older-incumbent-s101-20261004/eb8d2cd8f7abc3deaf73fedd2b96c8d48eb8b16ab61a042ae1614ba5fb825035.err",
+        "sha256": "eb8d2cd8f7abc3deaf73fedd2b96c8d48eb8b16ab61a042ae1614ba5fb825035",
+        "bytes": 111759,
+        "scope": "Last uploaded source driver after withdrawal; raw source bytes preserved, not proof of every killed-process final log."
+      }
     }
-  ]
+  ],
+  "status": "withdrawn",
+  "withdrawal_reason": "Instrumentation dominated rollout admission: required full train retention synchronously spawned storage processes per prompt group. Preserve original freeze; fresh buffered inputs require qualification and new freeze. No score-based selection.",
+  "withdrawal_state_evidence": "current-confirmation-withdrawn-terminal-state.log",
+  "withdrawal_attempt_evidence": "current-confirmation-withdrawn-attempts.log",
+  "retention_throughput_evidence": [
+    {
+      "arm": "older-tis32",
+      "train_archives": 241,
+      "all_archives": 251,
+      "train_archive_bytes": 4451344,
+      "checkpoint_objects": 0,
+      "median_seconds_per_train_archive": 5.8605,
+      "archive_examples": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/22b53e2a67d7746e24fd5d30500a27ca5fcdc197b6e4163399fd96cf9fe4054d.zip",
+          "bytes": 10821,
+          "modified_utc": "2026-10-04 22:47:29.367000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/0bfd8ec7b5b0b5d9047e458902208adfcf133dad71294ccf4c9de6cb49edcfcd.zip",
+          "bytes": 9458,
+          "modified_utc": "2026-10-04 22:47:35.365000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/0ddce6e0d7af1ffcbd84de37ddfa3da66a104c82df67c6b7b2e8bef36d1c828a.zip",
+          "bytes": 9980,
+          "modified_utc": "2026-10-04 22:47:41.318000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/bd0f54735921d2c8e0b4104d78751fa46c0011b25d6c8ed0224f2b60d3bad334.zip",
+          "bytes": 26344,
+          "modified_utc": "2026-10-04 23:10:45.182000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/ee9165d24e6ff97f29dcae96d00be3cb6c48488e75c13dcb1456373598c625d2.zip",
+          "bytes": 28692,
+          "modified_utc": "2026-10-04 23:10:50.894000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/81a14f5dc5cc02f8f70bbb9f459c725404888f4cb7d8b9700488f0cbd76090a3.zip",
+          "bytes": 13821,
+          "modified_utc": "2026-10-04 23:10:56.668000+00:00"
+        }
+      ]
+    },
+    {
+      "arm": "older-sc32",
+      "train_archives": 238,
+      "all_archives": 248,
+      "train_archive_bytes": 4581669,
+      "checkpoint_objects": 0,
+      "median_seconds_per_train_archive": 5.841,
+      "archive_examples": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b04f3aaf8c8fbda8985d531b48105941e8b2e47dca3fc6cf27550e8cdbd43f83.zip",
+          "bytes": 9897,
+          "modified_utc": "2026-10-04 22:47:45.045000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/af78abaa8f094a36b96000030055de19121b797d33215b85695a40175a7a385b.zip",
+          "bytes": 10100,
+          "modified_utc": "2026-10-04 22:47:50.731000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/2014fd396e13f9352617c1401bf046706d87c2b379094698c8bcfade2eb7b270.zip",
+          "bytes": 9771,
+          "modified_utc": "2026-10-04 22:47:56.517000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f6e32b80fa4d63f554411aa800602bef03c1fd6d964d8a659e1b4e53a815c782.zip",
+          "bytes": 24327,
+          "modified_utc": "2026-10-04 23:10:43.975000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/878a2e9f6cfe1898de1d1ad90dd8e0fce4a274272318ebbc5b38b758146d8108.zip",
+          "bytes": 33564,
+          "modified_utc": "2026-10-04 23:10:49.697000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/648d2ddbf85a4074a939b24eadfb9e316d49e20406d7d94799c5f0dc8f348daf.zip",
+          "bytes": 42705,
+          "modified_utc": "2026-10-04 23:10:55.564000+00:00"
+        }
+      ]
+    },
+    {
+      "arm": "fresh-tis32",
+      "train_archives": 218,
+      "all_archives": 228,
+      "train_archive_bytes": 3706982,
+      "checkpoint_objects": 0,
+      "median_seconds_per_train_archive": 5.805,
+      "archive_examples": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/deee91e19b826f449dc26f3e50da8e1b9d26ddf4176b01a6ac08f69f151cf020.zip",
+          "bytes": 9574,
+          "modified_utc": "2026-10-04 22:48:41.421000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7ce3f94aa427f937c29e108e22fb6941117f4a2a80353f9c573fa61388f37f95.zip",
+          "bytes": 10391,
+          "modified_utc": "2026-10-04 22:48:47.193000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/46ab87082a9b626b1df0d613bfaf0388ead1e9b55569eb212aac686fc5a30050.zip",
+          "bytes": 10226,
+          "modified_utc": "2026-10-04 22:48:52.846000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/eee405dc398e59f5660b5c93bb69e7c937dc3c276b8df3d8e91824a982a960f2.zip",
+          "bytes": 25759,
+          "modified_utc": "2026-10-04 23:10:42.089000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/bbf20214b8ff89134b92e728252a288e3633ea3a0cbe71304958e9c843fafe6f.zip",
+          "bytes": 26782,
+          "modified_utc": "2026-10-04 23:10:47.751000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/2357036718408b585e2f1d665dea183f34d76d4a0bc1764325e682156cac0ba8.zip",
+          "bytes": 17124,
+          "modified_utc": "2026-10-04 23:10:53.451000+00:00"
+        }
+      ]
+    },
+    {
+      "arm": "older-incumbent",
+      "train_archives": 229,
+      "all_archives": 239,
+      "train_archive_bytes": 3958239,
+      "checkpoint_objects": 0,
+      "median_seconds_per_train_archive": 5.8375,
+      "archive_examples": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/735b0dc804f4ce0031c6cf704f084507ae8cdc0d2c8fd2f66f23729685feab2a.zip",
+          "bytes": 10403,
+          "modified_utc": "2026-10-04 22:48:44.888000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/61e25c56b8b90ac83df3801ba950fbe41d960b832f8805abee2ba6981816cc56.zip",
+          "bytes": 10750,
+          "modified_utc": "2026-10-04 22:48:50.742000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/8a4dd1a183c06ecc7b6092f5c539d0afb97253c64e36fe46d119f1b9afef1908.zip",
+          "bytes": 10336,
+          "modified_utc": "2026-10-04 22:48:56.596000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/278ed4967b59d9bba69c0a63c65c09a26737525b0852686e7bf45049e7aba467.zip",
+          "bytes": 34366,
+          "modified_utc": "2026-10-04 23:10:42.776000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/9ed52486d3d27b328128cb52e3efeee277300e2a447b804a194da7facfdc3f17.zip",
+          "bytes": 47573,
+          "modified_utc": "2026-10-04 23:10:48.596000+00:00"
+        },
+        {
+          "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b0f34bae43ec93bf2dbd2f3e124593b9663ae8b90019bdecd8f652341623308c.zip",
+          "bytes": 36174,
+          "modified_utc": "2026-10-04 23:10:54.266000+00:00"
+        }
+      ]
+    }
+  ],
+  "withdrawn_reserved_h100_task_hours": 123.67923333333333
 }

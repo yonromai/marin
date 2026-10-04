@@ -27,7 +27,7 @@ from cloud.iris.launch import main as launch_main
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
 ROOT = Path(__file__).resolve().parents[2]
-PROTOCOL = ROOT / "experiments/post_training/results/score_centering_current_confirmation_protocol.json"
+DEFAULT_PROTOCOL = ROOT / "experiments/post_training/results/score_centering_current_confirmation_protocol.json"
 CLUSTER = "lib/iris/config/cw-rno2a.yaml"
 BOARD = Path("/home/romain/.local/state/resource-board/board.sqlite3")
 
@@ -94,7 +94,8 @@ def announce(board_id: int, origin: str, job_id: str, note: str) -> None:
 
 
 def run(args) -> None:
-    protocol_bytes = PROTOCOL.read_bytes()
+    protocol_path = args.protocol.resolve()
+    protocol_bytes = protocol_path.read_bytes()
     if hashlib.sha256(protocol_bytes).hexdigest() != args.protocol_sha256:
         raise ValueError("confirmation protocol changed after its immutable publication")
     protocol = json.loads(protocol_bytes)
@@ -105,7 +106,7 @@ def run(args) -> None:
     for row in order:
         if not re.fullmatch(r"[a-z0-9-]+", row["run_id"]):
             raise ValueError("invalid frozen run identity")
-        if hashlib.sha256((PROTOCOL.parent.parent / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
+        if hashlib.sha256((protocol_path.parent.parent / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
             raise ValueError(f"frozen input bytes changed: {row['path']}")
     binding = json.loads(args.binding.read_text())
     native_id = binding["native_id"]
@@ -193,7 +194,7 @@ def run(args) -> None:
                 "51 fixed jobs; no score-based selection. Research audits remain."
             )
             announce(args.board_id, origin, job_id, note)
-            code = launch_main(["iris", "launch", "--config", str(PROTOCOL.parent.parent / candidate["path"])])
+            code = launch_main(["iris", "launch", "--config", str(protocol_path.parent.parent / candidate["path"])])
             if code:
                 raise ValueError(f"submission failed for {job_id}; reconcile live state before retrying")
             print(json.dumps({"submitted": job_id, "configuration_sha256": candidate["sha256"]}), flush=True)
@@ -204,6 +205,7 @@ def run(args) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--protocol", type=Path, default=DEFAULT_PROTOCOL)
     parser.add_argument("--protocol-sha256", required=True)
     parser.add_argument("--binding", required=True, type=Path)
     parser.add_argument("--board-id", type=int, required=True)

@@ -1,0 +1,1326 @@
+{
+  "schema_version": 1,
+  "run_id": "score-centering-current-snowball-fresh-tis32-s101-20261004",
+  "complete_consumed_training_evidence": true,
+  "retained_records": 928,
+  "retained_response_tokens": 673147,
+  "retained_loss_tokens": 673147,
+  "retained_normal_completions": 859,
+  "consumed_records": 512,
+  "consumed_response_tokens": 445717,
+  "consumed_loss_tokens": 445717,
+  "completed_unconsumed_records": 416,
+  "completed_unconsumed_response_tokens": 227430,
+  "prompt_uid_token_manifest_sha256": "ca2e45b424b46fc085cef7744cfed2d6937db53c673297bc9a33ee6df53ef874",
+  "steps": [
+    {
+      "training_step": 1,
+      "responses": 512,
+      "distinct_prompt_uids": 128,
+      "uid_response_counts": {
+        "10190": 4,
+        "10356": 4,
+        "10498": 4,
+        "10602": 4,
+        "10707": 4,
+        "1072": 4,
+        "10919": 4,
+        "11135": 4,
+        "1119": 4,
+        "11278": 4,
+        "11603": 4,
+        "11649": 4,
+        "11667": 4,
+        "1173": 4,
+        "11795": 4,
+        "11797": 4,
+        "11955": 4,
+        "12048": 4,
+        "12128": 4,
+        "1213": 4,
+        "12644": 4,
+        "12660": 4,
+        "12798": 4,
+        "12830": 4,
+        "12846": 4,
+        "12971": 4,
+        "13183": 4,
+        "13508": 4,
+        "13928": 4,
+        "13967": 4,
+        "14027": 4,
+        "14052": 4,
+        "14058": 4,
+        "14439": 4,
+        "1463": 4,
+        "14638": 4,
+        "15092": 4,
+        "15511": 4,
+        "15792": 4,
+        "1580": 4,
+        "15802": 4,
+        "16059": 4,
+        "1612": 4,
+        "16251": 4,
+        "16546": 4,
+        "16548": 4,
+        "16563": 4,
+        "16825": 4,
+        "16914": 4,
+        "17009": 4,
+        "174": 4,
+        "17608": 4,
+        "17633": 4,
+        "17718": 4,
+        "17747": 4,
+        "17845": 4,
+        "18042": 4,
+        "18632": 4,
+        "18929": 4,
+        "19199": 4,
+        "19434": 4,
+        "19525": 4,
+        "19647": 4,
+        "19726": 4,
+        "19727": 4,
+        "19852": 4,
+        "20457": 4,
+        "20867": 4,
+        "20891": 4,
+        "20999": 4,
+        "21101": 4,
+        "21109": 4,
+        "21192": 4,
+        "21453": 4,
+        "21578": 4,
+        "21808": 4,
+        "21844": 4,
+        "21939": 4,
+        "22172": 4,
+        "22228": 4,
+        "22346": 4,
+        "22349": 4,
+        "22367": 4,
+        "22536": 4,
+        "22771": 4,
+        "22835": 4,
+        "2311": 4,
+        "2743": 4,
+        "2825": 4,
+        "2987": 4,
+        "3011": 4,
+        "3438": 4,
+        "3492": 4,
+        "3749": 4,
+        "3853": 4,
+        "3949": 4,
+        "4652": 4,
+        "4715": 4,
+        "517": 4,
+        "5193": 4,
+        "5205": 4,
+        "5253": 4,
+        "5478": 4,
+        "5757": 4,
+        "6072": 4,
+        "6326": 4,
+        "635": 4,
+        "6523": 4,
+        "6692": 4,
+        "6858": 4,
+        "7201": 4,
+        "7242": 4,
+        "7305": 4,
+        "7383": 4,
+        "7709": 4,
+        "8169": 4,
+        "826": 4,
+        "8291": 4,
+        "8421": 4,
+        "8601": 4,
+        "8604": 4,
+        "8768": 4,
+        "8827": 4,
+        "8893": 4,
+        "8931": 4,
+        "9146": 4,
+        "9560": 4,
+        "9641": 4
+      },
+      "response_tokens": 445717,
+      "loss_tokens": 445717
+    }
+  ],
+  "scope": "Exact multiset of UID/response token IDs/loss mask; identical repeated responses matched by count. Prompt tokens are stable within each UID. Retention request steps do not establish optimizer age. Finished retained responses outside consumption are reported; tokens in unfinished or cancelled generation are not fully observed. Reserved task costs include that work.",
+  "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories",
+  "versions": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/consumed_versions",
+  "archive_inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/00d2253a8ecad820c40b2ea1768313667ce16ae3653ed5dbb20cdcc0675aab58.zip",
+      "sha256": "00d2253a8ecad820c40b2ea1768313667ce16ae3653ed5dbb20cdcc0675aab58",
+      "bytes": 16609
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/053fefa3cfdd861119a6cdf4bd0ee176075f5d5467b28a09a588dfee7d3fff40.zip",
+      "sha256": "053fefa3cfdd861119a6cdf4bd0ee176075f5d5467b28a09a588dfee7d3fff40",
+      "bytes": 12441
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/07f801f5f89f1823b0e958858b87397109c75ac0a518335e399a9bfe17328be7.zip",
+      "sha256": "07f801f5f89f1823b0e958858b87397109c75ac0a518335e399a9bfe17328be7",
+      "bytes": 11096
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/084cb77eb60961f6c727391c30e7584279095ae5e99788379ad19dba3a25b536.zip",
+      "sha256": "084cb77eb60961f6c727391c30e7584279095ae5e99788379ad19dba3a25b536",
+      "bytes": 57198
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/084f44e9b6518b15c69f09934d7f162577321ebe9d7d66a04f9ebeec97af3710.zip",
+      "sha256": "084f44e9b6518b15c69f09934d7f162577321ebe9d7d66a04f9ebeec97af3710",
+      "bytes": 11811
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/0b1e9d23d8dcac49e8ecfd4b5e58142694fa089c62d4adb1f5c9480bda9ab356.zip",
+      "sha256": "0b1e9d23d8dcac49e8ecfd4b5e58142694fa089c62d4adb1f5c9480bda9ab356",
+      "bytes": 42049
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/0d89c3dffbcb0e11678f0bd2ca73d144a56750da8e0d9e8053f0f16a3e826f18.zip",
+      "sha256": "0d89c3dffbcb0e11678f0bd2ca73d144a56750da8e0d9e8053f0f16a3e826f18",
+      "bytes": 28232
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/13549b1c1f437d3aaaf768951cc770489efaba33b5b68e4384f5da99273edac8.zip",
+      "sha256": "13549b1c1f437d3aaaf768951cc770489efaba33b5b68e4384f5da99273edac8",
+      "bytes": 10776
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/1483673e8263ae8e99f4243241a1e2d8f75a1bb667c9658f10da177aa64f9f7d.zip",
+      "sha256": "1483673e8263ae8e99f4243241a1e2d8f75a1bb667c9658f10da177aa64f9f7d",
+      "bytes": 13691
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/157505614c8e30ab3978276873afe1743d5f9c22bbae0ff6008557bd5372ee8d.zip",
+      "sha256": "157505614c8e30ab3978276873afe1743d5f9c22bbae0ff6008557bd5372ee8d",
+      "bytes": 35741
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/158c46bc2613976706ebe6442269a97c0419348d5340e147767556fbc5fc3a35.zip",
+      "sha256": "158c46bc2613976706ebe6442269a97c0419348d5340e147767556fbc5fc3a35",
+      "bytes": 10983
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/15ab70ec457d08e98027800f4042acee7577d048515d519d7d2e79896f04f4eb.zip",
+      "sha256": "15ab70ec457d08e98027800f4042acee7577d048515d519d7d2e79896f04f4eb",
+      "bytes": 13901
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/15f1981d6b39fd224115cf43b18947e40f83ad3bd0f3326a4cb2ac2edab4f990.zip",
+      "sha256": "15f1981d6b39fd224115cf43b18947e40f83ad3bd0f3326a4cb2ac2edab4f990",
+      "bytes": 20345
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/16bcfa25fe121876afc2d17ae1c244b9978a363c47f8caf87e09682c99f242a1.zip",
+      "sha256": "16bcfa25fe121876afc2d17ae1c244b9978a363c47f8caf87e09682c99f242a1",
+      "bytes": 10549
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/17fbf9d442260cc04e25f2775016afdc54ddc91f2f90b912391a6f255511f785.zip",
+      "sha256": "17fbf9d442260cc04e25f2775016afdc54ddc91f2f90b912391a6f255511f785",
+      "bytes": 27619
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/1f11dd577afc52b56ad75bb61e0c807ed8c87172bb9d642b6dc603cd47e35053.zip",
+      "sha256": "1f11dd577afc52b56ad75bb61e0c807ed8c87172bb9d642b6dc603cd47e35053",
+      "bytes": 36057
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/2040af4e4e8fb2c3ce3a24f33b4e9ffdca0e6d8610577e3f3a3a275277ccf36c.zip",
+      "sha256": "2040af4e4e8fb2c3ce3a24f33b4e9ffdca0e6d8610577e3f3a3a275277ccf36c",
+      "bytes": 41429
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/25a0440f14d3322d383772eda10bca3a2cad6fe96c272deee071d8470ef747cb.zip",
+      "sha256": "25a0440f14d3322d383772eda10bca3a2cad6fe96c272deee071d8470ef747cb",
+      "bytes": 12847
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/25dd867c42e6315bd6c252e1dc8fd593f55be520835382ec8eb742ba1e9858a8.zip",
+      "sha256": "25dd867c42e6315bd6c252e1dc8fd593f55be520835382ec8eb742ba1e9858a8",
+      "bytes": 10805
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/27c2b2acf533b2fdbd45b261210610750f28dbaf5500ac5e98daebef09b956ed.zip",
+      "sha256": "27c2b2acf533b2fdbd45b261210610750f28dbaf5500ac5e98daebef09b956ed",
+      "bytes": 11361
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/28acf0b5a5f2e972f62ee832d00edfd613d1234027ee878c76640ffccc35a32b.zip",
+      "sha256": "28acf0b5a5f2e972f62ee832d00edfd613d1234027ee878c76640ffccc35a32b",
+      "bytes": 42697
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/29c506b2d2f8f9ef38e3673d05a0dbae7f4129e052d137cb874dc73024d0386f.zip",
+      "sha256": "29c506b2d2f8f9ef38e3673d05a0dbae7f4129e052d137cb874dc73024d0386f",
+      "bytes": 18149
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/2a09659e8ff086cc3b57864485501c1af5cb2cf532ed8829e88a0dd08babf043.zip",
+      "sha256": "2a09659e8ff086cc3b57864485501c1af5cb2cf532ed8829e88a0dd08babf043",
+      "bytes": 22128
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/2a0a69d4f6ae4721d6cd0940bdf7c3af4426d78fc009e2a83cd08fbae5cafcdb.zip",
+      "sha256": "2a0a69d4f6ae4721d6cd0940bdf7c3af4426d78fc009e2a83cd08fbae5cafcdb",
+      "bytes": 11890
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/2e9e88107ed1751c9480222b22286d198d81f89239fc433acac161209072ae0e.zip",
+      "sha256": "2e9e88107ed1751c9480222b22286d198d81f89239fc433acac161209072ae0e",
+      "bytes": 20984
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/30d0f045b7995eac9e4f582b2d0e25fb22f8f904e3c5dfd92fdec584c4d2aa08.zip",
+      "sha256": "30d0f045b7995eac9e4f582b2d0e25fb22f8f904e3c5dfd92fdec584c4d2aa08",
+      "bytes": 13059
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/32653dbda1806a20d99e297f56a0b04083b8e081d7e28d66f923f68fc0555397.zip",
+      "sha256": "32653dbda1806a20d99e297f56a0b04083b8e081d7e28d66f923f68fc0555397",
+      "bytes": 26599
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/32798ef01920170540af23c18d51d6cbf3aa1c7cdab951e556235be6db9f82e8.zip",
+      "sha256": "32798ef01920170540af23c18d51d6cbf3aa1c7cdab951e556235be6db9f82e8",
+      "bytes": 24131
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/343ce90d1a806499d4aaf8562c923e85533aff75bf51c949ab29d1dd4b9255f7.zip",
+      "sha256": "343ce90d1a806499d4aaf8562c923e85533aff75bf51c949ab29d1dd4b9255f7",
+      "bytes": 13332
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/397d317dc19b9a2a0a78dd9b8016a20aba9ab27824bdaa283f43d10dd8537c6f.zip",
+      "sha256": "397d317dc19b9a2a0a78dd9b8016a20aba9ab27824bdaa283f43d10dd8537c6f",
+      "bytes": 29670
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/3a7858cc6fce139b286054964d3a42ef9f807e38c541414f2cf9314cb7817269.zip",
+      "sha256": "3a7858cc6fce139b286054964d3a42ef9f807e38c541414f2cf9314cb7817269",
+      "bytes": 12142
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/3da521370c3cd91c8833402f66536da59db1f274d269a9b9db6e8d42b347852f.zip",
+      "sha256": "3da521370c3cd91c8833402f66536da59db1f274d269a9b9db6e8d42b347852f",
+      "bytes": 23096
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/3fa0926f7df1ce494203665416c827ca84d15c13ff71d0c7e545c80619e858d3.zip",
+      "sha256": "3fa0926f7df1ce494203665416c827ca84d15c13ff71d0c7e545c80619e858d3",
+      "bytes": 13976
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/445619790f4a5d93c0c2ade49669c232c26fe176878397492d5a40eaa7af8fd3.zip",
+      "sha256": "445619790f4a5d93c0c2ade49669c232c26fe176878397492d5a40eaa7af8fd3",
+      "bytes": 9731
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/448aca018f6b3cafbefbb1eb446f1da40871c7ebdf5ad6fa07ae37d0621a7e09.zip",
+      "sha256": "448aca018f6b3cafbefbb1eb446f1da40871c7ebdf5ad6fa07ae37d0621a7e09",
+      "bytes": 26357
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/46ab87082a9b626b1df0d613bfaf0388ead1e9b55569eb212aac686fc5a30050.zip",
+      "sha256": "46ab87082a9b626b1df0d613bfaf0388ead1e9b55569eb212aac686fc5a30050",
+      "bytes": 10226
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/4c23e5b6255c8766352e69bf5dfc248ea9184c7e5e8a9b94a5f90cdf838ac668.zip",
+      "sha256": "4c23e5b6255c8766352e69bf5dfc248ea9184c7e5e8a9b94a5f90cdf838ac668",
+      "bytes": 24552
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/4ce9be0a590ecd2ae5927cb4b736e71a8281d2d81ed570c312fd767ce73cd91f.zip",
+      "sha256": "4ce9be0a590ecd2ae5927cb4b736e71a8281d2d81ed570c312fd767ce73cd91f",
+      "bytes": 17866
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/4d4057d296e56225c3a4b7a460c4a96b9bf3ea44583afbff33e2bc4888ea98d5.zip",
+      "sha256": "4d4057d296e56225c3a4b7a460c4a96b9bf3ea44583afbff33e2bc4888ea98d5",
+      "bytes": 11239
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/4ee0983ca0226dc017372f07abb9c6b0c6d8d1be02142fed68996cffcc160a70.zip",
+      "sha256": "4ee0983ca0226dc017372f07abb9c6b0c6d8d1be02142fed68996cffcc160a70",
+      "bytes": 14617
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/5078f5ad12b624119a7dc0c22d3c3d26b48f4229740c4788ae49e126b721208e.zip",
+      "sha256": "5078f5ad12b624119a7dc0c22d3c3d26b48f4229740c4788ae49e126b721208e",
+      "bytes": 14373
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/50e6f6c7c0792c0302065a37588758f1c7710d4eb37e6c89719fe8e94657a56b.zip",
+      "sha256": "50e6f6c7c0792c0302065a37588758f1c7710d4eb37e6c89719fe8e94657a56b",
+      "bytes": 40030
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/517560a60c335c00934f9168aae6732c5143332157ab32b6702e877d34cf2aa5.zip",
+      "sha256": "517560a60c335c00934f9168aae6732c5143332157ab32b6702e877d34cf2aa5",
+      "bytes": 12596
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/52134a91d03fe9d8d2b6f86bcf6c39058bbe77fc00d6d4a3f78cf49d175bf86b.zip",
+      "sha256": "52134a91d03fe9d8d2b6f86bcf6c39058bbe77fc00d6d4a3f78cf49d175bf86b",
+      "bytes": 10757
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/58012fc73e0df202b947b45288a40f9651c820a66680ee4860fce078d861d4b0.zip",
+      "sha256": "58012fc73e0df202b947b45288a40f9651c820a66680ee4860fce078d861d4b0",
+      "bytes": 11163
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/594be7874c5fa8ceea2bbe09dec0e22974dcff572d3611809e3947d488bc6766.zip",
+      "sha256": "594be7874c5fa8ceea2bbe09dec0e22974dcff572d3611809e3947d488bc6766",
+      "bytes": 20435
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/5a9771b01b3540eadac2590e7a84fe0cda8d77306ca27d582df462c96ffa9f68.zip",
+      "sha256": "5a9771b01b3540eadac2590e7a84fe0cda8d77306ca27d582df462c96ffa9f68",
+      "bytes": 27393
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/5cc97f77bed3193f5b61233c92a7bdc88144cd36fca51f556df9c982d628ce57.zip",
+      "sha256": "5cc97f77bed3193f5b61233c92a7bdc88144cd36fca51f556df9c982d628ce57",
+      "bytes": 16645
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/5d53a8ce6d1da8a4e89500e20035e65d85c9c5f7b8efd489d43dca0819423697.zip",
+      "sha256": "5d53a8ce6d1da8a4e89500e20035e65d85c9c5f7b8efd489d43dca0819423697",
+      "bytes": 18949
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/625e2b614523bb7eec7fc8b9d97e03c142f95fb21b83f105dfdc038305c2b16c.zip",
+      "sha256": "625e2b614523bb7eec7fc8b9d97e03c142f95fb21b83f105dfdc038305c2b16c",
+      "bytes": 10625
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/62a46799b1564ba87d7ac5523edf9df9ba5d3c5c226368ed0a09841da1de93c0.zip",
+      "sha256": "62a46799b1564ba87d7ac5523edf9df9ba5d3c5c226368ed0a09841da1de93c0",
+      "bytes": 13462
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/6338868e8b98eba123fc48599f4418716264fb36f63b2abe28d181ef2b416656.zip",
+      "sha256": "6338868e8b98eba123fc48599f4418716264fb36f63b2abe28d181ef2b416656",
+      "bytes": 24460
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/6bd7b31b3aad02a19b9561d8705ccb1fdfa2066fbb3a8155fd85419b9012c93f.zip",
+      "sha256": "6bd7b31b3aad02a19b9561d8705ccb1fdfa2066fbb3a8155fd85419b9012c93f",
+      "bytes": 19860
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/6c4a5804fd31ad65e4a714ab2efaf0facbc8a5e60a4694e3c60d8cb4baf18184.zip",
+      "sha256": "6c4a5804fd31ad65e4a714ab2efaf0facbc8a5e60a4694e3c60d8cb4baf18184",
+      "bytes": 11668
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/702c7d0bd3cb2d8bb20b4c89965423e57d68fd244f33c7957105171be4741e6d.zip",
+      "sha256": "702c7d0bd3cb2d8bb20b4c89965423e57d68fd244f33c7957105171be4741e6d",
+      "bytes": 43721
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/712dfa3c6cac3071d076c838218f94e90f21b5747fd8ccf40910a60c14b396b9.zip",
+      "sha256": "712dfa3c6cac3071d076c838218f94e90f21b5747fd8ccf40910a60c14b396b9",
+      "bytes": 48149
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/73ad90ae48f1cae207959e8c973c29aae11f3e3c18711155487c8a3380cee524.zip",
+      "sha256": "73ad90ae48f1cae207959e8c973c29aae11f3e3c18711155487c8a3380cee524",
+      "bytes": 32906
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/747b4758e76e50d5d3d2fa0c0f326cde5fe7b091e01b39b6276b244c488a4351.zip",
+      "sha256": "747b4758e76e50d5d3d2fa0c0f326cde5fe7b091e01b39b6276b244c488a4351",
+      "bytes": 24262
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7582eecf6f7b6380aa1fd76eb07f630d4de012073b5c6b9b7bf518c26ab7ee8c.zip",
+      "sha256": "7582eecf6f7b6380aa1fd76eb07f630d4de012073b5c6b9b7bf518c26ab7ee8c",
+      "bytes": 11993
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/75f2c7f625f0e39b2b4af7db55d11998eed6c3f71a3f333f7d48682d92a71ed5.zip",
+      "sha256": "75f2c7f625f0e39b2b4af7db55d11998eed6c3f71a3f333f7d48682d92a71ed5",
+      "bytes": 14360
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/760cdadb097ec7028c5e4a3d3d5faa0609fc0275a30316b46b43fd30ff9a6ec2.zip",
+      "sha256": "760cdadb097ec7028c5e4a3d3d5faa0609fc0275a30316b46b43fd30ff9a6ec2",
+      "bytes": 10534
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/76cd134995ce6e8b02a5447f04751ff538054f171ca193e8994f4036144b3122.zip",
+      "sha256": "76cd134995ce6e8b02a5447f04751ff538054f171ca193e8994f4036144b3122",
+      "bytes": 13865
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/76d7d054be63fe6d486e39399c66d0ac1d13fb02305ed1e0759007588c6f74a4.zip",
+      "sha256": "76d7d054be63fe6d486e39399c66d0ac1d13fb02305ed1e0759007588c6f74a4",
+      "bytes": 13529
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/77f6a0210c4053f2bb275b55c8404364d07f5a9ec9c5cbe61a4c7d0860c983f0.zip",
+      "sha256": "77f6a0210c4053f2bb275b55c8404364d07f5a9ec9c5cbe61a4c7d0860c983f0",
+      "bytes": 12111
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7873d34d95223f01a357e2315572b206ec4ebeb530dfed6b5d4e3e11a0edf93b.zip",
+      "sha256": "7873d34d95223f01a357e2315572b206ec4ebeb530dfed6b5d4e3e11a0edf93b",
+      "bytes": 24349
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7aa312aacc9a4c388d59ab01e77f2ea3c43394667e926f712ca01fe82965dc74.zip",
+      "sha256": "7aa312aacc9a4c388d59ab01e77f2ea3c43394667e926f712ca01fe82965dc74",
+      "bytes": 15251
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7bc89c93ce2b9e6bf5b8298a8405fe2360c499053a284752acd1ba9f874fdd8d.zip",
+      "sha256": "7bc89c93ce2b9e6bf5b8298a8405fe2360c499053a284752acd1ba9f874fdd8d",
+      "bytes": 20453
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7ce3f94aa427f937c29e108e22fb6941117f4a2a80353f9c573fa61388f37f95.zip",
+      "sha256": "7ce3f94aa427f937c29e108e22fb6941117f4a2a80353f9c573fa61388f37f95",
+      "bytes": 10391
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/7d781acca16f324e80cdbede70c09f61ea733f4411c61994c7433ff4dd4106e8.zip",
+      "sha256": "7d781acca16f324e80cdbede70c09f61ea733f4411c61994c7433ff4dd4106e8",
+      "bytes": 13713
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/82bb2e1b4da020ce26cc41a8d9057cd03daea8088cba00de34b9b9ff2f19b934.zip",
+      "sha256": "82bb2e1b4da020ce26cc41a8d9057cd03daea8088cba00de34b9b9ff2f19b934",
+      "bytes": 20980
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/830998972be0c30ac3eb38c3b50b9e44ee5e3d00cd33ea8ea4c66e12e06c5691.zip",
+      "sha256": "830998972be0c30ac3eb38c3b50b9e44ee5e3d00cd33ea8ea4c66e12e06c5691",
+      "bytes": 13647
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/838eea71417e5258a7b978a959783a9cf72bb188e3ee041b2b18633eaa3b4b79.zip",
+      "sha256": "838eea71417e5258a7b978a959783a9cf72bb188e3ee041b2b18633eaa3b4b79",
+      "bytes": 18139
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/842eb083f111623caeeda56f31c60d3fe8d38cd119a34aaa4f9bf3e5a561fe95.zip",
+      "sha256": "842eb083f111623caeeda56f31c60d3fe8d38cd119a34aaa4f9bf3e5a561fe95",
+      "bytes": 29893
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/89193b6f26a65c64a018fc37a57567b8ecf620b1ccd5eb7da5fd96d9b23e1f3b.zip",
+      "sha256": "89193b6f26a65c64a018fc37a57567b8ecf620b1ccd5eb7da5fd96d9b23e1f3b",
+      "bytes": 17279
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/8a2dbb7f0bd4aca15994945ac3136832773b22e472c16438454f16e0009a9a9e.zip",
+      "sha256": "8a2dbb7f0bd4aca15994945ac3136832773b22e472c16438454f16e0009a9a9e",
+      "bytes": 9966
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/8a8ab29ede8e836ed90034cc90fdc3841da72f96d79cb2213b7bf3c614469d24.zip",
+      "sha256": "8a8ab29ede8e836ed90034cc90fdc3841da72f96d79cb2213b7bf3c614469d24",
+      "bytes": 15589
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/8b74817b1166a8ae350cb337dff051f0abdf2235f525a3fa0462dbc4501f50a4.zip",
+      "sha256": "8b74817b1166a8ae350cb337dff051f0abdf2235f525a3fa0462dbc4501f50a4",
+      "bytes": 10976
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/91323fe93b683fcb8c39e4a1eab6065f6f4d3219a5a779fcf8db826d7aff9156.zip",
+      "sha256": "91323fe93b683fcb8c39e4a1eab6065f6f4d3219a5a779fcf8db826d7aff9156",
+      "bytes": 11522
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/968cbd96095ccfa8054692227fbc50fa3869ca5651104b005e37b5ff80fb3bcf.zip",
+      "sha256": "968cbd96095ccfa8054692227fbc50fa3869ca5651104b005e37b5ff80fb3bcf",
+      "bytes": 24937
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/96b58280e52e789af985dbfe69dedaa4f25b3fc663ce0654c88d7b3a8095117a.zip",
+      "sha256": "96b58280e52e789af985dbfe69dedaa4f25b3fc663ce0654c88d7b3a8095117a",
+      "bytes": 23750
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/99c098756182f874d52fc29b633a9be5b984fa436e436ba227e7553a9f7a2919.zip",
+      "sha256": "99c098756182f874d52fc29b633a9be5b984fa436e436ba227e7553a9f7a2919",
+      "bytes": 13627
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/99eef6924c5719baf6d1849f8be808d1caeed2e8e6eda04e0e8b0940d7e2a577.zip",
+      "sha256": "99eef6924c5719baf6d1849f8be808d1caeed2e8e6eda04e0e8b0940d7e2a577",
+      "bytes": 32784
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/9ac8b5a8948a1ac3a49220c0076cbc8e450ed942f6c27855e531ad0b13bedd36.zip",
+      "sha256": "9ac8b5a8948a1ac3a49220c0076cbc8e450ed942f6c27855e531ad0b13bedd36",
+      "bytes": 11259
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/a45943f8e72461fdc580b832cf4cb113ae6c4e7b1114c09a1310cdb03e87b4f8.zip",
+      "sha256": "a45943f8e72461fdc580b832cf4cb113ae6c4e7b1114c09a1310cdb03e87b4f8",
+      "bytes": 12332
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/a74c95e9ce8dd83319264f2417fd2f2f01ed13ba3ff1f610dc531ddf50b588d4.zip",
+      "sha256": "a74c95e9ce8dd83319264f2417fd2f2f01ed13ba3ff1f610dc531ddf50b588d4",
+      "bytes": 10842
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/a892094b080979c91b23a36fedf2b10a1bc8ee89826c38f898f0720a31908d2a.zip",
+      "sha256": "a892094b080979c91b23a36fedf2b10a1bc8ee89826c38f898f0720a31908d2a",
+      "bytes": 17713
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/a90b46e0918352b88626974dab91cf864dc90459d3697aa4bb08675d9e9107b1.zip",
+      "sha256": "a90b46e0918352b88626974dab91cf864dc90459d3697aa4bb08675d9e9107b1",
+      "bytes": 27472
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/aa058cdc5501c5025e145dc70826c87c7b875fe92d491266fa8972dc208a4424.zip",
+      "sha256": "aa058cdc5501c5025e145dc70826c87c7b875fe92d491266fa8972dc208a4424",
+      "bytes": 35449
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/afd05c8917b150e5bb2beb62fb0d224b235d4b16b71a850904b9bbdab6213a21.zip",
+      "sha256": "afd05c8917b150e5bb2beb62fb0d224b235d4b16b71a850904b9bbdab6213a21",
+      "bytes": 15037
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b0236dc4580b3121681242e43c7037c81908b38d586dc31657ebe2b10a5dedda.zip",
+      "sha256": "b0236dc4580b3121681242e43c7037c81908b38d586dc31657ebe2b10a5dedda",
+      "bytes": 10690
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b0fd753532c70eff4a2e78a11ca01efa7d069c6cc06a3b9a2e8c90021ce6765a.zip",
+      "sha256": "b0fd753532c70eff4a2e78a11ca01efa7d069c6cc06a3b9a2e8c90021ce6765a",
+      "bytes": 12274
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b255a06af3dc64617a0c1887bcbc1af2c7530daf2c2d5e9a3fe6fdfa5cbf3ddc.zip",
+      "sha256": "b255a06af3dc64617a0c1887bcbc1af2c7530daf2c2d5e9a3fe6fdfa5cbf3ddc",
+      "bytes": 11963
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b6e30b8808c8f6ae04870658cda971954bf3430f7ff6b867fbc8533035864551.zip",
+      "sha256": "b6e30b8808c8f6ae04870658cda971954bf3430f7ff6b867fbc8533035864551",
+      "bytes": 11136
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/b805efe9e96a8db3c0604e281a612561cae5423a1be07e5f3e1586e1c856915d.zip",
+      "sha256": "b805efe9e96a8db3c0604e281a612561cae5423a1be07e5f3e1586e1c856915d",
+      "bytes": 21769
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/bca785c304049c44b9fd1f39f9ad64593412f6da1f9c4e9aeff71f2f9ddd0723.zip",
+      "sha256": "bca785c304049c44b9fd1f39f9ad64593412f6da1f9c4e9aeff71f2f9ddd0723",
+      "bytes": 28393
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/bdbc2f3e8b4eb73c5baba414d05f55e04fe64be1e3f223e36204861f6b813b7a.zip",
+      "sha256": "bdbc2f3e8b4eb73c5baba414d05f55e04fe64be1e3f223e36204861f6b813b7a",
+      "bytes": 24325
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/bea97d6b788128c22c7f91187f52afd03c42d12d0f70acad6ec785bbccd7030d.zip",
+      "sha256": "bea97d6b788128c22c7f91187f52afd03c42d12d0f70acad6ec785bbccd7030d",
+      "bytes": 14292
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c0eef25a7ca8e0e4784898343aa975d0e824f4be03c0318cf1bdfdb364ba7387.zip",
+      "sha256": "c0eef25a7ca8e0e4784898343aa975d0e824f4be03c0318cf1bdfdb364ba7387",
+      "bytes": 30026
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c116356c71c6379907fef930eef91b94f8d98887128de9022fb596b9dfa1283c.zip",
+      "sha256": "c116356c71c6379907fef930eef91b94f8d98887128de9022fb596b9dfa1283c",
+      "bytes": 30793
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c3722ee804884d558a592f6aead147fe046324e08268245f16caad800a2bdb9b.zip",
+      "sha256": "c3722ee804884d558a592f6aead147fe046324e08268245f16caad800a2bdb9b",
+      "bytes": 17008
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c412d2b65e73a374aaa142d1a65984347d8dc668cef6644a1e673698f32ed325.zip",
+      "sha256": "c412d2b65e73a374aaa142d1a65984347d8dc668cef6644a1e673698f32ed325",
+      "bytes": 15016
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c535a67cbd4b01eb31f2ca5a001f8f6a5f006d72443660fbf829b6c86eac5b58.zip",
+      "sha256": "c535a67cbd4b01eb31f2ca5a001f8f6a5f006d72443660fbf829b6c86eac5b58",
+      "bytes": 24696
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/c88b0b0373ac619a48e57ebb6d88bec80efc69a40d5c2435274c4da584f218a3.zip",
+      "sha256": "c88b0b0373ac619a48e57ebb6d88bec80efc69a40d5c2435274c4da584f218a3",
+      "bytes": 10458
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/cc53fa6a728a09d401aa2386330e1852b35a57a0078d4504161345166f685651.zip",
+      "sha256": "cc53fa6a728a09d401aa2386330e1852b35a57a0078d4504161345166f685651",
+      "bytes": 37233
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/d37645c967f7050b0fc9a96d8804922288482bae12617b8ae0628656e8d7ecad.zip",
+      "sha256": "d37645c967f7050b0fc9a96d8804922288482bae12617b8ae0628656e8d7ecad",
+      "bytes": 13278
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/d53619da4c8317ba2a08f9290675d318aaf70589c81e015193fa19f3f9d285bd.zip",
+      "sha256": "d53619da4c8317ba2a08f9290675d318aaf70589c81e015193fa19f3f9d285bd",
+      "bytes": 15269
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/d599ca48ec33c7fbb4ffaf1b43b5e9d2b3999170f126263d4bc9a9a887b4a804.zip",
+      "sha256": "d599ca48ec33c7fbb4ffaf1b43b5e9d2b3999170f126263d4bc9a9a887b4a804",
+      "bytes": 12296
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/d636611eeb952165118be6f0619651a1d58d1babf1918895abaa5e280d89f742.zip",
+      "sha256": "d636611eeb952165118be6f0619651a1d58d1babf1918895abaa5e280d89f742",
+      "bytes": 10126
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/d9e53ee4a1f0df8670da7d604a23f81e02bd8d9c1154615b2c5ef0f5b5526d65.zip",
+      "sha256": "d9e53ee4a1f0df8670da7d604a23f81e02bd8d9c1154615b2c5ef0f5b5526d65",
+      "bytes": 12297
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/deee91e19b826f449dc26f3e50da8e1b9d26ddf4176b01a6ac08f69f151cf020.zip",
+      "sha256": "deee91e19b826f449dc26f3e50da8e1b9d26ddf4176b01a6ac08f69f151cf020",
+      "bytes": 9574
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e0830f1a596f717d61770c2ef311fe495c1c1eba4e2988ddeb0365a76c2694fc.zip",
+      "sha256": "e0830f1a596f717d61770c2ef311fe495c1c1eba4e2988ddeb0365a76c2694fc",
+      "bytes": 23637
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e0d5851316f446b01b012354bfdc964e77fd831fc639b358fbcbf6e165284b40.zip",
+      "sha256": "e0d5851316f446b01b012354bfdc964e77fd831fc639b358fbcbf6e165284b40",
+      "bytes": 12093
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e39e09587a2fa52e9d6979dbb4f04334dead99fcc15f4de7d710f376441d66a3.zip",
+      "sha256": "e39e09587a2fa52e9d6979dbb4f04334dead99fcc15f4de7d710f376441d66a3",
+      "bytes": 27157
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e69d027b282e17265404b7990db3a5c04bd7f4f8616fdf7628506213717ff8e6.zip",
+      "sha256": "e69d027b282e17265404b7990db3a5c04bd7f4f8616fdf7628506213717ff8e6",
+      "bytes": 17602
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e7e2ce068ac2e6ca6be575632d0ee98717099db75f5c8093ead1040b9b6cab5f.zip",
+      "sha256": "e7e2ce068ac2e6ca6be575632d0ee98717099db75f5c8093ead1040b9b6cab5f",
+      "bytes": 24587
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e7f4ec39de919bfeffd5fcdf115e68f0db3129a6b4278bf9875e1fa4981dc9cd.zip",
+      "sha256": "e7f4ec39de919bfeffd5fcdf115e68f0db3129a6b4278bf9875e1fa4981dc9cd",
+      "bytes": 10840
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/e80ff5b05531e42b4d97a11e7d180b800098bbd2162fdea314aa4730a1f8c60e.zip",
+      "sha256": "e80ff5b05531e42b4d97a11e7d180b800098bbd2162fdea314aa4730a1f8c60e",
+      "bytes": 12200
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/eba9a113c475400162708a69ec3c81544718efc56822adfe7a868ebae408babd.zip",
+      "sha256": "eba9a113c475400162708a69ec3c81544718efc56822adfe7a868ebae408babd",
+      "bytes": 11091
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/edf033d178d56d46f1875e91edf3ca98fb23fa41c76a2e3a50ce4602fd331ca2.zip",
+      "sha256": "edf033d178d56d46f1875e91edf3ca98fb23fa41c76a2e3a50ce4602fd331ca2",
+      "bytes": 13046
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f150583106bbfaec63ecf4ea41f8118855a73fcef3ec53aea1c8ed1447e28a80.zip",
+      "sha256": "f150583106bbfaec63ecf4ea41f8118855a73fcef3ec53aea1c8ed1447e28a80",
+      "bytes": 21151
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f1e2acec7ddc89a57814247fef385def5495dffe8fde138c89bdd2db95164cb3.zip",
+      "sha256": "f1e2acec7ddc89a57814247fef385def5495dffe8fde138c89bdd2db95164cb3",
+      "bytes": 11730
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f25f2ba63eafcd6cdf1fb17ad5b1d4715c582326c85008eef41af2ad00f65149.zip",
+      "sha256": "f25f2ba63eafcd6cdf1fb17ad5b1d4715c582326c85008eef41af2ad00f65149",
+      "bytes": 35725
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f27b07b1db3ef4a85fc3154c72dcb80a8d806dd4b029cc425fb61f425c1c10da.zip",
+      "sha256": "f27b07b1db3ef4a85fc3154c72dcb80a8d806dd4b029cc425fb61f425c1c10da",
+      "bytes": 28968
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f4a2bc76698e228abbfbe4f4218c95f08401bab10b6e3c6f800ba7d7e064e73b.zip",
+      "sha256": "f4a2bc76698e228abbfbe4f4218c95f08401bab10b6e3c6f800ba7d7e064e73b",
+      "bytes": 21405
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f4bbe2feb891bedfd826c32fb7bd3fbe8d386810d0bb26a53e6750733cb609be.zip",
+      "sha256": "f4bbe2feb891bedfd826c32fb7bd3fbe8d386810d0bb26a53e6750733cb609be",
+      "bytes": 15628
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/f80473a74181094a79fb95f88686a3f3fc142ca0b920f11284c0fb6bb244be9d.zip",
+      "sha256": "f80473a74181094a79fb95f88686a3f3fc142ca0b920f11284c0fb6bb244be9d",
+      "bytes": 12395
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/fa13e3d521983203b480a9ccdcac8bf6427aeb85f1b4f45ee1a58e862f78022e.zip",
+      "sha256": "fa13e3d521983203b480a9ccdcac8bf6427aeb85f1b4f45ee1a58e862f78022e",
+      "bytes": 12115
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000001/fb8034a37f0a44dea260063da7fb4ec078a6f8821f5630a95da2955119bc58dd.zip",
+      "sha256": "fb8034a37f0a44dea260063da7fb4ec078a6f8821f5630a95da2955119bc58dd",
+      "bytes": 13667
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/00e88ff715e338f6a672e26add8abe4699b9374eca09cf248c69f31a77fe9abd.zip",
+      "sha256": "00e88ff715e338f6a672e26add8abe4699b9374eca09cf248c69f31a77fe9abd",
+      "bytes": 14887
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/01716ffe20ff73109269534ca613d980356b2eeeb085505c4e91a8b202343466.zip",
+      "sha256": "01716ffe20ff73109269534ca613d980356b2eeeb085505c4e91a8b202343466",
+      "bytes": 25610
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/063b20f177dfa650a17cb7eed0f730d03ce30581f71dd48fc35d2dac23cdb080.zip",
+      "sha256": "063b20f177dfa650a17cb7eed0f730d03ce30581f71dd48fc35d2dac23cdb080",
+      "bytes": 17048
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/0680ef1120ea210327af9d893376786eba8046ea1335457b5acfa7c800542661.zip",
+      "sha256": "0680ef1120ea210327af9d893376786eba8046ea1335457b5acfa7c800542661",
+      "bytes": 33289
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/06e60f8f041a6b1b72bb01bf836f6e8ddd720ec7fcb76125467fad24379f9d7b.zip",
+      "sha256": "06e60f8f041a6b1b72bb01bf836f6e8ddd720ec7fcb76125467fad24379f9d7b",
+      "bytes": 11079
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/0aaaf042dc56dec5d46f8e7a06e9bf96345dd9907f13f3e2fed237c45e2723cf.zip",
+      "sha256": "0aaaf042dc56dec5d46f8e7a06e9bf96345dd9907f13f3e2fed237c45e2723cf",
+      "bytes": 12031
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/0b3089d42a277dc06099faa7f62d62b5bcbfaf26778791bee037fc2f63d53d8c.zip",
+      "sha256": "0b3089d42a277dc06099faa7f62d62b5bcbfaf26778791bee037fc2f63d53d8c",
+      "bytes": 14229
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/0e6bc78cc31bb4c3274bdcfb96698f132bc27304917c49f01cfde5446597cd84.zip",
+      "sha256": "0e6bc78cc31bb4c3274bdcfb96698f132bc27304917c49f01cfde5446597cd84",
+      "bytes": 20565
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/13a8efb5b5fdd48ed33d75c9b08b8962348ad50d2798793a4b09687e3133402e.zip",
+      "sha256": "13a8efb5b5fdd48ed33d75c9b08b8962348ad50d2798793a4b09687e3133402e",
+      "bytes": 20212
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/14e8251801f96e9576109e6ca407747c05ead702f0eaeb90c658096fb2c03f6c.zip",
+      "sha256": "14e8251801f96e9576109e6ca407747c05ead702f0eaeb90c658096fb2c03f6c",
+      "bytes": 10793
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/181d9d4b6afd348cfa32a8c592ccd6e6a1859da4b72a4f277da84098f967c5fb.zip",
+      "sha256": "181d9d4b6afd348cfa32a8c592ccd6e6a1859da4b72a4f277da84098f967c5fb",
+      "bytes": 14944
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/196120c5e1079ac6bf1817bbf12e7cc48d21a4faec335b21a532075dd14f0197.zip",
+      "sha256": "196120c5e1079ac6bf1817bbf12e7cc48d21a4faec335b21a532075dd14f0197",
+      "bytes": 20013
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/1b8469c13c655fa0de0d9f6580ccd83bd6b64a93627e6bf682c389a6418fba69.zip",
+      "sha256": "1b8469c13c655fa0de0d9f6580ccd83bd6b64a93627e6bf682c389a6418fba69",
+      "bytes": 10151
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/1bd86cf427b863527ff142b10a557e00ae5e0aa803283e0f6b6ba6e5390bde00.zip",
+      "sha256": "1bd86cf427b863527ff142b10a557e00ae5e0aa803283e0f6b6ba6e5390bde00",
+      "bytes": 10819
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/1be34edc8b4c6bfdc730359e07f6344803c1355109a2993307ce050180e7150f.zip",
+      "sha256": "1be34edc8b4c6bfdc730359e07f6344803c1355109a2993307ce050180e7150f",
+      "bytes": 11332
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/1dfe028b36bf7427b8291f85c7ac663ecc96abca66a1c458e9d8ed7dd0cf933e.zip",
+      "sha256": "1dfe028b36bf7427b8291f85c7ac663ecc96abca66a1c458e9d8ed7dd0cf933e",
+      "bytes": 30169
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/22a8e3874d635ed9a6222a2dfe07685c2e804917fa61234662517826a1bf3cca.zip",
+      "sha256": "22a8e3874d635ed9a6222a2dfe07685c2e804917fa61234662517826a1bf3cca",
+      "bytes": 17616
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/23551f2b01a80f16e57ee5342a89d7ae7b5f57ded08eb7e0dd913bde2ae87efa.zip",
+      "sha256": "23551f2b01a80f16e57ee5342a89d7ae7b5f57ded08eb7e0dd913bde2ae87efa",
+      "bytes": 10010
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/2357036718408b585e2f1d665dea183f34d76d4a0bc1764325e682156cac0ba8.zip",
+      "sha256": "2357036718408b585e2f1d665dea183f34d76d4a0bc1764325e682156cac0ba8",
+      "bytes": 17124
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/2594f7944cbb6b4c7d7f36275cb55164a76553e4cba4ba1c0b5182e7102f2ce4.zip",
+      "sha256": "2594f7944cbb6b4c7d7f36275cb55164a76553e4cba4ba1c0b5182e7102f2ce4",
+      "bytes": 11315
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/29028ce79a014a2a220cf362337cb2e1be7e5c8146de85c41191455f67661780.zip",
+      "sha256": "29028ce79a014a2a220cf362337cb2e1be7e5c8146de85c41191455f67661780",
+      "bytes": 10660
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/30fc2b34b38e617ca556adf91cd5e9dca4cb74f4536cf9ae86b1a5eeeb1b2a08.zip",
+      "sha256": "30fc2b34b38e617ca556adf91cd5e9dca4cb74f4536cf9ae86b1a5eeeb1b2a08",
+      "bytes": 18663
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/3261eb8afcac5ddf32e9dd641a2a6b0c3c8e7720c902245bfe15e025342c2d97.zip",
+      "sha256": "3261eb8afcac5ddf32e9dd641a2a6b0c3c8e7720c902245bfe15e025342c2d97",
+      "bytes": 11036
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/334d54b41b421d4d3bfc8217645ebde6c8c1fcd39d95fd49f9651d6a10fe708b.zip",
+      "sha256": "334d54b41b421d4d3bfc8217645ebde6c8c1fcd39d95fd49f9651d6a10fe708b",
+      "bytes": 42173
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/37bc4ea4b05714fb298e926e9a7055388d59a0835ceb30a1e5edd7dcef85c738.zip",
+      "sha256": "37bc4ea4b05714fb298e926e9a7055388d59a0835ceb30a1e5edd7dcef85c738",
+      "bytes": 25697
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/396b5a49cc0ced705cc7bbbba13893b0be6c1096b02ecdd77db6441b13a62742.zip",
+      "sha256": "396b5a49cc0ced705cc7bbbba13893b0be6c1096b02ecdd77db6441b13a62742",
+      "bytes": 11056
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/3ae44a68959472b92497ec5efd5a84e0198d31f613aa0bd0e2b7126f6adcec9e.zip",
+      "sha256": "3ae44a68959472b92497ec5efd5a84e0198d31f613aa0bd0e2b7126f6adcec9e",
+      "bytes": 17911
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/3b544c1675bd22fd041a396ec7d674c4c6b2e3df9368672f7a4ed4a02cbd33fd.zip",
+      "sha256": "3b544c1675bd22fd041a396ec7d674c4c6b2e3df9368672f7a4ed4a02cbd33fd",
+      "bytes": 21446
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/3f0e2c68909871f3a0242fc66748663373f0cfa7fb6b45ba76971b94af6045af.zip",
+      "sha256": "3f0e2c68909871f3a0242fc66748663373f0cfa7fb6b45ba76971b94af6045af",
+      "bytes": 16256
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/3fb792a09f4a4aa376ec34ceecd882ce8ce756935e1235804347b066bcd75aa4.zip",
+      "sha256": "3fb792a09f4a4aa376ec34ceecd882ce8ce756935e1235804347b066bcd75aa4",
+      "bytes": 19491
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/444ff7fc0da16284fe5980ae1fd9c08443fe45c016b2a8431473812aa7f5f1c4.zip",
+      "sha256": "444ff7fc0da16284fe5980ae1fd9c08443fe45c016b2a8431473812aa7f5f1c4",
+      "bytes": 25954
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/462188a42958e09f80c287cfe2d7fab919a36aa604853f627c201f777d191037.zip",
+      "sha256": "462188a42958e09f80c287cfe2d7fab919a36aa604853f627c201f777d191037",
+      "bytes": 11737
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/47c33df9b2585da11ae416b2374e590008b8841e41d62e7d2cdeb37518649973.zip",
+      "sha256": "47c33df9b2585da11ae416b2374e590008b8841e41d62e7d2cdeb37518649973",
+      "bytes": 10471
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/4cfcd444d5b723677a35022b752b1c821944ee7362fda26cee9f5b0f9fe8eee3.zip",
+      "sha256": "4cfcd444d5b723677a35022b752b1c821944ee7362fda26cee9f5b0f9fe8eee3",
+      "bytes": 20000
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/4df157993d1867d1cddb1f294e92514de7423f8f6fab5d15e01deae3a17fb4fc.zip",
+      "sha256": "4df157993d1867d1cddb1f294e92514de7423f8f6fab5d15e01deae3a17fb4fc",
+      "bytes": 12901
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/4eea948c6155956d12be6466c9f79e7413bc6551f29a2faaef641b05f5ce0b0e.zip",
+      "sha256": "4eea948c6155956d12be6466c9f79e7413bc6551f29a2faaef641b05f5ce0b0e",
+      "bytes": 10706
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/51f78959a0d4fdb89f4f67ad3e58b885be9ae732661c295a0ebe35ecc119edb2.zip",
+      "sha256": "51f78959a0d4fdb89f4f67ad3e58b885be9ae732661c295a0ebe35ecc119edb2",
+      "bytes": 15221
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/5729433b7ec80765b88a63710ae153d4bd9fc92a322f9147664576a0006ef351.zip",
+      "sha256": "5729433b7ec80765b88a63710ae153d4bd9fc92a322f9147664576a0006ef351",
+      "bytes": 12412
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/5afb83abd5a4a4af78d1db61f1172972d015388aada98af425a698d1282d3d4b.zip",
+      "sha256": "5afb83abd5a4a4af78d1db61f1172972d015388aada98af425a698d1282d3d4b",
+      "bytes": 14479
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/64ed5cdff061306e31d2b12835e0447486dfb4207b7737e7853fd18fcb0eda7d.zip",
+      "sha256": "64ed5cdff061306e31d2b12835e0447486dfb4207b7737e7853fd18fcb0eda7d",
+      "bytes": 13488
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/673cf2fe201f0b81eb5b69c87f392fb4b07a828ea3f3365263f3584c6620ec64.zip",
+      "sha256": "673cf2fe201f0b81eb5b69c87f392fb4b07a828ea3f3365263f3584c6620ec64",
+      "bytes": 9692
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6b18931df8e2c57d5807d496107168ba407e8f695d4782293d8d439e9c27bdd6.zip",
+      "sha256": "6b18931df8e2c57d5807d496107168ba407e8f695d4782293d8d439e9c27bdd6",
+      "bytes": 32055
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6c638fe5db30a6d6f4cc9c2e181dda1ff82f389a92c076db1350ad1e9528bd08.zip",
+      "sha256": "6c638fe5db30a6d6f4cc9c2e181dda1ff82f389a92c076db1350ad1e9528bd08",
+      "bytes": 26974
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6d06baf696912452165335a7d189d9a367f22d917a20b125797026012cd523db.zip",
+      "sha256": "6d06baf696912452165335a7d189d9a367f22d917a20b125797026012cd523db",
+      "bytes": 10628
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6e13edec5c19474327603dcebecddcc240cea23c248d289e6c71bdc2c7f7d608.zip",
+      "sha256": "6e13edec5c19474327603dcebecddcc240cea23c248d289e6c71bdc2c7f7d608",
+      "bytes": 13972
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6ef0e21f96075c8ca8796752ca0d2208b6065a11862b7f86441bba079ebe76d9.zip",
+      "sha256": "6ef0e21f96075c8ca8796752ca0d2208b6065a11862b7f86441bba079ebe76d9",
+      "bytes": 17016
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/6fdaf7cd5b3d8eacd6b1f7c3e857987081220f053470370f1df5987d1972eb52.zip",
+      "sha256": "6fdaf7cd5b3d8eacd6b1f7c3e857987081220f053470370f1df5987d1972eb52",
+      "bytes": 11313
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/7434724499701d6ec601433ce5eec4fc9f6275a72f938c4477843e5878d5e112.zip",
+      "sha256": "7434724499701d6ec601433ce5eec4fc9f6275a72f938c4477843e5878d5e112",
+      "bytes": 14774
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/7779174e03c403d09239b702123533c035d59a3f2eba646aeb13c4181d117dfd.zip",
+      "sha256": "7779174e03c403d09239b702123533c035d59a3f2eba646aeb13c4181d117dfd",
+      "bytes": 10619
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/782c10a206ea8c7737d6b3306015a5d273ba7444efb1805d5a4905981be43e10.zip",
+      "sha256": "782c10a206ea8c7737d6b3306015a5d273ba7444efb1805d5a4905981be43e10",
+      "bytes": 28044
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/7be046985fd03db1f2b87a7466f66d89bbef1a8351735323056bb3893741ffdd.zip",
+      "sha256": "7be046985fd03db1f2b87a7466f66d89bbef1a8351735323056bb3893741ffdd",
+      "bytes": 14711
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/7e688930bac27161e39f3d3e41e09c62a468133b1a7d08a45fc142ebbb2cf415.zip",
+      "sha256": "7e688930bac27161e39f3d3e41e09c62a468133b1a7d08a45fc142ebbb2cf415",
+      "bytes": 10502
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/8356ae608540edd6381924d5efe5fd0f9b4cfff2fc54fe4955241c0bdd15212a.zip",
+      "sha256": "8356ae608540edd6381924d5efe5fd0f9b4cfff2fc54fe4955241c0bdd15212a",
+      "bytes": 12736
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/8396e33d5ff13823aa62b10268c3b94cdc431af96b3ee4ca0a415cec1ece709a.zip",
+      "sha256": "8396e33d5ff13823aa62b10268c3b94cdc431af96b3ee4ca0a415cec1ece709a",
+      "bytes": 11581
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/85f2da773784c31699a28f1a01881e9da712e49fd015a0d7b98861c2fb24fe15.zip",
+      "sha256": "85f2da773784c31699a28f1a01881e9da712e49fd015a0d7b98861c2fb24fe15",
+      "bytes": 11005
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/8613eb93aa712f96b918d11a0bfa39cff6c704c724383be184aa9d91a6457b7a.zip",
+      "sha256": "8613eb93aa712f96b918d11a0bfa39cff6c704c724383be184aa9d91a6457b7a",
+      "bytes": 13658
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/88a51e66a48599063c039f7c36702e7ed6f81e16d44eddb49e6740f91ce389b4.zip",
+      "sha256": "88a51e66a48599063c039f7c36702e7ed6f81e16d44eddb49e6740f91ce389b4",
+      "bytes": 18576
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/8ad888cc979618a21a93ffcbf1853ecee0185f641fef591765ca913c3902fc36.zip",
+      "sha256": "8ad888cc979618a21a93ffcbf1853ecee0185f641fef591765ca913c3902fc36",
+      "bytes": 20958
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/9096c936adf0e70a18fdcbf6b27fe7e1ee12e0adaf8fd2e877c51e9ddc98fd7c.zip",
+      "sha256": "9096c936adf0e70a18fdcbf6b27fe7e1ee12e0adaf8fd2e877c51e9ddc98fd7c",
+      "bytes": 13253
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/91b144a992022c8ec54ee7cbccdd0ae38cc7547f367e759694819d9b4018d690.zip",
+      "sha256": "91b144a992022c8ec54ee7cbccdd0ae38cc7547f367e759694819d9b4018d690",
+      "bytes": 15828
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/97c940bbf9a11f07f2e4d92698eb7637fe1e91731b5c265beedfecb2d85f44a1.zip",
+      "sha256": "97c940bbf9a11f07f2e4d92698eb7637fe1e91731b5c265beedfecb2d85f44a1",
+      "bytes": 14207
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/97e0297a703aef639f84fa5ead3136599c7593dd77ee60c77b689efd56863fa7.zip",
+      "sha256": "97e0297a703aef639f84fa5ead3136599c7593dd77ee60c77b689efd56863fa7",
+      "bytes": 21624
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/998bdc25aa1320b58e04f18c14accda03db5f3878722f2d4a3f492ea9579a3ef.zip",
+      "sha256": "998bdc25aa1320b58e04f18c14accda03db5f3878722f2d4a3f492ea9579a3ef",
+      "bytes": 11880
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/9f7cf1d7a2ae2591f21bc19929fab4c1dfd8fe6c031585debdfd1490506011a8.zip",
+      "sha256": "9f7cf1d7a2ae2591f21bc19929fab4c1dfd8fe6c031585debdfd1490506011a8",
+      "bytes": 15643
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/a0ace0d506c47fd3a3539cba6656be259ccc3de9660b24a295e98fae5e9f07ae.zip",
+      "sha256": "a0ace0d506c47fd3a3539cba6656be259ccc3de9660b24a295e98fae5e9f07ae",
+      "bytes": 10828
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/a0cc8c3b5013c3a20f71ecf0960471218715b7a6972367d7eafba8e521cf4445.zip",
+      "sha256": "a0cc8c3b5013c3a20f71ecf0960471218715b7a6972367d7eafba8e521cf4445",
+      "bytes": 15965
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/a4f7af2fbdcfc0310ad2142c16d8b85f955959cb6a11a516bc1c6b3d3f1705ce.zip",
+      "sha256": "a4f7af2fbdcfc0310ad2142c16d8b85f955959cb6a11a516bc1c6b3d3f1705ce",
+      "bytes": 14049
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/a540936a47a846d35354efd990efb3457c07cb08a67574614018ab7d98c7c59d.zip",
+      "sha256": "a540936a47a846d35354efd990efb3457c07cb08a67574614018ab7d98c7c59d",
+      "bytes": 12578
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/a66799fb532905967aee4376f7c45a9c6b70b33ab02bffd21dd0da34ef722d35.zip",
+      "sha256": "a66799fb532905967aee4376f7c45a9c6b70b33ab02bffd21dd0da34ef722d35",
+      "bytes": 16415
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/aaa4d53c585b556718c2c193e658fc26d81761d3bd74d21df9320024c8497bf1.zip",
+      "sha256": "aaa4d53c585b556718c2c193e658fc26d81761d3bd74d21df9320024c8497bf1",
+      "bytes": 10958
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/ab8f3f232a4baee99cee9b5430aa2544b3b955553844222fa34c00a0f63ab5fa.zip",
+      "sha256": "ab8f3f232a4baee99cee9b5430aa2544b3b955553844222fa34c00a0f63ab5fa",
+      "bytes": 14590
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/b131f302e542bbcf866724ba99d3aed54ab026c79bfcc83b10f5070a244ece67.zip",
+      "sha256": "b131f302e542bbcf866724ba99d3aed54ab026c79bfcc83b10f5070a244ece67",
+      "bytes": 11644
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/b28ec2811b5d6cf7adc8804f8fabbbf62f8ce29fcdacf4d78302724d126f31e3.zip",
+      "sha256": "b28ec2811b5d6cf7adc8804f8fabbbf62f8ce29fcdacf4d78302724d126f31e3",
+      "bytes": 20794
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/b7b48a556ddfa56bd602ae4699c63d438919b724a79bade98992f7b0b7427cb1.zip",
+      "sha256": "b7b48a556ddfa56bd602ae4699c63d438919b724a79bade98992f7b0b7427cb1",
+      "bytes": 15552
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/b8198608eeab40842fbf5cb77782e577c2bac92ee895bbe47870af4d09a868a2.zip",
+      "sha256": "b8198608eeab40842fbf5cb77782e577c2bac92ee895bbe47870af4d09a868a2",
+      "bytes": 27003
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/bb04f7aba7e7d07456ac1f98dfb304aed9cb587555fd697d3cbfe2a774de4cc3.zip",
+      "sha256": "bb04f7aba7e7d07456ac1f98dfb304aed9cb587555fd697d3cbfe2a774de4cc3",
+      "bytes": 10120
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/bbf20214b8ff89134b92e728252a288e3633ea3a0cbe71304958e9c843fafe6f.zip",
+      "sha256": "bbf20214b8ff89134b92e728252a288e3633ea3a0cbe71304958e9c843fafe6f",
+      "bytes": 26782
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/bd5350866af1e05bdeb504e1076982fd0b8366a080ddb980f332953e1ecc10b7.zip",
+      "sha256": "bd5350866af1e05bdeb504e1076982fd0b8366a080ddb980f332953e1ecc10b7",
+      "bytes": 14034
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/c2d6b730049f5a0cab3c6da9db9a6281139a231504193e5039f33c64ae067606.zip",
+      "sha256": "c2d6b730049f5a0cab3c6da9db9a6281139a231504193e5039f33c64ae067606",
+      "bytes": 10162
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/c3b262d66443c98c92f6f5a489f1a56df87485cdc20f3e07191a9c7c66a06b86.zip",
+      "sha256": "c3b262d66443c98c92f6f5a489f1a56df87485cdc20f3e07191a9c7c66a06b86",
+      "bytes": 14475
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/c9f4701b30632b0087c5f13c9d482d48b3daee1e283ae99b930a80302720e0c1.zip",
+      "sha256": "c9f4701b30632b0087c5f13c9d482d48b3daee1e283ae99b930a80302720e0c1",
+      "bytes": 11078
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/ca4ecb05170c4c788e391fb6c3b3b313021d06ff356d0a928ce1a5f4c67ca7e8.zip",
+      "sha256": "ca4ecb05170c4c788e391fb6c3b3b313021d06ff356d0a928ce1a5f4c67ca7e8",
+      "bytes": 15775
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/cd42390496f3a83ae1cf8316d573e6bc9fec67c4eace8d87bc456ed4c5b5f35e.zip",
+      "sha256": "cd42390496f3a83ae1cf8316d573e6bc9fec67c4eace8d87bc456ed4c5b5f35e",
+      "bytes": 12053
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d115dbbb4dc38ad4cf87ca6dd37679853112f428978b70cc0060662b2948f88d.zip",
+      "sha256": "d115dbbb4dc38ad4cf87ca6dd37679853112f428978b70cc0060662b2948f88d",
+      "bytes": 9622
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d2581d05f12783e247b11998fe3c09444093bd94aee1a545861ff49d1e0cb7d5.zip",
+      "sha256": "d2581d05f12783e247b11998fe3c09444093bd94aee1a545861ff49d1e0cb7d5",
+      "bytes": 17450
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d3b5bd7c636381d78b2191b088a36826c7939c7a0db47fe213f3a586a649edb9.zip",
+      "sha256": "d3b5bd7c636381d78b2191b088a36826c7939c7a0db47fe213f3a586a649edb9",
+      "bytes": 11322
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d4939919fe5b0a8aa0fa04b1db7e3d3c33a8c0a96a3017696310b0cef2b656d2.zip",
+      "sha256": "d4939919fe5b0a8aa0fa04b1db7e3d3c33a8c0a96a3017696310b0cef2b656d2",
+      "bytes": 12507
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d70ed4642feb6fe1c9932d3775731f220db18c96e6c77f53bffb4efa54ff4cbe.zip",
+      "sha256": "d70ed4642feb6fe1c9932d3775731f220db18c96e6c77f53bffb4efa54ff4cbe",
+      "bytes": 10289
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d8f4a845a0a963c9151723331804369d8b59a0ad95f6e7f14b148c3a48983a46.zip",
+      "sha256": "d8f4a845a0a963c9151723331804369d8b59a0ad95f6e7f14b148c3a48983a46",
+      "bytes": 14389
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/d9f753802fc7a7ed2b4823834ab1004069c20939bcde98afb10f476fe9453de1.zip",
+      "sha256": "d9f753802fc7a7ed2b4823834ab1004069c20939bcde98afb10f476fe9453de1",
+      "bytes": 16801
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/dc19f309394d2499cf6304927d5874892fdca10559f6f25b1a788ad09c4268d5.zip",
+      "sha256": "dc19f309394d2499cf6304927d5874892fdca10559f6f25b1a788ad09c4268d5",
+      "bytes": 10356
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/dd8b3e49183e87ef7f0de1c8c8b39d0ba4a66128528695537103428599e10d8d.zip",
+      "sha256": "dd8b3e49183e87ef7f0de1c8c8b39d0ba4a66128528695537103428599e10d8d",
+      "bytes": 12504
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/e3157bf98c537f5464ccf4724854b0f004c5312b72801740661c96ab446e57ba.zip",
+      "sha256": "e3157bf98c537f5464ccf4724854b0f004c5312b72801740661c96ab446e57ba",
+      "bytes": 10255
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/e8494773e5efa26cc0e78d466076024749e391272f16ee4105eb4cf97875bcf6.zip",
+      "sha256": "e8494773e5efa26cc0e78d466076024749e391272f16ee4105eb4cf97875bcf6",
+      "bytes": 10501
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/eb0689e94c2d5e82d6a84c8ebdf1c281ac186265208039613acae504cbf96a39.zip",
+      "sha256": "eb0689e94c2d5e82d6a84c8ebdf1c281ac186265208039613acae504cbf96a39",
+      "bytes": 9748
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/ebbab519e19c1f38585d541b386f8450ca2cbdc02eb2d4490307338fcbac6ad4.zip",
+      "sha256": "ebbab519e19c1f38585d541b386f8450ca2cbdc02eb2d4490307338fcbac6ad4",
+      "bytes": 21524
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/eee405dc398e59f5660b5c93bb69e7c937dc3c276b8df3d8e91824a982a960f2.zip",
+      "sha256": "eee405dc398e59f5660b5c93bb69e7c937dc3c276b8df3d8e91824a982a960f2",
+      "bytes": 25759
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/ef6d7cea72bc580aaf255e96b629eaa48b37ef0617c2a776053cee85a50a5c81.zip",
+      "sha256": "ef6d7cea72bc580aaf255e96b629eaa48b37ef0617c2a776053cee85a50a5c81",
+      "bytes": 33858
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/efeb1d4d2d036018f576a8d0da2b9aa31ad85d24ed3c17719006a9d0b6877b58.zip",
+      "sha256": "efeb1d4d2d036018f576a8d0da2b9aa31ad85d24ed3c17719006a9d0b6877b58",
+      "bytes": 12321
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/faf26d9e554c208fddf6892e4b1acb96c2cdcd72c19a3f91f7a0f8446c747acc.zip",
+      "sha256": "faf26d9e554c208fddf6892e4b1acb96c2cdcd72c19a3f91f7a0f8446c747acc",
+      "bytes": 11862
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/fb8c9244f3e0b1469fc81af2bc7a0839d4710a7607e1e3593501eb63857f23fc.zip",
+      "sha256": "fb8c9244f3e0b1469fc81af2bc7a0839d4710a7607e1e3593501eb63857f23fc",
+      "bytes": 10382
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/fcd8097e88f2904b4c9c71a842889c50438e3c348eca405ac0691c42a20ead50.zip",
+      "sha256": "fcd8097e88f2904b4c9c71a842889c50438e3c348eca405ac0691c42a20ead50",
+      "bytes": 12357
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/fe6f889453eafb89b1c144ae85a7a40fe0d9462eaa1ef8be0540c2a49248c5b9.zip",
+      "sha256": "fe6f889453eafb89b1c144ae85a7a40fe0d9462eaa1ef8be0540c2a49248c5b9",
+      "bytes": 11359
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/attempts/trajectories/schema_v6/archives/phase=train/step=00000002/fea40e797dac14c1bdb62484b3eae0821a18af530cbc1b6f46898d6daa10136d.zip",
+      "sha256": "fea40e797dac14c1bdb62484b3eae0821a18af530cbc1b6f46898d6daa10136d",
+      "bytes": 11408
+    }
+  ],
+  "version_inputs": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s101-20261004/consumed_versions/step-00000001.json",
+      "sha256": "61805786c5d8a9097b27e7ead5521fcd3197ff4952672020cafc616ca7567f55",
+      "bytes": 3770999
+    }
+  ]
+}
