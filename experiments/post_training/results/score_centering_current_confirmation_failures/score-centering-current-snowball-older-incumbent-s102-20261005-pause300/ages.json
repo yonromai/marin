@@ -1,0 +1,37 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 409394,
+      "optimizer_age_counts": {
+        "0": 409394
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 409394,
+    "optimizer_age_counts": {
+      "0": 409394
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 0,
+    "optimizer_age_mean": 0.0,
+    "optimizer_age_p50": 0,
+    "optimizer_age_p95": 0,
+    "optimizer_age_p99": 0,
+    "active_responses": 512,
+    "mixed_policy_responses": 0,
+    "mixed_policy_response_fraction": 0.0
+  }
+}

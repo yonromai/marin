@@ -472,7 +472,37 @@ step-40 checkpoint. Its 15,670,992 loss tokens had mean actual optimizer age
 task-hours. All six original revision-two jobs are now terminal: five complete
 evidence audits and one failed attempt outside confirmation.
 
-Completed new costs are **641.0470231** hours across 31 attempts, separate
+The [incumbent seed-102 attempt](results/score_centering_current_confirmation_failures/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/failure.json)
+subsequently failed during its second update. TE 2.19's grouped linear backward
+input-gradient matrix multiply returned a cuBLAS execution error on policy
+rank 26, DP 10 / PP 1, node `g1cc692`, GPU 2. The first update was applied with
+finite gradient norm 0.19962. The second forward completed; its optimizer
+update was not applied. Cleanup finished and all five tasks are terminal.
+There is no final checkpoint or step-40 endpoint. The attempt cost 16.4939667
+reserved H100 task-hours and remains outside confirmation.
+
+The 32 policy actor stderr logs contain no earlier CUDA, OOM, device assertion,
+or illegal-address error. Task events contain no hardware disruption. The
+post-failure node snapshot reports readiness and no relevant GPU fault, which
+cannot prove device health during the failed kernel. The root cause remains
+unresolved. Recent upstream fixes for a bias/output dtype mismatch and
+distributed FP8 weight gathering do not match this ordinary BF16, no-bias
+input-gradient call. Raw worker logs, original exception documents, driver,
+resolved launch, node snapshot and task events have content-hashed copies.
+
+The [controlled-repeat amendment](results/score_centering_current_confirmation_protocol_r2_gemmretry1.json)
+allows one repeat of this fixed incumbent arm and seed from the initial model.
+Its freeze is `b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e`.
+Only run and artifact identities change; reversing them reproduces the prior
+configuration exactly. The other 50 inputs and all six analysis and collection
+sources retain their bytes. Further submissions wait for two finite, nonzero
+applied updates in the repeat. Another failure requires a new diagnosis.
+Success could show nonrecurrence on that attempt; it would not establish a
+hardware cause. Async execution can change consumed batches, so this is not an
+exact tensor replay. Endpoint scores did not select the repeat, and the failed
+attempt remains in costs and reliability results.
+
+Completed new costs are **657.5409897** hours across 32 attempts, separate
 from historical costs of 1,072.548303 hours. The first SC run that passed the
 full evidence gates has seed 102; its matched controls remain pending. These
 five audited runs do not yet support a paired centering contrast.

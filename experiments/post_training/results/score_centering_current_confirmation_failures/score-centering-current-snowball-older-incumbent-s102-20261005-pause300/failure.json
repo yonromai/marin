@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-10-05T03:33:29.738878+00:00",
+  "arm": "older_incumbent",
+  "seed": 102,
+  "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+  "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "configuration_sha256": "7c132469bac4884bc5304e6a79f7c7f7b959330a525e8afaa6a342a70ed756be",
+  "state": "failed",
+  "scientific_work_complete": false,
+  "eligible_for_confirmation": false,
+  "completed_training_steps_logged": 1,
+  "optimizer_updates_applied": 1,
+  "token_version_ledger_steps": [
+    1
+  ],
+  "failure": "Second policy update failed in TE2.19 GroupedLinear.backward input-gradient GEMM: cublasLtMatmul returned execution/launch failure. Policy actor26(DP10/PP1), PID14716, nodeg1cc692 GPU2.",
+  "first_update_raw_grad_norm": 0.19961971044540405,
+  "failure_at_utc": "2026-10-05T03:20:47.877+00:00",
+  "actor_cleanup_complete_at_utc": "2026-10-05T03:21:26.627+00:00",
+  "second_consumed_response_tokens": 491300,
+  "cause": "Unresolved. Generic cuBLAS execution failure does not establish a hardware fault or a specific memory/stream bug. No earlier CUDA/OOM/device-assert/illegal-address error found in32policy actor stderr logs; no hardware disruption in observed task0events.",
+  "post_failure_node_observation": {
+    "source": {
+      "source": "kubectl get node g1cc692 at2026-10-05T03:30UTC",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/post-failure-node-f3ee1d2f497e9d211b2c55fada7a7f5813a413a2f633f66312aea3467a07d642",
+      "sha256": "f3ee1d2f497e9d211b2c55fada7a7f5813a413a2f633f66312aea3467a07d642",
+      "bytes": 68121
+    },
+    "health_conditions": {
+      "MemoryPressure": "False",
+      "Ready": "True",
+      "GPUInitError": "False",
+      "GPUResourceRetirementEvent": "False",
+      "GPUWantsReboot": "False",
+      "HardwareErrorFatal": "False",
+      "GPUECCUncorrectableError": "False",
+      "GPUWantsReset": "False",
+      "GPUFatalTimeout": "False"
+    },
+    "scope": "After-failure readiness/health snapshot; absence of a reported condition does not prove all devices were healthy during the failed kernel."
+  },
+  "upstream_checks": [
+    {
+      "url": "https://github.com/NVIDIA/TransformerEngine/blob/v2.19/transformer_engine/pytorch/module/grouped_linear.py#L1744",
+      "finding": "Exact failing line computes dgrad in the ordinary split grouped-GEMM path with no bias argument."
+    },
+    {
+      "url": "https://github.com/NVIDIA/TransformerEngine/pull/3565",
+      "finding": "Recent bias/out dtype guard does not address this no-bias dgrad call."
+    },
+    {
+      "url": "https://github.com/NVIDIA/TransformerEngine/pull/3517",
+      "finding": "DistributedWeight/grouped-tensor and FP8 re-gather fix does not match this ordinary BF16 split path."
+    }
+  ],
+  "prior_work_search": {
+    "echo_execution_id": 8871,
+    "query": "Snowball Transformer Engine grouped linear backward cuBLAS launch failure after first optimizer update",
+    "results": 0,
+    "feedback_id": 2754
+  },
+  "reserved_h100_task_hours": 16.493966666666665,
+  "cost_basis": "All five controller task reservation intervals; sole actual attempts retained separately. Initialization, evaluation, failed compute and teardown included.",
+  "tasks": [
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0",
+      "state": 5,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791169044288,
+      "finished_at_ms": 1791170528745,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/1",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791169044288,
+      "finished_at_ms": 1791170528745,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/2",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791169044288,
+      "finished_at_ms": 1791170528745,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/3",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791169044288,
+      "finished_at_ms": 1791170528745,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/4",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791169044288,
+      "finished_at_ms": 1791170528745,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    }
+  ],
+  "actual_attempts": [
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0",
+      "attempt_id": 0,
+      "worker_id": null,
+      "state": 5,
+      "created_at_ms": 1791169044288,
+      "started_at_ms": 1791169051296,
+      "finished_at_ms": 1791170528745,
+      "exit_code": 1,
+      "error": "_results(\n                      ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/marinskyrl/skyrl-train/skyrl_train/distributed/dispatch.py\", line 266, in collect_actor_results\n    raise group_error from error\nskyrl_train.distributed.dispatch.WorkerGroupTaskError: policy ppo_train failed on actor index 26 (MeshRank(dp=10, sp=0, tp=0, pp=1, world_size=32, dp_size=16, pp_size=2)); terminating the worker group so an outer retry can rebuild the communicator\n2026-10-05 03:21:26.640 | ERROR    | skyrl_train.entrypoints.main_base:run_ray_driver:717 - Preserved original training-driver exception at /tmp/skyrl-debug/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/outcomes/skyrl-entrypoint-driver.g1cc692.9871.1791170486639200666.exception.json\n2026-10-05 03:21:26.640 | INFO     | skyrl_train.entrypoints.main_base:run_ray_driver:720 - Shutting down Ray on head node...\n2026-10-05 03:21:26.640 | INFO     | skyrl_train.entrypoints.ray_lifecycle:shutdown_ray:16 - Leaving Ray cluster teardown to iris-task-runtime\n2026-10-05 03:21:26.640 | INFO     | skyrl_train.entrypoints.ray_lifecycle:exit_without_ray_destructors:24 - Exiting after handing Ray cluster teardown to iris-task-runtime\n[task-runtime] [term-capture] wrote termination artifact -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/rendezvous/term_artifacts/_romain_score-centering-current-snowball-older-incumbent-s102-20261005-pause300_0:0_1791170488.txt\n[task-runtime] [ray-log-sync] uploaded 24 file(s) / 0.01 GiB (unchanged=1540, failed=0, deferred=0) -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692 [driver exit_code=1 (head rank 0)]\n[task-runtime] [debug-sync] uploaded 22 file(s) / 77175 bytes -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/rendezvous/debug_artifacts/rank0-g1cc692 [driver exit_code=1 (head rank 0)]\n[task-runtime] Ray stop completed (exit 0)\n",
+      "attempt_uid": "c556af0bb0251872",
+      "backend_id": "",
+      "pod_name": "iris-romain-score-centering-current-67b096b8-0-c556af0bb0251872",
+      "pod_uid": "ef2d9160-4748-4740-b2cf-9aa3b7de4de1",
+      "node_name": "g1cc692",
+      "terminal_reason": "_results(\n                      ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/marinskyrl/skyrl-train/skyrl_train/distributed/dispatch.py\", line 266, in collect_actor_results\n    raise group_error from error\nskyrl_train.distributed.dispatch.WorkerGroupTaskError: policy ppo_train failed on actor index 26 (MeshRank(dp=10, sp=0, tp=0, pp=1, world_size=32, dp_size=16, pp_size=2)); terminating the worker group so an outer retry can rebuild the communicator\n2026-10-05 03:21:26.640 | ERROR    | skyrl_train.entryp"
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/1",
+      "attempt_id": 0,
+      "worker_id": null,
+      "state": 11,
+      "created_at_ms": 1791169044288,
+      "started_at_ms": 1791169051296,
+      "finished_at_ms": 1791170528745,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0 failed",
+      "attempt_uid": "bae3d6bc0ad633b6",
+      "backend_id": "",
+      "pod_name": "iris-romain-score-centering-current-28331711-0-bae3d6bc0ad633b6",
+      "pod_uid": "5dc0d840-7aef-4f56-aca7-6cbceca73555",
+      "node_name": "g3232cc",
+      "terminal_reason": ""
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/2",
+      "attempt_id": 0,
+      "worker_id": null,
+      "state": 11,
+      "created_at_ms": 1791169044288,
+      "started_at_ms": 1791169051296,
+      "finished_at_ms": 1791170528745,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0 failed",
+      "attempt_uid": "49afa47b9611d499",
+      "backend_id": "",
+      "pod_name": "iris-romain-score-centering-current-078a825c-0-49afa47b9611d499",
+      "pod_uid": "58b4bee4-1df7-4f4d-aea2-bc3b0e67bbdf",
+      "node_name": "g80f608",
+      "terminal_reason": ""
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/3",
+      "attempt_id": 0,
+      "worker_id": null,
+      "state": 11,
+      "created_at_ms": 1791169044288,
+      "started_at_ms": 1791169051296,
+      "finished_at_ms": 1791170528745,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0 failed",
+      "attempt_uid": "3482c252cb8c7a3f",
+      "backend_id": "",
+      "pod_name": "iris-romain-score-centering-current-e35ee9e1-0-3482c252cb8c7a3f",
+      "pod_uid": "d2e4b531-ba14-43c9-b87a-73832037dd2b",
+      "node_name": "ga8b3d8",
+      "terminal_reason": ""
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/4",
+      "attempt_id": 0,
+      "worker_id": null,
+      "state": 11,
+      "created_at_ms": 1791169044288,
+      "started_at_ms": 1791169051296,
+      "finished_at_ms": 1791170528745,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0 failed",
+      "attempt_uid": "b550ed8022477699",
+      "backend_id": "",
+      "pod_name": "iris-romain-score-centering-current-d29e55fb-0-b550ed8022477699",
+      "pod_uid": "4b3e4d8c-e4df-4d19-a502-45f8c94de06e",
+      "node_name": "gaa0e72",
+      "terminal_reason": ""
+    }
+  ],
+  "driver": {
+    "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-e4cbdda0ef4b6884dbc30cd82c9a68fd8feb03b7b86a37f18dee2f51-06000000-14103.err",
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-driver-bb3deb162e8d2408c63ae44e8dc059098563345b71ad20cb2ec0ba4eaf88a7ea",
+    "sha256": "bb3deb162e8d2408c63ae44e8dc059098563345b71ad20cb2ec0ba4eaf88a7ea",
+    "bytes": 163969
+  },
+  "resolved_launch": {
+    "source": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/resolved-launch.yaml",
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-resolved-3e0dc10212e191b2fb3c2d7e2cd305b2880c201223991ffa86017fba5088f5fd",
+    "sha256": "3e0dc10212e191b2fb3c2d7e2cd305b2880c201223991ffa86017fba5088f5fd",
+    "bytes": 19743
+  },
+  "policy_actor_logs": [
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-0d2d3f8e247b394460541c71cdc7d71c13a8fb1191e43a5f003e4213-06000000-14715.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-0-3af1741e78e9d78844de6dc589a83d74101612bbc089b4c40dff2bbdb8986184",
+      "sha256": "3af1741e78e9d78844de6dc589a83d74101612bbc089b4c40dff2bbdb8986184",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-1173755ff0f2b1de2816bbde7ec9a32fd38aa87496698cd3032272db-06000000-14713.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-1-bf90baa381ff6dd65bff6148d4ca4bfe7adb08001f7b9cd0e47823a5ed973f9c",
+      "sha256": "bf90baa381ff6dd65bff6148d4ca4bfe7adb08001f7b9cd0e47823a5ed973f9c",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-11a45c73d56fd324c59eceb1f68583b4f05613c0d6c16666e1103507-06000000-14714.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-2-b736542280412fafe566061cfb21e7d8c8e0732665edfa9a4d890d4db201f8ef",
+      "sha256": "b736542280412fafe566061cfb21e7d8c8e0732665edfa9a4d890d4db201f8ef",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-43793465b6399c0349ce8abe09524b42cd64ce82a1468798d4097df8-06000000-14712.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-3-2f36a6d0bad867f86f5e1e34518a1c349104d460e3a5bea0eeb7aa0907823c5e",
+      "sha256": "2f36a6d0bad867f86f5e1e34518a1c349104d460e3a5bea0eeb7aa0907823c5e",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-4fed62b7b16a85bc1272d7618bf4c3f481e09323fe6e6b65420510e0-06000000-14717.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-4-096eda936ec199dd66ed93decbce0c51a1881c35a386fa6905648223519f5a01",
+      "sha256": "096eda936ec199dd66ed93decbce0c51a1881c35a386fa6905648223519f5a01",
+      "bytes": 8418
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-816af6efc6267cafca87a8f669ec8aeba3d0e438b00d10df54e0543f-06000000-14718.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-5-99c76e9c2e08716a2111e097ca1fd6ae35290650efdc45fd77bba5ad16c8e9fc",
+      "sha256": "99c76e9c2e08716a2111e097ca1fd6ae35290650efdc45fd77bba5ad16c8e9fc",
+      "bytes": 8179
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-bc912f8d5e75501bb85b740bc8ca03effa7cd9c407104d4443725860-06000000-14716.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-6-e7f54d39a0aac05e3874a46f60110bee66987ad5eb4633bf98c00e1707f96657",
+      "sha256": "e7f54d39a0aac05e3874a46f60110bee66987ad5eb4633bf98c00e1707f96657",
+      "bytes": 8225
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank0-g1cc692/session_latest/worker-fb80200b532dad09d61d4ef4105699c03fd2e9bfbdad4c551a82f1ca-06000000-14719.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-7-3620265f8f4d68564dd250bd68320ba75ab375791cc9a49d011ee977a6daf81c",
+      "sha256": "3620265f8f4d68564dd250bd68320ba75ab375791cc9a49d011ee977a6daf81c",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-19197ff0417f978eb3fa6ce6c1aee2abd0c5194e0669946d9a1da38b-06000000-13218.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-8-efe8185d50f80102cf1e572ee02b561058120ecb571ca88cba11f93abe280808",
+      "sha256": "efe8185d50f80102cf1e572ee02b561058120ecb571ca88cba11f93abe280808",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-206d9c285f3574038bc2ce2d8b3ff2ca73c634e5bb6b3c3f2d8cf92b-06000000-13223.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-9-20bca39c1e179cbb9ec14748e880d5c17505a37ae7da6c953d2ec07bad3b2891",
+      "sha256": "20bca39c1e179cbb9ec14748e880d5c17505a37ae7da6c953d2ec07bad3b2891",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-2bf7ac3736d39d62386f972e8a9e6eb7591ebd89d949a8d43dc934ec-06000000-13220.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-10-b2d65cc1ecb9d6b101450e1a4d9c74a26f862c054c564dcb9630b169a0f613ff",
+      "sha256": "b2d65cc1ecb9d6b101450e1a4d9c74a26f862c054c564dcb9630b169a0f613ff",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-9c0f6291c9f9d2a6233730b13be0343acb9ab1b7040808ee141c2595-06000000-13216.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-11-f0cb7346ea4bd4cae8b178cf78aa04141db6da155aa0fc8844f82b03e436e2ac",
+      "sha256": "f0cb7346ea4bd4cae8b178cf78aa04141db6da155aa0fc8844f82b03e436e2ac",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-c1001112022b9791d46b918c299c2ef3aaaee4ebb0813f7ff9ec9198-06000000-13222.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-12-3edce8a7a2c9256edccb667c50065db8e355e7c7f9b571824cb10eb518cfa540",
+      "sha256": "3edce8a7a2c9256edccb667c50065db8e355e7c7f9b571824cb10eb518cfa540",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-c12d55d4c64958d78afc515ead39199786263fee1cf105f074feb427-06000000-13219.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-13-bdc5b263b86b915138d75c7c43767ada9be0a0d1ecf52d27aa0cd0a87ad2fac5",
+      "sha256": "bdc5b263b86b915138d75c7c43767ada9be0a0d1ecf52d27aa0cd0a87ad2fac5",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-c7d59800dfa429ac1b383c3204c8a220cff8878c1399a7e9596a7802-06000000-13221.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-14-1eadc37cdea065ecf0b63ec7ca418b8f82710ecb5612ad2ebf743565f09d5855",
+      "sha256": "1eadc37cdea065ecf0b63ec7ca418b8f82710ecb5612ad2ebf743565f09d5855",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank1-g3232cc/session_latest/worker-f6f9d2317e570efe1cbd0dba7b7809f3770eeba39ccf1c955235ddf1-06000000-13217.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-15-c8474773fd0bdc34539bcdd06594966e4ef2ecc903d3d8d43d474f2c13e006c0",
+      "sha256": "c8474773fd0bdc34539bcdd06594966e4ef2ecc903d3d8d43d474f2c13e006c0",
+      "bytes": 7787
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-10ef5439082dca41cd8898f6de2fca7344bf9fbd77499955cf7122dd-06000000-13124.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-16-4649dfe428def5b545a94d65d777cd24a108053ac8d8a7fab97ce6b78cbc2bbd",
+      "sha256": "4649dfe428def5b545a94d65d777cd24a108053ac8d8a7fab97ce6b78cbc2bbd",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-24979cea67595733a2d24f36f921a67a44fb14e3ee98c997a18bfc55-06000000-13131.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-17-03fb25accec2f5ca372c430f6c76eb048c7f441a95f3f0dee1c104463e62a947",
+      "sha256": "03fb25accec2f5ca372c430f6c76eb048c7f441a95f3f0dee1c104463e62a947",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-58778e8f6da8d5f161932ad644ed039373b4b5b931a79d389ccbb2fd-06000000-13126.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-18-2d04df8b603146d531d4e3a477c2f0d85e6d2c4898d0abb8665c1061a455cd93",
+      "sha256": "2d04df8b603146d531d4e3a477c2f0d85e6d2c4898d0abb8665c1061a455cd93",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-9fd211688faefc627cd896032567eea3a023d5b9f46c5eabb71cf548-06000000-13125.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-19-36b6aa201be351e59378dcb5449f4aab175612eaff9948f59d159be9141b425b",
+      "sha256": "36b6aa201be351e59378dcb5449f4aab175612eaff9948f59d159be9141b425b",
+      "bytes": 102723
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-b1ec2cbce85e9fb286f4d834a77efc1a33ec498a9a92cd9525e1c990-06000000-13127.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-20-247c0ca8e5ea8f8f8929a2ab2ee3427c2632266f3d52ad717a7c89483464c7cd",
+      "sha256": "247c0ca8e5ea8f8f8929a2ab2ee3427c2632266f3d52ad717a7c89483464c7cd",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-be84edc2d5e1f0c39442be5845eae0fce764bcb2f948c483d754df84-06000000-13130.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-21-1ac367f61a54cf8e489b1b37f103271931bb2a8a2ffb7ad4bf1c1c4ad24bb2db",
+      "sha256": "1ac367f61a54cf8e489b1b37f103271931bb2a8a2ffb7ad4bf1c1c4ad24bb2db",
+      "bytes": 8225
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-cb7a7f39a6df50740421a49b6c55be70cee40bdfbdede95a33d082e9-06000000-13129.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-22-5ebb009cc48560bfa3a7ccff6163b968a970120d1077a85f5e8c5f853db97173",
+      "sha256": "5ebb009cc48560bfa3a7ccff6163b968a970120d1077a85f5e8c5f853db97173",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank3-ga8b3d8/session_latest/worker-e4786b36e37fe84e8c5f1b011378a9747a0d123c385d908ffc65f7d8-06000000-13128.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-23-2aa4faa54dae6a25c6620725e5c520e3ca65fb0e464853bbdc263d9008047630",
+      "sha256": "2aa4faa54dae6a25c6620725e5c520e3ca65fb0e464853bbdc263d9008047630",
+      "bytes": 7986
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-02ace456041a94f3248af9166380a57a9da63d70b9e3ace5c1c80872-06000000-13233.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-24-ea971cd208757d4e0f866da4b6da8552efee5aa7e65b5f8cb66240f163c1dc14",
+      "sha256": "ea971cd208757d4e0f866da4b6da8552efee5aa7e65b5f8cb66240f163c1dc14",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-130425558f5bb40f0fb2e1704412c3c258110cb61a8db2e593624ba2-06000000-13229.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-25-a52d9755af361e38cab13be656bd93e5f90deec0f2c049b45c670da38559eba5",
+      "sha256": "a52d9755af361e38cab13be656bd93e5f90deec0f2c049b45c670da38559eba5",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-20feaa6a9ceeafa5c99747eeba48363f6a7ae74bd4f15cd395adb2f9-06000000-13234.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-26-ef884d8b471a66ff059e07146d48b8a74ae83abba28fdc627c23122a1de1675f",
+      "sha256": "ef884d8b471a66ff059e07146d48b8a74ae83abba28fdc627c23122a1de1675f",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-33fece84787008e9f610ebcedb8e9e4ff54d8e0bb1951830936fb3df-06000000-13121.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-27-45e4c35934bf5b76f0786997d3209b87311282ab8ab2a7774945dafa3b838906",
+      "sha256": "45e4c35934bf5b76f0786997d3209b87311282ab8ab2a7774945dafa3b838906",
+      "bytes": 108023
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-aa51e2c0861f9aa2bf831bb695f26328f1cc5e38cfa439ab23749951-06000000-13232.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-28-2c91edcdd4c3cf00ad4c3537b8fa2ca276fd8bec6d96b195aa044f870720d562",
+      "sha256": "2c91edcdd4c3cf00ad4c3537b8fa2ca276fd8bec6d96b195aa044f870720d562",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-c328a6ce8f98db886609cb0c588f55e922e8d47b565b067c09c4f9df-06000000-13231.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-29-999784412256fe39cf3fb73b8bb221315aaa52a49da6fd8d5a0925083ccb245c",
+      "sha256": "999784412256fe39cf3fb73b8bb221315aaa52a49da6fd8d5a0925083ccb245c",
+      "bytes": 7779
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-c49b4f6bb30072c94179c0381356e6b9cc93428d9f1a2782fb78bdcf-06000000-13235.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-30-0e0b1d490ba2d94c3fce5e94185248760df2c71e7b5b380993410ca549979413",
+      "sha256": "0e0b1d490ba2d94c3fce5e94185248760df2c71e7b5b380993410ca549979413",
+      "bytes": 10059
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/ray-logs/rank4-gaa0e72/session_latest/worker-e00d2b5594d522c5df1e3c503dfebe2888e605a8c1a779e8b6d21dfc-06000000-13230.err",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-policy-31-516b76e6633d78fe3495f8ebc6b49e5ce4be4894d26799b81a545a9316fa8610",
+      "sha256": "516b76e6633d78fe3495f8ebc6b49e5ce4be4894d26799b81a545a9316fa8610",
+      "bytes": 7779
+    }
+  ],
+  "original_exception_artifacts": [
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/rendezvous/debug_artifacts/rank0-g1cc692/outcomes/skyrl-entrypoint-driver.g1cc692.9871.1791170486639200666.exception.json",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/original-exception-skyrl-entrypoint-driver.g1cc692.9871.1791170486639200666.exception.json-da1e8d7521cf68d24d09e30d089514fb803d4f043404eaa5a7989d426bc8aa47",
+      "sha256": "da1e8d7521cf68d24d09e30d089514fb803d4f043404eaa5a7989d426bc8aa47",
+      "bytes": 14461
+    },
+    {
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/rendezvous/debug_artifacts/rank0-g1cc692/outcomes/skyrl-trainer.g1cc692.14103.1791170447884157526.exception.json",
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/original-exception-skyrl-trainer.g1cc692.14103.1791170447884157526.exception.json-aac61269217acb7fe692f34fad35261cfaba9cc1ae3965f39bac06a13a05605d",
+      "sha256": "aac61269217acb7fe692f34fad35261cfaba9cc1ae3965f39bac06a13a05605d",
+      "bytes": 6779
+    }
+  ],
+  "task_events": {
+    "source": "Iris task events score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0",
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/confirmation-evidence/failed-task-events-dbf2865bd6a5d2f0749dc0315423dd68d716f0abc216238750c54ae95285a38c",
+    "sha256": "dbf2865bd6a5d2f0749dc0315423dd68d716f0abc216238750c54ae95285a38c",
+    "bytes": 1597
+  },
+  "ages": "ages.json",
+  "partial_trajectory_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/attempts/trajectories",
+  "partial_token_version_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-incumbent-s102-20261005-pause300/consumed_versions",
+  "checkpoint_files_observed": 0,
+  "required_final_endpoint_available": false,
+  "required_final_checkpoint_available": false
+}
