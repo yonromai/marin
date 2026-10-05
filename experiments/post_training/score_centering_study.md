@@ -538,9 +538,9 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Thirty-six terminal runs are collected, including
-eight complete quartets, older TIS32 seed 109 and all three capture-cost
-companions. The SC
+with maximum age two. Thirty-seven terminal runs are collected, including
+eight complete quartets, older TIS32 and SC32 seed 109, and all three
+capture-cost companions. The SC
 seed-107 baseline uses original export grading evidence, as described below.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs. Operational checks
@@ -609,7 +609,7 @@ both cases reconciled, admissions resumed under the same four-job and
 80-spare-H100 limits. The [incident record](https://marina.oa.dev/echo/wiki/611)
 summarizes the operational discriminator and recovery limits.
 
-Completed new costs are **2678.4954097** hours across 63 attempts, separate
+Completed new costs are **2748.3921586** hours across 64 attempts, separate
 from historical costs of 1,072.548303 hours. Complete seed-101 through seed-108
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
