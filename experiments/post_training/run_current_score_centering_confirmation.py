@@ -23,6 +23,7 @@ import time
 from pathlib import Path
 
 import fsspec
+import yaml
 from cloud.iris.launch import main as launch_main
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
@@ -56,12 +57,12 @@ def cli_json(arguments: list[str]) -> dict:
     return json.loads(result.stdout[result.stdout.index("{") :])
 
 
-def check_first_steps(fs, cache_path: Path, first_runs: list[str]) -> bool:
+def check_first_steps(fs, cache_path: Path, first_runs: list[dict]) -> bool:
     if not cache_path.exists():
         return False
     cache = json.loads(cache_path.read_text())
     for run in first_runs:
-        name = run.removeprefix("score-centering-current-")
+        name = run.get("driver_cache_key", run["run_id"].removeprefix("score-centering-current-"))
         if name not in cache:
             return False
         raw = fs.cat(cache[name]).decode(errors="replace")
@@ -71,7 +72,7 @@ def check_first_steps(fs, cache_path: Path, first_runs: list[str]) -> bool:
         metrics, _ = json.JSONDecoder().raw_decode(line.split("metrics=", 1)[1])
         norm = metrics.get("policy/raw_grad_norm", 0)
         if not math.isfinite(norm) or norm <= 0 or metrics.get("policy/policy_update_steps", 0) != 1:
-            raise ValueError(f"first-step GPU qualification failed for {run}")
+            raise ValueError(f"first-step GPU qualification failed for {run['run_id']}")
     return True
 
 
@@ -106,8 +107,12 @@ def run(args) -> None:
     for row in order:
         if not re.fullmatch(r"[a-z0-9-]+", row["run_id"]):
             raise ValueError("invalid frozen run identity")
-        if hashlib.sha256((protocol_path.parent.parent / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
+        configuration_bytes = (protocol_path.parent.parent / row["path"]).read_bytes()
+        if hashlib.sha256(configuration_bytes).hexdigest() != row["sha256"]:
             raise ValueError(f"frozen input bytes changed: {row['path']}")
+        configuration = yaml.safe_load(configuration_bytes)
+        if configuration["run"]["id"] != row["run_id"] or configuration["iris"]["job_name"] != row["run_id"]:
+            raise ValueError("protocol registry differs from the frozen input run/job identity")
     binding = json.loads(args.binding.read_text())
     native_id = binding["native_id"]
     if os.environ.get("CODEX_THREAD_ID", native_id) != native_id:
@@ -157,7 +162,7 @@ def run(args) -> None:
         rising = previous_outside is not None and outside >= previous_outside + 8
         previous_outside = outside
         if not first_steps_passed:
-            first_steps_passed = check_first_steps(fs, args.driver_cache, [row["run_id"] for row in order[:4]])
+            first_steps_passed = check_first_steps(fs, args.driver_cache, order[:4])
         candidate = next((row for row in order if "/romain/" + row["run_id"] not in known), None)
         eligible = (
             candidate is not None

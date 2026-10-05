@@ -1,0 +1,814 @@
+{
+  "schema_version": 1,
+  "status": "frozen",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "marin_base_commit": "22ed55402c665f7e3f01e8f98a35b5e8c55e328e",
+  "skyrl_base_commit": "b50b5f42319758c719274bd147bf0cb3656e87c0",
+  "primary_members": 756,
+  "primary_membership_sha256": "27a3d70691c571ecdf9af470a14ac188ab54732e7f84ab10e8b40bcbf4ca1221",
+  "membership_sha256": "e328956cfe03f112394cef1a40c636ca6f923d5ac902fcd05590320956741a01",
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112
+  ],
+  "capture_cost_companion_seeds": [
+    101,
+    102,
+    103
+  ],
+  "evaluation_steps": [
+    0,
+    10,
+    20,
+    30,
+    40
+  ],
+  "completed_training_steps": 40,
+  "optimizer_update_count": "Actual applied finite update ledger; skipped zero-gradient batches are not counted as optimizer updates.",
+  "primary_endpoint": "Mean of two separately retained greedy passes at completed step40: completed_correct GSM8K256+Math500500 /756. Normal stop, no error disposition, native outcome>0. Exact1199 heldout prompts retained; other443 secondary.",
+  "completion_stop_reasons": [
+    "complete",
+    "end_turn",
+    "eos",
+    "stop"
+  ],
+  "answer_token_limit": 4096,
+  "request_window_tokens": 8192,
+  "evaluation_profiles": [
+    null,
+    "greedy_repeat"
+  ],
+  "primary_contrasts": [
+    [
+      "older_sc32",
+      "older_tis32"
+    ],
+    [
+      "older_sc32",
+      "fresh_tis32"
+    ],
+    [
+      "older_sc32",
+      "older_incumbent"
+    ]
+  ],
+  "confidence": "Paired training seed Student t95 per contrast; Bonferroni three-contrast family95 additionally. Average evaluator repeats before estimating seed variability.",
+  "secondary_analysis": [
+    "Baseline-adjusted step40 paired differences",
+    "Fixed-step learning curves0/10/20/30/40",
+    "Paired log-ratio elapsed and reserved task-hour individual95 intervals",
+    "Training-only core/cycle seconds and time to fixed completed steps, evaluation/checkpoint/startup separated",
+    "Actual consumed optimizer age, mixed-version spans, prompt assignment/exposure, rejection/discards, loss tokens, answer lengths, completion, finite applied updates and gradient norms",
+    "Captured head/tail and clipping/score diagnostics, repeat-scoring noise from qualified frozen probes",
+    "older_tis32 versus older_tis0 in seeds101..103 estimates head capture and stored-head rescoring cost under the same objective, with async interactions reported"
+  ],
+  "current_incumbent": {
+    "selection": "Merged frozen Marin main regular PPO, off_policy_correction=none, KLoff; matched current stack, optimization, full_batch older schedule, no unused probability head capture; single sampled logprob retained to satisfy exact-chat evidence requirements",
+    "source": "experiments/post_training/async_rl.py at22ed5540",
+    "separate_open_candidate": "Marin#9605 proposes behavior_clip/none; open26659be09e116b42ad91ce924dc631d31ba57b28 is not this incumbent and is not an automatic dependency.",
+    "evidence": "results/score_centering_current_incumbent.json"
+  },
+  "schedule": {
+    "batch_policy": "full_batch",
+    "older": {
+      "lease_bound": 2,
+      "max_in_flight": 256
+    },
+    "fresh": {
+      "lease_bound": 0,
+      "max_in_flight": 128
+    },
+    "reason": "Keep assigned prompt membership. Rolling commit order selected short groups first. Actual token-version spans, not lease bounds alone, establish ages.",
+    "weight_sync_pause": {
+      "mode": "keep",
+      "clear_cache": true,
+      "timeout_seconds": 120
+    }
+  },
+  "objective": {
+    "policy_loss_type": "regular",
+    "advantage_estimator": "grpo",
+    "reduction": "token_mean",
+    "TIS": "custom truncation token cap1.05 (preset tis would cap2)",
+    "KL": false,
+    "capture_width": 32,
+    "centering_correction": "Expected-score coefficient already contains TIS; additive correction reduced separately through shared whole-step scaling."
+  },
+  "design_sizing": {
+    "historical_source": "results/score_centering_qwen_confirm_pairs.csv",
+    "historical_source_sha256": "d697bec1c217f4249b342cb78f4200e6deb4c418b588be4c5cfaed59b490ea86",
+    "observed_six_seed_paired_differences": [
+      36.5,
+      43.5,
+      9,
+      28.5,
+      -23.5,
+      -5.5
+    ],
+    "observed_paired_sd_completed_answers": 26.057148731202346,
+    "twelve_seed_expected_individual95_half_width": 16.55592244207201,
+    "twelve_seed_expected_three_contrast95_half_width": 21.212437079423907,
+    "scope": "Cross-model variance assumption for design only. Historical run semantics differ; do not pool outcomes. Twelve independent new seeds target a family95 half-width below3 percentage points at the observed historical SD, improving on earlier three-seed instability. This is a precision target, not an acceptable quality-loss margin. Forty completed steps reproduce the earlier informative Qwen horizon and exceed Snowball nine-step partial evidence. Not guaranteed power, acceptable loss margin, or equivalence criterion.",
+    "new_Snowball_sameweight_repeat_differences": [
+      13,
+      23
+    ],
+    "new_repeat_scope": "Two qualifying weight states, not independent training seeds or confirmation outcomes. Observed repeat noise13/23answers is substantial; average the fixed two passes within each seed. Final seed confidence includes realized evaluator variability. Historical cross-model precision assumption remains explicit and is not a guaranteed bound or acceptable-loss margin."
+  },
+  "stopping": "Complete fixed arms, seeds and40steps without score-triggered stopping or selecting a peak. Missing/failing arms do not count as a supported negative. Routine hardware retries get fresh immutable attempt identities; semantic fixes invalidate comparison and require fresh controls. No acceptable quality-loss tolerance chosen. No merge or monitor rearm.",
+  "cost_accounting": "Prior1072.548303 H100 task-hours separate. Current qualification, disabled evaluation pilot, retries, final eval, checkpoint save, discarded work and all confirmations count as new cost. Reserved allocation time primary; useful training throughput reported separately. Exclude unallocated queue intervals, preserve attempt provenance.",
+  "configuration_manifest": [
+    {
+      "arm": "older_tis32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-tis32-s101-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s101.yaml",
+      "sha256": "1087def91172145fb830d3d27b525d1f5c8033a8042175432ed4ec78a84c0237",
+      "driver_cache_key": "snowball-older-tis32-s101-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-tis32-s102-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s102.yaml",
+      "sha256": "d98f93034e49bc338514dc7979d76cf17768bb392a3f4c86795d043e01876b9d",
+      "driver_cache_key": "snowball-older-tis32-s102-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-older-tis32-s103-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s103.yaml",
+      "sha256": "afef91d8fbd9699331838af9026d6a45d5e30e50fcffa490f70a95121841bf61",
+      "driver_cache_key": "snowball-older-tis32-s103-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 104,
+      "run_id": "score-centering-current-snowball-older-tis32-s104-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s104.yaml",
+      "sha256": "3c1017a3a29c3de92667c26f1f334abccd65745857e417719398d1fa14c18b92",
+      "driver_cache_key": "snowball-older-tis32-s104-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-older-tis32-s105-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s105.yaml",
+      "sha256": "1a1e22468e0494a2447deb8a68333c82a7971942d1a085b85797671d539f5e51",
+      "driver_cache_key": "snowball-older-tis32-s105-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 106,
+      "run_id": "score-centering-current-snowball-older-tis32-s106-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s106.yaml",
+      "sha256": "edfadd9df4a4d607c1dea3b55b786a735d62fa128a9b3cdce285b75a58e3e3d9",
+      "driver_cache_key": "snowball-older-tis32-s106-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 107,
+      "run_id": "score-centering-current-snowball-older-tis32-s107-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s107.yaml",
+      "sha256": "629a634daa5c1af060462ff712863e916605703ec109e959712c26101af95149",
+      "driver_cache_key": "snowball-older-tis32-s107-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 108,
+      "run_id": "score-centering-current-snowball-older-tis32-s108-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s108.yaml",
+      "sha256": "2b49279667951ebd4508331141b62e4d1f8a5aa82926fc80547f6ec95004957e",
+      "driver_cache_key": "snowball-older-tis32-s108-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 109,
+      "run_id": "score-centering-current-snowball-older-tis32-s109-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s109.yaml",
+      "sha256": "3c415dd847e932f0eddd4f9a87d0616cba21f5a9640c39d8b3649bb6b206e1c5",
+      "driver_cache_key": "snowball-older-tis32-s109-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 110,
+      "run_id": "score-centering-current-snowball-older-tis32-s110-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s110.yaml",
+      "sha256": "8e266d08f0374d7d901a002e4db9d4a4be5bbd3998454f21e2d610e497a3f383",
+      "driver_cache_key": "snowball-older-tis32-s110-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 111,
+      "run_id": "score-centering-current-snowball-older-tis32-s111-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s111.yaml",
+      "sha256": "067755971d586fe329f795306b95968c6333e5635ba18693cadba41c6e34fa55",
+      "driver_cache_key": "snowball-older-tis32-s111-20261004-r2"
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 112,
+      "run_id": "score-centering-current-snowball-older-tis32-s112-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis32_s112.yaml",
+      "sha256": "d2bae03e9bb373984938c41e73dbbb2e08f9566ac0e0604c86ccdca1c34a3185",
+      "driver_cache_key": "snowball-older-tis32-s112-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s101.yaml",
+      "sha256": "97df9020dcde4a548fc04e2eaa6e085083f6afb2060d805021333320baed29fa",
+      "driver_cache_key": "snowball-older-sc32-s101-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-sc32-s102-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s102.yaml",
+      "sha256": "44cfdc74608d83909f52f960fe50c6fa38c81cfd3dd0849ea53350d162643e59",
+      "driver_cache_key": "snowball-older-sc32-s102-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-older-sc32-s103-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s103.yaml",
+      "sha256": "f4f5df0d6743eadeb80a90670a15f491006359eab00fd5febcc3e3c1c206898a",
+      "driver_cache_key": "snowball-older-sc32-s103-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 104,
+      "run_id": "score-centering-current-snowball-older-sc32-s104-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s104.yaml",
+      "sha256": "367ea4907040807db42da539ec6e61e76919fbcf8c2939c80a9ad1e75b8c0fbc",
+      "driver_cache_key": "snowball-older-sc32-s104-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-older-sc32-s105-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s105.yaml",
+      "sha256": "f47bf6aa401b76ac65516bfb4e1b9db82d9e57fe04dfe372eb0948d9a122ea20",
+      "driver_cache_key": "snowball-older-sc32-s105-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 106,
+      "run_id": "score-centering-current-snowball-older-sc32-s106-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s106.yaml",
+      "sha256": "7e19051cbcdb6ab42c83ff4d861f649c3eabbb9e11a6b13caac90600ce064f55",
+      "driver_cache_key": "snowball-older-sc32-s106-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 107,
+      "run_id": "score-centering-current-snowball-older-sc32-s107-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s107.yaml",
+      "sha256": "dd5517c8c8018c84bfe8975e00740cc9bd30e8ee1c6059e646795528e90950ad",
+      "driver_cache_key": "snowball-older-sc32-s107-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 108,
+      "run_id": "score-centering-current-snowball-older-sc32-s108-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s108.yaml",
+      "sha256": "351a028bdcd110a8e7ba4e71818fc7e655cac4f7d16b848e140fb1c2e9d425e5",
+      "driver_cache_key": "snowball-older-sc32-s108-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 109,
+      "run_id": "score-centering-current-snowball-older-sc32-s109-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s109.yaml",
+      "sha256": "ef1da2f182f2edec15ea66042e03b22ccf82f4237c5a39dd423fdc10723a38cf",
+      "driver_cache_key": "snowball-older-sc32-s109-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 110,
+      "run_id": "score-centering-current-snowball-older-sc32-s110-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s110.yaml",
+      "sha256": "ba4c605163bd26d031430298889fbfe68f2c91642d6708f02ac23ffd9fa5f753",
+      "driver_cache_key": "snowball-older-sc32-s110-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 111,
+      "run_id": "score-centering-current-snowball-older-sc32-s111-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s111.yaml",
+      "sha256": "56b6047b459e8e6af7122dbeb4a0aaf4397f517961434f8daa363f5c5e26be19",
+      "driver_cache_key": "snowball-older-sc32-s111-20261004-r2"
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 112,
+      "run_id": "score-centering-current-snowball-older-sc32-s112-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_sc32_s112.yaml",
+      "sha256": "33f766032e80fad8c3f0fc33a7c28dbb7df92a8886dac461671f13fafa128175",
+      "driver_cache_key": "snowball-older-sc32-s112-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s101-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s101.yaml",
+      "sha256": "538f7d215fa22257f5fb2602c193410ff8122e227f7868280d2b79287a9f7d98",
+      "driver_cache_key": "snowball-fresh-tis32-s101-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s102-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s102.yaml",
+      "sha256": "30aba9cff7eeb19d3380c7b4e167ed80a0e9723e4c3c6b68b803bfcd1cf59ab4",
+      "driver_cache_key": "snowball-fresh-tis32-s102-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s103-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s103.yaml",
+      "sha256": "45aa973c13b336f7149311c648fe1b9804e88c614e15ad3243326a9ff2930b84",
+      "driver_cache_key": "snowball-fresh-tis32-s103-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 104,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s104-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s104.yaml",
+      "sha256": "7aed9d4bcdc73aea1dea7a912066d5d0698d164e51543bc968e996d67e0a702a",
+      "driver_cache_key": "snowball-fresh-tis32-s104-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s105.yaml",
+      "sha256": "5f3e1cd8ca3222e0f56e3665f6f7a9ead9d34f5e8231a4b397df6d4712bd9894",
+      "driver_cache_key": "snowball-fresh-tis32-s105-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 106,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s106-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s106.yaml",
+      "sha256": "8fae46f8f7de6f5cf591d1ef50f157d1be942d0121403e4575a4fec1373964b8",
+      "driver_cache_key": "snowball-fresh-tis32-s106-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 107,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s107-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s107.yaml",
+      "sha256": "133303d0e1287ddcca16dc96adc9df047955b1b212ac8e33170a480999c6c56c",
+      "driver_cache_key": "snowball-fresh-tis32-s107-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 108,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s108-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s108.yaml",
+      "sha256": "1b3bd5d514b54ab4df5784f16ef96093a617ef7a8a4f9dae343d657e1907af9c",
+      "driver_cache_key": "snowball-fresh-tis32-s108-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 109,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s109-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s109.yaml",
+      "sha256": "e0ab11548a169857697368b56b114a9d3f5a0f735caa4791801524be109ee440",
+      "driver_cache_key": "snowball-fresh-tis32-s109-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 110,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s110-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s110.yaml",
+      "sha256": "4490c9612179503085fe2c7e80d901bd1c102ab58650f691d6e2ab3b539aeb24",
+      "driver_cache_key": "snowball-fresh-tis32-s110-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 111,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s111-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s111.yaml",
+      "sha256": "125380d303f493ed2a97bfb006ef9258cb28740223ae4211527f664abcfbacc8",
+      "driver_cache_key": "snowball-fresh-tis32-s111-20261004-r2"
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 112,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s112-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s112.yaml",
+      "sha256": "0349b55c7880b6d25ec25e92a50d014460e6a2c84dbd7bea2abf0e7302f88c3e",
+      "driver_cache_key": "snowball-fresh-tis32-s112-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-incumbent-s101-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s101.yaml",
+      "sha256": "50b9939035419596c547bc471e535011055e61ccf72697c1d93b83d8f24ade65",
+      "driver_cache_key": "snowball-older-incumbent-s101-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-incumbent-s102-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s102.yaml",
+      "sha256": "5c9ce321a55e15408c55cf8b1dd34b56b59151ab8c545535e5e3aa163491582a",
+      "driver_cache_key": "snowball-older-incumbent-s102-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-older-incumbent-s103-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s103.yaml",
+      "sha256": "abc59797f0ffc0e0bbc1cda885ff3ddde61c14b15da599e5f867c5ee678c95d1",
+      "driver_cache_key": "snowball-older-incumbent-s103-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 104,
+      "run_id": "score-centering-current-snowball-older-incumbent-s104-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s104.yaml",
+      "sha256": "0672ae14bbfdbf4c117a7bc9ad4ae6f662b6b146dd6536d2876a78bb12dab5ab",
+      "driver_cache_key": "snowball-older-incumbent-s104-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-older-incumbent-s105-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s105.yaml",
+      "sha256": "ef47b88b132a106501b81f05050f658c462c712b70d286708df7398c986b00b9",
+      "driver_cache_key": "snowball-older-incumbent-s105-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 106,
+      "run_id": "score-centering-current-snowball-older-incumbent-s106-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s106.yaml",
+      "sha256": "ac39b92d03c39f8eedea567c2ae14960ffc177904bfa23fe660e7c8bec683fc5",
+      "driver_cache_key": "snowball-older-incumbent-s106-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 107,
+      "run_id": "score-centering-current-snowball-older-incumbent-s107-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s107.yaml",
+      "sha256": "1a3d12741c2f4f637cee6dca693db008b61a0112e2ab44ccc84810aa86a8a41c",
+      "driver_cache_key": "snowball-older-incumbent-s107-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 108,
+      "run_id": "score-centering-current-snowball-older-incumbent-s108-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s108.yaml",
+      "sha256": "b0886bd1497053ebc44a1300920c80d3b521b4f45d8624188f8fd2477d0e4c06",
+      "driver_cache_key": "snowball-older-incumbent-s108-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 109,
+      "run_id": "score-centering-current-snowball-older-incumbent-s109-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s109.yaml",
+      "sha256": "556ce077c78ed7342cdf6f69df25b88f1d25a7116c350bb389159319892b316d",
+      "driver_cache_key": "snowball-older-incumbent-s109-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 110,
+      "run_id": "score-centering-current-snowball-older-incumbent-s110-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s110.yaml",
+      "sha256": "4d6b59edd2af227cac5480c0830bcc15f9e6c0e021395bb94b32000091f8f7d8",
+      "driver_cache_key": "snowball-older-incumbent-s110-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 111,
+      "run_id": "score-centering-current-snowball-older-incumbent-s111-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s111.yaml",
+      "sha256": "a21370116585094954b3e284548ecfdd510cc3b553a6f0dcd8ce1388ae6a27ed",
+      "driver_cache_key": "snowball-older-incumbent-s111-20261004-r2"
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 112,
+      "run_id": "score-centering-current-snowball-older-incumbent-s112-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_incumbent_s112.yaml",
+      "sha256": "4285d8d341c191f2094dd8a08f131e60966a46ac228c2657aeca1d9b4276d82b",
+      "driver_cache_key": "snowball-older-incumbent-s112-20261004-r2"
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-tis0-s101-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis0_s101.yaml",
+      "sha256": "4f427001734627ddbfd8afa494860c022e5339d56a2a248cd1a95454109f3561",
+      "driver_cache_key": "snowball-older-tis0-s101-20261004-r2"
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-tis0-s102-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis0_s102.yaml",
+      "sha256": "c548aba000562a99ac3b143f5d95312d462071ee82fccd928b814e96c91a18bf",
+      "driver_cache_key": "snowball-older-tis0-s102-20261004-r2"
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-older-tis0-s103-20261004-r2-r2",
+      "path": "configs/score_centering/current_confirmation_r2/older_tis0_s103.yaml",
+      "sha256": "1ac4668c4528e5c03fb20a7ed277b764bc9411ecedac31e8ce22b4d266ee0e60",
+      "driver_cache_key": "snowball-older-tis0-s103-20261004-r2"
+    }
+  ],
+  "analysis_code": "analyze_current_score_centering_confirmation.py",
+  "endpoint_audit": "analyze_current_score_centering_evaluations.py",
+  "analysis_sha256": "528d243888e658852cf0cd334f0d0ac6c05cbc6a42ffc846f28823724bbad073",
+  "endpoint_audit_sha256": "25d85cf00ea739299d06570d46fa904a7b1f256b6f63c5de3cb975f47450555a",
+  "qualification_evidence": {
+    "restore": "results/score_centering_current_snowball_restore.json",
+    "multiprocess_full_batch_ages": "results/score_centering_current_snowball_full_batch_calibration.json",
+    "evaluation": "results/score_centering_current_snowball_eval_evidence.json",
+    "evaluation_member_results": 2398,
+    "initial_primary_repeat_completed_correct": [
+      227,
+      222
+    ],
+    "initial_repeat_absolute_difference": 5,
+    "repeat_scope": "Two greedy passes at same weights; not independent training seeds. Calibration only, excluded from confirmation.",
+    "buffered_retention": "results/score_centering_current_snowball_buffered_retention.json",
+    "buffered_retention_audited_records": 5820,
+    "buffered_retention_sameweight_repeat_differences": [
+      13,
+      23
+    ]
+  },
+  "runtime_versions": {
+    "torch": "2.13.0+cu132",
+    "transformer_engine": "2.19.0",
+    "flash_attention": "2.8.3",
+    "megatron_core": "0.18.0",
+    "vllm": "0.0.0.dev20260929+marin.39e62869693c.cu132"
+  },
+  "launch_order": [
+    {
+      "arm": "older_tis32",
+      "seed": 101
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 101
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 101
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 101
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 101
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 102
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 102
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 102
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 102
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 102
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 103
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 103
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 103
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 103
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 103
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 104
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 104
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 104
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 104
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 105
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 105
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 105
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 105
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 106
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 106
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 106
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 106
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 107
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 107
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 107
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 107
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 108
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 108
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 108
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 108
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 109
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 109
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 109
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 109
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 110
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 110
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 110
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 110
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 111
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 111
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 111
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 111
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 112
+    },
+    {
+      "arm": "older_tis32",
+      "seed": 112
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 112
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 112
+    }
+  ],
+  "resource_policy": "Use spare interactive H100 capacity in flexible waves, at most6jobs/240H100 concurrently while spare nodes permit. Rotate primary arm launch order across seeds and interleave each of the3capture companions. Reduce new launches when other demand rises; do not displace others. No fixed campaign compute cap.",
+  "revision": 2,
+  "supersedes": {
+    "protocol": "results/score_centering_current_confirmation_protocol.json",
+    "sha256": "1c51d5e72b1da02bbed5bdc7953ac8cad08a9909269bad7b7168ef753a84ff16",
+    "reason": "Full required training retention serialized a new storage process per prompt group: median5.81\u20135.86sec per tiny archive, fresh admission746.85sec vs82.16sec eval-only pilot. First four jobs withdrawn before any post-training heldout endpoint; preserve all artifacts/costs, exclude from confirmation. Revision changes publication scheduling only; no score-based endpoint, arm, seed, or horizon selection."
+  },
+  "retention": {
+    "phases": [
+      "train",
+      "eval"
+    ],
+    "sample_fraction": 1.0,
+    "max_bytes_per_step": null,
+    "max_bytes_per_run": null,
+    "runtime_required": false,
+    "publication": "Existing best-effort publisher buffers all selected records while one process writes; immutable content-addressed archives. Runtime failures remain visible; terminal audits require complete train/eval evidence before a run enters confirmation.",
+    "publish_timeout_seconds": 120.0,
+    "shutdown_timeout_seconds": 120.0,
+    "terminal_requirements": "All1199members exactly once per named greedy pass at every declared eval step; all consumed UID/response token sequences found in immutable train records; no duplicate record identities or conflicting immutable content; actual optimizer-update ledger/spans complete for steps1..40."
+  },
+  "training_record_audit": "analyze_current_score_centering_training_records.py",
+  "training_record_audit_sha256": "1dc2d6081b0711e36b4bb27274c957ddf992a0929f77c03c8982a984df519e92",
+  "policy_version_audit": "analyze_current_policy_versions.py",
+  "policy_version_audit_sha256": "ada60b42f1f470428bd1169d17063a3b5466d850029799ed7a730bf365ca97cd",
+  "terminal_collector": "collect_current_score_centering_confirmation.py",
+  "terminal_collector_sha256": "3a268b21b3a24f64225730ead5cb86362255d272a0452b0ba66047a64705a528",
+  "frozen_at_utc": "2026-10-04T23:57:37.331442+00:00",
+  "registry_correction": {
+    "original_protocol_sha256": "a2073fa93b311899230d0d0ae8563ebedf376de5d7136828b5aefa3d3044361b",
+    "original_protocol_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/frozen-protocols/sha256-a2073fa93b311899230d0d0ae8563ebedf376de5d7136828b5aefa3d3044361b/protocol.json",
+    "corrected_at_utc": "2026-10-05T00:13:18.952233+00:00",
+    "scope": "Operational registry correction only. The published YAML bytes already fixed actual run/job IDs ending-r2-r2 and artifact roots ending-r2. Original declaration had a single suffix. Match declarations to those unchanged input bytes, use explicit artifact paths for collection, and assert identity before further submission. All51 configuration hashes, source, seeds, objective, scheduling, outcomes, repetition/horizon, and primary/endpoint/statistical analysis bytes are unchanged. First4jobs continue; no resubmission or outcome-based selection.",
+    "evidence": "current-confirmation-r2-wave1-effective-corrected.log",
+    "configuration_bytes_unchanged": true,
+    "primary_analysis_bytes_unchanged": true
+  },
+  "campaign_runner": "run_current_score_centering_confirmation.py",
+  "campaign_runner_sha256": "8a8010818d02646a95242b065902dba6c38d956de7b7a025278d14cba735839b"
+}

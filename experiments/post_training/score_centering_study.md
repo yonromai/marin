@@ -369,7 +369,7 @@ evaluation and finished work that was never consumed, cost **123.6792333**
 reserved H100 task-hours. Completed new costs at withdrawal were **264.5284608**
 hours. Historical costs remain separate.
 
-The [revision-two protocol](results/score_centering_current_confirmation_protocol_r2.json)
+The [revision-two configuration freeze](results/score_centering_current_confirmation_protocol_r2.json)
 changes publication scheduling through the existing buffered publisher on the
 same pinned source. All training/evaluation records are still selected, without
 byte quotas. Complete immutable evaluation membership and exact consumed
@@ -398,6 +398,17 @@ primary statistical analysis stay fixed; this revision was triggered by storage
 timings before any post-training held-out endpoint in the withdrawn cohort.
 Revision two is frozen after successful qualification, under SHA
 `a2073fa93b311899230d0d0ae8563ebedf376de5d7136828b5aefa3d3044361b`.
+Its operational registry initially declared run/job IDs ending `-r2`, whereas
+the published YAML bytes already specified `-r2-r2` and artifact roots ending
+`-r2`. The [corrected registry](results/score_centering_current_confirmation_protocol_r2_registry.json)
+matches those actual identities and paths. All 51 YAML byte hashes and primary
+statistical/endpoint analysis bytes remain identical to the pre-launch freeze.
+The correction has SHA
+`b9dc8d7a121b672a50334b351e246128afc7193f8e53d46017c3c05280ef9a0e`.
+The submission guard now checks registry identity against the YAML before any
+controller call; collection reads explicit artifact paths. The
+[first four actual runs](results/score_centering_current_confirmation_campaign_r2.json)
+continue on twenty GPU tasks with effective interactive priority.
 The twelve matched seeds and three capture companions remain to be completed.
 There is no current confirmation recommendation yet.
 

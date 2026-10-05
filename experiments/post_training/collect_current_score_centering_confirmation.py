@@ -68,13 +68,18 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
         raise ValueError("confirmation retry or effective priority requires author audit")
     if hashlib.sha256((base / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
         raise ValueError("frozen configuration bytes changed")
-    durable = "s3://marin-us-east-02a/marin/users/romain/score-centering-current/" + short
-    resolved = yaml.safe_load(fs.cat_file(durable + "/resolved-launch.yaml"))
+    configuration = yaml.safe_load((base / row["path"]).read_bytes())
+    if configuration["run"]["id"] != run_id or configuration["iris"]["job_name"] != run_id:
+        raise ValueError("registry differs from the frozen input run/job identity")
+    durable = configuration["artifacts"]["attempts_root"].rsplit("/", 1)[0]
+    resolved = yaml.safe_load(fs.cat_file(configuration["artifacts"]["resolved_config_uri"]))
     if resolved["runtime"]["launcher_commit"] != protocol["source_commit"] or resolved["run"]["id"] != run_id:
         raise ValueError("published resolved launch names different source or run identity")
-    uri = cache.get(short)
+    if resolved["run"]["seed"] != row["seed"]:
+        raise ValueError("published resolved launch has a different training seed")
+    uri = cache.get(row.get("driver_cache_key", short))
     if uri is None:
-        source = "marin-us-east-02a/tmp/ttl=14d/score-centering-current/" + short + "/ray-logs"
+        source = configuration["ray"]["log_dir"]
         candidates = fs.glob(source + "/rank0-*/session_latest/worker-*.err", detail=True)
         for filename, info in sorted(candidates.items(), key=lambda pair: pair[1]["size"], reverse=True)[:16]:
             if info["size"] > 100 and b":task_name:skyrl_entrypoint" in fs.cat_file(filename, start=0, end=256):
@@ -105,7 +110,7 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
         member_results_sha256=canonical_hash(members),
     )
     save_json(directory / "endpoint.json", endpoint)
-    versions = durable + "/consumed_versions"
+    versions = configuration["skyrl"]["trainer"]["token_policy_version_archive"]
     vfs, vroot = fsspec.core.url_to_fs(versions)
     ledger = [json.loads(vfs.cat_file(path)) for path in sorted(vfs.glob(vroot + "/step-*.json"))]
     if sorted(r["training_step"] for r in ledger) != expected:
@@ -123,7 +128,7 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
     ):
         raise ValueError("consumed prompt exposure differs from frozen batch geometry")
     save_json(directory / "training_records.json", training)
-    checkpoint_root = durable + "/checkpoints"
+    checkpoint_root = configuration["artifacts"]["checkpoint_root"]
     if int(fs.cat_file(checkpoint_root + "/latest_ckpt_global_step.txt")) != expected[-1]:
         raise ValueError("checkpoint marker does not name the declared final step")
     checkpoint_files = fs.find(checkpoint_root + f"/global_step_{expected[-1]}", detail=True)
