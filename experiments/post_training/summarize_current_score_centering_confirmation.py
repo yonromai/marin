@@ -101,7 +101,7 @@ def summarize_run(run: dict, base: Path, final_step: int) -> tuple[dict, list[di
                 **{
                     key: value
                     for key, value in row.items()
-                    if key.startswith(("policy/score_centering/", "policy/correction/", "policy/mismatch/pooled/"))
+                    if key.startswith(("policy/score_centering/", "policy/correction/", "policy/mismatch/"))
                     or key in ("policy/ppo_clip_ratio", "timing/sync_weights", "timing/fwd_logprobs_values_reward")
                 },
             }
@@ -197,6 +197,15 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
             "Finished unused responses are observed exactly. Tokens in unfinished or cancelled generation are "
             "not fully observed; their allocation remains counted. Retained completion includes unused responses. "
             "Per-step diagnostics retain their original reduction and quantiles, without pooling quantiles."
+        ),
+        "prompt_exposure_basis": (
+            "UIDs index rows in the same ordered, filtered training dataset. Compare consumed response assignments "
+            "per dataset row; duplicate text in distinct rows is not merged. Tokenizer and filtering settings are frozen."
+        ),
+        "diagnostic_age_scope": (
+            "Source mismatch bins use trainer global step minus the admitted group's policy step. "
+            "Exact per-token optimizer ages come from consumed version spans and applied-update ledgers; "
+            "a response spanning publications can contain several ages within one source diagnostic bin."
         ),
         "runs": summaries,
         "cumulative_prompt_exposure_comparisons": comparisons,
