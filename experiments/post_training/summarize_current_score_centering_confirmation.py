@@ -115,6 +115,14 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
     analyze_confirmation(runs, protocol)
     if len(runs) != len(protocol["configuration_manifest"]):
         raise ValueError("secondary summaries received undeclared extra runs")
+    cost_by_job = {row["job_id"]: row for row in costs["attempts"]}
+    if len(cost_by_job) != len(costs["attempts"]):
+        raise ValueError("cost ledger repeats an allocation")
+    for run in runs:
+        if run["job_id"] not in cost_by_job or (
+            cost_by_job[run["job_id"]]["reserved_h100_task_hours"] != run["reserved_h100_task_hours"]
+        ):
+            raise ValueError("cost ledger lacks or changes a successful confirmation allocation")
     summaries, steps = [], {}
     for run in runs:
         summary, consumed = summarize_run(run, base, protocol["completed_training_steps"])
