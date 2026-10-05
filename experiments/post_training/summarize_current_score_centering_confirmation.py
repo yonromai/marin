@@ -200,7 +200,8 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
         ),
         "prompt_exposure_basis": (
             "UIDs index rows in the same ordered, filtered training dataset. Compare consumed response assignments "
-            "per dataset row; duplicate text in distinct rows is not merged. Tokenizer and filtering settings are frozen."
+            "per dataset row; duplicate text in distinct rows is not merged. "
+            "Tokenizer and filtering settings are frozen."
         ),
         "diagnostic_age_scope": (
             "Source mismatch bins use trainer global step minus the admitted group's policy step. "
