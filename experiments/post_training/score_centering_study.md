@@ -538,9 +538,8 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Thirty-seven terminal runs are collected, including
-eight complete quartets, older TIS32 and SC32 seed 109, and all three
-capture-cost companions. The SC
+with maximum age two. Thirty-nine terminal runs are collected, including
+nine complete quartets and all three capture-cost companions. The SC
 seed-107 baseline uses original export grading evidence, as described below.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs. Operational checks
@@ -609,13 +608,23 @@ both cases reconciled, admissions resumed under the same four-job and
 80-spare-H100 limits. The [incident record](https://marina.oa.dev/echo/wiki/611)
 summarizes the operational discriminator and recovery limits.
 
-Completed new costs are **2748.3921586** hours across 64 attempts, separate
-from historical costs of 1,072.548303 hours. Complete seed-101 through seed-108
+Completed new costs are **2886.3286297** hours across 66 attempts, separate
+from historical costs of 1,072.548303 hours. Complete seed-101 through seed-109
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
 guards. The planned twelve matched seeds and three capture companions remain
 to be completed before the frozen paired analysis.
 There is no current confirmation recommendation yet.
+
+After seed 109 finished, the admission cap rose from four to the already
+frozen maximum of six jobs, or 240 H100s. The trainer peer had released its
+152 H100s and had no future H100 reservation. A fresh provider snapshot at
+17:05:55 UTC showed 228 free H100s and 25 empty whole nodes. The serving
+owner confirmed zero current GPUs and no reservation; its later largest
+announced gates use 16 and 24 H100s. Each campaign admission still requires
+80 spare H100s, fresh capacity and topology checks, interactive priority,
+and backoff when outside demand rises. After both additional frozen runs
+were admitted, 148 H100s and 17 empty whole nodes remained free.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
 All nine reproduce independently on frozen Marin main `22ed5540`: seven
