@@ -1,0 +1,5 @@
+{
+  "completion_provenance_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/completion-outcomes/sha256-11b31d41f58ed759ad4c649fbfb19a5b90f66af0f71e673ff6f03cd9ab4ddbcc/completion_result_provenance.json",
+  "completion_provenance_sha256": "11b31d41f58ed759ad4c649fbfb19a5b90f66af0f71e673ff6f03cd9ab4ddbcc",
+  "immutable_files": 9
+}

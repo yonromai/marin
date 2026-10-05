@@ -1,7 +1,7 @@
 {
   "prior_rounds_reserved_h100_task_hours": 1072.548303,
-  "current_completed_reserved_h100_task_hours": 1659.2435008333334,
-  "accounted_completed_attempts": 48,
+  "current_completed_reserved_h100_task_hours": 1788.676536388889,
+  "accounted_completed_attempts": 50,
   "cost_basis": "Controller recorded reservation/task time, including initialization, qualification, evaluation, checkpointing, invalid attempts, failures and teardown. Restore PodDeleted uses actual final attempt end rather than unallocated requeue time. Active jobs excluded until terminal; no historical/current outcome pooling.",
   "attempts": [
     {
@@ -290,6 +290,20 @@
       "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s104-20261005-pause300/run.json",
       "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s104-20261005-pause300",
       "reserved_h100_task_hours": 77.67827777777778,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+      "reserved_h100_task_hours": 79.2912288888889,
+      "state": "succeeded",
+      "operational_completion_policy_sha256": "0a80ecdfdf0825ba8d3497d0f119e10acc3a792917428eea679a8ffd88ab0188",
+      "cost_basis": "Original attempt creation and terminal timestamps; unallocated controller completion wait excluded."
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s105-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s105-20261005-pause300",
+      "reserved_h100_task_hours": 50.14180666666667,
       "state": "succeeded"
     }
   ]

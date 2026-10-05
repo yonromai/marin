@@ -1,0 +1,27 @@
+{
+  "status": "frozen",
+  "frozen_at_utc": "2026-10-05T09:30:01.463442+00:00",
+  "base_protocol_path": "results/score_centering_current_confirmation_protocol_r2_gemmretry1.json",
+  "base_protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
+  "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+  "configuration_sha256": "42cef22de7987aabc2052afecada1b0980d52b3f130ef6250468f68a88438692",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "driver_sha256": "60e8eab645bda172a99b9a7e46c1bc81844e744b02cd908ee6aea21ab61d139e",
+  "resolved_sha256": "88239b570c638bf02fc92f8b4fff7504378562cc077088be6175b8da8295d4fd",
+  "checkpoint_bytes": 939250554816,
+  "scientific_cleanup_completed_at_ms": 1791191457538,
+  "cost_correction_code": "correct_current_score_centering_completion_cost.py",
+  "cost_correction_code_sha256": "a1fadb3fc572a96de916f927104db16119c6cce2fef114bfc769094a98d08fcd",
+  "original_attempts_sha256": "fec36f2406811fa971ee6bdbc35ce6445945cdc1a4ae58cc36b8c524dd1aab16",
+  "evidence_sha256": {
+    "completion_preflight.json": "cc9afbad6c28fa980bfed345ca52732022096acd31ba7a4e41eb1b75e710d851",
+    "scientific_audit.json": "b211af92f92c3a46b8048c5aced91f5ee8377c01590e49e5362c88ecb2edf85a",
+    "attempts_before_completion.json": "fec36f2406811fa971ee6bdbc35ce6445945cdc1a4ae58cc36b8c524dd1aab16",
+    "exact_pod_release.json": "c773f7303915b3020d7117e9ca299c1ce3f846ad2308af17ffc76ebd6a3bf8e9"
+  },
+  "full_scientific_audit_source_sha256": "25e211c8dba16f70269a26d92f11f1b551ff9661400ec1c7b7e1155f81eb9ce7",
+  "qualification": "Forty applied updates with finite nonzero gradients, complete 11990 evaluation records and 20480 consumed responses, all frozen batch geometries and version ledgers, full step 40 checkpoint, retention shutdown and Ray cleanup; original driver and rank 2 exit zero before PodDeleted. All exact original pods absent; no retry permitted.",
+  "action": "After fresh verification that only original attempts exist, complete the scientifically finished run with the supported Iris job complete API. Preserve original worker failure and sibling cascade evidence.",
+  "cost_policy": "Use original attempt creation and terminal timestamps for five eight-GPU allocations. Pending time until manual controller completion has no GPU allocation and is reported separately. Keep the original frozen collector output before correcting costs.",
+  "research_invariants": "No change to primary membership, outcome predicate, source/configuration semantics, endpoint analysis, seeds, horizon or fixed 51-run design. Full-design quality analysis remains gated. This operational exception is named from completion/failure evidence; it is not selected from quality."
+}

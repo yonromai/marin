@@ -1,0 +1,5 @@
+{
+  "policy_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/frozen-operations/sha256-0a80ecdfdf0825ba8d3497d0f119e10acc3a792917428eea679a8ffd88ab0188/policy.json",
+  "policy_sha256": "0a80ecdfdf0825ba8d3497d0f119e10acc3a792917428eea679a8ffd88ab0188",
+  "immutable_files": 12
+}

@@ -157,6 +157,14 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
             raise ValueError("failed confirmation allocation differs from the cost ledger")
         failures.append({key: failure[key] for key in ("arm", "seed", "run_id", "reserved_h100_task_hours")})
     operational_costs = []
+    completions = [
+        {
+            **{key: run[key] for key in ("arm", "seed", "run_id", "reserved_h100_task_hours")},
+            "operational_completion": run["operational_completion"],
+        }
+        for run in runs
+        if "operational_completion" in run
+    ]
     for arm in sorted({run["arm"] for run in runs}):
         selected = [run for run in runs if run["arm"] == arm]
         failed = [row for row in failures if row["arm"] == arm]
@@ -166,6 +174,9 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
             {
                 "arm": arm,
                 "successful_runs": len(selected),
+                "scientifically_completed_runs_with_worker_failures": sum(
+                    "operational_completion" in run for run in selected
+                ),
                 "excluded_failed_attempts": len(failed),
                 "successful_reserved_h100_task_hours": success_hours,
                 "failed_reserved_h100_task_hours": failure_hours,
@@ -190,6 +201,7 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
         "runs": summaries,
         "cumulative_prompt_exposure_comparisons": comparisons,
         "excluded_confirmation_failures": failures,
+        "completed_confirmation_operational_exceptions": completions,
         "confirmation_operational_costs_by_arm": operational_costs,
         "all_new_completed_reserved_h100_task_hours": costs["current_completed_reserved_h100_task_hours"],
         "accounted_completed_attempts": costs["accounted_completed_attempts"],

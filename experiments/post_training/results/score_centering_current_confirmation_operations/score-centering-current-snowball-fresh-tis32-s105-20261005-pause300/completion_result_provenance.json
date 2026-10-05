@@ -1,0 +1,12 @@
+{
+  "policy_sha256": "0a80ecdfdf0825ba8d3497d0f119e10acc3a792917428eea679a8ffd88ab0188",
+  "results_sha256": {
+    "run.json": "97b9f1d7874e331e1c45667496ba95ef48271d05d3ebdcd5be6d79d6c318ac10",
+    "endpoint.json": "f56ebe9bde9b330796b4c6b5f7c03e88d6085d1e8f3120864deaf6dfec1891c4",
+    "ages.json": "34f35e5d80711b7f92d771cfcbb2d1579ed6b6bd78f01b71449e6fb75b2b52b1",
+    "training_records.json": "5db7b3ab0b56b01533d9430ba73cac423be128cbd65138175b52c5a5aee9f700",
+    "source_metrics.json.gz": "d8cd4bdb1fb8ecb25b617458e846a7739f87be14f8a195e6d004d4a3a07fe811"
+  },
+  "original_collector_output_sha256": "909248cbb8831cae7204fe00f4c63c42ec5a8dbf6ebaaf45edf095123b887962",
+  "native_completion_log_sha256": "d911e6f48479adfdcae85cdfe3b01ff1be6ad562e0e956eabc87237156d43da1"
+}

@@ -538,13 +538,30 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Twenty-one full terminal audits are retained, including
-four complete quartets and all three capture-cost companions.
+with maximum age two. Twenty-three full terminal audits are retained, including
+five complete quartets and all three capture-cost companions.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs.
 
-Completed new costs are **1659.2435008** hours across 48 attempts, separate
-from historical costs of 1,072.548303 hours. Complete seed-101 through seed-104
+Fresh-control seed 105 completed forty applied updates, all 11,990 evaluation
+records and 20,480 consumed responses, retention shutdown and actor cleanup.
+Its checkpoint contains 43 objects and 939,250,554,816 bytes. After cleanup,
+rank one reported `PodDeleted`; two siblings returned to pending state. The
+original driver and rank two had exited zero. All five original pods were
+absent, and fresh inspection found no new attempt. The
+[frozen operational policy](results/score_centering_current_confirmation_operations/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/policy.json)
+preserves the full scientific audit and original attempt ledger before using
+Iris `job complete` to stop the queued work. The deletion initiator is unknown.
+This completed run remains in the fixed design, with its worker failure
+reported in reliability results. Its
+[allocation audit](results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/run.json)
+uses the original attempt timestamps: 79.2912289 H100 task-hours. Unallocated
+controller wait before manual completion would have inflated the frozen
+collector's figure to 86.8186422 hours; that original result is also preserved.
+The primary endpoint, analysis, configurations and runtime source are unchanged.
+
+Completed new costs are **1788.6765364** hours across 50 attempts, separate
+from historical costs of 1,072.548303 hours. Complete seed-101 through seed-105
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
 guards. The planned twelve matched seeds and three capture companions remain
@@ -558,6 +575,12 @@ path, the C++ Codeforces check lacks its compiler toolchain, and the Harbor
 Iris-wrapper check invokes the installed `uv` instead of its test stub.
 These results establish the local baseline; campaign launcher graph and
 public-package integration checks passed.
+The latest affected suite passed 2,403 cases with the same nine failures and
+two additional collection errors: the frozen runner imports `cloud.iris.launch`
+at module scope, but bare Marin does not install that separately pinned package.
+All five targeted wrapper and allocation checks passed with campaign-pinned
+SkyRL. Move that import into the submission branch after canonical collection
+and analysis, then validate bare-Marin imports before publishing the Marin PR.
 
 ## Historical result and recommendation on the September stack
 

@@ -1,0 +1,13 @@
+{
+  "observed_at_utc": "2026-10-05T09:19:41.212188+00:00",
+  "exact_attempt_zero_pod_names": [
+    "iris-romain-score-centering-current-96f7f6f7-0-3a37bc8e73390b30",
+    "iris-romain-score-centering-current-66ae3e9f-0-f7feea5f05ab62a1",
+    "iris-romain-score-centering-current-bbf9894c-0-48fea708a3b5f0e9",
+    "iris-romain-score-centering-current-c64151fe-0-86fe42920d94eb1c",
+    "iris-romain-score-centering-current-d8a9e304-0-f4db38de67a9d358"
+  ],
+  "kubectl_exit_code": 0,
+  "empty_stdout": true,
+  "remaining": []
+}

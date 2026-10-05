@@ -1,0 +1,15 @@
+{
+  "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+  "configuration_sha256": "42cef22de7987aabc2052afecada1b0980d52b3f130ef6250468f68a88438692",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "applied_updates": 40,
+  "all_nonzero_finite_gradients": true,
+  "final_gradient_norm": 0.1473357081413269,
+  "checkpoint_step": 40,
+  "checkpoint_objects": 43,
+  "checkpoint_bytes": 939250554816,
+  "driver_sha256": "60e8eab645bda172a99b9a7e46c1bc81844e744b02cd908ee6aea21ab61d139e",
+  "resolved_sha256": "88239b570c638bf02fc92f8b4fff7504378562cc077088be6175b8da8295d4fd",
+  "trajectory_retention_shutdown_complete": true,
+  "ray_actor_cleanup_complete": true
+}

@@ -1,0 +1,7 @@
+{"only_original_attempts": true, "exact_original_pods_absent": true, "policy_sha256": "0a80ecdfdf0825ba8d3497d0f119e10acc3a792917428eea679a8ffd88ab0188"}
+warning: `VIRTUAL_ENV=/home/romain/.cache/uv/builds-v0/.tmpRCsZXh` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+I20261005 02:31:09 123913950684992 iris.cli.main Resolved cluster 'lib/iris/config/cw-rno2a.yaml' to config: lib/iris/config/cw-rno2a.yaml
+I20261005 02:31:09 123913950684992 iris.cluster.config Loading config from lib/iris/config/cw-rno2a.yaml
+I20261005 02:31:09 123913950684992 iris.cli.connect Establishing tunnel to controller...
+I20261005 02:31:10 123913950684992 iris.cluster.platforms.k8s.service Tunnel ready: 127.0.0.1:10003 -> iris-controller-svc:10000
+Completed job: /romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300

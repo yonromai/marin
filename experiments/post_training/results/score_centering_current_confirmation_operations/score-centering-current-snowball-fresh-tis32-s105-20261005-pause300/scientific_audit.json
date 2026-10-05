@@ -1,0 +1,13 @@
+{
+  "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+  "complete_consumed_training_evidence": true,
+  "training_steps": 40,
+  "consumed_responses": 20480,
+  "evaluation_records": 11990,
+  "consumed_loss_tokens": 16332336,
+  "author_audit_files": {
+    "endpoint.json": "a0e52a6bffcd3d6332322492c8c0de5b86162d418fcda1480aba2f7d11bd08a7",
+    "training_records.json": "5db7b3ab0b56b01533d9430ba73cac423be128cbd65138175b52c5a5aee9f700",
+    "ages.json": "34f35e5d80711b7f92d771cfcbb2d1579ed6b6bd78f01b71449e6fb75b2b52b1"
+  }
+}
