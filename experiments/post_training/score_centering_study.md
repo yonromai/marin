@@ -538,8 +538,8 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Twenty-six full terminal audits are retained, including
-five complete quartets and all three capture-cost companions.
+with maximum age two. Twenty-eight full terminal audits are retained, including
+six complete quartets and all three capture-cost companions.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs. Operational checks
 incidentally exposed some secondary metrics and incumbent seed 106's baseline
@@ -562,8 +562,8 @@ controller wait before manual completion would have inflated the frozen
 collector's figure to 86.8186422 hours; that original result is also preserved.
 The primary endpoint, analysis, configurations and runtime source are unchanged.
 
-Completed new costs are **1986.1303431** hours across 53 attempts, separate
-from historical costs of 1,072.548303 hours. Complete seed-101 through seed-105
+Completed new costs are **2098.4951897** hours across 55 attempts, separate
+from historical costs of 1,072.548303 hours. Complete seed-101 through seed-106
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
 guards. The planned twelve matched seeds and three capture companions remain
