@@ -1,0 +1,761 @@
+{
+  "scope": "Exact loss tokens after trajectory selection; optimizer ages use applied update counts.",
+  "steps": [
+    {
+      "training_step": 1,
+      "consuming_policy_version": 0,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 539347,
+      "optimizer_age_counts": {
+        "0": 539347
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 0,
+      "optimizer_age_mean": 0.0,
+      "optimizer_age_p50": 0,
+      "optimizer_age_p95": 0,
+      "optimizer_age_p99": 0
+    },
+    {
+      "training_step": 2,
+      "consuming_policy_version": 1,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 495317,
+      "optimizer_age_counts": {
+        "1": 495317
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 1,
+      "optimizer_age_mean": 1.0,
+      "optimizer_age_p50": 1,
+      "optimizer_age_p95": 1,
+      "optimizer_age_p99": 1
+    },
+    {
+      "training_step": 3,
+      "consuming_policy_version": 2,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 0,
+      "loss_tokens": 558277,
+      "optimizer_age_counts": {
+        "2": 558277
+      },
+      "optimizer_age_min": 2,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 2.0,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 4,
+      "consuming_policy_version": 3,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 110,
+      "loss_tokens": 512525,
+      "optimizer_age_counts": {
+        "0": 69006,
+        "1": 140091,
+        "2": 303428
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.457386468952734,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 5,
+      "consuming_policy_version": 4,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 108,
+      "loss_tokens": 527850,
+      "optimizer_age_counts": {
+        "0": 8369,
+        "1": 216727,
+        "2": 302754
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5577057876290612,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 6,
+      "consuming_policy_version": 5,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 86,
+      "loss_tokens": 482861,
+      "optimizer_age_counts": {
+        "1": 123517,
+        "2": 359344
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.744197605522086,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 7,
+      "consuming_policy_version": 6,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 99,
+      "loss_tokens": 474961,
+      "optimizer_age_counts": {
+        "0": 62076,
+        "1": 118287,
+        "2": 294598
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.4895601954686806,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 8,
+      "consuming_policy_version": 7,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 70,
+      "loss_tokens": 345058,
+      "optimizer_age_counts": {
+        "0": 1279,
+        "1": 131948,
+        "2": 211831
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6101930689913,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 9,
+      "consuming_policy_version": 8,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 57,
+      "loss_tokens": 364768,
+      "optimizer_age_counts": {
+        "1": 77214,
+        "2": 287554
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.7883202473901219,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 10,
+      "consuming_policy_version": 9,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 73,
+      "loss_tokens": 377994,
+      "optimizer_age_counts": {
+        "0": 56226,
+        "1": 88034,
+        "2": 233734
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.4696053376508622,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 11,
+      "consuming_policy_version": 10,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 76,
+      "loss_tokens": 413274,
+      "optimizer_age_counts": {
+        "1": 171913,
+        "2": 241361
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5840217386044126,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 12,
+      "consuming_policy_version": 11,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 50,
+      "loss_tokens": 374963,
+      "optimizer_age_counts": {
+        "1": 64227,
+        "2": 310736
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.82871109949515,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 13,
+      "consuming_policy_version": 12,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 67,
+      "loss_tokens": 374957,
+      "optimizer_age_counts": {
+        "0": 52339,
+        "1": 89150,
+        "2": 233468
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.483066058241345,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 14,
+      "consuming_policy_version": 13,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 62,
+      "loss_tokens": 364150,
+      "optimizer_age_counts": {
+        "0": 1594,
+        "1": 125522,
+        "2": 237034
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6465467527117945,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 15,
+      "consuming_policy_version": 14,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 40,
+      "loss_tokens": 339948,
+      "optimizer_age_counts": {
+        "1": 58122,
+        "2": 281826
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.829026792332945,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 16,
+      "consuming_policy_version": 15,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 41,
+      "loss_tokens": 292394,
+      "optimizer_age_counts": {
+        "0": 25368,
+        "1": 47773,
+        "2": 219253
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6630950019494244,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 17,
+      "consuming_policy_version": 16,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 43,
+      "loss_tokens": 273542,
+      "optimizer_age_counts": {
+        "1": 76449,
+        "2": 197093
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.7205218942612104,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 18,
+      "consuming_policy_version": 17,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 43,
+      "loss_tokens": 309280,
+      "optimizer_age_counts": {
+        "0": 854,
+        "1": 52407,
+        "2": 256019
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.8250290998448009,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 19,
+      "consuming_policy_version": 18,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 55,
+      "loss_tokens": 336215,
+      "optimizer_age_counts": {
+        "0": 35544,
+        "1": 65125,
+        "2": 235546
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5948634058563718,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 20,
+      "consuming_policy_version": 19,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 52,
+      "loss_tokens": 321061,
+      "optimizer_age_counts": {
+        "1": 97031,
+        "2": 224030
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6977801726151729,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 21,
+      "consuming_policy_version": 20,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 42,
+      "loss_tokens": 340656,
+      "optimizer_age_counts": {
+        "1": 47102,
+        "2": 293554
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.8617314827861537,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 22,
+      "consuming_policy_version": 21,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 56,
+      "loss_tokens": 330611,
+      "optimizer_age_counts": {
+        "1": 102919,
+        "2": 227692
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6887006179467712,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 23,
+      "consuming_policy_version": 22,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 56,
+      "loss_tokens": 365829,
+      "optimizer_age_counts": {
+        "0": 43908,
+        "1": 75715,
+        "2": 246206
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5529851378649588,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 24,
+      "consuming_policy_version": 23,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 54,
+      "loss_tokens": 317705,
+      "optimizer_age_counts": {
+        "0": 87,
+        "1": 89351,
+        "2": 228267
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.7182134369934372,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 25,
+      "consuming_policy_version": 24,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 39,
+      "loss_tokens": 331712,
+      "optimizer_age_counts": {
+        "0": 886,
+        "1": 50062,
+        "2": 280764
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.8437379413467103,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 26,
+      "consuming_policy_version": 25,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 62,
+      "loss_tokens": 366134,
+      "optimizer_age_counts": {
+        "0": 43210,
+        "1": 78965,
+        "2": 243959
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5482937940753931,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 27,
+      "consuming_policy_version": 26,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 70,
+      "loss_tokens": 403181,
+      "optimizer_age_counts": {
+        "1": 147184,
+        "2": 255997
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6349431148789253,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 28,
+      "consuming_policy_version": 27,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 52,
+      "loss_tokens": 383601,
+      "optimizer_age_counts": {
+        "0": 354,
+        "1": 69876,
+        "2": 313371
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.8159963086644717,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 29,
+      "consuming_policy_version": 28,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 61,
+      "loss_tokens": 338876,
+      "optimizer_age_counts": {
+        "0": 33574,
+        "1": 69849,
+        "2": 235453
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5957311819072464,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 30,
+      "consuming_policy_version": 29,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 96,
+      "loss_tokens": 477085,
+      "optimizer_age_counts": {
+        "0": 3123,
+        "1": 198166,
+        "2": 275796
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5715396627435363,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 31,
+      "consuming_policy_version": 30,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 59,
+      "loss_tokens": 398765,
+      "optimizer_age_counts": {
+        "1": 81451,
+        "2": 317314
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.795741852971048,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 32,
+      "consuming_policy_version": 31,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 86,
+      "loss_tokens": 483801,
+      "optimizer_age_counts": {
+        "1": 178193,
+        "2": 305608
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6316812077693101,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 33,
+      "consuming_policy_version": 32,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 109,
+      "loss_tokens": 511377,
+      "optimizer_age_counts": {
+        "0": 70619,
+        "1": 119207,
+        "2": 321551
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.490698643075461,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 34,
+      "consuming_policy_version": 33,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 91,
+      "loss_tokens": 464859,
+      "optimizer_age_counts": {
+        "0": 860,
+        "1": 180305,
+        "2": 283694
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.6084296528624809,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 35,
+      "consuming_policy_version": 34,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 74,
+      "loss_tokens": 507124,
+      "optimizer_age_counts": {
+        "1": 97160,
+        "2": 409964
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.808409777490318,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 36,
+      "consuming_policy_version": 35,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 87,
+      "loss_tokens": 455804,
+      "optimizer_age_counts": {
+        "0": 69010,
+        "1": 105992,
+        "2": 280802
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.4646558608524716,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 37,
+      "consuming_policy_version": 36,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 92,
+      "loss_tokens": 453623,
+      "optimizer_age_counts": {
+        "1": 177757,
+        "2": 275866
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.608139358013152,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 38,
+      "consuming_policy_version": 37,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 82,
+      "loss_tokens": 519805,
+      "optimizer_age_counts": {
+        "0": 4077,
+        "1": 97473,
+        "2": 418255
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.7967949519531363,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 39,
+      "consuming_policy_version": 38,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 149,
+      "loss_tokens": 661904,
+      "optimizer_age_counts": {
+        "0": 121006,
+        "1": 194930,
+        "2": 345968
+      },
+      "optimizer_age_min": 0,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.3398710387004762,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    },
+    {
+      "training_step": 40,
+      "consuming_policy_version": 39,
+      "optimizer_updates_applied": 1,
+      "active_responses": 512,
+      "mixed_policy_responses": 107,
+      "loss_tokens": 534394,
+      "optimizer_age_counts": {
+        "1": 220938,
+        "2": 313456
+      },
+      "optimizer_age_min": 1,
+      "optimizer_age_max": 2,
+      "optimizer_age_mean": 1.5865634718952684,
+      "optimizer_age_p50": 2,
+      "optimizer_age_p95": 2,
+      "optimizer_age_p99": 2
+    }
+  ],
+  "aggregate": {
+    "loss_tokens": 16725588,
+    "optimizer_age_counts": {
+      "0": 1242716,
+      "1": 4621449,
+      "2": 10861423
+    },
+    "optimizer_age_min": 0,
+    "optimizer_age_max": 2,
+    "optimizer_age_mean": 1.57508931823503,
+    "optimizer_age_p50": 2,
+    "optimizer_age_p95": 2,
+    "optimizer_age_p99": 2,
+    "active_responses": 20480,
+    "mixed_policy_responses": 2656,
+    "mixed_policy_response_fraction": 0.1296875
+  }
+}

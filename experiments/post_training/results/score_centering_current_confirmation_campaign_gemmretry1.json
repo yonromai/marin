@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "observed_at_utc": "2026-10-05T06:53:20.345808+00:00",
+  "observed_at_utc": "2026-10-05T07:36:11.006679+00:00",
   "protocol": "score_centering_current_confirmation_protocol_r2_gemmretry1.json",
   "protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
   "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-  "scope": "15 full terminal audits, 6 active runs using 40 H100s each. Fixed 51-run design; no quality conclusions. Both excluded failures remain in total cost and reliability. The controlled incumbent seed 102 repeat passed its first two applied updates; the prior Transformer Engine error remains unexplained.",
+  "scope": "16 full terminal audits, 6 active runs using 40 H100s each. Fixed 51-run design; no quality conclusions. Both excluded failures remain in total cost and reliability. The controlled incumbent seed 102 repeat passed its first two applied updates; the prior Transformer Engine error remains unexplained.",
   "prior_campaign": "score_centering_current_confirmation_campaign_pause300.json",
   "planned_matched_and_capture_runs": 51,
-  "successfully_audited_runs": 15,
+  "successfully_audited_runs": 16,
   "active_jobs": 6,
   "effective_priority_band": 2,
   "active_job_cap": 6,
@@ -1014,6 +1014,77 @@
       "scientific_work_complete": false
     },
     {
+      "arm": "fresh_tis32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/fresh_tis32_s105.yaml",
+      "sha256": "42cef22de7987aabc2052afecada1b0980d52b3f130ef6250468f68a88438692",
+      "driver_cache_key": "snowball-fresh-tis32-s105-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "5f3e1cd8ca3222e0f56e3665f6f7a9ead9d34f5e8231a4b397df6d4712bd9894",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s105.yaml",
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791184397527,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791184397527,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791184397527,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791184397527,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791184397527,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
       "arm": "older_incumbent",
       "seed": 101,
       "run_id": "score-centering-current-snowball-older-incumbent-s101-20261004-r2-r2",
@@ -1239,65 +1310,66 @@
       "prior_configuration_sha256": "0672ae14bbfdbf4c117a7bc9ad4ae6f662b6b146dd6536d2876a78bb12dab5ab",
       "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_incumbent_s104.yaml",
       "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
-      "state": "active",
+      "state": "succeeded",
       "tasks": [
         {
           "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/0",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791179770022,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791184376488,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/1",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791179770022,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791184380893,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/2",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791179770022,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791184380893,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/3",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791179770022,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791184380893,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/4",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791179770022,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791184380893,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         }
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": true,
+      "evidence": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/run.json"
     },
     {
       "arm": "older_tis0",
@@ -1540,11 +1612,11 @@
     "limitation": "No recurrence in these first two updates does not establish the cause of the previous failure or failure-free behavior."
   },
   "latest_capacity_from_watch": {
-    "retrieved_at_utc": "2026-10-05T06:53:20.345929+00:00",
+    "retrieved_at_utc": "2026-10-05T07:36:11.006792+00:00",
     "source": "current-confirmation-gemmretry1-max6-spare120-watch.log",
-    "free_h100": 145,
-    "empty_whole_nodes": 14,
+    "free_h100": 177,
+    "empty_whole_nodes": 16,
     "other_demand_rose": false
   },
-  "controller_successful_jobs": 15
+  "controller_successful_jobs": 16
 }

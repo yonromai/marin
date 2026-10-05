@@ -1,7 +1,7 @@
 {
   "prior_rounds_reserved_h100_task_hours": 1072.548303,
-  "current_completed_reserved_h100_task_hours": 1273.9212608333332,
-  "accounted_completed_attempts": 42,
+  "current_completed_reserved_h100_task_hours": 1325.1433719444444,
+  "accounted_completed_attempts": 43,
   "cost_basis": "Controller recorded reservation/task time, including initialization, qualification, evaluation, checkpointing, invalid attempts, failures and teardown. Restore PodDeleted uses actual final attempt end rather than unallocated requeue time. Active jobs excluded until terminal; no historical/current outcome pooling.",
   "attempts": [
     {
@@ -254,6 +254,12 @@
       "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s103-20261005-pause300/run.json",
       "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
       "reserved_h100_task_hours": 57.08272888888889,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
+      "reserved_h100_task_hours": 51.22211111111111,
       "state": "succeeded"
     }
   ]
