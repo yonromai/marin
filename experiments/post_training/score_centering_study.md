@@ -629,7 +629,8 @@ optimizer updates remained byte identical. Original allocation cost was
 72.9491022 H100 task-hours, counted once. This third confirmation publication failure remains
 recorded in the campaign registry. The corresponding arm with added score
 centering (SC32), seed 112, passed its full native audit without publisher
-errors, costing 76.7658178 hours. No training or evaluation was repeated for this recovery.
+errors, costing 76.7658178 hours. No training or evaluation was repeated for
+[this recovery](https://marina.oa.dev/echo/wiki/615).
 
 Completed new costs are **3638.6569742** hours across 77 attempts, separate
 from historical costs of 1,072.548303 hours. Complete seed-101 through seed-111
