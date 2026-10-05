@@ -1,9 +1,24 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
+import json
+
 import pytest
 
-from experiments.post_training.collect_current_score_centering_confirmation import parse_metrics
+from experiments.post_training.collect_current_score_centering_confirmation import parse_metrics, read_resolved_launch
+
+
+def test_native_resolved_launch_wrapper_checks_run_seed_and_source():
+    # TrainingDriver writes this wrapper even though its URI ends in .yaml.
+    configuration = {"runtime": {"launcher_commit": "qualified-source"}, "run": {"id": "run-r2-r2", "seed": 101}}
+    payload = json.dumps({"config": configuration, "train_data_sources": [], "val_data_sources": []}).encode()
+    assert read_resolved_launch(payload, run_id="run-r2-r2", seed=101, source_commit="qualified-source") == configuration
+    with pytest.raises(ValueError, match="source or run identity"):
+        read_resolved_launch(payload, run_id="run-r2", seed=101, source_commit="qualified-source")
+    with pytest.raises(ValueError, match="source or run identity"):
+        read_resolved_launch(payload, run_id="run-r2-r2", seed=101, source_commit="different-source")
+    with pytest.raises(ValueError, match="different training seed"):
+        read_resolved_launch(payload, run_id="run-r2-r2", seed=102, source_commit="qualified-source")
 
 
 def test_source_ansi_log_keeps_observed_timestamp_and_finite_update_payload():

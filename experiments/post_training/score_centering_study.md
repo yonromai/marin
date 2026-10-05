@@ -407,8 +407,58 @@ The correction has SHA
 `b9dc8d7a121b672a50334b351e246128afc7193f8e53d46017c3c05280ef9a0e`.
 The submission guard now checks registry identity against the YAML before any
 controller call; collection reads explicit artifact paths. The
-[first four actual runs](results/score_centering_current_confirmation_campaign_r2.json)
-continue on twenty GPU tasks with effective interactive priority.
+[campaign registry](results/score_centering_current_confirmation_campaign_r2.json)
+records the six submitted jobs and their actual task states at each checkpoint.
+
+The native TrainingDriver publishes its resolved launch inside a `config`
+wrapper. The first terminal collector incorrectly expected those keys at the
+document root. The [collection correction](results/score_centering_current_confirmation_protocol_r2_collection.json)
+reads that wrapper and preserves the raw document by content hash. Its freeze is
+`59addb8541ecfcb21c5265e4367d2f0e162d6932ec96234d47e892875f92a4ec`.
+All configuration bytes and the primary statistical and endpoint analysis
+remain unchanged. The observed document, native writer, and regression check
+are recorded in the correction.
+
+The first older TIS32 and incumbent seed-101 runs passed the full terminal
+audit: forty applied updates, 20,480 consumed responses matched to immutable
+tokens and masks, 11,990 held-out evaluation records, and complete step-40
+trainer/optimizer checkpoints. This establishes evidence completeness. The
+full paired seed analysis remains pending.
+
+The [SC seed-101 failure](results/score_centering_current_confirmation_failures/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/failure.json)
+logged 26 complete training batches and applied update 27 before the next
+weight-publication pause exceeded its 120-second watchdog. All eight native
+engines eventually acknowledged that pause, in 69.268 to 124.558 seconds.
+The last reply arrived 4.558 seconds after the deadline. The driver reported
+zero frontend routing counts, while the engine actors had 40 to 57 native
+request states when their pause calls began. Those are different counters.
+The pinned vLLM already includes device synchronization and the two-phase DP
+pause protocol. No native engine exception appeared in the retained actor
+logs. These facts establish a slow finite pause; they do not establish why it
+was slow. This attempt has no final checkpoint or step-40 endpoint and remains
+outside confirmation.
+
+The [watchdog amendment](results/score_centering_current_confirmation_protocol_r2_pause300.json)
+raises the bounded pause/resume watchdog to 300 seconds for a fresh SC seed-101
+retry and the 45 configurations that have not been submitted. Its immutable
+freeze is `14f9fbe78474a72e4be44a7949885d258fb0613a53b695f56a9aab96234a134f`.
+The five other submitted jobs and every original configuration file remain
+intact. Each of the 46 amended inputs reverses exactly to its prior input after
+restoring the watchdog and artifact identities. The source, runtime, objective,
+generation schedule, pause mode, cache clearing, retention, held-out membership,
+seeds, horizon, and statistical analysis remain fixed.
+
+The watchdog only bounds the wait for an unchanged native pause/resume call.
+Previously successful calls finished within 120 seconds, so the larger bound
+would not change their execution. All native pause time remains in measured
+elapsed time and compute. The retry starts from the initial model, and endpoint
+scores did not select this amendment. Failed attempts remain in total costs
+and reliability results.
+
+The two successful controls and the failed SC attempt cost 59.4322533,
+50.1425978, and 55.0786111 reserved H100 task-hours. Completed new costs are now
+**451.6685653** hours across 28 attempts, separate from historical costs of
+1,072.548303 hours. Three other jobs were active at this checkpoint.
 The twelve matched seeds and three capture companions remain to be completed.
 There is no current confirmation recommendation yet.
 

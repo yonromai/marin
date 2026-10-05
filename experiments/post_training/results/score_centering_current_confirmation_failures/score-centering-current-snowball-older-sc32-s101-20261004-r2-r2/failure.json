@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "audited_at_utc": "2026-10-05T01:52:53.726272+00:00",
+  "arm": "older_sc32",
+  "seed": 101,
+  "run_id": "score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+  "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+  "state": "failed",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "configuration_sha256": "97df9020dcde4a548fc04e2eaa6e085083f6afb2060d805021333320baed29fa",
+  "scientific_work_complete": false,
+  "eligible_for_confirmation": false,
+  "completed_training_steps_logged": 26,
+  "optimizer_updates_applied": 27,
+  "failure": "Weight-publication pause watchdog expired after120seconds; all8native engines subsequently acknowledged the same pause.",
+  "driver_pause_call_at_utc": "2026-10-05T01:21:18.712000+00:00",
+  "watchdog_timeout_seconds": 120,
+  "pause_acknowledgements": [
+    {
+      "data_parallel_rank": 0,
+      "acknowledged_at_utc": "2026-10-05T01:23:16.982000+00:00",
+      "seconds_after_driver_call": 118.27,
+      "outstanding_requests_at_actor_call": 49
+    },
+    {
+      "data_parallel_rank": 1,
+      "acknowledged_at_utc": "2026-10-05T01:23:22.835000+00:00",
+      "seconds_after_driver_call": 124.123,
+      "outstanding_requests_at_actor_call": 53
+    },
+    {
+      "data_parallel_rank": 2,
+      "acknowledged_at_utc": "2026-10-05T01:23:03.039000+00:00",
+      "seconds_after_driver_call": 104.327,
+      "outstanding_requests_at_actor_call": 44
+    },
+    {
+      "data_parallel_rank": 3,
+      "acknowledged_at_utc": "2026-10-05T01:22:27.980000+00:00",
+      "seconds_after_driver_call": 69.268,
+      "outstanding_requests_at_actor_call": 40
+    },
+    {
+      "data_parallel_rank": 4,
+      "acknowledged_at_utc": "2026-10-05T01:23:01.549000+00:00",
+      "seconds_after_driver_call": 102.837,
+      "outstanding_requests_at_actor_call": 48
+    },
+    {
+      "data_parallel_rank": 5,
+      "acknowledged_at_utc": "2026-10-05T01:22:34.377000+00:00",
+      "seconds_after_driver_call": 75.665,
+      "outstanding_requests_at_actor_call": 46
+    },
+    {
+      "data_parallel_rank": 6,
+      "acknowledged_at_utc": "2026-10-05T01:22:27.980000+00:00",
+      "seconds_after_driver_call": 69.268,
+      "outstanding_requests_at_actor_call": 49
+    },
+    {
+      "data_parallel_rank": 7,
+      "acknowledged_at_utc": "2026-10-05T01:23:23.270000+00:00",
+      "seconds_after_driver_call": 124.558,
+      "outstanding_requests_at_actor_call": 57
+    }
+  ],
+  "cause_of_slow_pause": "Not established by terminal logs. No native engine exception observed. This is not classified as a hardware failure.",
+  "inflight_count_limitation": "The driver timeout reports frontend routing counts; native actors had40..57request states when their pause calls began.",
+  "pinned_vllm_pause_fixes_present": {
+    "device_synchronization": "https://github.com/vllm-project/vllm/pull/52914",
+    "dp_two_phase_consensus_and_first_step_check": "https://github.com/vllm-project/vllm/blob/39e62869693c46402b1a95fde4fc55ca1aab9ae1/vllm/v1/engine/core.py#L2069"
+  },
+  "reserved_h100_task_hours": 55.078611111111115,
+  "cost_basis": "Controller task reservation timestamps, consistent with completed campaign controls; sole actual attempts retained separately.",
+  "tasks": [
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0",
+      "state": 5,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791158510356,
+      "finished_at_ms": 1791163467431,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/1",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791158510356,
+      "finished_at_ms": 1791163467431,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/2",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791158510356,
+      "finished_at_ms": 1791163467431,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/3",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791158510356,
+      "finished_at_ms": 1791163467431,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/4",
+      "state": 11,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791158510356,
+      "finished_at_ms": 1791163467431,
+      "priority_band": 2,
+      "job_state": 5,
+      "job_priority": 2
+    }
+  ],
+  "actual_attempts": [
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0",
+      "attempt_id": 0,
+      "state": 5,
+      "exit_code": 1,
+      "error": "nference_engines/inference_engine_client.py\", line 1087, in pause_generation\n    await self._run_on_all_engines_before_deadline(\"pause_generation\")\n  File \"/app/marinskyrl/skyrl-train/skyrl_train/inference_engines/inference_engine_client.py\", line 240, in _run_on_all_engines_before_deadline\n    raise TimeoutError(\nTimeoutError: pause_generation did not complete on every engine within generator.weight_sync_pause_timeout_seconds=120.0; requests in flight per engine: [0, 0, 0, 0, 0, 0, 0, 0]\n2026-10-05 01:23:40.156 | ERROR    | skyrl_train.entrypoints.main_base:run_ray_driver:717 - Preserved original training-driver exception at /tmp/skyrl-debug/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/outcomes/skyrl-entrypoint-driver.g1c67f2.9873.1791163420156109548.exception.json\n2026-10-05 01:23:40.156 | INFO     | skyrl_train.entrypoints.main_base:run_ray_driver:720 - Shutting down Ray on head node...\n2026-10-05 01:23:40.156 | INFO     | skyrl_train.entrypoints.ray_lifecycle:shutdown_ray:16 - Leaving Ray cluster teardown to iris-task-runtime\n2026-10-05 01:23:40.157 | INFO     | skyrl_train.entrypoints.ray_lifecycle:exit_without_ray_destructors:24 - Exiting after handing Ray cluster teardown to iris-task-runtime\n[task-runtime] [term-capture] wrote termination artifact -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/rendezvous/term_artifacts/_romain_score-centering-current-snowball-older-sc32-s101-20261004-r2-r2_0:0_1791163421.txt\n[task-runtime] [ray-log-sync] uploaded 54 file(s) / 0.05 GiB (unchanged=1510, failed=0, deferred=0) -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank0-g1c67f2 [driver exit_code=1 (head rank 0)]\n[task-runtime] [debug-sync] uploaded 22 file(s) / 62471 bytes -> s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/rendezvous/debug_artifacts/rank0-g1c67f2 [driver exit_code=1 (head rank 0)]\n[task-runtime] Ray stop completed (exit 0)\n",
+      "started_at_ms": 1791158522232,
+      "finished_at_ms": 1791163467431
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/1",
+      "attempt_id": 0,
+      "state": 11,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0 failed",
+      "started_at_ms": 1791158522232,
+      "finished_at_ms": 1791163467431
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/2",
+      "attempt_id": 0,
+      "state": 11,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0 failed",
+      "started_at_ms": 1791158522232,
+      "finished_at_ms": 1791163467431
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/3",
+      "attempt_id": 0,
+      "state": 11,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0 failed",
+      "started_at_ms": 1791158527772,
+      "finished_at_ms": 1791163467431
+    },
+    {
+      "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/4",
+      "attempt_id": 0,
+      "state": 11,
+      "exit_code": null,
+      "error": "Coscheduled sibling /romain/score-centering-current-snowball-older-sc32-s101-20261004-r2-r2/0 failed",
+      "started_at_ms": 1791158522232,
+      "finished_at_ms": 1791163467431
+    }
+  ],
+  "driver": {
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-driver-2b24b733ba2ee10792e17e0c76d8fbde34283b7c9b00fbdd22c424c4d2530d68",
+    "sha256": "2b24b733ba2ee10792e17e0c76d8fbde34283b7c9b00fbdd22c424c4d2530d68",
+    "bytes": 1430577,
+    "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank0-g1c67f2/session_latest/worker-98d3f7189cb7e70e1aa9de0deff4c2d3234afb6fbe1c7c01f36ed4e6-06000000-14103.err"
+  },
+  "resolved_launch": {
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-resolved-4805bbc33eb2b6871c6f239aab16bcb10300a01d65cc3dec01ce2675b19fe78b",
+    "sha256": "4805bbc33eb2b6871c6f239aab16bcb10300a01d65cc3dec01ce2675b19fe78b",
+    "bytes": 19622,
+    "source": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/resolved-launch.yaml"
+  },
+  "engine_logs": [
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp0-e025d133c87205eaf68763a06262f74a02c1dd67ba839a7066564a06af78eb0f",
+      "sha256": "e025d133c87205eaf68763a06262f74a02c1dd67ba839a7066564a06af78eb0f",
+      "bytes": 26921,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-0c1d2be37c8a1bb9ec8c72fc7f876cf62d8de13bf92132c0f86a92a1-06000000-13277.err",
+      "data_parallel_rank": 0
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp1-cbb76e0abf608eee114bf50912f4092bd5fec5b5252088fe00fc6304ea17279c",
+      "sha256": "cbb76e0abf608eee114bf50912f4092bd5fec5b5252088fe00fc6304ea17279c",
+      "bytes": 13118,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-c18e64a5b0df6089675022152b4639fc66843f586267d1e98b8f7361-06000000-13280.err",
+      "data_parallel_rank": 1
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp2-296390935a09cf93d21e303f25cda347241ebe9c87a4c1486cc7280bb28390ab",
+      "sha256": "296390935a09cf93d21e303f25cda347241ebe9c87a4c1486cc7280bb28390ab",
+      "bytes": 13116,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-613591dcd132fc338d0c441967309ea5d0f2d66596f2d4363136d24b-06000000-13275.err",
+      "data_parallel_rank": 2
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp3-80d2fc0dfcac9a3431f490e16bbc45fa87a90fac61770303741a995fec5bd1bf",
+      "sha256": "80d2fc0dfcac9a3431f490e16bbc45fa87a90fac61770303741a995fec5bd1bf",
+      "bytes": 13115,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-b68f1bb4a0f990bfe3f9a330c5c45d62de6420837bae367dd83d72fc-06000000-13276.err",
+      "data_parallel_rank": 3
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp4-1325223ae0eb2fb0218bf252167a84d124c3b180dfbdf0aa9817cd9d796b4120",
+      "sha256": "1325223ae0eb2fb0218bf252167a84d124c3b180dfbdf0aa9817cd9d796b4120",
+      "bytes": 13115,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-8ad2ef8f2307ad3c19040e55d1ae9a211f49071abb4e3165f4d00b00-06000000-13281.err",
+      "data_parallel_rank": 4
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp5-34fbfcd2f4dedfff572513d30d257a8fcfa008041c4ec9c886443429852e184f",
+      "sha256": "34fbfcd2f4dedfff572513d30d257a8fcfa008041c4ec9c886443429852e184f",
+      "bytes": 13118,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-041ea660af603b322f4e402b9a4df7255735eeded2600288c3ea68bf-06000000-13282.err",
+      "data_parallel_rank": 5
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp6-aafb7e6d1a39eb7a9549c3666945ff833d0d4c49fd86b51b5fd460e029dab371",
+      "sha256": "aafb7e6d1a39eb7a9549c3666945ff833d0d4c49fd86b51b5fd460e029dab371",
+      "bytes": 13116,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-a29067dc576984d59454989cd7b360b0bc08ef0df0e0a9a46dfa86d1-06000000-13279.err",
+      "data_parallel_rank": 6
+    },
+    {
+      "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/confirmation-evidence/failed-engine-dp7-599fb56c39d2ee1790f1aff7be7c5c554abeedc10f2ae79cacc91279af78c89d",
+      "sha256": "599fb56c39d2ee1790f1aff7be7c5c554abeedc10f2ae79cacc91279af78c89d",
+      "bytes": 13114,
+      "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-older-sc32-s101-20261004-r2/ray-logs/rank2-g1cc242/session_latest/worker-a900ccd0b1caf3e7a1b417275a47244aabdf3b0e7d820beda026c9e1-06000000-13278.err",
+      "data_parallel_rank": 7
+    }
+  ],
+  "ages": "ages.json",
+  "partial_trajectory_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/attempts/trajectories",
+  "partial_token_version_archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s101-20261004-r2/consumed_versions",
+  "checkpoint_files_observed": 0,
+  "required_final_endpoint_available": false,
+  "required_final_checkpoint_available": false
+}

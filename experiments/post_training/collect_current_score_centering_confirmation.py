@@ -58,6 +58,16 @@ def save_json(path: Path, value) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n")
 
 
+def read_resolved_launch(raw: bytes, *, run_id: str, seed: int, source_commit: str) -> dict:
+    """Read the native TrainingDriver document and verify its launch provenance."""
+    configuration = yaml.safe_load(raw)["config"]
+    if configuration["runtime"]["launcher_commit"] != source_commit or configuration["run"]["id"] != run_id:
+        raise ValueError("published resolved launch names different source or run identity")
+    if configuration["run"]["seed"] != seed:
+        raise ValueError("published resolved launch has a different training seed")
+    return configuration
+
+
 def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache: dict) -> dict:
     run_id = row["run_id"]
     short = run_id.removeprefix("score-centering-current-")
@@ -72,11 +82,9 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
     if configuration["run"]["id"] != run_id or configuration["iris"]["job_name"] != run_id:
         raise ValueError("registry differs from the frozen input run/job identity")
     durable = configuration["artifacts"]["attempts_root"].rsplit("/", 1)[0]
-    resolved = yaml.safe_load(fs.cat_file(configuration["artifacts"]["resolved_config_uri"]))
-    if resolved["runtime"]["launcher_commit"] != protocol["source_commit"] or resolved["run"]["id"] != run_id:
-        raise ValueError("published resolved launch names different source or run identity")
-    if resolved["run"]["seed"] != row["seed"]:
-        raise ValueError("published resolved launch has a different training seed")
+    resolved_uri = configuration["artifacts"]["resolved_config_uri"]
+    resolved_raw = fs.cat_file(resolved_uri)
+    read_resolved_launch(resolved_raw, run_id=run_id, seed=row["seed"], source_commit=protocol["source_commit"])
     uri = cache.get(row.get("driver_cache_key", short))
     if uri is None:
         source = configuration["ray"]["log_dir"]
@@ -142,6 +150,13 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
             raise ValueError("immutable source driver identity has conflicting bytes")
     else:
         fs.pipe(preserved, raw)
+    resolved_sha = hashlib.sha256(resolved_raw).hexdigest()
+    preserved_resolved = durable + "/confirmation-evidence/resolved-" + resolved_sha + ".json"
+    if fs.exists(preserved_resolved):
+        if fs.cat_file(preserved_resolved) != resolved_raw:
+            raise ValueError("immutable resolved launch identity has conflicting bytes")
+    else:
+        fs.pipe(preserved_resolved, resolved_raw)
     directory.mkdir(parents=True, exist_ok=True)
     compressed = gzip.compress(json.dumps(metrics, sort_keys=True).encode(), mtime=0)
     (directory / "source_metrics.json.gz").write_bytes(compressed)
@@ -167,6 +182,7 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
         "endpoint_summary": str((directory / "endpoint.json").relative_to(base)),
         "endpoint": endpoint,
         "driver": {"source": fs.unstrip_protocol(uri), "preserved_uri": preserved, "sha256": raw_sha, "bytes": len(raw)},
+        "resolved_launch": {"source": resolved_uri, "preserved_uri": preserved_resolved, "sha256": resolved_sha},
         "source_metrics": {
             "path": str((directory / "source_metrics.json.gz").relative_to(base)),
             "sha256": hashlib.sha256(compressed).hexdigest(),
