@@ -1,0 +1,35 @@
+{
+  "run_id": "score-centering-current-snowball-older-tis32-s112-20261005-pause300",
+  "policy_sha256": "272a112ed1a6863c38e91cea187a9d93e5e29d62cf7292028b4fe013c4c4261e",
+  "policy_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/retention-recovery/frozen-policies/sha256-272a112ed1a6863c38e91cea187a9d93e5e29d62cf7292028b4fe013c4c4261e/policy.json",
+  "new_archives": [
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000016/338df24535609d6c1711d0d637b8476d7c03fdb218428e7e800b2277cb5b0638.zip",
+      "sha256": "338df24535609d6c1711d0d637b8476d7c03fdb218428e7e800b2277cb5b0638",
+      "bytes": 917156,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000016/338df24535609d6c1711d0d637b8476d7c03fdb218428e7e800b2277cb5b0638.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000017/0bd2070e8d4002b7bb999e8aa44ee3da5d3976ae706192854cc1da3181faf1d7.zip",
+      "sha256": "0bd2070e8d4002b7bb999e8aa44ee3da5d3976ae706192854cc1da3181faf1d7",
+      "bytes": 2005924,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000017/0bd2070e8d4002b7bb999e8aa44ee3da5d3976ae706192854cc1da3181faf1d7.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000018/6f7df082a69056107fb5f986dfbd341acc3e00c2b6a4601b4049018cfc0adbb6.zip",
+      "sha256": "6f7df082a69056107fb5f986dfbd341acc3e00c2b6a4601b4049018cfc0adbb6",
+      "bytes": 2160107,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000018/6f7df082a69056107fb5f986dfbd341acc3e00c2b6a4601b4049018cfc0adbb6.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000019/61e15732b5d470b9c5b307570570efcae9253ee6b8d427193dca31c041d7963a.zip",
+      "sha256": "61e15732b5d470b9c5b307570570efcae9253ee6b8d427193dca31c041d7963a",
+      "bytes": 665080,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000019/61e15732b5d470b9c5b307570570efcae9253ee6b8d427193dca31c041d7963a.zip"
+    }
+  ],
+  "original_archive_objects_verified_unchanged": 443,
+  "original_retention_ledger_verified_unchanged": true,
+  "recovered_records": 1384,
+  "provenance": "Reconstructed from original stored rollout payloads using the frozen native serializer. The publisher failure is preserved separately; original archives and ledger were not overwritten."
+}

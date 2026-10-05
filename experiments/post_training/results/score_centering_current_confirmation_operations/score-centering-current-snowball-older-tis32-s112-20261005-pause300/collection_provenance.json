@@ -1,0 +1,19 @@
+{
+  "run_id": "score-centering-current-snowball-older-tis32-s112-20261005-pause300",
+  "policy_sha256": "272a112ed1a6863c38e91cea187a9d93e5e29d62cf7292028b4fe013c4c4261e",
+  "collection_wrapper": {
+    "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s112-20261005-pause300/retention-recovery/evidence/sha256-b79851ee8c5b5fe4e9276c0a92c50b7ed37216fc375f8832f5790fb957ed3003/collection_wrapper.py",
+    "sha256": "b79851ee8c5b5fe4e9276c0a92c50b7ed37216fc375f8832f5790fb957ed3003",
+    "bytes": 8564
+  },
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "terminal_collector_sha256": "7289b7abefd9c47fca5da37e7c7df6cd6d9d2ea331a370b9bcdde362cdeed29a",
+  "canonical_output_sha256": {
+    "run.json": "99cb514daaabedf11382566f6ea35ea6b15d36c3a0693d676fedd3e347acb6e8",
+    "endpoint.json": "3785d6f56fdd07166e21a6c8778e612676c74123f54541dcdb4ca709cff9b2e1",
+    "ages.json": "af4d2deeca199d22ca3a67f1388619448eb0454179e6d8fb8d0326336fe2f58e",
+    "training_records.json": "145514ea9754c42238a918b523f9e05d7454ff89b4800eadea2d7c5ab82eb7e6",
+    "source_metrics.json.gz": "2482c991108a5fff4769489b625b877bc8936277d9e37c8bda35e4e4cdf0ce26"
+  },
+  "execution": "Pinned marinskyrl 5f53efd package and policy-pinned collection wrapper. Every frozen native collector gate unchanged. Original endpoint and optimizer-age summaries remain byte identical after training-archive reconstruction."
+}

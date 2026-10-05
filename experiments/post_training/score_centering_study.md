@@ -538,9 +538,9 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Forty-eight terminal runs are collected, including
-eleven complete quartets, incumbent seed 112, and all three capture-cost
-companions. The SC
+with maximum age two. Fifty terminal runs are collected, including
+eleven complete quartets, the three older-rollout seed-112 arms, and all three
+capture-cost companions. The SC
 seed-107 baseline uses original export grading evidence, as described below.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs. Operational checks
@@ -609,12 +609,34 @@ both cases reconciled, admissions resumed under the same four-job and
 80-spare-H100 limits. The [incident record](https://marina.oa.dev/echo/wiki/611)
 summarizes the operational discriminator and recovery limits.
 
-Completed new costs are **3488.9420542** hours across 75 attempts, separate
+The TIS32 control, seed 112, allowed rollouts generated under earlier policy
+weights. It uses truncated importance sampling and captures 32 probability
+candidates per token. Its publisher hit another 120-second deadline at
+19:31:45.987 UTC. The frozen collector rejected its archive because 1,384
+consumed responses were absent at updates 18 through 21. The publisher
+write-error counter was 1,392; it did not equal the consumed-record gap.
+Original stored rollout groups covered all 20,480 consumed responses.
+The frozen serializer reproduced all 20,120 surviving native records byte
+for byte, including 1,024 finished responses unused by training. Before
+publishing the four recovery archives, a
+[frozen recovery policy](results/score_centering_current_confirmation_operations/score-centering-current-snowball-older-tis32-s112-20261005-pause300/policy.json)
+pinned the inputs and outputs; the four new archives restored the missing
+responses. All 443 original archives and the publisher ledger stayed
+unchanged. The unchanged terminal collector
+then passed training, evaluation, applied-update and final-checkpoint gates.
+Its original held-out evaluation summaries and consumed-token ages in
+optimizer updates remained byte identical. Original allocation cost was
+72.9491022 H100 task-hours, counted once. This third confirmation publication failure remains
+recorded in the campaign registry. The corresponding arm with added score
+centering (SC32), seed 112, passed its full native audit without publisher
+errors, costing 76.7658178 hours. No training or evaluation was repeated for this recovery.
+
+Completed new costs are **3638.6569742** hours across 77 attempts, separate
 from historical costs of 1,072.548303 hours. Complete seed-101 through seed-111
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
-guards. The planned twelve matched seeds and three capture companions remain
-to be completed before the frozen paired analysis.
+guards. Fresh TIS32 seed 112 remains to complete the twelve matched seeds
+and three capture companions before the frozen paired analysis.
 There is no current confirmation recommendation yet.
 
 After seed 109 finished, the admission cap rose from four to the already
