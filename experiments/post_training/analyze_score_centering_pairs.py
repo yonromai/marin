@@ -25,6 +25,7 @@ import math
 import statistics
 from collections import defaultdict
 from pathlib import Path
+from typing import NamedTuple
 
 from scipy.stats import t
 
@@ -65,12 +66,18 @@ def _rows(paths: list[Path]) -> list[dict[str, str]]:
     return result
 
 
-def _interval(values: list[float]) -> tuple[float, float, float]:
+class Interval(NamedTuple):
+    mean: float
+    low: float
+    high: float
+
+
+def _interval(values: list[float]) -> Interval:
     mean = statistics.mean(values)
     if len(values) < 2:
-        return mean, math.nan, math.nan
+        return Interval(mean, math.nan, math.nan)
     half_width = t.ppf(0.975, len(values) - 1) * statistics.stdev(values) / math.sqrt(len(values))
-    return mean, mean - half_width, mean + half_width
+    return Interval(mean, mean - half_width, mean + half_width)
 
 
 def summarize(

@@ -6,7 +6,7 @@
 SkyRL evaluates at the last step and again during finalization, overwriting the
 same response dump. The first result remains in the step-40 train mirror; the
 second is in the final eval mirror. GSM8K rewards are 0/1 and Math500 rewards
-are -1/1, so the completed counts can be recovered from their signed metrics.
+are -1/1, so completed-correct counts can be recovered from their signed metrics.
 The final reconstructed counts must match the saved response analysis CSV.
 When an Iris pod log is unavailable, pass retained W&B evaluation history as
 JSONL with the run label, W&B run ID, history step, optimizer step, and metrics.
@@ -45,7 +45,7 @@ def _integer(value: float, label: str) -> int:
     return rounded
 
 
-def _completed_counts(metrics: dict) -> tuple[int, int]:
+def _completed_correct_counts(metrics: dict) -> tuple[int, int]:
     gsm = _integer(metrics["eval/val-gsm8k/completed_stop_score_contribution"] * GSM8K_QUESTIONS, "GSM8K correct")
     math_completed = _integer(
         metrics["eval/val-math500/completed_stop_fraction"] * MATH500_QUESTIONS, "Math500 complete"
@@ -102,8 +102,8 @@ def summarize(run: str, log: Path, evaluations: list[dict[str, str]], step: int,
     ]:
         raise ValueError(f"{run}: frozen evaluation suite sizes changed")
     mirrors = _wandb_history_mirrors(log, run, step) if wandb_history else _mirrors(log, step)
-    scheduled_gsm, scheduled_math = _completed_counts(mirrors["train"])
-    final_gsm, final_math = _completed_counts(mirrors["eval"])
+    scheduled_gsm, scheduled_math = _completed_correct_counts(mirrors["train"])
+    final_gsm, final_math = _completed_correct_counts(mirrors["eval"])
     final_all = final_gsm + final_math
     combined = rows["core-math"] if "core-math" in rows else rows["all"]
     if int(combined["questions"]) != GSM8K_QUESTIONS + MATH500_QUESTIONS:

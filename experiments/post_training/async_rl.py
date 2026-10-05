@@ -336,9 +336,9 @@ def check_loop_shape(config: dict) -> None:
     # generation and their groups fail admission.
     if MAX_PROMPT_TOKENS > budget["request_window_tokens"] - budget["max_new_tokens_per_turn"]:
         raise click.BadParameter("pool prompts do not fit the request window beside the response cap")
-    if workers is not None and (type(workers) is not int or workers < 1):
+    if workers is not None and (isinstance(workers, bool) or not isinstance(workers, int) or workers < 1):
         raise click.BadParameter("rollout_buffer.max_in_flight must be null or a positive integer")
-    if type(staleness) is not int or staleness < 0:
+    if isinstance(staleness, bool) or not isinstance(staleness, int) or staleness < 0:
         raise click.BadParameter("rollout_buffer.max_staleness_steps must be a nonnegative integer")
     if loop["batch_policy"] not in {"full_batch", "rolling"}:
         raise click.BadParameter("rollout_buffer.batch_policy must be full_batch or rolling")

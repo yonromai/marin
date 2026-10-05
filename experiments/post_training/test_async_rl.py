@@ -3,7 +3,10 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
+from marin.execution.lazy import StepContext
 
 from experiments.post_training import async_rl
 from experiments.post_training.curriculum_rl.launch import SNOWBALL_POLICY
@@ -24,9 +27,8 @@ def test_launcher_builds_complete_smoke_run(monkeypatch) -> None:
 
 @pytest.mark.integration
 def test_launcher_composes_unified_rollout_buffer_config(tmp_path, monkeypatch) -> None:
-    from pathlib import Path
-    from cloud.iris.launch_config import load_launch_config
-    from marin.execution.lazy import StepContext
+    # The SkyRL extra is only needed by this integration test.
+    from cloud.iris.launch_config import load_launch_config  # noqa: PLC0415
 
     monkeypatch.setattr("marin.experiment.namespacing.username_segment", lambda: "alice")
     monkeypatch.setattr(async_rl, "username_segment", lambda: "alice")

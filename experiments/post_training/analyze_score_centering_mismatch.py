@@ -16,8 +16,10 @@ import gzip
 import json
 import re
 from pathlib import Path
+from typing import NamedTuple
 
 import matplotlib as mpl
+from fsspec import AbstractFileSystem
 
 mpl.use("Agg")
 import matplotlib.pyplot as plt
@@ -44,7 +46,13 @@ FIELDS = (
 )
 
 
-def _sources(prefix: str) -> list[tuple[int, object, str]]:
+class DiagnosticSource(NamedTuple):
+    step: int
+    filesystem: AbstractFileSystem | None
+    path: str
+
+
+def _sources(prefix: str) -> list[DiagnosticSource]:
     if prefix.startswith("s3://"):
         fs, path = filesystem_for(prefix)
         names = fs.ls(path)
@@ -55,11 +63,11 @@ def _sources(prefix: str) -> list[tuple[int, object, str]]:
     for name in names:
         match = re.fullmatch(r"global_step_(\d+)\.json\.gz", str(name).rsplit("/", 1)[-1])
         if match:
-            result.append((int(match.group(1)), fs, str(name)))
+            result.append(DiagnosticSource(int(match.group(1)), fs, str(name)))
     return sorted(result)
 
 
-def _read(fs: object, path: str) -> dict:
+def _read(fs: AbstractFileSystem | None, path: str) -> dict:
     opener = fs.open if fs is not None else open
     with opener(path, "rb") as source:
         with gzip.GzipFile(fileobj=source) as compressed:

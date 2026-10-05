@@ -122,7 +122,9 @@ def _summarize(
     if not rows:
         raise ValueError(f"{run} step {step} dataset {dataset} has no responses")
     scores = [row["score"] for row in rows]
-    if any(type(score) not in (int, float) or not math.isfinite(score) for score in scores):
+    if any(
+        isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score) for score in scores
+    ):
         raise ValueError(f"{run} step {step} dataset {dataset} has a nonfinite or missing score")
     completed = [row["stop_reason"] in ACCEPTED_STOPS for row in rows]
     count = len(rows)
@@ -297,7 +299,7 @@ def summarize_wandb_history(label: str, path: Path) -> list[dict[str, Any]]:
     steps: dict[int, tuple[int | str, int | str, dict[str, Any]]] = {}
     for row in rows:
         step = row["trainer/global_step"]
-        if type(step) is not int or row["_step"] != step or step in steps:
+        if isinstance(step, bool) or not isinstance(step, int) or row["_step"] != step or step in steps:
             raise ValueError(f"{label}: duplicate or inconsistent W&B training step {step}")
         steps[step] = ("", "", row)
     if not steps:
