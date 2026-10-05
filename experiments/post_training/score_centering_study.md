@@ -668,12 +668,17 @@ path, the C++ Codeforces check lacks its compiler toolchain, and the Harbor
 Iris-wrapper check invokes the installed `uv` instead of its test stub.
 These results establish the local baseline; campaign launcher graph and
 public-package integration checks passed.
-The latest affected suite passed 2,403 cases with the same nine failures and
-two additional collection errors: the frozen runner imports `cloud.iris.launch`
-at module scope, but bare Marin does not install that separately pinned package.
-All five targeted wrapper and allocation checks passed with campaign-pinned
-SkyRL. Move that import into the submission branch after canonical collection
-and analysis, then validate bare-Marin imports before publishing the Marin PR.
+After canonical collection and frozen analysis, the runner's optional
+`cloud.iris.launch` import moved into the submission branch. The latest affected
+bare-Marin suite passed 2,407 cases, with the same nine independently observed
+baseline failures, three skips and five expected failures. Its failed test IDs
+match the isolated frozen-main check's retained failure set exactly. The two
+earlier branch collection errors are resolved. All 26 targeted endpoint,
+training-retention, paired-analysis, collector, launcher and allocation checks
+pass without the separately pinned SkyRL package. The
+[post-analysis checks](results/score_centering_current_confirmation_post_analysis_validation.json)
+also record byte-identical original replay and complete-input numerical parity
+after maintenance.
 
 ### Snowball confirmation result (October 5)
 
@@ -683,9 +688,10 @@ The frozen merged incumbent produced higher final quality while using less time
 and compute. This recommendation covers forty updates and consumed token ages
 zero through two; it does not cover longer training or larger ages.
 
-Score centering adds a loss term that subtracts the expected PPO/TIS score
-gradient under the token-generating policy. A score is the gradient of a token's
-log probability with respect to model parameters. Truncated importance sampling
+Score centering adds a loss term whose gradient removes the expected
+PPO/TIS-weighted score from the sampled policy gradient. The expectation uses
+the token-generating policy. A score is the gradient of a token's log probability
+with respect to model parameters. Truncated importance sampling
 (TIS) caps the stored pre-update trainer probability divided by the actual
 generating probability at 1.05. For each sampled prefix, the experiment captures
 the generating policy's 32 highest-probability token candidates. The trainer
@@ -799,6 +805,40 @@ endpoint analysis or learning curves were read before all 51 cases passed
 collection. The design, endpoint, horizon and seed count stayed fixed. The
 [analysis provenance](results/score_centering_current_confirmation_analysis_provenance.json)
 pins the original programs, ordered canonical inputs and generated artifacts.
+
+The [original analysis checkpoint](https://github.com/yonromai/marin/tree/3713a823116a01bf54b9c443844387503c52faf3/experiments/post_training)
+contains all canonical inputs and the six unchanged frozen programs. Reproduce
+the frozen analysis from that commit. Later maintenance extracts repeated
+interval rendering and immutable persistence, shares accepted stop reasons,
+and loads the optional launch package only when submitting. A complete-input
+regression confirms every serialized analysis value is unchanged after renaming
+the arm-curve field to `mean_completed_correct_answers_by_step`. In the preserved
+original artifact, `mean_completed_answers_by_step` also counts completed-correct
+answers. The frozen protocol and original outputs retain their original bytes.
+
+From the original checkpoint, reconstruct the analysis input in the declared
+order, then run the analyzer:
+
+```python
+import json
+from pathlib import Path
+
+base = Path("experiments/post_training")
+protocol = json.loads((base / "results/score_centering_current_confirmation_protocol_r2_gemmretry1.json").read_text())
+runs = [
+    json.loads((base / "results/score_centering_current_confirmation_runs" / row["run_id"] / "run.json").read_text())
+    for row in protocol["configuration_manifest"]
+]
+Path("/tmp/score-centering-confirmation-replay-runs.json").write_text(json.dumps(runs, indent=2) + "\n")
+```
+
+```sh
+uv run --frozen --package marin-core --prerelease=allow python \
+  experiments/post_training/analyze_current_score_centering_confirmation.py \
+  --protocol experiments/post_training/results/score_centering_current_confirmation_protocol_r2_gemmretry1.json \
+  --runs /tmp/score-centering-confirmation-replay-runs.json \
+  --output /tmp/score-centering-confirmation-replay-analysis.json
+```
 
 ## Historical result and recommendation on the September stack
 

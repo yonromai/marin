@@ -34,6 +34,14 @@ def paired_interval(values: list[float], alpha: float = 0.05) -> dict:
     return {"n_seeds": len(values), "mean": mean, "sample_sd": sd, "low": mean - half, "high": mean + half}
 
 
+def ratio_interval(log_ratios: list[float]) -> dict:
+    """Exponentiate paired log-ratio means and bounds; sample SD stays in log units."""
+    return {
+        key: math.exp(value) if key in {"mean", "low", "high"} else value
+        for key, value in paired_interval(log_ratios).items()
+    }
+
+
 def primary_curve(endpoint: dict, protocol: dict) -> dict[int, float]:
     if endpoint["primary_membership_sha256"] != protocol["primary_membership_sha256"]:
         raise ValueError("confirmation endpoint changed frozen primary membership")
@@ -107,14 +115,8 @@ def analyze_confirmation(runs: list[dict], protocol: dict) -> dict:
                 "individual_95_percent": paired_interval(differences),
                 "three_contrast_family_95_percent": paired_interval(differences, alpha=0.05 / 3),
                 "baseline_adjusted_sensitivity_95_percent": paired_interval(adjusted),
-                "allocated_elapsed_ratio_individual_95_percent": {
-                    key: math.exp(value) if key in {"mean", "low", "high"} else value
-                    for key, value in paired_interval(log_elapsed).items()
-                },
-                "reserved_compute_ratio_individual_95_percent": {
-                    key: math.exp(value) if key in {"mean", "low", "high"} else value
-                    for key, value in paired_interval(log_cost).items()
-                },
+                "allocated_elapsed_ratio_individual_95_percent": ratio_interval(log_elapsed),
+                "reserved_compute_ratio_individual_95_percent": ratio_interval(log_cost),
             }
         )
     capture_cost = None
@@ -130,14 +132,8 @@ def analyze_confirmation(runs: list[dict], protocol: dict) -> dict:
                 "Secondary paired capture/rescoring cost comparison; async generation interactions remain measured."
             ),
             "seeds": companion_seeds,
-            "captured_over_plain_elapsed_ratio_95_percent": {
-                key: math.exp(value) if key in {"mean", "low", "high"} else value
-                for key, value in paired_interval(elapsed).items()
-            },
-            "captured_over_plain_compute_ratio_95_percent": {
-                key: math.exp(value) if key in {"mean", "low", "high"} else value
-                for key, value in paired_interval(compute).items()
-            },
+            "captured_over_plain_elapsed_ratio_95_percent": ratio_interval(elapsed),
+            "captured_over_plain_compute_ratio_95_percent": ratio_interval(compute),
             "final_quality_sensitivity_95_percent": paired_interval(quality),
             "reserved_h100_task_hours": sum(run["reserved_h100_task_hours"] for run in companions),
         }
@@ -147,7 +143,7 @@ def analyze_confirmation(runs: list[dict], protocol: dict) -> dict:
         arms.append(
             {
                 "arm": arm,
-                "mean_completed_answers_by_step": {
+                "mean_completed_correct_answers_by_step": {
                     step: statistics.mean(run["curve"][step] for run in selected)
                     for step in protocol["evaluation_steps"]
                 },

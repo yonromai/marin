@@ -58,6 +58,15 @@ def save_json(path: Path, value) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n")
 
 
+def preserve_immutable(fs, uri: str, raw: bytes) -> None:
+    """Write new evidence or reject conflicting bytes at an existing identity."""
+    if fs.exists(uri):
+        if fs.cat_file(uri) != raw:
+            raise ValueError("immutable evidence identity has conflicting bytes")
+    else:
+        fs.pipe(uri, raw)
+
+
 def read_resolved_launch(raw: bytes, *, run_id: str, seed: int, source_commit: str) -> dict:
     """Read the native TrainingDriver document and verify its launch provenance."""
     configuration = yaml.safe_load(raw)["config"]
@@ -145,18 +154,10 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
         raise ValueError("final Snowball trainer/optimizer checkpoint is incomplete")
     raw_sha = hashlib.sha256(raw).hexdigest()
     preserved = durable + "/confirmation-evidence/driver-" + raw_sha + ".err"
-    if fs.exists(preserved):
-        if fs.cat_file(preserved) != raw:
-            raise ValueError("immutable source driver identity has conflicting bytes")
-    else:
-        fs.pipe(preserved, raw)
+    preserve_immutable(fs, preserved, raw)
     resolved_sha = hashlib.sha256(resolved_raw).hexdigest()
     preserved_resolved = durable + "/confirmation-evidence/resolved-" + resolved_sha + ".json"
-    if fs.exists(preserved_resolved):
-        if fs.cat_file(preserved_resolved) != resolved_raw:
-            raise ValueError("immutable resolved launch identity has conflicting bytes")
-    else:
-        fs.pipe(preserved_resolved, resolved_raw)
+    preserve_immutable(fs, preserved_resolved, resolved_raw)
     directory.mkdir(parents=True, exist_ok=True)
     compressed = gzip.compress(json.dumps(metrics, sort_keys=True).encode(), mtime=0)
     (directory / "source_metrics.json.gz").write_bytes(compressed)

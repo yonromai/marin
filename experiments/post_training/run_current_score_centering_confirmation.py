@@ -24,7 +24,6 @@ from pathlib import Path
 
 import fsspec
 import yaml
-from cloud.iris.launch import main as launch_main
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -58,6 +57,7 @@ def cli_json(arguments: list[str]) -> dict:
 
 
 def check_first_steps(fs, cache_path: Path, first_runs: list[dict]) -> bool:
+    """Return False while first-step evidence is missing; raise ValueError if it is invalid."""
     if not cache_path.exists():
         return False
     cache = json.loads(cache_path.read_text())
@@ -189,6 +189,8 @@ def run(args) -> None:
             flush=True,
         )
         if args.launch and eligible:
+            from cloud.iris.launch import main as launch_main  # noqa: PLC0415  # optional pinned SkyRL package
+
             assert candidate is not None
             job_id = "/romain/" + candidate["run_id"]
             note = (

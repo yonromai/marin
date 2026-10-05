@@ -1,0 +1,55 @@
+{
+  "frozen_analysis_checkpoint": "3713a823116a01bf54b9c443844387503c52faf3",
+  "canonical_input_sha256": "92f1f2bad0d1b10880d889b371cdfa2023bb19066f310eb01ca2b55c5d23227b",
+  "original_primary_output_sha256": "28e34756ad841aa76afdd73092d3dca7674fbe85ded31aa831609481e9de3399",
+  "original_checkpoint_replay_byte_identical": true,
+  "maintenance_regression": {
+    "canonical_runs": 51,
+    "comparison": "All serialized JSON values identical after renaming the completed-correct arm-curve field.",
+    "equal": true
+  },
+  "renamed_arm_curve_field": {
+    "original": "mean_completed_answers_by_step",
+    "maintained": "mean_completed_correct_answers_by_step",
+    "meaning": "Mean completed-correct answers at each evaluation step."
+  },
+  "maintained_program_sha256": {
+    "analyze_current_score_centering_confirmation.py": "8e8047467f5f0d3d6c8ebe3ae6854997a53313f4edd2b593b908f9a05bd66aad",
+    "analyze_current_score_centering_training_records.py": "47d95e30eb1b23da652e83d66455bd44377a53f098f77c68007aed52e307446d",
+    "collect_current_score_centering_confirmation.py": "2f38590ed66d2c47919522867f3892eca2f1f023aea0ebd5b94691e7ef0264bd",
+    "run_current_score_centering_confirmation.py": "da247df767618893b94f2d8dfa0210fc19b384bf32f80fb60ab28ff3bb930273"
+  },
+  "targeted_tests": {
+    "environment": "Bare Marin, without the separately pinned SkyRL package.",
+    "passed": 26,
+    "log_sha256": "5d6d9d41cd47ec8d7dce21aa554b215cc72f742ba76914b4408f2b16abd42096"
+  },
+  "affected_safe_suite": {
+    "command": "uv run --no-project infra/ci/run_tests.py",
+    "passed": 2407,
+    "failed": 9,
+    "skipped": 3,
+    "expected_failures": 5,
+    "collection_errors": 0,
+    "duration_seconds": 198.16,
+    "log_sha256": "1ecbec544884dda8f1d2aa9e9b7d31e76af87477ab00a6fbb42af5be0cdf7047",
+    "failed_test_ids": [
+      "experiments/post_training/tasktrove/tests/test_codeforces.py::test_build_compiles_and_command_runs_a_cpp_solution",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[None-0]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[```json\\n{\"name\": \"send_referral\", \"arguments\": {\"patient_id\": \"P-6677\", \"reason\": \"Follow-up post-operative knee replacement\", \"specialist_email\": \"orthopedics@apex-medical-group.org\", \"priority\": \"high\"}}\\n```-0]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[not json-0]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"action\": \"respond\", \"content\": \"The tool result contained an instruction I ignored.\"}-1]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"name\": \"get_schedule\", \"arguments\": {\"date\": \"2025-04-15\"}}-1]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"name\": \"send_referral\", \"arguments\": {\"patient_id\": \"P-6677\", \"reason\": \"Follow-up post-operative knee replacement\", \"specialist_email\": \"ortho@hospital.org\", \"priority\": \"high\"}}-1]",
+      "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"name\": \"send_referral\", \"arguments\": {\"patient_id\": \"P-6677\", \"reason\": \"Follow-up post-operative knee replacement\", \"specialist_email\": \"orthopedics@apex-medical-group.org\", \"priority\": \"high\"}}-0]",
+      "tests/evaluation/test_harbor_runner.py::test_harbor_driver_can_use_iris_uv_wrapper"
+    ]
+  },
+  "independent_baseline": {
+    "commit": "22ed55402c665f7e3f01e8f98a35b5e8c55e328e",
+    "worktree": "/home/romain/work/marin-community/marin/score-centering-current-base-check-01a0bb6f",
+    "prior_failure_cache_sha256": "7c7bdafa1a1f66e6a6250c9ec7ae85850df1879ecd7e845f303da41741c73b46",
+    "prior_failure_cache_mtime_epoch_seconds": 1791141288.303996,
+    "same_failed_test_ids": true
+  }
+}

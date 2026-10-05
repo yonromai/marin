@@ -21,13 +21,17 @@ from pathlib import Path
 import fsspec
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
+from experiments.post_training.analyze_current_score_centering_evaluations import ACCEPTED_STOPS
+
 
 def digest(value) -> str:
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
 def response_key(uid, tokens: list, mask: list) -> str:
-    if len(tokens) != len(mask) or any(type(token) is not int or token < 0 for token in tokens):
+    if len(tokens) != len(mask) or any(
+        isinstance(token, bool) or not isinstance(token, int) or token < 0 for token in tokens
+    ):
         raise ValueError("training response token IDs or mask alignment are invalid")
     if any(value not in (0, 1, False, True) for value in mask):
         raise ValueError("training response mask is not binary")
@@ -60,12 +64,9 @@ class TrainingRecordAudit:
         self.available[response_key(uid, tokens, mask)] += 1
         self.retained_tokens += len(tokens)
         self.retained_loss_tokens += sum(bool(value) for value in mask)
-        self.retained_normal_completions += response["stop_reason"] in (
-            "complete",
-            "end_turn",
-            "eos",
-            "stop",
-        ) and not any(record["disposition"].values())
+        self.retained_normal_completions += response["stop_reason"] in ACCEPTED_STOPS and not any(
+            record["disposition"].values()
+        )
 
     def consume(self, records: list[dict], expected_steps: list[int]) -> dict:
         if sorted(record["training_step"] for record in records) != expected_steps:
