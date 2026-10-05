@@ -1,0 +1,267 @@
+{
+  "scope": "Frozen primary final endpoint; training seed is the uncertainty unit.",
+  "secondary": "Curves, baseline adjustment, time and compute.",
+  "quality_loss_margin": null,
+  "equivalence_claim": false,
+  "primary_members": 756,
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112
+  ],
+  "final_training_step": 40,
+  "contrasts": [
+    {
+      "target": "older_sc32",
+      "control": "older_tis32",
+      "meaning": "centering at equal scheduling and capture",
+      "paired_final_completed_answer_differences": [
+        -19.5,
+        24.0,
+        7,
+        -7.5,
+        5,
+        -7.5,
+        15,
+        -10.5,
+        5.5,
+        0.0,
+        0.5,
+        -7
+      ],
+      "individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 0.4166666666666667,
+        "sample_sd": 11.891236905869597,
+        "low": -7.138664808190262,
+        "high": 7.971998141523596
+      },
+      "three_contrast_family_95_percent": {
+        "n_seeds": 12,
+        "mean": 0.4166666666666667,
+        "sample_sd": 11.891236905869597,
+        "low": -9.263675463791872,
+        "high": 10.097008797125204
+      },
+      "baseline_adjusted_sensitivity_95_percent": {
+        "n_seeds": 12,
+        "mean": 1.7083333333333333,
+        "sample_sd": 15.754448626186557,
+        "low": -8.301565764353445,
+        "high": 11.718232431020112
+      },
+      "allocated_elapsed_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 1.0066891946394545,
+        "sample_sd": 0.10782772285697595,
+        "low": 0.9400299473824902,
+        "high": 1.0780753713492919
+      },
+      "reserved_compute_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 1.006588986770252,
+        "sample_sd": 0.10782359963193085,
+        "low": 0.9399388373313822,
+        "high": 1.077965233529279
+      }
+    },
+    {
+      "target": "older_sc32",
+      "control": "fresh_tis32",
+      "meaning": "centering with older rollouts versus fresh TIS",
+      "paired_final_completed_answer_differences": [
+        6.5,
+        14.5,
+        8.5,
+        13.5,
+        13,
+        -18,
+        18.5,
+        -3.0,
+        -13,
+        -17.5,
+        0.0,
+        4.5
+      ],
+      "individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 2.2916666666666665,
+        "sample_sd": 12.734095844216698,
+        "low": -5.799191828311695,
+        "high": 10.382525161645027
+      },
+      "three_contrast_family_95_percent": {
+        "n_seeds": 12,
+        "mean": 2.2916666666666665,
+        "sample_sd": 12.734095844216698,
+        "low": -8.074824680690204,
+        "high": 12.658158014023536
+      },
+      "baseline_adjusted_sensitivity_95_percent": {
+        "n_seeds": 12,
+        "mean": 6.166666666666667,
+        "sample_sd": 17.6214401090022,
+        "low": -5.029462225705655,
+        "high": 17.36279555903899
+      },
+      "allocated_elapsed_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 0.8284710133684471,
+        "sample_sd": 0.04401523394012307,
+        "low": 0.8056230103125396,
+        "high": 0.8519670009493251
+      },
+      "reserved_compute_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 0.8284001963538383,
+        "sample_sd": 0.044201166196923165,
+        "low": 0.8054589872282549,
+        "high": 0.8519948205936472
+      }
+    },
+    {
+      "target": "older_sc32",
+      "control": "older_incumbent",
+      "meaning": "centering versus current merged incumbent",
+      "paired_final_completed_answer_differences": [
+        -6.0,
+        13.5,
+        -9,
+        -10.5,
+        -21.5,
+        -35.5,
+        -7.5,
+        0.5,
+        -17.5,
+        2.5,
+        -17.5,
+        -20.5
+      ],
+      "individual_95_percent": {
+        "n_seeds": 12,
+        "mean": -10.75,
+        "sample_sd": 12.936031427408835,
+        "low": -18.96916224333208,
+        "high": -2.5308377566679194
+      },
+      "three_contrast_family_95_percent": {
+        "n_seeds": 12,
+        "mean": -10.75,
+        "sample_sd": 12.936031427408835,
+        "low": -21.280881776131245,
+        "high": -0.21911822386875457
+      },
+      "baseline_adjusted_sensitivity_95_percent": {
+        "n_seeds": 12,
+        "mean": -11.791666666666666,
+        "sample_sd": 16.99660171025284,
+        "low": -22.590792180993425,
+        "high": -0.9925411523399053
+      },
+      "allocated_elapsed_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 1.2916413500012003,
+        "sample_sd": 0.06679462761995461,
+        "low": 1.2379719200239798,
+        "high": 1.347637494880019
+      },
+      "reserved_compute_ratio_individual_95_percent": {
+        "n_seeds": 12,
+        "mean": 1.291994499457452,
+        "sample_sd": 0.06679785459207044,
+        "low": 1.2383078567165124,
+        "high": 1.348008718166807
+      }
+    }
+  ],
+  "arms": [
+    {
+      "arm": "older_tis32",
+      "mean_completed_answers_by_step": {
+        "0": 210.125,
+        "10": 394.5,
+        "20": 470.7916666666667,
+        "30": 509.2916666666667,
+        "40": 531.625
+      },
+      "mean_reserved_h100_task_hours": 66.93253055555556,
+      "mean_allocated_wall_seconds": 6027.245
+    },
+    {
+      "arm": "older_sc32",
+      "mean_completed_answers_by_step": {
+        "0": 208.83333333333334,
+        "10": 396.8333333333333,
+        "20": 468.0,
+        "30": 504.5416666666667,
+        "40": 532.0416666666666
+      },
+      "mean_reserved_h100_task_hours": 67.14528222222222,
+      "mean_allocated_wall_seconds": 6047.0455833333335
+    },
+    {
+      "arm": "fresh_tis32",
+      "mean_completed_answers_by_step": {
+        "0": 212.70833333333334,
+        "10": 403.5833333333333,
+        "20": 470.7916666666667,
+        "30": 504.0833333333333,
+        "40": 529.75
+      },
+      "mean_reserved_h100_task_hours": 81.03682333333333,
+      "mean_allocated_wall_seconds": 7297.33625
+    },
+    {
+      "arm": "older_incumbent",
+      "mean_completed_answers_by_step": {
+        "0": 207.79166666666666,
+        "10": 408.5833333333333,
+        "20": 474.6666666666667,
+        "30": 516.3333333333334,
+        "40": 542.7916666666666
+      },
+      "mean_reserved_h100_task_hours": 51.861810740740744,
+      "mean_allocated_wall_seconds": 4671.8605
+    }
+  ],
+  "capture_cost_companion": {
+    "scope": "Secondary paired capture/rescoring cost comparison; async generation interactions remain measured.",
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "captured_over_plain_elapsed_ratio_95_percent": {
+      "n_seeds": 3,
+      "mean": 1.128473976473087,
+      "sample_sd": 0.084165112328077,
+      "low": 0.9155672386643773,
+      "high": 1.3908902173418585
+    },
+    "captured_over_plain_compute_ratio_95_percent": {
+      "n_seeds": 3,
+      "mean": 1.128395042385426,
+      "sample_sd": 0.08398773840445554,
+      "low": 0.9159066759495585,
+      "high": 1.3901802499255176
+    },
+    "final_quality_sensitivity_95_percent": {
+      "n_seeds": 3,
+      "mean": 5.333333333333333,
+      "sample_sd": 25.769814382981757,
+      "low": -58.68243440023772,
+      "high": 69.34910106690438
+    },
+    "reserved_h100_task_hours": 159.8021911111111
+  },
+  "total_main_reserved_h100_task_hours": 3203.717362222222
+}

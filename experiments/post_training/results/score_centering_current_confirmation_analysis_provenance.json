@@ -1,0 +1,290 @@
+{
+  "protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
+  "canonical_runs": 51,
+  "canonical_runs_sha256": "92f1f2bad0d1b10880d889b371cdfa2023bb19066f310eb01ca2b55c5d23227b",
+  "original_frozen_executables": {
+    "analyze_current_score_centering_confirmation.py": "528d243888e658852cf0cd334f0d0ac6c05cbc6a42ffc846f28823724bbad073",
+    "analyze_current_score_centering_evaluations.py": "25d85cf00ea739299d06570d46fa904a7b1f256b6f63c5de3cb975f47450555a",
+    "analyze_current_score_centering_training_records.py": "1dc2d6081b0711e36b4bb27274c957ddf992a0929f77c03c8982a984df519e92",
+    "analyze_current_policy_versions.py": "ada60b42f1f470428bd1169d17063a3b5466d850029799ed7a730bf365ca97cd",
+    "collect_current_score_centering_confirmation.py": "7289b7abefd9c47fca5da37e7c7df6cd6d9d2ea331a370b9bcdde362cdeed29a",
+    "run_current_score_centering_confirmation.py": "8a8010818d02646a95242b065902dba6c38d956de7b7a025278d14cba735839b"
+  },
+  "prompt_source_order_audited_runs": 51,
+  "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "analysis_before_deferred_program_cleanup": true,
+  "canonical_input_construction": "Load canonical_run_inputs in this order and serialize with json.dumps(runs, indent=2) plus one newline. The reconstructed SHA256 must equal canonical_runs_sha256.",
+  "canonical_run_inputs": [
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s101-20261004-r2-r2/run.json",
+      "sha256": "9c7df8a4edb5aca4ca4b4851587c562ebfecba9e010e9aea5a302865da70ae9d",
+      "run_id": "score-centering-current-snowball-older-tis32-s101-20261004-r2-r2"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s102-20261005-pause300/run.json",
+      "sha256": "a28070104732308b841a35de778d0b135023bc49fd974a67223938e4ab15e2a6",
+      "run_id": "score-centering-current-snowball-older-tis32-s102-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s103-20261005-pause300/run.json",
+      "sha256": "f6b6940f657205d1b893f9969979bc7908d3d7465efccb74c0589344b5a916f2",
+      "run_id": "score-centering-current-snowball-older-tis32-s103-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s104-20261005-pause300/run.json",
+      "sha256": "081353664586c79112b235b99f5aea98c0a1c8979d4bb038b584c726e2a57ace",
+      "run_id": "score-centering-current-snowball-older-tis32-s104-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s105-20261005-pause300/run.json",
+      "sha256": "3425ea8d88f8736dc55f500065517878be96e122e21b33b5ed4d0aec1ff60ef4",
+      "run_id": "score-centering-current-snowball-older-tis32-s105-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s106-20261005-pause300/run.json",
+      "sha256": "df2c506f803039cbfe225090abd600ed8733f5ba1d2c2e8bd30dd3db58d525e1",
+      "run_id": "score-centering-current-snowball-older-tis32-s106-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s107-20261005-pause300/run.json",
+      "sha256": "6dd11656ef384ef368c66b023b58b94c67b9b90f9e3781554cd44e67350aa878",
+      "run_id": "score-centering-current-snowball-older-tis32-s107-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s108-20261005-pause300/run.json",
+      "sha256": "151e3014d2d35955ae5f420d5702d42ad1246a3e2375f8d735bf120ecea35bb5",
+      "run_id": "score-centering-current-snowball-older-tis32-s108-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s109-20261005-pause300/run.json",
+      "sha256": "40e54358311f86b8592d00d986815c2e3299ae06df24eb1fb09169406fb732a7",
+      "run_id": "score-centering-current-snowball-older-tis32-s109-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s110-20261005-pause300/run.json",
+      "sha256": "9fada472193eefd62acf688da18a2dafd50a0773a8df9100702be1ddeafa3070",
+      "run_id": "score-centering-current-snowball-older-tis32-s110-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s111-20261005-pause300/run.json",
+      "sha256": "872bc1033d0bcfdfd16845835c5f30162252ff227f0292c4d77072e2748fc812",
+      "run_id": "score-centering-current-snowball-older-tis32-s111-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s112-20261005-pause300/run.json",
+      "sha256": "99cb514daaabedf11382566f6ea35ea6b15d36c3a0693d676fedd3e347acb6e8",
+      "run_id": "score-centering-current-snowball-older-tis32-s112-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s101-20261005-pause300/run.json",
+      "sha256": "7865059e7f5201bcca081a69e48056b56f7a8c528ec33112e5268788ca539317",
+      "run_id": "score-centering-current-snowball-older-sc32-s101-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s102-20261004-r2-r2/run.json",
+      "sha256": "162f23d5826c0325325022393f3a75bd7f18a8759109bfceb6ddcb52a39e4b0e",
+      "run_id": "score-centering-current-snowball-older-sc32-s102-20261004-r2-r2"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s103-20261005-pause300/run.json",
+      "sha256": "f9eae27e7a17b6e409da9491a69ea5fe472f73151f1ba644d9be6f50a4a0a0c2",
+      "run_id": "score-centering-current-snowball-older-sc32-s103-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s104-20261005-pause300/run.json",
+      "sha256": "071289d082d2914d73d4a6c5aaa8b88880f01d63cda0cad518b16eaac4496630",
+      "run_id": "score-centering-current-snowball-older-sc32-s104-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s105-20261005-pause300/run.json",
+      "sha256": "0cdc1926dc111f5e1b913ba117234e43a24ab9db99e446004fae511af2daf597",
+      "run_id": "score-centering-current-snowball-older-sc32-s105-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s106-20261005-pause300/run.json",
+      "sha256": "ba1c609c494a636c06ed1f4b3228cd51d4e0e65ea7622843e7db93446432eef0",
+      "run_id": "score-centering-current-snowball-older-sc32-s106-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s107-20261005-pause300/run.json",
+      "sha256": "a73222b7d3b1ba65a73f1632b0fa896bdb93e663b112e9e5f6c8f4b3eca9d696",
+      "run_id": "score-centering-current-snowball-older-sc32-s107-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s108-20261005-pause300/run.json",
+      "sha256": "c41309f124537d54b20e5fe00c3c6ec77bf996bb7662eb15307d6372d6b3177e",
+      "run_id": "score-centering-current-snowball-older-sc32-s108-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s109-20261005-pause300/run.json",
+      "sha256": "42eec6f180543622376ecfa176830d62ff82ea8843a495a9cebbd716c283398b",
+      "run_id": "score-centering-current-snowball-older-sc32-s109-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s110-20261005-pause300/run.json",
+      "sha256": "b17c593d23481646c11951d0c21654d4064756a8f99adb585f7ee024cacbc079",
+      "run_id": "score-centering-current-snowball-older-sc32-s110-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s111-20261005-pause300/run.json",
+      "sha256": "5013a65148a447c415274caa256d64aafb237c67bd11cce7ee9aabe845f89813",
+      "run_id": "score-centering-current-snowball-older-sc32-s111-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s112-20261005-pause300/run.json",
+      "sha256": "54ec0374649e08fe38d881540b5d45dceaa0c302040b98a4b361e1c11ce1baff",
+      "run_id": "score-centering-current-snowball-older-sc32-s112-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s101-20261004-r2-r2/run.json",
+      "sha256": "e3190253a6b9da2d6a1d6f4d9008412903a743446c81226281218acba1c4b420",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s101-20261004-r2-r2"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/run.json",
+      "sha256": "62c46831400ba824d725c9adbbef4a44458dd097ce8edb4ce62f3c6bf500021f",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s102-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/run.json",
+      "sha256": "c28b509ceb9c7e8fb8ef6dc32d3bc13ce2b962f97936440a4450b6a620f3d3a6",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s103-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s104-20261005-pause300/run.json",
+      "sha256": "e37547dc786b80fd00aecf1a5817a2b6d73bf5f89bf8398de5d8c5f983e65235",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s104-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s105-20261005-pause300/run.json",
+      "sha256": "97b9f1d7874e331e1c45667496ba95ef48271d05d3ebdcd5be6d79d6c318ac10",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s106-20261005-pause300/run.json",
+      "sha256": "2d03eb2dc4f5484dcd3565daf60a72638a4e0a0127ed9f8374959642e51fa774",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s106-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s107-20261005-pause300/run.json",
+      "sha256": "8e6ab8e226334125cc7710863b41c8ca240b5382eb79f729c18870a1871a7ec8",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s107-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s108-20261005-pause300/run.json",
+      "sha256": "a6c071b8b71af8d4e1fae661c5ddda1a5f542e1e4ad511cd50f17b9a6d1236ed",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s108-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s109-20261005-pause300/run.json",
+      "sha256": "92b34d8e50af120697869d6dac871f8c11723c3239d3a9a199327572d346539c",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s109-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s110-20261005-pause300/run.json",
+      "sha256": "1867ba8c5599366bc17cc2ef909b05e51b8bca885a68bb182fcdebd7234311bb",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s110-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/run.json",
+      "sha256": "eb43071caccfecfcc6a830eb7dce994f459e221d532260a0b087838a237465bb",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s111-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s112-20261005-pause300/run.json",
+      "sha256": "9d5c13c91f2b5f97853bb236f91b8f6a6f1c82d1a40d8ab7768e81aec3d977cd",
+      "run_id": "score-centering-current-snowball-fresh-tis32-s112-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s101-20261004-r2-r2/run.json",
+      "sha256": "ae315c64d0289aa8b665d30aa6ef89904f9fc397993c7132dde545137b91cd22",
+      "run_id": "score-centering-current-snowball-older-incumbent-s101-20261004-r2-r2"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s102-20261005-pause300-gemmretry1/run.json",
+      "sha256": "4b9dda70e5e2c007c23a91a65355e49928b1fe61867a4b3b0c03e7f43900d663",
+      "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300-gemmretry1"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s103-20261005-pause300/run.json",
+      "sha256": "13895dd5f90f6b74d0cf2b74aa8944bd6165f1d7b0d28ced58c26b51bdcc2dc4",
+      "run_id": "score-centering-current-snowball-older-incumbent-s103-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s104-20261005-pause300/run.json",
+      "sha256": "f8e9d237bc8012fd2f5957eabe8dae34758de1b1e85cdba4a513c55409ed5c61",
+      "run_id": "score-centering-current-snowball-older-incumbent-s104-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s105-20261005-pause300/run.json",
+      "sha256": "2b57931c9f8905d6462a709cedfe41bbd625e531166b956c1bf2bc64b95c12bd",
+      "run_id": "score-centering-current-snowball-older-incumbent-s105-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s106-20261005-pause300/run.json",
+      "sha256": "192a06cab793c7ef06078b31f58fff1c566c9e01bf8c0b4e2088e90b888a79ba",
+      "run_id": "score-centering-current-snowball-older-incumbent-s106-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s107-20261005-pause300/run.json",
+      "sha256": "0844bce8c58f95f9a17b692a370563163f84e60a190ea70b5b7215e77ec1ed14",
+      "run_id": "score-centering-current-snowball-older-incumbent-s107-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s108-20261005-pause300/run.json",
+      "sha256": "d57b5518ec5f37451bfa19caf9cdcc122104a27965a3305e8441b1890c24d2f5",
+      "run_id": "score-centering-current-snowball-older-incumbent-s108-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s109-20261005-pause300/run.json",
+      "sha256": "ec503aad806e18442129bda49f47763018cc8f552363d90e0d66ca7e16e56de4",
+      "run_id": "score-centering-current-snowball-older-incumbent-s109-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s110-20261005-pause300/run.json",
+      "sha256": "b4971136ed2341757fe56957465491db0f22c824b990d208d8b6ff4f2f28d998",
+      "run_id": "score-centering-current-snowball-older-incumbent-s110-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s111-20261005-pause300/run.json",
+      "sha256": "1d615364210af08e9a81bcb498b1954110e55216842739798a63e6de1418a598",
+      "run_id": "score-centering-current-snowball-older-incumbent-s111-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s112-20261005-pause300/run.json",
+      "sha256": "8d5f2d02aa27e9a7819cd4bbd6988c142f191e3d7c19771459fe46ef69a4e03b",
+      "run_id": "score-centering-current-snowball-older-incumbent-s112-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s101-20261004-r2-r2/run.json",
+      "sha256": "06d6004f07fddeb17e0bc23dba434323764f4b3c078f94835ceba7dae2b915bb",
+      "run_id": "score-centering-current-snowball-older-tis0-s101-20261004-r2-r2"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s102-20261005-pause300/run.json",
+      "sha256": "e007932541128ca80dd7585acd41a63c33a12676394e8c33357e7a1c4823323b",
+      "run_id": "score-centering-current-snowball-older-tis0-s102-20261005-pause300"
+    },
+    {
+      "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s103-20261005-pause300/run.json",
+      "sha256": "ded468513a84ec672bb1aec23ce9f1e19f2d339164153e35b68dc99847af3cf6",
+      "run_id": "score-centering-current-snowball-older-tis0-s103-20261005-pause300"
+    }
+  ],
+  "artifact_sha256": {
+    "results/score_centering_current_confirmation_analysis_gemmretry1.json": "28e34756ad841aa76afdd73092d3dca7674fbe85ded31aa831609481e9de3399",
+    "results/score_centering_current_confirmation_secondary_gemmretry1.json.gz": "2363237b14b19851503adec63f493c511af3b39d88f5a2ca8c52d25edc781cd2",
+    "results/score_centering_current_confirmation_prompt_source_order.json": "d30f5b32a9b0fb7f5f2da2f4f2cc0fa1d3f8a536836e41bf8c04e46ddf5207e5",
+    "figures/score_centering_current_confirmation_curves.svg": "9a062c0f0f9f9b88330a2e35f07d53ab40065fe76d84f943010f86d5309734c6",
+    "figures/score_centering_current_confirmation_contrasts.svg": "af4eaa731ff1176115d7f7b5c878c320e4286d4263b45e165279fdbf405f01bd",
+    "figures/score_centering_current_confirmation_curve_points.json": "029ec2819e16b1382d27a379c069dcb3a584b316f7953e67b69a5db9b79167da"
+  },
+  "descriptive_program_sha256": {
+    "plot_current_score_centering_confirmation.py": "b4a7e23db2e8964a482acc51d974b620c8d3c7871ea719b66a003542e8ea37c2",
+    "summarize_current_score_centering_confirmation.py": "e336e66e10db3107ae655fadb488e208e484f613ce8dd7c07531650d120972e5"
+  },
+  "frozen_program_reproduction": "Use the original program bytes at the pre-cleanup Git checkpoint linked from the study. Subsequent program cleanup does not amend the frozen protocol or these original artifacts.",
+  "analysis_execution_date_utc": "2026-10-05",
+  "plot_validation": "All curve data remained byte identical when x-axis bounds were moved after all four arms were plotted. PNG inspection confirms the fresh final points are visible on the time and compute axes."
+}

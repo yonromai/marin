@@ -107,7 +107,8 @@ def plot_confirmation(runs: list[dict], protocol: dict, base: Path, output: Path
             )
             ax.set_xlabel(label)
             ax.grid(alpha=0.25)
-            ax.set_xlim(left=0)
+    for ax in axes:
+        ax.set_xlim(left=0)
     axes[0].set_ylabel(f"Completed correct (% of {denominator} held-out members)")
     fig.suptitle(f"Snowball confirmation: mean of {len(protocol['seeds'])} seeds; pointwise 95% intervals")
     fig.legend(*axes[0].get_legend_handles_labels(), loc="outside lower center", ncol=4)

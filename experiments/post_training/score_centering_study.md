@@ -5,9 +5,18 @@ they become available. The question is whether score centering lets the learner 
 tokens without giving up completed-answer quality, and whether that extra tolerance saves time or
 GPU work.
 
+The October confirmation supports keeping score centering disabled in the tested
+Snowball configuration. At forty updates, centering changed completed-correct
+quality by +0.06 percentage points versus matched truncated importance sampling
+(family 95% interval −1.23 to +1.34). Against the frozen merged PPO incumbent,
+centering had 1.42 points lower quality and used about 29% more allocated time
+and reserved compute. [The confirmation result](#snowball-confirmation-result-october-5)
+gives the comparisons, measured ages and limits. The final goal review and PR
+validation remain before handoff.
+
 ## October 4 continuation on the merged APIs
 
-The current port head is MarinSkyRL `5f53efd1300ac41fcff0811db56842dacb4c735d`,
+The current experiments pin MarinSkyRL `5f53efd1300ac41fcff0811db56842dacb4c735d`,
 based on merged main `b50b5f42`, and Marin at `22ed55402c665f7e3f01e8f98a35b5e8c55e328e`
 before campaign changes. Earlier configurations and measurements below retain their
 original meaning. They are historical evidence and are not pooled with current runs.
@@ -632,13 +641,15 @@ centering (SC32), seed 112, passed its full native audit without publisher
 errors, costing 76.7658178 hours. No training or evaluation was repeated for
 [this recovery](https://marina.oa.dev/echo/wiki/615).
 
-Completed new costs are **3638.6569742** hours across 77 attempts, separate
-from historical costs of 1,072.548303 hours. Complete seed-101 through seed-111
-quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
-also records the controlled repeat's first two applied updates and the capacity
-guards. Fresh TIS32 seed 112 remains to complete the twelve matched seeds
-and three capture companions before the frozen paired analysis.
-There is no current confirmation recommendation yet.
+Completed new costs are **3722.1072342** H100 task-hours across 78 attempts,
+separate from historical costs of 1,072.548303 hours. All twelve matched quartets
+and three capture companions passed collection. Fresh TIS32 seed 112 completed
+forty updates, final evaluations, save and cleanup on its original attempt;
+all five tasks succeeded at effective interactive priority, with no reported
+publisher errors. It cost 83.45026 hours. The
+[current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
+records all 51 terminal cases and zero active jobs. The admission watch remains
+stopped, and no further GPU submissions are planned.
 
 After seed 109 finished, the admission cap rose from four to the already
 frozen maximum of six jobs, or 240 H100s. The trainer peer had released its
@@ -663,6 +674,131 @@ at module scope, but bare Marin does not install that separately pinned package.
 All five targeted wrapper and allocation checks passed with campaign-pinned
 SkyRL. Move that import into the submission branch after canonical collection
 and analysis, then validate bare-Marin imports before publishing the Marin PR.
+
+### Snowball confirmation result (October 5)
+
+Keep score centering disabled for this tested Snowball 67B configuration.
+Centering did not establish a quality improvement over its matched TIS control.
+The frozen merged incumbent produced higher final quality while using less time
+and compute. This recommendation covers forty updates and consumed token ages
+zero through two; it does not cover longer training or larger ages.
+
+Score centering adds a loss term that subtracts the expected PPO/TIS score
+gradient under the token-generating policy. A score is the gradient of a token's
+log probability with respect to model parameters. Truncated importance sampling
+(TIS) caps the stored pre-update trainer probability divided by the actual
+generating probability at 1.05. For each sampled prefix, the experiment captures
+the generating policy's 32 highest-probability token candidates. The trainer
+rescores those same candidates. Centering uses them and a model of the remaining
+probability mass to approximate its full-vocabulary expectation.
+
+All 51 cases passed collection before the original frozen analysis ran. Twelve
+training seeds each supplied four arms: older TIS with 32 captured probability
+candidates per token, the same setting with score centering, fresh TIS with the
+same capture, and older regular PPO with no off-policy correction or candidate
+capture. Three additional TIS runs without candidate capture measured its cost.
+TIS used an upper importance-weight cap of 1.05. Every run consumed 20,480
+responses in forty updates, with a 4,096-token response cap on forty H100s.
+The incumbent is regular PPO from Marin's merged source baseline; source
+versions and configurations were fixed before launch, and every arm trained
+its model weights.
+All main arms consumed the same prompt multiplicities within each seed. Their
+[ordered training sources](results/score_centering_current_confirmation_prompt_source_order.json)
+also match. The asynchronous scheduling changes response generation and token
+ages, so equal prompt exposure does not imply identical sampled answers.
+
+The primary endpoint is the fraction of 756 fixed GSM8K and Math500 members
+with a normal stop, no error and a positive native verifier outcome. Each seed
+averages two separately retained greedy evaluation passes before comparison.
+Training seeds are the uncertainty unit. The three quality contrasts below use
+Student-t intervals with a Bonferroni adjustment for joint 95% coverage across
+the three contrasts; time and compute use individual
+95% intervals on paired log ratios. A ratio below one favors centering on cost.
+Allocated time is elapsed run time, including startup, evaluation, training,
+checkpoints and teardown. Reserved H100 task-hours count individual GPUs: one
+eight-H100 task allocated for one hour contributes eight H100 task-hours.
+
+| Centering compared with | Final quality difference (percentage points), family 95% interval | Allocated time ratio, individual 95% interval | Reserved compute ratio, individual 95% interval |
+| --- | ---: | ---: | ---: |
+| Older TIS, same scheduling and capture | +0.06 [−1.23, +1.34] | 1.007 [0.940, 1.078] | 1.007 [0.940, 1.078] |
+| Fresh TIS, same capture | +0.30 [−1.07, +1.67] | 0.828 [0.806, 0.852] | 0.828 [0.805, 0.852] |
+| Frozen merged incumbent PPO | −1.42 [−2.81, −0.03] | 1.292 [1.238, 1.348] | 1.292 [1.238, 1.348] |
+
+Mean final completed-correct quality was 70.32% for older TIS, 70.38% with
+centering, 70.07% for fresh TIS and 71.80% for the incumbent. The
+[original primary result](results/score_centering_current_confirmation_analysis_gemmretry1.json)
+retains every paired difference, interval and baseline-adjusted sensitivity.
+For centering versus older TIS, the interval rules out gains above 1.34 points
+under this design and permits losses down to 1.23 points. Smaller effects remain
+possible. It does not prove equivalence.
+
+Older centering used about 17% less time and compute than fresh TIS, while its
+quality interval permits both a 1.07-point loss and a 1.67-point gain. No
+acceptable quality-loss margin was chosen. The comparison therefore does not
+establish that this cost reduction preserves acceptable quality. The
+matched older TIS comparison isolates centering: its time ratio is near one,
+with an interval spanning about 6% less to 8% more time. The incumbent comparison
+also changes importance correction and probability capture; its 29% cost
+increase cannot be assigned wholly to centering. The three capture companions
+estimated a captured/plain time ratio of 1.128 [0.916, 1.391], including async
+scheduling interactions. That small secondary sample does not isolate a precise
+capture overhead.
+
+Exact consumed-token ages came from generating policy-version spans and the
+applied optimizer-update ledger. Their token-weighted means were 1.770 for older
+TIS, 1.772 with centering, zero for fresh TIS and 1.588 for the incumbent.
+Older tokens ranged from zero through two updates old. About 8.80%, 9.05% and
+12.50% of older TIS, centering and incumbent responses respectively mixed
+generating versions; fresh responses did not. These are actual training ages.
+The earlier identical-token probe measured inference log probability A at
+generating weights, trainer log probability B at those same weights, and
+trainer log probability C at later weights. B−A measures the engine gap;
+C−B measures stale-weight drift. This probe used counterfactual ages on frozen
+token prefixes. Opposite component signs and repeat-scoring noise prevent
+interpreting a stable combined mismatch as negligible drift.
+
+Mean consumed response lengths were 815, 813, 774 and 798 tokens for older TIS,
+centering, fresh TIS and the incumbent. Length-limit stops were 9.30%, 9.47%,
+8.74% and 9.14% respectively, with complete stop-reason coverage. All cases
+completed forty finite-gradient updates. No stale groups were rejected. Older
+runs each retained 1,024 finished responses unused by training; fresh runs had
+none. Across all 51 runs, these unused responses totaled 39,936 and 38,775,210
+response tokens. Their allocation remains counted. Unfinished or cancelled
+generation does not have a complete token count. The
+[secondary artifact](results/score_centering_current_confirmation_secondary_gemmretry1.json.gz)
+retains exposure, completion, per-step diagnostics, timing and reliability.
+
+![Matched learning curves](figures/score_centering_current_confirmation_curves.svg)
+
+The curves show the same held-out endpoint against optimizer updates, consumed
+loss tokens, allocated hours to evaluation and reserved compute to evaluation.
+Their intervals are descriptive pointwise 95% intervals across training seeds.
+They do not replace the final paired family intervals.
+
+![Final paired contrasts](figures/score_centering_current_confirmation_contrasts.svg)
+
+The 48 completed main runs used 3,203.7173622 H100 task-hours, and the three
+capture companions used 159.8021911. Total new cost of 3,722.1072342 hours also
+includes qualifications, calibration, failed attempts and retries. Historical
+costs and outcomes remain separate. Two training archives recovered missing
+consumed-response records from original stored rollout payloads. One pre-training
+evaluation used original grading exports to recover its quality fields, and one
+completed run had a worker failure. These remain operational exceptions.
+In the score-centering arm, seed 107, the first pre-training evaluation pass
+lacks 768 records from the trajectory publisher. Their original grading exports
+recover quality, but exact response token IDs and loss masks remain unavailable.
+Those baseline responses cannot pass an exact native token-and-mask audit.
+The final endpoint has complete publisher token evidence. The missing baseline
+records are explicit in its sensitivity evidence. No optimizer steps or
+evaluation generation were repeated for these retention recoveries.
+
+The protocol and all six original program hashes were checked before analysis.
+The author had previously seen a fresh-control secondary result and an incumbent
+baseline count; this is not a claim of full blinding. No main final contrasts,
+endpoint analysis or learning curves were read before all 51 cases passed
+collection. The design, endpoint, horizon and seed count stayed fixed. The
+[analysis provenance](results/score_centering_current_confirmation_analysis_provenance.json)
+pins the original programs, ordered canonical inputs and generated artifacts.
 
 ## Historical result and recommendation on the September stack
 

@@ -1,0 +1,261 @@
+{
+  "audited_runs": 51,
+  "unique_ordered_source_hashes": 1,
+  "rows": [
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s101-20261004-r2-r2",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s103-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s104-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s106-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s108-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s109-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s110-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s111-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis32-s112-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s102-20261004-r2-r2",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s103-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s104-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s106-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s107-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s108-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s109-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s110-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s111-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-sc32-s112-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s101-20261004-r2-r2",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s104-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s105-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s106-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s107-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s108-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s109-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s110-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-fresh-tis32-s112-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s101-20261004-r2-r2",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300-gemmretry1",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s103-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s104-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s105-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s106-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s107-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s108-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s109-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s110-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s111-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-incumbent-s112-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis0-s101-20261004-r2-r2",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis0-s102-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    },
+    {
+      "run_id": "score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+      "source_count": 1,
+      "ordered_train_data_sources_sha256": "219e19d09c81fb36dbbbe9fa50d9cff991ca3cd292443d8785a601b8efb9056d"
+    }
+  ]
+}
