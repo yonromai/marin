@@ -11,8 +11,7 @@ quality by +0.06 percentage points versus matched truncated importance sampling
 (family 95% interval −1.23 to +1.34). Against the frozen merged PPO incumbent,
 centering had 1.42 points lower quality and used about 29% more allocated time
 and reserved compute. [The confirmation result](#snowball-confirmation-result-october-5)
-gives the comparisons, measured ages and limits. The final goal review and PR
-validation remain before handoff.
+gives the comparisons, measured ages and limits.
 
 ## October 4 continuation on the merged APIs
 
