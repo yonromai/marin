@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "observed_at_utc": "2026-10-05T06:43:58.124851+00:00",
+  "observed_at_utc": "2026-10-05T06:53:20.345808+00:00",
   "protocol": "score_centering_current_confirmation_protocol_r2_gemmretry1.json",
   "protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
   "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-  "scope": "15 full terminal audits, 4 active runs using 40 H100s each. Fixed 51-run design; no quality conclusions. Both excluded failures remain in total cost and reliability. The controlled incumbent seed 102 repeat passed its first two applied updates; the prior Transformer Engine error remains unexplained.",
+  "scope": "15 full terminal audits, 6 active runs using 40 H100s each. Fixed 51-run design; no quality conclusions. Both excluded failures remain in total cost and reliability. The controlled incumbent seed 102 repeat passed its first two applied updates; the prior Transformer Engine error remains unexplained.",
   "prior_campaign": "score_centering_current_confirmation_campaign_pause300.json",
   "planned_matched_and_capture_runs": 51,
   "successfully_audited_runs": 15,
-  "active_jobs": 4,
+  "active_jobs": 6,
   "effective_priority_band": 2,
-  "active_job_cap": 4,
-  "minimum_spare_h100_after_each_submission": 80,
+  "active_job_cap": 6,
+  "minimum_spare_h100_after_each_submission": 120,
   "further_submissions": "Follow the frozen order, at most one job per minute; stop on failure, retry or priority mismatch, and back off when outside demand rises.",
   "automatic_submission_watch_running": true,
   "runs": [
@@ -301,6 +301,77 @@
       "scientific_work_complete": false
     },
     {
+      "arm": "older_tis32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_tis32_s105.yaml",
+      "sha256": "40c6abfcf3bf91ca3d7acddb640d07f92886099a51e67a3a913b5b693a61bfba",
+      "driver_cache_key": "snowball-older-tis32-s105-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "1a1e22468e0494a2447deb8a68333c82a7971942d1a085b85797671d539f5e51",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_tis32_s105.yaml",
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182883186,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182883186,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182883186,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182883186,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s105-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182883186,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
       "arm": "older_sc32",
       "seed": 101,
       "run_id": "score-centering-current-snowball-older-sc32-s101-20261005-pause300",
@@ -578,6 +649,77 @@
           "state": 3,
           "current_attempt_id": 0,
           "started_at_ms": 1791182132003,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 105,
+      "run_id": "score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_sc32_s105.yaml",
+      "sha256": "a554628465abfe64ce3d1bdfc8b9ac845c9b611d443ab2fc0147adf8b39b599f",
+      "driver_cache_key": "snowball-older-sc32-s105-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "f47bf6aa401b76ac65516bfb4e1b9db82d9e57fe04dfe372eb0948d9a122ea20",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_sc32_s105.yaml",
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182951357,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182951357,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182951357,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182951357,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s105-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791182951357,
           "finished_at_ms": null,
           "priority_band": 2,
           "job_state": 3,
@@ -1372,7 +1514,7 @@
       "evidence": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s103-20261005-pause300/run.json"
     }
   ],
-  "spare_policy": "Keep an ordinary 80 H100 spare. Fresh provider snapshots include actual peer allocations; no 152 H100 forecast allowance is active.",
+  "spare_policy": "Keep 120 H100 spare: the ordinary 80 plus a 40 H100 allowance for peer fresh/resume phases while the larger proof is not near readiness. Actual running allocations are also counted by provider snapshots; this policy does not reserve the pool.",
   "controlled_repeat_first_two_updates": {
     "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300-gemmretry1",
     "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
@@ -1398,10 +1540,10 @@
     "limitation": "No recurrence in these first two updates does not establish the cause of the previous failure or failure-free behavior."
   },
   "latest_capacity_from_watch": {
-    "retrieved_at_utc": "2026-10-05T06:43:58.124997+00:00",
-    "source": "current-confirmation-gemmretry1-max4-spare80-watch.log",
-    "free_h100": 185,
-    "empty_whole_nodes": 19,
+    "retrieved_at_utc": "2026-10-05T06:53:20.345929+00:00",
+    "source": "current-confirmation-gemmretry1-max6-spare120-watch.log",
+    "free_h100": 145,
+    "empty_whole_nodes": 14,
     "other_demand_rose": false
   },
   "controller_successful_jobs": 15
