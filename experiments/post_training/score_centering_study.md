@@ -455,10 +455,20 @@ elapsed time and compute. The retry starts from the initial model, and endpoint
 scores did not select this amendment. Failed attempts remain in total costs
 and reliability results.
 
-The two successful controls and the failed SC attempt cost 59.4322533,
-50.1425978, and 55.0786111 reserved H100 task-hours. Completed new costs are now
-**451.6685653** hours across 28 attempts, separate from historical costs of
-1,072.548303 hours. Three other jobs were active at this checkpoint.
+At the first terminal checkpoint, the two successful controls and the failed
+SC attempt cost 59.4322533, 50.1425978, and 55.0786111 reserved H100 task-hours.
+The fresh TIS32 and older TIS0 seed-101 runs subsequently passed the same full
+terminal audit, costing 76.8408489 and 51.2708200 hours. Fresh TIS32 consumed
+14,774,640 loss tokens, all at actual optimizer age zero, with no response
+crossing a weight-publication boundary. Older TIS32 consumed 13,897,661 loss
+tokens at mean age 1.7744; its median and 95th percentile were both two updates.
+The older incumbent and TIS0 means were 1.6183 and 1.5786 updates. Configured
+lease bounds alone would miss those exposure differences.
+
+Completed new costs are **579.7802342** hours across 30 attempts, separate
+from historical costs of 1,072.548303 hours. SC seed 102 was still running at
+this checkpoint, with 39 completed training rows and its final evaluation in
+progress. Four audited controls are insufficient for a centering contrast.
 The twelve matched seeds and three capture companions remain to be completed.
 There is no current confirmation recommendation yet.
 
