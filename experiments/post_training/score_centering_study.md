@@ -528,10 +528,17 @@ cause. Its failed attempt remains counted separately in costs and reliability.
 
 Fresh TIS32 seed 103 passed the same full audit, costing 75.1852356 H100
 task-hours. Its 13,814,056 loss tokens all had actual optimizer age zero, with
-no response crossing a policy publication boundary. Eleven runs have complete
-terminal evidence; the remaining seed-103 arms are still running.
+no response crossing a policy publication boundary. This brought the full
+terminal audit count to eleven.
 
-Completed new costs are **1039.2611897** hours across 38 attempts, separate
+Incumbent seed 103 then passed its full forty-update audit, costing 53.4013267
+H100 task-hours. Its 20,043,745 consumed loss tokens have mean actual optimizer
+age 1.56007; 3,477 of 20,480 responses crossed a publication boundary. Twelve
+runs now have complete terminal evidence, and the fixed seed-104 sequence has
+started. These are progress and exposure checks; final quality analysis remains
+gated on all fifty-one runs.
+
+Completed new costs are **1092.6625164** hours across 39 attempts, separate
 from historical costs of 1,072.548303 hours. Complete seed-101 and seed-102
 quartets are now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
