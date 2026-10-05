@@ -19,9 +19,10 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-import fsspec
 import yaml
+from rigging.filesystem.factory import filesystem, url_to_fs
 from rigging.filesystem.s3_compat import configure_coreweave_s3
+from rigging.filesystem.storage_path import StoragePath, prefix_join
 
 from experiments.post_training.analyze_current_policy_versions import summarize
 from experiments.post_training.analyze_current_score_centering_evaluations import (
@@ -90,14 +91,14 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
     configuration = yaml.safe_load((base / row["path"]).read_bytes())
     if configuration["run"]["id"] != run_id or configuration["iris"]["job_name"] != run_id:
         raise ValueError("registry differs from the frozen input run/job identity")
-    durable = configuration["artifacts"]["attempts_root"].rsplit("/", 1)[0]
+    durable = str(StoragePath(configuration["artifacts"]["attempts_root"]).parent)
     resolved_uri = configuration["artifacts"]["resolved_config_uri"]
     resolved_raw = fs.cat_file(resolved_uri)
     read_resolved_launch(resolved_raw, run_id=run_id, seed=row["seed"], source_commit=protocol["source_commit"])
     uri = cache.get(row.get("driver_cache_key", short))
     if uri is None:
         source = configuration["ray"]["log_dir"]
-        candidates = fs.glob(source + "/rank0-*/session_latest/worker-*.err", detail=True)
+        candidates = fs.glob(prefix_join(source, "rank0-*/session_latest/worker-*.err"), detail=True)
         for filename, info in sorted(candidates.items(), key=lambda pair: pair[1]["size"], reverse=True)[:16]:
             if info["size"] > 100 and b":task_name:skyrl_entrypoint" in fs.cat_file(filename, start=0, end=256):
                 uri = filename
@@ -113,7 +114,8 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
     if any(not math.isfinite(r["policy/raw_grad_norm"]) for r in train):
         raise ValueError("nonfinite raw gradients require author audit")
     directory = base / "results/score_centering_current_confirmation_runs" / run_id
-    records, inputs = read_archive(durable + "/attempts/trajectories")
+    archive = prefix_join(durable, "attempts/trajectories")
+    records, inputs = read_archive(archive)
     endpoint = audit_evaluations(
         records,
         load_membership(base / "results/score_centering_current_snowball_heldout_manifest.json"),
@@ -121,22 +123,22 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
     )
     members = endpoint.pop("member_results")
     endpoint.update(
-        archive=durable + "/attempts/trajectories",
+        archive=archive,
         inputs=inputs,
         member_result_count=len(members),
         member_results_sha256=canonical_hash(members),
     )
     save_json(directory / "endpoint.json", endpoint)
     versions = configuration["skyrl"]["trainer"]["token_policy_version_archive"]
-    vfs, vroot = fsspec.core.url_to_fs(versions)
-    ledger = [json.loads(vfs.cat_file(path)) for path in sorted(vfs.glob(vroot + "/step-*.json"))]
+    vfs, vroot = url_to_fs(versions)
+    ledger = [json.loads(vfs.cat_file(path)) for path in sorted(vfs.glob(prefix_join(vroot, "step-*.json")))]
     if sorted(r["training_step"] for r in ledger) != expected:
         raise ValueError("optimizer-version ledger is incomplete")
     by_step = {r["step"]: r for r in train}
     if any(r["optimizer_updates_applied"] != by_step[r["training_step"]]["policy/policy_update_steps"] for r in ledger):
         raise ValueError("applied-update archive disagrees with source training metrics")
     save_json(directory / "ages.json", summarize(ledger))
-    training = audit_training(durable + "/attempts/trajectories", versions, run_id, expected)
+    training = audit_training(archive, versions, run_id, expected)
     if any(
         r["responses"] != 512
         or r["distinct_prompt_uids"] != 128
@@ -146,17 +148,17 @@ def collect(row: dict, tasks: list[dict], protocol: dict, base: Path, fs, cache:
         raise ValueError("consumed prompt exposure differs from frozen batch geometry")
     save_json(directory / "training_records.json", training)
     checkpoint_root = configuration["artifacts"]["checkpoint_root"]
-    if int(fs.cat_file(checkpoint_root + "/latest_ckpt_global_step.txt")) != expected[-1]:
+    if int(fs.cat_file(prefix_join(checkpoint_root, "latest_ckpt_global_step.txt"))) != expected[-1]:
         raise ValueError("checkpoint marker does not name the declared final step")
-    checkpoint_files = fs.find(checkpoint_root + f"/global_step_{expected[-1]}", detail=True)
+    checkpoint_files = fs.find(prefix_join(checkpoint_root, f"global_step_{expected[-1]}"), detail=True)
     checkpoint_bytes = sum(info["size"] for info in checkpoint_files.values())
     if checkpoint_bytes < 900_000_000_000:
         raise ValueError("final Snowball trainer/optimizer checkpoint is incomplete")
     raw_sha = hashlib.sha256(raw).hexdigest()
-    preserved = durable + "/confirmation-evidence/driver-" + raw_sha + ".err"
+    preserved = prefix_join(durable, f"confirmation-evidence/driver-{raw_sha}.err")
     preserve_immutable(fs, preserved, raw)
     resolved_sha = hashlib.sha256(resolved_raw).hexdigest()
-    preserved_resolved = durable + "/confirmation-evidence/resolved-" + resolved_sha + ".json"
+    preserved_resolved = prefix_join(durable, f"confirmation-evidence/resolved-{resolved_sha}.json")
     preserve_immutable(fs, preserved_resolved, resolved_raw)
     directory.mkdir(parents=True, exist_ok=True)
     compressed = gzip.compress(json.dumps(metrics, sort_keys=True).encode(), mtime=0)
@@ -239,7 +241,7 @@ def main() -> None:
     tasks = [dict(zip(columns, json.loads(row), strict=True)) for row in value["rows"]]
     cache = json.loads(args.driver_cache.read_text()) if args.driver_cache.exists() else {}
     configure_coreweave_s3()
-    fs = fsspec.filesystem("s3")
+    fs = filesystem("s3")
     runs = []
     for row in protocol["configuration_manifest"]:
         selected = [t for t in tasks if t["job_id"] == "/romain/" + row["run_id"]]

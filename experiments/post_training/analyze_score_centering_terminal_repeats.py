@@ -21,10 +21,17 @@ import argparse
 import csv
 import json
 import re
+from enum import Enum
 from pathlib import Path
 
 GSM8K_QUESTIONS = 256
 MATH500_QUESTIONS = 500
+
+
+class LogSource(Enum):
+    IRIS = "iris"
+    WANDB = "wandb"
+
 
 FIELDS = (
     "run",
@@ -92,7 +99,9 @@ def _wandb_history_mirrors(path: Path, run: str, step: int) -> dict[str, dict]:
     return {"train": scheduled[0], "eval": final[0]}
 
 
-def summarize(run: str, log: Path, evaluations: list[dict[str, str]], step: int, *, wandb_history: bool = False) -> dict:
+def summarize(
+    run: str, log: Path, evaluations: list[dict[str, str]], step: int, *, source: LogSource = LogSource.IRIS
+) -> dict:
     rows = {row["dataset"]: row for row in evaluations if row["run"] == run and int(row["step"]) == step}
     if not {"all", "val-gsm8k", "val-math500"} <= set(rows):
         raise ValueError(f"{run}: missing final response analysis for step {step}")
@@ -101,7 +110,7 @@ def summarize(run: str, log: Path, evaluations: list[dict[str, str]], step: int,
         MATH500_QUESTIONS,
     ]:
         raise ValueError(f"{run}: frozen evaluation suite sizes changed")
-    mirrors = _wandb_history_mirrors(log, run, step) if wandb_history else _mirrors(log, step)
+    mirrors = _wandb_history_mirrors(log, run, step) if source is LogSource.WANDB else _mirrors(log, step)
     scheduled_gsm, scheduled_math = _completed_correct_counts(mirrors["train"])
     final_gsm, final_math = _completed_correct_counts(mirrors["eval"])
     final_all = final_gsm + final_math
@@ -150,7 +159,8 @@ def main() -> None:
             if not separator or not run or not path or run in labels:
                 parser.error(f"invalid {source} {item!r}; expected RUN=PATH")
             labels.add(run)
-            result.append(summarize(run, Path(path), evaluations, args.step, wandb_history=source == "--wandb-history"))
+            log_source = LogSource.WANDB if source == "--wandb-history" else LogSource.IRIS
+            result.append(summarize(run, Path(path), evaluations, args.step, source=log_source))
     if not result:
         parser.error("pass at least one --iris-log or --wandb-history")
     args.output.parent.mkdir(parents=True, exist_ok=True)

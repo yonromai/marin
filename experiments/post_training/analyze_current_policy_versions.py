@@ -13,8 +13,9 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-import fsspec
+from rigging.filesystem.factory import url_to_fs
 from rigging.filesystem.s3_compat import configure_coreweave_s3
+from rigging.filesystem.storage_path import prefix_join
 
 
 def age_summary(counts: Counter[int]) -> dict[str, Any]:
@@ -119,8 +120,8 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     configure_coreweave_s3()
-    fs, root = fsspec.core.url_to_fs(args.archive)
-    files = sorted(fs.glob(f"{root.rstrip('/')}/step-*.json"))
+    fs, root = url_to_fs(args.archive)
+    files = sorted(fs.glob(prefix_join(root, "step-*.json")))
     if not files:
         raise ValueError("consumed policy-version archive contains no completed training batches")
     records, inputs = [], []

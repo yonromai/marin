@@ -38,7 +38,7 @@ ARM_LABELS = {
 }
 
 
-def task_hours_to_elapsed(tasks: list[dict], elapsed_seconds: float) -> float:
+def reserved_task_hours_to_endpoint(tasks: list[dict], elapsed_seconds: float) -> float:
     """Count each eight-GPU task's allocation only up to the evaluation endpoint."""
     endpoint_ms = min(task["started_at_ms"] for task in tasks) + 1000 * elapsed_seconds
     return sum(
@@ -79,7 +79,9 @@ def plot_confirmation(runs: list[dict], protocol: dict, base: Path, output: Path
                         sum(train[index]["async/performance/consumed_loss_tokens"] for index in range(1, step + 1)) / 1e6
                     ),
                     "elapsed_to_second_evaluation_hours": elapsed / 3600,
-                    "reserved_h100_task_hours_to_second_evaluation": task_hours_to_elapsed(run["tasks"], elapsed),
+                    "reserved_h100_task_hours_to_second_evaluation": reserved_task_hours_to_endpoint(
+                        run["tasks"], elapsed
+                    ),
                     "completed_correct_percent": 100 * curve[step] / denominator,
                 }
             )

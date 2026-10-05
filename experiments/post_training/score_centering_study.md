@@ -810,7 +810,8 @@ The [original analysis checkpoint](https://github.com/yonromai/marin/tree/3713a8
 contains all canonical inputs and the six unchanged frozen programs. Reproduce
 the frozen analysis from that commit. Later maintenance extracts repeated
 interval rendering and immutable persistence, shares accepted stop reasons,
-and loads the optional launch package only when submitting. A complete-input
+uses guarded filesystem construction and parsed storage joins, and loads the
+optional launch package only when submitting. A complete-input
 regression confirms every serialized analysis value is unchanged after renaming
 the arm-curve field to `mean_completed_correct_answers_by_step`. In the preserved
 original artifact, `mean_completed_answers_by_step` also counts completed-correct

@@ -20,8 +20,9 @@ import zipfile
 from collections import defaultdict
 from pathlib import Path
 
-import fsspec
+from rigging.filesystem.factory import url_to_fs
 from rigging.filesystem.s3_compat import configure_coreweave_s3
+from rigging.filesystem.storage_path import prefix_join
 
 ACCEPTED_STOPS = frozenset({"complete", "end_turn", "eos", "stop"})
 EVALUATION_NAMES = (None, "greedy_repeat")
@@ -158,8 +159,8 @@ def audit_evaluations(records: list[dict], membership: dict, expected_steps: lis
 
 
 def read_archive(root: str) -> tuple[list[dict], list[dict]]:
-    fs, path = fsspec.core.url_to_fs(root)
-    files = sorted(fs.glob(f"{path.rstrip('/')}/schema_v6/archives/phase=eval/step=*/*.zip"))
+    fs, path = url_to_fs(root)
+    files = sorted(fs.glob(prefix_join(path, "schema_v6/archives/phase=eval/step=*/*.zip")))
     if not files:
         raise ValueError("evaluation archive has no schema-six evaluation records")
     records, inputs = [], []

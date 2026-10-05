@@ -18,8 +18,9 @@ import zipfile
 from collections import Counter
 from pathlib import Path
 
-import fsspec
+from rigging.filesystem.factory import url_to_fs
 from rigging.filesystem.s3_compat import configure_coreweave_s3
+from rigging.filesystem.storage_path import prefix_join
 
 from experiments.post_training.analyze_current_score_centering_evaluations import ACCEPTED_STOPS
 
@@ -124,10 +125,10 @@ class TrainingRecordAudit:
 
 
 def analyze(archive: str, versions: str, run_id: str, expected_steps: list[int]) -> dict:
-    fs, root = fsspec.core.url_to_fs(archive)
+    fs, root = url_to_fs(archive)
     audit = TrainingRecordAudit(run_id)
     inputs = []
-    for filename in sorted(fs.glob(root.rstrip("/") + "/schema_v6/archives/phase=train/step=*/*.zip")):
+    for filename in sorted(fs.glob(prefix_join(root, "schema_v6/archives/phase=train/step=*/*.zip"))):
         data = fs.cat_file(filename)
         sha = hashlib.sha256(data).hexdigest()
         if Path(filename).stem != sha:
@@ -140,9 +141,9 @@ def analyze(archive: str, versions: str, run_id: str, expected_steps: list[int])
                 if len(payload) != entry["bytes"] or record["record_id"] != entry["record_id"]:
                     raise ValueError("training record disagrees with its immutable archive manifest")
                 audit.retain(record)
-    vfs, vroot = fsspec.core.url_to_fs(versions)
+    vfs, vroot = url_to_fs(versions)
     ledger, ledger_inputs = [], []
-    for filename in sorted(vfs.glob(vroot.rstrip("/") + "/step-*.json")):
+    for filename in sorted(vfs.glob(prefix_join(vroot, "step-*.json"))):
         data = vfs.cat_file(filename)
         ledger.append(json.loads(data))
         ledger_inputs.append(

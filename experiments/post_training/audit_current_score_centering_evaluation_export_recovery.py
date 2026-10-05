@@ -19,9 +19,10 @@ from collections import defaultdict
 from importlib.metadata import distribution
 from pathlib import Path
 
-import fsspec
 import yaml
+from rigging.filesystem.factory import filesystem
 from rigging.filesystem.s3_compat import configure_coreweave_s3
+from rigging.filesystem.storage_path import StoragePath, prefix_join
 from skyrl_train.trajectory_runners.trajectory_reward_shaping import NormalizedReward
 from transformers import AutoTokenizer
 
@@ -32,6 +33,8 @@ from experiments.post_training.analyze_current_score_centering_evaluations impor
     load_membership,
     read_archive,
 )
+
+RESPONSE_TOKEN_LIMIT = 4096
 
 
 def audit_exports(records: list[dict], membership: dict, config: dict, proof: dict, fs) -> dict:
@@ -66,9 +69,9 @@ def audit_exports(records: list[dict], membership: dict, config: dict, proof: di
             or provenance["model_version_step"] != record["global_step"]
             or provenance["sampling"]["temperature"] != 0.0
             or record["trajectory"]["repetition_id"] != 0
-            or response["generation_limit"] != 4096
+            or response["generation_limit"] != RESPONSE_TOKEN_LIMIT
             or len(response["token_ids"]) != len(response["loss_mask"])
-            or len(response["token_ids"]) > 4096
+            or len(response["token_ids"]) > RESPONSE_TOKEN_LIMIT
         ):
             raise ValueError("available native evaluation evidence changed")
         key = record["global_step"], record["evaluation_name"], member["ordinal"]
@@ -81,10 +84,17 @@ def audit_exports(records: list[dict], membership: dict, config: dict, proof: di
     export_root = config["artifacts"]["export_root"]
     for item in proof["original_export_inputs"]:
         step, name = item["step"], item["evaluation_name"]
-        prefix = export_root + ("/" + name if name else "") + f"/dumped_evals/global_step_{step}_evals/"
         if step not in (0, 10, 20, 30, 40) or name not in (None, "greedy_repeat"):
             raise ValueError("export names a different evaluation")
-        if not item["uri"].startswith(prefix) or not item["uri"].endswith(".jsonl"):
+        prefix = StoragePath(export_root)
+        if name:
+            prefix /= name
+        prefix /= f"dumped_evals/global_step_{step}_evals"
+        try:
+            relative = StoragePath(item["uri"]).relative_to(prefix)
+        except ValueError as error:
+            raise ValueError("export is outside the original evaluation directory") from error
+        if not relative.endswith(".jsonl"):
             raise ValueError("export is outside the original evaluation directory")
         raw = fs.cat_file(item["uri"])
         if len(raw) != item["bytes"] or hashlib.sha256(raw).hexdigest() != item["sha256"]:
@@ -100,7 +110,7 @@ def audit_exports(records: list[dict], membership: dict, config: dict, proof: di
                 or row["env_extras"]["reward_spec"] != content["reward_spec"]
                 or row["data_source"] != content["extra_info"]["data_source"]
                 or not isinstance(row["score"], list)
-                or len(row["score"]) > 4096
+                or len(row["score"]) > RESPONSE_TOKEN_LIMIT
             ):
                 raise ValueError("export membership, grading rule or token limit changed")
             outcome = NormalizedReward.from_output(row["score"]).outcome
@@ -202,9 +212,9 @@ def main() -> None:
     args = parser.parse_args()
     config = yaml.safe_load(args.configuration.read_bytes())
     configure_coreweave_s3()
-    records, inputs = read_archive(config["artifacts"]["attempts_root"] + "/trajectories")
+    records, inputs = read_archive(prefix_join(config["artifacts"]["attempts_root"], "trajectories"))
     result = audit_exports(
-        records, load_membership(args.membership), config, json.loads(args.proof.read_bytes()), fsspec.filesystem("s3")
+        records, load_membership(args.membership), config, json.loads(args.proof.read_bytes()), filesystem("s3")
     )
     members = result.pop("member_results")
     result.update(inputs=inputs, member_result_count=len(members), member_results_sha256=canonical_hash(members))

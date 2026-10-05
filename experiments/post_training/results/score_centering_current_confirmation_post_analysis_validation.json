@@ -15,14 +15,21 @@
   },
   "maintained_program_sha256": {
     "analyze_current_score_centering_confirmation.py": "8e8047467f5f0d3d6c8ebe3ae6854997a53313f4edd2b593b908f9a05bd66aad",
-    "analyze_current_score_centering_training_records.py": "47d95e30eb1b23da652e83d66455bd44377a53f098f77c68007aed52e307446d",
-    "collect_current_score_centering_confirmation.py": "2f38590ed66d2c47919522867f3892eca2f1f023aea0ebd5b94691e7ef0264bd",
-    "run_current_score_centering_confirmation.py": "da247df767618893b94f2d8dfa0210fc19b384bf32f80fb60ab28ff3bb930273"
+    "analyze_current_score_centering_evaluations.py": "a159842a2eb3d2cb3b0c96d8003774dfad129f71b7f91383e4b30d969cdbacc9",
+    "analyze_current_score_centering_training_records.py": "39d103b2ad5bb1d4718937314a51877324778bd26eb7cb4bac2b314708765cf7",
+    "analyze_current_policy_versions.py": "0058795dc3b09c1ce292b39dec5ddbf5bf1227c3fb657ac3020cc97084880611",
+    "collect_current_score_centering_confirmation.py": "ff3036be922c89432f4e5bcf4a07423437b343f9e4e94442a1bfbf456dccb581",
+    "run_current_score_centering_confirmation.py": "488451247eca999007d26a93d2a42f48b5c388d6dd59185dbf085c00f1b49316",
+    "audit_current_score_centering_evaluation_export_recovery.py": "6a6fd3d1be6a8b4935b1c2816fb3f0e8a029bb8cebfcfff9a14d4b1cca79e5b5",
+    "plot_current_score_centering_confirmation.py": "06daa29205f6ccf14340a7f6fbe144081c8a3ab18458b4375213f19de9f824fb",
+    "analyze_score_centering.py": "bbe23f51becdac045b15362b0f957b8101a4ceef2b293a736afeed9d73bd766a",
+    "analyze_score_centering_terminal_repeats.py": "e3513306a5e1b6ad71e907714651fdb3d6764aa088b15f75ac0c8a5925cd5092",
+    "measure_score_centering_tail.py": "999855ef04f76b18baaf20e2834b0c951b77050fa649e8af379a686faa4b931c"
   },
   "targeted_tests": {
     "environment": "Bare Marin, without the separately pinned SkyRL package.",
     "passed": 26,
-    "log_sha256": "5d6d9d41cd47ec8d7dce21aa554b215cc72f742ba76914b4408f2b16abd42096"
+    "log_sha256": "d88cce3c206590bb69edbff4e8d6ead513a37d6e447734797006b50b15d5cb88"
   },
   "affected_safe_suite": {
     "command": "uv run --no-project infra/ci/run_tests.py",
@@ -43,7 +50,9 @@
       "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"name\": \"send_referral\", \"arguments\": {\"patient_id\": \"P-6677\", \"reason\": \"Follow-up post-operative knee replacement\", \"specialist_email\": \"ortho@hospital.org\", \"priority\": \"high\"}}-1]",
       "experiments/post_training/tasktrove/tests/test_prompt_injection.py::test_checker_scores_only_the_injected_call_as_zero[{\"name\": \"send_referral\", \"arguments\": {\"patient_id\": \"P-6677\", \"reason\": \"Follow-up post-operative knee replacement\", \"specialist_email\": \"orthopedics@apex-medical-group.org\", \"priority\": \"high\"}}-0]",
       "tests/evaluation/test_harbor_runner.py::test_harbor_driver_can_use_iris_uv_wrapper"
-    ]
+    ],
+    "tested_commit": "03b94ecf3e49781db5d45c95feb851ecfa7702e4",
+    "followup": "Storage joins, guarded filesystem constructors and helper naming were subsequently checked by the 26 targeted tests and local archive/complete-input/240 curve-coordinate regressions."
   },
   "independent_baseline": {
     "commit": "22ed55402c665f7e3f01e8f98a35b5e8c55e328e",
@@ -51,5 +60,145 @@
     "prior_failure_cache_sha256": "7c7bdafa1a1f66e6a6250c9ec7ae85850df1879ecd7e845f303da41741c73b46",
     "prior_failure_cache_mtime_epoch_seconds": 1791141288.303996,
     "same_failed_test_ids": true
+  },
+  "post_lint_regression": {
+    "canonical_runs": 51,
+    "serialized_primary_analysis_equal_after_field_rename": true,
+    "local_content_addressed_evaluation_and_training_archive_roundtrip": true,
+    "trailing_separator_storage_inputs": true,
+    "reserved_compute_curve_points_checked": 240,
+    "all_reserved_compute_curve_values_identical": true
+  },
+  "lint_catalog_review": {
+    "reviewed_commit": "03b94ecf3e49781db5d45c95feb851ecfa7702e4",
+    "lanes": [
+      "complexity",
+      "interfaces",
+      "robustness",
+      "cruft",
+      "prose",
+      "meta"
+    ],
+    "all_terminal": true,
+    "timed_out": false,
+    "fixed_findings": 20,
+    "answered_findings": 2,
+    "responses": [
+      {
+        "finding": "experiments/post_training/analyze_current_policy_versions.py:122: ml-raw-fsspec-io (0.97) Raw url_to_fs handles ordinary glob and reads, bypassing the guarded storage factory.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_policy_versions.py:123: ml-naive-path-join (0.99) Stripping slashes and appending the archive glob duplicates storage-path normalization.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_evaluations.py:161: ml-raw-fsspec-io (0.97) Raw url_to_fs handles ordinary archive listing and reads, bypassing guarded storage I/O.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_evaluations.py:162: ml-naive-path-join (0.99) The evaluation archive glob is assembled with slash stripping and string interpolation.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_training_records.py:127: ml-raw-fsspec-io (0.97) Raw url_to_fs handles ordinary training archive listing and reads, bypassing the guarded storage factory.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_training_records.py:130: ml-naive-path-join (0.99) The training archive glob duplicates storage-path normalization through rstrip and concatenation.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_training_records.py:143: ml-raw-fsspec-io (0.97) The version ledger uses raw url_to_fs for ordinary glob and reads, bypassing guarded storage I/O.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/analyze_current_score_centering_training_records.py:145: ml-naive-path-join (0.99) The version ledger glob is joined through slash stripping and string concatenation.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/analyze_score_centering_terminal_repeats.py:95: ml-bool-flag-arg (0.86) wandb_history encodes the input source format in a boolean and dispatches between Iris text-log and W&B JSONL parsers.",
+        "decision": "fixed",
+        "response": "Use the LogSource enum for Iris versus W&B parser selection; preserve existing CLI options."
+      },
+      {
+        "finding": "experiments/post_training/audit_current_score_centering_evaluation_export_recovery.py:69: ml-magic-constant (0.96) The 4096-token answer cap is repeated in three independent checks without a shared constant.",
+        "decision": "fixed",
+        "response": "Hoist the three response-cap checks to RESPONSE_TOKEN_LIMIT = 4096."
+      },
+      {
+        "finding": "experiments/post_training/audit_current_score_centering_evaluation_export_recovery.py:84: ml-naive-path-join (0.99) Export-directory joins and containment checks use string concatenation and startswith, making trailing-slash differences significant.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/audit_current_score_centering_evaluation_export_recovery.py:205: ml-naive-path-join (0.99) Appending /trajectories directly to the configured storage URI can produce doubled separators.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/audit_current_score_centering_evaluation_export_recovery.py:207: ml-raw-fsspec-io (0.96) Original export reads use a raw S3 filesystem without backend overrides that require a live handle.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/collect_current_score_centering_confirmation.py:80: ml-overloaded-function (0.87) collect combines source discovery, scientific evidence audits, checkpoint verification, evidence publication, and GPU allocation accounting in one body",
+        "decision": "answered",
+        "response": "The collector has one responsibility: produce one verified immutable run evidence bundle. Source/configuration checks, exact endpoint and training audits, ledger/checkpoint checks, and allocation accounting are ordered stages of that contract. The endpoint, training, policy-age, metric-parsing and immutable-write stages already have named helpers. Splitting remaining glue adds no unrelated responsibility or independent transaction."
+      },
+      {
+        "finding": "experiments/post_training/collect_current_score_centering_confirmation.py:100: ml-naive-path-join (0.99) The driver-log glob is concatenated onto a configured storage prefix, allowing doubled separators.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/collect_current_score_centering_confirmation.py:131: ml-raw-fsspec-io (0.97) The version ledger uses raw url_to_fs for ordinary glob and reads, bypassing the guarded storage factory.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/collect_current_score_centering_confirmation.py:132: ml-naive-path-join (0.99) Appending /step-*.json directly to the version prefix duplicates storage-path joining.",
+        "decision": "fixed",
+        "response": "Use prefix_join for storage keys and StoragePath.parent/relative_to for parsed directory identity and containment; remove slash surgery and ad hoc URL joins."
+      },
+      {
+        "finding": "experiments/post_training/measure_score_centering_tail.py:60: ml-raw-fsspec-io (0.88) Evaluation JSONL reads use a raw filesystem handle; the endpoint and addressing kwargs can be forwarded through the guarded opener.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/run_current_score_centering_confirmation.py:97: ml-overloaded-function (0.81) run combines frozen protocol/config verification, live capacity scheduling, and resource-board/submission coordination in one body",
+        "decision": "answered",
+        "response": "The runner has one responsibility: admit the next frozen job only after all guard conditions pass. Protocol and session checks establish its inputs; current job/capacity checks and the resource announcement guard that same submission. It calls named CLI, first-step and announcement helpers. No separate unrelated job is interleaved. The matching rule explicitly permits a genuinely linear single-responsibility routine."
+      },
+      {
+        "finding": "experiments/post_training/run_current_score_centering_confirmation.py:121: ml-raw-fsspec-io (0.96) First-step evidence uses a raw S3 filesystem for ordinary whole-file reads, bypassing the guarded storage factory.",
+        "decision": "fixed",
+        "response": "Use rigging.filesystem.factory guarded construction. This preserves the injected live filesystem API, CoreWeave backend configuration and range/detail operations, while adding finite S3 timeouts and shared cache/region defaults. The rule explicitly names these factory functions as the supported low-level seam."
+      },
+      {
+        "finding": "experiments/post_training/analyze_score_centering.py:288: ml-obsolete-after-refactor (0.88) summarize_iris_log has no callers; the CLI uses summarize_iris_logs directly, leaving an unused single-log wrapper.",
+        "decision": "fixed",
+        "response": "Remove the unused summarize_iris_log wrapper after a full Python caller search found only its definition."
+      },
+      {
+        "finding": "experiments/post_training/plot_current_score_centering_confirmation.py:41: ml-misleading-name (0.98) task_hours_to_elapsed returns reserved GPU-hours up to an elapsed-time endpoint, not elapsed time as its name implies.",
+        "decision": "fixed",
+        "response": "Rename task_hours_to_elapsed to reserved_task_hours_to_endpoint. The return unit remains reserved H100 task-hours."
+      }
+    ],
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "high",
+    "observed_model": null,
+    "observed_effort": null,
+    "observation_limit": "The lint harness stores findings, prompts and terminal status, not provider structured metadata. Missing observed fields remain unknown."
   }
 }

@@ -285,11 +285,6 @@ def _summarize_train_steps(
     return result
 
 
-def summarize_iris_log(label: str, path: Path) -> list[dict[str, Any]]:
-    """Read one Iris job's mirrors, preferring its later retry for repeated steps."""
-    return summarize_iris_logs(label, [path])
-
-
 def summarize_wandb_history(label: str, path: Path) -> list[dict[str, Any]]:
     """Read retained W&B training history when the Iris pod log is unavailable."""
     rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]

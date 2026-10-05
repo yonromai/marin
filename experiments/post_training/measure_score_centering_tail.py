@@ -26,8 +26,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import click
-import fsspec
 import torch
+from rigging.filesystem.factory import filesystem
 from rigging.filesystem.storage_path import prefix_join
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -44,12 +44,12 @@ class EvalContext:
 
 def _filesystem(uri: str):
     if uri.startswith("s3://"):
-        return fsspec.filesystem(
+        return filesystem(
             "s3",
             client_kwargs={"endpoint_url": "https://cwobject.com"},
             config_kwargs={"s3": {"addressing_style": "virtual"}},
         )
-    return fsspec.filesystem("file")
+    return filesystem("file")
 
 
 def _contexts(eval_root: str, tokenizer) -> list[EvalContext]:

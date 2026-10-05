@@ -22,8 +22,8 @@ import subprocess
 import time
 from pathlib import Path
 
-import fsspec
 import yaml
+from rigging.filesystem.factory import filesystem
 from rigging.filesystem.s3_compat import configure_coreweave_s3
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -118,7 +118,7 @@ def run(args) -> None:
     if os.environ.get("CODEX_THREAD_ID", native_id) != native_id:
         raise ValueError("resource-board binding differs from the current native session")
     origin = f"{binding['origin']}/{binding['harness']}/{native_id}"
-    fs = fsspec.filesystem("s3")
+    fs = filesystem("s3")
     previous_outside = None
     first_steps_passed = False
     while True:
