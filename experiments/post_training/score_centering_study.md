@@ -526,7 +526,12 @@ crossed a publication boundary. It completed forty applied updates without
 recurrence of the prior execution error. This does not establish that error's
 cause. Its failed attempt remains counted separately in costs and reliability.
 
-Completed new costs are **964.0759542** hours across 37 attempts, separate
+Fresh TIS32 seed 103 passed the same full audit, costing 75.1852356 H100
+task-hours. Its 13,814,056 loss tokens all had actual optimizer age zero, with
+no response crossing a policy publication boundary. Eleven runs have complete
+terminal evidence; the remaining seed-103 arms are still running.
+
+Completed new costs are **1039.2611897** hours across 38 attempts, separate
 from historical costs of 1,072.548303 hours. Complete seed-101 and seed-102
 quartets are now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity

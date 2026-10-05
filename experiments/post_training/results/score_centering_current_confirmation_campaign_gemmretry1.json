@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "observed_at_utc": "2026-10-05T05:09:12.071794+00:00",
+  "observed_at_utc": "2026-10-05T05:39:57.305009+00:00",
   "protocol": "score_centering_current_confirmation_protocol_r2_gemmretry1.json",
   "protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
   "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
-  "scope": "10 full terminal audits, 4 active40H100 jobs. Fixed51design; no quality conclusions. Both excluded failures remain in totalcost/reliability. Controlled incumbent102repeat first2actualupdates passed; previousTEcause unresolved.",
+  "scope": "11 full terminal audits, 4 active40H100 jobs. Fixed51design; no quality conclusions. Both excluded failures remain in totalcost/reliability. Controlled incumbent102repeat first2actualupdates passed; previousTEcause unresolved.",
   "prior_campaign": "score_centering_current_confirmation_campaign_pause300.json",
   "planned_matched_and_capture_runs": 51,
-  "successfully_audited_runs": 10,
+  "successfully_audited_runs": 11,
   "active_jobs": 4,
   "effective_priority_band": 2,
   "active_job_cap": 4,
-  "minimum_spare_h100_after_each_submission": 232,
+  "minimum_spare_h100_after_each_submission": 80,
   "further_submissions": "fixed guarded order, at mostone/minute; stop on failure/retry/priority mismatch, back off on rising outside demand",
   "automatic_submission_watch_running": true,
   "runs": [
@@ -595,65 +595,66 @@
       "prior_configuration_sha256": "45aa973c13b336f7149311c648fe1b9804e88c614e15ad3243326a9ff2930b84",
       "prior_configuration_path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s103.yaml",
       "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
-      "state": "active",
+      "state": "succeeded",
       "tasks": [
         {
           "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/0",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791170142323,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791176905706,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/1",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791170142323,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791176905706,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/2",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791170142323,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791176905706,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/3",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791170142323,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791176905706,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         },
         {
           "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300",
           "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/4",
-          "state": 3,
+          "state": 4,
           "current_attempt_id": 0,
           "started_at_ms": 1791170142323,
-          "finished_at_ms": null,
+          "finished_at_ms": 1791176922147,
           "priority_band": 2,
-          "job_state": 3,
+          "job_state": 4,
           "job_priority": 2
         }
       ],
-      "scientific_work_complete": false
+      "scientific_work_complete": true,
+      "evidence": "score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s103-20261005-pause300/run.json"
     },
     {
       "arm": "older_incumbent",
@@ -1010,9 +1011,80 @@
       ],
       "scientific_work_complete": true,
       "evidence": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis0-s102-20261005-pause300/run.json"
+    },
+    {
+      "arm": "older_tis0",
+      "seed": 103,
+      "run_id": "score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_tis0_s103.yaml",
+      "sha256": "275db432b85370bdb0951a74522f7353c6c1cbd5eb37aeb7908da0eece6ff29e",
+      "driver_cache_key": "snowball-older-tis0-s103-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "1ac4668c4528e5c03fb20a7ed277b764bc9411ecedac31e8ce22b4d266ee0e60",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_tis0_s103.yaml",
+      "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791176962458,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791176962458,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791176962458,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791176962458,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis0-s103-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791176962458,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
     }
   ],
-  "spare_policy": "152H100 forecast allowance plus80spare while peer proof approaches readiness; actual placement remains conditional and separately announced.",
+  "spare_policy": "Ordinary 80 H100 spare while the peer full proof is gated on fixture reruns; recheck exact gate release and announced placement before changing allowance.",
   "controlled_repeat_first_two_updates": {
     "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300-gemmretry1",
     "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
@@ -1038,11 +1110,11 @@
     "limitation": "No recurrence in these first two updates does not establish the cause of the previous failure or failure-free behavior."
   },
   "latest_capacity_from_watch": {
-    "retrieved_at_utc": "2026-10-05T05:09:12.071887+00:00",
-    "source": "current-confirmation-gemmretry1-max4-spare232-restored-watch.log",
-    "free_h100": 232,
-    "empty_whole_nodes": 22,
+    "retrieved_at_utc": "2026-10-05T05:39:57.305127+00:00",
+    "source": "current-confirmation-gemmretry1-max4-spare80-watch.log",
+    "free_h100": 253,
+    "empty_whole_nodes": 25,
     "other_demand_rose": false
   },
-  "controller_successful_jobs": 10
+  "controller_successful_jobs": 11
 }
