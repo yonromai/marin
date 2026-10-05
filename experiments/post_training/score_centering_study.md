@@ -517,9 +517,18 @@ loss tokens at mean age 1.6011. Both had median and 95th percentile age two
 updates, and each retained 1,024 completed responses that training did not
 consume. The three-seed capture-cost analysis remains pending.
 
-Completed new costs are **834.6608386** hours across 35 attempts, separate
-from historical costs of 1,072.548303 hours. One complete seed-101 quartet is
-now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
+Fresh TIS32 seed 102 and the controlled incumbent seed-102 repeat also passed
+the full terminal audit. Fresh TIS32 cost 77.7039089 H100 task-hours and consumed
+14,780,691 loss tokens, all at actual optimizer age zero, with no response
+crossing a policy publication boundary. The incumbent repeat cost 51.7112067
+hours and consumed 17,034,986 loss tokens at mean age 1.5864; 2,782 responses
+crossed a publication boundary. It completed forty applied updates without
+recurrence of the prior execution error. This does not establish that error's
+cause. Its failed attempt remains counted separately in costs and reliability.
+
+Completed new costs are **964.0759542** hours across 37 attempts, separate
+from historical costs of 1,072.548303 hours. Complete seed-101 and seed-102
+quartets are now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
 guards. The planned twelve matched seeds and three capture companions remain
 to be completed before the frozen paired analysis.
