@@ -510,7 +510,14 @@ percentile were two updates. Of the consumed responses, 1,901 crossed a policy
 publication boundary. The successful attempt cost 63.5797533 H100 task-hours.
 The original failed attempt's 55.0786111 hours remain counted separately.
 
-Completed new costs are **721.1207431** hours across 33 attempts, separate
+Older TIS32 and TIS0 seed 102 then passed the same full terminal gates. TIS32
+cost 62.0914533 H100 task-hours and consumed 14,789,959 loss tokens at mean
+actual optimizer age 1.7772. TIS0 cost 51.4486422 hours and consumed 16,277,118
+loss tokens at mean age 1.6011. Both had median and 95th percentile age two
+updates, and each retained 1,024 completed responses that training did not
+consume. The three-seed capture-cost analysis remains pending.
+
+Completed new costs are **834.6608386** hours across 35 attempts, separate
 from historical costs of 1,072.548303 hours. One complete seed-101 quartet is
 now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
