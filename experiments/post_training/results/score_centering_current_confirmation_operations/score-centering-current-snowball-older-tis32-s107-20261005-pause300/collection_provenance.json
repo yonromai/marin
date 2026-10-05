@@ -1,0 +1,18 @@
+{
+  "run_id": "score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+  "policy_sha256": "89fc607301fccf0c4bc151e38500312bafb04f9ea7dec406b2a12130cf4e9938",
+  "collection_wrapper": {
+    "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/retention-recovery-collection/sha256-63649dfcc1b4abba3f929ba841a894d73198ebca7dda2a6d1570959347544e8c/collection_wrapper.py",
+    "sha256": "63649dfcc1b4abba3f929ba841a894d73198ebca7dda2a6d1570959347544e8c"
+  },
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "terminal_collector_sha256": "7289b7abefd9c47fca5da37e7c7df6cd6d9d2ea331a370b9bcdde362cdeed29a",
+  "canonical_output_sha256": {
+    "run.json": "6dd11656ef384ef368c66b023b58b94c67b9b90f9e3781554cd44e67350aa878",
+    "endpoint.json": "16525fc288d36d6ad76e263924bf62ea1792dd686f9a49fa064fafb66aa6c1ad",
+    "ages.json": "9dd08845edcc26c6327469a0e457d55b14154761bbcdc71572034aa0904c7432",
+    "training_records.json": "6e3fc1a85bb1c5b3ea6b2576250a81ea8535c99aa597d8e8ad649a6b8306d0f9",
+    "source_metrics.json.gz": "dafc20b73fb0dd9acddf0c3d55b99cd1478e9daf14acb00e97a09c2c921924eb"
+  },
+  "execution": "Pinned marinskyrl5f53efd package; collection wrapper with explicit operational policy validation. TIS uses unchanged native endpoint and training auditors; SC uses the frozen export auditor callback and every other collector gate unchanged."
+}

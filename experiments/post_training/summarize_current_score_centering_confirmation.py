@@ -160,10 +160,10 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
     completions = [
         {
             **{key: run[key] for key in ("arm", "seed", "run_id", "reserved_h100_task_hours")},
-            "operational_completion": run["operational_completion"],
+            **{key: run[key] for key in ("operational_completion", "retention_recovery") if key in run},
         }
         for run in runs
-        if "operational_completion" in run
+        if "operational_completion" in run or "retention_recovery" in run
     ]
     for arm in sorted({run["arm"] for run in runs}):
         selected = [run for run in runs if run["arm"] == arm]
@@ -176,6 +176,12 @@ def summarize_confirmation(runs: list[dict], protocol: dict, base: Path, costs: 
                 "successful_runs": len(selected),
                 "scientifically_completed_runs_with_worker_failures": sum(
                     "operational_completion" in run for run in selected
+                ),
+                "scientifically_completed_runs_with_retention_failures": sum(
+                    "retention_recovery" in run for run in selected
+                ),
+                "completed_runs_missing_baseline_native_transport": sum(
+                    run.get("complete_native_evaluation_transport_evidence") is False for run in selected
                 ),
                 "excluded_failed_attempts": len(failed),
                 "successful_reserved_h100_task_hours": success_hours,

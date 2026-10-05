@@ -1,0 +1,51 @@
+{
+  "status": "frozen",
+  "frozen_at_utc": "2026-10-05T14:23:29.650655+00:00",
+  "base_protocol_path": "results/score_centering_current_confirmation_protocol_r2_gemmretry1.json",
+  "base_protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
+  "run_id": "score-centering-current-snowball-older-sc32-s107-20261005-pause300",
+  "configuration_sha256": "5435df7f33986f5e5da558654898403ef6ff22e8f89cb12526c5723cb1158356",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "export_audit_code": "audit_current_score_centering_evaluation_export_recovery.py",
+  "export_audit_code_sha256": "15a4b29c512fe3d1644c66e3b6b4ffc1f0e036f2f08394c12fae650d0c6c5af6",
+  "original_source_snapshot": {
+    "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/source_snapshot.json",
+    "sha256": "28708a84ed42226a9b4c486b99812ffbc74973feee6fa34403a64059a766bea5",
+    "bytes": 46159
+  },
+  "export_quality_proof_sha256": "39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203",
+  "export_quality_proof_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/inputs/39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/export_quality_proof.json",
+  "evidence": {
+    "derived_endpoint_preflight.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/inputs/abf705884c3c2239f4f92db4cc466610b4815ea2674e70289b2070fc5e86b708/derived_endpoint_preflight.json",
+      "sha256": "abf705884c3c2239f4f92db4cc466610b4815ea2674e70289b2070fc5e86b708",
+      "bytes": 38534
+    },
+    "export_auditor.py": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/inputs/15a4b29c512fe3d1644c66e3b6b4ffc1f0e036f2f08394c12fae650d0c6c5af6/export_auditor.py",
+      "sha256": "15a4b29c512fe3d1644c66e3b6b4ffc1f0e036f2f08394c12fae650d0c6c5af6",
+      "bytes": 11194
+    },
+    "original_collector_failure.log": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/inputs/28681d9aabda569e7976aa058326aed6e4893509b151f92927ae4695ddc13f7b/original_collector_failure.log",
+      "sha256": "28681d9aabda569e7976aa058326aed6e4893509b151f92927ae4695ddc13f7b",
+      "bytes": 930
+    },
+    "task_allocation.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-sc32-s107-20261005-pause300/evaluation-export-recovery/sources/sha256-39751674a8e077015b5b3110065c1e6ca24ea5b6f8785f55e501b61c5be97203/inputs/0dce332324fc77aa61a0c25845ed4f39aee096d923fd559568db6e2d2986b745/task_allocation.json",
+      "sha256": "0dce332324fc77aa61a0c25845ed4f39aee096d923fd559568db6e2d2986b745",
+      "bytes": 2373
+    }
+  },
+  "native_evaluation_record_count": 11222,
+  "original_export_record_count": 11990,
+  "baseline_quality_records_from_original_exports": 768,
+  "missing_raw_response_token_id_records": 768,
+  "complete_native_evaluation_transport_evidence": false,
+  "action": "Use original same-run JSONL exports only for the missing baseline quality fields. Run the unchanged collector with an explicit endpoint-audit callback for this one case; all other collector gates remain unchanged. Preserve its original missing-member failure and mark incomplete native evaluation transport evidence. Do not create native records or response token IDs.",
+  "failure": "Native retention publisher exceeded its 120-second storage deadline at 2026-10-05 12:05:09.876 UTC. First-pass baseline ordinals256 through1023 were absent. Underlying storage delay is not diagnosed.",
+  "qualification": "All11990 original export rows match the frozen unique rendered prompt texts and environment grading rules. All11222 available native records match decoded answers, native outcomes, stop reasons, error flags and response lengths. Export token reward arrays preserve response lengths. The composed quality summary agrees with the unchanged frozen endpoint auditor on all eight post-training passes. The native training auditor passes all20480 consumed responses and40steps. Final endpoint40 retains full native transport evidence.",
+  "limitation": "Raw response token IDs and loss masks for768 first-pass baseline evaluation responses remain unavailable. Exact native record recovery is not claimed. Quality membership uses unique frozen rendered prompt texts for these records; lengths use original token reward arrays. Preserve this limitation in the study and final scientific review.",
+  "research_invariants": "Identical original generation and native grading; no fresh evaluation, baseline-pass replacement, changed membership, outcome predicate, seeds, horizon, source, configuration or fixed51-run design. Full-design analysis stays gated. Recovery is based on source completeness and control agreement, not quality values.",
+  "cost_policy": "Count original five task allocations; no GPU repeat or new generation. Report this native publication failure separately in operational reliability."
+}

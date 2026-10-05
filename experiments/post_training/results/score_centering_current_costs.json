@@ -1,7 +1,7 @@
 {
   "prior_rounds_reserved_h100_task_hours": 1072.548303,
-  "current_completed_reserved_h100_task_hours": 2183.7682475,
-  "accounted_completed_attempts": 56,
+  "current_completed_reserved_h100_task_hours": 2381.942900833333,
+  "accounted_completed_attempts": 59,
   "cost_basis": "Controller recorded reservation/task time, including initialization, qualification, evaluation, checkpointing, invalid attempts, failures and teardown. Restore PodDeleted uses actual final attempt end rather than unallocated requeue time. Active jobs excluded until terminal; no historical/current outcome pooling.",
   "attempts": [
     {
@@ -341,6 +341,26 @@
       "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s107-20261005-pause300",
       "reserved_h100_task_hours": 85.27305777777778,
       "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-incumbent-s108-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s108-20261005-pause300",
+      "reserved_h100_task_hours": 50.729526666666665,
+      "state": "succeeded"
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s107-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "reserved_h100_task_hours": 77.39322,
+      "state": "controller_succeeded_retention_recovery",
+      "operational_evidence": "score_centering_current_confirmation_operations/score-centering-current-snowball-older-tis32-s107-20261005-pause300/task_allocation.json"
+    },
+    {
+      "result": "score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s107-20261005-pause300/run.json",
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s107-20261005-pause300",
+      "reserved_h100_task_hours": 70.05190666666667,
+      "state": "controller_succeeded_retention_recovery",
+      "operational_evidence": "score_centering_current_confirmation_operations/score-centering-current-snowball-older-sc32-s107-20261005-pause300/task_allocation.json"
     }
   ]
 }

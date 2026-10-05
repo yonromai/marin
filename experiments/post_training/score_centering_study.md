@@ -538,8 +538,9 @@ age 1.56007; 3,477 of 20,480 responses crossed a publication boundary.
 The remaining seed-103 runs passed their full audits: older TIS32 cost
 58.6243978 hours, SC32 cost 65.5516178, and TIS0 cost 57.0827289. Their mean
 actual consumed optimizer ages were 1.75481, 1.76979 and 1.60446 respectively,
-with maximum age two. Twenty-nine full terminal audits are retained, including
-six complete quartets and all three capture-cost companions.
+with maximum age two. Thirty-two terminal runs are collected, including
+seven complete quartets and all three capture-cost companions. The SC
+seed-107 baseline uses original export grading evidence, as described below.
 These are progress and exposure checks;
 final quality analysis remains gated on all fifty-one runs. Operational checks
 incidentally exposed some secondary metrics and incumbent seed 106's baseline
@@ -562,8 +563,52 @@ controller wait before manual completion would have inflated the frozen
 collector's figure to 86.8186422 hours; that original result is also preserved.
 The primary endpoint, analysis, configurations and runtime source are unchanged.
 
-Completed new costs are **2183.7682475** hours across 56 attempts, separate
-from historical costs of 1,072.548303 hours. Complete seed-101 through seed-106
+Older-rollout TIS32 and SC32 seed 107 each finished forty applied updates.
+These are the TIS control and score-centering arm with 32 captured probability
+candidates per token. Their trajectory publishers reported storage operations
+exceeding the 120-second limit at 12:04:40 and 12:05:09 UTC respectively on
+October 5. Failed publication discards queued records; both run archives had
+gaps. The cause of the storage delay is unknown. Campaign admissions were
+paused for the audits while active training continued.
+
+The [TIS run](results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-tis32-s107-20261005-pause300/run.json)
+lacked archive records for 908 responses consumed by training. Its original
+stored rollout groups retained every response token, loss mask, probability,
+grading field and provenance field. The frozen serializer reproduced all
+20,596 available native records byte for byte. Four additional archives
+restored the missing 908 records under a
+[frozen recovery policy](results/score_centering_current_confirmation_operations/score-centering-current-snowball-older-tis32-s107-20261005-pause300/policy.json).
+All 498 original archives and the publisher's original ledger remained
+unchanged. The unchanged terminal collector then passed the training,
+evaluation, optimizer and step-40 checkpoint gates.
+
+The [SC run](results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s107-20261005-pause300/run.json)
+lacked 768 evaluation records from the first baseline pass before training.
+Its original per-dataset JSONL exports contained all 11,990 evaluation
+responses. Decoded answers, native outcomes, stops, error flags and response
+lengths matched all 11,222 available native records. Under a separate
+[frozen export recovery policy](results/score_centering_current_confirmation_operations/score-centering-current-snowball-older-sc32-s107-20261005-pause300/policy.json),
+the missing baseline entries in the quality summary use the original exported
+grading fields and response lengths from the original token reward arrays.
+They retain the membership and completion rule fixed before the campaign:
+a normal stop, no error, and positive native verifier outcome for a completed
+correct answer. Every post-training evaluation pass retains complete native
+token evidence, and its quality summary agrees with the unchanged frozen
+auditor. Training, optimizer and final checkpoint gates also passed. Raw
+response token IDs and loss masks remain unavailable for those 768 baseline
+responses; exact native recovery is not claimed.
+
+The recovery artifacts preserve the original failure logs, ledgers and
+immutable source snapshots. They add no training or evaluation generation,
+replace no baseline pass, and leave the primary step-40 endpoint unchanged.
+The original allocated GPU time, including startup, evaluation, training and
+cleanup, was 77.39322 and 70.0519067 H100 task-hours respectively. Both
+publication failures remain separate operational reliability events. With
+both cases reconciled, admissions resumed under the same four-job and
+80-spare-H100 limits.
+
+Completed new costs are **2381.9429008** hours across 59 attempts, separate
+from historical costs of 1,072.548303 hours. Complete seed-101 through seed-107
 quartets are retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
 also records the controlled repeat's first two applied updates and the capacity
 guards. The planned twelve matched seeds and three capture companions remain

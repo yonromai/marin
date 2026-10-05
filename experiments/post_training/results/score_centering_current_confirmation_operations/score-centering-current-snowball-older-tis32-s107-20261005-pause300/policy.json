@@ -1,0 +1,92 @@
+{
+  "status": "frozen",
+  "frozen_at_utc": "2026-10-05T14:14:52.278038+00:00",
+  "base_protocol_path": "results/score_centering_current_confirmation_protocol_r2_gemmretry1.json",
+  "base_protocol_sha256": "b599f0903e461458c99c0d715718835f9c22eaac2a173e5b6b0bca173f2c173e",
+  "run_id": "score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+  "configuration_sha256": "80998fe1bfb4a1a9394e5486cd5257fbff55769e15e77d03f2fe473de8fb873a",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "rebuild_code": "rebuild_current_score_centering_training_retention.py",
+  "rebuild_code_sha256": "2e19abd6b085bd3a216e897289744ecf99bdebfb99d738c79bd5a25254cea7f2",
+  "original_source_snapshot": {
+    "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/retention-recovery-sources/sha256-a1b5f67619194259dc7170b2791912c03ae92dd136fc50952c6b6e6ae75091ac/source_snapshot.json",
+    "sha256": "b30cfcb3bfc897846ebb6cef8784805a6be70a8ec8e1632d974f1f9edcec3a97",
+    "bytes": 3204392,
+    "groups": 5376,
+    "source_payload_bytes": 4919071095
+  },
+  "evidence": {
+    "original_audit.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-0ee9b60b0b1ce0452edd16ec459913820124b765026992d6c604119d0e984fa0/original_audit.json",
+      "sha256": "0ee9b60b0b1ce0452edd16ec459913820124b765026992d6c604119d0e984fa0",
+      "bytes": 203806
+    },
+    "recovery.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-91cac97cc6ec9e1de2cba0b1e4ebe572a5e20b3b22fd0eb93cb4b90c2313557c/recovery.json",
+      "sha256": "91cac97cc6ec9e1de2cba0b1e4ebe572a5e20b3b22fd0eb93cb4b90c2313557c",
+      "bytes": 348710
+    },
+    "training_preflight.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-b9cea8467bbe3767fc21c0fb442757fda84fd6f8d4834622e9d8ed05600619a1/training_preflight.json",
+      "sha256": "b9cea8467bbe3767fc21c0fb442757fda84fd6f8d4834622e9d8ed05600619a1",
+      "bytes": 278453
+    },
+    "rebuild_final.log": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-07e5d3f35705462cb468fd9d9f93ea29fde6bfd22b13977438571f2e724a570b/rebuild_final.log",
+      "sha256": "07e5d3f35705462cb468fd9d9f93ea29fde6bfd22b13977438571f2e724a570b",
+      "bytes": 577
+    },
+    "rebuild_code.py": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-2e19abd6b085bd3a216e897289744ecf99bdebfb99d738c79bd5a25254cea7f2/rebuild_code.py",
+      "sha256": "2e19abd6b085bd3a216e897289744ecf99bdebfb99d738c79bd5a25254cea7f2",
+      "bytes": 8479
+    },
+    "original_retention_ledger.json": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-3c07e8e8f0cf9dc55fc92b6796b9921ba32d488bb20129c0e3803970ef96833a/original_retention_ledger.json",
+      "sha256": "3c07e8e8f0cf9dc55fc92b6796b9921ba32d488bb20129c0e3803970ef96833a",
+      "bytes": 13310996,
+      "original_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/attempts/trajectories/_retention_ledger.json"
+    },
+    "resolved_launch.yaml": {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/retention-recovery/evidence/sha256-cac2d0cb83f88bafa5f2a04ea18643e496daf1239b2f5ac994da8f41ae407d77/resolved_launch.yaml",
+      "sha256": "cac2d0cb83f88bafa5f2a04ea18643e496daf1239b2f5ac994da8f41ae407d77",
+      "bytes": 19730,
+      "original_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/resolved-launch.yaml"
+    }
+  },
+  "original_native_archive_objects": 498,
+  "native_records_reproduced_byte_for_byte": 20596,
+  "recovered_consumed_records": 908,
+  "original_source_groups_for_recovery": 227,
+  "new_archives": [
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000025/8ff5e1e31c0b12ad562830d48cf27382b78be621e71b34451c5d46496909bfaa.zip",
+      "sha256": "8ff5e1e31c0b12ad562830d48cf27382b78be621e71b34451c5d46496909bfaa",
+      "bytes": 49588,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000025/8ff5e1e31c0b12ad562830d48cf27382b78be621e71b34451c5d46496909bfaa.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000026/98391a1ed7cc7a84a8d8912b1dbe7b113f3bc93b67648bac011af078989ac1f8.zip",
+      "sha256": "98391a1ed7cc7a84a8d8912b1dbe7b113f3bc93b67648bac011af078989ac1f8",
+      "bytes": 981554,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000026/98391a1ed7cc7a84a8d8912b1dbe7b113f3bc93b67648bac011af078989ac1f8.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000027/217e4dcb1dd6c9667a57ddc20f8346899a1ef16ee83420b7eb5ab89d319181e5.zip",
+      "sha256": "217e4dcb1dd6c9667a57ddc20f8346899a1ef16ee83420b7eb5ab89d319181e5",
+      "bytes": 1710823,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000027/217e4dcb1dd6c9667a57ddc20f8346899a1ef16ee83420b7eb5ab89d319181e5.zip"
+    },
+    {
+      "relative_path": "schema_v6/archives/phase=train/step=00000028/2c10dcf66b0ef0352d43132b149c2b7a092ab7f9a3d3cfd9b65981d447c7ef57.zip",
+      "sha256": "2c10dcf66b0ef0352d43132b149c2b7a092ab7f9a3d3cfd9b65981d447c7ef57",
+      "bytes": 2263874,
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-older-tis32-s107-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=train/step=00000028/2c10dcf66b0ef0352d43132b149c2b7a092ab7f9a3d3cfd9b65981d447c7ef57.zip"
+    }
+  ],
+  "action": "Add only these four content-addressed archives to the original training archive prefix, then run the unchanged frozen collector. Verify every original archive and the original retention ledger remain byte identical. Keep reconstruction provenance separate from native records.",
+  "failure": "Native retention publisher exceeded its 120-second storage deadline at 2026-10-05 12:04:40.998 UTC. Shutdown completed but 908 consumed records were absent. The underlying storage delay is not diagnosed.",
+  "qualification": "Original stored RolloutGroups supply all token IDs, masks, probabilities, grading and provenance. The frozen serializer reproduces all 20596 native records byte for byte. The unchanged training auditor passes the local original-plus-recovery archive: 20480 consumed responses, 40 steps and all frozen prompt geometries.",
+  "cost_policy": "No GPU repeat or new generation. Count the original five task allocations using their actual timestamps; preserve the publication failure in operational reliability.",
+  "research_invariants": "No change to frozen membership, primary outcome predicate, endpoint analysis, seeds, horizon, configuration, source or fixed 51-run design. Full-design analysis stays gated. Recovery is chosen from missing-record evidence; no quality-based selection."
+}

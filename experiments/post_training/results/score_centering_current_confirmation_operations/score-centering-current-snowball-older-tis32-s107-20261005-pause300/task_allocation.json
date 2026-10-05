@@ -1,0 +1,63 @@
+{
+  "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+  "tasks": [
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300/0",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791197937295,
+      "finished_at_ms": 1791204896276,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300/1",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791197937295,
+      "finished_at_ms": 1791204901650,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300/2",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791197937295,
+      "finished_at_ms": 1791204901650,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300/3",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791197937295,
+      "finished_at_ms": 1791204906924,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-older-tis32-s107-20261005-pause300/4",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791197937295,
+      "finished_at_ms": 1791204906924,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    }
+  ],
+  "reserved_h100_task_hours": 77.39322,
+  "source": "Controller SQL task allocation timestamps, saved at 14:10 UTC on 2026-10-05.",
+  "cost_policy": "Original five tasks; no retry or new generation. Retention failure is preserved separately."
+}
