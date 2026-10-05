@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "protocol": "score_centering_current_confirmation_protocol_r2_pause300.json",
+  "protocol_sha256": "14f9fbe78474a72e4be44a7949885d258fb0613a53b695f56a9aab96234a134f",
+  "scope": "Five original runs fully audited; four new watchdog300 jobs active at this snapshot, first-step SC101 qualification passed. Fixed51design, no quality conclusions. Original failedSC101 remains separate and counted in costs.",
+  "completed_original_registry": "score_centering_current_confirmation_campaign_r2.json",
+  "planned_matched_and_capture_runs": 51,
+  "successfully_audited_runs": 5,
+  "effective_priority_band": 2,
+  "active_job_cap_during_shared_benchmark_pair": 4,
+  "minimum_spare_h100_after_each_submission": 80,
+  "first_retry_gpu_check": {
+    "run_id": "score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+    "observed_step": 1,
+    "timestamp_utc": "2026-10-05 02:51:30.630+00:00",
+    "raw_grad_norm": 0.18035294115543365,
+    "optimizer_updates_applied": 1
+  },
+  "runs": [
+    {
+      "arm": "older_tis32",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_tis32_s102.yaml",
+      "sha256": "af4fba61a50b8ccff46fffd46322dc1df704e2842257f0bf5be2885292b4150b",
+      "driver_cache_key": "snowball-older-tis32-s102-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "d98f93034e49bc338514dc7979d76cf17768bb392a3f4c86795d043e01876b9d",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_tis32_s102.yaml",
+      "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169112585,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169112585,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169112585,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169112585,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-tis32-s102-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169112585,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "older_sc32",
+      "seed": 101,
+      "run_id": "score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_sc32_s101.yaml",
+      "sha256": "91353947c46876f3a8168105eb907068379b8f5fea5f7e82924d8fa5dc02c7a1",
+      "driver_cache_key": "snowball-older-sc32-s101-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "97df9020dcde4a548fc04e2eaa6e085083f6afb2060d805021333320baed29fa",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_sc32_s101.yaml",
+      "supersedes_failed_run_id": "score-centering-current-snowball-older-sc32-s101-20261004-r2-r2",
+      "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791167226319,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791167226319,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791167226319,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791167226319,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-sc32-s101-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791167226319,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "fresh_tis32",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/fresh_tis32_s102.yaml",
+      "sha256": "778f35e212a23b86dc10080d15d65e7c51823135ac0a1a7d1e87ca9bc0314082",
+      "driver_cache_key": "snowball-fresh-tis32-s102-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "30aba9cff7eeb19d3380c7b4e167ed80a0e9723e4c3c6b68b803bfcd1cf59ab4",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/fresh_tis32_s102.yaml",
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791168975028,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791168975028,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791168975028,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791168975028,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s102-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791168975028,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    },
+    {
+      "arm": "older_incumbent",
+      "seed": 102,
+      "run_id": "score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "path": "configs/score_centering/current_confirmation_pause300/older_incumbent_s102.yaml",
+      "sha256": "7c132469bac4884bc5304e6a79f7c7f7b959330a525e8afaa6a342a70ed756be",
+      "driver_cache_key": "snowball-older-incumbent-s102-20261005-pause300",
+      "watchdog_timeout_seconds": 300,
+      "prior_configuration_sha256": "5c9ce321a55e15408c55cf8b1dd34b56b59151ab8c545535e5e3aa163491582a",
+      "prior_configuration_path": "configs/score_centering/current_confirmation_r2/older_incumbent_s102.yaml",
+      "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+      "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+      "state": "active",
+      "tasks": [
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/0",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169044288,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/1",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169044288,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/2",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169044288,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/3",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169044288,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        },
+        {
+          "job_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300",
+          "task_id": "/romain/score-centering-current-snowball-older-incumbent-s102-20261005-pause300/4",
+          "state": 3,
+          "current_attempt_id": 0,
+          "started_at_ms": 1791169044288,
+          "finished_at_ms": null,
+          "priority_band": 2,
+          "job_state": 3,
+          "job_priority": 2
+        }
+      ],
+      "scientific_work_complete": false
+    }
+  ]
+}
