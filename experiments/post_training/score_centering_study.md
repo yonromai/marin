@@ -502,11 +502,20 @@ hardware cause. Async execution can change consumed batches, so this is not an
 exact tensor replay. Endpoint scores did not select the repeat, and the failed
 attempt remains in costs and reliability results.
 
-Completed new costs are **657.5409897** hours across 32 attempts, separate
-from historical costs of 1,072.548303 hours. The first SC run that passed the
-full evidence gates has seed 102; its matched controls remain pending. These
-five audited runs do not yet support a paired centering contrast.
-The twelve matched seeds and three capture companions remain to be completed.
+The [SC seed-101 retry](results/score_centering_current_confirmation_runs/score-centering-current-snowball-older-sc32-s101-20261005-pause300/run.json)
+then passed the full terminal audit: forty applied updates, 20,480 consumed
+responses, 11,990 evaluation records and the full step-40 checkpoint. Its
+16,158,804 loss tokens had mean actual optimizer age 1.7620; median and 95th
+percentile were two updates. Of the consumed responses, 1,901 crossed a policy
+publication boundary. The successful attempt cost 63.5797533 H100 task-hours.
+The original failed attempt's 55.0786111 hours remain counted separately.
+
+Completed new costs are **721.1207431** hours across 33 attempts, separate
+from historical costs of 1,072.548303 hours. One complete seed-101 quartet is
+now retained. The [current campaign registry](results/score_centering_current_confirmation_campaign_gemmretry1.json)
+also records the controlled repeat's first two applied updates and the capacity
+guards. The planned twelve matched seeds and three capture companions remain
+to be completed before the frozen paired analysis.
 There is no current confirmation recommendation yet.
 
 The affected safe Marin tests passed 2,380 cases, with nine local failures.
