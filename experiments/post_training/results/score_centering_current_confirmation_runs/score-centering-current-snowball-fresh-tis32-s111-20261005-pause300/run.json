@@ -1,0 +1,1085 @@
+{
+  "arm": "fresh_tis32",
+  "seed": 111,
+  "run_id": "score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+  "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+  "source_commit": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+  "configuration_sha256": "2602eba723da23de62762d2ea1a0ebdf229453d487dfb6cd9fcbd9dc62f63c3a",
+  "state": "succeeded",
+  "scientific_work_complete": true,
+  "completed_training_steps": 40,
+  "complete_consumed_training_evidence": true,
+  "optimizer_updates_applied": 40,
+  "allocated_wall_seconds": 8708.842,
+  "reserved_h100_task_hours": 96.73644,
+  "tasks": [
+    {
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/0",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791219994946,
+      "finished_at_ms": 1791228697382,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/1",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791219994946,
+      "finished_at_ms": 1791228697382,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/2",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791219994946,
+      "finished_at_ms": 1791228703788,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/3",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791219994946,
+      "finished_at_ms": 1791228703788,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    },
+    {
+      "job_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+      "task_id": "/romain/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/4",
+      "state": 4,
+      "current_attempt_id": 0,
+      "started_at_ms": 1791219994946,
+      "finished_at_ms": 1791228703788,
+      "priority_band": 2,
+      "job_state": 4,
+      "job_priority": 2
+    }
+  ],
+  "endpoint_summary": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/endpoint.json",
+  "endpoint": {
+    "run_id": "score-centering-current-snowball-fresh-tis32-s111-20261005-pause300",
+    "membership_sha256": "e328956cfe03f112394cef1a40c636ca6f923d5ac902fcd05590320956741a01",
+    "primary_membership_sha256": "27a3d70691c571ecdf9af470a14ac188ab54732e7f84ab10e8b40bcbf4ca1221",
+    "evaluations": [
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "primary",
+        "members": 756,
+        "completed": 698,
+        "completed_correct": 213,
+        "completed_correct_fraction": 0.28174603174603174,
+        "response_tokens_mean": 835.6468253968254,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 93,
+        "completed_correct": 7,
+        "completed_correct_fraction": 0.0546875,
+        "response_tokens_mean": 1630.078125,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 255,
+        "completed_correct": 86,
+        "completed_correct_fraction": 0.3359375,
+        "response_tokens_mean": 482.8125,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 443,
+        "completed_correct": 127,
+        "completed_correct_fraction": 0.254,
+        "response_tokens_mean": 1016.298,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 58,
+        "completed_correct": 1,
+        "completed_correct_fraction": 0.013333333333333334,
+        "response_tokens_mean": 1449.88,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 124,
+        "completed_correct": 104,
+        "completed_correct_fraction": 0.8125,
+        "response_tokens_mean": 293.2578125,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": null,
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 92,
+        "completed_correct": 16,
+        "completed_correct_fraction": 0.14285714285714285,
+        "response_tokens_mean": 1328.455357142857,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "primary",
+        "members": 756,
+        "completed": 691,
+        "completed_correct": 217,
+        "completed_correct_fraction": 0.28703703703703703,
+        "response_tokens_mean": 888.4404761904761,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 88,
+        "completed_correct": 6,
+        "completed_correct_fraction": 0.046875,
+        "response_tokens_mean": 1778.609375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 247,
+        "completed_correct": 87,
+        "completed_correct_fraction": 0.33984375,
+        "response_tokens_mean": 588.93359375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 444,
+        "completed_correct": 130,
+        "completed_correct_fraction": 0.26,
+        "response_tokens_mean": 1041.788,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 63,
+        "completed_correct": 2,
+        "completed_correct_fraction": 0.02666666666666667,
+        "response_tokens_mean": 1213.5866666666666,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 127,
+        "completed_correct": 108,
+        "completed_correct_fraction": 0.84375,
+        "response_tokens_mean": 304.484375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 0,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 90,
+        "completed_correct": 18,
+        "completed_correct_fraction": 0.16071428571428573,
+        "response_tokens_mean": 1342.5089285714287,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "primary",
+        "members": 756,
+        "completed": 729,
+        "completed_correct": 397,
+        "completed_correct_fraction": 0.5251322751322751,
+        "response_tokens_mean": 475.55687830687833,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 106,
+        "completed_correct": 5,
+        "completed_correct_fraction": 0.0390625,
+        "response_tokens_mean": 1269.1875,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 255,
+        "completed_correct": 172,
+        "completed_correct_fraction": 0.671875,
+        "response_tokens_mean": 170.46875,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 474,
+        "completed_correct": 225,
+        "completed_correct_fraction": 0.45,
+        "response_tokens_mean": 631.762,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 68,
+        "completed_correct": 1,
+        "completed_correct_fraction": 0.013333333333333334,
+        "response_tokens_mean": 982.8533333333334,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 115,
+        "completed_correct_fraction": 0.8984375,
+        "response_tokens_mean": 65.21875,
+        "response_tokens_max": 1705
+      },
+      {
+        "step": 10,
+        "evaluation_name": null,
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 109,
+        "completed_correct": 32,
+        "completed_correct_fraction": 0.2857142857142857,
+        "response_tokens_mean": 665.9821428571429,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "primary",
+        "members": 756,
+        "completed": 726,
+        "completed_correct": 414,
+        "completed_correct_fraction": 0.5476190476190477,
+        "response_tokens_mean": 487.33862433862436,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 108,
+        "completed_correct": 6,
+        "completed_correct_fraction": 0.046875,
+        "response_tokens_mean": 1106.90625,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 256,
+        "completed_correct": 182,
+        "completed_correct_fraction": 0.7109375,
+        "response_tokens_mean": 191.72265625,
+        "response_tokens_max": 3621
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 470,
+        "completed_correct": 232,
+        "completed_correct_fraction": 0.464,
+        "response_tokens_mean": 638.694,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 67,
+        "completed_correct": 3,
+        "completed_correct_fraction": 0.04,
+        "response_tokens_mean": 1085.8933333333334,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 114,
+        "completed_correct_fraction": 0.890625,
+        "response_tokens_mean": 50.0078125,
+        "response_tokens_max": 501
+      },
+      {
+        "step": 10,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 108,
+        "completed_correct": 27,
+        "completed_correct_fraction": 0.24107142857142858,
+        "response_tokens_mean": 727.4375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "primary",
+        "members": 756,
+        "completed": 715,
+        "completed_correct": 477,
+        "completed_correct_fraction": 0.6309523809523809,
+        "response_tokens_mean": 579.9484126984127,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 91,
+        "completed_correct": 8,
+        "completed_correct_fraction": 0.0625,
+        "response_tokens_mean": 1621.421875,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 253,
+        "completed_correct": 199,
+        "completed_correct_fraction": 0.77734375,
+        "response_tokens_mean": 196.53515625,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 462,
+        "completed_correct": 278,
+        "completed_correct_fraction": 0.556,
+        "response_tokens_mean": 776.256,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 59,
+        "completed_correct": 2,
+        "completed_correct_fraction": 0.02666666666666667,
+        "response_tokens_mean": 1572.96,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 123,
+        "completed_correct_fraction": 0.9609375,
+        "response_tokens_mean": 33.375,
+        "response_tokens_max": 103
+      },
+      {
+        "step": 20,
+        "evaluation_name": null,
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 99,
+        "completed_correct": 31,
+        "completed_correct_fraction": 0.2767857142857143,
+        "response_tokens_mean": 930.8214285714286,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "primary",
+        "members": 756,
+        "completed": 719,
+        "completed_correct": 478,
+        "completed_correct_fraction": 0.6322751322751323,
+        "response_tokens_mean": 550.6732804232804,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 95,
+        "completed_correct": 14,
+        "completed_correct_fraction": 0.109375,
+        "response_tokens_mean": 1512.4140625,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 256,
+        "completed_correct": 212,
+        "completed_correct_fraction": 0.828125,
+        "response_tokens_mean": 164.52734375,
+        "response_tokens_max": 3112
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 463,
+        "completed_correct": 266,
+        "completed_correct_fraction": 0.532,
+        "response_tokens_mean": 748.38,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 63,
+        "completed_correct": 2,
+        "completed_correct_fraction": 0.02666666666666667,
+        "response_tokens_mean": 1468.72,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 125,
+        "completed_correct_fraction": 0.9765625,
+        "response_tokens_mean": 37.6484375,
+        "response_tokens_max": 546
+      },
+      {
+        "step": 20,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 104,
+        "completed_correct": 37,
+        "completed_correct_fraction": 0.33035714285714285,
+        "response_tokens_mean": 896.1071428571429,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "primary",
+        "members": 756,
+        "completed": 698,
+        "completed_correct": 521,
+        "completed_correct_fraction": 0.6891534391534392,
+        "response_tokens_mean": 724.7751322751323,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 81,
+        "completed_correct": 13,
+        "completed_correct_fraction": 0.1015625,
+        "response_tokens_mean": 2005.34375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 253,
+        "completed_correct": 217,
+        "completed_correct_fraction": 0.84765625,
+        "response_tokens_mean": 219.015625,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 445,
+        "completed_correct": 304,
+        "completed_correct_fraction": 0.608,
+        "response_tokens_mean": 983.724,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 41,
+        "completed_correct": 4,
+        "completed_correct_fraction": 0.05333333333333334,
+        "response_tokens_mean": 2573.72,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 125,
+        "completed_correct_fraction": 0.9765625,
+        "response_tokens_mean": 39.4375,
+        "response_tokens_max": 564
+      },
+      {
+        "step": 30,
+        "evaluation_name": null,
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 95,
+        "completed_correct": 37,
+        "completed_correct_fraction": 0.33035714285714285,
+        "response_tokens_mean": 1153.6785714285713,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "primary",
+        "members": 756,
+        "completed": 705,
+        "completed_correct": 512,
+        "completed_correct_fraction": 0.6772486772486772,
+        "response_tokens_mean": 681.3716931216932,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 79,
+        "completed_correct": 9,
+        "completed_correct_fraction": 0.0703125,
+        "response_tokens_mean": 2089.6640625,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 253,
+        "completed_correct": 216,
+        "completed_correct_fraction": 0.84375,
+        "response_tokens_mean": 203.77734375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 452,
+        "completed_correct": 296,
+        "completed_correct_fraction": 0.592,
+        "response_tokens_mean": 925.9,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 51,
+        "completed_correct": 4,
+        "completed_correct_fraction": 0.05333333333333334,
+        "response_tokens_mean": 2149.213333333333,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 126,
+        "completed_correct_fraction": 0.984375,
+        "response_tokens_mean": 35.6796875,
+        "response_tokens_max": 128
+      },
+      {
+        "step": 30,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 96,
+        "completed_correct": 37,
+        "completed_correct_fraction": 0.33035714285714285,
+        "response_tokens_mean": 1076.419642857143,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "primary",
+        "members": 756,
+        "completed": 687,
+        "completed_correct": 533,
+        "completed_correct_fraction": 0.705026455026455,
+        "response_tokens_mean": 797.047619047619,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 70,
+        "completed_correct": 11,
+        "completed_correct_fraction": 0.0859375,
+        "response_tokens_mean": 2339.328125,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 255,
+        "completed_correct": 220,
+        "completed_correct_fraction": 0.859375,
+        "response_tokens_mean": 202.4609375,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 432,
+        "completed_correct": 313,
+        "completed_correct_fraction": 0.626,
+        "response_tokens_mean": 1101.476,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 37,
+        "completed_correct": 4,
+        "completed_correct_fraction": 0.05333333333333334,
+        "response_tokens_mean": 2813.0266666666666,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 127,
+        "completed_correct_fraction": 0.9921875,
+        "response_tokens_mean": 35.921875,
+        "response_tokens_max": 261
+      },
+      {
+        "step": 40,
+        "evaluation_name": null,
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 91,
+        "completed_correct": 36,
+        "completed_correct_fraction": 0.32142857142857145,
+        "response_tokens_mean": 1430.4017857142858,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "primary",
+        "members": 756,
+        "completed": 688,
+        "completed_correct": 538,
+        "completed_correct_fraction": 0.7116402116402116,
+        "response_tokens_mean": 805.281746031746,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-amc",
+        "members": 128,
+        "completed": 78,
+        "completed_correct": 14,
+        "completed_correct_fraction": 0.109375,
+        "response_tokens_mean": 2066.4296875,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-gsm8k",
+        "members": 256,
+        "completed": 254,
+        "completed_correct": 227,
+        "completed_correct_fraction": 0.88671875,
+        "response_tokens_mean": 247.04296875,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-math500",
+        "members": 500,
+        "completed": 434,
+        "completed_correct": 311,
+        "completed_correct_fraction": 0.622,
+        "response_tokens_mean": 1091.1,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-omni",
+        "members": 75,
+        "completed": 46,
+        "completed_correct": 3,
+        "completed_correct_fraction": 0.04,
+        "response_tokens_mean": 2459.0133333333333,
+        "response_tokens_max": 4096
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-rg-sum",
+        "members": 128,
+        "completed": 128,
+        "completed_correct": 124,
+        "completed_correct_fraction": 0.96875,
+        "response_tokens_mean": 37.7578125,
+        "response_tokens_max": 174
+      },
+      {
+        "step": 40,
+        "evaluation_name": "greedy_repeat",
+        "scope": "val-theoremqa",
+        "members": 112,
+        "completed": 99,
+        "completed_correct": 37,
+        "completed_correct_fraction": 0.33035714285714285,
+        "response_tokens_mean": 1301.3125,
+        "response_tokens_max": 4096
+      }
+    ],
+    "archive": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories",
+    "inputs": [
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/00676bd38792572bf57ae424d19ab026b4467fae8c75a2ed95cde6acb01d1e4f.zip",
+        "sha256": "00676bd38792572bf57ae424d19ab026b4467fae8c75a2ed95cde6acb01d1e4f"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/047dee5d66bf0b4201b886b3f7d335b66b91c809951557114f80874267d70f51.zip",
+        "sha256": "047dee5d66bf0b4201b886b3f7d335b66b91c809951557114f80874267d70f51"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/36b5c66d5aa07261c283356ba663a2947700cf99afd15cc1087e39e37470b9c3.zip",
+        "sha256": "36b5c66d5aa07261c283356ba663a2947700cf99afd15cc1087e39e37470b9c3"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/452db306b769291de68cfc738aca3b6eda19dc4f46c87fef2b59f86e2ec40597.zip",
+        "sha256": "452db306b769291de68cfc738aca3b6eda19dc4f46c87fef2b59f86e2ec40597"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/96db17e0f01ec34df4f70e09c10866e2bef12eb03f89c9e47bca847fa7aaedfb.zip",
+        "sha256": "96db17e0f01ec34df4f70e09c10866e2bef12eb03f89c9e47bca847fa7aaedfb"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/9e6fe9ab349b3d0e9a5e5a217be979c2889b37a76b1a4671ccba29309ed11c92.zip",
+        "sha256": "9e6fe9ab349b3d0e9a5e5a217be979c2889b37a76b1a4671ccba29309ed11c92"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/b65f4c01012ab42fca31d7aff01269e949f95f69263c13b52b5fcc1e4f6b5d5c.zip",
+        "sha256": "b65f4c01012ab42fca31d7aff01269e949f95f69263c13b52b5fcc1e4f6b5d5c"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/bd818f4866af519b8f7c7471c29c7325d14d2ad3cf77eb92ebad095c67c33d85.zip",
+        "sha256": "bd818f4866af519b8f7c7471c29c7325d14d2ad3cf77eb92ebad095c67c33d85"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/ddc7682148e78f7b8784899859ed882b45e1b92392368e39ed0af4e6a64df62f.zip",
+        "sha256": "ddc7682148e78f7b8784899859ed882b45e1b92392368e39ed0af4e6a64df62f"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000000/f999afe365747c1d8a0ecf22556d3064f4ee6b1b9ff44ea5ad64a8e23fc88b75.zip",
+        "sha256": "f999afe365747c1d8a0ecf22556d3064f4ee6b1b9ff44ea5ad64a8e23fc88b75"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/0f9cef1e445b548433228860cfa97fb1807456b23fcb8711f511085655e02b85.zip",
+        "sha256": "0f9cef1e445b548433228860cfa97fb1807456b23fcb8711f511085655e02b85"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/345c9dce636de8d52ac2fd7fc3c93e1c1916864d1338ad6a9a9c2af43ae55046.zip",
+        "sha256": "345c9dce636de8d52ac2fd7fc3c93e1c1916864d1338ad6a9a9c2af43ae55046"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/402de53b929250b41aa04ab59a06f36ad262d629408384faf5f121afb6f7b50e.zip",
+        "sha256": "402de53b929250b41aa04ab59a06f36ad262d629408384faf5f121afb6f7b50e"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/41116fcb45fc0907e707fe917872b425916d50ef792892625265be9a4c8ff91d.zip",
+        "sha256": "41116fcb45fc0907e707fe917872b425916d50ef792892625265be9a4c8ff91d"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/53c5494f9551c579ff4a60416e89bb63da40166dd7b35b42ad02ad2d6ffaf6d9.zip",
+        "sha256": "53c5494f9551c579ff4a60416e89bb63da40166dd7b35b42ad02ad2d6ffaf6d9"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/5b794ee9537014eb88b5f3fe013712a9a890e49c743abcd37887d52a24dc659c.zip",
+        "sha256": "5b794ee9537014eb88b5f3fe013712a9a890e49c743abcd37887d52a24dc659c"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/a14a19876ba6fb3598ee97d2fcc41ba799df761c23d238ed21477d34a0b9f0e3.zip",
+        "sha256": "a14a19876ba6fb3598ee97d2fcc41ba799df761c23d238ed21477d34a0b9f0e3"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/b4ea838e4b98858cdbfb7b28011576949d344a337b74896bd7b5ade3461b8f4b.zip",
+        "sha256": "b4ea838e4b98858cdbfb7b28011576949d344a337b74896bd7b5ade3461b8f4b"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/dcc17fc4db3d6f86553e467ed146a53c0b7b52a5317aed1e4c452d96b2682cbe.zip",
+        "sha256": "dcc17fc4db3d6f86553e467ed146a53c0b7b52a5317aed1e4c452d96b2682cbe"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000010/ed8a34813f962f688bc178a15f3813fb92a77482ed32de9059791e0395747cfb.zip",
+        "sha256": "ed8a34813f962f688bc178a15f3813fb92a77482ed32de9059791e0395747cfb"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/0bc10b9bc44e23b1a5bd76a2dd9f14aa2ecf935cf4254892b3ef944275c4660d.zip",
+        "sha256": "0bc10b9bc44e23b1a5bd76a2dd9f14aa2ecf935cf4254892b3ef944275c4660d"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/188c3458f6cfd6ae5124c766174e87b957235131391a166dd87eadb65726137b.zip",
+        "sha256": "188c3458f6cfd6ae5124c766174e87b957235131391a166dd87eadb65726137b"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/43ecf3f010b8b0d74a8fddffe392d06a171b8a61a3c7134b103723e8564e9b37.zip",
+        "sha256": "43ecf3f010b8b0d74a8fddffe392d06a171b8a61a3c7134b103723e8564e9b37"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/48647b0b9d93612c9cdea9ac7edf0f3fc02f9485f7d4e653a6b821d85bae4ef5.zip",
+        "sha256": "48647b0b9d93612c9cdea9ac7edf0f3fc02f9485f7d4e653a6b821d85bae4ef5"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/4f3d60625be651d543c28c873ef60067be4f7e1bb59ea4acf000dae9becc868d.zip",
+        "sha256": "4f3d60625be651d543c28c873ef60067be4f7e1bb59ea4acf000dae9becc868d"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/50bfdf3b3841cb60bd659a6c28c078c17c9637025ed7eb98e7c833760132b5e6.zip",
+        "sha256": "50bfdf3b3841cb60bd659a6c28c078c17c9637025ed7eb98e7c833760132b5e6"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/5816044a3e209dc7d9603f08e31b98ada36dd800fb70dd5e38e961c1bcd0f448.zip",
+        "sha256": "5816044a3e209dc7d9603f08e31b98ada36dd800fb70dd5e38e961c1bcd0f448"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/772dc233d09bdb9d581f79b6f61aee1b588adac8b50067bf4ed29e64b701050c.zip",
+        "sha256": "772dc233d09bdb9d581f79b6f61aee1b588adac8b50067bf4ed29e64b701050c"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/9418fef882fa4cc9501882e8179e268391a0c2e213019a99353369b50060828f.zip",
+        "sha256": "9418fef882fa4cc9501882e8179e268391a0c2e213019a99353369b50060828f"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000020/99d5e0a9e129d396ae31196a98ffe74c73e321574d8519984aac2f3bb27208d5.zip",
+        "sha256": "99d5e0a9e129d396ae31196a98ffe74c73e321574d8519984aac2f3bb27208d5"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/12e0a2fd80f19445d55f6bbd94f2a1d68d5c3787b19c5b11293f7ad19384c278.zip",
+        "sha256": "12e0a2fd80f19445d55f6bbd94f2a1d68d5c3787b19c5b11293f7ad19384c278"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/17c67be6bd768f571984a8d18d2c6f39cc54d65d9aaff37cacf4b61f3f31576b.zip",
+        "sha256": "17c67be6bd768f571984a8d18d2c6f39cc54d65d9aaff37cacf4b61f3f31576b"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/324cbf98be31904eb64af3d368333ce2251c79171d14f1cd80a44e56af7975cb.zip",
+        "sha256": "324cbf98be31904eb64af3d368333ce2251c79171d14f1cd80a44e56af7975cb"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/5f26aa86409e11646563acbeb798a58455e3ef361f64c7660ce839feb6a6a2c0.zip",
+        "sha256": "5f26aa86409e11646563acbeb798a58455e3ef361f64c7660ce839feb6a6a2c0"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/74559d0e0862614ce41f122c945ede450928abb4b4f79d03dec162ccf9f6c32a.zip",
+        "sha256": "74559d0e0862614ce41f122c945ede450928abb4b4f79d03dec162ccf9f6c32a"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/8162c5d61fbca9f4e98f3ed01751bf3e644694789db7827e725c180f0bbcd472.zip",
+        "sha256": "8162c5d61fbca9f4e98f3ed01751bf3e644694789db7827e725c180f0bbcd472"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/a6dc2aad11763f76223a661d6c9cc213b8249162be33e45760c9996787231361.zip",
+        "sha256": "a6dc2aad11763f76223a661d6c9cc213b8249162be33e45760c9996787231361"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/b3b41871539e1baacdc8640fcdd9cdce1ec2c5849291f5fad8041d0210e11c11.zip",
+        "sha256": "b3b41871539e1baacdc8640fcdd9cdce1ec2c5849291f5fad8041d0210e11c11"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/e1663b83ad0472328f485e995a97af17f708d6778c6b73ef25359e5e46470552.zip",
+        "sha256": "e1663b83ad0472328f485e995a97af17f708d6778c6b73ef25359e5e46470552"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000030/e2de33fc06762d47aa7eae73a764e8d0c907a38d11cbfcd29219ac11ae922a51.zip",
+        "sha256": "e2de33fc06762d47aa7eae73a764e8d0c907a38d11cbfcd29219ac11ae922a51"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/180478c22ee72683a7e1fc5b9e509cee00c5e64d548a1e214198faa14fc66bf5.zip",
+        "sha256": "180478c22ee72683a7e1fc5b9e509cee00c5e64d548a1e214198faa14fc66bf5"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/2497a1b794c138cb65bc9f8fd79f64746e6796dad00ee6107b6a8f6e6b10f17a.zip",
+        "sha256": "2497a1b794c138cb65bc9f8fd79f64746e6796dad00ee6107b6a8f6e6b10f17a"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/30050ab5e77e9618fa1a623cf87a4c1cd74c3c9cefb2cc54625da4d97b8d95a2.zip",
+        "sha256": "30050ab5e77e9618fa1a623cf87a4c1cd74c3c9cefb2cc54625da4d97b8d95a2"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/318f5604924f0f4b569411f1dc826faf4845855f02975446661565253ae92e1f.zip",
+        "sha256": "318f5604924f0f4b569411f1dc826faf4845855f02975446661565253ae92e1f"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/447b51bb1f2906ced47ed9578959bf258027f650af95443d362ef06227061705.zip",
+        "sha256": "447b51bb1f2906ced47ed9578959bf258027f650af95443d362ef06227061705"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/7662047090d5ecf64f9e95eed8c51faef272e972ff87240106146d6f73bcf997.zip",
+        "sha256": "7662047090d5ecf64f9e95eed8c51faef272e972ff87240106146d6f73bcf997"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/92e65e2e0f2fe269fc41273027f9858c3647b631b4f71915a1f1fef5ed85fb08.zip",
+        "sha256": "92e65e2e0f2fe269fc41273027f9858c3647b631b4f71915a1f1fef5ed85fb08"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/a681f6d3788ce13240d86c50ba824d16361a9f735d219c9edd55421cd439143a.zip",
+        "sha256": "a681f6d3788ce13240d86c50ba824d16361a9f735d219c9edd55421cd439143a"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/c0e1f5fa20e8484e031cde47f9aa4c5ca3157e82380a1a6fbe17c991343a3253.zip",
+        "sha256": "c0e1f5fa20e8484e031cde47f9aa4c5ca3157e82380a1a6fbe17c991343a3253"
+      },
+      {
+        "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/attempts/trajectories/schema_v6/archives/phase=eval/step=00000040/cb10579216d8741aec47cbf386ae20fa8c8b5f471488f8fb6ab5be5686616943.zip",
+        "sha256": "cb10579216d8741aec47cbf386ae20fa8c8b5f471488f8fb6ab5be5686616943"
+      }
+    ],
+    "member_result_count": 11990,
+    "member_results_sha256": "f0aa7cf1111c4ef1d943df10d48451a08113172f54efd3cb731e9522e3df0e4b"
+  },
+  "driver": {
+    "source": "s3://marin-us-east-02a/tmp/ttl=14d/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/ray-logs/rank0-gb95a00/session_latest/worker-f0bb3cd4e1db3a0d9f4e0c6e1fe339b0eb340d57bb2975408f2b5c7b-06000000-14080.err",
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/confirmation-evidence/driver-3b1da05a7f9a777826df802be8793c916719c26468dcd8fdb2752a2ba05928a8.err",
+    "sha256": "3b1da05a7f9a777826df802be8793c916719c26468dcd8fdb2752a2ba05928a8",
+    "bytes": 2182963
+  },
+  "resolved_launch": {
+    "source": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/resolved-launch.yaml",
+    "preserved_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/confirmation-evidence/resolved-8d2b9821ae9b397631bac0f54f217b6f1816e2579a3da7a469bebd4239f46b20.json",
+    "sha256": "8d2b9821ae9b397631bac0f54f217b6f1816e2579a3da7a469bebd4239f46b20"
+  },
+  "source_metrics": {
+    "path": "results/score_centering_current_confirmation_runs/score-centering-current-snowball-fresh-tis32-s111-20261005-pause300/source_metrics.json.gz",
+    "sha256": "03ffae0108827d015b4145cba1486d56354172bdce19932724d37d89f957cfd0"
+  },
+  "checkpoint": {
+    "root": "s3://marin-us-east-02a/marin/users/romain/score-centering-current/snowball-fresh-tis32-s111-20261005-pause300/checkpoints",
+    "step": 40,
+    "objects": 43,
+    "bytes": 939250554752
+  },
+  "evaluation_elapsed_seconds": {
+    "0": 1344.137,
+    "10": 2821.923,
+    "20": 4203.114,
+    "30": 5669.025,
+    "40": 8641.262
+  },
+  "training_core_seconds": 4839.386448252946,
+  "training_cycle_seconds": 7296.54598926194
+}
