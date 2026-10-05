@@ -465,10 +465,17 @@ tokens at mean age 1.7744; its median and 95th percentile were both two updates.
 The older incumbent and TIS0 means were 1.6183 and 1.5786 updates. Configured
 lease bounds alone would miss those exposure differences.
 
-Completed new costs are **579.7802342** hours across 30 attempts, separate
-from historical costs of 1,072.548303 hours. SC seed 102 was still running at
-this checkpoint, with 39 completed training rows and its final evaluation in
-progress. Four audited controls are insufficient for a centering contrast.
+SC seed 102 subsequently passed the same terminal gates: forty applied
+updates, 20,480 consumed responses, 11,990 evaluation records, and the full
+step-40 checkpoint. Its 15,670,992 loss tokens had mean actual optimizer age
+1.7578, with median and 95th percentile two updates. It cost 61.2667889 H100
+task-hours. All six original revision-two jobs are now terminal: five complete
+evidence audits and one failed attempt outside confirmation.
+
+Completed new costs are **641.0470231** hours across 31 attempts, separate
+from historical costs of 1,072.548303 hours. The first SC run that passed the
+full evidence gates has seed 102; its matched controls remain pending. These
+five audited runs do not yet support a paired centering contrast.
 The twelve matched seeds and three capture companions remain to be completed.
 There is no current confirmation recommendation yet.
 
