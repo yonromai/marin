@@ -6,8 +6,8 @@ tokens without giving up completed-answer quality, and whether that extra tolera
 GPU work.
 
 The October confirmation supports keeping score centering disabled in the tested
-Snowball configuration. At forty updates, centering changed completed-correct
-quality by +0.06 percentage points versus matched truncated importance sampling
+Snowball configuration, with one optimizer step per batch. At forty updates,
+centering changed completed-correct quality by +0.06 percentage points versus matched truncated importance sampling
 (family 95% interval −1.23 to +1.34). Against the frozen merged PPO incumbent,
 centering had 1.42 points lower quality and used about 29% more allocated time
 and reserved compute. [The confirmation result](#snowball-confirmation-result-october-5)
@@ -692,9 +692,10 @@ and complete-input numerical parity still verify after integration.
 
 Keep score centering disabled for this tested Snowball 67B configuration.
 Centering did not establish a quality improvement over its matched TIS control.
-The frozen merged incumbent produced higher final quality while using less time
+The frozen merged incumbent had higher mean final quality while using less time
 and compute. This recommendation covers forty updates and consumed token ages
-zero through two; it does not cover longer training or larger ages.
+zero through two, with one optimizer step per batch; it does not cover longer
+training, larger ages or multiple optimizer steps per batch.
 
 Score centering adds a loss term whose gradient removes the expected
 PPO/TIS-weighted score from the sampled policy gradient. The expectation uses
@@ -716,6 +717,11 @@ responses in forty updates, with a 4,096-token response cap on forty H100s.
 The incumbent is regular PPO from Marin's merged source baseline; source
 versions and configurations were fixed before launch, and every arm trained
 its model weights.
+Each batch took one optimizer step. The current/stored-old PPO probability
+ratio was one, and PPO clipping never activated: all 2,040 stored step records
+report a zero clipping fraction. Centering acted through TIS-capped probability
+mass. Independent CPU gradient tests cover active and inactive PPO clipping;
+this GPU confirmation does not cover multiple optimizer steps per batch.
 All main arms consumed the same prompt multiplicities within each seed. Their
 [ordered training sources](results/score_centering_current_confirmation_prompt_source_order.json)
 also match. The asynchronous scheduling changes response generation and token
@@ -731,6 +737,8 @@ the three contrasts; time and compute use individual
 Allocated time is elapsed run time, including startup, evaluation, training,
 checkpoints and teardown. Reserved H100 task-hours count individual GPUs: one
 eight-H100 task allocated for one hour contributes eight H100 task-hours.
+The ratios below use allocations for runs that completed all declared training
+and evaluation; the total campaign ledger also counts failed attempts.
 
 | Centering compared with | Final quality difference (percentage points), family 95% interval | Allocated time ratio, individual 95% interval | Reserved compute ratio, individual 95% interval |
 | --- | ---: | ---: | ---: |
@@ -742,6 +750,8 @@ Mean final completed-correct quality was 70.32% for older TIS, 70.38% with
 centering, 70.07% for fresh TIS and 71.80% for the incumbent. The
 [original primary result](results/score_centering_current_confirmation_analysis_gemmretry1.json)
 retains every paired difference, interval and baseline-adjusted sensitivity.
+The baseline-adjusted sensitivity intervals are individual 95% intervals,
+without the three-contrast family adjustment.
 For centering versus older TIS, the interval rules out gains above 1.34 points
 under this design and permits losses down to 1.23 points. Smaller effects remain
 possible. It does not prove equivalence.
@@ -801,6 +811,7 @@ completed run had a worker failure. These remain operational exceptions.
 In the score-centering arm, seed 107, the first pre-training evaluation pass
 lacks 768 records from the trajectory publisher. Their original grading exports
 recover quality, but exact response token IDs and loss masks remain unavailable.
+These include 500 primary Math500 members in that first baseline pass.
 Those baseline responses cannot pass an exact native token-and-mask audit.
 The final endpoint has complete publisher token evidence. The missing baseline
 records are explicit in its sensitivity evidence. No optimizer steps or
