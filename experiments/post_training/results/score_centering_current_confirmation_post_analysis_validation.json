@@ -200,5 +200,41 @@
     "observed_model": null,
     "observed_effort": null,
     "observation_limit": "The lint harness stores findings, prompts and terminal status, not provider structured metadata. Missing observed fields remain unknown."
+  },
+  "current_main_integration": {
+    "commit": "8b647f201014b078039f3dba2897a06786bcb74d",
+    "upstream_main": "a69e8fd87a525c080901ea907686a7092119e765",
+    "scientific_skyrl_pin_unchanged": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+    "conflict_files": [
+      "config/external/MarinSkyRL/uv.lock",
+      "lib/marin/src/marin/external_dependencies.py"
+    ],
+    "numerical_regression": {
+      "upstream_main": "a69e8fd87a525c080901ea907686a7092119e765",
+      "all_six_original_program_hashes_at_checkpoint_verified": true,
+      "all_51_canonical_input_hashes_verified": true,
+      "serialized_primary_analysis_equal_after_field_rename": true,
+      "canonical_runs_sha256": "92f1f2bad0d1b10880d889b371cdfa2023bb19066f310eb01ca2b55c5d23227b"
+    },
+    "affected_safe_suite": {
+      "command": "uv run --no-project infra/ci/run_tests.py",
+      "passed": 2380,
+      "failed": 9,
+      "skipped": 3,
+      "expected_failures": 5,
+      "collection_errors": 3,
+      "duration_seconds": 182.58,
+      "same_nine_frozen_baseline_failure_ids": true,
+      "log_sha256": "4c493c8df6871e8417b7b4293367fdde7c070bc8ef22cb653d78d472b5b1c6d2"
+    },
+    "current_main_independent_collection": {
+      "commit": "a69e8fd87a525c080901ea907686a7092119e765",
+      "command": "uv run --with pytest-xdist --with pytest-timeout pytest --collect-only experiments/post_training/task_curation/tests/test_nemotron.py experiments/post_training/task_curation/tests/test_next_code.py experiments/post_training/task_curation/tests/test_pipeline.py",
+      "worktree": "/home/romain/work/marin-community/marin/score-centering-current-integration-baseline-01a0bb6f",
+      "same_three_module_not_found_errors": true,
+      "missing_dependency": "taskcompendium",
+      "environment_note": "Default root environment, with only pytest-xdist and pytest-timeout added to permit the configured pytest options. The initial fresh-main invocation lacked those test plugins and could not start.",
+      "log_sha256": "f90b4bd6bf91fd18630a74a855eeda2a02a08e7eecd79a400f0463613dbac2f5"
+    }
   }
 }

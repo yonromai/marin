@@ -668,7 +668,7 @@ Iris-wrapper check invokes the installed `uv` instead of its test stub.
 These results establish the local baseline; campaign launcher graph and
 public-package integration checks passed.
 After canonical collection and frozen analysis, the runner's optional
-`cloud.iris.launch` import moved into the submission branch. The latest affected
+`cloud.iris.launch` import moved into the submission branch. Before current-main integration, the affected
 bare-Marin suite passed 2,407 cases, with the same nine independently observed
 baseline failures, three skips and five expected failures. Its failed test IDs
 match the isolated frozen-main check's retained failure set exactly. The two
@@ -678,6 +678,15 @@ pass without the separately pinned SkyRL package. The
 [post-analysis checks](results/score_centering_current_confirmation_post_analysis_validation.json)
 also record byte-identical original replay and complete-input numerical parity
 after maintenance.
+
+The PR branch also incorporates Marin main `a69e8fd8`. The two integration
+conflicts were its SkyRL lock and generated pin table; the campaign retains
+its qualified SkyRL revision and takes unrelated upstream dependency updates.
+The integrated safe suite passed 2,380 cases, with the same nine local failures
+and three collection errors in new upstream task-curation tests. An untouched
+current-main worktree reproduces all three missing-`taskcompendium` errors in
+the default root environment. The frozen programs, all 51 canonical inputs
+and complete-input numerical parity still verify after integration.
 
 ### Snowball confirmation result (October 5)
 
