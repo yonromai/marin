@@ -201,7 +201,7 @@
     "observed_effort": null,
     "observation_limit": "The lint harness stores findings, prompts and terminal status, not provider structured metadata. Missing observed fields remain unknown."
   },
-  "current_main_integration": {
+  "first_main_integration": {
     "commit": "8b647f201014b078039f3dba2897a06786bcb74d",
     "upstream_main": "a69e8fd87a525c080901ea907686a7092119e765",
     "scientific_skyrl_pin_unchanged": "5f53efd1300ac41fcff0811db56842dacb4c735d",
@@ -236,5 +236,71 @@
       "environment_note": "Default root environment, with only pytest-xdist and pytest-timeout added to permit the configured pytest options. The initial fresh-main invocation lacked those test plugins and could not start.",
       "log_sha256": "f90b4bd6bf91fd18630a74a855eeda2a02a08e7eecd79a400f0463613dbac2f5"
     }
+  },
+  "current_main_integration": {
+    "integration_commit": "c3ed3b12bfab819482e7337ff6e868be4d401633",
+    "parents": [
+      "be652ac79c602f3f96ef32b42cc00da623750192",
+      "4c0896acd1d978ce2bb62093e8d6901e113d9dac"
+    ],
+    "scientific_experiment_file_changes": [],
+    "scientific_skyrl_lock_byte_identical_to_reviewed_head": true,
+    "generated_pin_table_check": "uv run config/update-external.py --check passed",
+    "scientific_skyrl_pin": "5f53efd1300ac41fcff0811db56842dacb4c735d",
+    "conflict_resolution": "Retain original SkyRL lock; regenerate table with latest upstream Evalchemy/Harbor locks.",
+    "upstream_main": "4c0896acd1d978ce2bb62093e8d6901e113d9dac",
+    "affected_safe_suite": {
+      "command": "uv run --no-project infra/ci/run_tests.py",
+      "actual_pytest_command": "env -u JAX_NUM_CPU_DEVICES uv run --python 3.12 --all-packages --no-default-groups --extra cpu --extra dedup --group test pytest --durations=5 -n auto --dist=worksteal --tb=short --maxprocesses 8 -m 'not slow and not integration and not data_integration and not cluster and not requires_cluster and not docker and not manual and not torch' tests experiments",
+      "passed": 2396,
+      "failed": 9,
+      "skipped": 3,
+      "expected_failures": 5,
+      "collection_errors": 0,
+      "duration_seconds": 178.57,
+      "same_nine_frozen_baseline_failure_ids": true,
+      "log_sha256": "9af9304fbd741bb230b9ed7c9e62f5550340db02959a240f2a6f4f6563eedfa6",
+      "environment_note": "Latest run used the declared test dependency group, as recorded by the runner; zero collection errors. Earlier default-root collection results are preserved in first_main_integration."
+    }
+  },
+  "final_goal_review": {
+    "reviewed_marin_commit": "f4abc28d4b0f7d6dd51d1dfecffe54b31fa99ac2",
+    "reviewed_skyrl_commit": "f36bbf37b347fdcd4fa2537e2b67fb15413ee0b3",
+    "kind": "GOAL",
+    "tier": "High",
+    "completed_reviewers": [
+      {
+        "provider": "CODEX",
+        "native_id": "01a10e86-7a74-7433-aa4d-cee8981e06d7",
+        "requested_model": "gpt-6.1-sol",
+        "requested_effort": "xhigh",
+        "observed_model": "gpt-6.1-sol",
+        "observed_effort": "xhigh",
+        "report_sha256": "42d8a28897cef71bc78e21cdfbcea9db72a031328e0939a95b4c99e1538b30c8"
+      },
+      {
+        "provider": "CLAUDE",
+        "native_id": "da7837c0-1764-44ef-a1a2-8381e71a4ef8",
+        "requested_model": "claude-opus-5-5",
+        "requested_effort": "xhigh",
+        "observed_model": "claude-opus-5-5",
+        "observed_effort": "xhigh",
+        "report_sha256": "99fd9076cef793dc8160fa493a78ce8882c31ece40706029c1d3b8867c04499d"
+      }
+    ],
+    "gemini_review_completed": false,
+    "gemini_unavailability": "FAILED_PRECONDITION 400: User location unsupported. No retry or substitute.",
+    "followup_scope": "Text only: single optimizer step per batch, inactive GPU PPO clipping, completed-attempt ratio scope, baseline primary-member count, updated SkyRL description and frozen draft dependency pin. Subsequent main integration retains all experiment files and the scientific SkyRL lock byte for byte.",
+    "clipping_scope_verification": {
+      "verified_from": "canonical frozen configurations and secondary metrics",
+      "secondary_sha256": "2363237b14b19851503adec63f493c511af3b39d88f5a2ca8c52d25edc781cd2",
+      "cases": 51,
+      "optimizer_step_records": 2040,
+      "ppo_clip_ratio_unique": [
+        0.0
+      ],
+      "scope": "One optimizer step per batch. The current/stored-old PPO ratio is one before that update, and observed PPO clipping is zero. GPU confirmation covers centering through TIS-capped probability mass, not multiple optimizer steps per batch. CPU gradient checks cover the clipping branches separately."
+    },
+    "resolution_record": "/home/romain/data/sessions/devbox/codex/01a0bb6f-0196-7e00-b2ad-90559d1641d9/reviews/GOAL-20261005T235734Z/responses.json"
   }
 }

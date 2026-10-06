@@ -688,6 +688,17 @@ current-main worktree reproduces all three missing-`taskcompendium` errors in
 the default root environment. The frozen programs, all 51 canonical inputs
 and complete-input numerical parity still verify after integration.
 
+Main later advanced to `4c0896ac`. The branch incorporates that revision and
+resolves the same two dependency conflicts, again retaining the scientific
+SkyRL lock byte for byte. No experiment file changed in this merge. The latest
+affected safe run used the declared test dependency group and passed 2,396
+tests, with the same nine baseline failures, three skips, five expected
+failures and zero collection errors. The post-analysis checks preserve both
+integration checkpoints and the completed final High goal reviews. Codex and
+Claude supported stopping with the scoped recommendation below. Their
+publication clarifications are applied; Gemini could not review because its
+provider rejected the user location.
+
 ### Snowball confirmation result (October 5)
 
 Keep score centering disabled for this tested Snowball 67B configuration.
