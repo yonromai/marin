@@ -1,0 +1,137 @@
+# Copyright The Marin Authors
+# SPDX-License-Identifier: Apache-2.0
+
+"""Reconcile safe controller CSV snapshots with frozen configs and all attempt costs."""
+
+import argparse
+import csv
+import hashlib
+import json
+from collections import defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+import yaml
+
+
+def stage(job_id: str) -> str:
+    if "sc-core-runtime" in job_id:
+        return "core GPU qualification"
+    if "sc-snowball-runtime" in job_id:
+        return "Snowball GPU qualification"
+    if "stale-path" in job_id:
+        return "SkyRL staleness qualification"
+    if "sc-skyrl-countdown-main" in job_id:
+        return "SkyRL main"
+    if "sc-qwen-transfer" in job_id:
+        return "Qwen transfer pilot" if "pilot" in job_id else "Qwen transfer main"
+    return "SkyRL qualification"
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--jobs", type=Path, required=True)
+    parser.add_argument("--attempts", type=Path, required=True)
+    parser.add_argument("--cluster", default="cw-us-east-02a")
+    args = parser.parse_args()
+    campaign = Path(__file__).resolve().parent
+    repository = campaign.parents[2]
+    registry = json.loads((campaign / "registry.json").read_text())
+    jobs = {row["job_id"]: row for row in registry["jobs"]}
+    frozen = {}
+    for path in campaign.glob("**/*.yaml"):
+        config = yaml.safe_load(path.read_text())
+        if not isinstance(config, dict) or config.get("run", {}).get("submission") != "detach":
+            continue
+        job_id = "/romain/" + config["run"]["id"]
+        assert job_id not in frozen, f"ambiguous submitted configuration for {job_id}"
+        frozen[job_id] = (path, config)
+
+    audits = {}
+    for path in (campaign / "results").glob("*.json"):
+        value = json.loads(path.read_text())
+        if isinstance(value, dict) and value.get("audit_passed") is True:
+            audits[value["run_id"]] = str(path.relative_to(repository))
+
+    for observed in csv.DictReader(args.jobs.open()):
+        job_id = observed["job_id"]
+        row = jobs.setdefault(job_id, {"job_id": job_id})
+        if job_id in frozen:
+            path, config = frozen[job_id]
+            checksum = hashlib.sha256(path.read_bytes()).hexdigest()
+            if "configuration" in row:
+                assert row["configuration_sha256"] == checksum, f"submitted config changed: {path}"
+            row.update(
+                cluster=args.cluster,
+                priority=config["iris"]["priority"],
+                h100_nodes=config["iris"]["allocation"]["num_nodes"],
+                h100_per_node=config["iris"]["allocation"]["gpus_per_node"],
+                source=config["runtime"]["launcher_commit"],
+                configuration=str(path.relative_to(repository)),
+                configuration_sha256=checksum,
+                configuration_sha256_basis="published launcher-input bytes",
+                artifacts=config["artifacts"]["attempts_root"].removesuffix("/attempts"),
+            )
+        device = json.loads(observed["res_device_json"])["gpu"]
+        assert device["variant"] == "H100" and device["count"] == row["h100_per_node"]
+        assert int(observed["num_tasks"]) == row["h100_nodes"]
+        state = int(observed["state"])
+        row.update(
+            controller_state=state,
+            status="running" if state in (1, 2, 3, 9) else "terminal",
+            priority_band=int(observed["priority_band"]),
+            bundle_id=observed["bundle_id"],
+            task_image=observed["task_image"],
+        )
+        assert row["priority_band"] == {"interactive": 2, "batch": 3}[row["priority"]]
+        run_id = job_id.rsplit("/", 1)[-1]
+        if state == 4 and run_id in audits:
+            row["retained_audit"] = audits[run_id]
+
+    now = datetime.now(timezone.utc)
+    registry.update(observed_at=now.isoformat(), jobs=list(jobs.values()))
+    costs = json.loads((campaign / "costs.json").read_text())
+    attempts = {(row["task_id"], row["attempt_uid"]): row for row in costs["attempts"]}
+    active = []
+    for observed in csv.DictReader(args.attempts.open()):
+        job = jobs[observed["task_id"].rsplit("/", 1)[0]]
+        key = observed["task_id"], observed["attempt_uid"]
+        row = {**attempts.get(key, {}), **observed}
+        row.update(
+            stage=stage(job["job_id"]),
+            cluster=args.cluster,
+            priority=job["priority"],
+            gpus=job["h100_per_node"],
+            source=job["source"],
+            configuration_sha256=job["configuration_sha256"],
+        )
+        start = int(row["started_at_ms"] or 0)
+        finish = int(row["finished_at_ms"] or 0)
+        if finish:
+            assert not start or finish >= start
+            row["allocated_seconds"] = (finish - start) / 1000 if start else 0
+            row["allocated_h100_hours"] = row["allocated_seconds"] * row["gpus"] / 3600
+            row.setdefault("outcome", "succeeded; audit pending" if int(row["state"]) == 4 else "failed engineering attempt")
+            if job.get("retained_audit"):
+                row.update(outcome="succeeded with retained audit", retained_audit=job["retained_audit"])
+            attempts[key] = row
+        elif start:
+            row["allocated_h100_hours_so_far"] = (now.timestamp() - start / 1000) * row["gpus"] / 3600
+            active.append(row)
+    totals = defaultdict(float)
+    for row in attempts.values():
+        totals[row["stage"]] += row["allocated_h100_hours"]
+    costs.update(
+        observed_at=now.isoformat(),
+        attempts=list(attempts.values()),
+        active_attempts=active,
+        terminal_h100_hours_by_stage=dict(totals),
+        active_costs="Active intervals are partial observations and excluded from terminal stage totals.",
+    )
+    (campaign / "registry.json").write_text(json.dumps(registry, indent=2) + "\n")
+    (campaign / "costs.json").write_text(json.dumps(costs, indent=2) + "\n")
+    print(json.dumps({"jobs": len(jobs), "terminal_attempts": len(attempts), "active_attempts": len(active), "hours": totals}))
+
+
+if __name__ == "__main__":
+    main()

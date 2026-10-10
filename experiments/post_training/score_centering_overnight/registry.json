@@ -348,7 +348,9 @@
       "controller_state": 4,
       "bundle_id": "838aa8945319600c361966d5ed1f946ac26900a78ba0fa5542c0a8624266176d",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
-      "priority_band": 2
+      "priority_band": 2,
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "retained_audit": "experiments/post_training/score_centering_overnight/results/skyrl_qualification_tis.json"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a0-01a126ce",
@@ -365,7 +367,9 @@
       "controller_state": 4,
       "bundle_id": "86ca9ff6f0c505bfb2c1ad461eed40429a97b05e69eee205feef623548391c3e",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
-      "priority_band": 2
+      "priority_band": 2,
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "retained_audit": "experiments/post_training/score_centering_overnight/results/skyrl_qualification_sc.json"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-clean-sc-s0-a0-01a126ce",
@@ -381,7 +385,8 @@
       "bundle_id": "b5de3bbe1ec4a1ebcbbf2cc470d6196a2c1f2c44f21764a204a71a9468e6e71d",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-clean-tis-s0-a0-01a126ce",
@@ -397,7 +402,8 @@
       "bundle_id": "25708e03f8d0e27d87288e23f55d4405cb1bfc125e0d02db70beb734f3c786ef",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-sc-s0-a0-01a126ce",
@@ -413,7 +419,8 @@
       "bundle_id": "e008a34b1d91e358605ee9f96157e2f2d233df3ec37ea81aab39c4061f63cca8",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-sc-s1-a0-01a126ce",
@@ -429,7 +436,8 @@
       "bundle_id": "ab626c64906eb1a5bbb03753ce0f726154225a5298e8bfab9229132b9244ab77",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-sc-s2-a0-01a126ce",
@@ -445,7 +453,8 @@
       "bundle_id": "f80d729a7c5a8ac746e13467ecd817272ada2a8024982b6459cacae5a750ff1b",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-tis-s0-a0-01a126ce",
@@ -461,7 +470,8 @@
       "bundle_id": "79d163fdb528599ff6860b863064eb8fcb7ce84552c9f54461604e6e606cd34b",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-tis-s1-a0-01a126ce",
@@ -477,7 +487,9 @@
       "bundle_id": "690ee8ae683cea42dfe930252948d83155ddd9bf3369ec5548f27eaa57d40bd1",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "terminal"
+      "status": "terminal",
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "retained_audit": "experiments/post_training/score_centering_overnight/results/skyrl_main_noise005_tis_s1.json"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-main-noise005-tis-s2-a0-01a126ce",
@@ -493,7 +505,8 @@
       "bundle_id": "d4fee899cf32f02a338d7666cf60df56f62d94b9e9d6380f93cc913f0ee61963",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "priority_band": 3,
-      "status": "running"
+      "status": "running",
+      "configuration_sha256_basis": "published launcher-input bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-stale-path-qual-sc-s0-a0-01a126ce",
@@ -510,8 +523,78 @@
       "bundle_id": "9b1e1d1b38a0c3a1db2545108643f83ecc1419f5ed2c7b7f47293ecdf6a2a05c",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "status": "terminal",
-      "outcome": "failed at batch2: sampler-age assertion; repaired source731b85c1 scheduled separately"
+      "outcome": "failed at batch2: sampler-age assertion; repaired source731b85c1 scheduled separately",
+      "configuration_sha256_basis": "published launcher-input bytes"
+    },
+    {
+      "job_id": "/romain/sc-skyrl-stale-path-qual-sc-s0-a1-01a126ce",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 2,
+      "h100_per_node": 8,
+      "source": "731b85c197c64c5bcdc49a23243f3536da09c090",
+      "configuration": "experiments/post_training/score_centering_overnight/skyrl_stale_qualification/detach-a1.yaml",
+      "configuration_sha256": "ea09e82ac80b9337de72aa3bc28ba8c022fbda4d213c0eb773510acdf11b90a9",
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-skyrl-stale-path-qual-sc-s0-a1-01a126ce",
+      "controller_state": 4,
+      "status": "terminal",
+      "priority_band": 2,
+      "bundle_id": "50dc26d823ed43a3d2203bb3a42f42afecac4706027b5ea15062b425ab259d2c",
+      "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "retained_audit": "experiments/post_training/score_centering_overnight/results/stale_path_qualification_a1.json"
+    },
+    {
+      "job_id": "/romain/sc-snowball-runtime-qual-sc-s0-a0-01a126ce",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 5,
+      "h100_per_node": 8,
+      "source": "64ba4b9360f25584405fb054969a76dedcb14e88",
+      "configuration": "experiments/post_training/score_centering_overnight/snowball_qualification/detach.yaml",
+      "configuration_sha256": "b456fa6bad9362d0aa14438c1e299d1260cf0643ea3751e873b2926d19864132",
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-snowball-runtime-qual-sc-s0-a0-01a126ce",
+      "controller_state": 3,
+      "status": "running",
+      "priority_band": 3,
+      "bundle_id": "b432408686474da1f792a9add344cec4b86a4eda619afbd3f3f3688c1de85399",
+      "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+    },
+    {
+      "job_id": "/romain/sc-core-runtime-qual-sc-s0-a0-01a126ce",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 2,
+      "h100_per_node": 8,
+      "source": "117d0598dd017749a301e0374ef9db530fd8d8de",
+      "configuration": "experiments/post_training/score_centering_overnight/core_qualification/sc-detach.yaml",
+      "configuration_sha256": "897027d162be28fde40174396e9a65e14c9a5da5362bea04c7d36cd435412504",
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-core-runtime-qual-sc-s0-a0-01a126ce",
+      "controller_state": 3,
+      "status": "running",
+      "priority_band": 3,
+      "bundle_id": "9102669611c8889dc5ce17acfa9adac158e37d103dceaf8798b4e4d99c6e0bf6",
+      "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+    },
+    {
+      "job_id": "/romain/sc-core-runtime-qual-tis-s0-a0-01a126ce",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 2,
+      "h100_per_node": 8,
+      "source": "117d0598dd017749a301e0374ef9db530fd8d8de",
+      "configuration": "experiments/post_training/score_centering_overnight/core_qualification/tis-detach.yaml",
+      "configuration_sha256": "62741e3879af4b1b89fb0f750a6f04c96ad9176766882c436745d3df815d8d8b",
+      "configuration_sha256_basis": "published launcher-input bytes",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-core-runtime-qual-tis-s0-a0-01a126ce",
+      "controller_state": 3,
+      "status": "running",
+      "priority_band": 3,
+      "bundle_id": "9102669611c8889dc5ce17acfa9adac158e37d103dceaf8798b4e4d99c6e0bf6",
+      "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
     }
   ],
-  "observed_at": "2026-10-10T21:46:55.767385+00:00"
+  "observed_at": "2026-10-10T22:15:48.647295+00:00"
 }

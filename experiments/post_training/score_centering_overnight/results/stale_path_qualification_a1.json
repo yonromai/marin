@@ -1,0 +1,131 @@
+{
+  "run_id": "sc-skyrl-stale-path-qual-sc-s0-a1-01a126ce",
+  "runtime": {
+    "entrypoint": "skyrl_train.entrypoints.main_base",
+    "experiments_dir": "/app/experiments",
+    "launcher_commit": "731b85c197c64c5bcdc49a23243f3536da09c090",
+    "profile": "megatron",
+    "task_env": {},
+    "training_type": "sync"
+  },
+  "completed_updates": 6,
+  "score_centering": true,
+  "sampler_refresh_period": 3,
+  "historical_eval_version_metadata": "Older sources report step-1. Actual clean evaluation follows post-update sync at the stated global_step. Preserve raw metadata.",
+  "primary_endpoint_completed_updates": 6,
+  "supplemental_eval_steps": [],
+  "learner_evidence": [
+    {
+      "completed_updates_before_batch": 0,
+      "sampler_completed_updates": 0,
+      "sampler_age_updates": 0,
+      "retained_rows": 2,
+      "retained_loss_tokens": 401,
+      "chosen_tokens_in_head": 401,
+      "mean_omitted_mass": 0.00034552812576293945,
+      "pre_update_correction_abs_mean": 0.0,
+      "centering_applied": true
+    },
+    {
+      "completed_updates_before_batch": 1,
+      "sampler_completed_updates": 0,
+      "sampler_age_updates": 1,
+      "retained_rows": 2,
+      "retained_loss_tokens": 329,
+      "chosen_tokens_in_head": 329,
+      "mean_omitted_mass": 0.0002593398094177246,
+      "pre_update_correction_abs_mean": 0.0028706404846161604,
+      "centering_applied": true
+    },
+    {
+      "completed_updates_before_batch": 2,
+      "sampler_completed_updates": 0,
+      "sampler_age_updates": 2,
+      "retained_rows": 2,
+      "retained_loss_tokens": 163,
+      "chosen_tokens_in_head": 163,
+      "mean_omitted_mass": 2.014636993408203e-05,
+      "pre_update_correction_abs_mean": 0.0,
+      "centering_applied": true
+    },
+    {
+      "completed_updates_before_batch": 3,
+      "sampler_completed_updates": 3,
+      "sampler_age_updates": 0,
+      "retained_rows": 2,
+      "retained_loss_tokens": 437,
+      "chosen_tokens_in_head": 437,
+      "mean_omitted_mass": 0.00030601024627685547,
+      "pre_update_correction_abs_mean": 0.0002847666619345546,
+      "centering_applied": true
+    },
+    {
+      "completed_updates_before_batch": 4,
+      "sampler_completed_updates": 3,
+      "sampler_age_updates": 1,
+      "retained_rows": 2,
+      "retained_loss_tokens": 148,
+      "chosen_tokens_in_head": 148,
+      "mean_omitted_mass": 0.00013971328735351562,
+      "pre_update_correction_abs_mean": 0.0,
+      "centering_applied": true
+    },
+    {
+      "completed_updates_before_batch": 5,
+      "sampler_completed_updates": 3,
+      "sampler_age_updates": 2,
+      "retained_rows": 2,
+      "retained_loss_tokens": 471,
+      "chosen_tokens_in_head": 471,
+      "mean_omitted_mass": 0.0006148815155029297,
+      "pre_update_correction_abs_mean": 0.00024158169981092215,
+      "centering_applied": true
+    }
+  ],
+  "quality": [
+    {
+      "completed_updates": 0,
+      "correct": 36.0,
+      "responses": 512,
+      "quality": 0.0703125
+    },
+    {
+      "completed_updates": 1,
+      "correct": 54.0,
+      "responses": 512,
+      "quality": 0.10546875
+    },
+    {
+      "completed_updates": 2,
+      "correct": 57.0,
+      "responses": 512,
+      "quality": 0.111328125
+    },
+    {
+      "completed_updates": 3,
+      "correct": 87.0,
+      "responses": 512,
+      "quality": 0.169921875
+    },
+    {
+      "completed_updates": 4,
+      "correct": 78.0,
+      "responses": 512,
+      "quality": 0.15234375
+    },
+    {
+      "completed_updates": 5,
+      "correct": 87.0,
+      "responses": 512,
+      "quality": 0.169921875
+    },
+    {
+      "completed_updates": 6,
+      "correct": 107.0,
+      "responses": 512,
+      "quality": 0.208984375
+    }
+  ],
+  "nonzero_gradient_updates": 6,
+  "audit_passed": true
+}

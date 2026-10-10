@@ -1,0 +1,242 @@
+{
+  "source_uri": "s3://marin-us-east-02a/marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/",
+  "claimed_historical_identity": "models/snowball-67b-a2b-sft-s2-thinking@2026.08.30:c6168770",
+  "objects": [
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/README.md",
+      "Size": 1708,
+      "ETag": "\"a247802700cd99fa586bf9dd16bb122e\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/chat_template.jinja",
+      "Size": 4833,
+      "ETag": "\"dc04edbdedf21ee9768fbfae00665ff5\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/config.json",
+      "Size": 1379,
+      "ETag": "\"f4b8722d58fdd19eb869be835a8b98fc\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/generation_config.json",
+      "Size": 77,
+      "ETag": "\"5adffa996ad00b7f72142fd8cd773e31\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00001-of-00039.safetensors",
+      "Size": 4672728440,
+      "ETag": "\"933a0bacfb6f44b055a8fef42a4f64d8-90\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00002-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"5f3e869999cafbc0f5b9acd05e7abec2-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00003-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"41fbcfe6274bc927accf6db604f79fc6-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00004-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"875d0779eaf3105c2a40cc081693da86-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00005-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"26d6c330fbdf43b44c71913c62b189d8-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00006-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"a48936c2c8d1a1d26c06901396215dba-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00007-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"76f4428ae6d720312196100836c406ae-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00008-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"b709934c5d3b0b14d9de888ee317aae4-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00009-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"2610345ad3f476a21006567946e0ce27-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00010-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"460087c32272b0340a16fc07dbc2800e-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00011-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"07c3c2a898deef71ff17910961e71b8f-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00012-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"cadb73ce8703fc0af69bc3311e56e0f0-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00013-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"188d1f323c8a751a17095ab89404520f-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00014-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"a7db1a15102d73c5dab80e1a33fd064f-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00015-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"7bda75758714397be7af18584e235841-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00016-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"7ed0f8de5faf58acdb3d86874b60d72a-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00017-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"ae50a68a160663038ec83b343b107871-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00018-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"7e2676edabfec065eaadeadbed93275d-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00019-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"e9a09139b00b6cbdb7224cd19c6b7e02-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00020-of-00039.safetensors",
+      "Size": 3431580296,
+      "ETag": "\"7a47bd1a067189df3f71dd3fd902c3ae-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00021-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"d7030aa3dea4e7b26cc2217c5ae4fc7a-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00022-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"7016fbcf80f2e9d7f889f12ab9ffab7a-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00023-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"05be6c6174b83992decfe3e8eea3206c-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00024-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"8b84e3f38ce7f53b6f2bd8f0311d275a-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00025-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"26ccd50052697fcddffcacbb5923b6cb-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00026-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"1df597320dbeb878e6d5fda0c5b3ae21-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00027-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"c9e6cc6352a63533163dd36a72452ae4-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00028-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"583945fa0bab50a4d546471eee76eb73-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00029-of-00039.safetensors",
+      "Size": 3431580304,
+      "ETag": "\"ae1ef68688a6c64a8eed8d357829e8e4-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00030-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"549008fee0798dda9e36f9e461864ed6-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00031-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"4935e768426e5af0b58d739348ca23dd-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00032-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"362ffeebfb982ea77de24c5f10095a4f-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00033-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"e78dadea52584f41025f1e9c94df4ec7-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00034-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"c639a767dc614b98a79f2854c7754709-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00035-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"c0b03d739865e9926b2ba7d42d23c991-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00036-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"7b47774b3bac9a08a251ded22cdfb86d-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00037-of-00039.safetensors",
+      "Size": 3355443488,
+      "ETag": "\"545e1f923bdc9428d4df1a7f8a52e35b-65\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00038-of-00039.safetensors",
+      "Size": 3431580288,
+      "ETag": "\"9ef2adaece0563fb2a92c4be6615eb93-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model-00039-of-00039.safetensors",
+      "Size": 3430269304,
+      "ETag": "\"fe4a4684cffc34767a6f289d96377a6e-66\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/model.safetensors.index.json",
+      "Size": 40953,
+      "ETag": "\"61c25e2c50dc4e7f10aeed9edcc0b1ca\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/tokenizer.json",
+      "Size": 17209892,
+      "ETag": "\"f4c6bdd3f418a243639b75fd5d21f423\""
+    },
+    {
+      "Key": "marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/tokenizer_config.json",
+      "Size": 5322,
+      "ETag": "\"b88e2b5b01b7adef7b013b526ab0fe96\""
+    }
+  ],
+  "total_bytes": 134175091228,
+  "hashes": {
+    "config.json": "7186b37670787e8e842f8fe0be20625f4b3bea6893f86f505d987babb3c4d9c0",
+    "model.safetensors.index.json": "97804308c997e23e1e9c19726863122e48bf9a2a6de3a594435e69cfd0fcc3e8",
+    "tokenizer_config.json": "024bf2f619da634f89d13563faf5571820a21a24e477e2ddc534e7a802c8a105"
+  }
+}
