@@ -1,0 +1,55 @@
+{
+  "run_id": "sc-skyrl-countdown-qual-tis-s0-a0-01a126ce",
+  "runtime": {
+    "entrypoint": "skyrl_train.entrypoints.main_base",
+    "experiments_dir": "/app/experiments",
+    "launcher_commit": "01944d73c92c493b835b9e3773147e4e72097e8f",
+    "profile": "megatron",
+    "task_env": {},
+    "training_type": "sync"
+  },
+  "completed_updates": 2,
+  "score_centering": false,
+  "learner_evidence": [
+    {
+      "completed_updates_before_batch": 0,
+      "retained_rows": 2,
+      "retained_loss_tokens": 114,
+      "chosen_tokens_in_head": 114,
+      "mean_omitted_mass": 8.934736251831055e-05,
+      "pre_update_correction_abs_mean": 0.0,
+      "centering_applied": false
+    },
+    {
+      "completed_updates_before_batch": 1,
+      "retained_rows": 2,
+      "retained_loss_tokens": 170,
+      "chosen_tokens_in_head": 170,
+      "mean_omitted_mass": 0.00011175870895385742,
+      "pre_update_correction_abs_mean": 0.0,
+      "centering_applied": false
+    }
+  ],
+  "quality": [
+    {
+      "completed_updates": 0,
+      "correct": 34.0,
+      "responses": 512,
+      "quality": 0.06640625
+    },
+    {
+      "completed_updates": 1,
+      "correct": 47.0,
+      "responses": 512,
+      "quality": 0.091796875
+    },
+    {
+      "completed_updates": 2,
+      "correct": 48.0,
+      "responses": 512,
+      "quality": 0.09375
+    }
+  ],
+  "nonzero_gradient_updates": 2,
+  "audit_passed": true
+}
