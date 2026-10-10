@@ -4,6 +4,8 @@
 
 The released reference has no dependency lock. Freeze a resolved Python 3.13/CUDA12 JAX environment and record it separately from code. Reference evaluation holds out the first 64 rows after the training-seed shuffle, rather than using the environment's separate eval split. Its terminal step-299 evaluation is before update 300; this timing is now explicit in the protocol.
 
+Initial state at 2026-10-10 03:00 UTC:
+
 | Rung | Status | Evidence needed next |
 | --- | --- | --- |
 | Authors' reference | Preparing | Frozen environment; bounded real GPU update and retained outputs |
@@ -23,3 +25,19 @@ The current-main core at `117d0598` passed 257 objective checks plus 26 capture-
 Countdown membership for seeds 0, 1 and 2 uses the exact original generator and shuffled held-out head. The first export's auxiliary prompt-ID field mistakenly stored BatchEncoding keys. No training used it. Preserve that export, regenerate integer prompt IDs as version two, and audit them against the authors' retained prompts before SkyRL launch. The original prompt text and membership hashes are unchanged.
 
 The eight-run reference main matrix fixes 300 updates: three paired seeds at noise 0.05 plus one no-noise pair. It uses batch priority and does not occupy interactive campaign nodes. No main scientific result is available yet.
+
+## Continuation at 2026-10-10T17:39:52.862506+00:00
+
+| Rung | Current status | Evidence or next gate |
+| --- | --- | --- |
+| Authors’ reference | Complete | Eight full main runs re-audited; three noisy paired seeds and no-noise sanity pair |
+| SkyRL reproduction | Partial | Older pilot audited; current-head paired qualification prepared, main matrix pending |
+| Qwen task/recipe transfer | Not started | Reproduction must pass before changing the task and recipe |
+| Snowball controlled mismatch | Not started | Five-node batch qualification and separate calibration pending |
+| Snowball staleness | Not started | Actual 65-update serving cadence and substantive paired comparisons pending |
+
+Noise0.05 paired mean clean-quality difference remains +46.61 percentage points, with n=3 paired-t 95% interval [-28.02,+121.25] points. SC seed1 remains stalled; the effect estimate is imprecise. Separate seed0 diagnostics give +0.20 points at noise0.01 and +33.59 points at noise0.02. They do not establish precise effects at those noise levels.
+
+The older SkyRL pilot has two applied finite SGD updates with FP32 master weights and gradient buffers, zero momentum, zero decay and zero clipping. Complete stored behavior heads and tokens were audited, as described in the protocol. Exit0 alone was not used to qualify it. The detached native launch explains the missing terminal manifest; retained checkpoint2, resolved launch, raw groups, evaluations and Ray logs provide independent evidence. Needed temporary outputs are being promoted to durable storage.
+
+Current-source CPU checks passed 78 tests after including the production loss module tests, which populate the policy-loss registry. Two isolated config checks had failed earlier because their registry was empty; no production or test tolerance was weakened. The bounded learner evidence and scalar persistence checks passed all 13 replay tests. New paired qualification configs pin published runtime `01944d73c92c493b835b9e3773147e4e72097e8f`.

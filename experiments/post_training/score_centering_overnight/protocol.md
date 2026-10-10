@@ -1,6 +1,8 @@
 # Score centering reproduction and Snowball transfer
 
-Campaign owner: native devbox Codex session `01a123c0-7354-7993-8310-c03dd9b9c994`.
+Original campaign owner: native devbox Codex session `01a123c0-7354-7993-8310-c03dd9b9c994`.
+Active continuation: native devbox Codex session `01a126ce-e85e-7d42-879a-3c883a6fe9f9`.
+The [resume brief](/home/romain/data/sessions/devbox/codex/01a0bb6f-0196-7e00-b2ad-90559d1641d9/prompts/score-centering-resume-20261010.txt) preserves the full five-rung scope and supersedes dated starting-state assumptions.
 The [overnight brief](/home/romain/data/sessions/devbox/codex/01a0bb6f-0196-7e00-b2ad-90559d1641d9/prompts/score-centering-overnight-20261009.txt) defines completion. No positive result is required.
 
 ## Sources and gates
@@ -36,3 +38,13 @@ Use native clean-policy evaluation. Record quality, loss/gradient stability, pro
 ## Publication and accounting
 
 Keep the core disabled by default and separate the Countdown/noise/staleness experiments from it. Publish immutable configs, revisions, data/model identities, raw evaluations, capture evidence, analysis, plots, allocation ledger, and a concise notepad. Open an eligible core draft PR only after the exact head has the stated qualification. Preserve historical branches and PRs. Account for all campaign jobs, including failure and preemption, before declaring the full goal complete.
+
+## Resume evidence and qualification
+
+The original native goal remains paused. Both current controllers confirmed all 27 old east task attempts terminal and no old campaign attempts on rno2a. Resource-board row 938 records this successor and preserves row 897. The old uncommitted cost ledger is retained unchanged in the initial continuation checkpoint; its generic fields and incomplete subtotal are pending reconciliation against controller specifications.
+
+The reference main comparison has been re-audited from all 2,400 step metrics and 128 retained raw held-out passes. The four 300-update noise diagnostics are reported separately in `results/reference_noise_diagnostics.json`; they do not add replication to the frozen main comparison.
+
+The older SkyRL pilot at `18159e270100d5b3513217fdc2fc53403694e3ba` has two finite full-master FP32 SGD updates, no momentum or clipping, and no skipped updates. Its stored rollout groups retain the actual natural top-128 behavior probabilities. All 86,824 generated training tokens have finite, ordered, nonuniform heads; all 86,787 sampled tokens inside their heads match the chosen-token logprob exactly. Thirty-seven sampled tokens legitimately lie outside those heads. This qualifies that pilot within its two-update scope.
+
+The continuation qualifies `01944d73c92c493b835b9e3773147e4e72097e8f` through a paired two-update real-path pilot. It retains the optional Hydra composition repair and adds a two-row learner evidence dump plus durable scalar metrics in both arms. Evidence capture is enabled equally, including old/current candidate rescoring. Each pilot requests two interactive nodes; together they exhaust the four-node campaign limit. The main SkyRL matrix remains gated on successful serving, optimizer and durable evidence audits of this exact head.
