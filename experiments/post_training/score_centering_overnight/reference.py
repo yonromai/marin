@@ -156,6 +156,7 @@ def main() -> None:
     os.environ.setdefault("XLA_PYTHON_CLIENT_ALLOCATOR", "cuda_async")
     # Recorders wrap I/O only; model, sampler, verifier, advantages, and loss stay in released code.
     sampling = importlib.import_module("models.sampling")
+    models = importlib.import_module("models")
     model = importlib.import_module("models.model")
     rollout = importlib.import_module("tasks.rollout")
     utilities = importlib.import_module("utils")
@@ -165,6 +166,12 @@ def main() -> None:
         return download(*positional, **{**keywords, "revision": args.model_revision})
 
     model.snapshot_download = pinned_download
+    config_download = models.hf_hub_download
+
+    def pinned_config(*positional, **keywords):
+        return config_download(*positional, **{**keywords, "revision": args.model_revision})
+
+    models.hf_hub_download = pinned_config
     output = Path("/tmp/score-centering-reference-results") / args.run_id
     recorder = ReferenceRecorder(output, args.artifact_uri, args.capture_rows)
     sampling.generate = recorder.wrap_generation(sampling.generate)
