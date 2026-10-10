@@ -1,0 +1,18 @@
+# Author requirements at 7c56e9ee, with the README's GPU extra and artifact transport.
+jax[cuda12]>=0.11.1
+tokamax==0.0.13
+triton; sys_platform == "linux" and platform_machine == "x86_64"
+optax
+numpy
+ml-dtypes
+transformers
+huggingface-hub
+safetensors
+datasets
+verifiers
+omegaconf
+wandb
+tqdm
+jinja2
+pyyaml
+boto3
