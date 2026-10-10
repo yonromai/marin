@@ -1,0 +1,186 @@
+{
+  "source": "curriculum-rl-pool@2026.09.18",
+  "tokenizer_revision": "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2",
+  "chat_template_sha256": "414d8559d363292c811e624fe2db04d52647ca5bd89acc53e98bd4c4f371302a",
+  "chat_template_kwargs": {},
+  "maximum_prompt_tokens": 4096,
+  "membership": [
+    {
+      "seed": 0,
+      "split": "train",
+      "source_rows": 23265,
+      "retained_rows": 23265,
+      "source_sha256": "6515e0315d30948375fe51a811dafb87c43a6fa3535066f6d595d6200627175f",
+      "parquet_sha256": "df971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd",
+      "source_row_order_sha256": "c57049cbd5e21c3456ef1309f9f2bf8954d20c91d11064c54ea6cfd12500c8fb",
+      "maximum_prompt_tokens": 984,
+      "domains": {
+        "g08-math-l5": 2295,
+        "g03-gsm8k": 2000,
+        "g04-numina-cnk12": 2000,
+        "g05-math-l12": 1911,
+        "g07-math-l4": 1690,
+        "g06-math-l3": 1590,
+        "g09-numina-amc": 1500,
+        "g11-numina-oly": 1500,
+        "g01-asdiv-elem": 1318,
+        "g01-rg-sum-med": 1200,
+        "g02-rg-sum-hard": 1200,
+        "g00-rg-sum-easy": 1200,
+        "g10-aime": 932,
+        "g02-asdiv-upper": 849,
+        "g02-svamp": 700,
+        "g11-omni": 524,
+        "g13-theoremqa": 448,
+        "g13-hardmath": 260,
+        "g12-omni-top": 148
+      },
+      "environments": {
+        "aime": 17665,
+        "reasoning_gym": 3600,
+        "gsm8k": 2000
+      }
+    },
+    {
+      "seed": 1,
+      "split": "train",
+      "source_rows": 23265,
+      "retained_rows": 23265,
+      "source_sha256": "6515e0315d30948375fe51a811dafb87c43a6fa3535066f6d595d6200627175f",
+      "parquet_sha256": "6968ac3d466777b1578d7d92ac792d076211cc94aa76c1a8d9a6691d3921ddfb",
+      "source_row_order_sha256": "76b050c5df0cc9535994211e4999f6df0b5332351c34c8201146ed212c96af03",
+      "maximum_prompt_tokens": 984,
+      "domains": {
+        "g08-math-l5": 2295,
+        "g03-gsm8k": 2000,
+        "g04-numina-cnk12": 2000,
+        "g05-math-l12": 1911,
+        "g07-math-l4": 1690,
+        "g06-math-l3": 1590,
+        "g09-numina-amc": 1500,
+        "g11-numina-oly": 1500,
+        "g01-asdiv-elem": 1318,
+        "g01-rg-sum-med": 1200,
+        "g02-rg-sum-hard": 1200,
+        "g00-rg-sum-easy": 1200,
+        "g10-aime": 932,
+        "g02-asdiv-upper": 849,
+        "g02-svamp": 700,
+        "g11-omni": 524,
+        "g13-theoremqa": 448,
+        "g13-hardmath": 260,
+        "g12-omni-top": 148
+      },
+      "environments": {
+        "aime": 17665,
+        "reasoning_gym": 3600,
+        "gsm8k": 2000
+      }
+    },
+    {
+      "seed": 2,
+      "split": "train",
+      "source_rows": 23265,
+      "retained_rows": 23265,
+      "source_sha256": "6515e0315d30948375fe51a811dafb87c43a6fa3535066f6d595d6200627175f",
+      "parquet_sha256": "4117c296d0bef317ef5094449c769005b57bc30cb2d1ab4340829bff99d0582a",
+      "source_row_order_sha256": "9672ac05d5553962395d520a7daf7b7d2f82736450fea6b672e0767ecb5425aa",
+      "maximum_prompt_tokens": 984,
+      "domains": {
+        "g08-math-l5": 2295,
+        "g03-gsm8k": 2000,
+        "g04-numina-cnk12": 2000,
+        "g05-math-l12": 1911,
+        "g07-math-l4": 1690,
+        "g06-math-l3": 1590,
+        "g09-numina-amc": 1500,
+        "g11-numina-oly": 1500,
+        "g01-asdiv-elem": 1318,
+        "g01-rg-sum-med": 1200,
+        "g02-rg-sum-hard": 1200,
+        "g00-rg-sum-easy": 1200,
+        "g10-aime": 932,
+        "g02-asdiv-upper": 849,
+        "g02-svamp": 700,
+        "g11-omni": 524,
+        "g13-theoremqa": 448,
+        "g13-hardmath": 260,
+        "g12-omni-top": 148
+      },
+      "environments": {
+        "aime": 17665,
+        "reasoning_gym": 3600,
+        "gsm8k": 2000
+      }
+    },
+    {
+      "seed": 0,
+      "split": "validation",
+      "source_rows": 1199,
+      "retained_rows": 1199,
+      "source_sha256": "97d305a34496c36890e8320c5435a615ad8b058ed42f2ddc30c8eb72b0d413ef",
+      "parquet_sha256": "2a570388fb6582978fe194d01d846b1d0750edfada55976c55a15bae59cedbb9",
+      "source_row_order_sha256": "c1989168ac5b17d6925f31f23462d43f65a41a4468c434510ee3f8623f69fec6",
+      "maximum_prompt_tokens": 848,
+      "domains": {
+        "val-math500": 500,
+        "val-gsm8k": 256,
+        "val-amc": 128,
+        "val-rg-sum": 128,
+        "val-theoremqa": 112,
+        "val-omni": 75
+      },
+      "environments": {
+        "aime": 815,
+        "gsm8k": 256,
+        "reasoning_gym": 128
+      }
+    },
+    {
+      "seed": 1,
+      "split": "validation",
+      "source_rows": 1199,
+      "retained_rows": 1199,
+      "source_sha256": "97d305a34496c36890e8320c5435a615ad8b058ed42f2ddc30c8eb72b0d413ef",
+      "parquet_sha256": "2a570388fb6582978fe194d01d846b1d0750edfada55976c55a15bae59cedbb9",
+      "source_row_order_sha256": "c1989168ac5b17d6925f31f23462d43f65a41a4468c434510ee3f8623f69fec6",
+      "maximum_prompt_tokens": 848,
+      "domains": {
+        "val-math500": 500,
+        "val-gsm8k": 256,
+        "val-amc": 128,
+        "val-rg-sum": 128,
+        "val-theoremqa": 112,
+        "val-omni": 75
+      },
+      "environments": {
+        "aime": 815,
+        "gsm8k": 256,
+        "reasoning_gym": 128
+      }
+    },
+    {
+      "seed": 2,
+      "split": "validation",
+      "source_rows": 1199,
+      "retained_rows": 1199,
+      "source_sha256": "97d305a34496c36890e8320c5435a615ad8b058ed42f2ddc30c8eb72b0d413ef",
+      "parquet_sha256": "2a570388fb6582978fe194d01d846b1d0750edfada55976c55a15bae59cedbb9",
+      "source_row_order_sha256": "c1989168ac5b17d6925f31f23462d43f65a41a4468c434510ee3f8623f69fec6",
+      "maximum_prompt_tokens": 848,
+      "domains": {
+        "val-math500": 500,
+        "val-gsm8k": 256,
+        "val-amc": 128,
+        "val-rg-sum": 128,
+        "val-theoremqa": 112,
+        "val-omni": 75
+      },
+      "environments": {
+        "aime": 815,
+        "gsm8k": 256,
+        "reasoning_gym": 128
+      }
+    }
+  ]
+}

@@ -69,6 +69,7 @@ def audit(config: dict, root: Path) -> dict:
         {"kind": "token", "action": "truncate", "high": 2.0}
     ]
     updates = trainer["max_steps"]
+    refresh_period = resolved["skyrl"]["generator"].get("sampler_refresh_period", 1)
     metrics = [
         json.loads((root / "exports/training_metrics" / f"train-{step:08d}.json").read_text())
         for step in range(1, updates + 1)
@@ -78,13 +79,15 @@ def audit(config: dict, root: Path) -> dict:
         assert values["policy/policy_update_steps"] == 1 and values["policy/skipped_steps"] == 0
         assert math.isfinite(values["policy/raw_grad_norm"])
         assert values["policy/ppo_clip_ratio"] == 0 and values["policy/ppo_ratio_exact_unit_fraction"] == 1
-        assert values["async/staleness_max"] == 0
+        expected_age = (step - 1) % refresh_period
+        assert values["async/staleness_max"] == values["async/staleness_min"] == expected_age
 
     learner = []
     for step in range(1, updates + 1):
         path = root / "exports/dumped_data" / f"global_step_{step}_training_input.pkl"
         batch = pickle.loads(path.read_bytes())
         assert batch.metadata["global_step"] == step and batch.metadata["source_batch_size"] == 512
+        assert torch.all(batch["rollout_staleness"] == (step - 1) % refresh_period)
         mask = batch["loss_mask"].bool()
         assert torch.all(batch["attention_mask"].sum(-1) <= 512)
         q = batch["score_behavior_logprobs"][mask]
@@ -120,6 +123,8 @@ def audit(config: dict, root: Path) -> dict:
         learner.append(
             {
                 "completed_updates_before_batch": step - 1,
+                "sampler_completed_updates": ((step - 1) // refresh_period) * refresh_period,
+                "sampler_age_updates": (step - 1) % refresh_period,
                 "retained_rows": batch.batch_size,
                 "retained_loss_tokens": int(mask.sum()),
                 "chosen_tokens_in_head": int(selected.sum()),
@@ -139,6 +144,14 @@ def audit(config: dict, root: Path) -> dict:
                     continue
                 row = json.loads(gzip.decompress(archive.read(name)))
                 phase, step = row["phase"], row["global_step"]
+                if phase == "train":
+                    assert row["provenance"]["model_version_step"] == step - 1
+                    if refresh_period > 1:
+                        # This bounded qualification does not wrap the data loader's first epoch.
+                        consumed_step = int(row["trajectory"]["instance_id"]) // 64 + 1
+                        assert 1 <= consumed_step <= updates
+                        assert step == 1 + ((consumed_step - 1) // refresh_period) * refresh_period
+                        step = consumed_step
                 records[(phase, step)] += 1
                 assert row["disposition"]["server_error"] is None
                 assert row["prompt"]["token_ids"] == row["trajectory"]["environment_extras"]["reference_prompt_ids"]
@@ -163,6 +176,11 @@ def audit(config: dict, root: Path) -> dict:
         "runtime": resolved["runtime"],
         "completed_updates": updates,
         "score_centering": algorithm["score_centering_enabled"],
+        "sampler_refresh_period": refresh_period,
+        "historical_eval_version_metadata": (
+            "Older sources report step-1. Actual clean evaluation follows "
+            "post-update sync at the stated global_step. Preserve raw metadata."
+        ),
         "primary_endpoint_completed_updates": 299 if updates == 300 else updates,
         "supplemental_eval_steps": extra_eval_steps,
         "learner_evidence": learner,
