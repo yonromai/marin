@@ -276,12 +276,14 @@
       "h100_nodes": 2,
       "h100_per_node": 8,
       "source": "ada6531788d9bb4db71eced13972855de8a8bf74",
-      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0.yaml",
+      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0.json.gz",
       "configuration_sha256": "5de4ca5dbc0f0409f742190a59f62139e0b1376e4fdca2e36ac46a8780c6c8cd",
       "bundle_id": "d8b613b3e49898c58c4d1ab9bcad7d7d5aa02f725e836c94d9b3cbfb7a57f2c3",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0",
-      "status": "terminal"
+      "status": "terminal",
+      "snapshot_storage_sha256": "235ba63ccc431878ffc4566d2e9812bdcdd9b4ba7d9249fa3afebd76072c64c3",
+      "snapshot_encoding": "gzip; configuration_sha256 covers decompressed original server bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0",
@@ -290,12 +292,14 @@
       "h100_nodes": 2,
       "h100_per_node": 8,
       "source": "ada6531788d9bb4db71eced13972855de8a8bf74",
-      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0.yaml",
+      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0.json.gz",
       "configuration_sha256": "16598058d97af7d08cb888bdcedee42d5288e6e604afb435575b0bff67029793",
       "bundle_id": "3c1d6517355d4cb9e52b359434c976d948c5a38d3fcbd31c624e293aa8c13bb9",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0",
-      "status": "terminal"
+      "status": "terminal",
+      "snapshot_storage_sha256": "6837e5a86e1f91d5f3e4ac232af9945e287a947d2f759277ac21bc364dacb5c2",
+      "snapshot_encoding": "gzip; configuration_sha256 covers decompressed original server bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0",
@@ -304,12 +308,14 @@
       "h100_nodes": 2,
       "h100_per_node": 8,
       "source": "ada6531788d9bb4db71eced13972855de8a8bf74",
-      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0.yaml",
+      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0.json.gz",
       "configuration_sha256": "0f6ec9fa2d8ab38c0b16449477b99162c0253de4b5beb6107196c450a049c023",
       "bundle_id": "51f27e77cfe329757b868e03d91958a4b0c4b481b69978186b264f5016f7cef7",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0",
-      "status": "terminal"
+      "status": "terminal",
+      "snapshot_storage_sha256": "01ba3c98d1decf86cee6ad5b72a3e0818bdb2e4a2b725f0b25c7c536e798ac94",
+      "snapshot_encoding": "gzip; configuration_sha256 covers decompressed original server bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0",
@@ -318,12 +324,14 @@
       "h100_nodes": 2,
       "h100_per_node": 8,
       "source": "18159e270100d5b3513217fdc2fc53403694e3ba",
-      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0.yaml",
+      "configuration_snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0.json.gz",
       "configuration_sha256": "2671282bc79252cc5ef36bd3c791d555dc60ba64138587c2dd680ff931c4e218",
       "bundle_id": "08ebf953c6455ed4d6d6dc7b4a94a2d5486f3f83eba36c02ac0f21445cb1482d",
       "task_image": "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
       "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/skyrl/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0",
-      "status": "terminal"
+      "status": "terminal",
+      "snapshot_storage_sha256": "436f1442a8325371b1635157a1a80871698529a3c1e65792e0b889257f198ff1",
+      "snapshot_encoding": "gzip; configuration_sha256 covers decompressed original server bytes"
     },
     {
       "job_id": "/romain/sc-skyrl-countdown-qual-tis-s0-a0-01a126ce",

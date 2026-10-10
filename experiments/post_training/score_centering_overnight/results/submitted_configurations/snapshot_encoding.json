@@ -1,0 +1,30 @@
+[
+  {
+    "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0",
+    "snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0.json.gz",
+    "original_sha256": "5de4ca5dbc0f0409f742190a59f62139e0b1376e4fdca2e36ac46a8780c6c8cd",
+    "original_bytes": 22250,
+    "gzip_sha256": "235ba63ccc431878ffc4566d2e9812bdcdd9b4ba7d9249fa3afebd76072c64c3"
+  },
+  {
+    "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0",
+    "snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a1-01a123c0.json.gz",
+    "original_sha256": "16598058d97af7d08cb888bdcedee42d5288e6e604afb435575b0bff67029793",
+    "original_bytes": 22249,
+    "gzip_sha256": "6837e5a86e1f91d5f3e4ac232af9945e287a947d2f759277ac21bc364dacb5c2"
+  },
+  {
+    "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0",
+    "snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a2-01a123c0.json.gz",
+    "original_sha256": "0f6ec9fa2d8ab38c0b16449477b99162c0253de4b5beb6107196c450a049c023",
+    "original_bytes": 22051,
+    "gzip_sha256": "01ba3c98d1decf86cee6ad5b72a3e0818bdb2e4a2b725f0b25c7c536e798ac94"
+  },
+  {
+    "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0",
+    "snapshot": "experiments/post_training/score_centering_overnight/results/submitted_configurations/sc-skyrl-countdown-qual-sc-s0-a3-01a123c0.json.gz",
+    "original_sha256": "2671282bc79252cc5ef36bd3c791d555dc60ba64138587c2dd680ff931c4e218",
+    "original_bytes": 22123,
+    "gzip_sha256": "436f1442a8325371b1635157a1a80871698529a3c1e65792e0b889257f198ff1"
+  }
+]
