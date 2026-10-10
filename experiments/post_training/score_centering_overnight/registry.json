@@ -1,0 +1,165 @@
+{
+  "interactive_node_limit": 4,
+  "jobs": [
+    {
+      "job_id": "/romain/sc-ref-main-clean-sc-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/clean-sc-s0.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-clean-sc-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-clean-tis-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/clean-tis-s0.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-clean-tis-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-sc-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-sc-s0.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-sc-s1-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-sc-s1.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s1-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-sc-s2-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-sc-s2.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s2-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-tis-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-tis-s0.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-tis-s1-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-tis-s1.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s1-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-main-noise005-tis-s2-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "batch",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_main/noise005-tis-s2.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s2-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-pilot-sc-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_pilot_sc.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-pilot-sc-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-pilot-tis-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_pilot_tis.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-pilot-tis-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-pilot-tis-s0-a1-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_pilot_tis_a1.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-pilot-tis-s0-a1-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-pilot-tis-s0-a2-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_pilot_tis_a2.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-pilot-tis-s0-a2-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-pilot-tis-s0-a3-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_pilot_tis_a3.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-pilot-tis-s0-a3-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-identity-sc-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_identity_sc.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-identity-sc-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-ref-identity-tis-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 1,
+      "h100_per_node": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "configuration": "experiments/post_training/score_centering_overnight/reference_identity_tis.json",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-identity-tis-s0-a0-01a123c0"
+    },
+    {
+      "job_id": "/romain/sc-skyrl-countdown-qual-sc-s0-a0-01a123c0",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "h100_nodes": 2,
+      "h100_per_node": 8,
+      "source": "ada6531788d9bb4db71eced13972855de8a8bf74",
+      "configuration": "experiments/post_training/score_centering_overnight/skyrl_countdown_qualification_submit.yaml",
+      "stage": "SkyRL qualification"
+    }
+  ]
+}
