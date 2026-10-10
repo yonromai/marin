@@ -8,6 +8,7 @@ import hashlib
 import importlib.util
 import json
 import random
+from collections.abc import Mapping
 from pathlib import Path
 
 from datasets import Dataset
@@ -43,9 +44,9 @@ def main() -> None:
             digests = []
             for row in subset:
                 tokens = tokenizer.apply_chat_template(
-                    row["prompt"], tokenize=True, add_generation_prompt=True, enable_thinking=False
+                    row["prompt"], tokenize=True, add_generation_prompt=True, enable_thinking=False, return_dict=False
                 )
-                tokens = tokens["input_ids"] if isinstance(tokens, dict) else tokens
+                tokens = tokens["input_ids"] if isinstance(tokens, Mapping) else tokens
                 if len(tokens) >= 512:
                     raise ValueError("An original prompt consumes the entire 512-token sequence")
                 digests.append(hashlib.sha256(json.dumps(row, sort_keys=True).encode()).hexdigest())

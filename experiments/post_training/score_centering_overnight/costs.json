@@ -36,7 +36,42 @@
       "failure": "image uv cannot download Python3.13.14",
       "allocated_seconds": 5.477,
       "allocated_h100_hours": 0.012171111111111112
+    },
+    {
+      "task_id": "/romain/sc-ref-pilot-tis-s0-a2-01a123c0/0",
+      "attempt_id": "0",
+      "attempt_uid": "bacc36f26af04caa",
+      "state": "5",
+      "started_at_ms": "1791602730800",
+      "finished_at_ms": "1791602825092",
+      "stage": "reference qualification",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "gpus": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "launcher_commit": "586a161cf5",
+      "outcome": "recorder failure after valid generation, before optimizer",
+      "failure": "JAX explicit sharding needs output PartitionSpec for truncated head capture",
+      "allocated_seconds": 94.292,
+      "allocated_h100_hours": 0.2095377777777778
+    },
+    {
+      "task_id": "/romain/sc-ref-pilot-tis-s0-a3-01a123c0/0",
+      "attempt_id": "0",
+      "attempt_uid": "c3e09209a7e9b82c",
+      "state": "4",
+      "started_at_ms": "1791603151106",
+      "finished_at_ms": "1791603233906",
+      "stage": "reference qualification",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "gpus": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "launcher_commit": "04a6e74b75",
+      "outcome": "successful full-shape2update qualification",
+      "allocated_seconds": 82.8,
+      "allocated_h100_hours": 0.184
     }
   ],
-  "terminal_h100_hours": 0.024342222222222223
+  "terminal_h100_hours": 0.41788000000000003
 }

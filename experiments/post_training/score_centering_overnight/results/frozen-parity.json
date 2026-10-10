@@ -1,0 +1,137 @@
+{
+  "scope": "FP32 p=o, actual +1/-1 group centering; masks; TIS2; natural head and modeled tail",
+  "cases": [
+    {
+      "case": "m0.0-k1-sc0",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.4570199251174927,
+      "skyrl_loss_after_scalar_offset": 0.4570198953151703,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.3940532062051147e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m0.0-k1-sc1",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.3438231945037842,
+      "skyrl_loss_after_scalar_offset": 0.343823105096817,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.3940532062051147e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m0.0-k3-sc0",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.4570199251174927,
+      "skyrl_loss_after_scalar_offset": 0.4570198953151703,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.3940532062051147e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m0.0-k3-sc1",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.3438231647014618,
+      "skyrl_loss_after_scalar_offset": 0.343823105096817,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.434475316308692e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m0.0-k9-sc0",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.4570199251174927,
+      "skyrl_loss_after_scalar_offset": 0.4570198953151703,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.3940532062051147e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m0.0-k9-sc1",
+      "raw_skyrl_loss": -0.0833333358168602,
+      "reference_loss": 0.3438231647014618,
+      "skyrl_loss_after_scalar_offset": 0.343823105096817,
+      "max_gradient_error": 3.725290298461914e-09,
+      "mean_gradient_error": 1.3066407678063996e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.0
+    },
+    {
+      "case": "m2.5-k1-sc0",
+      "raw_skyrl_loss": -0.052475303411483765,
+      "reference_loss": 0.5045384168624878,
+      "skyrl_loss_after_scalar_offset": 0.5045384168624878,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 3.3849623104487137e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    },
+    {
+      "case": "m2.5-k1-sc1",
+      "raw_skyrl_loss": -0.02139032632112503,
+      "reference_loss": 0.20100225508213043,
+      "skyrl_loss_after_scalar_offset": 0.20100218057632446,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 3.8152669912250303e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    },
+    {
+      "case": "m2.5-k3-sc0",
+      "raw_skyrl_loss": -0.052475303411483765,
+      "reference_loss": 0.5045384168624878,
+      "skyrl_loss_after_scalar_offset": 0.5045384168624878,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 3.3849623104487137e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    },
+    {
+      "case": "m2.5-k3-sc1",
+      "raw_skyrl_loss": -0.008733544498682022,
+      "reference_loss": 0.32462215423583984,
+      "skyrl_loss_after_scalar_offset": 0.3246220052242279,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 3.7535011210287905e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    },
+    {
+      "case": "m2.5-k9-sc0",
+      "raw_skyrl_loss": -0.052475303411483765,
+      "reference_loss": 0.5045384168624878,
+      "skyrl_loss_after_scalar_offset": 0.5045384168624878,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 3.3849623104487137e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    },
+    {
+      "case": "m2.5-k9-sc1",
+      "raw_skyrl_loss": -0.09967087209224701,
+      "reference_loss": 0.3441460132598877,
+      "skyrl_loss_after_scalar_offset": 0.34414613246917725,
+      "max_gradient_error": 2.2351741790771484e-08,
+      "mean_gradient_error": 4.1222925073469696e-10,
+      "ppo_clip_ratio": 0.0,
+      "masked_tokens": 24,
+      "tis_capped_fraction": 0.7083333134651184
+    }
+  ]
+}
