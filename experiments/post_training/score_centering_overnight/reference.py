@@ -192,12 +192,38 @@ def main() -> None:
     recorder.write_json("metadata.json", metadata)
     recorder.publish()
     sys.argv = [str(source / "train_rl.py"), *overrides, f"log.dir={output}", f"log.run_name={args.run_id}"]
+
+    def record_initial_delta(frame, event, result):
+        if event != "return" or frame.f_code.co_name != "fixed_weight_delta":
+            return
+        sys.setprofile(None)
+        weights = frame.f_locals["weights"]
+        initial, delta = hashlib.sha256(), hashlib.sha256()
+        for name in sorted(weights):
+            initial.update(name.encode())
+            initial.update(np.asarray(weights[name]).tobytes())
+            delta.update(name.encode())
+            delta.update(np.asarray(result[name]).tobytes())
+        recorder.write_json(
+            "initial_noise_identity.json",
+            {
+                "initial_weights_sha256": initial.hexdigest(),
+                "initial_delta_sha256": delta.hexdigest(),
+                "scale": frame.f_locals["scale"],
+                "definition": "released fixed_weight_delta; INITIAL FP32 weights",
+            },
+        )
+        recorder.publish()
+
+    if any(value.startswith("sampler.weight_noise_scale=") and float(value.split("=", 1)[1]) > 0 for value in overrides):
+        sys.setprofile(record_initial_delta)
     status = "failed"
     started = time.monotonic()
     try:
         runpy.run_path(str(source / "train_rl.py"), run_name="__main__")
         status = "succeeded"
     finally:
+        sys.setprofile(None)
         recorder.write_json(
             "terminal.json",
             {
