@@ -151,15 +151,20 @@ def audit(config: dict, root: Path) -> dict:
                     qualities.setdefault(step, []).append(score)
     assert all(records[("train", step)] == 512 for step in range(1, updates + 1))
     expected_eval_steps = [*range(0, 300, 20), 299] if updates == 300 else list(range(updates + 1))
-    assert sorted(qualities) == expected_eval_steps
+    extra_eval_steps = sorted(set(qualities) - set(expected_eval_steps))
+    # The interval callback also fires at update300 even with train-end evaluation disabled.
+    assert set(expected_eval_steps).issubset(qualities)
+    assert extra_eval_steps == ([300] if updates == 300 else [])
     first = memberships[0]
     assert len(first) == 64 and set(first.values()) == {8}
-    assert all(memberships[step] == first and records[("eval", step)] == 512 for step in expected_eval_steps)
+    assert all(memberships[step] == first and records[("eval", step)] == 512 for step in qualities)
     return {
         "run_id": config["run"]["id"],
         "runtime": resolved["runtime"],
         "completed_updates": updates,
         "score_centering": algorithm["score_centering_enabled"],
+        "primary_endpoint_completed_updates": 299 if updates == 300 else updates,
+        "supplemental_eval_steps": extra_eval_steps,
         "learner_evidence": learner,
         "quality": [
             {
