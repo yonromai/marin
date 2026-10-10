@@ -1,0 +1,1167 @@
+{
+  "replication_unit": "training_seed",
+  "endpoint": "clean held-out evaluation at299completed updates, before update300",
+  "pairs": [
+    {
+      "seed": 0,
+      "tis": 0.00390625,
+      "sc": 0.5859375,
+      "difference": 0.58203125
+    },
+    {
+      "seed": 1,
+      "tis": 0.0,
+      "sc": 0.125,
+      "difference": 0.125
+    },
+    {
+      "seed": 2,
+      "tis": 0.0,
+      "sc": 0.69140625,
+      "difference": 0.69140625
+    }
+  ],
+  "mean_difference": 0.4661458333333333,
+  "paired_t_95_interval": [
+    -0.28023764926157274,
+    1.2125293159282393
+  ],
+  "runs": [
+    {
+      "run_id": "sc-ref-main-noise005-tis-s0-a0-01a123c0",
+      "seed": 0,
+      "noise": 0.05,
+      "score_centering": false,
+      "endpoint": 0.00390625,
+      "initial_quality": 0.056640625,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.056640625,
+          "responses": 512,
+          "truncated": 155,
+          "missing_answer_tags": 212,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.30859375,
+          "responses": 512,
+          "truncated": 173,
+          "missing_answer_tags": 174,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.318359375,
+          "responses": 512,
+          "truncated": 250,
+          "missing_answer_tags": 235,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.0078125,
+          "responses": 512,
+          "truncated": 1,
+          "missing_answer_tags": 133,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.025390625,
+          "responses": 512,
+          "truncated": 403,
+          "missing_answer_tags": 334,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.00390625,
+          "responses": 512,
+          "truncated": 463,
+          "missing_answer_tags": 442,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.005859375,
+          "responses": 512,
+          "truncated": 498,
+          "missing_answer_tags": 429,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.001953125,
+          "responses": 512,
+          "truncated": 438,
+          "missing_answer_tags": 382,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 177,
+          "missing_answer_tags": 410,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.001953125,
+          "responses": 512,
+          "truncated": 152,
+          "missing_answer_tags": 405,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.00390625,
+          "responses": 512,
+          "truncated": 124,
+          "missing_answer_tags": 359,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 394,
+          "missing_answer_tags": 417,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 439,
+          "missing_answer_tags": 453,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 464,
+          "missing_answer_tags": 444,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 434,
+          "missing_answer_tags": 443,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.00390625,
+          "responses": 512,
+          "truncated": 396,
+          "missing_answer_tags": 397,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "23f7fd1802d41d37871758e3d116541c76e938d81a1926bff7273b210bcee213",
+      "consumed_loss_tokens": 46184831,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s0-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-noise005-sc-s0-a0-01a123c0",
+      "seed": 0,
+      "noise": 0.05,
+      "score_centering": true,
+      "endpoint": 0.5859375,
+      "initial_quality": 0.06640625,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.06640625,
+          "responses": 512,
+          "truncated": 143,
+          "missing_answer_tags": 201,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.294921875,
+          "responses": 512,
+          "truncated": 211,
+          "missing_answer_tags": 212,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.3984375,
+          "responses": 512,
+          "truncated": 238,
+          "missing_answer_tags": 238,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.455078125,
+          "responses": 512,
+          "truncated": 229,
+          "missing_answer_tags": 228,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.46875,
+          "responses": 512,
+          "truncated": 226,
+          "missing_answer_tags": 226,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.5078125,
+          "responses": 512,
+          "truncated": 220,
+          "missing_answer_tags": 219,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.490234375,
+          "responses": 512,
+          "truncated": 249,
+          "missing_answer_tags": 249,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.515625,
+          "responses": 512,
+          "truncated": 234,
+          "missing_answer_tags": 234,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.56640625,
+          "responses": 512,
+          "truncated": 222,
+          "missing_answer_tags": 221,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.552734375,
+          "responses": 512,
+          "truncated": 223,
+          "missing_answer_tags": 223,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.5546875,
+          "responses": 512,
+          "truncated": 218,
+          "missing_answer_tags": 217,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.57421875,
+          "responses": 512,
+          "truncated": 208,
+          "missing_answer_tags": 208,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.587890625,
+          "responses": 512,
+          "truncated": 206,
+          "missing_answer_tags": 205,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.560546875,
+          "responses": 512,
+          "truncated": 214,
+          "missing_answer_tags": 212,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.55859375,
+          "responses": 512,
+          "truncated": 220,
+          "missing_answer_tags": 220,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.5859375,
+          "responses": 512,
+          "truncated": 208,
+          "missing_answer_tags": 207,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "23f7fd1802d41d37871758e3d116541c76e938d81a1926bff7273b210bcee213",
+      "consumed_loss_tokens": 40635489,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s0-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-noise005-tis-s1-a0-01a123c0",
+      "seed": 1,
+      "noise": 0.05,
+      "score_centering": false,
+      "endpoint": 0.0,
+      "initial_quality": 0.09375,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.09375,
+          "responses": 512,
+          "truncated": 139,
+          "missing_answer_tags": 183,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.251953125,
+          "responses": 512,
+          "truncated": 362,
+          "missing_answer_tags": 361,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.087890625,
+          "responses": 512,
+          "truncated": 448,
+          "missing_answer_tags": 445,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.134765625,
+          "responses": 512,
+          "truncated": 420,
+          "missing_answer_tags": 421,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.0390625,
+          "responses": 512,
+          "truncated": 82,
+          "missing_answer_tags": 169,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.087890625,
+          "responses": 512,
+          "truncated": 130,
+          "missing_answer_tags": 282,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.115234375,
+          "responses": 512,
+          "truncated": 417,
+          "missing_answer_tags": 438,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.1171875,
+          "responses": 512,
+          "truncated": 375,
+          "missing_answer_tags": 440,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.162109375,
+          "responses": 512,
+          "truncated": 335,
+          "missing_answer_tags": 392,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.177734375,
+          "responses": 512,
+          "truncated": 382,
+          "missing_answer_tags": 383,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.171875,
+          "responses": 512,
+          "truncated": 118,
+          "missing_answer_tags": 125,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 256,
+          "missing_answer_tags": 512,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 137,
+          "missing_answer_tags": 512,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 137,
+          "missing_answer_tags": 512,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 137,
+          "missing_answer_tags": 512,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 137,
+          "missing_answer_tags": 512,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "e32428c7250ac26f75b0cbf7f1e064364959c86f0f7375a2ba8a75ce61993399",
+      "consumed_loss_tokens": 26352433,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s1-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-noise005-sc-s1-a0-01a123c0",
+      "seed": 1,
+      "noise": 0.05,
+      "score_centering": true,
+      "endpoint": 0.125,
+      "initial_quality": 0.0859375,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.0859375,
+          "responses": 512,
+          "truncated": 118,
+          "missing_answer_tags": 161,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.1328125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.154296875,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.203125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.171875,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.03125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.140625,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.140625,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.158203125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.10546875,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.16796875,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.109375,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.109375,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.109375,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.125,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 0,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "e32428c7250ac26f75b0cbf7f1e064364959c86f0f7375a2ba8a75ce61993399",
+      "consumed_loss_tokens": 3671632,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s1-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-noise005-tis-s2-a0-01a123c0",
+      "seed": 2,
+      "noise": 0.05,
+      "score_centering": false,
+      "endpoint": 0.0,
+      "initial_quality": 0.09375,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.09375,
+          "responses": 512,
+          "truncated": 118,
+          "missing_answer_tags": 180,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.39453125,
+          "responses": 512,
+          "truncated": 215,
+          "missing_answer_tags": 217,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.486328125,
+          "responses": 512,
+          "truncated": 225,
+          "missing_answer_tags": 224,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.515625,
+          "responses": 512,
+          "truncated": 213,
+          "missing_answer_tags": 213,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.498046875,
+          "responses": 512,
+          "truncated": 201,
+          "missing_answer_tags": 199,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.5,
+          "responses": 512,
+          "truncated": 205,
+          "missing_answer_tags": 202,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.2734375,
+          "responses": 512,
+          "truncated": 90,
+          "missing_answer_tags": 5,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.32421875,
+          "responses": 512,
+          "truncated": 209,
+          "missing_answer_tags": 5,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.130859375,
+          "responses": 512,
+          "truncated": 107,
+          "missing_answer_tags": 6,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.076171875,
+          "responses": 512,
+          "truncated": 205,
+          "missing_answer_tags": 1,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.08984375,
+          "responses": 512,
+          "truncated": 109,
+          "missing_answer_tags": 30,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.021484375,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 260,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.021484375,
+          "responses": 512,
+          "truncated": 0,
+          "missing_answer_tags": 151,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 7,
+          "missing_answer_tags": 345,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 64,
+          "missing_answer_tags": 259,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.0,
+          "responses": 512,
+          "truncated": 64,
+          "missing_answer_tags": 259,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "a2e3c22461fef056622f778df521dece791b2c457ce32e42ed737a1ce0b0894b",
+      "consumed_loss_tokens": 31559782,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-tis-s2-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-noise005-sc-s2-a0-01a123c0",
+      "seed": 2,
+      "noise": 0.05,
+      "score_centering": true,
+      "endpoint": 0.69140625,
+      "initial_quality": 0.09765625,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.09765625,
+          "responses": 512,
+          "truncated": 127,
+          "missing_answer_tags": 182,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.34375,
+          "responses": 512,
+          "truncated": 236,
+          "missing_answer_tags": 236,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.5078125,
+          "responses": 512,
+          "truncated": 200,
+          "missing_answer_tags": 198,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.580078125,
+          "responses": 512,
+          "truncated": 172,
+          "missing_answer_tags": 172,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.595703125,
+          "responses": 512,
+          "truncated": 180,
+          "missing_answer_tags": 178,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.619140625,
+          "responses": 512,
+          "truncated": 179,
+          "missing_answer_tags": 180,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.65625,
+          "responses": 512,
+          "truncated": 169,
+          "missing_answer_tags": 169,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.66015625,
+          "responses": 512,
+          "truncated": 160,
+          "missing_answer_tags": 158,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.638671875,
+          "responses": 512,
+          "truncated": 175,
+          "missing_answer_tags": 175,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.63671875,
+          "responses": 512,
+          "truncated": 161,
+          "missing_answer_tags": 158,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.65234375,
+          "responses": 512,
+          "truncated": 167,
+          "missing_answer_tags": 166,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.68359375,
+          "responses": 512,
+          "truncated": 157,
+          "missing_answer_tags": 156,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.673828125,
+          "responses": 512,
+          "truncated": 163,
+          "missing_answer_tags": 164,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.662109375,
+          "responses": 512,
+          "truncated": 168,
+          "missing_answer_tags": 169,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.685546875,
+          "responses": 512,
+          "truncated": 158,
+          "missing_answer_tags": 158,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.69140625,
+          "responses": 512,
+          "truncated": 155,
+          "missing_answer_tags": 154,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "a2e3c22461fef056622f778df521dece791b2c457ce32e42ed737a1ce0b0894b",
+      "consumed_loss_tokens": 39555667,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-noise005-sc-s2-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-clean-tis-s0-a0-01a123c0",
+      "seed": 0,
+      "noise": 0.0,
+      "score_centering": false,
+      "endpoint": 0.587890625,
+      "initial_quality": 0.056640625,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.056640625,
+          "responses": 512,
+          "truncated": 155,
+          "missing_answer_tags": 212,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.396484375,
+          "responses": 512,
+          "truncated": 261,
+          "missing_answer_tags": 261,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.462890625,
+          "responses": 512,
+          "truncated": 246,
+          "missing_answer_tags": 246,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.509765625,
+          "responses": 512,
+          "truncated": 233,
+          "missing_answer_tags": 231,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.5625,
+          "responses": 512,
+          "truncated": 219,
+          "missing_answer_tags": 219,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.568359375,
+          "responses": 512,
+          "truncated": 211,
+          "missing_answer_tags": 211,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.560546875,
+          "responses": 512,
+          "truncated": 206,
+          "missing_answer_tags": 206,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.595703125,
+          "responses": 512,
+          "truncated": 199,
+          "missing_answer_tags": 197,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.591796875,
+          "responses": 512,
+          "truncated": 201,
+          "missing_answer_tags": 201,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.599609375,
+          "responses": 512,
+          "truncated": 199,
+          "missing_answer_tags": 199,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.58203125,
+          "responses": 512,
+          "truncated": 203,
+          "missing_answer_tags": 203,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.55078125,
+          "responses": 512,
+          "truncated": 228,
+          "missing_answer_tags": 228,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.576171875,
+          "responses": 512,
+          "truncated": 213,
+          "missing_answer_tags": 213,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.583984375,
+          "responses": 512,
+          "truncated": 189,
+          "missing_answer_tags": 188,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.607421875,
+          "responses": 512,
+          "truncated": 191,
+          "missing_answer_tags": 191,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.587890625,
+          "responses": 512,
+          "truncated": 203,
+          "missing_answer_tags": 203,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "23f7fd1802d41d37871758e3d116541c76e938d81a1926bff7273b210bcee213",
+      "consumed_loss_tokens": 37201202,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-clean-tis-s0-a0-01a123c0"
+    },
+    {
+      "run_id": "sc-ref-main-clean-sc-s0-a0-01a123c0",
+      "seed": 0,
+      "noise": 0.0,
+      "score_centering": true,
+      "endpoint": 0.630859375,
+      "initial_quality": 0.06640625,
+      "eval_points": [
+        {
+          "completed_updates": 0,
+          "quality": 0.06640625,
+          "responses": 512,
+          "truncated": 142,
+          "missing_answer_tags": 202,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 20,
+          "quality": 0.369140625,
+          "responses": 512,
+          "truncated": 282,
+          "missing_answer_tags": 282,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 40,
+          "quality": 0.4453125,
+          "responses": 512,
+          "truncated": 260,
+          "missing_answer_tags": 257,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 60,
+          "quality": 0.5234375,
+          "responses": 512,
+          "truncated": 227,
+          "missing_answer_tags": 228,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 80,
+          "quality": 0.560546875,
+          "responses": 512,
+          "truncated": 219,
+          "missing_answer_tags": 222,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 100,
+          "quality": 0.55078125,
+          "responses": 512,
+          "truncated": 226,
+          "missing_answer_tags": 226,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 120,
+          "quality": 0.57421875,
+          "responses": 512,
+          "truncated": 212,
+          "missing_answer_tags": 212,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 140,
+          "quality": 0.564453125,
+          "responses": 512,
+          "truncated": 218,
+          "missing_answer_tags": 219,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 160,
+          "quality": 0.5625,
+          "responses": 512,
+          "truncated": 219,
+          "missing_answer_tags": 219,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 180,
+          "quality": 0.59765625,
+          "responses": 512,
+          "truncated": 200,
+          "missing_answer_tags": 200,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 200,
+          "quality": 0.61328125,
+          "responses": 512,
+          "truncated": 195,
+          "missing_answer_tags": 195,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 220,
+          "quality": 0.609375,
+          "responses": 512,
+          "truncated": 196,
+          "missing_answer_tags": 196,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 240,
+          "quality": 0.6015625,
+          "responses": 512,
+          "truncated": 200,
+          "missing_answer_tags": 200,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 260,
+          "quality": 0.6015625,
+          "responses": 512,
+          "truncated": 197,
+          "missing_answer_tags": 198,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 280,
+          "quality": 0.599609375,
+          "responses": 512,
+          "truncated": 197,
+          "missing_answer_tags": 197,
+          "infrastructure_errors": 0
+        },
+        {
+          "completed_updates": 299,
+          "quality": 0.630859375,
+          "responses": 512,
+          "truncated": 184,
+          "missing_answer_tags": 184,
+          "infrastructure_errors": 0
+        }
+      ],
+      "membership_sha256": "23f7fd1802d41d37871758e3d116541c76e938d81a1926bff7273b210bcee213",
+      "consumed_loss_tokens": 37678891,
+      "environment_lock_sha256": "98f2605e2ea9b6d46797dee560f1d856b39a0bf9ff0f3825a4076d6c0fc47a0f",
+      "artifacts": "s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/reference/sc-ref-main-clean-sc-s0-a0-01a123c0"
+    }
+  ]
+}
