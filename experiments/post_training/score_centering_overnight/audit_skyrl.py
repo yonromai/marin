@@ -19,7 +19,6 @@ import boto3
 import torch
 import yaml
 from botocore.config import Config
-
 from skyrl_gym.countdown_reference import compute_reward
 from skyrl_train.objective.score_centering import ppo_tis_score_centering_correction
 
@@ -58,7 +57,11 @@ def audit(config: dict, root: Path) -> dict:
     assert resolved["runtime"]["launcher_commit"] == config["runtime"]["launcher_commit"]
     trainer = resolved["skyrl"]["trainer"]
     algorithm = trainer["algorithm"]
-    assert (trainer["train_batch_size"], trainer["policy_mini_batch_size"], trainer["update_epochs_per_batch"]) == (64, 64, 1)
+    assert (trainer["train_batch_size"], trainer["policy_mini_batch_size"], trainer["update_epochs_per_batch"]) == (
+        64,
+        64,
+        1,
+    )
     assert algorithm["score_centering_topk"] == 128
     assert algorithm["score_centering_enabled"] == config["skyrl"]["trainer"]["algorithm"]["score_centering_enabled"]
     assert algorithm["grpo_norm_by_std"] is False and algorithm["advantage_batch_normalize"] is False
@@ -66,7 +69,10 @@ def audit(config: dict, root: Path) -> dict:
         {"kind": "token", "action": "truncate", "high": 2.0}
     ]
     updates = trainer["max_steps"]
-    metrics = [json.loads((root / "exports/training_metrics" / f"train-{step:08d}.json").read_text()) for step in range(1, updates + 1)]
+    metrics = [
+        json.loads((root / "exports/training_metrics" / f"train-{step:08d}.json").read_text())
+        for step in range(1, updates + 1)
+    ]
     for step, values in enumerate(metrics, 1):
         assert values["trainer/global_step"] == step
         assert values["policy/policy_update_steps"] == 1 and values["policy/skipped_steps"] == 0
@@ -102,16 +108,26 @@ def audit(config: dict, root: Path) -> dict:
             atol=1e-7,
         )
         correction = ppo_tis_score_centering_correction(
-            batch["score_old_logprobs"], batch["score_old_logprobs"], batch["score_behavior_logprobs"],
-            batch["advantages"], batch["loss_mask"], tis_cap=2, eps_clip_low=0.2, eps_clip_high=0.2,
+            batch["score_old_logprobs"],
+            batch["score_old_logprobs"],
+            batch["score_behavior_logprobs"],
+            batch["advantages"],
+            batch["loss_mask"],
+            tis_cap=2,
+            eps_clip_low=0.2,
+            eps_clip_high=0.2,
         )[mask]
-        learner.append({
-            "completed_updates_before_batch": step - 1, "retained_rows": batch.batch_size,
-            "retained_loss_tokens": int(mask.sum()), "chosen_tokens_in_head": int(selected.sum()),
-            "mean_omitted_mass": float(1 - q.exp().sum(-1).mean()),
-            "pre_update_correction_abs_mean": float(correction.abs().mean()),
-            "centering_applied": algorithm["score_centering_enabled"],
-        })
+        learner.append(
+            {
+                "completed_updates_before_batch": step - 1,
+                "retained_rows": batch.batch_size,
+                "retained_loss_tokens": int(mask.sum()),
+                "chosen_tokens_in_head": int(selected.sum()),
+                "mean_omitted_mass": float(1 - q.exp().sum(-1).mean()),
+                "pre_update_correction_abs_mean": float(correction.abs().mean()),
+                "centering_applied": algorithm["score_centering_enabled"],
+            }
+        )
 
     records = Counter()
     memberships = {}
@@ -140,9 +156,20 @@ def audit(config: dict, root: Path) -> dict:
     assert len(first) == 64 and set(first.values()) == {8}
     assert all(memberships[step] == first and records[("eval", step)] == 512 for step in expected_eval_steps)
     return {
-        "run_id": config["run"]["id"], "runtime": resolved["runtime"], "completed_updates": updates,
-        "score_centering": algorithm["score_centering_enabled"], "learner_evidence": learner,
-        "quality": [{"completed_updates": step, "correct": sum(scores), "responses": len(scores), "quality": sum(scores) / len(scores)} for step, scores in sorted(qualities.items())],
+        "run_id": config["run"]["id"],
+        "runtime": resolved["runtime"],
+        "completed_updates": updates,
+        "score_centering": algorithm["score_centering_enabled"],
+        "learner_evidence": learner,
+        "quality": [
+            {
+                "completed_updates": step,
+                "correct": sum(scores),
+                "responses": len(scores),
+                "quality": sum(scores) / len(scores),
+            }
+            for step, scores in sorted(qualities.items())
+        ],
         "nonzero_gradient_updates": sum(m["policy/raw_grad_norm"] > 0 for m in metrics),
         "audit_passed": True,
     }
@@ -155,13 +182,21 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     config = yaml.safe_load(args.config.read_text())
-    client = boto3.client("s3", endpoint_url=os.environ["CW_S3_ENDPOINT"], aws_access_key_id=os.environ["CW_KEY_ID"], aws_secret_access_key=os.environ["CW_KEY_SECRET"], config=Config(s3={"addressing_style": "virtual"}))
+    client = boto3.client(
+        "s3",
+        endpoint_url=os.environ["CW_S3_ENDPOINT"],
+        aws_access_key_id=os.environ["CW_KEY_ID"],
+        aws_secret_access_key=os.environ["CW_KEY_SECRET"],
+        config=Config(s3={"addressing_style": "virtual"}),
+    )
     uri = config["artifacts"]["attempts_root"].removesuffix("/attempts")
     args.cache.mkdir(parents=True, exist_ok=True)
     collect(client, uri, args.cache)
     result = audit(config, args.cache)
     checkpoint = urlparse(config["artifacts"]["checkpoint_root"])
-    marker = client.get_object(Bucket=checkpoint.netloc, Key=checkpoint.path.lstrip("/") + "/latest_ckpt_global_step.txt")["Body"].read()
+    marker = client.get_object(
+        Bucket=checkpoint.netloc, Key=checkpoint.path.lstrip("/") + "/latest_ckpt_global_step.txt"
+    )["Body"].read()
     assert int(marker) == result["completed_updates"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")
