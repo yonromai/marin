@@ -6,13 +6,14 @@
 import argparse
 import importlib
 import json
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import jax
 import jax.numpy as jnp
-from jax.sharding import AxisType, NamedSharding, PartitionSpec as P
 import numpy as np
+from jax.sharding import AxisType, NamedSharding
+from jax.sharding import PartitionSpec as P
 
 
 def main() -> None:
@@ -47,9 +48,11 @@ def main() -> None:
             for enabled in (False, True):
                 name = f"m{mismatch}-k{width}-sc{int(enabled)}"
 
-                def objective(hidden):
+                def objective(hidden, batch=batch, enabled=enabled):
                     return losses.loss_fn_rl(
-                        hidden, lambda x: x, batch,
+                        hidden,
+                        lambda x: x,
+                        batch,
                         losses.ISCorrection(level="token", high=2.0, outside="clamp"),
                         score_center=enabled,
                     )

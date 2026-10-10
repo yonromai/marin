@@ -21,6 +21,7 @@ from urllib.parse import urlparse
 import boto3
 import numpy as np
 from botocore.config import Config
+from jax.sharding import PartitionSpec as P
 
 
 class ReferenceRecorder:
@@ -79,8 +80,12 @@ class ReferenceRecorder:
             }
             if train:
                 payload["evidence_row_indices"] = np.arange(min(len(tokens), self.capture_rows))
-                payload["behavior_topk_ids"] = np.asarray(head_ids[: self.capture_rows])
-                payload["behavior_topk_logprobs"] = np.asarray(head_logprobs[: self.capture_rows])
+                payload["behavior_topk_ids"] = np.asarray(
+                    head_ids.at[: self.capture_rows].get(out_sharding=P(None, None, None))
+                )
+                payload["behavior_topk_logprobs"] = np.asarray(
+                    head_logprobs.at[: self.capture_rows].get(out_sharding=P(None, None, None))
+                )
                 response_scores = []
                 for row, prompt in enumerate(prompt_lengths[: self.capture_rows]):
                     generated = payload["tokens"][row, prompt:]

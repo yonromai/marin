@@ -1,0 +1,42 @@
+{
+  "basis": "controller task_attempts started_at_ms to finished_at_ms, multiplied by requested H100 count; task allocations, not billing",
+  "attempts": [
+    {
+      "task_id": "/romain/sc-ref-pilot-tis-s0-a0-01a123c0/0",
+      "attempt_id": "0",
+      "attempt_uid": "b63139844680df26",
+      "state": "5",
+      "started_at_ms": "1791601994727",
+      "finished_at_ms": "1791602000204",
+      "stage": "reference qualification",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "gpus": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "launcher_commit": "b78c3bd1a1",
+      "outcome": "setup failure before model load",
+      "failure": "inherited uv unpinned tfp constraint",
+      "allocated_seconds": 5.477,
+      "allocated_h100_hours": 0.012171111111111112
+    },
+    {
+      "task_id": "/romain/sc-ref-pilot-tis-s0-a1-01a123c0/0",
+      "attempt_id": "0",
+      "attempt_uid": "5c3867d02b952085",
+      "state": "5",
+      "started_at_ms": "1791602332085",
+      "finished_at_ms": "1791602337562",
+      "stage": "reference qualification",
+      "cluster": "cw-us-east-02a",
+      "priority": "interactive",
+      "gpus": 8,
+      "source": "7c56e9ee2972aa57f446cf564de1a1658d14b321",
+      "launcher_commit": "de22c75240",
+      "outcome": "setup failure before model load",
+      "failure": "image uv cannot download Python3.13.14",
+      "allocated_seconds": 5.477,
+      "allocated_h100_hours": 0.012171111111111112
+    }
+  ],
+  "terminal_h100_hours": 0.024342222222222223
+}
