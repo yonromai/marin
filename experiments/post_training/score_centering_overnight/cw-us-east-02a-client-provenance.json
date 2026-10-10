@@ -1,0 +1,9 @@
+{
+  "canonical_source": "/home/romain/work/marin-community/marin/score-centering-overnight-01a123c0/lib/iris/config/cw-us-east-02a.yaml",
+  "canonical_sha256": "680d331c72aa525408e7e04579350ca27bc2590424a08378b8d54d38335f27cb",
+  "omitted": [
+    "kubernetes_provider.node_health"
+  ],
+  "reason": "controller deployment health config is not an input to submitting a job; pinned SkyRL Iris SDK predates this field",
+  "cluster_changed": false
+}

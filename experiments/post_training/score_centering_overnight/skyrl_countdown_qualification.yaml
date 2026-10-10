@@ -10,7 +10,7 @@ runtime:
   profile: megatron
 iris:
   cluster: cw-us-east-02a
-  cluster_config: /home/romain/work/marin-community/marin/score-centering-overnight-01a123c0/lib/iris/config/cw-us-east-02a.yaml
+  cluster_config: /home/romain/work/marin-community/marin/score-centering-overnight-01a123c0/experiments/post_training/score_centering_overnight/cw-us-east-02a-client.yaml
   job_name: sc-skyrl-countdown-qual-sc-s0-a0-01a123c0
   priority: interactive
   max_retries: 0
