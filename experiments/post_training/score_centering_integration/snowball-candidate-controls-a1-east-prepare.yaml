@@ -6,7 +6,7 @@ run:
   submission: prepare
   export_hf: false
 runtime:
-  launcher_commit: 77806511d37f307baf2c05dae2d9b47bc391be3d
+  launcher_commit: 92d057c561b0893a3d922e42f221eb8d5b1e68fb
   profile: megatron
 iris:
   cluster: cw-us-east-02a
@@ -145,7 +145,7 @@ skyrl:
       workload: snowball
       variant: candidate
       output_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-controls-a1-east-01a146a3/performance.json
-      candidate: db5227d4814086c5a71ca669b8c0dbb19563705b
+      candidate: 87f13fcd82b4677545816e0789c685d10cf051a0
       repetitions: 3
       source_rows:
       - 5195

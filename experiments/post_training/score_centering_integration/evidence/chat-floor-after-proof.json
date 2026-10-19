@@ -1,0 +1,71 @@
+{
+  "vllm_pin": "39e62869693c46402b1a95fde4fc55ca1aab9ae1",
+  "sources": {
+    "39e62869693c:vllm/entrypoints/serve/engine/protocol.py": "9d865d7006ed6ede3417f75444f8b5dcd82769165e703b140b45ed639d0c16a4",
+    "39e62869693c:vllm/entrypoints/openai/chat_completion/protocol.py": "0ed35d120613fac0ae879a5be0463265cbf6731875fb755d31962a4639db85bf",
+    "39e62869693c:vllm/entrypoints/openai/chat_completion/serving.py": "ea1f76074a9587c8054f54d30a6ba748b6a5fc4d90dd82c801504505c1da1f92",
+    "39e62869693c:vllm/entrypoints/generate/base/serving.py": "35ec53f63e86a8c1725728911db0df44eb3101d8cd65e9b2f39d048956977bad",
+    "964a602e:skyrl-train/skyrl_train/inference_engines/vllm/vllm_engine.py": "d647b28855756e714a093d7cce480610f9ee309d7abe987a19bbe154170657e5",
+    "964a602e:skyrl-train/skyrl_train/inference_engines/response_topk.py": "17d203414bf9fb8d4c659f9b16397615f4031db184bb164a1d0e46f7d03e2162"
+  },
+  "selector_sha256": "18123519c0ced8bf4f34f74c1fa6ce3ddf15fc02941ba7bbdd896792b618ce56",
+  "cases": [
+    {
+      "source_low": "-10000.0",
+      "sampled_outside": false,
+      "ids": [
+        1,
+        4
+      ],
+      "scores": [
+        0.0,
+        -9999.0
+      ],
+      "sampled_score": 0.0,
+      "exact": true
+    },
+    {
+      "source_low": "-10000.0",
+      "sampled_outside": true,
+      "ids": [
+        1,
+        8
+      ],
+      "scores": [
+        0.0,
+        -9999.0
+      ],
+      "sampled_score": -9999.0,
+      "exact": true
+    },
+    {
+      "source_low": "-inf",
+      "sampled_outside": false,
+      "ids": [
+        1,
+        4
+      ],
+      "scores": [
+        0.0,
+        -9999.0
+      ],
+      "sampled_score": 0.0,
+      "exact": true
+    },
+    {
+      "source_low": "-inf",
+      "sampled_outside": true,
+      "ids": [
+        1,
+        8
+      ],
+      "scores": [
+        0.0,
+        -9999.0
+      ],
+      "sampled_score": -9999.0,
+      "exact": true
+    }
+  ],
+  "scope": "CPU formatter contract, including score flooring, ties, sampled scores and display limit. These synthetic presentation cases are not sampling or throughput measurements."
+}

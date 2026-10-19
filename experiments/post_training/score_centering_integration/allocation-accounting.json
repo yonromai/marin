@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T20:06:17.086038+00:00",
+  "saved_at": "2026-10-19T20:32:08.872177+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -146,17 +146,29 @@
     "snowball-candidate-a1-rno",
     "snowball-candidate-a2-east"
   ],
-  "manual_attempt_limits": {
+  "whole_run_manual_attempt_limits": {
     "snowball_baseline": 3,
-    "snowball_candidate": 2,
-    "qwen": 2
+    "snowball_candidate": 2
+  },
+  "global_manual_submission_limits": {
+    "snowball_baseline": 7,
+    "snowball_candidate": 4,
+    "qwen": 3
   },
   "staged_attempt_limits": {
+    "baseline_controls": 2,
     "candidate_controls": 2,
     "baseline_async": 2,
     "candidate_async": 2
   },
   "staged_prepared_but_not_submitted": [
+    "qwen-candidate-a2-rno",
+    "snowball-baseline-controls-a0-rno",
+    "snowball-candidate-controls-a1-rno",
+    "snowball-baseline-async-a0-rno",
+    "snowball-candidate-async-a0-rno"
+  ],
+  "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",
     "snowball-candidate-async-a0-east"

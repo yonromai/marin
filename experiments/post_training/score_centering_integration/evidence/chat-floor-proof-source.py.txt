@@ -1,0 +1,35 @@
+"""Compare numeric selection against the actual pinned native chat formatter."""
+
+import hashlib
+import json
+from pathlib import Path
+
+A = Path(__file__).resolve().parent
+profile = A / 'profile_native_chat.py'
+env = {'__file__': str(profile), '__name__': 'floor_reference'}
+exec(profile.read_text().split('with zipfile.ZipFile(REPORT)')[0], env)
+for name in ('ChatCompletionLogProb', 'ChatCompletionLogProbsContent', 'ChatCompletionLogProbs'):
+    env[name].model_rebuild(_types_namespace=env)
+records = []
+for low in (-10000.0, float('-inf')):
+    for outside in (False, True):
+        ids = [9, 1, 8, 4] if outside else [1, 1, 8, 4]
+        scores = [low - 2, 0.0, low, low - 1] if outside else [0.0, 0.0, low, low - 1]
+        flat = env['FlatLogprobs'](start_indices=[0], end_indices=[4], token_ids=ids,
+                                  logprobs=scores, ranks=[None] * 4, decoded_tokens=[None] * 4)
+        display = env['LegacyFormatter']()._create_chat_logprobs(
+            [ids[0]], [flat[0]], None, 3, return_as_token_id=True).model_dump()['content'][0]
+        expected_ids, expected_scores = env['select_chat_response_topk'](display['top_logprobs'], 2)
+        selected = env['select_flat_chat_response_topk'](flat, [ids[0]], 2)
+        assert selected.topk_indices.tolist() == [expected_ids]
+        assert selected.topk_logprobs.tolist() == [expected_scores]
+        assert selected.sampled_logprobs == [display['logprob']]
+        assert flat.logprobs == scores
+        records.append({'source_low': str(low), 'sampled_outside': outside, 'ids': expected_ids,
+                        'scores': expected_scores, 'sampled_score': display['logprob'], 'exact': True})
+selector = env['PRODUCT'] / 'skyrl-train/skyrl_train/inference_engines/response_topk.py'
+result = {'vllm_pin': '39e62869693c46402b1a95fde4fc55ca1aab9ae1',
+          'sources': env['sources'], 'selector_sha256': hashlib.sha256(selector.read_bytes()).hexdigest(),
+          'cases': records, 'scope': 'CPU formatter contract, including score flooring, ties, sampled scores and display limit. These synthetic presentation cases are not sampling or throughput measurements.'}
+(A / 'chat-floor-after-proof.json').write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
+print(json.dumps(records))

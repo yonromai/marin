@@ -17,9 +17,9 @@ hooks are unchanged. No new vLLM subclass, override, monkey patch, fork patch or
 | Purpose | Product | Instrumented runtime |
 | --- | --- | --- |
 | Qwen prototype qualification | `d92307d3deff81aa8270c90c49d529a9bb7a1951` | `328858aa5ad1f659ee1bb6bf60aa6187be973512` |
-| Qwen final behavior qualification | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
+| Qwen boundary-corrected qualification | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
 | Snowball prior integration | `964a602e995b16943dc34db036d25d2b7c5b7310` | `bdb8b3134ca0b7322d889f2634dd1bfc6a126beb` |
-| Snowball staged candidate | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `77806511d37f307baf2c05dae2d9b47bc391be3d` |
+| Current Qwen/Snowball candidate target | `87f13fcd82b4677545816e0789c685d10cf051a0` | `92d057c561b0893a3d922e42f221eb8d5b1e68fb` |
 | Snowball staged async baseline | `964a602e995b16943dc34db036d25d2b7c5b7310` | `3b5de0c201a8ab7034aa53d9be3645d1e5372a8b` |
 
 The later product commit `c44e390a5236079b116c28dc27f84db2ec90c2cb` adds a structural sampling type; its
@@ -78,7 +78,7 @@ capture and SC modes each have two warmup and ten measured updates. The interval
 warmup and twenty measured updates, spanning two cadence intervals. The original per-update
 measurement functions, serialized loop and periodic body are AST-identical; see
 [the staged harness proof](evidence/staged-harness-proof.json). No partial training checkpoint is recovered.
-All three future stages stay on East, run sequentially, allow at most two actual submissions each, retain a
+That initial plan kept all three future stages on East, sequentially, with at most two actual submissions each, a
 21600-second queue-inclusive deadline and zero automatic retries. Product code, K128, SC application frequency
 and the asynchronous admission/publication controls are unchanged.
 
@@ -89,9 +89,25 @@ admission quota. [The stage attempt record](snowball-stage-attempts.json) keeps 
 remaining limits explicit. Both asynchronous stages remain unsubmitted. No candidate Snowball performance
 or correctness result is established yet.
 
+[Revision r2](snowball-staged-protocol-r2.json) moves both primary comparison arms to RNO after a fresh check
+found seven whole-node fits, 69 GPU/RDMA units of unused quota and no pending workloads. All old East jobs and
+queues were already absent. It declares a fresh 18-update baseline controls stage and the remaining candidate
+controls retry there, followed by the two 67-update asynchronous stages. The East prefix becomes secondary
+evidence and is not pooled with RNO. The new short baseline stage allows two actual submissions; the candidate
+controls limit remains two including its spent East attempt. [The additional Qwen protocol](qwen-floor-protocol.json)
+declares one source-correction qualification, the third and final Qwen attempt, before candidate Snowball.
+
+The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
+Without it, a head concentrated on one token could select different IDs when the remaining scores become ties
+under the display floor. Two regression cases failed before the fix; 126 adapter checks now pass. Four independent
+comparisons with the actual pinned Pydantic formatter, including sampled scores and the display limit, match exactly.
+[The floor proof](evidence/chat-floor-after-proof.json) retains the source hashes and synthetic contract cases.
+Raw-generation selection and the SC kernel are unchanged. Actual Qwen and Snowball qualification of this source
+are pending; earlier qualified source pins remain separate.
+
 ## Qwen interface qualification
 
-The final two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
+The boundary-corrected two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
 and sixteen asynchronous updates. Exact old/new chat comparisons passed at temperatures 1.0 and 0.7 for both
 128-token and 4096-token responses: token IDs, message, finish reason, source versions and chosen/head scores
 matched. The compact response held int32 IDs and float32 scores, with display logprobs absent. Full-vocabulary
@@ -120,7 +136,7 @@ An independent FP32 current-equals-old formula reproduces held probe scalars wit
 same quantized heads differs by as much as 0.002755 in an artificial temperature-0.7 warmup with 21 valid positions,
 all at the modeled tail floor. Using the FP32 tail coefficient in otherwise-FP64 arithmetic reduces that difference
 below 1.6e-8. Subtracting near-unit head mass makes this tiny tail sensitive to rounding. The kernel is byte-identical
-to the baseline; native old/new heads matched exactly. No kernel, floor, tolerance or K was changed. This scalar
+to the baseline; native old/new heads matched exactly. No kernel, modeled tail floor, tolerance or K was changed. This scalar
 precision observation does not establish a parameter-gradient error or learning impact.
 
 ## CPU evidence and remaining transfers
@@ -132,8 +148,8 @@ probes; their settings and sampling are unchanged.
 
 A CPU representation experiment repeats 24 retained Snowball causal heads to 4096 positions at K128. It uses
 the exact pinned Pydantic classes, formatter, qualified ID-only hook and prior parser. Across five alternating
-measured repetitions after warmup, median representation/pickle/client time was 3.508 seconds for chat objects
-and 0.0617 seconds for arrays; pickle sizes were 19210004 and 4231457 bytes. Inputs and returned numeric values
+measured repetitions after warmup at the corrected source, median representation/pickle/client time was 3.410 seconds for chat objects
+and 0.0651 seconds for arrays; pickle sizes were 19210004 and 4231457 bytes. Inputs and returned numeric values
 matched exactly. Flat primitive lists were prebuilt, so this excludes GPU probability collection, flat-list append,
 real Ray/S3 and training. The shared host also limits interpretation of CPU timing.
 

@@ -1,0 +1,21 @@
+{
+  "declared_at_utc": "2026-10-19T20:27:47.809880+00:00",
+  "reason": "One additional actual Qwen qualification after correcting a missing pinned chat score-floor rule. The first two Qwen qualifications succeeded at earlier source pins; their results are retained.",
+  "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+  "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+  "config": "qwen-candidate-a2-rno-prepare.yaml",
+  "config_sha256": "de7bbe38544db82831657ff3f5e65815d837030850c43948fd705392a4ba2f37",
+  "actual_attempt_number": 3,
+  "total_qwen_attempt_limit": 3,
+  "additional_attempt_limit": 1,
+  "priority": "INTERACTIVE",
+  "nodes": 2,
+  "gpus_per_node": 8,
+  "maximum_owned_interactive_nodes_planned": 2,
+  "user_maximum_owned_interactive_nodes": 4,
+  "queue_inclusive_deadline_seconds": 3600,
+  "automatic_retries": 0,
+  "applied_updates": 35,
+  "modes_and_controls": "Retain the prior full Qwen model, tokenizer, grader-valid tasks, sampling, four exact native old/new A/B cases at temperatures1.0/0.7 and lengths128/4096, independent causal references, three calibration updates, ten serialized windows, six natural periodic updates and sixteen asynchronous updates. Effective engine sampling is recorded.",
+  "limits": "No Qwen or CPU timing establishes Snowball throughput. No learning or model-parameter-gradient campaign."
+}

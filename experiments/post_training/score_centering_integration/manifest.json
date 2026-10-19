@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T20:06:17.086917+00:00",
+  "saved_at": "2026-10-19T20:32:08.873054+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 13730,
-      "sha256": "79e688d6064446a89c2252614bf06ee93bbac568a544418413873e7418b30e01"
+      "bytes": 15314,
+      "sha256": "08d026e27b3a6a4cd1b77c4c1e5b1cba51c605a8281c0451b54fda3857902278"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 7168,
-      "sha256": "180df4828ed42beedef7ecd8e4d810c6122579420255a18b55e9658f87103bca"
+      "bytes": 7533,
+      "sha256": "ce3160cf84354a3a3b42ef604353a25e261a3ed5eda240b75ad4a75a034987d0"
     },
     {
       "path": "analyze.py",
@@ -32,9 +32,19 @@
       "sha256": "8f13093483ee35b3c7412f21eb7e464d3efda3133e40ee81758649cd16863d81"
     },
     {
+      "path": "evidence/capacity-east-before-qwen-floor.json",
+      "bytes": 11570,
+      "sha256": "dbd070cfd7b87c0979c139f39e8f693013458f76d1f64d539b0583bd1f6fc31e"
+    },
+    {
       "path": "evidence/capacity-rno-after-a2.json",
       "bytes": 19656,
       "sha256": "431e029477563ff82a8dcd755c6928677e78ccc0dd0d65074655f411f76cae90"
+    },
+    {
+      "path": "evidence/capacity-rno-before-qwen-floor.json",
+      "bytes": 19656,
+      "sha256": "24b56c01d8641d043cbbd1069740d805473eb9af4d6b4836a6e318fc1bd1061c"
     },
     {
       "path": "evidence/chat-boundary-fixed-proof.json",
@@ -47,9 +57,39 @@
       "sha256": "8a0f6b86baedf3de2417dec5d369dd23111720dba04ac4c1a7d2d6ecfa5e4246"
     },
     {
+      "path": "evidence/chat-floor-after-proof.json",
+      "bytes": 2100,
+      "sha256": "bb8778b809019d9fdf0b5bf8f819f75ffae28d1f05f9b3aa4583a88b92417133"
+    },
+    {
+      "path": "evidence/chat-floor-before-proof.json",
+      "bytes": 1609,
+      "sha256": "77378c07e9532c4c0ed11b1c89d4fc79483c05e2e3f8d0773f462de45cccff16"
+    },
+    {
+      "path": "evidence/chat-floor-proof-source.py.txt",
+      "bytes": 2278,
+      "sha256": "a872da6e3e1487c6e8a0593a67902ee4fc8615bcff60b5a863743cdedd5d6380"
+    },
+    {
+      "path": "evidence/chat-floor-validation.zip",
+      "bytes": 4715,
+      "sha256": "b2d6d33e7ccba1b3d2030bc9904642da2e6a478f6ba5120af0e273fd45ff6f25"
+    },
+    {
       "path": "evidence/complete-report-writer-preflight.json",
       "bytes": 446,
       "sha256": "387257b3952c79e6577da614720bf8c3c28f65df316b515a238c747e016fff2e"
+    },
+    {
+      "path": "evidence/cpu-native-chat-cost-floor-source.py.txt",
+      "bytes": 7559,
+      "sha256": "e09a7c241de91128cb6b7042c788e141c7bfcd43546524a04a204607708cbc00"
+    },
+    {
+      "path": "evidence/cpu-native-chat-cost-floor.json",
+      "bytes": 4782,
+      "sha256": "b4d4b6def23349ec63ce1e19b34d7a2950651dbe656b8f749e6b6a05b418da3a"
     },
     {
       "path": "evidence/cpu-native-chat-cost-source.py.txt",
@@ -90,6 +130,11 @@
       "path": "evidence/qwen-a0-state-final-check.csv",
       "bytes": 421,
       "sha256": "ed74d93e45798f9240d7d20cd176af22d3f985e3625968f45d04d7e94d3bf78a"
+    },
+    {
+      "path": "evidence/qwen-candidate-a2-rno-floor-launch-preflight.json",
+      "bytes": 6731,
+      "sha256": "e63979f99626da5e2e72d73eb42dd37f475adb409d6e3a260029d75bb75c205e"
     },
     {
       "path": "evidence/qwen-final-a1-analysis.json",
@@ -232,6 +277,16 @@
       "sha256": "b9eeae182294f91e66277c27a9c20fb8c6feec7deef86449c752be6ab103e5f8"
     },
     {
+      "path": "evidence/snowball-baseline-async-a0-rno-launch-preflight.json",
+      "bytes": 9404,
+      "sha256": "b5f1d161af680f582d1097611c3615677671a417df498911669f8c85bc377d15"
+    },
+    {
+      "path": "evidence/snowball-baseline-controls-a0-rno-launch-preflight.json",
+      "bytes": 9422,
+      "sha256": "6f718b3ed3f65ddbbce6f6880bf2cc739ebeae1a4927b5b44ec324c96515d2fe"
+    },
+    {
       "path": "evidence/snowball-candidate-a0-launch-preflight.json",
       "bytes": 9329,
       "sha256": "6568b32986955df7e1f2381a4517911e2bdd632fe7e317f4fb8433e9218dfc01"
@@ -247,9 +302,19 @@
       "sha256": "67dbf9e1c365445a871c37d72428e2f286ac0573dd83f0bb3b59f46f14ce6c44"
     },
     {
+      "path": "evidence/snowball-candidate-async-a0-east-floor-launch-preflight.json",
+      "bytes": 9427,
+      "sha256": "094f73387d83713e240c62728bd35d5222f2615be8b902265dfcf862b39a6643"
+    },
+    {
       "path": "evidence/snowball-candidate-async-a0-launch-preflight.json",
       "bytes": 9427,
       "sha256": "db2b52fee0ca76b8522fd9dfae3ec9633ef2aaecd296eade3c1b8608af5b3f2b"
+    },
+    {
+      "path": "evidence/snowball-candidate-async-a0-rno-launch-preflight.json",
+      "bytes": 9410,
+      "sha256": "72d5def2150e49906356514b95d31a0614c23709c43ec0071c625ca82c3f65cc"
     },
     {
       "path": "evidence/snowball-candidate-controls-a0-launch-preflight.json",
@@ -282,14 +347,29 @@
       "sha256": "c418a9069e57dc6d92869eaeee066389111e78f0b1abf896f0d75c2f31286b23"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a1-east-floor-launch-preflight.json",
+      "bytes": 9445,
+      "sha256": "86285c59cae3eb761fe84a44c65c2840e4fb69fdef2943f6cdd6b7c3881cc7fa"
+    },
+    {
       "path": "evidence/snowball-candidate-controls-a1-launch-preflight.json",
       "bytes": 9445,
       "sha256": "1a26166657b2171a2baf4ab45f33cb66a69098d02ed16bac5a253d277e1a20e5"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a1-rno-launch-preflight.json",
+      "bytes": 9428,
+      "sha256": "9b2f968e86032a95b2e324b8c61bfbb22ebe5914096646a763164a21a09f1e19"
+    },
+    {
       "path": "evidence/snowball-real-grader-preflight.json",
       "bytes": 7734,
       "sha256": "c1663c987d1f5f72e6ecc022bd268fb7bc84d1fa323891d693cfead44b2747bc"
+    },
+    {
+      "path": "evidence/staged-config-match-r2.json",
+      "bytes": 266,
+      "sha256": "ccbad81136de020756a64fc8dd5875ccc8bd1f5d7e09cdbdcc7aecd09d72d152"
     },
     {
       "path": "evidence/staged-config-match.json",
@@ -300,6 +380,11 @@
       "path": "evidence/staged-first-draft-preflight.zip",
       "bytes": 38847,
       "sha256": "0716555bba2ece6978acf5a37d09a41b1cf29c1cce018fae340481b7ce35ece6"
+    },
+    {
+      "path": "evidence/staged-harness-proof-floor.json",
+      "bytes": 2282,
+      "sha256": "f28d972fba9306cd36ae82eb39c0f1da0c541d2ee5ae2ed599b7501e6e19d57d"
     },
     {
       "path": "evidence/staged-harness-proof.json",
@@ -352,9 +437,24 @@
       "sha256": "4b48ed162442ad0e6b64bd504f8c3f135e6e2a1015ab779e0d35eabb7d26d088"
     },
     {
+      "path": "qwen-candidate-a2-rno-detach.yaml",
+      "bytes": 7145,
+      "sha256": "273bc9e52d3265fe6f03dcf0db25defefc4b0d592d33089fdd924e958e4e7649"
+    },
+    {
+      "path": "qwen-candidate-a2-rno-prepare.yaml",
+      "bytes": 7146,
+      "sha256": "de7bbe38544db82831657ff3f5e65815d837030850c43948fd705392a4ba2f37"
+    },
+    {
       "path": "qwen-final-protocol.json",
       "bytes": 1551,
       "sha256": "3fe2f2aeb2b3b2c2d1dcd12c9ad6849e876824f9781742083f5ff6e483df5b51"
+    },
+    {
+      "path": "qwen-floor-protocol.json",
+      "bytes": 1355,
+      "sha256": "ad3832cb47d18cb667d0cbfd4fa7345ee4ce79cd4a335bc24c59125dbf141578"
     },
     {
       "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
@@ -412,6 +512,26 @@
       "sha256": "b4e6672976e2173860233b2c091bec41560528489370d83b767311255f98b0ab"
     },
     {
+      "path": "snowball-baseline-async-a0-rno-detach.yaml",
+      "bytes": 9947,
+      "sha256": "9e32215e1d28041d40a51cd0c26f7d06f104a58dfd9a514b85ff28a59fdd9303"
+    },
+    {
+      "path": "snowball-baseline-async-a0-rno-prepare.yaml",
+      "bytes": 9948,
+      "sha256": "f371a971e86b7be96b737c148ff1a18dda6651039fb69dd2e4fce1c9bc4ccf7c"
+    },
+    {
+      "path": "snowball-baseline-controls-a0-rno-detach.yaml",
+      "bytes": 9983,
+      "sha256": "7b92202e3b1ca4c132f053067970acddfcddf08ab33d36684c8e1a8c04bdaf19"
+    },
+    {
+      "path": "snowball-baseline-controls-a0-rno-prepare.yaml",
+      "bytes": 9984,
+      "sha256": "d68bb1b328024182a0e1cfbc6a9d661621803bfb007f2d7885107fef964dbace"
+    },
+    {
       "path": "snowball-candidate-a0-rno-detach.yaml",
       "bytes": 9846,
       "sha256": "361f8d58871e10fc1ce6667a3ceb27bfbe21a47847238606034dc01d11658267"
@@ -444,12 +564,22 @@
     {
       "path": "snowball-candidate-async-a0-east-detach.yaml",
       "bytes": 9982,
-      "sha256": "2146cee9b95d22f25e7c6dcd0cefae40cd9388a129dca67794f85363fab28ee4"
+      "sha256": "903a4c2dcac298c07db524f34a6d1b083d66b308dc09b818e0ef554917e9aebc"
     },
     {
       "path": "snowball-candidate-async-a0-east-prepare.yaml",
       "bytes": 9983,
-      "sha256": "dc603adc54e0cc3dc02f39ec30bd91f787cf0ab3e6d74e5794b58a4f1c42f65f"
+      "sha256": "00fecd381d43f7dc7f6d85c387f893c2843112fefe16083da80e77593759f42b"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-detach.yaml",
+      "bytes": 9959,
+      "sha256": "eb89d980316c4fb2550f9af09279b1b442eea327282ae8de679652272d46d017"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-prepare.yaml",
+      "bytes": 9960,
+      "sha256": "4218d77c8b784fbaacefc32eaba3c8e15ffbda8ccb8a11a6c8ca13b2d845714f"
     },
     {
       "path": "snowball-candidate-controls-a0-east-detach.yaml",
@@ -464,12 +594,22 @@
     {
       "path": "snowball-candidate-controls-a1-east-detach.yaml",
       "bytes": 10018,
-      "sha256": "7891b4d89a8b9569535231886f2bc0e07c1962e9f8c1a4cab405cdaa32ee8f32"
+      "sha256": "bf1b28b51660e99d0754c5aeeb271489f7975eb8d96c4a315769c726fdf3a644"
     },
     {
       "path": "snowball-candidate-controls-a1-east-prepare.yaml",
       "bytes": 10019,
-      "sha256": "a882532d6c22f6476eef0c3571f24b2de80e82928dc33b178483d829b47a2759"
+      "sha256": "6958b05999a44253fbc42af341e33d8052f925be2e06622f18b2539cf35e8700"
+    },
+    {
+      "path": "snowball-candidate-controls-a1-rno-detach.yaml",
+      "bytes": 9995,
+      "sha256": "3292bac4fb3779eb16109ad64c95c0db40c92c73fa0fe93ca0e0465d33201706"
+    },
+    {
+      "path": "snowball-candidate-controls-a1-rno-prepare.yaml",
+      "bytes": 9996,
+      "sha256": "763cdfdc3de27aafe8963754af4ad8b56e0a5dfd27529870b79cb80bd2a7380e"
     },
     {
       "path": "snowball-protocol-a1.json",
@@ -490,6 +630,11 @@
       "path": "snowball-stage-attempts.json",
       "bytes": 1313,
       "sha256": "776379602f6d0ec35ffe394f0455c60f561286c5c1e32fa6960db8579b8a2541"
+    },
+    {
+      "path": "snowball-staged-protocol-r2.json",
+      "bytes": 7934,
+      "sha256": "ad270c07bfdcf680312a79fbd02b8c4f53ef57c1b5a7d86295b35adfbce393ac"
     },
     {
       "path": "snowball-staged-protocol.json",
@@ -632,5 +777,36 @@
         "sha256": "91e15230f3ae12c38970163e636a899bcc7c060f8bdaac337ca9a12bc3c91e15"
       }
     ]
+  },
+  "floor_validation_archive": {
+    "path": "evidence/chat-floor-validation.zip",
+    "members": [
+      {
+        "name": "cpu-chat-floor-before.log",
+        "bytes": 4814,
+        "sha256": "3a93695f685dfe1f97f2cd050dd326338b22f56b0c394356bed2dfd400bb4442"
+      },
+      {
+        "name": "cpu-chat-floor-followup.log",
+        "bytes": 32584,
+        "sha256": "88501a69d8f8c42f3daaf6f57d0d4e8c9ebfd054d4c89b65dabe75e81af6b372"
+      },
+      {
+        "name": "product-chat-floor-lint.log",
+        "bytes": 217,
+        "sha256": "81affcad1f2a8690bec6220d7aea7ea6f14da90c6bdff4394c75411f761f79e0"
+      },
+      {
+        "name": "cpu-native-chat-cost-floor.log",
+        "bytes": 473,
+        "sha256": "c13060a07edbd7f725218add2ff3dffae7cb77c0862e1b37caf79b5d8600185c"
+      },
+      {
+        "name": "chat-floor-after-proof.log",
+        "bytes": 527,
+        "sha256": "09760f6c72fc01003c3e8ba6f0fd6f32827e612da4236a0765691c4d4276f005"
+      }
+    ],
+    "scope": "Original expected-red regressions, green126 checks, mechanical lint and independent formatter/CPU profile outputs; no source bytes changed."
   }
 }

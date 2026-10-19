@@ -1,0 +1,5 @@
+{
+  "matched_rno_control_configs": true,
+  "matched_rno_async_configs": true,
+  "normalization": "Replace exact run IDs in names/paths and remove product/runtime pins and variant. All workload, model, sampling, publication, admission and geometry controls match."
+}

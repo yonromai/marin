@@ -1,0 +1,141 @@
+{
+  "declared_at_utc": "2026-10-19T20:27:47.809350+00:00",
+  "reason": "Preserve the pinned native chat score floor before selection, then qualify the corrected source. RNO now has seven whole-node request fits and 69 GPUs/RDMA units of unused quota, while East has no whole-node fit. All earlier East jobs and queues are verified stopped. Run a fresh matched controlled baseline and candidate on RNO; keep the East prefix as secondary evidence without pooling.",
+  "prior_whole_run_baseline_attempt_limit": 3,
+  "prior_whole_run_baseline_attempts_exhausted": true,
+  "held_baseline_prefix": {
+    "report": "reports/sc-integration-snowball-baseline-a2-east-01a146a3.partial.json.zip",
+    "raw_sha256": "e110297e3e43c0e472aff7627668ba03b7907ae1d7197274836a0ec31f391f3f",
+    "source_report_complete": false,
+    "reported_applied_updates": 20,
+    "interrupted_update_limit": "The next in-flight update is unestablished; only completed reported cycles enter analysis.",
+    "selected_repetitions": [
+      0,
+      1,
+      2
+    ],
+    "warmup_repetitions": [
+      0
+    ],
+    "prefix_applied_updates": 18,
+    "serialized_windows": 15,
+    "excluded_complete_phases": [
+      "armed/3",
+      "probe/3"
+    ],
+    "selection_rule": "All five modes in the last complete balanced rotation before provider preemption; decision frozen before the first candidate Snowball submission or result. Extra complete cycles remain in the raw report and are excluded from the primary matched comparison.",
+    "limits": "Two measured repetitions per mode support only descriptive, wider intervals. This is an explicitly incomplete whole-run report with complete retained cycles, not a completed original 87-update qualification.",
+    "role": "Secondary East evidence only; not the primary RNO comparison."
+  },
+  "future_stages_in_order": [
+    {
+      "scope": "controls",
+      "variant": "baseline",
+      "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "applied_updates": 18,
+      "prepare": "snowball-baseline-controls-a0-rno-prepare.yaml",
+      "prepare_sha256": "d68bb1b328024182a0e1cfbc6a9d661621803bfb007f2d7885107fef964dbace",
+      "manual_attempt_limit": 2,
+      "prior_actual_attempts": 0,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "scope": "controls",
+      "variant": "candidate",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "applied_updates": 18,
+      "prepare": "snowball-candidate-controls-a1-rno-prepare.yaml",
+      "prepare_sha256": "763cdfdc3de27aafe8963754af4ad8b56e0a5dfd27529870b79cb80bd2a7380e",
+      "manual_attempt_limit": 2,
+      "prior_actual_attempts": 1,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "scope": "async",
+      "variant": "baseline",
+      "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "applied_updates": 67,
+      "prepare": "snowball-baseline-async-a0-rno-prepare.yaml",
+      "prepare_sha256": "f371a971e86b7be96b737c148ff1a18dda6651039fb69dd2e4fce1c9bc4ccf7c",
+      "manual_attempt_limit": 2,
+      "prior_actual_attempts": 0,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "scope": "async",
+      "variant": "candidate",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "applied_updates": 67,
+      "prepare": "snowball-candidate-async-a0-rno-prepare.yaml",
+      "prepare_sha256": "4218d77c8b784fbaacefc32eaba3c8e15ffbda8ccb8a11a6c8ca13b2d845714f",
+      "manual_attempt_limit": 2,
+      "prior_actual_attempts": 0,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    }
+  ],
+  "placement": {
+    "cluster": "cw-rno2a",
+    "priority": "BATCH",
+    "nodes": 5,
+    "gpus_per_node": 8,
+    "learner": "four nodes; PP2/EP8/DP16/TP1/CP1/SP1",
+    "inference": "one node; DP8/EP8"
+  },
+  "async_stage_controls": {
+    "start": "fresh original SFT checkpoint in both arms; no recovery from partial training state",
+    "calibration_updates": 3,
+    "natural_periodic_updates": 6,
+    "natural_probe_interval": 2,
+    "modes_in_order": [
+      "ordinary",
+      "capture",
+      "sc",
+      "probes"
+    ],
+    "warmup_per_mode": 2,
+    "measured_per_mode": 10,
+    "probe_interval": 10,
+    "window_timeout_seconds": 600,
+    "async_phase_timeout_seconds": 2400,
+    "admission": "full_batch; max source age4; 64 in-flight groups; normal rewards/EOS; publication after each applied update",
+    "probe_updates": 22,
+    "probe_measured_updates": 20,
+    "updates_per_other_mode": 12,
+    "probe_horizon_reason": "Two interval-ten opportunities after startup improve the chance of measured observations without changing cadence. Report actual consumed observations and coverage; admission can still reject a selected group."
+  },
+  "invariants": "Same checkpoint, tokenizer, 192 grader-valid tasks and source hash, exact configuration geometry, lock and images, effective temperature controls, K128, masks, sampled causal positions, task behavior, source stamps and production SC/PPO/TIS code. Measurement functions and the serialized loop are AST-identical to the interrupted baseline; staged arms have identical instrumentation.",
+  "operating_rule": "Admit the two-node Interactive Qwen qualification first. The baseline controls stage uses the already qualified prior product, so it can initialize in parallel with Qwen after a fresh check finds five remaining whole-node fits and 40 GPU/RDMA units of unused quota. Never submit it into a capacity shortage that could conflict with the owned Qwen job. Record any overlap and do not pool their timings. Candidate controls requires full corrected-source Qwen success/shutdown and baseline controls success/shutdown. Then run baseline async and candidate async sequentially, verifying previous shutdown before each submission. Keep all matched primary arms on RNO; no pooling with East. Preserve healthy allocations and never cancel another owner.",
+  "limits": "Separate control and async allocations do not share a training trajectory or justify pooling timing samples. Report their pins and controls separately. No learning or parameter-gradient benefit claim.",
+  "initial_unsubmitted_draft_declared_at_utc": "2026-10-19T19:05:30.826713+00:00",
+  "unsubmitted_first_draft_archive": {
+    "path": "evidence/staged-first-draft-preflight.zip",
+    "sha256": "0716555bba2ece6978acf5a37d09a41b1cf29c1cce018fae340481b7ce35ece6",
+    "scope": "Original unsubmitted staged configs, protocol and backend dry-run receipts; superseded before any staged submission to cover two probe cadence intervals."
+  },
+  "revision": "r2",
+  "supersedes": "snowball-staged-protocol.json",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 7,
+    "snowball_candidate": 4,
+    "explanation": "Baseline total includes the three exhausted whole-run attempts, at most two new short controls attempts and at most two async attempts. Candidate total includes at most two controls attempts (one East attempt already spent) and two async attempts. No further whole-run attempt is planned."
+  },
+  "score_floor_correction": {
+    "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+    "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+    "native_chat_floor": -9999.0,
+    "ordering": "Apply the existing chat presentation floor before token-ID tie ordering and the existing display limit. Raw-generation selection is unchanged.",
+    "cpu_adapter_tests_passed": 126,
+    "actual_pinned_formatter_edge_cases_exact": 4,
+    "sc_kernel_or_tail_mass_floor_changed": false,
+    "evidence": "evidence/chat-floor-after-proof.json"
+  }
+}
