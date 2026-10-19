@@ -1,0 +1,130 @@
+{
+  "saved_at": "2026-10-19T18:41:21.560050+00:00",
+  "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
+  "attempts": [
+    {
+      "job": "/romain/sc-integration-qwen-candidate-a0-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 2,
+      "gpus_per_node": 8,
+      "priority": "INTERACTIVE",
+      "submitted_at": "2026-10-19T15:31:09.170Z",
+      "admitted_at": null,
+      "controller_terminal_at": "2026-10-19T15:46:02.483Z",
+      "provider_absence_at": "2026-10-19T15:56:57.006603Z",
+      "applied_updates": 35,
+      "outcome": "success",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/qwen-a0-state-final-check.csv",
+        "evidence/qwen-a0-pods-terminal-check.json",
+        "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip"
+      ],
+      "queue_seconds": null,
+      "admission_limit": "Admission was not captured; submission is an intentionally loose upper-bound start.",
+      "gpu_hours_to_controller_terminal_proxy": 3.97028,
+      "gpu_hours_through_verified_absence_upper_bound": 6.879273791111111
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T16:15:44.201Z",
+      "admitted_at": "2026-10-19T16:55:59Z",
+      "controller_terminal_at": "2026-10-19T17:05:41.002Z",
+      "provider_absence_at": "2026-10-19T17:11:26.044067Z",
+      "applied_updates": 0,
+      "outcome": "external preemption during startup",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/snowball-baseline-a0-provider-queued-05.json",
+        "evidence/snowball-baseline-a0-startup.zip",
+        "evidence/snowball-baseline-a0-provider-preempted.json"
+      ],
+      "queue_seconds": 2414.799,
+      "gpu_hours_to_controller_terminal_proxy": 6.466688888888888,
+      "gpu_hours_through_verified_absence_upper_bound": 10.300489633333333
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T17:15:59.051Z",
+      "admitted_at": "2026-10-19T17:49:11.421315Z",
+      "controller_terminal_at": "2026-10-19T17:49:51.587Z",
+      "provider_absence_at": "2026-10-19T17:51:24.831432Z",
+      "applied_updates": 0,
+      "outcome": "external preemption three seconds after admission",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/snowball-baseline-a1-workload-events.json",
+        "evidence/followup-receipts.zip",
+        "evidence/snowball-baseline-a1-provider-preempted.json"
+      ],
+      "queue_seconds": 1992.370315,
+      "gpu_hours_to_controller_terminal_proxy": 0.4462853888888889,
+      "gpu_hours_through_verified_absence_upper_bound": 1.4823346333333336
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-a2-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T17:55:35.449Z",
+      "admitted_at": "2026-10-19T18:09:47Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "running; excluded from closed-attempt totals",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-protocol-a2.json",
+        "evidence/snowball-baseline-a2-provider-check-03.json"
+      ],
+      "queue_seconds": 851.551
+    },
+    {
+      "job": "/romain/sc-integration-qwen-candidate-a1-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 2,
+      "gpus_per_node": 8,
+      "priority": "INTERACTIVE",
+      "submitted_at": "2026-10-19T18:01:36.192Z",
+      "admitted_at": "2026-10-19T18:01:37Z",
+      "controller_terminal_at": "2026-10-19T18:17:23.184Z",
+      "provider_absence_at": "2026-10-19T18:19:42.675671Z",
+      "applied_updates": 35,
+      "outcome": "success; final behavior qualified",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/qwen-final-a1-provider-first.json",
+        "evidence/followup-receipts.zip",
+        "evidence/qwen-final-a1-provider-absence.json",
+        "reports/sc-integration-qwen-candidate-a1-rno-01a146a3.json.zip"
+      ],
+      "queue_seconds": 0.808,
+      "gpu_hours_to_controller_terminal_proxy": 4.205262222222222,
+      "gpu_hours_through_verified_absence_upper_bound": 4.825225204444444
+    }
+  ],
+  "prepared_but_not_submitted": [
+    "snowball-candidate-a0-rno",
+    "snowball-candidate-a1-rno",
+    "snowball-candidate-a2-east"
+  ],
+  "manual_attempt_limits": {
+    "snowball_baseline": 3,
+    "snowball_candidate": 2,
+    "qwen": 2
+  },
+  "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
+  "closed_attempt_totals": {
+    "gpu_hours_to_controller_terminal_proxy": 15.088516499999999,
+    "gpu_hours_through_verified_absence_upper_bound": 23.487323262222223
+  }
+}

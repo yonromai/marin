@@ -1,0 +1,363 @@
+{
+  "checked_at": "2026-10-19T17:49:25.308329+00:00",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3",
+  "pods": [
+    {
+      "pod": "iris-romain-sc-integration-snowball-105aaef6-0-5ef9f75ac33cc8c1",
+      "task": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3/3",
+      "created": "2026-10-19T17:15:59Z",
+      "node": "g86299e",
+      "phase": "Running",
+      "start": "2026-10-19T17:49:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+          "reason": "WorkloadEvictedDueToPreempted",
+          "status": "True",
+          "type": "TerminationTarget"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:13Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:12Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-55bcca75-0-4040e23c91c09d87",
+      "task": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3/0",
+      "created": "2026-10-19T17:15:59Z",
+      "node": "g1cb6c2",
+      "phase": "Running",
+      "start": "2026-10-19T17:49:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+          "reason": "WorkloadEvictedDueToPreempted",
+          "status": "True",
+          "type": "TerminationTarget"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:13Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:12Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-9a5f5e24-0-25cf0935389aea68",
+      "task": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3/1",
+      "created": "2026-10-19T17:15:59Z",
+      "node": "g1cc6b2",
+      "phase": "Running",
+      "start": "2026-10-19T17:49:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+          "reason": "WorkloadEvictedDueToPreempted",
+          "status": "True",
+          "type": "TerminationTarget"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:13Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:12Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-d18af16f-0-0111a9f7fa552ce0",
+      "task": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3/4",
+      "created": "2026-10-19T17:15:59Z",
+      "node": "gb99af0",
+      "phase": "Running",
+      "start": "2026-10-19T17:49:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+          "reason": "WorkloadEvictedDueToPreempted",
+          "status": "True",
+          "type": "TerminationTarget"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:13Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:12Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-fe799c3b-0-9b5ca29c654cf6ec",
+      "task": "/romain/sc-integration-snowball-baseline-a1-rno-01a146a3/2",
+      "created": "2026-10-19T17:15:59Z",
+      "node": "g1cc872",
+      "phase": "Running",
+      "start": "2026-10-19T17:49:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+          "reason": "WorkloadEvictedDueToPreempted",
+          "status": "True",
+          "type": "TerminationTarget"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:13Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:14Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:15Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T17:49:12Z",
+          "observedGeneration": 4,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    }
+  ],
+  "workloads": [
+    {
+      "name": "iris-pg-7407f7354c9b1876-0",
+      "status": {
+        "accumulatedPastExecutionTimeSeconds": 3,
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T17:49:14Z",
+            "message": "couldn't assign flavors to pod set 7b098820: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 28 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 28 more needed",
+            "observedGeneration": 1,
+            "reason": "Pending",
+            "status": "False",
+            "type": "QuotaReserved"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T17:49:14Z",
+            "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+            "observedGeneration": 1,
+            "reason": "Preempted",
+            "status": "True",
+            "type": "Evicted"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T17:49:14Z",
+            "message": "The workload has no reservation",
+            "observedGeneration": 1,
+            "reason": "NoReservation",
+            "status": "False",
+            "type": "Admitted"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T17:49:14Z",
+            "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+            "reason": "InClusterQueue",
+            "status": "True",
+            "type": "Preempted"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T17:49:14Z",
+            "message": "Preempted to accommodate a workload (UID: 20f7d599-a8cf-493a-8a83-7c072f827fdf, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+            "observedGeneration": 1,
+            "reason": "Preempted",
+            "status": "True",
+            "type": "Requeued"
+          }
+        ],
+        "resourceRequests": [
+          {
+            "name": "7b098820",
+            "resources": {
+              "cpu": "160750m",
+              "ephemeral-storage": "2500Gi",
+              "memory": "9216960Mi",
+              "nvidia.com/gpu": "40",
+              "rdma/ib": "40"
+            }
+          }
+        ],
+        "schedulingStats": {
+          "evictions": [
+            {
+              "count": 1,
+              "reason": "Preempted",
+              "underlyingCause": ""
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "absent": false
+}

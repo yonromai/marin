@@ -1,0 +1,45 @@
+{
+  "declared_at": "2026-10-19T18:00:42.914325+00:00",
+  "purpose": "Qualify the final 129-candidate boundary selector through the actual native Qwen path; the earlier successful Qwen run used prototype d92307d3.",
+  "product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+  "runtime": "a3cf30b6598de5a6de8ca45e720d5db8c47784d0",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-qwen-candidate-a1-rno-01a146a3",
+  "priority": "interactive",
+  "nodes": 2,
+  "H100s": 16,
+  "queue_inclusive_deadline_seconds": 3600,
+  "automatic_retries": 0,
+  "manual_attempt_ordinal": 2,
+  "initial_manual_attempt_limit": 2,
+  "applied_updates": 35,
+  "serialized_repetitions": 2,
+  "warmup_repetitions": 1,
+  "native_AB_response_lengths": [
+    128,
+    4096
+  ],
+  "native_AB_temperatures": [
+    1.0,
+    0.7
+  ],
+  "head_output_width": 128,
+  "natural_collection_width": 129,
+  "async_updates_per_mode": 4,
+  "async_warmup_updates": 1,
+  "source_and_workload_match_prior_Qwen": true,
+  "matched_fields": [
+    "model and data inputs",
+    "context budget",
+    "allocation",
+    "policy",
+    "placement",
+    "algorithm",
+    "rollout admission settings"
+  ],
+  "interpretation": "Interface, lifetime, source-version and correctness qualification; Qwen timings are not a Snowball performance comparison.",
+  "owned_interactive_nodes_including_queues": 2,
+  "interactive_limit": 4,
+  "East_batch_baseline": "/romain/sc-integration-snowball-baseline-a2-east-01a146a3",
+  "config_sha256": "560fcb388c3fa470c38d0504c8c83655986a9a578dc0e8fa912edc6072b1e3c0"
+}

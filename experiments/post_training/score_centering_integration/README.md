@@ -4,7 +4,7 @@ The native task adapter can carry K128 behavior heads as numeric arrays through 
 vLLM still renders messages, parses tools, samples tokens and handles aborts. Our adapter asks its public
 `generate` interface for flat logprobs and attaches the selected arrays to the internal Ray response. It avoids
 constructing, serializing and reparsing one chat object per candidate. Public HTTP chat responses keep their
-existing shape. This record contains the completed Qwen interface qualification and the preregistered Snowball
+existing shape. This record contains the completed Qwen interface qualifications and the preregistered Snowball
 comparison; Qwen and CPU measurements do not establish Snowball throughput.
 
 The [prior performance evidence](../score_centering_performance/README.md) remains unchanged. The active
@@ -16,7 +16,8 @@ hooks are unchanged. No new vLLM subclass, override, monkey patch, fork patch or
 
 | Purpose | Product | Instrumented runtime |
 | --- | --- | --- |
-| Qwen interface qualification | `d92307d3deff81aa8270c90c49d529a9bb7a1951` | `328858aa5ad1f659ee1bb6bf60aa6187be973512` |
+| Qwen prototype qualification | `d92307d3deff81aa8270c90c49d529a9bb7a1951` | `328858aa5ad1f659ee1bb6bf60aa6187be973512` |
+| Qwen final behavior qualification | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
 | Snowball prior integration | `964a602e995b16943dc34db036d25d2b7c5b7310` | `bdb8b3134ca0b7322d889f2634dd1bfc6a126beb` |
 | Snowball candidate integration | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
 
@@ -27,7 +28,8 @@ measurement methods, lock and task image between the Snowball arms.
 
 [The initial protocol](protocol.json) records the Qwen exposure. [The first Snowball protocol](snowball-protocol.json)
 records final pins before its first submission; [revision a1](snowball-protocol-a1.json) extends future queue deadlines
-after a provider preemption. Each Snowball arm uses five BATCH nodes, with four 8-H100
+after a provider preemption. [Revision a2](snowball-protocol-a2.json) moves the sequential comparison to East
+after a second preemption and declares one additional baseline attempt. Each Snowball arm uses five BATCH nodes, with four 8-H100
 learners at PP2/EP8/DP16, TP/CP/SP1, and one 8-H100 inference node at DP8/EP8. It retains the Snowball 67B/A2B
 SFT checkpoint and tokenizer revision from the prior evidence. The real grader preflight reproduced all 192
 selected tasks, their order and their source hash, including the ten incompatible references excluded before
@@ -55,34 +57,46 @@ task state and verified Pod absence determine allocation accounting; Iris RUNNIN
 Baseline a0 waited 40 minutes for RNO admission at 16:55:59 UTC. Kueue evicted its driver at 17:05:08 to admit
 another workload; all five tasks became terminal by 17:05:41 and their Pods were absent at 17:11:26. No report
 was written. The harness writes its first report before its first optimizer update, so this was a startup-only
-attempt with zero applied updates. Its allocation is included in accounting. Baseline a1 is the second submitted
-baseline attempt; the prepared candidate a0 was never submitted, and candidate a1 is its first planned attempt.
+attempt with zero applied updates. Baseline a1 was admitted at 17:49:11 UTC and evicted three seconds later;
+its tasks were terminal by 17:49:51 and Pods absent at 17:51:24. It also produced no report or update.
+After both old queues and Pods were verified stopped, baseline a2 was submitted to East at 17:55:35 and admitted
+at 18:09:47. It is applying updates. The candidate has not been submitted. Config suffixes name protocol revisions,
+not actual submitted attempts. [Allocation accounting](allocation-accounting.json) includes the failed starts,
+queue time and teardown bounds as well as completed work.
 
 ## Qwen interface qualification
 
-The two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
+The final two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
 and sixteen asynchronous updates. Exact old/new chat comparisons passed at temperatures 1.0 and 0.7 for both
 128-token and 4096-token responses: token IDs, message, finish reason, source versions and chosen/head scores
 matched. The compact response held int32 IDs and float32 scores, with display logprobs absent. Full-vocabulary
 causal references, raw flat/dictionary parity and compact-position references also passed.
 
 For a 4096-token response at temperature 1.0, a cross-node Ray echo carried 19270645 bytes as chat objects or
-4268171 bytes as arrays. Three actor round trips were 0.678/0.683/0.676 seconds and 0.0211/0.0198/0.0200 seconds,
-respectively. At temperature 0.7 they were 0.673/0.633/0.675 and 0.0195/0.0184/0.0189 seconds. These include actor
+4268171 bytes as arrays. Three actor round trips were 0.740/0.737/0.789 seconds and 0.0218/0.0186/0.0185 seconds,
+respectively. At temperature 0.7 they were 0.740/0.634/0.716 and 0.0201/0.0187/0.0180 seconds. These include actor
 serialization, host copies and transport in both directions. They exclude generation, S3 and learner work;
 halving or adding them to another timer would not measure a complete training cycle.
 
-This Qwen run exercised the prototype's collection width of 128. An independent CPU BF16 boundary check later
+An earlier Qwen run exercised the prototype's collection width of 128. An independent CPU BF16 boundary check later
 found three of 32 cases where collecting one fewer natural candidate changed the identity of an equally probable
 head token. The final implementation restores the old collection width of 129 and reproduces the chat display
 limit before selecting K128; all 32 cases then matched exactly. The corrected check supersedes an invalid scratch
-reference, as recorded in [the boundary evidence](evidence/chat-collection-width-tie-proof.json). Qwen's passing
-four cases are retained as prototype evidence, not relabeled as a qualification of the final source pin.
+reference, as recorded in [the boundary evidence](evidence/chat-collection-width-tie-proof.json). The final Qwen
+run repeated all four comparisons at the corrected source pin and passed exactly.
 
-The complete raw report is compressed without editing in [reports](reports/). Its original SHA-256 is
-`6f8a49b8946a3ef7e481d51bc7bdbb916b89a6b11050046f8087dc86913b358c`.
-[The manifest](manifest.json) retains source locations, sizes and hashes. Both Qwen tasks succeeded with attempt
-zero; a fresh provider check verified their absence at 15:56:57 UTC on October 19.
+Both complete raw reports are compressed without editing in [reports](reports/). The final report's original SHA-256 is
+`4314e2b00324c86b4b689ae500b5d35e32b67247d39a882105f10543d79de49d`.
+[The manifest](manifest.json) retains source locations, sizes and hashes. Both final Qwen tasks succeeded with
+attempt zero; a fresh provider check verified their absence at 18:19:42 UTC on October 19.
+
+An [offline precision audit](evidence/qwen-final-a1-probe-precision.json) retains a limit of the existing SC kernel.
+An independent FP32 current-equals-old formula reproduces held probe scalars within 2.6e-9. FP64 evaluation of the
+same quantized heads differs by as much as 0.002755 in an artificial temperature-0.7 warmup with 21 valid positions,
+all at the modeled tail floor. Using the FP32 tail coefficient in otherwise-FP64 arithmetic reduces that difference
+below 1.6e-8. Subtracting near-unit head mass makes this tiny tail sensitive to rounding. The kernel is byte-identical
+to the baseline; native old/new heads matched exactly. No kernel, floor, tolerance or K was changed. This scalar
+precision observation does not establish a parameter-gradient error or learning impact.
 
 ## CPU evidence and remaining transfers
 
@@ -105,7 +119,7 @@ Those stages remain in complete native cycles. Response text still needs detoken
 the existing chat path. No new serving or storage system is introduced.
 
 The authors' [top-k collector](https://github.com/martin-marek/score-centering/blob/7c56e9ee2972aa57f446cf564de1a1658d14b321/models/topk.py)
-buffers 32 decode steps on GPUs, batches local/global top-k selection, and reshares compact arrays into the
+buffers 32 decode steps on GPUs, batches local/global top-k selection, and reshards compact arrays into the
 trainer layout. Their sampler and trainer share a GPU pool sequentially. Dedicated inference and learner nodes,
 host lists, Ray and durable rollout storage impose different transfers here. The paper's custom-JAX under-1%
 result does not measure vLLM integration overhead. Upstream

@@ -1,0 +1,64 @@
+"""Inspect existing FP32 tail conditioning on retained Qwen inputs; change no kernel."""
+
+import json
+import math
+from pathlib import Path
+
+import torch
+
+from skyrl_train.objective.score_centering import ppo_tis_score_centering_correction
+
+
+root = Path(__file__).parent
+report = json.loads((root / "qwen-final-a1-performance.json").read_text())
+windows = {row["phase"]: row for key in ("windows", "native_periodic_windows", "asynchronous_windows") for row in report[key]}
+records = []
+for row in report["probe_evidence"]:
+    values = {}
+    detail = {}
+    for dtype in (torch.float32, torch.float64):
+        current = torch.tensor(row["current_old_head"], dtype=dtype)
+        behavior = torch.tensor(row["behavior_head"], dtype=dtype)
+        advantages = torch.tensor(row["advantages"], dtype=dtype)
+        # Current=old eliminates all PPO gates and ratios from the general
+        # correction. This closed form is independent of its implementation.
+        p, q = current.exp(), behavior.exp()
+        p_tail, q_tail = (1 - p.sum(-1)).clamp_min(1e-6), (1 - q.sum(-1)).clamp_min(1e-6)
+        head_weight = q * (current - behavior).clamp(max=math.log(2)).exp()
+        beta = q_tail / p_tail * (p_tail / q_tail).clamp(max=2)
+        unit = ((head_weight - beta[:, None] * p) * current).sum(-1)
+        actual = advantages * unit
+        values[str(dtype)] = {
+            "hypothetical_loss_mean": float(actual.mean()),
+            "hypothetical_loss_abs_mean": float(actual.abs().mean()),
+            "unit_advantage_loss_mean": float(unit.mean()),
+            "unit_advantage_loss_abs_mean": float(unit.abs().mean()),
+        }
+        detail[str(dtype)] = {
+            "current_raw_omitted_mass": (1 - p.sum(-1)).tolist(),
+            "behavior_raw_omitted_mass": (1 - q.sum(-1)).tolist(),
+            "modeled_tail_coefficient": beta.tolist(),
+            "unit_correction": unit.tolist(),
+        }
+        if dtype == torch.float32:
+            direct = ppo_tis_score_centering_correction(
+                current[:, None], current[:, None], behavior[:, None], advantages[:, None],
+                torch.ones((len(current), 1), dtype=torch.bool),
+                tis_cap=2, eps_clip_low=0.2, eps_clip_high=0.2,
+            )[:, 0]
+            direct_values = {"hypothetical_loss_mean": float(direct.mean()), "hypothetical_loss_abs_mean": float(direct.abs().mean())}
+    beta32 = torch.tensor(detail["torch.float32"]["modeled_tail_coefficient"], dtype=torch.float64)
+    mixed_unit = ((head_weight - beta32[:, None] * p) * current).sum(-1)
+    mixed_actual = advantages * mixed_unit
+    values["FP64_with_FP32_tail_coefficient"] = {
+        "hypothetical_loss_mean": float(mixed_actual.mean()),
+        "hypothetical_loss_abs_mean": float(mixed_actual.abs().mean()),
+        "unit_advantage_loss_mean": float(mixed_unit.mean()),
+        "unit_advantage_loss_abs_mean": float(mixed_unit.abs().mean()),
+    }
+    metrics = windows[row["phase"]]["metrics"]
+    errors = {dtype: {key: abs(value - metrics[f"score_centering_probe/{key}"]) for key, value in result.items()} for dtype, result in values.items()}
+    records.append({"phase": row["phase"], "positions": len(row["advantages"]), "values": values, "absolute_error_from_recorded": errors, "direct_CPU_FP32_kernel": direct_values, "details": detail, "reported_tail_floor_fraction": metrics["score_centering_probe/tail_floor_fraction"]})
+result = {"scope": "Held final-Qwen probe inputs; independent current=old closed form in FP32/FP64 plus direct existing CPU kernel. This is a precision audit, not another accelerator attempt or a parameter-gradient campaign.", "torch_local": torch.__version__, "torch_worker": report["runtime"]["versions"]["torch"], "kernel_changed": False, "records": records}
+(root / "qwen-final-a1-probe-precision.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+print(json.dumps({"maximum_FP32_error": max(value for row in records for value in row["absolute_error_from_recorded"]["torch.float32"].values()), "maximum_FP64_error": max(value for row in records for value in row["absolute_error_from_recorded"]["torch.float64"].values()), "phases": [{"phase": row["phase"], "FP32_errors": row["absolute_error_from_recorded"]["torch.float32"], "FP64_errors": row["absolute_error_from_recorded"]["torch.float64"]} for row in records]}, indent=2))

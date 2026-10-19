@@ -1,6 +1,31 @@
 {
-  "saved_at": "2026-10-19T16:20:08.118448+00:00",
+  "saved_at": "2026-10-19T18:41:21.560554+00:00",
   "records": [
+    {
+      "path": "README.md",
+      "bytes": 11179,
+      "sha256": "737cd863b3538d14091db0a46e6ef7d8017f8529cb2aa03ea82f00cd05a31650"
+    },
+    {
+      "path": "allocation-accounting.json",
+      "bytes": 5324,
+      "sha256": "87f02cd99ffefee1545fe71f9e8665af2b027bbc8e85ec47d01560968631abaf"
+    },
+    {
+      "path": "analyze.py",
+      "bytes": 14808,
+      "sha256": "090dd56ef03cabc9f1b35295a72859d6dc989394d182c5a22edaab8085f88f83"
+    },
+    {
+      "path": "cw-rno2a-client.yaml",
+      "bytes": 1316,
+      "sha256": "fa45d13778920e3acfa6778d04356b2f350fbd122d1411932d8c7545641d13a2"
+    },
+    {
+      "path": "cw-us-east-02a-client.yaml",
+      "bytes": 1345,
+      "sha256": "e0861f962da0c7b39eef6cc2efcee692dd352e21d7cf4c619dc4178047bb7a1a"
+    },
     {
       "path": "evidence/chat-boundary-fixed-proof.json",
       "bytes": 319,
@@ -25,6 +50,11 @@
       "path": "evidence/cpu-native-chat-cost.json",
       "bytes": 4643,
       "sha256": "6fe4bb2ccb6fc2f2d89e9c041825bb2e3db1a7748cd3d04ce143ab27f7013852"
+    },
+    {
+      "path": "evidence/followup-receipts.zip",
+      "bytes": 1242,
+      "sha256": "6b1efe70a6d529a51edafde8a069f6492486cd819f5306e32c6bdecdd0244cc2"
     },
     {
       "path": "evidence/matched-harness-proof.json",
@@ -52,9 +82,44 @@
       "sha256": "ed74d93e45798f9240d7d20cd176af22d3f985e3625968f45d04d7e94d3bf78a"
     },
     {
+      "path": "evidence/qwen-final-a1-analysis.json",
+      "bytes": 112183,
+      "sha256": "c32a1202a422a8b26999c61e6688e04bbf9074b7a41d09d529a7b06b199af0d8"
+    },
+    {
+      "path": "evidence/qwen-final-a1-launch-preflight.json",
+      "bytes": 6682,
+      "sha256": "e0b677edc6ff3172042d440e972b13920188abd7bc98a522a2b6dffaa2709d8c"
+    },
+    {
+      "path": "evidence/qwen-final-a1-probe-precision.json",
+      "bytes": 146118,
+      "sha256": "aa6255e5dbc0abcfafbbf16cb8d68fc7565088dd0765ec3533c483121cdb3d2d"
+    },
+    {
+      "path": "evidence/qwen-final-a1-provider-absence.json",
+      "bytes": 197,
+      "sha256": "64787c24b0fe19dd43b29e85506d2cd774a0b74b7ced43c1e487beb1f9057daa"
+    },
+    {
+      "path": "evidence/qwen-final-a1-provider-first.json",
+      "bytes": 5536,
+      "sha256": "ffb902b43d59ed544f91008b29f91d34aecffddd4cd9fd6887e9774d502b501e"
+    },
+    {
+      "path": "evidence/qwen-final-a1-provider-terminal.json",
+      "bytes": 6144,
+      "sha256": "35a3d4379c5ab7395fb1f5017be5456cc3a0f7ecedfa3c2838b735affa0951db"
+    },
+    {
       "path": "evidence/qwen-launch-preflight.json",
       "bytes": 4271,
       "sha256": "f72296e4b30e7ca0c78211a1bd3e4d695a8def542dd601d5265fd10828e57ee5"
+    },
+    {
+      "path": "evidence/qwen-probe-precision-source.py.txt",
+      "bytes": 4356,
+      "sha256": "92b6ea91f1dad8b4f18e2a948cb0b175db80a836bcad745f940174bd6ec43df3"
     },
     {
       "path": "evidence/qwen-real-grader-preflight.json",
@@ -102,9 +167,34 @@
       "sha256": "babb56152d1d730e00eba0801887e1a7999f1a7ed044ea2a59ebc1788a61d7f4"
     },
     {
+      "path": "evidence/snowball-baseline-a1-provider-check-03.json",
+      "bytes": 13267,
+      "sha256": "8e085ed914357bcf5ecdb232a13e402f2134b8e93dbada6246fda441089d882b"
+    },
+    {
       "path": "evidence/snowball-baseline-a1-provider-first.json",
       "bytes": 4167,
       "sha256": "42071524261fc063728d9e12a4c2e1463b8c2e8e7312fcabca107de4ee2ce80c"
+    },
+    {
+      "path": "evidence/snowball-baseline-a1-provider-preempted.json",
+      "bytes": 200,
+      "sha256": "25843900c9442f9591e9bfaa6de75124ab2a164a1c389e30cf88e9a585536333"
+    },
+    {
+      "path": "evidence/snowball-baseline-a1-workload-events.json",
+      "bytes": 22515,
+      "sha256": "60985d4b98f1c5beec37dc0bbfc96f1cbddec5f05c35081ec9c5d854b72a9471"
+    },
+    {
+      "path": "evidence/snowball-baseline-a2-launch-preflight.json",
+      "bytes": 9340,
+      "sha256": "182691baf834ba3aaa1fe8fbc524bdc33a27ec0d22f8420afe367e9c3552b210"
+    },
+    {
+      "path": "evidence/snowball-baseline-a2-provider-check-03.json",
+      "bytes": 10574,
+      "sha256": "776695d174d95df0dc478bf00e74980dc85394ee223bd9b5e059a29fa16d93d9"
     },
     {
       "path": "evidence/snowball-candidate-a0-launch-preflight.json",
@@ -115,6 +205,11 @@
       "path": "evidence/snowball-candidate-a1-launch-preflight.json",
       "bytes": 9329,
       "sha256": "31bfbdc0134f7dc9eb46869e8baed8c49424c99a4c783e4b03a2446018992a02"
+    },
+    {
+      "path": "evidence/snowball-candidate-a2-launch-preflight.json",
+      "bytes": 9346,
+      "sha256": "67dbf9e1c365445a871c37d72428e2f286ac0573dd83f0bb3b59f46f14ce6c44"
     },
     {
       "path": "evidence/snowball-real-grader-preflight.json",
@@ -135,6 +230,126 @@
       "path": "evidence/vllm-boundary-proof.json",
       "bytes": 394,
       "sha256": "ef0fd53e378481ffb37f628ec3ddf86564d711f1adc70f22dee80fb4d879a50a"
+    },
+    {
+      "path": "prepare_configs.py",
+      "bytes": 2807,
+      "sha256": "c4ec53284a689c408a42ae0df2a0eca27e9aea81523c2d36a45f29953e236f3b"
+    },
+    {
+      "path": "protocol.json",
+      "bytes": 3124,
+      "sha256": "10811ed2e99855c8077c6e4e1bd8ce876123f3c9c479d2787b4d2ed4f0d7a1ae"
+    },
+    {
+      "path": "qwen-candidate-a0-rno-detach.yaml",
+      "bytes": 7100,
+      "sha256": "e6f394a91dddc7a5823b8bb8b318ad9f62e19a2a60b8fded09057997142d2582"
+    },
+    {
+      "path": "qwen-candidate-a0-rno-prepare.yaml",
+      "bytes": 7101,
+      "sha256": "82b5c3cbb09863424ba01f78f90c628208bd5dc8ad491b0e2487bc93edc429b2"
+    },
+    {
+      "path": "qwen-candidate-a1-rno-detach.yaml",
+      "bytes": 7100,
+      "sha256": "560fcb388c3fa470c38d0504c8c83655986a9a578dc0e8fa912edc6072b1e3c0"
+    },
+    {
+      "path": "qwen-candidate-a1-rno-prepare.yaml",
+      "bytes": 7101,
+      "sha256": "4b48ed162442ad0e6b64bd504f8c3f135e6e2a1015ab779e0d35eabb7d26d088"
+    },
+    {
+      "path": "qwen-final-protocol.json",
+      "bytes": 1551,
+      "sha256": "3fe2f2aeb2b3b2c2d1dcd12c9ad6849e876824f9781742083f5ff6e483df5b51"
+    },
+    {
+      "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
+      "bytes": 441491,
+      "sha256": "4c6732304d6df639d4120aca88211ce5fa16607ac01b01ed9dfea451dc65a4f6"
+    },
+    {
+      "path": "reports/sc-integration-qwen-candidate-a1-rno-01a146a3.json.zip",
+      "bytes": 437019,
+      "sha256": "55972321d64b06fcb52850d9b9770db30a63eadb90805d3d3741faf7d98a9474"
+    },
+    {
+      "path": "snowball-baseline-a0-rno-detach.yaml",
+      "bytes": 9834,
+      "sha256": "bdf4feef0f72e468dda2114a39453015a9da5de8bbc9be88105f987fd56945cb"
+    },
+    {
+      "path": "snowball-baseline-a0-rno-prepare.yaml",
+      "bytes": 9835,
+      "sha256": "085cf58fb07352f8c031f62c03123e940915f218946235decf5c8a3d6106ba09"
+    },
+    {
+      "path": "snowball-baseline-a1-rno-detach.yaml",
+      "bytes": 9834,
+      "sha256": "f8a1bcf906287ec5305ba26daa7579010839c28943d484611648d86707599301"
+    },
+    {
+      "path": "snowball-baseline-a1-rno-prepare.yaml",
+      "bytes": 9835,
+      "sha256": "9b04eb01463b203691512ab25981a25687fad942337b640078d23b69e15d44e1"
+    },
+    {
+      "path": "snowball-baseline-a2-east-detach.yaml",
+      "bytes": 9857,
+      "sha256": "63df1461b575ecc48fcd21333f7160229ab4f68a9ad0275b7975f3f0cafd6dc0"
+    },
+    {
+      "path": "snowball-baseline-a2-east-prepare.yaml",
+      "bytes": 9858,
+      "sha256": "ec806c03a172b8909e0ea1e6a6c8ec1533d1574bbcf14d75d93e60aa35849e58"
+    },
+    {
+      "path": "snowball-candidate-a0-rno-detach.yaml",
+      "bytes": 9846,
+      "sha256": "361f8d58871e10fc1ce6667a3ceb27bfbe21a47847238606034dc01d11658267"
+    },
+    {
+      "path": "snowball-candidate-a0-rno-prepare.yaml",
+      "bytes": 9847,
+      "sha256": "a321bca98b0e7c1a93fa990ef6c19c3832bdc8d18a8ed116e2d79bdc61ee6e4e"
+    },
+    {
+      "path": "snowball-candidate-a1-rno-detach.yaml",
+      "bytes": 9846,
+      "sha256": "5c4597673941fd82b66f2b03c4ac3baec3b83f38a6aab11cfd5cf89c52265dff"
+    },
+    {
+      "path": "snowball-candidate-a1-rno-prepare.yaml",
+      "bytes": 9847,
+      "sha256": "1ad2dd6ae6fd83089bbbc7670f9052c3c7eadbbd97b8bb10ea4c18e3941cd778"
+    },
+    {
+      "path": "snowball-candidate-a2-east-detach.yaml",
+      "bytes": 9869,
+      "sha256": "0758a5d5d3b444f374d28087e8ff64200e136e2b373a0ea365dc0b407522467f"
+    },
+    {
+      "path": "snowball-candidate-a2-east-prepare.yaml",
+      "bytes": 9870,
+      "sha256": "e1d65966b6f2424273baf9d2e6f8fd8939a454d37347b1eb64a66e4654081bd0"
+    },
+    {
+      "path": "snowball-protocol-a1.json",
+      "bytes": 7083,
+      "sha256": "c57ffd9fbc29d3e472c9da3e0ee7244a8c7422d0ea811ed6aadaeeb428870dd4"
+    },
+    {
+      "path": "snowball-protocol-a2.json",
+      "bytes": 8099,
+      "sha256": "e8e9df39032732170f1b9bfd39f307ef5c3d6e6dff300cf082c76a38e26d0278"
+    },
+    {
+      "path": "snowball-protocol.json",
+      "bytes": 4853,
+      "sha256": "999c5ab0d97b7363c4c1cab54839d3f838d9908728e1747bac311601f0bd20f0"
     }
   ],
   "reports": [
@@ -149,6 +364,18 @@
       "stored_bytes": 441491,
       "stored_sha256": "4c6732304d6df639d4120aca88211ce5fa16607ac01b01ed9dfea451dc65a4f6",
       "envelope": "ZIP with the repository-required trailing newline; contained original report bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-qwen-candidate-a1-rno-01a146a3.json.zip",
+      "original_bytes": 4398812,
+      "original_sha256": "4314e2b00324c86b4b689ae500b5d35e32b67247d39a882105f10543d79de49d",
+      "stored_bytes": 437019,
+      "stored_sha256": "55972321d64b06fcb52850d9b9770db30a63eadb90805d3d3741faf7d98a9474",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a1-rno-01a146a3/performance.json",
+      "product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+      "runtime": "a3cf30b6598de5a6de8ca45e720d5db8c47784d0",
+      "complete": true,
+      "envelope": "ZIP with repository-required trailing newline; contained original report bytes unchanged"
     }
   ],
   "validation_log_archive": {
@@ -225,6 +452,26 @@
         "name": "snowball-baseline-a0-startup-final-logs.txt",
         "bytes": 750,
         "sha256": "9748100aca3a2d3e83c1c911c0d2c9230a349bba9c22fec6dab2d2097f4446ec"
+      }
+    ]
+  },
+  "followup_receipts_archive": {
+    "path": "evidence/followup-receipts.zip",
+    "members": [
+      {
+        "name": "snowball-baseline-a1-state-preempted.csv",
+        "bytes": 933,
+        "sha256": "36d4a3bfbf284a71a7c0654edb2de20947009c97a28961d4a477539fc08f286c"
+      },
+      {
+        "name": "snowball-baseline-a1-preemption-events.txt",
+        "bytes": 1437,
+        "sha256": "636a446e243f65cdaf351060793ed0d2415b4e8b2bc4a38c441c620d4c4d36ea"
+      },
+      {
+        "name": "qwen-final-a1-state-final.csv",
+        "bytes": 421,
+        "sha256": "91e15230f3ae12c38970163e636a899bcc7c060f8bdaac337ca9a12bc3c91e15"
       }
     ]
   }

@@ -202,6 +202,22 @@ def summarize(path, cadence):
     by_phase = {row["phase"]: row for row in all_windows}
     result["independent_scalar_replay"] = [replay_scalar(row, by_phase[row["phase"]]) for row in data["probe_evidence"]]
     qualification = data["qualification"]
+    if not snowball:
+        cases = qualification["native_chat_compact_parity"]
+        assert len(cases) == 4
+        assert {(row["temperature"], row["response_length"]) for row in cases} == {
+            (1.0, 128),
+            (1.0, 4096),
+            (0.7, 128),
+            (0.7, 4096),
+        }
+        assert all(
+            row["tokens_message_finish_source_chosen_head_exact"]
+            and row["display_logprobs_absent"]
+            and row["ids_dtype"] == "int32"
+            and row["scores_dtype"] == "float32"
+            for row in cases
+        )
     for name in ("reference", "temperature_0_7_reference", "compact_temperature_0_7_reference"):
         assert sum(row["positions"] for row in qualification[name]) > 0
         assert max(row["chosen_max_error"] for row in qualification[name]) <= 1e-5
@@ -239,6 +255,28 @@ def main():
             mode: comparison(
                 left["serialized"][mode]["cycle_seconds"]["values"],
                 right["serialized"][mode]["cycle_seconds"]["values"],
+                paired=False,
+            )
+            for mode in MODES
+        }
+        result["between_allocations_normalized_to_ordinary"] = {
+            mode: comparison(
+                [
+                    value / ordinary
+                    for value, ordinary in zip(
+                        left["serialized"][mode]["cycle_seconds"]["values"],
+                        left["serialized"]["ordinary"]["cycle_seconds"]["values"],
+                        strict=True,
+                    )
+                ],
+                [
+                    value / ordinary
+                    for value, ordinary in zip(
+                        right["serialized"][mode]["cycle_seconds"]["values"],
+                        right["serialized"]["ordinary"]["cycle_seconds"]["values"],
+                        strict=True,
+                    )
+                ],
                 paired=False,
             )
             for mode in MODES

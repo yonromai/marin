@@ -1,0 +1,229 @@
+{
+  "config": "/home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/qwen-candidate-a1-rno-prepare.yaml",
+  "sha256": "4b48ed162442ad0e6b64bd504f8c3f135e6e2a1015ab779e0d35eabb7d26d088",
+  "run": {
+    "id": "sc-integration-qwen-candidate-a1-rno-01a146a3",
+    "attempt_id": "initial",
+    "seed": 0,
+    "mode": "train",
+    "submission": "prepare",
+    "export_hf": false
+  },
+  "runtime": {
+    "launcher_commit": "a3cf30b6598de5a6de8ca45e720d5db8c47784d0",
+    "profile": "megatron",
+    "entrypoint": "skyrl_train.entrypoints.main_base",
+    "training_type": "sync"
+  },
+  "iris": {
+    "cluster": "cw-rno2a",
+    "cluster_config": "/home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/cw-rno2a-client.yaml",
+    "job_name": "sc-integration-qwen-candidate-a1-rno-01a146a3",
+    "wandb_entity": null,
+    "allocation": {
+      "num_nodes": 2,
+      "gpus_per_node": 8,
+      "gpu_variant": "H100",
+      "cpu": 32.0,
+      "memory": "256GB",
+      "disk": "500GB"
+    },
+    "priority": "interactive",
+    "max_retries": 0,
+    "timeout": 3600,
+    "target_cluster": null,
+    "parent_cluster_config": null
+  },
+  "placement": {
+    "colocate_all": false,
+    "colocate_policy_ref": true,
+    "policy_num_nodes": 1,
+    "policy_num_gpus_per_node": 8,
+    "critic_num_nodes": 1,
+    "critic_num_gpus_per_node": 4,
+    "ref_num_nodes": 2,
+    "ref_num_gpus_per_node": 8,
+    "policy_strict_spread_pg": false,
+    "policy_per_gpu_bundles": false,
+    "policy_force_cvd_mask": false,
+    "enable_numa_affinity": false
+  },
+  "parallelism": {
+    "tensor_model_parallel_size": 1,
+    "pipeline_model_parallel_size": 1,
+    "context_parallel_size": 1,
+    "expert_model_parallel_size": 1,
+    "expert_tensor_parallel_size": 1,
+    "ddp_config": {
+      "grad_reduce_in_fp32": true,
+      "overlap_grad_reduce": false,
+      "overlap_param_gather": false,
+      "average_in_collective": true
+    },
+    "model_config_kwargs": {},
+    "torch_profiler_config": {
+      "enable": false,
+      "ranks": [],
+      "save_path": null
+    },
+    "optimizer_config_kwargs": {
+      "overlap_cpu_optimizer_d2h_h2d": false,
+      "use_precision_aware_optimizer": false,
+      "optimizer_cpu_offload": false,
+      "optimizer_offload_fraction": 0.0
+    },
+    "transformer_config_kwargs": {
+      "recompute_granularity": "full",
+      "recompute_modules": [
+        "core_attn"
+      ],
+      "recompute_method": "uniform",
+      "recompute_num_layers": 1
+    },
+    "empty_cuda_cache": true,
+    "logprob_chunk_size": 512,
+    "optimizer_checkpoint_sharding_type": "dp_reshardable",
+    "check_train_eval_parity": false,
+    "moe_router_replay": false,
+    "check_dp_weight_consistency": false
+  },
+  "performance": {
+    "workload": "qwen",
+    "variant": "candidate",
+    "output_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a1-rno-01a146a3/performance.json",
+    "candidate": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+    "repetitions": 2,
+    "source_rows": null,
+    "source_data_sha256": null,
+    "window_timeout_seconds": 600,
+    "async_steps": 4,
+    "async_warmup_steps": 1,
+    "async_phase_timeout_seconds": 600
+  },
+  "sampling": {
+    "max_generate_length": 512,
+    "repetition_penalty": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "min_p": 0.0,
+    "top_k": -1,
+    "logprobs": 0,
+    "stop": null
+  },
+  "generator": {
+    "num_inference_engines": 8,
+    "weight_sync_backend": "nccl",
+    "inference_engine_tensor_parallel_size": 1,
+    "max_num_batched_tokens": 4096,
+    "gpu_memory_utilization": 0.6,
+    "max_num_seqs": 128
+  },
+  "rollout_buffer": {
+    "max_staleness_steps": 0,
+    "batch_policy": "full_batch",
+    "max_in_flight": 4,
+    "object_store_root": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a1-rno-01a146a3/groups"
+  },
+  "algorithm": {
+    "batch_invariant": false,
+    "advantage_estimator": "grpo",
+    "group_advantage_min_size": null,
+    "resolved_group_advantage": {
+      "kind": "exact_physical",
+      "physical_group_size": 4,
+      "minimum_group_size": null
+    },
+    "kl_ctrl": {
+      "type": "fixed",
+      "kl_target": 0.1,
+      "horizon": 10000
+    },
+    "kl_estimator_type": "k3_unbiased_gradient",
+    "use_kl_in_reward": false,
+    "use_kl_loss": false,
+    "kl_loss_coef": 0.001,
+    "use_entropy_loss": false,
+    "entropy_loss_coef": 0.01,
+    "advantage_batch_normalize": false,
+    "value_head_prefix": "value_head",
+    "policy_loss_type": "regular",
+    "ftpo": {},
+    "dpo": {
+      "beta": 0.1,
+      "label_smoothing": 0.0
+    },
+    "loss_reduction": "token_mean",
+    "grpo_norm_by_std": true,
+    "rloo_n_filter_zero_reward_groups": true,
+    "lambd": 1.0,
+    "gamma": 1.0,
+    "eps_clip_low": 0.2,
+    "eps_clip_high": 0.2,
+    "clip_ratio_c": 3.0,
+    "off_policy_correction": "custom",
+    "off_policy_correction_rules": [
+      {
+        "kind": "token",
+        "action": "truncate",
+        "high": 2.0
+      }
+    ],
+    "score_centering_topk": 0,
+    "score_centering_enabled": false,
+    "score_centering_diagnostic_tokens": 0,
+    "score_centering_probe": {
+      "interval": 2,
+      "topk": 128,
+      "tokens_per_response": 32
+    },
+    "tis_splice": true,
+    "tis_lcs_alert_threshold": 0.005,
+    "enable_token_reward_channel": false,
+    "think_token_weight": 1.0,
+    "sapo": {
+      "tau_pos": 1.0,
+      "tau_neg": 1.05
+    },
+    "value_clip": 0.2,
+    "dynamic_sampling": {
+      "type": null,
+      "max_sample_batches": 30,
+      "informative_on": "shaped",
+      "min_reward_std": 0.0,
+      "max_mean_reward": null
+    },
+    "group_admission": {
+      "stall_timeout": null
+    },
+    "clip_cov": {
+      "clip_ratio": 0.0002,
+      "clip_cov_lb": 1.0,
+      "clip_cov_ub": 5.0
+    },
+    "kl_cov": {
+      "kl_cov_frac": 0.2,
+      "ppo_kl_coef": 1.0
+    },
+    "cispo": {
+      "cispo_eps_clip_low": 1.0,
+      "cispo_eps_clip_high": 5
+    }
+  },
+  "model": {
+    "uri": "Qwen/Qwen3-0.6B",
+    "identity": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "local_path": "Qwen/Qwen3-0.6B",
+    "tokenizer_uri": "Qwen/Qwen3-0.6B",
+    "tokenizer_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "chat_template": null
+  },
+  "declared_context_budget": {
+    "request_window_tokens": 8192,
+    "max_new_tokens_per_turn": 512,
+    "max_turns": 1
+  },
+  "batch_validation": true,
+  "native_role_and_allocation_validation": true,
+  "full_backend_dry_run": true,
+  "submission": false
+}
