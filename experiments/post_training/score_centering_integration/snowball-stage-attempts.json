@@ -1,6 +1,6 @@
 {
-  "saved_at_utc": "2026-10-19T20:05:18.095818+00:00",
-  "protocol": "snowball-staged-protocol.json",
+  "saved_at_utc": "2026-10-19T21:10:33.810599+00:00",
+  "protocol": "snowball-staged-protocol-r2.json",
   "candidate_controls": {
     "attempts_submitted": 1,
     "manual_attempt_limit": 2,
@@ -14,8 +14,8 @@
     "provider_absence_at": "2026-10-19T20:02:01.290979Z",
     "preemptor_uid": "3838dcde-1367-46dc-af6c-3144eb69f964",
     "preemptor_priority": 12,
-    "prepared_retry": "snowball-candidate-controls-a1-east-prepare.yaml",
-    "submission_guard": "Do not submit the remaining retry until East has five whole-node request fits and at least40 GPUs of unused quota; board and provider are advisory/current, not a reservation."
+    "prepared_retry": "snowball-candidate-controls-a1-rno-prepare.yaml",
+    "submission_guard": "Require full corrected-source Qwen success/shutdown and successful primary baseline controls/shutdown, then a fresh five-whole-node fit and at least 40 unused GPU/RDMA quota units on RNO."
   },
   "asynchronous_stages": {
     "baseline_actual_attempts": 0,
@@ -23,5 +23,25 @@
     "applied_updates_per_arm": 67
   },
   "owned_active_jobs_or_queues": [],
-  "limit": "No candidate Snowball correctness or throughput result exists yet. Shorter measurement stages do not remove exposure to preemption during model startup."
+  "limit": "No candidate Snowball correctness or throughput result exists yet. Qwen and CPU evidence cannot substitute for the required primary Snowball qualification.",
+  "primary_cluster": "cw-rno2a",
+  "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
+  "baseline_controls": {
+    "actual_attempts": 0,
+    "manual_attempt_limit": 2,
+    "prepared": "snowball-baseline-controls-a0-rno-prepare.yaml",
+    "submission_guard": "Five whole-node fits and at least 40 unused GPU/RDMA quota units on RNO; complete backend dry run already passed."
+  },
+  "qwen_corrected_source": {
+    "job": "/romain/sc-integration-qwen-candidate-a2-rno-01a146a3",
+    "actual_attempt_number": 3,
+    "outcome": "success",
+    "complete": true,
+    "applied_updates": 35,
+    "all_four_native_cases_exact": true,
+    "admitted_at": "2026-10-19T20:34:06.920620Z",
+    "controller_terminal_at": "2026-10-19T20:49:10.488Z",
+    "provider_absence_at": "2026-10-19T20:55:37.833082Z",
+    "source_sha256": "02d80e1877adf95f0d97419e7a1cf18afef3573b00ed4df4d76e0e28b72eed8f"
+  }
 }

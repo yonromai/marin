@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T20:32:08.873054+00:00",
+  "saved_at": "2026-10-19T21:10:34.377355+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 15314,
-      "sha256": "08d026e27b3a6a4cd1b77c4c1e5b1cba51c605a8281c0451b54fda3857902278"
+      "bytes": 15906,
+      "sha256": "05b3e683d9759068f64dce2d173934b916c68c4e3e7dad48894d8b9bf750a3e9"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 7533,
-      "sha256": "ce3160cf84354a3a3b42ef604353a25e261a3ed5eda240b75ad4a75a034987d0"
+      "bytes": 8522,
+      "sha256": "fdaea0c8f4dcf20d64bf87c69845b5789e188489155702d792b49e95fe6296a6"
     },
     {
       "path": "analyze.py",
@@ -165,6 +165,41 @@
       "path": "evidence/qwen-final-a1-provider-terminal.json",
       "bytes": 6144,
       "sha256": "35a3d4379c5ab7395fb1f5017be5456cc3a0f7ecedfa3c2838b735affa0951db"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-analysis.json",
+      "bytes": 113518,
+      "sha256": "0789df041d573822bce1d69f11e4ce3133f111d185cf96986637ba09d2e57551"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-probe-precision.json",
+      "bytes": 146225,
+      "sha256": "385dcfb7e8c7faee3a8e3c7562d17ff377fb11dc3c2f5f5c2ee09649075382e4"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-provider-absence.json",
+      "bytes": 197,
+      "sha256": "c46ad602d732d34eda3756d994ff7e7915360f2e8f7ede2809fd45a35fa911cc"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-provider-first.json",
+      "bytes": 5537,
+      "sha256": "5d5267e062094bdf712dfce18add1066c605a3a838dc56c3dee0b220328243ec"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-receipts.zip",
+      "bytes": 2373,
+      "sha256": "77c9a35b8cc3a3b1b522b219f94ed335458522bad51df46dee0c5254a4783749"
+    },
+    {
+      "path": "evidence/qwen-floor-a2-workload-events.json",
+      "bytes": 2602,
+      "sha256": "2afc9a8643fe754988e7fceddbf0d5fc4495bc3f5f53d22bb5f85845e923cb6d"
+    },
+    {
+      "path": "evidence/qwen-floor-probe-precision-source.py.txt",
+      "bytes": 4356,
+      "sha256": "b152ba31cc81e064cb4fafefac4e22dc6bda921bf9a3f4c433b71bd94fe6dd22"
     },
     {
       "path": "evidence/qwen-launch-preflight.json",
@@ -467,6 +502,11 @@
       "sha256": "55972321d64b06fcb52850d9b9770db30a63eadb90805d3d3741faf7d98a9474"
     },
     {
+      "path": "reports/sc-integration-qwen-candidate-a2-rno-01a146a3.json.zip",
+      "bytes": 437976,
+      "sha256": "9503ac58dd83ed52985fa0580fc5a17be0496c79262f624896f07aeefedf8559"
+    },
+    {
       "path": "reports/sc-integration-snowball-baseline-a2-east-01a146a3.partial.json.zip",
       "bytes": 367544,
       "sha256": "a2cc4b71853c6527a519911ae8f63826d0e075a8254e63436a89aafc2709e57d"
@@ -628,8 +668,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 1313,
-      "sha256": "776379602f6d0ec35ffe394f0455c60f561286c5c1e32fa6960db8579b8a2541"
+      "bytes": 2245,
+      "sha256": "7e231f63b370f60e35217579818640a5bf282622539cc897eb22cd7aeb2e6983"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
@@ -679,6 +719,19 @@
       "complete": false,
       "applied_updates": 20,
       "envelope": "ZIP with repository-required trailing newline; contained original report bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-qwen-candidate-a2-rno-01a146a3.json.zip",
+      "original_bytes": 4386791,
+      "original_sha256": "02d80e1877adf95f0d97419e7a1cf18afef3573b00ed4df4d76e0e28b72eed8f",
+      "stored_bytes": 437976,
+      "stored_sha256": "9503ac58dd83ed52985fa0580fc5a17be0496c79262f624896f07aeefedf8559",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a2-rno-01a146a3/performance.json",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "complete": true,
+      "applied_updates": 35,
+      "envelope": "ZIP with repository-required trailing newline; original report bytes unchanged"
     }
   ],
   "validation_log_archive": {

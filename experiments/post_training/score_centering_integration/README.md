@@ -102,20 +102,20 @@ Without it, a head concentrated on one token could select different IDs when the
 under the display floor. Two regression cases failed before the fix; 126 adapter checks now pass. Four independent
 comparisons with the actual pinned Pydantic formatter, including sampled scores and the display limit, match exactly.
 [The floor proof](evidence/chat-floor-after-proof.json) retains the source hashes and synthetic contract cases.
-Raw-generation selection and the SC kernel are unchanged. Actual Qwen and Snowball qualification of this source
-are pending; earlier qualified source pins remain separate.
+Raw-generation selection and the SC kernel are unchanged. Actual Qwen qualification of this corrected source
+completed all 35 updates; Snowball qualification remains pending. Earlier qualified source pins remain separate.
 
 ## Qwen interface qualification
 
-The boundary-corrected two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
+The corrected-source two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates
 and sixteen asynchronous updates. Exact old/new chat comparisons passed at temperatures 1.0 and 0.7 for both
 128-token and 4096-token responses: token IDs, message, finish reason, source versions and chosen/head scores
 matched. The compact response held int32 IDs and float32 scores, with display logprobs absent. Full-vocabulary
 causal references, raw flat/dictionary parity and compact-position references also passed.
 
 For a 4096-token response at temperature 1.0, a cross-node Ray echo carried 19270645 bytes as chat objects or
-4268171 bytes as arrays. Three actor round trips were 0.740/0.737/0.789 seconds and 0.0218/0.0186/0.0185 seconds,
-respectively. At temperature 0.7 they were 0.740/0.634/0.716 and 0.0201/0.0187/0.0180 seconds. These include actor
+4268171 bytes as arrays. Three actor round trips were 0.686/0.674/0.686 seconds and 0.0196/0.0174/0.0172 seconds,
+respectively. At temperature 0.7 they were 0.692/0.640/0.668 and 0.0196/0.0206/0.0189 seconds. These include actor
 serialization, host copies and transport in both directions. They exclude generation, S3 and learner work;
 halving or adding them to another timer would not measure a complete training cycle.
 
@@ -123,13 +123,18 @@ An earlier Qwen run exercised the prototype's collection width of 128. An indepe
 found three of 32 cases where collecting one fewer natural candidate changed the identity of an equally probable
 head token. The final implementation restores the old collection width of 129 and reproduces the chat display
 limit before selecting K128; all 32 cases then matched exactly. The corrected check supersedes an invalid scratch
-reference, as recorded in [the boundary evidence](evidence/chat-collection-width-tie-proof.json). The final Qwen
-run repeated all four comparisons at the corrected source pin and passed exactly.
+reference, as recorded in [the boundary evidence](evidence/chat-collection-width-tie-proof.json). Both later Qwen
+runs repeated all four comparisons at their respective corrected source pins and passed exactly.
 
-Both complete raw reports are compressed without editing in [reports](reports/). The final report's original SHA-256 is
-`4314e2b00324c86b4b689ae500b5d35e32b67247d39a882105f10543d79de49d`.
+All three complete raw reports are compressed without editing in [reports](reports/). The final report's original SHA-256 is
+`02d80e1877adf95f0d97419e7a1cf18afef3573b00ed4df4d76e0e28b72eed8f`.
 [The manifest](manifest.json) retains source locations, sizes and hashes. Both final Qwen tasks succeeded with
-attempt zero; a fresh provider check verified their absence at 18:19:42 UTC on October 19.
+attempt zero; a fresh provider check verified their absence at 20:55:37 UTC on October 19. The task image and
+Python package versions match the prior qualification. The cluster logshipper changed externally to `088139e5`;
+both actual images are retained in the provider evidence, and fresh primary Snowball arms will record theirs.
+
+The [current scalar replay](evidence/qwen-floor-a2-probe-precision.json) matches recorded values within 1.63e-9
+using the independent FP32 formula; FP64 evaluation of the same quantized heads differs by up to 5.40e-5.
 
 An [offline precision audit](evidence/qwen-final-a1-probe-precision.json) retains a limit of the existing SC kernel.
 An independent FP32 current-equals-old formula reproduces held probe scalars within 2.6e-9. FP64 evaluation of the
@@ -141,9 +146,9 @@ precision observation does not establish a parameter-gradient error or learning 
 
 ## CPU evidence and remaining transfers
 
-The final selector passed 441 CPU inference, trajectory and independent SC checks, with three dependency skips.
+Before the score-floor follow-up, the selector passed 441 CPU inference, trajectory and independent SC checks, with three dependency skips.
 Another 25 checks cover probe scheduling, native rollout context and unchanged SC-off optimizer behavior.
-The type-only follow-up passed the 124 targeted adapter tests. Tiny-training and CatCount explicitly disable
+The type-only follow-up passed 124 targeted adapter tests; the score-floor correction passed 126. Tiny-training and CatCount explicitly disable
 probes; their settings and sampling are unchanged.
 
 A CPU representation experiment repeats 24 retained Snowball causal heads to 4096 positions at K128. It uses
