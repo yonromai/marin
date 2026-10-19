@@ -1,0 +1,83 @@
+"""Replay owned, completed native payload bytes through the pinned storage path."""
+
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+import hashlib
+import inspect
+import json
+from pathlib import Path
+import threading
+import time
+
+from rigging.filesystem.s3_compat import configure_coreweave_s3
+from marinskyrl.remote_io import filesystem_and_path
+from skyrl_train.io import io
+
+
+ROOT = Path('/home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/integration-20261019')
+SOURCE = ROOT / 'snowball-candidate-controls-a1-failure/groups/c057b747885e476c83630bd0569633b6.pkl'
+PREFIX = 's3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300'
+OUTPUT = ROOT / 'snowball-candidate-controls-a1-failure/storage-replay.json'
+
+
+def main():
+    configure_coreweave_s3()
+    payload = SOURCE.read_bytes()
+    digest = hashlib.sha256(payload).hexdigest()
+    filesystem, _ = filesystem_and_path(PREFIX)
+    finished = threading.Event()
+
+    def inspect_pending():
+        if finished.wait(30):
+            return
+
+        def snapshot():
+            chains = []
+            for task in asyncio.all_tasks(filesystem.loop):
+                current = task.get_coro()
+                chain = []
+                while current is not None:
+                    frame = getattr(current, 'cr_frame', None) or getattr(current, 'gi_frame', None)
+                    if frame is not None:
+                        chain.append({'file': frame.f_code.co_filename, 'function': frame.f_code.co_name,
+                                      'line': frame.f_lineno})
+                    current = getattr(current, 'cr_await', None) or getattr(current, 'gi_yieldfrom', None)
+                if chain:
+                    chains.append(chain)
+            (OUTPUT.parent / 'storage-replay-pending-await-chains.json').write_text(json.dumps(chains, indent=2) + '\n')
+
+        filesystem.loop.call_soon_threadsafe(snapshot)
+
+    threading.Thread(target=inspect_pending, daemon=True).start()
+
+    def transfer(index):
+        uri = f'{PREFIX}/{index:02d}.pkl'
+        started = time.perf_counter()
+        io.write_bytes_atomic(uri, payload)
+        written = time.perf_counter()
+        returned = io.read_bytes(uri)
+        checked = time.perf_counter()
+        assert hashlib.sha256(returned).hexdigest() == digest
+        return {'uri': uri, 'write_seconds': written - started, 'read_verify_seconds': checked - written,
+                'returned_bytes': len(returned), 'sha256': digest}
+
+    started = time.perf_counter()
+    try:
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            rows = list(pool.map(transfer, range(8)))
+    finally:
+        finished.set()
+    result = {'saved_at': datetime.now(timezone.utc).isoformat(), 'source': str(SOURCE),
+              'source_sha256': digest, 'bytes_per_payload': len(payload), 'concurrency': 8,
+              'external_process_deadline_seconds': 180, 'wall_seconds': time.perf_counter() - started,
+              'write_implementation': inspect.getfile(io.write_bytes_atomic), 'transfers': rows,
+              'limits': 'CPU-only devbox replay of the exact owned native payload. It does not reconstruct the failed worker stacks or establish Snowball training throughput.'}
+    assert not OUTPUT.exists()
+    OUTPUT.write_text(json.dumps(result, indent=2) + '\n')
+    print(json.dumps({'verified': len(rows), 'bytes_each': len(payload), 'wall_seconds': result['wall_seconds'],
+                      'write_seconds': [r['write_seconds'] for r in rows]}))
+
+
+if __name__ == '__main__':
+    main()

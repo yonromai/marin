@@ -1,0 +1,166 @@
+{
+  "declared_at_utc": "2026-10-19T23:05:50.232213+00:00",
+  "reason": "Both initial candidate controls attempts are spent: one East startup preemption and one RNO rollout-handoff timeout. All 128 requests in the latter finished normally, but seven long-response groups did not commit a payload. Eight exact 17 MB payload writes/reads through the pinned storage code verified in a 4.935-second CPU replay. Preserve the completed RNO baseline and failed attempts. Move one reserved asynchronous retry to one additional controls submission; keep the global candidate limit at four.",
+  "prior_whole_run_baseline_attempt_limit": 3,
+  "prior_whole_run_baseline_attempts_exhausted": true,
+  "held_baseline_prefix": {
+    "report": "reports/sc-integration-snowball-baseline-a2-east-01a146a3.partial.json.zip",
+    "raw_sha256": "e110297e3e43c0e472aff7627668ba03b7907ae1d7197274836a0ec31f391f3f",
+    "source_report_complete": false,
+    "reported_applied_updates": 20,
+    "interrupted_update_limit": "The next in-flight update is unestablished; only completed reported cycles enter analysis.",
+    "selected_repetitions": [
+      0,
+      1,
+      2
+    ],
+    "warmup_repetitions": [
+      0
+    ],
+    "prefix_applied_updates": 18,
+    "serialized_windows": 15,
+    "excluded_complete_phases": [
+      "armed/3",
+      "probe/3"
+    ],
+    "selection_rule": "All five modes in the last complete balanced rotation before provider preemption; decision frozen before the first candidate Snowball submission or result. Extra complete cycles remain in the raw report and are excluded from the primary matched comparison.",
+    "limits": "Two measured repetitions per mode support only descriptive, wider intervals. This is an explicitly incomplete whole-run report with complete retained cycles, not a completed original 87-update qualification.",
+    "role": "Secondary East evidence only; not the primary RNO comparison."
+  },
+  "future_stages_in_order": [
+    {
+      "variant": "candidate",
+      "scope": "controls",
+      "prepare": "snowball-candidate-controls-a2-rno-prepare.yaml",
+      "prepare_sha256": "fe6e12123d3a5f9d0949e749d3a128a9273d56b1a8386a23ec28439d1f71ee42",
+      "detach": "snowball-candidate-controls-a2-rno-detach.yaml",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "job": "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3",
+      "applied_updates": 18,
+      "manual_attempt_limit": 3,
+      "prior_actual_attempts": 2,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "variant": "baseline",
+      "scope": "async",
+      "prepare": "snowball-baseline-async-a0-rno-r3-prepare.yaml",
+      "prepare_sha256": "a161d26aecdcf3aeb36fcef84e2d8dac64cb8f889a55a643c560d7bcde702e8d",
+      "detach": "snowball-baseline-async-a0-rno-r3-detach.yaml",
+      "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
+      "applied_updates": 67,
+      "manual_attempt_limit": 2,
+      "prior_actual_attempts": 0,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "variant": "candidate",
+      "scope": "async",
+      "prepare": "snowball-candidate-async-a0-rno-r3-prepare.yaml",
+      "prepare_sha256": "4b320a48a1c522509c25039696116d9233f95becf84c4950e0c67cab1583bf3c",
+      "detach": "snowball-candidate-async-a0-rno-r3-detach.yaml",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "job": "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3",
+      "applied_updates": 67,
+      "manual_attempt_limit": 1,
+      "prior_actual_attempts": 0,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    }
+  ],
+  "placement": {
+    "cluster": "cw-rno2a",
+    "priority": "BATCH",
+    "nodes": 5,
+    "gpus_per_node": 8,
+    "learner": "four nodes; PP2/EP8/DP16/TP1/CP1/SP1",
+    "inference": "one node; DP8/EP8"
+  },
+  "async_stage_controls": {
+    "start": "fresh original SFT checkpoint in both arms; no recovery from partial training state",
+    "calibration_updates": 3,
+    "natural_periodic_updates": 6,
+    "natural_probe_interval": 2,
+    "modes_in_order": [
+      "ordinary",
+      "capture",
+      "sc",
+      "probes"
+    ],
+    "warmup_per_mode": 2,
+    "measured_per_mode": 10,
+    "probe_interval": 10,
+    "window_timeout_seconds": 1800,
+    "async_phase_timeout_seconds": 2400,
+    "admission": "full_batch; max source age4; 64 in-flight groups; normal rewards/EOS; publication after each applied update",
+    "probe_updates": 22,
+    "probe_measured_updates": 20,
+    "updates_per_other_mode": 12,
+    "probe_horizon_reason": "Two interval-ten opportunities after startup improve the chance of measured observations without changing cadence. Report actual consumed observations and coverage; admission can still reject a selected group."
+  },
+  "invariants": "Same source, lock, model/checkpoint, tokenizer, valid task subset, sampling, K128, SC frequency, 18-update controls with one warmup and two measured rotations, 67-update asynchronous workload, allocation, priority, admission and publication. No source-code change. Reuse the complete primary RNO baseline without pooling East or the failed candidate warmup.",
+  "operating_rule": "All previous owned work is terminal and absent. Submit the single remaining candidate controls attempt on RNO after a fresh capacity and board check. Native BATCH admission is allowed even with zero free-only fit. Verify its complete correctness/cost report and shutdown before the fresh baseline async stage, then candidate async. Keep matched primary arms on RNO. Check clusters sequentially while queued, retain healthy allocations, and never cancel another owner.",
+  "limits": "Separate control and async allocations do not share a training trajectory or justify pooling timing samples. Report their pins and controls separately. No learning or parameter-gradient benefit claim.",
+  "initial_unsubmitted_draft_declared_at_utc": "2026-10-19T19:05:30.826713+00:00",
+  "unsubmitted_first_draft_archive": {
+    "path": "evidence/staged-first-draft-preflight.zip",
+    "sha256": "0716555bba2ece6978acf5a37d09a41b1cf29c1cce018fae340481b7ce35ece6",
+    "scope": "Original unsubmitted staged configs, protocol and backend dry-run receipts; superseded before any staged submission to cover two probe cadence intervals."
+  },
+  "revision": "r3",
+  "supersedes": "snowball-staged-protocol-r2.json",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 7,
+    "snowball_candidate": 4,
+    "explanation": "Baseline still includes three exhausted whole-run attempts, at most two short controls attempts and two async attempts. Candidate permits three controls attempts (two already spent) and one async attempt, four total. Qwen remains three. No earlier attempt is reset or erased."
+  },
+  "score_floor_correction": {
+    "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+    "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+    "native_chat_floor": -9999.0,
+    "ordering": "Apply the existing chat presentation floor before token-ID tie ordering and the existing display limit. Raw-generation selection is unchanged.",
+    "cpu_adapter_tests_passed": 126,
+    "actual_pinned_formatter_edge_cases_exact": 4,
+    "sc_kernel_or_tail_mass_floor_changed": false,
+    "evidence": "evidence/chat-floor-after-proof.json"
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 2,
+    "candidate_controls": 3,
+    "baseline_async": 2,
+    "candidate_async": 1
+  },
+  "failure_checkpoint": {
+    "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+    "applied_updates": 4,
+    "complete": false,
+    "last_complete_window": "ordinary/0",
+    "report_sha256": "ac512f61b19537d3b61710f4c4cd129e69dfd4718f33aa975248b9bd8458556b",
+    "failure": "600-second outer guard expired awaiting rollout-buffer admission before optimizer step five",
+    "controller_terminal_at": "2026-10-19T22:38:08.325Z",
+    "provider_absence_at": "2026-10-19T22:46:07.752491Z",
+    "normal_retained_trials": 128,
+    "completed_capture_calls": 25,
+    "cancelled_capture_calls": 7,
+    "stored_capture_payloads": 25,
+    "owned_incomplete_multipart_uploads": 0,
+    "cpu_replay": "evidence/storage-replay.json",
+    "diagnosis_limit": "The retained periodic thread dump covers launcher ancestors but omits the relevant Ray actors. Their stalled operation and exact cause remain unresolved. Prior S3 Expect/100-continue incidents are background, not an established cause."
+  },
+  "guard_revision": {
+    "previous_window_timeout_seconds": 600,
+    "future_window_timeout_seconds": 1800,
+    "async_phase_timeout_seconds": 2400,
+    "queue_inclusive_deadline_seconds": 21600,
+    "automatic_task_failure_or_preemption_retries": 0,
+    "reason": "The native S3 session already bounds each request at 600 seconds and may retry it. The earlier outer guard expired before a late payload request could expose its own timeout. A finite 1800-second guard permits diagnosis/retry. Every completed cycle still includes its entire elapsed wall time. Both unsubmitted async arms get the same guard."
+  },
+  "diagnostic_rule": "If controlled warmup stops progressing for two minutes after generation should finish, use Iris task exec to find exact RolloutWorker actor PIDs and capture bounded py-spy thread dumps for those PIDs. Generic periodic task dumps omitted the Ray actors in the failed attempt. Capture before the guard, only during controlled warmup; none inside asynchronous throughput windows. If this remaining controls attempt fails, preserve the diagnosis and do not submit an undeclared retry."
+}

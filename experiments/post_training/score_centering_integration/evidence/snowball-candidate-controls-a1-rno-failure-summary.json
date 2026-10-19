@@ -1,0 +1,66 @@
+{
+  "saved_at_utc": "2026-10-19T23:07:53.070360+00:00",
+  "complete": false,
+  "applied_updates": 4,
+  "report_sha256": "ac512f61b19537d3b61710f4c4cd129e69dfd4718f33aa975248b9bd8458556b",
+  "failure": "600-second outer guard awaiting batch admission before optimizer step five",
+  "retained_trials": 128,
+  "normal_dispositions": 128,
+  "response_length_counts": {
+    "1024": 32,
+    "4096": 32,
+    "64": 32,
+    "256": 32
+  },
+  "fully_trainable_trial_masks": 128,
+  "retained_source_versions": [
+    4
+  ],
+  "retained_archives": [
+    {
+      "name": "3160983cd2381ac8faea8ba5daa9103b21c68d80d33633660263d3f1dcf9509d.zip",
+      "bytes": 197178,
+      "sha256": "3160983cd2381ac8faea8ba5daa9103b21c68d80d33633660263d3f1dcf9509d",
+      "envelope": "evidence/snowball-candidate-controls-a1-rno-retained-00.zip"
+    },
+    {
+      "name": "32a8b889bf762ecc96a0445fe2a8eda38f5ed1343e9ec8415af6e19576fe0797.zip",
+      "bytes": 205751,
+      "sha256": "32a8b889bf762ecc96a0445fe2a8eda38f5ed1343e9ec8415af6e19576fe0797",
+      "envelope": "evidence/snowball-candidate-controls-a1-rno-retained-01.zip"
+    },
+    {
+      "name": "5f4b94dc2eaba16c31a03e544003928e3ad2e85a514ded5eccb88d5c157a59ff.zip",
+      "bytes": 10895,
+      "sha256": "5f4b94dc2eaba16c31a03e544003928e3ad2e85a514ded5eccb88d5c157a59ff",
+      "envelope": "evidence/snowball-candidate-controls-a1-rno-retained-02.zip"
+    },
+    {
+      "name": "ae6b6fc375d9a2832e85c94a7895bee1f51b893c1a7b83a145da5a1287c9b62a.zip",
+      "bytes": 349467,
+      "sha256": "ae6b6fc375d9a2832e85c94a7895bee1f51b893c1a7b83a145da5a1287c9b62a",
+      "envelope": "evidence/snowball-candidate-controls-a1-rno-retained-03.zip"
+    }
+  ],
+  "storage_observation": {
+    "new_group_objects": 25,
+    "successful_capture_rollout_calls": 25,
+    "cancelled_capture_rollout_calls": 7,
+    "owned_incomplete_multipart_uploads": 0,
+    "source": "Native regional telemetry, exact own S3 prefix, and retained task records in the failure archive"
+  },
+  "cpu_replay": "storage-replay.json",
+  "cpu_replay_source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/groups/c057b747885e476c83630bd0569633b6.pkl",
+  "limits": "No live worker stack was captured. Missing payloads narrow the failure to the handoff; the exact stalled operation and cause remain unresolved. S3 Expect/100-continue is background, not established by this evidence. No source code changed.",
+  "periodic_thread_capture": {
+    "source": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/0",
+    "seq": 23421,
+    "captured_at_utc": "2026-10-19T22:28:57.206Z",
+    "covered_pids": [
+      1,
+      9695,
+      10963
+    ],
+    "limit": "The retained periodic dump covers launcher ancestors, not the Ray trainer or RolloutWorker actor PIDs. It does not locate the stalled actor operation."
+  }
+}

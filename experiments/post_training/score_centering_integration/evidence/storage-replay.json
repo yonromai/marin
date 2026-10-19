@@ -1,0 +1,69 @@
+{
+  "saved_at": "2026-10-19T23:01:46.026666+00:00",
+  "source": "/home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/integration-20261019/snowball-candidate-controls-a1-failure/groups/c057b747885e476c83630bd0569633b6.pkl",
+  "source_sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b",
+  "bytes_per_payload": 17172637,
+  "concurrency": 8,
+  "external_process_deadline_seconds": 180,
+  "wall_seconds": 4.9345595659688115,
+  "write_implementation": "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-workers-01a146a3/skyrl-train/skyrl_train/io/io.py",
+  "transfers": [
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/00.pkl",
+      "write_seconds": 3.0583574869669974,
+      "read_verify_seconds": 1.205844207201153,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/01.pkl",
+      "write_seconds": 3.6026446679607034,
+      "read_verify_seconds": 1.2060418748296797,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/02.pkl",
+      "write_seconds": 3.782791377045214,
+      "read_verify_seconds": 1.0731861991807818,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/03.pkl",
+      "write_seconds": 3.3012438411824405,
+      "read_verify_seconds": 1.338477441109717,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/04.pkl",
+      "write_seconds": 3.4015359012410045,
+      "read_verify_seconds": 1.248041866812855,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/05.pkl",
+      "write_seconds": 2.4492505281232297,
+      "read_verify_seconds": 1.9198375651612878,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/06.pkl",
+      "write_seconds": 3.5046906899660826,
+      "read_verify_seconds": 1.1701606679707766,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    },
+    {
+      "uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/failure-diagnostics/storage-replay-20261019T2300/07.pkl",
+      "write_seconds": 2.6493586688302457,
+      "read_verify_seconds": 1.214383477345109,
+      "returned_bytes": 17172637,
+      "sha256": "43913a7a6ec79bbf9a458409530bc2027f0e7068adea41bf195b4632c329769b"
+    }
+  ],
+  "limits": "CPU-only devbox replay of the exact owned native payload. It does not reconstruct the failed worker stacks or establish Snowball training throughput."
+}

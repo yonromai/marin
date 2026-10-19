@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T22:12:29.040266+00:00",
+  "saved_at": "2026-10-19T23:14:12.773643+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -197,17 +197,21 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-19T22:08:42.249Z",
       "admitted_at": "2026-10-19T22:08:42.621248Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "active; admitted matched Reno candidate controls stage, second and final controls attempt",
+      "controller_terminal_at": "2026-10-19T22:38:08.325Z",
+      "provider_absence_at": "2026-10-19T22:46:07.752491Z",
+      "applied_updates": 4,
+      "outcome": "600-second rollout admission timeout before update five; four applied updates retained; exact handoff cause unresolved",
       "automatic_retries": 0,
       "evidence": [
         "evidence/snowball-candidate-controls-a1-rno-provider-first.json",
-        "evidence/snowball-candidate-controls-a1-rno-provider-02.json",
-        "evidence/snowball-candidate-controls-a1-rno-workload-events.json"
+        "evidence/snowball-candidate-controls-a1-rno-provider-after-failure.json",
+        "evidence/snowball-candidate-controls-a1-rno-failure.zip",
+        "evidence/snowball-candidate-controls-a1-rno-failure-summary.json",
+        "reports/sc-integration-snowball-candidate-controls-a1-rno-01a146a3.partial.json.zip"
       ],
-      "queue_seconds": 0.372248
+      "queue_seconds": 0.372248,
+      "gpu_hours_to_controller_terminal_proxy": 19.618930577777775,
+      "gpu_hours_through_verified_absence_upper_bound": 24.945902699999998
     }
   ],
   "prepared_but_not_submitted": [
@@ -226,11 +230,13 @@
   },
   "staged_attempt_limits": {
     "baseline_controls": 2,
-    "candidate_controls": 2,
+    "candidate_controls": 3,
     "baseline_async": 2,
-    "candidate_async": 2
+    "candidate_async": 1
   },
+  "staged_limit_revision": "r3 reallocates one reserved candidate-async retry to one additional controls attempt; global candidate limit remains four, with all earlier attempts retained.",
   "staged_prepared_but_not_submitted": [
+    "snowball-candidate-controls-a2-rno",
     "snowball-baseline-async-a0-rno",
     "snowball-candidate-async-a0-rno"
   ],
@@ -241,7 +247,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 70.08905863333332,
-    "gpu_hours_through_verified_absence_upper_bound": 97.38046927111111
+    "gpu_hours_to_controller_terminal_proxy": 89.7079892111111,
+    "gpu_hours_through_verified_absence_upper_bound": 122.3263719711111
   }
 }

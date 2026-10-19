@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T22:12:29.041198+00:00",
+  "saved_at": "2026-10-19T23:14:12.775078+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 17557,
-      "sha256": "d98d5a990f39188d46eb5426fc75116efd1c4bb26068b83609b1b7992d2b012c"
+      "bytes": 19052,
+      "sha256": "c09340dbe7dd6e47edb630a89c21282c265671030d9180a5e3aaeb48dec6496a"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 10473,
-      "sha256": "22474a4af4e4d98aabf73efeaa1f2a16b1cbf1a8342fdae967d0c85a50c1e70c"
+      "bytes": 11093,
+      "sha256": "9743462a9f2dda5fd36c9aaeea971550173ed671df92a33694bef0bcece17d8a"
     },
     {
       "path": "analyze.py",
@@ -110,6 +110,11 @@
       "path": "evidence/followup-receipts.zip",
       "bytes": 1242,
       "sha256": "6b1efe70a6d529a51edafde8a069f6492486cd819f5306e32c6bdecdd0244cc2"
+    },
+    {
+      "path": "evidence/handoff-r3-preflight.zip",
+      "bytes": 3372,
+      "sha256": "778821941277a0ea7ef5410909b549e8c4523961810e9b149eeee4558188b529"
     },
     {
       "path": "evidence/matched-harness-proof.json",
@@ -227,6 +232,11 @@
       "sha256": "0149fad74e1f38957b1cfd440775c838ffe74e274fca430c1e8cab1913f1c691"
     },
     {
+      "path": "evidence/replay_candidate_payload_storage.py.txt",
+      "bytes": 3678,
+      "sha256": "11e06b830e7a8151bd7e55fefb3c5decf0cdbd0fb89639d6a06dd76361acdb70"
+    },
+    {
       "path": "evidence/snowball-baseline-a0-launch-preflight.json",
       "bytes": 9323,
       "sha256": "a67dcc56c39ff93b1ae23d199441876eab421881bb115c3b45c7653f66fb98f9"
@@ -327,6 +337,11 @@
       "sha256": "b5f1d161af680f582d1097611c3615677671a417df498911669f8c85bc377d15"
     },
     {
+      "path": "evidence/snowball-baseline-async-a0-rno-r3-launch-preflight.json",
+      "bytes": 9408,
+      "sha256": "78d80c0de9fe5540777e87c1a5261c4371f160e71bb8033fec9a6dba619f3369"
+    },
+    {
       "path": "evidence/snowball-baseline-controls-a0-rno-analysis.json",
       "bytes": 175470,
       "sha256": "f9246a31321ed7be8b81a1176d91b733fadd290bc87e9cf96195ab6c45f043ed"
@@ -397,6 +412,11 @@
       "sha256": "72d5def2150e49906356514b95d31a0614c23709c43ec0071c625ca82c3f65cc"
     },
     {
+      "path": "evidence/snowball-candidate-async-a0-rno-r3-launch-preflight.json",
+      "bytes": 9414,
+      "sha256": "c6908555fa4351cdd5dfcf3cd43aa2b4f92c70bf9f02b367dd3c842ba3a4ca8b"
+    },
+    {
       "path": "evidence/snowball-candidate-controls-a0-launch-preflight.json",
       "bytes": 9445,
       "sha256": "22475b8233ce1c729894e4d6082d87847e10fa54b2ccb3162d5a43cb9383f0e8"
@@ -437,6 +457,16 @@
       "sha256": "1a26166657b2171a2baf4ab45f33cb66a69098d02ed16bac5a253d277e1a20e5"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a1-rno-failure-summary.json",
+      "bytes": 2914,
+      "sha256": "a9f023fb9a6f628099b09e17fa145f18b55c686ab6720812c224ad18164ea650"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-failure.zip",
+      "bytes": 25692,
+      "sha256": "3727716c737fd04b8577208a71a2aba90f207e76c396da6d38c279a71d200e1e"
+    },
+    {
       "path": "evidence/snowball-candidate-controls-a1-rno-launch-preflight.json",
       "bytes": 9428,
       "sha256": "9b2f968e86032a95b2e324b8c61bfbb22ebe5914096646a763164a21a09f1e19"
@@ -447,14 +477,49 @@
       "sha256": "f39d57435c53c381560564ff342203a17a145624ab1ae9ce5fa83ea5bd690fa2"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a1-rno-provider-after-failure.json",
+      "bytes": 210,
+      "sha256": "7434190e0be4b33347c199689bc9ac62e587ac10fb313aadb19051b4da3a7fe9"
+    },
+    {
       "path": "evidence/snowball-candidate-controls-a1-rno-provider-first.json",
       "bytes": 7047,
       "sha256": "ea4bf75fa0a317026d33275193c5473017bceb2101afd780e8e3cb8170ad0132"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-00.zip",
+      "bytes": 185104,
+      "sha256": "017f8e79aad2453cdec459363c244c4f7c7daa1fb30a0efde1d16b7b09c165b9"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-01.zip",
+      "bytes": 171837,
+      "sha256": "69197d1fa36a0b7b3ccbd2f67bd42767ae42d27b1f27fe5c9e9c1e16bf1e5d73"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-02.zip",
+      "bytes": 9673,
+      "sha256": "a63128e81a418bd20c116d864d495bc49299e4f4483ac9b5ee6a9aad512f563e"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-03.zip",
+      "bytes": 331454,
+      "sha256": "17dccab257c0bd1395d4998fc0cd4a28c0b6e08f28fddc992d4e966e7d3512b8"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-workload-events-final.json",
+      "bytes": 11479,
+      "sha256": "1cd739015ed29ed139093b706e0788672ca76e7591bdcc9937e8aa070dbcb4a8"
+    },
+    {
       "path": "evidence/snowball-candidate-controls-a1-rno-workload-events.json",
       "bytes": 11479,
       "sha256": "491753ff979b2c5bde0cab427973fbfa1fbafebd27f29524888de99d05370af8"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a2-rno-launch-preflight.json",
+      "bytes": 9429,
+      "sha256": "c754d64724e4b48d01f612b969948f6df6911c727d62e1c5399acba477a24f9e"
     },
     {
       "path": "evidence/snowball-real-grader-preflight.json",
@@ -485,6 +550,11 @@
       "path": "evidence/staged-harness-proof.json",
       "bytes": 2059,
       "sha256": "bfcc05412ed02f89bd5704e463a98e350ac9135a8232d788b9032529ee6cfa56"
+    },
+    {
+      "path": "evidence/storage-replay.json",
+      "bytes": 3798,
+      "sha256": "6d0c8748431c826c3b7f8a29b9904c110f9c059be62e3a292a923fca4fcc79a7"
     },
     {
       "path": "evidence/typing-behavior-proof.json",
@@ -577,6 +647,11 @@
       "sha256": "e552b6cd8584ff8cac701f68f1d791ea0f8d923c8c249ffb0c9bb703fd4106b6"
     },
     {
+      "path": "reports/sc-integration-snowball-candidate-controls-a1-rno-01a146a3.partial.json.zip",
+      "bytes": 146846,
+      "sha256": "6d76ccb6a0e413a2f2c26d915a2ee4d8dffbb040af464bd76451a37c11c85ddd"
+    },
+    {
       "path": "snowball-baseline-a0-rno-detach.yaml",
       "bytes": 9834,
       "sha256": "bdf4feef0f72e468dda2114a39453015a9da5de8bbc9be88105f987fd56945cb"
@@ -625,6 +700,16 @@
       "path": "snowball-baseline-async-a0-rno-prepare.yaml",
       "bytes": 9948,
       "sha256": "f371a971e86b7be96b737c148ff1a18dda6651039fb69dd2e4fce1c9bc4ccf7c"
+    },
+    {
+      "path": "snowball-baseline-async-a0-rno-r3-detach.yaml",
+      "bytes": 9948,
+      "sha256": "290c0390f4b0802947a9c2f3e96a9b2200445a0d0f8621a9f5866a4efd96979c"
+    },
+    {
+      "path": "snowball-baseline-async-a0-rno-r3-prepare.yaml",
+      "bytes": 9949,
+      "sha256": "a161d26aecdcf3aeb36fcef84e2d8dac64cb8f889a55a643c560d7bcde702e8d"
     },
     {
       "path": "snowball-baseline-controls-a0-rno-detach.yaml",
@@ -692,6 +777,16 @@
       "sha256": "4218d77c8b784fbaacefc32eaba3c8e15ffbda8ccb8a11a6c8ca13b2d845714f"
     },
     {
+      "path": "snowball-candidate-async-a0-rno-r3-detach.yaml",
+      "bytes": 9960,
+      "sha256": "dd5b91472dde9d9e225109e3573a7fb6461e6742e271b744f7b32d12375b74c6"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-r3-prepare.yaml",
+      "bytes": 9961,
+      "sha256": "4b320a48a1c522509c25039696116d9233f95becf84c4950e0c67cab1583bf3c"
+    },
+    {
       "path": "snowball-candidate-controls-a0-east-detach.yaml",
       "bytes": 10018,
       "sha256": "6039d81e7a1fe8a4764df152cd70820391c216f8276134e097a758f4675e3627"
@@ -722,6 +817,16 @@
       "sha256": "763cdfdc3de27aafe8963754af4ad8b56e0a5dfd27529870b79cb80bd2a7380e"
     },
     {
+      "path": "snowball-candidate-controls-a2-rno-detach.yaml",
+      "bytes": 9996,
+      "sha256": "5b43b19a6b82594cf96411ce91bfe1fafa957d52a07c44a147499157c3b1028c"
+    },
+    {
+      "path": "snowball-candidate-controls-a2-rno-prepare.yaml",
+      "bytes": 9997,
+      "sha256": "fe6e12123d3a5f9d0949e749d3a128a9273d56b1a8386a23ec28439d1f71ee42"
+    },
+    {
       "path": "snowball-protocol-a1.json",
       "bytes": 7083,
       "sha256": "c57ffd9fbc29d3e472c9da3e0ee7244a8c7422d0ea811ed6aadaeeb428870dd4"
@@ -738,13 +843,18 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 4512,
-      "sha256": "a8e97969a572a33f8a848c14f60c6f510ebd30c3455f5ce275c027f484d8a396"
+      "bytes": 4717,
+      "sha256": "9a82b95407f2ca1da79e2cc8d7d9bd40128aede1f616eadc36075643efe9bba1"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
       "bytes": 7934,
       "sha256": "ad270c07bfdcf680312a79fbd02b8c4f53ef57c1b5a7d86295b35adfbce393ac"
+    },
+    {
+      "path": "snowball-staged-protocol-r3.json",
+      "bytes": 9934,
+      "sha256": "96aa03ef36e89e7247fc5d87f7ea4ac4237593292d541376efae6841e02ebcac"
     },
     {
       "path": "snowball-staged-protocol.json",
@@ -814,6 +924,19 @@
       "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
       "complete": true,
       "applied_updates": 18,
+      "envelope": "ZIP with repository-required trailing newline; original report bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-snowball-candidate-controls-a1-rno-01a146a3.partial.json.zip",
+      "original_bytes": 1065317,
+      "original_sha256": "ac512f61b19537d3b61710f4c4cd129e69dfd4718f33aa975248b9bd8458556b",
+      "stored_bytes": 146846,
+      "stored_sha256": "6d76ccb6a0e413a2f2c26d915a2ee4d8dffbb040af464bd76451a37c11c85ddd",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/performance.json",
+      "product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+      "runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+      "complete": false,
+      "applied_updates": 4,
       "envelope": "ZIP with repository-required trailing newline; original report bytes unchanged"
     }
   ],
@@ -944,5 +1067,172 @@
       }
     ],
     "scope": "Original expected-red regressions, green126 checks, mechanical lint and independent formatter/CPU profile outputs; no source bytes changed."
-  }
+  },
+  "candidate_failure_archive": {
+    "path": "evidence/snowball-candidate-controls-a1-rno-failure.zip",
+    "members": [
+      {
+        "name": "snowball-candidate-controls-a1-rno-submit.log",
+        "bytes": 2766,
+        "sha256": "87bd0d50f503bb3c4b1be2d2cb428fb29ae1d309447024d630250145ebf81b31"
+      },
+      {
+        "name": "snowball-candidate-controls-a1-rno-state-first.csv",
+        "bytes": 898,
+        "sha256": "e1f4c5f56add86051651823dc1ccf3283e7f2114621d8d34de3ff5531461c510"
+      },
+      {
+        "name": "snowball-candidate-controls-a1-rno-state-02.csv",
+        "bytes": 898,
+        "sha256": "736262b3e8ccf15caf7914205c1f93e765e2115e91e7cf9c1d0aa17e3fa7f8fa"
+      },
+      {
+        "name": "snowball-candidate-controls-a1-rno-state-03.csv",
+        "bytes": 898,
+        "sha256": "736262b3e8ccf15caf7914205c1f93e765e2115e91e7cf9c1d0aa17e3fa7f8fa"
+      },
+      {
+        "name": "snowball-candidate-controls-a1-rno-state-04.csv",
+        "bytes": 1032,
+        "sha256": "b11253ae34c385f968e8bf9203100be477ee112e3d4ee5669bcecf5ef3cf9a89"
+      },
+      {
+        "name": "snowball-candidate-controls-a1-rno-failed-describe.txt",
+        "bytes": 3658,
+        "sha256": "976e037b57862d0e7460f504d5baf2bf3fc20a8d4513bcbcd527080f41ad96ae"
+      },
+      {
+        "name": "storage-replay-candidate-long.log",
+        "bytes": 254,
+        "sha256": "69bdc5c5778f930c56c6f11b70cb1066d64671b43c2b65731ede69773cb203a1"
+      },
+      {
+        "name": "telemetry-step5-handoff.jsonl",
+        "bytes": 75535,
+        "sha256": "5ec6b13e67da30852ef7bebd5a9c68266d980ae9197e3c428334563e83fe5cbc"
+      },
+      {
+        "name": "attempt-index.json",
+        "bytes": 9149,
+        "sha256": "62defaa54530c4cb428f9bec4c45533f1feaf31fc1e4bcf3d625b8c39b153ef9"
+      },
+      {
+        "name": "group-index.json",
+        "bytes": 43954,
+        "sha256": "abb897dc01457fd5a64ff4cd500e8a928435f350180a70714f37b861b5c3c388"
+      },
+      {
+        "name": "owned-incomplete-multipart.json",
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "name": "telemetry-wait-summary.jsonl",
+        "bytes": 602,
+        "sha256": "ce6c2de8517d145daa8fd323b3cc121ef2aaa6da578f7d8d2224a19c5806f25d"
+      },
+      {
+        "name": "rendezvous/term_artifacts/_romain_sc-integration-snowball-candidate-controls-a1-rno-01a146a3_4:0_1792449492.txt",
+        "bytes": 1398,
+        "sha256": "bdcf19c8bd4c8e17f35e71e98d503787c3f4cfd020c55e185528fcca660f268e"
+      },
+      {
+        "name": "rendezvous/term_artifacts/_romain_sc-integration-snowball-candidate-controls-a1-rno-01a146a3_3:0_1792449492.txt",
+        "bytes": 1403,
+        "sha256": "dba9f9364c2060f295adb6343ed57e739e0962f50170cc361678b6507d4b79bd"
+      },
+      {
+        "name": "rendezvous/term_artifacts/_romain_sc-integration-snowball-candidate-controls-a1-rno-01a146a3_2:0_1792449492.txt",
+        "bytes": 1429,
+        "sha256": "204fe48083c8189717b4a040e85ab34eafdd38f7bc24bba016f758e7b7c4bd61"
+      },
+      {
+        "name": "rendezvous/term_artifacts/_romain_sc-integration-snowball-candidate-controls-a1-rno-01a146a3_1:0_1792449492.txt",
+        "bytes": 1424,
+        "sha256": "a9b0a8380558477ae54997f3feaef460afe302eea7c34de3b53f5ca65a453967"
+      },
+      {
+        "name": "rendezvous/term_artifacts/_romain_sc-integration-snowball-candidate-controls-a1-rno-01a146a3_0:0_1792449436.txt",
+        "bytes": 1461,
+        "sha256": "8b9436f06400d170d60e2d5378b266ee30c61db0b1dcddb9718c0dbb2829dafd"
+      },
+      {
+        "name": "rendezvous/debug_artifacts/rank0-g53c548/outcomes/skyrl-entrypoint.g53c548.10963.1792449435245391998.json",
+        "bytes": 288,
+        "sha256": "50f6fd4febd3431a583b6f9c042dc53154815166cfaa8728801b7d1840b4b09e"
+      },
+      {
+        "name": "rendezvous/debug_artifacts/rank0-g53c548/outcomes/skyrl-entrypoint-driver.g53c548.10963.1792449434942920973.exception.json",
+        "bytes": 7710,
+        "sha256": "4214f65d27e378e17e7e1135774313baea4f9a7607dee18b5c909d204f37ced3"
+      },
+      {
+        "name": "rendezvous/debug_artifacts/rank0-g53c548/outcomes/training-driver.g53c548.9695.1792449436484814427.json",
+        "bytes": 237,
+        "sha256": "208cdc0fa1527686e9719121fb6436bb990a962a92fe35a430e9d8ec3b3e26fe"
+      },
+      {
+        "name": "rendezvous/debug_artifacts/rank0-g53c548/outcomes/skyrl-trainer.g53c548.13998.1792449427934544825.exception.json",
+        "bytes": 2637,
+        "sha256": "e3c91512dffebb425d932eaad11d51995ceb373e1263c23cf274d1bbb16eebf8"
+      },
+      {
+        "name": "profile-capture-index.jsonl",
+        "bytes": 1325,
+        "sha256": "70966731cf479425ea07302dd6945be3e1c35aed4ad5d7d30f05479bbf1db6ad"
+      },
+      {
+        "name": "thread-capture-task0.jsonl",
+        "bytes": 6437,
+        "sha256": "149d0ac96b3b102b885b9a4138279971134cdab2ecc3138d4f5f77b6db3810df"
+      },
+      {
+        "name": "thread-capture-task0.txt",
+        "bytes": 5892,
+        "sha256": "e7e694a3fc5769b572730c4b5629242932ef29f6511adbef01e122201c769564"
+      }
+    ]
+  },
+  "candidate_retained_archives": [
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-00.zip",
+      "members": [
+        {
+          "name": "3160983cd2381ac8faea8ba5daa9103b21c68d80d33633660263d3f1dcf9509d.zip",
+          "bytes": 197178,
+          "sha256": "3160983cd2381ac8faea8ba5daa9103b21c68d80d33633660263d3f1dcf9509d"
+        }
+      ]
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-01.zip",
+      "members": [
+        {
+          "name": "32a8b889bf762ecc96a0445fe2a8eda38f5ed1343e9ec8415af6e19576fe0797.zip",
+          "bytes": 205751,
+          "sha256": "32a8b889bf762ecc96a0445fe2a8eda38f5ed1343e9ec8415af6e19576fe0797"
+        }
+      ]
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-02.zip",
+      "members": [
+        {
+          "name": "5f4b94dc2eaba16c31a03e544003928e3ad2e85a514ded5eccb88d5c157a59ff.zip",
+          "bytes": 10895,
+          "sha256": "5f4b94dc2eaba16c31a03e544003928e3ad2e85a514ded5eccb88d5c157a59ff"
+        }
+      ]
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-rno-retained-03.zip",
+      "members": [
+        {
+          "name": "ae6b6fc375d9a2832e85c94a7895bee1f51b893c1a7b83a145da5a1287c9b62a.zip",
+          "bytes": 349467,
+          "sha256": "ae6b6fc375d9a2832e85c94a7895bee1f51b893c1a7b83a145da5a1287c9b62a"
+        }
+      ]
+    }
+  ]
 }

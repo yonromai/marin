@@ -107,12 +107,27 @@ The fresh RNO baseline controls completed all 18 updates and 15 serialized windo
 attempt zero by 22:05:07 UTC on October 19; their Pods and queue were absent at 22:07:35. Full-normalization
 references at both temperatures were within 1.91e-6. The complete raw report is retained in
 [reports](reports/), with a [standalone analysis](evidence/snowball-baseline-controls-a0-rno-analysis.json).
-The matched candidate controls was submitted at 22:08:42.249 UTC and admitted at 22:08:42.621248. All five Pods
-were running at 22:09:57. Its actual task and logshipper images match the baseline and corrected Qwen run.
+The matched candidate controls was submitted at 22:08:42.249 UTC and admitted at 22:08:42.621248. Its actual
+task and logshipper images match the baseline and corrected Qwen run. It saved three calibration updates and
+the ordinary warmup, then a 600-second guard expired waiting for capture-cycle batch admission. All 128 trials
+finished with the expected lengths, valid masks and no task error. Twenty-five groups committed payloads;
+seven long-response groups did not. All tasks were terminal at 22:38:08 and Pods absent at 22:46:07.
+[The failure record](evidence/snowball-candidate-controls-a1-rno-failure-summary.json) retains the incomplete
+report, native outcomes, regional telemetry and task archives. Its exact handoff-stall cause is unresolved.
 Both primary arms used ordinary BATCH priority; native Kueue admitted them by preempting priority-one workloads.
 No priority or shared-service setting was changed. Candidate results and both asynchronous stages remain pending.
 [Current-head CI](evidence/pr968-097192b4-ci-check-03.json) is terminal with all six checks successful on
 product `097192b463e48552383fe27fc8c42b135bf2c20a`, whose only difference from qualified source `87f13fcd` is documentation.
+
+[Revision r3](snowball-staged-protocol-r3.json) moves one reserved candidate asynchronous retry to one additional
+controls attempt. The global candidate limit stays four: three controls attempts, including both spent starts,
+and one asynchronous submission. No attempt is reset. A CPU replay wrote and read eight exact 17 MB native
+payloads through the pinned storage path in 4.935 seconds and verified every hash; this does not reproduce the
+failed worker stacks or establish training throughput. The future window guard is 1800 seconds, allowing the
+existing 600-second S3 request deadline and retry path to surface. Both unsubmitted asynchronous arms receive
+the same guard. Source, workload, sampling, K128, cadence and measurement windows remain unchanged. If the
+controlled warmup stalls again, capture live worker stacks before its guard; keep extra profiling out of real
+asynchronous throughput windows. No further undeclared controls retry is armed.
 
 The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
 Without it, a head concentrated on one token could select different IDs when the remaining scores become ties
