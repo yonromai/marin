@@ -1,11 +1,15 @@
 {
   "candidate": {
-    "report": "/home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/reports/sc-integration-qwen-candidate-a1-rno-01a146a3.json.zip",
+    "report": "experiments/post_training/score_centering_integration/reports/sc-integration-qwen-candidate-a1-rno-01a146a3.json.zip",
     "sha256": "4314e2b00324c86b4b689ae500b5d35e32b67247d39a882105f10543d79de49d",
     "product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
     "variant": "candidate",
     "workload": "qwen",
     "applied_updates": 35,
+    "source_report_complete": true,
+    "analysis_scope": "full",
+    "analyzed_applied_updates": 35,
+    "excluded_completed_serialized_phases": [],
     "runtime": {
       "lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
       "versions": {
@@ -1385,7 +1389,11 @@
         "observations": 0,
         "observation_phases": [],
         "observation_coverage": [],
-        "seconds_between_observation_completions": []
+        "seconds_between_observation_completions": [],
+        "observations_including_warmup": 0,
+        "observation_phases_including_warmup": [],
+        "observation_coverage_including_warmup": [],
+        "seconds_between_observation_completions_including_warmup": []
       },
       "capture": {
         "continuous_wall_seconds": 15.73739310586825,
@@ -1444,7 +1452,11 @@
         "observations": 0,
         "observation_phases": [],
         "observation_coverage": [],
-        "seconds_between_observation_completions": []
+        "seconds_between_observation_completions": [],
+        "observations_including_warmup": 0,
+        "observation_phases_including_warmup": [],
+        "observation_coverage_including_warmup": [],
+        "seconds_between_observation_completions_including_warmup": []
       },
       "sc": {
         "continuous_wall_seconds": 16.357569784857333,
@@ -1503,7 +1515,11 @@
         "observations": 0,
         "observation_phases": [],
         "observation_coverage": [],
-        "seconds_between_observation_completions": []
+        "seconds_between_observation_completions": [],
+        "observations_including_warmup": 0,
+        "observation_phases_including_warmup": [],
+        "observation_coverage_including_warmup": [],
+        "seconds_between_observation_completions_including_warmup": []
       },
       "probes": {
         "continuous_wall_seconds": 14.939845867920667,
@@ -1562,7 +1578,15 @@
         "observations": 0,
         "observation_phases": [],
         "observation_coverage": [],
-        "seconds_between_observation_completions": []
+        "seconds_between_observation_completions": [],
+        "observations_including_warmup": 1,
+        "observation_phases_including_warmup": [
+          "async/probes/0"
+        ],
+        "observation_coverage_including_warmup": [
+          0.00929962220284801
+        ],
+        "seconds_between_observation_completions_including_warmup": []
       }
     },
     "serialized_comparisons": {
@@ -3067,6 +3091,5 @@
         "probes"
       ]
     }
-  },
-  "limits": "Serialized intervals use five measured rotating repetitions per Snowball allocation and describe these allocations only. Asynchronous modes use continuous windows, normal task rewards and EOS, two warmup and ten measured updates; Phase boundaries exclude initial warmup and final context teardown, retain finite prefetch, and can bias short windows. One allocation per implementation, ordered modes, changing weights, response variation, caches and shared hardware limit causal claims. Only exclusive StepWallTime fields partition the cycle; nested timers and process profiles overlap. Memory device peaks are sampled every 0.1 seconds; allocator caches persist and host peaks are cumulative. No learning-gain claim."
+  }
 }

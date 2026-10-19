@@ -20,10 +20,13 @@ def main():
     parser.add_argument("--product", required=True)
     parser.add_argument("--attempt", default="a0")
     parser.add_argument("--timeout-seconds", type=int)
+    parser.add_argument("--scope", choices=("full", "controls", "async"), default="full")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     retained = root.parent / "score_centering_performance"
     short = args.workload == "qwen"
+    if short and args.scope != "full":
+        parser.error("Qwen uses the complete interface qualification")
     for cluster in ("cw-us-east-02a", "cw-rno2a"):
         (root / f"{cluster}-client.yaml").write_bytes((retained / f"{cluster}-client.yaml").read_bytes())
     source = "qwen-a2-east-prepare.yaml" if short else "snowball-candidate-a3-prepare.yaml"
@@ -48,8 +51,10 @@ def main():
     trainer["score_centering_performance"].update(
         candidate=args.product,
         variant=args.variant,
-        repetitions=2 if short else 6,
+        scope=args.scope,
+        repetitions=2 if short else (3 if args.scope == "controls" else 6),
         async_steps=4 if short else 12,
+        async_probe_steps=4 if short else (22 if args.scope == "async" else 12),
         async_warmup_steps=1 if short else 2,
         async_phase_timeout_seconds=600 if short else 2400,
     )

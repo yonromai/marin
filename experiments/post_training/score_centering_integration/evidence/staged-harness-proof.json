@@ -1,0 +1,49 @@
+{
+  "unchanged_measurement_functions_ast": [
+    "native_window",
+    "settings",
+    "generate_workload",
+    "reference",
+    "prefix_replay",
+    "update",
+    "batch",
+    "save_probe"
+  ],
+  "unchanged_serialized_loop_ast": true,
+  "extracted_periodic_body_ast_identical": true,
+  "matched_staged_harness_files": [
+    {
+      "path": "cloud/iris/iris_backend.py",
+      "sha256": "e211aa679f3a4d1f73cffcdeadd74fa602a183abf14a00cc23d16f1a787883a4"
+    },
+    {
+      "path": "skyrl-train/skyrl_train/config/ppo_base_config.yaml",
+      "sha256": "5cc9e1f7a1792c19b85a4008792446609f77dbadcf5931cac103d447b3ea979b"
+    },
+    {
+      "path": "skyrl-train/skyrl_train/entrypoints/main_base.py",
+      "sha256": "ddb5d6a9ff0c4f95ab4851a8094228aba6c3ebbe47a259a70ecafe4e3f242709"
+    },
+    {
+      "path": "skyrl-train/skyrl_train/entrypoints/score_centering_performance.py",
+      "sha256": "650de40e627606e0b39eec83697dbec53714f612c658bd91915655fbe281f96f"
+    },
+    {
+      "path": "skyrl-train/skyrl_train/workers/megatron/megatron_worker.py",
+      "sha256": "f5c788f244f11ad32520f578ceaa5bffebed42110b9f5d27e3d3296df6d5b9f2"
+    }
+  ],
+  "prior_runtime": "a3cf30b6598de5a6de8ca45e720d5db8c47784d0",
+  "scope": "Benchmark stage boundaries and report scope change. The asynchronous probe horizon is22 instead of12; the remaining asynchronous function is AST-identical after removing the declared horizon selection. Per-update timing/training, qualification functions, serialized loop and six-update periodic body are unchanged. Held baseline raw completeness remains false.",
+  "staged_candidate_runtime": "77806511d37f307baf2c05dae2d9b47bc391be3d",
+  "staged_baseline_runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+  "held_baseline_runtime": "bdb8b3134ca0b7322d889f2634dd1bfc6a126beb",
+  "matched_inference_measurement_methods": [
+    "performance_echo",
+    "performance_memory",
+    "performance_profile_start",
+    "performance_profile_stop",
+    "performance_sampling"
+  ],
+  "asynchronous_function_diff_only_declared_probe_horizon": true
+}

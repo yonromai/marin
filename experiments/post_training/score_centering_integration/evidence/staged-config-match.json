@@ -1,0 +1,5 @@
+{
+  "async_config_equal_after_run_identity_and_product_pins": true,
+  "controls_equal_to_held_baseline_except_scope_and_repetitions": true,
+  "normalization": "Replace exact run ID in paths and names; remove runtime.launcher_commit and benchmark candidate/variant pins. Baseline prefix selects repetitions0..2; candidate scope stops after those same repetitions. The unused control async_probe_steps field equals the prior implicit12."
+}

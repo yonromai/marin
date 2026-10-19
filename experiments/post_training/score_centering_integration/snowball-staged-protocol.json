@@ -1,0 +1,108 @@
+{
+  "declared_at_utc": "2026-10-19T19:12:54.138548+00:00",
+  "reason": "Three externally preempted whole-run baseline attempts exhausted their declared limit. The last attempt retained complete native cycles. Reuse its last complete balanced rotation, then shorten future allocation lifetimes without changing product, K128, loss, SC frequency or asynchronous controls.",
+  "prior_whole_run_baseline_attempt_limit": 3,
+  "prior_whole_run_baseline_attempts_exhausted": true,
+  "held_baseline_prefix": {
+    "report": "reports/sc-integration-snowball-baseline-a2-east-01a146a3.partial.json.zip",
+    "raw_sha256": "e110297e3e43c0e472aff7627668ba03b7907ae1d7197274836a0ec31f391f3f",
+    "source_report_complete": false,
+    "reported_applied_updates": 20,
+    "interrupted_update_limit": "The next in-flight update is unestablished; only completed reported cycles enter analysis.",
+    "selected_repetitions": [
+      0,
+      1,
+      2
+    ],
+    "warmup_repetitions": [
+      0
+    ],
+    "prefix_applied_updates": 18,
+    "serialized_windows": 15,
+    "excluded_complete_phases": [
+      "armed/3",
+      "probe/3"
+    ],
+    "selection_rule": "All five modes in the last complete balanced rotation before provider preemption; decision frozen before the first candidate Snowball submission or result. Extra complete cycles remain in the raw report and are excluded from the primary matched comparison.",
+    "limits": "Two measured repetitions per mode support only descriptive, wider intervals. This is an explicitly incomplete whole-run report with complete retained cycles, not a completed original 87-update qualification."
+  },
+  "future_stages_in_order": [
+    {
+      "scope": "controls",
+      "variant": "candidate",
+      "runtime": "77806511d37f307baf2c05dae2d9b47bc391be3d",
+      "product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+      "applied_updates": 18,
+      "serialized_repetitions_including_warmup": 3,
+      "serialized_measured_repetitions": 2,
+      "prepare": "snowball-candidate-controls-a0-east-prepare.yaml",
+      "prepare_sha256": "ec0de68f68620d96fad3c750375a298b78af9388433ae98166fb77cba869a923",
+      "manual_attempt_limit": 2,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "scope": "async",
+      "variant": "baseline",
+      "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "applied_updates": 67,
+      "prepare": "snowball-baseline-async-a0-east-prepare.yaml",
+      "prepare_sha256": "b4e6672976e2173860233b2c091bec41560528489370d83b767311255f98b0ab",
+      "manual_attempt_limit": 2,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    },
+    {
+      "scope": "async",
+      "variant": "candidate",
+      "runtime": "77806511d37f307baf2c05dae2d9b47bc391be3d",
+      "product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+      "applied_updates": 67,
+      "prepare": "snowball-candidate-async-a0-east-prepare.yaml",
+      "prepare_sha256": "dc603adc54e0cc3dc02f39ec30bd91f787cf0ab3e6d74e5794b58a4f1c42f65f",
+      "manual_attempt_limit": 2,
+      "automatic_retries": 0,
+      "queue_inclusive_deadline_seconds": 21600
+    }
+  ],
+  "placement": {
+    "cluster": "cw-us-east-02a",
+    "priority": "BATCH",
+    "nodes": 5,
+    "gpus_per_node": 8,
+    "learner": "four nodes; PP2/EP8/DP16/TP1/CP1/SP1",
+    "inference": "one node; DP8/EP8"
+  },
+  "async_stage_controls": {
+    "start": "fresh original SFT checkpoint in both arms; no recovery from partial training state",
+    "calibration_updates": 3,
+    "natural_periodic_updates": 6,
+    "natural_probe_interval": 2,
+    "modes_in_order": [
+      "ordinary",
+      "capture",
+      "sc",
+      "probes"
+    ],
+    "warmup_per_mode": 2,
+    "measured_per_mode": 10,
+    "probe_interval": 10,
+    "window_timeout_seconds": 600,
+    "async_phase_timeout_seconds": 2400,
+    "admission": "full_batch; max source age4; 64 in-flight groups; normal rewards/EOS; publication after each applied update",
+    "probe_updates": 22,
+    "probe_measured_updates": 20,
+    "updates_per_other_mode": 12,
+    "probe_horizon_reason": "Two interval-ten opportunities after startup improve the chance of measured observations without changing cadence. Report actual consumed observations and coverage; admission can still reject a selected group."
+  },
+  "invariants": "Same checkpoint, tokenizer, 192 grader-valid tasks and source hash, exact configuration geometry, lock and images, effective temperature controls, K128, masks, sampled causal positions, task behavior, source stamps and production SC/PPO/TIS code. Measurement functions and the serialized loop are AST-identical to the interrupted baseline; staged arms have identical instrumentation.",
+  "operating_rule": "Run stages sequentially. Submit only after preflight and verified shutdown of the previous owned job. Check both clusters while queued, retain healthy allocations, never cancel another owner. Both matched comparisons stay on East. Each stage allows at most two actual submissions, counting failures; no silent or automatic retries.",
+  "limits": "Separate control and async allocations do not share a training trajectory or justify pooling timing samples. Report their pins and controls separately. No learning or parameter-gradient benefit claim.",
+  "initial_unsubmitted_draft_declared_at_utc": "2026-10-19T19:05:30.826713+00:00",
+  "unsubmitted_first_draft_archive": {
+    "path": "evidence/staged-first-draft-preflight.zip",
+    "sha256": "0716555bba2ece6978acf5a37d09a41b1cf29c1cce018fae340481b7ce35ece6",
+    "scope": "Original unsubmitted staged configs, protocol and backend dry-run receipts; superseded before any staged submission to cover two probe cadence intervals."
+  }
+}

@@ -1,7 +1,7 @@
 # Copyright The Marin Authors
 # SPDX-License-Identifier: Apache-2.0
 
-"""Check and summarize complete integration qualifications without pooling allocations."""
+"""Summarize finite native windows and explicitly selected complete rotations."""
 
 import argparse
 import hashlib
@@ -38,24 +38,50 @@ def observed_range(values):
     return {"mean": statistics.mean(values), "min": min(values), "max": max(values), "values": values}
 
 
-def summarize(path, cadence):
+def summarize(path, cadence, controls_repetitions=None):
     data, digest = read_report(path)
-    assert data["complete"] is True
     snowball = data["workload"] == "snowball"
-    repetitions, async_steps, async_warmup = (6, 12, 2) if snowball else (2, 4, 1)
-    expected = 3 + repetitions * len(MODES) + 6 + 4 * async_steps
-    assert data["applied_updates"] == expected
-    assert len(data["windows"]) == repetitions * len(MODES)
-    assert len(data["native_periodic_windows"]) == 6
-    assert len(data["asynchronous_windows"]) == 4 * async_steps
+    scope = data.get("scope", "full")
+    source_serialized = data["windows"]
+    if controls_repetitions is not None:
+        assert snowball and scope == "full" and data["complete"] is False
+        scope = "controls"
+        repetitions = controls_repetitions
+        serialized = [row for row in source_serialized if row["repetition"] < repetitions]
+    else:
+        assert data["complete"] is True
+        repetitions = (3 if scope == "controls" else 6) if snowball else 2
+        serialized = source_serialized
+    async_steps, async_warmup = (12, 2) if snowball else (4, 1)
+    async_probe_steps = data.get("asynchronous_controls", {}).get("probe_steps", async_steps)
+    native = data.get("native_periodic_windows", [])
+    asynchronous = data.get("asynchronous_windows", [])
+    assert scope in ("full", "controls", "async")
+    assert len(serialized) == (0 if scope == "async" else repetitions * len(MODES))
+    if serialized:
+        assert {(row["mode"], row["repetition"]) for row in serialized} == {
+            (mode, repetition) for mode in MODES for repetition in range(repetitions)
+        }
+    assert len(native) == (0 if scope == "controls" else 6)
+    assert len(asynchronous) == (0 if scope == "controls" else 3 * async_steps + async_probe_steps)
+    assert [row["mode"] for row in data.get("asynchronous_phases", [])] == (
+        [] if scope == "controls" else ["ordinary", "capture", "sc", "probes"]
+    )
+    expected = 3 + len(serialized) + len(native) + len(asynchronous)
+    if controls_repetitions is not None:
+        assert data["applied_updates"] >= expected
+        assert all(row["applied_updates"] <= expected for row in serialized)
+    else:
+        assert data["applied_updates"] == expected
     assert data["runtime"]["lock_sha256"] == LOCK_SHA256
-    serialized = data["windows"]
     shape_keys = ("tokens", "loss_tokens", "sequence_shape")
-    for key in shape_keys:
-        assert all(row[key] == serialized[0][key] for row in serialized)
-    for key in ("prompt_lengths", "row_loss_tokens", "response_lengths"):
-        assert all(sorted(row[key]) == sorted(serialized[0][key]) for row in serialized)
-    all_windows = serialized + data["native_periodic_windows"] + data["asynchronous_windows"]
+    if serialized:
+        for key in shape_keys:
+            assert all(row[key] == serialized[0][key] for row in serialized)
+        for key in ("prompt_lengths", "row_loss_tokens", "response_lengths"):
+            assert all(sorted(row[key]) == sorted(serialized[0][key]) for row in serialized)
+    all_windows = serialized + native + asynchronous
+    included_phases = {row["phase"] for row in serialized}
     for row in all_windows:
         metrics = row["metrics"]
         assert metrics["policy/policy_update_steps"] == 1 and metrics["policy/skipped_steps"] == 0
@@ -77,17 +103,23 @@ def summarize(path, cadence):
         "product": data["candidate"],
         "variant": data["variant"],
         "workload": data["workload"],
-        "applied_updates": expected,
+        "applied_updates": data["applied_updates"],
+        "source_report_complete": data["complete"],
+        "analysis_scope": scope,
+        "analyzed_applied_updates": expected,
+        "excluded_completed_serialized_phases": [
+            row["phase"] for row in source_serialized if row["phase"] not in included_phases
+        ],
         "runtime": data["runtime"],
         "source_selection": data["source_selection"],
         "prompt_sha256": data["prompt_sha256"],
-        "controlled_shape": {key: serialized[0][key] for key in shape_keys},
-        "response_lengths": dict(Counter(serialized[0]["response_lengths"])),
+        "controlled_shape": {key: serialized[0][key] for key in shape_keys} if serialized else None,
+        "response_lengths": dict(Counter(serialized[0]["response_lengths"])) if serialized else {},
         "setup_timings": data["setup_timings"],
         "serialized": {},
         "asynchronous": {},
     }
-    for mode in MODES:
+    for mode in MODES if serialized else ():
         rows = sorted(
             (row for row in serialized if row["mode"] == mode and not row["warmup"]),
             key=lambda row: row["repetition"],
@@ -127,7 +159,7 @@ def summarize(path, cadence):
             if snowball:
                 assert summary["capture_tokens"] == [16384] * (repetitions - 1)
         result["serialized"][mode] = summary
-    for mode in ("armed", "probe"):
+    for mode in ("armed", "probe") if serialized else ():
         assert (
             result["serialized"][mode]["optimizer_tensor_bytes"]
             == result["serialized"]["ordinary"]["optimizer_tensor_bytes"]
@@ -138,34 +170,41 @@ def summarize(path, cadence):
             result["serialized"][control]["cycle_seconds"]["values"],
         )
         for treatment, control in (
-            ("capture", "ordinary"),
-            ("sc", "ordinary"),
-            ("sc", "capture"),
-            ("armed", "ordinary"),
-            ("probe", "armed"),
-            ("probe", "ordinary"),
+            (
+                ("capture", "ordinary"),
+                ("sc", "ordinary"),
+                ("sc", "capture"),
+                ("armed", "ordinary"),
+                ("probe", "armed"),
+                ("probe", "ordinary"),
+            )
+            if serialized
+            else ()
         )
     }
-    ordinary, armed, probe = (
-        result["serialized"][name]["cycle_seconds"]["values"] for name in ("ordinary", "armed", "probe")
-    )
-    modeled = [(a * (cadence - 1) + p) / cadence for a, p in zip(armed, probe, strict=True)]
-    result["cadence_model"] = {
-        "interval": cadence,
-        "overhead_versus_off": comparison(modeled, ordinary),
-        "seconds_between_observations": statistics.mean(modeled) * cadence,
-        "incremental_probe_seconds": describe(p - a for p, a in zip(probe, armed, strict=True)),
-        "scope": "Serialized complete cycles, one long-response group per observation; not an asynchronous ceiling.",
-    }
-    for phase in data["asynchronous_phases"]:
-        rows = [row for row in data["asynchronous_windows"] if row["mode"] == phase["mode"] and not row["warmup"]]
-        assert len(rows) == async_steps - async_warmup
+    if serialized:
+        ordinary, armed, probe = (
+            result["serialized"][name]["cycle_seconds"]["values"] for name in ("ordinary", "armed", "probe")
+        )
+        modeled = [(a * (cadence - 1) + p) / cadence for a, p in zip(armed, probe, strict=True)]
+        result["cadence_model"] = {
+            "interval": cadence,
+            "overhead_versus_off": comparison(modeled, ordinary),
+            "seconds_between_observations": statistics.mean(modeled) * cadence,
+            "incremental_probe_seconds": describe(p - a for p, a in zip(probe, armed, strict=True)),
+            "scope": "Serialized complete cycles, one long-response group per observation; not an asynchronous ceiling.",
+        }
+    for phase in data.get("asynchronous_phases", []):
+        phase_rows = [row for row in asynchronous if row["mode"] == phase["mode"]]
+        rows = [row for row in phase_rows if not row["warmup"]]
+        assert len(rows) == (async_probe_steps if phase["mode"] == "probes" else async_steps) - async_warmup
         assert all(not row["synthetic_advantages"] for row in rows)
         seconds = phase["measured_wall_seconds"]
         tokens = sum(row["tokens"] for row in rows)
         losses = sum(row["loss_tokens"] for row in rows)
         lengths = np.asarray([length for row in rows for length in row["response_lengths"]])
         observed = [row for row in rows if row["metrics"]["score_centering_probe/observed"]]
+        all_observed = [row for row in phase_rows if row["metrics"]["score_centering_probe/observed"]]
         result["asynchronous"][phase["mode"]] = {
             "continuous_wall_seconds": seconds,
             "updates": len(rows),
@@ -198,9 +237,20 @@ def summarize(path, cadence):
                 right["cycle_completed_at_monotonic"] - left["cycle_completed_at_monotonic"]
                 for left, right in pairwise(observed)
             ],
+            "observations_including_warmup": len(all_observed),
+            "observation_phases_including_warmup": [row["phase"] for row in all_observed],
+            "observation_coverage_including_warmup": [
+                row["metrics"]["score_centering_probe/coverage"] for row in all_observed
+            ],
+            "seconds_between_observation_completions_including_warmup": [
+                right["cycle_completed_at_monotonic"] - left["cycle_completed_at_monotonic"]
+                for left, right in pairwise(all_observed)
+            ],
         }
     by_phase = {row["phase"]: row for row in all_windows}
-    result["independent_scalar_replay"] = [replay_scalar(row, by_phase[row["phase"]]) for row in data["probe_evidence"]]
+    result["independent_scalar_replay"] = [
+        replay_scalar(row, by_phase[row["phase"]]) for row in data.get("probe_evidence", []) if row["phase"] in by_phase
+    ]
     qualification = data["qualification"]
     if not snowball:
         cases = qualification["native_chat_compact_parity"]
@@ -218,7 +268,10 @@ def summarize(path, cadence):
             and row["scores_dtype"] == "float32"
             for row in cases
         )
-    for name in ("reference", "temperature_0_7_reference", "compact_temperature_0_7_reference"):
+    reference_names = ["reference", "temperature_0_7_reference"]
+    if serialized:
+        reference_names.append("compact_temperature_0_7_reference")
+    for name in reference_names:
         assert sum(row["positions"] for row in qualification[name]) > 0
         assert max(row["chosen_max_error"] for row in qualification[name]) <= 1e-5
         assert max(row["head_max_error"] for row in qualification[name]) <= 1e-5
@@ -226,7 +279,7 @@ def summarize(path, cadence):
         key: {name: value for name, value in row.items() if name != "samples"} if isinstance(row, dict) else row
         for key, row in qualification.items()
     }
-    result["asynchronous_controls"] = data["asynchronous_controls"]
+    result["asynchronous_controls"] = data.get("asynchronous_controls")
     return result
 
 
@@ -234,12 +287,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--candidate", type=Path, required=True)
     parser.add_argument("--baseline", type=Path)
+    parser.add_argument("--baseline-controls-repetitions", type=int, choices=(3,))
     parser.add_argument("--cadence", type=int, default=10)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     result = {"candidate": summarize(args.candidate, args.cadence)}
     if args.baseline:
-        result["baseline"] = summarize(args.baseline, args.cadence)
+        result["baseline"] = summarize(args.baseline, args.cadence, args.baseline_controls_repetitions)
         left, right = result["candidate"], result["baseline"]
         for key in (
             "prompt_sha256",
@@ -257,7 +311,7 @@ def main():
                 right["serialized"][mode]["cycle_seconds"]["values"],
                 paired=False,
             )
-            for mode in MODES
+            for mode in left["serialized"]
         }
         result["between_allocations_normalized_to_ordinary"] = {
             mode: comparison(
@@ -279,12 +333,20 @@ def main():
                 ],
                 paired=False,
             )
-            for mode in MODES
+            for mode in left["serialized"]
+        }
+        result["asynchronous_between_allocations"] = {
+            mode: {
+                f"{key}_percent": 100 * (left["asynchronous"][mode][key] / right["asynchronous"][mode][key] - 1)
+                for key in ("updates_per_hour", "response_tokens_per_second", "loss_tokens_per_second")
+            }
+            for mode in left["asynchronous"]
         }
     result["limits"] = (
-        "Serialized intervals use five measured rotating repetitions per Snowball allocation "
-        "and describe these allocations only. "
-        "Asynchronous modes use continuous windows, normal task rewards and EOS, two warmup and ten measured updates; "
+        "Serialized intervals describe the measured rotating repetitions of these allocations only. "
+        "A preregistered incomplete baseline prefix retains two complete measured rotations after warmup; "
+        "the raw complete flag and extra completed phases remain explicit. This limits precision. "
+        "Asynchronous modes use continuous windows, normal task rewards and EOS with declared warmup/measured counts; "
         "Phase boundaries exclude initial warmup and final context teardown, retain finite prefetch, "
         "and can bias short windows. "
         "One allocation per implementation, ordered modes, changing weights, response variation, "

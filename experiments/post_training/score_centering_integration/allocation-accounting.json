@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T18:41:21.560050+00:00",
+  "saved_at": "2026-10-19T19:14:43.280832+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -77,16 +77,22 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-19T17:55:35.449Z",
       "admitted_at": "2026-10-19T18:09:47Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "running; excluded from closed-attempt totals",
+      "controller_terminal_at": "2026-10-19T18:45:25.953Z",
+      "provider_absence_at": "2026-10-19T18:56:34.331879Z",
+      "applied_updates": 20,
+      "outcome": "external preemption; 20 reported applied updates, next in-flight window unestablished",
       "automatic_retries": 0,
       "evidence": [
         "snowball-protocol-a2.json",
-        "evidence/snowball-baseline-a2-provider-check-03.json"
+        "evidence/snowball-baseline-a2-provider-check-03.json",
+        "evidence/snowball-baseline-a2-workload-events.json",
+        "evidence/snowball-baseline-a2-preemption.zip",
+        "evidence/snowball-baseline-a2-provider-check-04.json",
+        "reports/sc-integration-snowball-baseline-a2-east-01a146a3.partial.json.zip"
       ],
-      "queue_seconds": 851.551
+      "queue_seconds": 851.551,
+      "gpu_hours_to_controller_terminal_proxy": 23.766144444444443,
+      "gpu_hours_through_verified_absence_upper_bound": 31.19257643333333
     },
     {
       "job": "/romain/sc-integration-qwen-candidate-a1-rno-01a146a3",
@@ -122,9 +128,19 @@
     "snowball_candidate": 2,
     "qwen": 2
   },
+  "staged_attempt_limits": {
+    "candidate_controls": 2,
+    "baseline_async": 2,
+    "candidate_async": 2
+  },
+  "staged_prepared_but_not_submitted": [
+    "snowball-candidate-controls-a0-east",
+    "snowball-baseline-async-a0-east",
+    "snowball-candidate-async-a0-east"
+  ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 15.088516499999999,
-    "gpu_hours_through_verified_absence_upper_bound": 23.487323262222223
+    "gpu_hours_to_controller_terminal_proxy": 38.85466094444444,
+    "gpu_hours_through_verified_absence_upper_bound": 54.67989969555555
   }
 }

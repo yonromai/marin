@@ -19,7 +19,8 @@ hooks are unchanged. No new vLLM subclass, override, monkey patch, fork patch or
 | Qwen prototype qualification | `d92307d3deff81aa8270c90c49d529a9bb7a1951` | `328858aa5ad1f659ee1bb6bf60aa6187be973512` |
 | Qwen final behavior qualification | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
 | Snowball prior integration | `964a602e995b16943dc34db036d25d2b7c5b7310` | `bdb8b3134ca0b7322d889f2634dd1bfc6a126beb` |
-| Snowball candidate integration | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
+| Snowball staged candidate | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `77806511d37f307baf2c05dae2d9b47bc391be3d` |
+| Snowball staged async baseline | `964a602e995b16943dc34db036d25d2b7c5b7310` | `3b5de0c201a8ab7034aa53d9be3645d1e5372a8b` |
 
 The later product commit `c44e390a5236079b116c28dc27f84db2ec90c2cb` adds a structural sampling type; its
 generation and selection operations are unchanged. Runtime-only measurement code stays outside the product
@@ -35,10 +36,10 @@ SFT checkpoint and tokenizer revision from the prior evidence. The real grader p
 selected tasks, their order and their source hash, including the ten incompatible references excluded before
 generation. No source rows were edited.
 
-Each arm declares 87 applied updates: three calibration updates, five serialized modes with six rotating
+The original whole-run protocol declared 87 applied updates: three calibration updates, five serialized modes with six rotating
 repetitions each, six natural-reward periodic updates and four asynchronous modes with twelve updates each.
 Serialized modes are ordinary TIS, capture/rescore with SC off, SC on, probes armed without an observation,
-and a complete probe. One profiled warmup precedes five measured repetitions per mode. The controlled batch
+and a complete probe. Its interrupted East baseline retained one profiled warmup and two complete measured rotations per mode. The controlled batch
 contains 128 responses of mixed lengths through 4096, 174080 response tokens and 164484 loss tokens, with
 padding, mask holes and one empty-loss row.
 
@@ -60,9 +61,26 @@ was written. The harness writes its first report before its first optimizer upda
 attempt with zero applied updates. Baseline a1 was admitted at 17:49:11 UTC and evicted three seconds later;
 its tasks were terminal by 17:49:51 and Pods absent at 17:51:24. It also produced no report or update.
 After both old queues and Pods were verified stopped, baseline a2 was submitted to East at 17:55:35 and admitted
-at 18:09:47. It is applying updates. The candidate has not been submitted. Config suffixes name protocol revisions,
-not actual submitted attempts. [Allocation accounting](allocation-accounting.json) includes the failed starts,
-queue time and teardown bounds as well as completed work.
+at 18:09:47. A priority-11 workload preempted it at 18:44:49; all tasks were terminal at 18:45:25 and Pods absent
+at 18:56:34. It saved 20 applied updates and 17 complete serialized cycles. The next in-flight update is unestablished.
+Config suffixes in the original protocols name revisions, not actual submitted attempts.
+[Allocation accounting](allocation-accounting.json) includes failed starts, queue time and teardown bounds.
+
+[The staged protocol](snowball-staged-protocol.json) was frozen before any candidate Snowball result. It retains
+the baseline's last complete balanced rotation: 15 cycles, with warmup and two measured repetitions per mode,
+through applied update 18. The two complete cycles from the interrupted next rotation remain in the original
+raw report and are excluded from the primary matched comparison. The candidate controls stage repeats those
+same 18 updates. Two measured repetitions give wider descriptive intervals than the original five.
+
+Separate baseline and candidate asynchronous stages start from the same original SFT checkpoint. Each performs
+three calibration updates, six natural periodic updates and 58 asynchronous updates, for 67 total. Ordinary,
+capture and SC modes each have two warmup and ten measured updates. The interval-ten probe arm has two
+warmup and twenty measured updates, spanning two cadence intervals. The original per-update
+measurement functions, serialized loop and periodic body are AST-identical; see
+[the staged harness proof](evidence/staged-harness-proof.json). No partial training checkpoint is recovered.
+All three future stages stay on East, run sequentially, allow at most two actual submissions each, retain a
+21600-second queue-inclusive deadline and zero automatic retries. Product code, K128, SC application frequency
+and the asynchronous admission/publication controls are unchanged. These stages have not yet been submitted.
 
 ## Qwen interface qualification
 
@@ -126,7 +144,10 @@ result does not measure vLLM integration overhead. Upstream
 [AuxOutput logprob work](https://github.com/vllm-project/vllm/pull/60789) rejects online weight updates in its
 documented contract and was closed on October 19; it is not adopted by this integration.
 
-`analyze.py` checks complete worker reports and produces serialized, asynchronous, memory and cadence summaries.
+`analyze.py` checks complete worker reports and the declared complete rotations from the interrupted baseline.
+It produces serialized, asynchronous, memory and cadence summaries.
 It reuses the retained independent NumPy FP64 scalar replay and descriptive paired/Welch log-time comparisons.
 Only exclusive StepWallTime fields partition a cycle. Nested timers and process CPU profiles can overlap.
-Five repetitions and one allocation per implementation do not measure allocation-to-allocation variance.
+Two measured Snowball repetitions per mode and one allocation per implementation do not measure
+allocation-to-allocation variance. Control and asynchronous stages have separate allocations and training
+trajectories; their timing samples are not pooled.
