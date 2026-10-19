@@ -17,21 +17,6 @@
       "sha256": "387257b3952c79e6577da614720bf8c3c28f65df316b515a238c747e016fff2e"
     },
     {
-      "path": "evidence/cpu-chat-boundary-fixed.log",
-      "bytes": 50612,
-      "sha256": "d33c1ecfa8ed2396d8d668043ae9dee2d60b5b03cb767c7eeb3b8a955ea2fec4"
-    },
-    {
-      "path": "evidence/cpu-integration-regression-boundary-fixed.log",
-      "bytes": 186411,
-      "sha256": "9905d3ff252c9738865180b25f88fba2f5811d0fe7f9667809eab75e34fff0eb"
-    },
-    {
-      "path": "evidence/cpu-native-chat-cost-controlled.log",
-      "bytes": 478,
-      "sha256": "5643a661978336da1df0a9fdc16db280436638cc3145a102e77152df8edc1236"
-    },
-    {
       "path": "evidence/cpu-native-chat-cost-source.py.txt",
       "bytes": 7360,
       "sha256": "ed953d9b914ff3fd4355452cf82848468e1eb2d3c3afec737b73dd48cfc70de5"
@@ -42,34 +27,9 @@
       "sha256": "6fe4bb2ccb6fc2f2d89e9c041825bb2e3db1a7748cd3d04ce143ab27f7013852"
     },
     {
-      "path": "evidence/cpu-probe-scheduling-parity.log",
-      "bytes": 30087,
-      "sha256": "7d17ec978d68d2eb5e6d78d0ef89be5bcbeabdd2e59898406cc3e869d0362860"
-    },
-    {
-      "path": "evidence/cpu-typing-followup.log",
-      "bytes": 32444,
-      "sha256": "3765ca5ff4c3eb8467c25f7c4f9bdb3f6954b298f5b71ccf5067d2bce3f970ca"
-    },
-    {
       "path": "evidence/matched-harness-proof.json",
       "bytes": 1701,
       "sha256": "422587231a7aa4672d4b2e5ae5a2894bd1af932259d959ae9c18c36b25b458dc"
-    },
-    {
-      "path": "evidence/product-lint-catalog-codex-a.log",
-      "bytes": 428,
-      "sha256": "9ef6a04533815a8c503adc6ead7517834ca1ccb36432fc939eb07229f4b21463"
-    },
-    {
-      "path": "evidence/product-lint-catalog-codex-b.log",
-      "bytes": 142,
-      "sha256": "0b4e89602d2405d9b9d3ff78a856365031fbf32f8e1689415db11b5270756135"
-    },
-    {
-      "path": "evidence/product-typing-lint.log",
-      "bytes": 217,
-      "sha256": "81affcad1f2a8690bec6220d7aea7ea6f14da90c6bdff4394c75411f761f79e0"
     },
     {
       "path": "evidence/qwen-a0-analysis.json",
@@ -90,11 +50,6 @@
       "path": "evidence/qwen-a0-state-final-check.csv",
       "bytes": 421,
       "sha256": "ed74d93e45798f9240d7d20cd176af22d3f985e3625968f45d04d7e94d3bf78a"
-    },
-    {
-      "path": "evidence/qwen-a0-task0-events.log",
-      "bytes": 524,
-      "sha256": "82bef70e4a53dead9a8d17430b2d5f5685f546e96f2efa19e084c5c6b79a57e2"
     },
     {
       "path": "evidence/qwen-launch-preflight.json",
@@ -137,6 +92,11 @@
       "sha256": "29da52ea8b2716c42a2c290c092d1b340e6aae8f2378b7297c983ebbc1472cfe"
     },
     {
+      "path": "evidence/validation-logs.zip",
+      "bytes": 30623,
+      "sha256": "1844d436b9a636659a93579bac3d2ec25fd224b3fe9c32ea45b2f53e8540da2a"
+    },
+    {
       "path": "evidence/vllm-boundary-proof.json",
       "bytes": 394,
       "sha256": "ef0fd53e378481ffb37f628ec3ddf86564d711f1adc70f22dee80fb4d879a50a"
@@ -155,5 +115,57 @@
       "stored_sha256": "4c6732304d6df639d4120aca88211ce5fa16607ac01b01ed9dfea451dc65a4f6",
       "envelope": "ZIP with the repository-required trailing newline; contained original report bytes unchanged"
     }
-  ]
+  ],
+  "validation_log_archive": {
+    "path": "evidence/validation-logs.zip",
+    "members": [
+      {
+        "name": "cpu-chat-boundary-fixed.log",
+        "bytes": 50612,
+        "sha256": "d33c1ecfa8ed2396d8d668043ae9dee2d60b5b03cb767c7eeb3b8a955ea2fec4"
+      },
+      {
+        "name": "cpu-integration-regression-boundary-fixed.log",
+        "bytes": 186411,
+        "sha256": "9905d3ff252c9738865180b25f88fba2f5811d0fe7f9667809eab75e34fff0eb"
+      },
+      {
+        "name": "cpu-native-chat-cost-controlled.log",
+        "bytes": 478,
+        "sha256": "5643a661978336da1df0a9fdc16db280436638cc3145a102e77152df8edc1236"
+      },
+      {
+        "name": "cpu-probe-scheduling-parity.log",
+        "bytes": 30087,
+        "sha256": "7d17ec978d68d2eb5e6d78d0ef89be5bcbeabdd2e59898406cc3e869d0362860"
+      },
+      {
+        "name": "cpu-typing-followup.log",
+        "bytes": 32444,
+        "sha256": "3765ca5ff4c3eb8467c25f7c4f9bdb3f6954b298f5b71ccf5067d2bce3f970ca"
+      },
+      {
+        "name": "product-lint-catalog-codex-a.log",
+        "bytes": 428,
+        "sha256": "9ef6a04533815a8c503adc6ead7517834ca1ccb36432fc939eb07229f4b21463"
+      },
+      {
+        "name": "product-lint-catalog-codex-b.log",
+        "bytes": 142,
+        "sha256": "0b4e89602d2405d9b9d3ff78a856365031fbf32f8e1689415db11b5270756135"
+      },
+      {
+        "name": "product-typing-lint.log",
+        "bytes": 217,
+        "sha256": "81affcad1f2a8690bec6220d7aea7ea6f14da90c6bdff4394c75411f761f79e0"
+      },
+      {
+        "name": "qwen-a0-task0-events.log",
+        "bytes": 524,
+        "sha256": "82bef70e4a53dead9a8d17430b2d5f5685f546e96f2efa19e084c5c6b79a57e2"
+      }
+    ],
+    "original_revision": "4cc7ca743d430e5ef377e76e64c3b0163ce2ef9b",
+    "scope": "Original bytes from the task artifacts and first immutable evidence commit; archived to preserve raw whitespace under repository text checks."
+  }
 }
