@@ -1,0 +1,23 @@
+{
+  "declared_at_utc": "2026-10-19T21:27:26.914000+00:00",
+  "scope": "Operating revision for the fresh baseline controls queue only; production, workload and comparison protocols are unchanged.",
+  "supersedes_operating_guard_in": "snowball-staged-protocol-r2.json",
+  "reason": "All owned Qwen work is complete and released. Free-only snapshots found a short RNO opening that filled before submission. The native gang queue can catch admission openings between manual checks without consuming GPUs while pending. Use the first of two already declared baseline controls attempts; do not spend the final candidate controls retry yet.",
+  "job": "/romain/sc-integration-snowball-baseline-controls-a0-rno-01a146a3",
+  "config": "snowball-baseline-controls-a0-rno-detach.yaml",
+  "config_sha256": "7b92202e3b1ca4c132f053067970acddfcddf08ab33d36684c8e1a8c04bdaf19",
+  "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+  "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+  "actual_stage_attempt_number": 1,
+  "stage_manual_attempt_limit": 2,
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "priority": "BATCH",
+  "queue_inclusive_deadline_seconds": 21600,
+  "automatic_retries": 0,
+  "applied_updates": 18,
+  "measurement_windows": "Five modes, one profiled warmup and two measured rotating repetitions per mode; same controls as r2.",
+  "admission_rule": "Submit the baseline into the native queue even without immediate free-node fit. Kueue must admit the entire gang before resources are used. Check both clusters sequentially while queued; retain healthy allocations and do not cancel another owner. Matched primary arms remain on RNO.",
+  "candidate_rule": "Keep the final candidate controls retry unsubmitted until baseline success and verified shutdown. Prefer its released five-node fit; source and all stage/global limits remain r2.",
+  "limits": "An unused-node snapshot is not a reservation or a guarantee against later preemption. Every attempt, including queue-only failure or startup preemption, is counted. No priority escalation, model geometry change, retry-limit reset or GPU-hour cap change."
+}

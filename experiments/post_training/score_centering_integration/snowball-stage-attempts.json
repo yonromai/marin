@@ -30,7 +30,7 @@
     "actual_attempts": 0,
     "manual_attempt_limit": 2,
     "prepared": "snowball-baseline-controls-a0-rno-prepare.yaml",
-    "submission_guard": "Five whole-node fits and at least 40 unused GPU/RDMA quota units on RNO; complete backend dry run already passed."
+    "submission_guard": "First bounded native-queue attempt may be submitted without an immediate five-node fit after completed Qwen shutdown; the gang scheduler controls actual admission."
   },
   "qwen_corrected_source": {
     "job": "/romain/sc-integration-qwen-candidate-a2-rno-01a146a3",
@@ -43,5 +43,6 @@
     "controller_terminal_at": "2026-10-19T20:49:10.488Z",
     "provider_absence_at": "2026-10-19T20:55:37.833082Z",
     "source_sha256": "02d80e1877adf95f0d97419e7a1cf18afef3573b00ed4df4d76e0e28b72eed8f"
-  }
+  },
+  "operating_checkpoint": "snowball-baseline-queue-checkpoint.json"
 }

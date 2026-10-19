@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T21:10:34.377355+00:00",
+  "saved_at": "2026-10-19T21:27:27.894917+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 15906,
-      "sha256": "05b3e683d9759068f64dce2d173934b916c68c4e3e7dad48894d8b9bf750a3e9"
+      "bytes": 16457,
+      "sha256": "bfd4c37a65aa20a5299ab6b6c2d86f7bb3dae194934d8cd335e1d94be589dd0a"
     },
     {
       "path": "allocation-accounting.json",
       "bytes": 8522,
-      "sha256": "fdaea0c8f4dcf20d64bf87c69845b5789e188489155702d792b49e95fe6296a6"
+      "sha256": "c0d7e47579e852a13de485893e7ac7305abc68033f7e1fa51be8afbcd9d343fb"
     },
     {
       "path": "analyze.py",
@@ -572,6 +572,11 @@
       "sha256": "d68bb1b328024182a0e1cfbc6a9d661621803bfb007f2d7885107fef964dbace"
     },
     {
+      "path": "snowball-baseline-queue-checkpoint.json",
+      "bytes": 2109,
+      "sha256": "100c747acbc929514f9230b4a68a0680fa1609bfb488b3e4930c471a9fcf3aa6"
+    },
+    {
       "path": "snowball-candidate-a0-rno-detach.yaml",
       "bytes": 9846,
       "sha256": "361f8d58871e10fc1ce6667a3ceb27bfbe21a47847238606034dc01d11658267"
@@ -668,8 +673,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 2245,
-      "sha256": "7e231f63b370f60e35217579818640a5bf282622539cc897eb22cd7aeb2e6983"
+      "bytes": 2364,
+      "sha256": "77f83343b6cc8251f8b7f49be25f44cfa1e48360633400849cecd5c38182ef23"
     },
     {
       "path": "snowball-staged-protocol-r2.json",

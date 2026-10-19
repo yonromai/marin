@@ -97,6 +97,12 @@ evidence and is not pooled with RNO. The new short baseline stage allows two act
 controls limit remains two including its spent East attempt. [The additional Qwen protocol](qwen-floor-protocol.json)
 declares one source-correction qualification, the third and final Qwen attempt, before candidate Snowball.
 
+After corrected-source Qwen success and shutdown, the [baseline queue checkpoint](snowball-baseline-queue-checkpoint.json)
+allows its first bounded controls attempt to wait in the native gang queue without an immediate free-node fit.
+This catches admission openings between manual checks. It consumes no GPUs while pending and keeps the same
+five-node BATCH geometry, six-hour queue-inclusive deadline, two-attempt stage limit and zero automatic retries.
+The final candidate controls retry remains unsubmitted until the baseline qualifies and stops.
+
 The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
 Without it, a head concentrated on one token could select different IDs when the remaining scores become ties
 under the display floor. Two regression cases failed before the fix; 126 adapter checks now pass. Four independent
