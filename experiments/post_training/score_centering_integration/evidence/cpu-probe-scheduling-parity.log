@@ -1,0 +1,300 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3
+configfile: pyproject.toml
+plugins: asyncio-1.4.0, xdist-3.8.0, hydra-core-1.3.2, anyio-4.14.2, jaxtyping-0.3.11
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 25 items
+
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_periodic_probe_dispatch_is_bounded_across_many_groups_and_repeated_steps 2026-10-19 08:06:23,142	INFO worker.py:2012 -- Started a local Ray instance.
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_evaluation_pause_drains_generation_and_preserves_next_training_batch PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_batch_metadata_supports_worker_index_fetch[ray_actor-memory] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_batch_metadata_supports_worker_index_fetch[ray_actor-object_store] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_rolling_batches_do_not_wait_for_a_slow_rollout PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_full_batches_train_a_slow_rollout_in_its_own_step PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_a_slow_row_does_not_regenerate_rows_already_in_the_batch PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_a_rejected_row_is_generated_again_within_a_synchronous_step PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_resume_does_not_regenerate_a_committed_group 2026-10-19 08:06:31.677 | INFO     | skyrl_train.rollouts.context:load_state_dict:386 - Restored rollout state: 1 committed groups and 0 prompts to regenerate
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_each_batch_reports_its_judged_groups_to_the_prompt_order PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_resume_regenerates_uncommitted_prompts_and_keeps_committed_groups[memory-ray_actor] 2026-10-19 08:06:36.519 | INFO     | skyrl_train.rollouts.context:load_state_dict:386 - Restored rollout state: 1 committed groups and 1 prompts to regenerate
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_resume_regenerates_uncommitted_prompts_and_keeps_committed_groups[object_store-in_process] 2026-10-19 08:06:36.541 | INFO     | skyrl_train.rollouts.context:load_state_dict:386 - Restored rollout state: 1 committed groups and 1 prompts to regenerate
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_failed_rollout_fails_the_next_batch 2026-10-19 08:06:36.547 | ERROR    | skyrl_train.rollouts.context:_fail:447 - Rollout dispatch failed; training will stop
+Traceback (most recent call last):
+
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/bin/pytest", line 10, in <module>
+    sys.exit(_console_main())
+    │   │    └ <function _console_main at 0x7a83ed6f4cc0>
+    │   └ <built-in function exit>
+    └ <module 'sys' (built-in)>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 253, in _console_main
+    code = _main(prog=_get_prog_name(sys.argv))
+           │          │              │   └ ['/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/bin/pytest', 'skyrl-train/tests/cpu...
+           │          │              └ <module 'sys' (built-in)>
+           │          └ <function _get_prog_name at 0x7a83ed6f4ae0>
+           └ <function _main at 0x7a83ed6f4c20>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 229, in _main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+         │                │      │    │                          └ <_pytest.config.Config object at 0x7a83ed95ef00>
+         │                │      │    └ <HookCaller 'pytest_cmdline_main'>
+         │                │      └ <pluggy._hooks.HookRelay object at 0x7a83edd05fd0>
+         │                └ <_pytest.config.Config object at 0x7a83ed95ef00>
+         └ <enum 'ExitCode'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'config': <_pytest.config.Config object at 0x7a83ed95ef00>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_cmdline_main'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_cmdline_main'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_cmdline_main'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'config': <_pytest.config.Config object at 0x7a83ed95ef00>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/romain/work/marin-community/MarinSkyRL/score-centeri...
+           │    │               └ 'pytest_cmdline_main'
+           │    └ <function _multicall at 0x7a83ed710360>
+           └ <_pytest.config.PytestPluginManager object at 0x7a83edcd3f50>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<_pytest.config.Config object at 0x7a83ed95ef00>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/romain/work/marin-community/MarinSkyRL/score-centerin...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/main.py", line 377, in pytest_cmdline_main
+    return wrap_session(config, _main)
+           │            │       └ <function _main at 0x7a83ed5865c0>
+           │            └ <_pytest.config.Config object at 0x7a83ed95ef00>
+           └ <function wrap_session at 0x7a83ed586480>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/main.py", line 330, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+    │       │            │    │       └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>
+    │       │            │    └ <_pytest.config.Config object at 0x7a83ed95ef00>
+    │       │            └ <function _main at 0x7a83ed5865c0>
+    │       └ <ExitCode.OK: 0>
+    └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/main.py", line 384, in _main
+    config.hook.pytest_runtestloop(session=session)
+    │      │    │                          └ <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>
+    │      │    └ <HookCaller 'pytest_runtestloop'>
+    │      └ <pluggy._hooks.HookRelay object at 0x7a83edd05fd0>
+    └ <_pytest.config.Config object at 0x7a83ed95ef00>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtestloop'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtestloop'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtestloop'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'session': <Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>}
+           │    │               │          └ [<HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/romain/work/marin-community/MarinSkyRL/score-centeri...
+           │    │               └ 'pytest_runtestloop'
+           │    └ <function _multicall at 0x7a83ed710360>
+           └ <_pytest.config.PytestPluginManager object at 0x7a83edcd3f50>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Session  exitstatus=<ExitCode.OK: 0> testsfailed=0 testscollected=25>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='main', plugin=<module '_pytest.main' from '/home/romain/work/marin-community/MarinSkyRL/score-centerin...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/main.py", line 408, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+    │    │                                        │              └ <Coroutine test_resume_rejects_committed_groups_from_another_payload_store>
+    │    │                                        └ <Coroutine test_failed_rollout_fails_the_next_batch>
+    │    └ <member 'config' of 'Node' objects>
+    └ <Coroutine test_failed_rollout_fails_the_next_batch>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'item': <Coroutine test_failed_rollout_fails_the_next_batch>, 'nextitem': <Coroutine test_resume_rejects_committed_groups_fr...
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_protocol'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_protocol'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_protocol'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'item': <Coroutine test_failed_rollout_fails_the_next_batch>, 'nextitem': <Coroutine test_resume_rejects_committed_groups_fr...
+           │    │               │          └ [<HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/romain/work/marin-community/MarinSkyRL/score-cen...
+           │    │               └ 'pytest_runtest_protocol'
+           │    └ <function _multicall at 0x7a83ed710360>
+           └ <_pytest.config.PytestPluginManager object at 0x7a83edcd3f50>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Coroutine test_failed_rollout_fails_the_next_batch>, <Coroutine test_resume_rejects_committed_groups_from_another_payload_s...
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/romain/work/marin-community/MarinSkyRL/score-cent...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+    │               │              └ <Coroutine test_resume_rejects_committed_groups_from_another_payload_store>
+    │               └ <Coroutine test_failed_rollout_fails_the_next_batch>
+    └ <function runtestprotocol at 0x7a83ed585620>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 139, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+    │       │      │               │             └ True
+    │       │      │               └ <Coroutine test_failed_rollout_fails_the_next_batch>
+    │       │      └ <function call_and_report at 0x7a83ed585a80>
+    │       └ <method 'append' of 'list' objects>
+    └ [<TestReport 'skyrl-train/tests/cpu/rollouts/test_training_context.py::test_failed_rollout_fails_the_next_batch' when='setup'...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 249, in call_and_report
+    call = CallInfo.from_call(
+           │        └ <classmethod(<function CallInfo.from_call at 0x7a83ed585e40>)>
+           └ <class '_pytest.runner.CallInfo'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+            │                └ <function call_and_report.<locals>.<lambda> at 0x7a83a0b168e0>
+            └ +TResult
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            │                 │       └ {}
+            │                 └ <Coroutine test_failed_rollout_fails_the_next_batch>
+            └ <HookCaller 'pytest_runtest_call'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ False
+           │    │         │    │     │    │                  └ {'item': <Coroutine test_failed_rollout_fails_the_next_batch>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_runtest_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_runtest_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_runtest_call'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ False
+           │    │               │          │        └ {'item': <Coroutine test_failed_rollout_fails_the_next_batch>}
+           │    │               │          └ [<HookImpl plugin_name='threadexception', plugin=<module '_pytest.threadexception' from '/home/romain/work/marin-community/Ma...
+           │    │               └ 'pytest_runtest_call'
+           │    └ <function _multicall at 0x7a83ed710360>
+           └ <_pytest.config.PytestPluginManager object at 0x7a83edcd3f50>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Coroutine test_failed_rollout_fails_the_next_batch>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='runner', plugin=<module '_pytest.runner' from '/home/romain/work/marin-community/MarinSkyRL/score-cent...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+    │    └ <function PytestAsyncioFunction.runtest at 0x7a83ed0593a0>
+    └ <Coroutine test_failed_rollout_fails_the_next_batch>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py", line 569, in runtest
+    super().runtest()
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1707, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+    │    │                                   └ <Coroutine test_failed_rollout_fails_the_next_batch>
+    │    └ <property object at 0x7a83ed4f04a0>
+    └ <Coroutine test_failed_rollout_fails_the_next_batch>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+           │    │         │    │     │    │                  │       └ True
+           │    │         │    │     │    │                  └ {'pyfuncitem': <Coroutine test_failed_rollout_fails_the_next_batch>}
+           │    │         │    │     │    └ <member '_hookimpls' of 'HookCaller' objects>
+           │    │         │    │     └ <HookCaller 'pytest_pyfunc_call'>
+           │    │         │    └ <member 'name' of 'HookCaller' objects>
+           │    │         └ <HookCaller 'pytest_pyfunc_call'>
+           │    └ <member '_hookexec' of 'HookCaller' objects>
+           └ <HookCaller 'pytest_pyfunc_call'>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           │    │               │          │        │       └ True
+           │    │               │          │        └ {'pyfuncitem': <Coroutine test_failed_rollout_fails_the_next_batch>}
+           │    │               │          └ [<HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/romain/work/marin-community/MarinSkyRL/score-cen...
+           │    │               └ 'pytest_pyfunc_call'
+           │    └ <function _multicall at 0x7a83ed710360>
+           └ <_pytest.config.PytestPluginManager object at 0x7a83edcd3f50>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+          │         │         └ [<Coroutine test_failed_rollout_fails_the_next_batch>]
+          │         └ <member 'function' of 'HookImpl' objects>
+          └ <HookImpl plugin_name='python', plugin=<module '_pytest.python' from '/home/romain/work/marin-community/MarinSkyRL/score-cent...
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/_pytest/python.py", line 167, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             │              └ {'ray_module': None, 'start_buffer': <function _in_process_buffer at 0x7a83a0b07060>}
+             └ <function test_failed_rollout_fails_the_next_batch at 0x7a83a01e42c0>
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py", line 905, in inner
+    runner.run(coro, context=context)
+    │      │   │             └ <_contextvars.Context object at 0x7a83d8484e00>
+    │      │   └ <coroutine object test_failed_rollout_fails_the_next_batch at 0x7a83a0189640>
+    │      └ <function Runner.run at 0x7a83ecfbf240>
+    └ <asyncio.runners.Runner object at 0x7a83d8477740>
+  File "/home/romain/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-357' coro=<test_failed_rollout_fails_the_next_batch() running at /home/romain/work/marin-community/M...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x7a83ecfbce00>
+           │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x7a83d8477740>
+  File "/home/romain/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 678, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7a83ecfbcd60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/home/romain/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 645, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7a83ecfbeb60>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/home/romain/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 1999, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7a83ed146840>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x7a83d8475b70>()>
+  File "/home/romain/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <_asyncio.TaskStepMethWrapper object at 0x7a83d8475b70>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <_asyncio.TaskStepMethWrapper object at 0x7a83d8475b70>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <_asyncio.TaskStepMethWrapper object at 0x7a83d8475b70>()>
+
+> File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/skyrl-train/skyrl_train/rollouts/context.py", line 438, in _run
+    response_tokens = await self._workers.run_task(task, self._writer)
+                            │    │        │        │     │    └ MemoryRolloutWriter(buffer=<tests.cpu.rollouts.test_training_context._InProcessActor object at 0x7a83d8477530>, content_polic...
+                            │    │        │        │     └ <skyrl_train.rollouts.context.TrainingContext object at 0x7a83d8477440>
+                            │    │        │        └ RolloutTask(lease=RolloutLease(lease_id='eaa311e539084b40b3e02047d9a69a97', policy_step=1, batch_id=1), prompt={'uid': 'bad',...
+                            │    │        └ <function _Workers.run_task at 0x7a83a0b07240>
+                            │    └ <tests.cpu.rollouts.test_training_context._Workers object at 0x7a83d8474cb0>
+                            └ <skyrl_train.rollouts.context.TrainingContext object at 0x7a83d8477440>
+
+  File "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/skyrl-train/tests/cpu/rollouts/test_training_context.py", line 119, in run_task
+    raise RuntimeError(f"rollout {uid} failed")
+                                  └ 'bad'
+
+RuntimeError: rollout bad failed
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_resume_rejects_committed_groups_from_another_payload_store PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_resume_under_a_new_object_store_root_trains_the_checkpointed_objects 2026-10-19 08:06:36.568 | INFO     | skyrl_train.rollouts.context:load_state_dict:386 - Restored rollout state: 1 committed groups and 1 prompts to regenerate
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_writer_filters_success_ceiling_using_final_outcomes[memory-rejected0-accepted0] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_writer_filters_success_ceiling_using_final_outcomes[memory-rejected1-accepted1] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_writer_filters_success_ceiling_using_final_outcomes[object_store-rejected0-accepted0] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_writer_filters_success_ceiling_using_final_outcomes[object_store-rejected1-accepted1] PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[memory-rollout_logprobs] 2026-10-19 08:06:48.000 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[memory-student_topk_indices] 2026-10-19 08:06:50.920 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[memory-behavior_topk_logprobs] 2026-10-19 08:06:53.836 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[object_store-rollout_logprobs] 2026-10-19 08:06:56.760 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[object_store-student_topk_indices] 2026-10-19 08:06:59.796 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_configured_context_requires_behavior_evidence_only_at_trainable_tokens[object_store-behavior_topk_logprobs] 2026-10-19 08:07:02.651 | INFO     | skyrl_train.rollouts.context:from_config:72 - Periodic score-centering probes unavailable: requires regular PPO without distillation or auxiliary FTPO
+PASSED
+
+=============================== warnings summary ===============================
+skyrl-train/tests/cpu/rollouts/test_training_context.py::test_periodic_probe_dispatch_is_bounded_across_many_groups_and_repeated_steps
+  /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 25 passed, 1 warning in 51.11s ========================

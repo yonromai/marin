@@ -1,0 +1,4 @@
+  Lint review logs: /tmp/marin-style-lint/performance-score-centering-integration-01a146a3/20261019T161824-v9l2j9su
+Lint review findings (advisory — search the marin-style lint catalog for each ml-... code):
+
+skyrl-train/skyrl_train/inference_engines/vllm/compact_chat.py:47: ml-bare-any (0.96) sampling_params has the known SamplingParams interface, but Any leaves clone() and the logprobs/flat_logprobs mutations unchecked.

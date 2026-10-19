@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "declared_at": "2026-10-19T15:33:25.822441+00:00",
+  "goal_file": "/home/romain/work/marin-community/MarinSkyRL/score-centering-integration-goal-01a0bb6f/notes/goals/2026-10-19-score-centering-integration.md",
+  "goal_sha256": "9cc8bd443f05677f9ff9db25912f3aa7db1394858607a3912d3a213f7dfa9fc3",
+  "product_baseline": "964a602e995b16943dc34db036d25d2b7c5b7310",
+  "product_prototype": "d92307d3deff81aa8270c90c49d529a9bb7a1951",
+  "runtime_candidate": "328858aa5ad1f659ee1bb6bf60aa6187be973512",
+  "qwen": {
+    "job_id": "/romain/sc-integration-qwen-candidate-a0-rno-01a146a3",
+    "cluster": "cw-rno2a",
+    "allocation": {
+      "num_nodes": 2,
+      "gpus_per_node": 8,
+      "gpu_variant": "H100",
+      "cpu": 32,
+      "memory": "256GB",
+      "disk": "500GB"
+    },
+    "priority": "interactive",
+    "deadline_seconds_including_queue": 3600,
+    "automatic_failure_retries": 0,
+    "automatic_preemption_retries": 0,
+    "initial_manual_attempt_limit": 2,
+    "planned_applied_updates": 35,
+    "controlled_modes": [
+      "ordinary",
+      "capture",
+      "sc",
+      "armed",
+      "probe"
+    ],
+    "controlled_repetitions_including_profiled_warmup": 2,
+    "native_real_reward_periodic_updates": 6,
+    "native_probe_interval": 2,
+    "asynchronous_modes": [
+      "ordinary",
+      "capture",
+      "sc",
+      "probes"
+    ],
+    "asynchronous_updates_per_mode": 4,
+    "asynchronous_warmup_updates": 1,
+    "asynchronous_max_staleness": 4,
+    "asynchronous_batch_policy": "full_batch",
+    "asynchronous_max_in_flight": 16,
+    "asynchronous_probe_interval": 10,
+    "native_chat_AB_temperatures": [
+      1.0,
+      0.7
+    ],
+    "native_chat_AB_response_lengths": [
+      128,
+      4096
+    ],
+    "scope": "startup/correctness/full-workflow qualification; Qwen timings are not a Snowball performance control"
+  },
+  "snowball_intent_not_yet_submitted": {
+    "cluster": "resolve after Qwen; matched arms on one cluster",
+    "nodes": 5,
+    "H100s": 40,
+    "priority": "batch",
+    "learner_nodes": 4,
+    "inference_nodes": 1,
+    "policy_TP_CP_SP": [
+      1,
+      1,
+      1
+    ],
+    "policy_PP_EP_DP": [
+      2,
+      8,
+      16
+    ],
+    "controlled_repetitions_including_profiled_warmup": 6,
+    "asynchronous_updates_per_mode": 12,
+    "asynchronous_warmup_updates": 2,
+    "nominal_applied_updates_per_arm": 87,
+    "queue_inclusive_deadline_per_attempt_seconds": 10800,
+    "automatic_retries": 0,
+    "initial_manual_attempt_limit_per_arm": 2
+  },
+  "interpretation_limits": [
+    "No learning-benefit, model-parameter gradient or under-1-percent guarantee claim.",
+    "SC remains off by default; K128 and SC application frequency preserved.",
+    "Existing pinned vLLM interfaces only; original hooks and lock unchanged.",
+    "At most four owned interactive nodes across both clusters including queues; Snowball is batch.",
+    "A one-node Qwen 4+4 proposal failed native role-plan validation before submission. Retained two-node geometry used.",
+    "Every submitted attempt and shutdown interval will be accounted; no cleanup or shared service changes."
+  ]
+}

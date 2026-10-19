@@ -1,0 +1,132 @@
+{
+  "checked_at": "2026-10-19T16:19:10.920931+00:00",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3",
+  "pods": [
+    {
+      "pod": "iris-romain-sc-integration-snowball-01614817-0-cef24202620ae2e6",
+      "task": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3/0",
+      "created": "2026-10-19T16:15:44Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T16:15:44Z",
+          "message": "Scheduling is blocked due to non-empty scheduling gates",
+          "reason": "SchedulingGated",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-1366d56a-0-5fe01ac42f07ea03",
+      "task": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3/4",
+      "created": "2026-10-19T16:15:44Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T16:15:44Z",
+          "message": "Scheduling is blocked due to non-empty scheduling gates",
+          "reason": "SchedulingGated",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-7d4d1324-0-b62433185225714a",
+      "task": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3/3",
+      "created": "2026-10-19T16:15:44Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T16:15:44Z",
+          "message": "Scheduling is blocked due to non-empty scheduling gates",
+          "reason": "SchedulingGated",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-861a9d52-0-32a92c93a3291ef7",
+      "task": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3/2",
+      "created": "2026-10-19T16:15:44Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T16:15:44Z",
+          "message": "Scheduling is blocked due to non-empty scheduling gates",
+          "reason": "SchedulingGated",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-da3d1189-0-bf29e7be7e89db7d",
+      "task": "/romain/sc-integration-snowball-baseline-a0-rno-01a146a3/1",
+      "created": "2026-10-19T16:15:44Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T16:15:44Z",
+          "message": "Scheduling is blocked due to non-empty scheduling gates",
+          "reason": "SchedulingGated",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    }
+  ],
+  "workloads": [
+    {
+      "name": "iris-pg-d724a2b615063fcc-0",
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T16:15:44Z",
+            "message": "couldn't assign flavors to pod set 7b098820: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 25 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 25 more needed",
+            "observedGeneration": 1,
+            "reason": "Pending",
+            "status": "False",
+            "type": "QuotaReserved"
+          }
+        ],
+        "resourceRequests": [
+          {
+            "name": "7b098820",
+            "resources": {
+              "cpu": "160750m",
+              "ephemeral-storage": "2500Gi",
+              "memory": "9216960Mi",
+              "nvidia.com/gpu": "40",
+              "rdma/ib": "40"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "absent": false
+}

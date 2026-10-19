@@ -1,0 +1,105 @@
+{
+  "scope": "CPU only: 24 retained Snowball causal heads repeated to 4096 rows/K128. Exact pinned Pydantic classes and formatter, prior qualified ID-only hook and parser. Legacy dictionary collection, display construction, pickle5 roundtrip and client parse vs compact selection and pickle5. Numeric flat input lists prebuilt; excludes GPU collection, append-fast, actual Ray/S3 and learner work. Legacy requires one additional synthetic below-head candidate to reproduce its K+1 request. No whole-cycle or GPU speed claim.",
+  "sources": {
+    "39e62869693c:vllm/entrypoints/serve/engine/protocol.py": "9d865d7006ed6ede3417f75444f8b5dcd82769165e703b140b45ed639d0c16a4",
+    "39e62869693c:vllm/entrypoints/openai/chat_completion/protocol.py": "0ed35d120613fac0ae879a5be0463265cbf6731875fb755d31962a4639db85bf",
+    "39e62869693c:vllm/entrypoints/openai/chat_completion/serving.py": "ea1f76074a9587c8054f54d30a6ba748b6a5fc4d90dd82c801504505c1da1f92",
+    "39e62869693c:vllm/entrypoints/generate/base/serving.py": "35ec53f63e86a8c1725728911db0df44eb3101d8cd65e9b2f39d048956977bad",
+    "964a602e:skyrl-train/skyrl_train/inference_engines/vllm/vllm_engine.py": "d647b28855756e714a093d7cce480610f9ee309d7abe987a19bbe154170657e5",
+    "964a602e:skyrl-train/skyrl_train/inference_engines/response_topk.py": "17d203414bf9fb8d4c659f9b16397615f4031db184bb164a1d0e46f7d03e2162"
+  },
+  "report_original_sha256": "7cfc0fd53ac2597585dfdce79a9b71fc98d86d24128c509788e298a015fe1e03",
+  "exact_return_parity": true,
+  "measurements": {
+    "legacy": [
+      {
+        "representation_seconds": 2.7436527479439974,
+        "pickle_roundtrip_seconds": 0.3170607192441821,
+        "client_seconds": 0.381063723936677,
+        "total_seconds": 3.4417771911248565,
+        "pickle_bytes": 19210004
+      },
+      {
+        "representation_seconds": 2.6742244861088693,
+        "pickle_roundtrip_seconds": 0.3255324987694621,
+        "client_seconds": 0.3931667981669307,
+        "total_seconds": 3.392923783045262,
+        "pickle_bytes": 19210004
+      },
+      {
+        "representation_seconds": 2.7891444209963083,
+        "pickle_roundtrip_seconds": 0.32003984274342656,
+        "client_seconds": 0.39915797021239996,
+        "total_seconds": 3.508342233952135,
+        "pickle_bytes": 19210004
+      },
+      {
+        "representation_seconds": 3.190414450597018,
+        "pickle_roundtrip_seconds": 0.32913684705272317,
+        "client_seconds": 0.40111210523173213,
+        "total_seconds": 3.9206634028814733,
+        "pickle_bytes": 19210004
+      },
+      {
+        "representation_seconds": 2.7598662660457194,
+        "pickle_roundtrip_seconds": 0.36359388707205653,
+        "client_seconds": 0.43216695077717304,
+        "total_seconds": 3.555627103894949,
+        "pickle_bytes": 19210004
+      }
+    ],
+    "compact": [
+      {
+        "representation_seconds": 0.07497516321018338,
+        "pickle_roundtrip_seconds": 0.0010185488499701023,
+        "client_seconds": 9.82079654932022e-07,
+        "total_seconds": 0.07599469413980842,
+        "pickle_bytes": 4231457
+      },
+      {
+        "representation_seconds": 0.06051591690629721,
+        "pickle_roundtrip_seconds": 0.0011385241523385048,
+        "client_seconds": 7.627531886100769e-07,
+        "total_seconds": 0.06165520381182432,
+        "pickle_bytes": 4231457
+      },
+      {
+        "representation_seconds": 0.059388461988419294,
+        "pickle_roundtrip_seconds": 0.0010058991611003876,
+        "client_seconds": 1.2959353625774384e-06,
+        "total_seconds": 0.06039565708488226,
+        "pickle_bytes": 4231457
+      },
+      {
+        "representation_seconds": 0.059922612737864256,
+        "pickle_roundtrip_seconds": 0.0009983549825847149,
+        "client_seconds": 1.0509975254535675e-06,
+        "total_seconds": 0.060922018717974424,
+        "pickle_bytes": 4231457
+      },
+      {
+        "representation_seconds": 0.0625921175815165,
+        "pickle_roundtrip_seconds": 0.0010652062483131886,
+        "client_seconds": 1.2009404599666595e-06,
+        "total_seconds": 0.06365852477028966,
+        "pickle_bytes": 4231457
+      }
+    ]
+  },
+  "medians": {
+    "legacy": {
+      "representation_seconds": 2.7598662660457194,
+      "pickle_roundtrip_seconds": 0.3255324987694621,
+      "client_seconds": 0.39915797021239996,
+      "total_seconds": 3.508342233952135,
+      "pickle_bytes": 19210004
+    },
+    "compact": {
+      "representation_seconds": 0.06051591690629721,
+      "pickle_roundtrip_seconds": 0.0010185488499701023,
+      "client_seconds": 1.0509975254535675e-06,
+      "total_seconds": 0.06165520381182432,
+      "pickle_bytes": 4231457
+    }
+  }
+}

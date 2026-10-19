@@ -1,0 +1,133 @@
+{
+  "config": "/home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/qwen-candidate-a0-rno-detach.yaml",
+  "sha256": "e6f394a91dddc7a5823b8bb8b318ad9f62e19a2a60b8fded09057997142d2582",
+  "run": {
+    "id": "sc-integration-qwen-candidate-a0-rno-01a146a3",
+    "attempt_id": "initial",
+    "seed": 0,
+    "mode": "train",
+    "submission": "detach",
+    "export_hf": false
+  },
+  "runtime": {
+    "launcher_commit": "328858aa5ad1f659ee1bb6bf60aa6187be973512",
+    "profile": "megatron",
+    "entrypoint": "skyrl_train.entrypoints.main_base",
+    "training_type": "sync",
+    "experiments_dir": "/app/experiments",
+    "task_env": {}
+  },
+  "iris": {
+    "cluster": "cw-rno2a",
+    "cluster_config": "/home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/cw-rno2a-client.yaml",
+    "job_name": "sc-integration-qwen-candidate-a0-rno-01a146a3",
+    "wandb_entity": null,
+    "allocation": {
+      "num_nodes": 2,
+      "gpus_per_node": 8,
+      "gpu_variant": "H100",
+      "cpu": 32.0,
+      "memory": "256GB",
+      "disk": "500GB"
+    },
+    "priority": "interactive",
+    "max_retries": 0,
+    "timeout": 3600,
+    "target_cluster": null,
+    "parent_cluster_config": null
+  },
+  "placement": {
+    "colocate_all": false,
+    "colocate_policy_ref": true,
+    "policy_num_nodes": 1,
+    "policy_num_gpus_per_node": 8,
+    "critic_num_nodes": 1,
+    "critic_num_gpus_per_node": 4,
+    "ref_num_nodes": 2,
+    "ref_num_gpus_per_node": 8,
+    "policy_strict_spread_pg": false,
+    "policy_per_gpu_bundles": false,
+    "policy_force_cvd_mask": false,
+    "enable_numa_affinity": false
+  },
+  "performance": {
+    "workload": "qwen",
+    "variant": "candidate",
+    "output_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a0-rno-01a146a3/performance.json",
+    "candidate": "d92307d3deff81aa8270c90c49d529a9bb7a1951",
+    "repetitions": 2,
+    "source_rows": null,
+    "source_data_sha256": null,
+    "window_timeout_seconds": 600,
+    "async_steps": 4,
+    "async_warmup_steps": 1,
+    "async_phase_timeout_seconds": 600
+  },
+  "sampling": {
+    "max_generate_length": 512,
+    "repetition_penalty": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "min_p": 0.0,
+    "top_k": -1,
+    "logprobs": 0,
+    "stop": null
+  },
+  "parallelism": {
+    "tensor_model_parallel_size": 1,
+    "pipeline_model_parallel_size": 1,
+    "context_parallel_size": 1,
+    "expert_model_parallel_size": 1,
+    "expert_tensor_parallel_size": 1,
+    "ddp_config": {
+      "grad_reduce_in_fp32": true,
+      "overlap_grad_reduce": false,
+      "overlap_param_gather": false,
+      "average_in_collective": true
+    },
+    "model_config_kwargs": {},
+    "torch_profiler_config": {
+      "enable": false,
+      "ranks": [],
+      "save_path": null
+    },
+    "optimizer_config_kwargs": {
+      "overlap_cpu_optimizer_d2h_h2d": false,
+      "use_precision_aware_optimizer": false,
+      "optimizer_cpu_offload": false,
+      "optimizer_offload_fraction": 0.0
+    },
+    "transformer_config_kwargs": {
+      "recompute_granularity": "full",
+      "recompute_modules": [
+        "core_attn"
+      ],
+      "recompute_method": "uniform",
+      "recompute_num_layers": 1
+    },
+    "empty_cuda_cache": true,
+    "logprob_chunk_size": 512,
+    "optimizer_checkpoint_sharding_type": "dp_reshardable",
+    "check_train_eval_parity": false,
+    "moe_router_replay": false,
+    "check_dp_weight_consistency": false
+  },
+  "inference_engines": 8,
+  "model": {
+    "uri": "Qwen/Qwen3-0.6B",
+    "identity": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "local_path": "Qwen/Qwen3-0.6B",
+    "tokenizer_uri": "Qwen/Qwen3-0.6B",
+    "tokenizer_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "chat_template": null
+  },
+  "declared_context_budget": {
+    "request_window_tokens": 8192,
+    "max_new_tokens_per_turn": 512,
+    "max_turns": 1
+  },
+  "batch_validation": true,
+  "native_role_and_allocation_validation": true,
+  "full_backend_dry_run": "qwen-native-backend-dry-run.log",
+  "probe_cpu_backends": "tiny_training and CatCount explicitly interval=0; checked, no changes"
+}

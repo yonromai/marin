@@ -1,0 +1,9 @@
+{
+  "source_original_sha256": "7cfc0fd53ac2597585dfdce79a9b71fc98d86d24128c509788e298a015fe1e03",
+  "writer": "actual PerformanceTrainer.save_probe",
+  "full_retained_report_plus_new_types": true,
+  "local_and_fsspec_mirror_equal": true,
+  "local_json_bytes": 8572134,
+  "local_json_sha256": "24487232fcfccf8500edb59853fc5ffe1287d9d76cacb4968464e181c8bb9d37",
+  "scope": "CPU complete writer/serialization preflight; no new accelerator result"
+}

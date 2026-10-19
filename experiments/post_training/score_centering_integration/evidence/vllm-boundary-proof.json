@@ -1,0 +1,7 @@
+{
+  "qualified_vllm_subclass_methods_unchanged": true,
+  "qualified_stamp_hook_unchanged": true,
+  "lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+  "base_lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+  "new_integration_type": "composition of public engine generate interface; no new vLLM subclass/override/monkey patch"
+}

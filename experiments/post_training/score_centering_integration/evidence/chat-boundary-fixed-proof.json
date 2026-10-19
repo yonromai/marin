@@ -1,0 +1,8 @@
+{
+  "cases": 32,
+  "head_ids_and_full_normalized_scores_exact": true,
+  "collection_width": 129,
+  "output_width": 128,
+  "selector_sha256": "81a75dc43d4edbe7b2a03799ac145c9a2e2cddab1ec477bac92c402732e6f13b",
+  "scope": "CPU BF16-logit edge cases, independent ordered-dictionary display reference; no new GPU result"
+}

@@ -1,0 +1,260 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3
+configfile: pyproject.toml
+plugins: asyncio-1.4.0, xdist-3.8.0, hydra-core-1.3.2, anyio-4.14.2, jaxtyping-0.3.11
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 124 items
+
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_compact_chat_preserves_full_vocabulary_probabilities_and_sampling_options[1.0] PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_compact_chat_preserves_full_vocabulary_probabilities_and_sampling_options[0.7] PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_concurrent_compact_and_ordinary_chats_keep_separate_heads PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_incomplete_chat_closes_engine_iterator_and_releases_capture[close] PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_incomplete_chat_closes_engine_iterator_and_releases_capture[cancel] PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_incomplete_chat_closes_engine_iterator_and_releases_capture[error] PASSED
+skyrl-train/tests/cpu/inf_engines/vllm/test_compact_chat.py::test_abort_before_first_token_keeps_empty_aligned_evidence PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_flat_chat_head_matches_display_limit_for_ties_and_outside_sampled_tokens PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_flat_capture_matches_dictionary_reference_with_duplicates_and_ties PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_flat_capture_preserves_explicit_candidate_order_and_sampled_scores PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_selected_token_outside_topk_is_not_forced_into_student_candidates PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_tied_candidates_use_stable_token_id_order PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_invalid_scores_fail_closed[scores0] PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_invalid_scores_fail_closed[scores1] PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_invalid_scores_fail_closed[scores2] PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_invalid_scores_fail_closed[scores3] PASSED
+skyrl-train/tests/cpu/inf_engines/test_response_topk.py::test_missing_candidates_fail_closed PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_model_client_preserves_engine_tokens PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_answer_omits_stop_text_but_keeps_stop_token_evidence[] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_answer_omits_stop_text_but_keeps_stop_token_evidence[<think>\nCalculate the answer.\n</think>\n\n] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_chat_client_preserves_server_error_identity_without_message PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_chat_client_types_context_overflow_without_leaking_prompt PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_model_client_uses_vllm_chat_rendering_for_row_request_options PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_plain_chat_stop_marker_reaches_terminal_search_grading PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_model_client_recovers_strict_template_by_sequentializing_tool_calls PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_strict_template_recovery_preserves_exact_prefix_and_tool_results PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_chat_continuation_preserves_sampled_tool_call_tokens PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_qwen_continuation_preserves_served_tokens_after_template_rewrites[tool-False] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_qwen_continuation_preserves_served_tokens_after_template_rewrites[tool-True] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_qwen_continuation_preserves_served_tokens_after_template_rewrites[user-False] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_qwen_continuation_preserves_served_tokens_after_template_rewrites[user-True] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_direct_chat_client_captures_exact_student_topk_ids PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_grading_text_uses_parsed_final_content_and_preserves_raw_tokens[final answer-final answer] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_grading_text_uses_parsed_final_content_and_preserves_raw_tokens[None-] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_grading_recovers_reasoning_boundaries_without_changing_replay_evidence[<|start_think|>not JSON<|end_think|>{"answer": 7}<|eot_id|>-{"answer": 7}] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_grading_recovers_reasoning_boundaries_without_changing_replay_evidence[<|start_think|>a tentative answer is 7-] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_grading_recovers_reasoning_boundaries_without_changing_replay_evidence[reasoning<|end_think|>7<|eot_id|>-7] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_budget_fits_the_exact_backend_rendered_prompt PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_budget_stops_a_parser_reclassified_tool_call[tokens0-None-length] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_budget_stops_a_parser_reclassified_tool_call[tokens1-None-tool_calls] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_budget_stops_a_parser_reclassified_tool_call[tokens2-None-tool_calls] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_budget_stops_a_parser_reclassified_tool_call[tokens3-98-tool_calls] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_output_keeps_the_per_turn_limit_of_vllm_sampling_params PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_thinking_tokens_produce_gradeable_structured_answers_and_keep_native_calls[False] PASSED
+skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py::test_chat_thinking_tokens_produce_gradeable_structured_answers_and_keep_native_calls[True] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_rendezvous_port_avoids_ephemeral_range_and_existing_listener PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_rendezvous_port_fails_when_range_is_excluded PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_rendezvous_port_reservations_hold_ports_until_released PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_weight_sync_communicator_rank_offsets[logical-dp-engines] 2026-10-19 08:40:25.852 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 4 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_weight_sync_communicator_rank_offsets[legacy-sequential-engines] 2026-10-19 08:40:25.854 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[hello world-None-None-expected_prompt0] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[hello world-123-expected_session_ids1-expected_prompt1] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[hello world-session_id2-expected_session_ids2-expected_prompt2] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[hello world-session_id3-400-expected_prompt3] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt4-None-None-expected_prompt4] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt5-7-expected_session_ids5-expected_prompt5] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt6-session_id6-expected_session_ids6-expected_prompt6] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt7-session_id7-400-expected_prompt7] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt8-None-None-expected_prompt8] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt9-session_id9-expected_session_ids9-expected_prompt9] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt10-session_id10-400-expected_prompt10] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt11-None-None-expected_prompt11] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt12-session_id12-expected_session_ids12-expected_prompt12] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt13-session_id13-400-expected_prompt13] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_postprocess_completion_request_normalizes_prompt_and_session_ids[prompt14-10-400-expected_prompt14] PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_single_selected_scores_fail_closed_on_abort[stop] 2026-10-19 08:40:25.870 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.870 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2]], 'sampling_params': {'prompt_logprobs': 2, 'max_tokens': 1}, 'session_ids': None, 'sampling_params_per_prompt': [{'prompt_logprob_token_ids': [[1, 1], [7, 17]]}]}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_single_selected_scores_fail_closed_on_abort[abort] 2026-10-19 08:40:25.872 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.872 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2]], 'sampling_params': {'prompt_logprobs': 2, 'max_tokens': 1}, 'session_ids': None, 'sampling_params_per_prompt': [{'prompt_logprob_token_ids': [[1, 1], [7, 17]]}]}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_routing_and_order_preservation[1-1-False] 2026-10-19 08:40:25.874 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_routing_and_order_preservation[3-50-False] 2026-10-19 08:40:25.876 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 3 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_routing_and_order_preservation[4-50-True] 2026-10-19 08:40:25.877 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 4 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_routing_and_order_preservation[16-5-False] 2026-10-19 08:40:25.879 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 16 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_per_prompt_selected_scores_across_engine_routing[1] 2026-10-19 08:40:25.882 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_per_prompt_selected_scores_across_engine_routing[2] 2026-10-19 08:40:25.883 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_response_topk_across_engine_routing[1-1] 2026-10-19 08:40:25.885 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.885 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[0]], 'sampling_params': {'logprobs': 2}, 'session_ids': None}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_response_topk_across_engine_routing[1-2] 2026-10-19 08:40:25.887 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+2026-10-19 08:40:25.887 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[0]], 'sampling_params': {'logprobs': 2}, 'session_ids': None}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_response_topk_across_engine_routing[3-1] 2026-10-19 08:40:25.889 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_preserves_response_topk_across_engine_routing[3-2] 2026-10-19 08:40:25.891 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_batched_routing_and_order_preservation[1-1-False] 2026-10-19 08:40:25.893 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.893 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[0]], 'sampling_params': {}, 'session_ids': None}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_batched_routing_and_order_preservation[3-50-False] 2026-10-19 08:40:25.895 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 3 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_batched_routing_and_order_preservation[4-50-True] 2026-10-19 08:40:25.899 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 4 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_batched_routing_and_order_preservation[16-5-False] 2026-10-19 08:40:25.903 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 16 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_route_prompts_to_engines_single_prompt_no_trajectory_random_engine PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_route_prompts_to_engines_batched_even_split_exact_multiple PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_route_prompts_to_engines_batched_uneven_split PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_route_prompts_to_engines_batched_more_engines_than_prompts PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_route_prompts_to_engines_with_session_ids_grouping_and_partition PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_transports_preserve_route_tokens[False-http] 2026-10-19 08:40:25.910 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.912 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 2, 'return_token_ids': True}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_transports_preserve_route_tokens[False-direct] 2026-10-19 08:40:25.915 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.915 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_completion_tokens': 2, 'include_stop_str_in_output': True, '_skyrl_exact_prompt_token_ids': [1, 2], 'return_token_ids': True}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_transports_preserve_route_tokens[True-http] 2026-10-19 08:40:25.917 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.919 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 2, 'return_token_ids': True}
+2026-10-19 08:40:25.919 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 1, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False, '_skyrl_exact_prompt_token_ids': [1, 2, 11]}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_transports_preserve_route_tokens[True-direct] 2026-10-19 08:40:25.921 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.922 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_completion_tokens': 2, 'include_stop_str_in_output': True, '_skyrl_exact_prompt_token_ids': [1, 2], 'return_token_ids': True}
+2026-10-19 08:40:25.922 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_completion_tokens': 1, 'include_stop_str_in_output': True, '_skyrl_exact_prompt_token_ids': [1, 2, 11], 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_draft_refresh_retains_per_engine_exceptions 2026-10-19 08:40:25.924 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_accumulates_and_sends_continuations[False-None] 2026-10-19 08:40:25.926 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.926 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 8, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True}
+2026-10-19 08:40:25.926 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+2026-10-19 08:40:25.926 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_accumulates_and_sends_continuations[False-exact_prompt1] 2026-10-19 08:40:25.928 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.928 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 8, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5], 'return_token_ids': True}
+2026-10-19 08:40:25.928 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5, 11], 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+2026-10-19 08:40:25.928 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5, 11], 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_accumulates_and_sends_continuations[True-None] 2026-10-19 08:40:25.930 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.930 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 8, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True}
+2026-10-19 08:40:25.930 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+2026-10-19 08:40:25.930 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_accumulates_and_sends_continuations[True-exact_prompt1] 2026-10-19 08:40:25.933 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.933 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 8, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5], 'return_token_ids': True}
+2026-10-19 08:40:25.933 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5, 11], 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+2026-10-19 08:40:25.933 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'A'}], 'max_tokens': 7, 'logprobs': True, 'top_logprobs': 1, 'return_tokens_as_token_ids': True, '_skyrl_exact_prompt_token_ids': [1, 2, 3, 4, 5, 11], 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_keeps_routes_across_interrupted_chunks[False] 2026-10-19 08:40:25.935 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.935 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 3, 'return_token_ids': True}
+2026-10-19 08:40:25.935 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'AB'}], 'max_tokens': 1, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False, '_skyrl_exact_prompt_token_ids': [1, 2, 11, 12]}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_keeps_routes_across_interrupted_chunks[True] 2026-10-19 08:40:25.937 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.937 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'messages': [{'role': 'user', 'content': 'Hi'}], 'max_tokens': 3, 'return_token_ids': True}
+2026-10-19 08:40:25.938 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'messages': [{'role': 'user', 'content': 'Hi'}, {'role': 'assistant', 'content': 'AB'}], 'max_tokens': 1, 'return_token_ids': True, 'continue_final_message': True, 'add_generation_prompt': False, '_skyrl_exact_prompt_token_ids': [1, 2, 11, 12]}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_retry_resends_original_when_no_tokens_generated_yet 2026-10-19 08:40:25.940 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.940 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hello'}], 'max_tokens': 16, 'logprobs': True, 'top_logprobs': 1, 'return_token_ids': True}
+2026-10-19 08:40:25.940 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Hello'}], 'max_tokens': 16, 'logprobs': True, 'top_logprobs': 1, 'return_token_ids': True}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_accepts_tool_call_response_without_text_content 2026-10-19 08:40:25.941 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:25.942 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_chat_completion_with_retry:726 - /chat/completions request sent (including potential retries): {'model': 'dummy-model', 'messages': [{'role': 'user', 'content': 'Run pwd'}], 'return_token_ids': True}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_tokenize_surfaces_remote_chat_render_failure_as_template_error 2026-10-19 08:40:25.943 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_some_gen_no_gen_finish[uint8-routes-max_tokens] 2026-10-19 08:40:26.779 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.780 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 10}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.780 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 8}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.780 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 8}, 'session_ids': ['stable-session']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_some_gen_no_gen_finish[uint8-routes-max_completion_tokens] 2026-10-19 08:40:26.783 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.783 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 10}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.783 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 8}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.783 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 8}, 'session_ids': ['stable-session']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_some_gen_no_gen_finish[retry-crosses-uint8-limit-max_tokens] 2026-10-19 08:40:26.785 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.785 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 10}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.785 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 8}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.785 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_tokens': 8}, 'session_ids': ['stable-session']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_some_gen_no_gen_finish[retry-crosses-uint8-limit-max_completion_tokens] 2026-10-19 08:40:26.787 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.787 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 10}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.788 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 8}, 'session_ids': ['stable-session']}
+2026-10-19 08:40:26.788 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5, 21, 22]], 'sampling_params': {'min_tokens': 1, 'skip_special_tokens': True, 'include_stop_str_in_output': True, 'temperature': 1.0, 'top_p': 1.0, 'top_k': -1, 'min_p': 0.0, 'logprobs': None, 'stop': None, 'repetition_penalty': 1.0, 'max_completion_tokens': 8}, 'session_ids': ['stable-session']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_direct_return 2026-10-19 08:40:26.790 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.790 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3, 4, 5]], 'sampling_params': {'max_tokens': 10}, 'session_ids': None}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_no_gen_finish 2026-10-19 08:40:26.792 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.792 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[7, 8, 9]], 'sampling_params': {'max_tokens': 16}, 'session_ids': None}
+2026-10-19 08:40:26.792 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[7, 8, 9]], 'sampling_params': {'max_tokens': 16}, 'session_ids': None}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_weight_sync_pauses_loaded_scheduler_until_reload_finishes 2026-10-19 08:40:26.793 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_chat_completion_stream_blocks_while_paused_then_resumes 2026-10-19 08:40:26.795 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_blocks_while_paused_then_resumes[string] 2026-10-19 08:40:26.797 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_blocks_while_paused_then_resumes[token_ids] 2026-10-19 08:40:26.799 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_reissues_once_after_a_midflight_abort[string] 2026-10-19 08:40:26.801 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.801 | INFO     | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:904 - /completions generation was aborted by a weight-sync pause; re-issuing once after resume
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_reissues_once_after_a_midflight_abort[token_ids] 2026-10-19 08:40:26.803 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.803 | INFO     | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:904 - /completions generation was aborted by a weight-sync pause; re-issuing once after resume
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_reissue_waits_for_a_pause_that_is_still_on 2026-10-19 08:40:26.805 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.805 | INFO     | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:904 - /completions generation was aborted by a weight-sync pause; re-issuing once after resume
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_returns_a_second_abort_as_is 2026-10-19 08:40:26.807 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.807 | INFO     | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:904 - /completions generation was aborted by a weight-sync pause; re-issuing once after resume
+2026-10-19 08:40:26.807 | WARNING  | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:906 - /completions generation was aborted again after the pause retry; returning it as-is
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_pause_retry_stays_on_failover_engine 2026-10-19 08:40:26.809 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+2026-10-19 08:40:26.809 | WARNING  | skyrl_train.inference_engines.inference_engine_client:_mark_engine_dead:147 - Inference engine 0 died (RayActorError). 1/2 engines remaining.
+2026-10-19 08:40:26.809 | INFO     | skyrl_train.inference_engines.inference_engine_client:_single_completion_with_pause_retry:904 - /completions generation was aborted by a weight-sync pause; re-issuing once after resume
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_single_prompt_engine_error_is_wrapped_not_retried 2026-10-19 08:40:26.810 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_still_raises_while_paused[one_string_is_still_batched] 2026-10-19 08:40:26.812 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_completion_batched_still_raises_while_paused[batched] 2026-10-19 08:40:26.814 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_single_prompt_waits_for_resume_then_reaches_engine 2026-10-19 08:40:26.816 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+2026-10-19 08:40:26.816 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3]], 'sampling_params': {'max_tokens': 5, 'temperature': 0}, 'session_ids': ['prompt-0']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_batched_still_raises_while_paused 2026-10-19 08:40:26.818 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_weight_sync_pause_skips_an_engine_that_already_died 2026-10-19 08:40:26.819 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+2026-10-19 08:40:26.820 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3]], 'sampling_params': {'max_tokens': 5}, 'session_ids': ['trial-1']}
+2026-10-19 08:40:26.820 | WARNING  | skyrl_train.inference_engines.inference_engine_client:_mark_engine_dead:147 - Inference engine 0 died (RayActorError). 1/2 engines remaining.
+2026-10-19 08:40:26.820 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3]], 'sampling_params': {'max_tokens': 5}, 'session_ids': ['trial-1']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_draft_refresh_skips_dead_engines 2026-10-19 08:40:26.822 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 2 engines.
+2026-10-19 08:40:26.822 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3]], 'sampling_params': {'max_tokens': 5}, 'session_ids': ['trial-1']}
+2026-10-19 08:40:26.822 | WARNING  | skyrl_train.inference_engines.inference_engine_client:_mark_engine_dead:147 - Inference engine 0 died (RayActorError). 1/2 engines remaining.
+2026-10-19 08:40:26.822 | DEBUG    | skyrl_train.inference_engines.inference_engine_client:_generate_single_with_retry:559 - generate() request sent (including potential retries): {'prompt_token_ids': [[1, 2, 3]], 'sampling_params': {'max_tokens': 5}, 'session_ids': ['trial-1']}
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_weight_sync_pause_fails_when_an_engine_never_acknowledges 2026-10-19 08:40:26.823 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_resume_wakes_a_request_parked_on_another_event_loop 2026-10-19 08:40:26.835 | INFO     | skyrl_train.inference_engines.inference_engine_client:__init__:140 - InferenceEngineClient initialized with 1 engines.
+PASSED
+
+=============================== warnings summary ===============================
+skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py::test_generate_retry_some_gen_no_gen_finish[uint8-routes-max_tokens]
+  /home/romain/work/marin-community/MarinSkyRL/score-centering-integration-01a146a3/skyrl-train/skyrl_train/config/utils.py:17: UserWarning: 
+  The version_base parameter is not specified.
+  Please specify a compatability version level, or None.
+  Will assume defaults for version 1.1
+    with initialize_config_dir(config_dir=str(CONFIG_DIR)):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 124 passed, 1 warning in 3.74s ========================

@@ -1,0 +1,42 @@
+{
+  "scope": "CPU BF16-logit tie boundary: existing chat K+1 collection/format vs actual proposed flat K selector; both heads are legal top-K but prior head identity can change",
+  "cases_checked": 32,
+  "different_head_cases": 3,
+  "cases": [
+    {
+      "seed": 6,
+      "chosen_in_head": true,
+      "prior_only": [
+        1
+      ],
+      "new_only": [
+        276
+      ],
+      "same_boundary_value": true
+    },
+    {
+      "seed": 7,
+      "chosen_in_head": true,
+      "prior_only": [
+        450
+      ],
+      "new_only": [
+        458
+      ],
+      "same_boundary_value": true
+    },
+    {
+      "seed": 10,
+      "chosen_in_head": true,
+      "prior_only": [
+        135
+      ],
+      "new_only": [
+        179
+      ],
+      "same_boundary_value": true
+    }
+  ],
+  "supersedes": "chat-collection-width-invalid-scratch-reference.json",
+  "correction": "The first scratch reference incorrectly applied chat display truncation to the new raw compact path. This corrected check calls the actual production flat selector."
+}

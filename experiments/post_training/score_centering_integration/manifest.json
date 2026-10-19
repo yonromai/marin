@@ -1,0 +1,159 @@
+{
+  "saved_at": "2026-10-19T16:20:08.118448+00:00",
+  "records": [
+    {
+      "path": "evidence/chat-boundary-fixed-proof.json",
+      "bytes": 319,
+      "sha256": "2d3afc972626daaf02c929ace8e48dc46232b9e6c13c92374d8d6b414cb3d047"
+    },
+    {
+      "path": "evidence/chat-collection-width-tie-proof.json",
+      "bytes": 1038,
+      "sha256": "8a0f6b86baedf3de2417dec5d369dd23111720dba04ac4c1a7d2d6ecfa5e4246"
+    },
+    {
+      "path": "evidence/complete-report-writer-preflight.json",
+      "bytes": 446,
+      "sha256": "387257b3952c79e6577da614720bf8c3c28f65df316b515a238c747e016fff2e"
+    },
+    {
+      "path": "evidence/cpu-chat-boundary-fixed.log",
+      "bytes": 50612,
+      "sha256": "d33c1ecfa8ed2396d8d668043ae9dee2d60b5b03cb767c7eeb3b8a955ea2fec4"
+    },
+    {
+      "path": "evidence/cpu-integration-regression-boundary-fixed.log",
+      "bytes": 186411,
+      "sha256": "9905d3ff252c9738865180b25f88fba2f5811d0fe7f9667809eab75e34fff0eb"
+    },
+    {
+      "path": "evidence/cpu-native-chat-cost-controlled.log",
+      "bytes": 478,
+      "sha256": "5643a661978336da1df0a9fdc16db280436638cc3145a102e77152df8edc1236"
+    },
+    {
+      "path": "evidence/cpu-native-chat-cost-source.py.txt",
+      "bytes": 7360,
+      "sha256": "ed953d9b914ff3fd4355452cf82848468e1eb2d3c3afec737b73dd48cfc70de5"
+    },
+    {
+      "path": "evidence/cpu-native-chat-cost.json",
+      "bytes": 4643,
+      "sha256": "6fe4bb2ccb6fc2f2d89e9c041825bb2e3db1a7748cd3d04ce143ab27f7013852"
+    },
+    {
+      "path": "evidence/cpu-probe-scheduling-parity.log",
+      "bytes": 30087,
+      "sha256": "7d17ec978d68d2eb5e6d78d0ef89be5bcbeabdd2e59898406cc3e869d0362860"
+    },
+    {
+      "path": "evidence/cpu-typing-followup.log",
+      "bytes": 32444,
+      "sha256": "3765ca5ff4c3eb8467c25f7c4f9bdb3f6954b298f5b71ccf5067d2bce3f970ca"
+    },
+    {
+      "path": "evidence/matched-harness-proof.json",
+      "bytes": 1701,
+      "sha256": "422587231a7aa4672d4b2e5ae5a2894bd1af932259d959ae9c18c36b25b458dc"
+    },
+    {
+      "path": "evidence/product-lint-catalog-codex-a.log",
+      "bytes": 428,
+      "sha256": "9ef6a04533815a8c503adc6ead7517834ca1ccb36432fc939eb07229f4b21463"
+    },
+    {
+      "path": "evidence/product-lint-catalog-codex-b.log",
+      "bytes": 142,
+      "sha256": "0b4e89602d2405d9b9d3ff78a856365031fbf32f8e1689415db11b5270756135"
+    },
+    {
+      "path": "evidence/product-typing-lint.log",
+      "bytes": 217,
+      "sha256": "81affcad1f2a8690bec6220d7aea7ea6f14da90c6bdff4394c75411f761f79e0"
+    },
+    {
+      "path": "evidence/qwen-a0-analysis.json",
+      "bytes": 112356,
+      "sha256": "4dc86ce99cf038934ec5d74b84cbdee26455661ad7d23667cfea5c57a3a1c043"
+    },
+    {
+      "path": "evidence/qwen-a0-pods-first.json",
+      "bytes": 1236,
+      "sha256": "d6fb0569f04c572a50018924a99183ebf82519d94283773f2aca0171b5e4cba0"
+    },
+    {
+      "path": "evidence/qwen-a0-pods-terminal-check.json",
+      "bytes": 184,
+      "sha256": "3f6f9ca3acf1c5cc6ba03b3f131dcbec428a6f88b5d04b9b376aa3d96d482085"
+    },
+    {
+      "path": "evidence/qwen-a0-state-final-check.csv",
+      "bytes": 421,
+      "sha256": "ed74d93e45798f9240d7d20cd176af22d3f985e3625968f45d04d7e94d3bf78a"
+    },
+    {
+      "path": "evidence/qwen-a0-task0-events.log",
+      "bytes": 524,
+      "sha256": "82bef70e4a53dead9a8d17430b2d5f5685f546e96f2efa19e084c5c6b79a57e2"
+    },
+    {
+      "path": "evidence/qwen-launch-preflight.json",
+      "bytes": 4271,
+      "sha256": "f72296e4b30e7ca0c78211a1bd3e4d695a8def542dd601d5265fd10828e57ee5"
+    },
+    {
+      "path": "evidence/qwen-real-grader-preflight.json",
+      "bytes": 1668,
+      "sha256": "0149fad74e1f38957b1cfd440775c838ffe74e274fca430c1e8cab1913f1c691"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-launch-preflight.json",
+      "bytes": 9323,
+      "sha256": "a67dcc56c39ff93b1ae23d199441876eab421881bb115c3b45c7653f66fb98f9"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-provider-queued-02.json",
+      "bytes": 4167,
+      "sha256": "8fad264da25b723afc5d73d92405bf3aa486654c99cfb83e7c338a79877b4466"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-state-initial.csv",
+      "bytes": 798,
+      "sha256": "ad76e10f8f9d2fef7037235fe56474921a17f9935c85d32dd926d42bbf9159df"
+    },
+    {
+      "path": "evidence/snowball-candidate-a0-launch-preflight.json",
+      "bytes": 9329,
+      "sha256": "6568b32986955df7e1f2381a4517911e2bdd632fe7e317f4fb8433e9218dfc01"
+    },
+    {
+      "path": "evidence/snowball-real-grader-preflight.json",
+      "bytes": 7734,
+      "sha256": "c1663c987d1f5f72e6ecc022bd268fb7bc84d1fa323891d693cfead44b2747bc"
+    },
+    {
+      "path": "evidence/typing-behavior-proof.json",
+      "bytes": 330,
+      "sha256": "29da52ea8b2716c42a2c290c092d1b340e6aae8f2378b7297c983ebbc1472cfe"
+    },
+    {
+      "path": "evidence/vllm-boundary-proof.json",
+      "bytes": 394,
+      "sha256": "ef0fd53e378481ffb37f628ec3ddf86564d711f1adc70f22dee80fb4d879a50a"
+    }
+  ],
+  "reports": [
+    {
+      "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
+      "original_bytes": 4387832,
+      "original_sha256": "6f8a49b8946a3ef7e481d51bc7bdbb916b89a6b11050046f8087dc86913b358c",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-qwen-candidate-a0-rno-01a146a3/performance.json",
+      "product": "d92307d3deff81aa8270c90c49d529a9bb7a1951",
+      "runtime": "328858aa5ad1f659ee1bb6bf60aa6187be973512",
+      "complete": true,
+      "stored_bytes": 441491,
+      "stored_sha256": "4c6732304d6df639d4120aca88211ce5fa16607ac01b01ed9dfea451dc65a4f6",
+      "envelope": "ZIP with the repository-required trailing newline; contained original report bytes unchanged"
+    }
+  ]
+}

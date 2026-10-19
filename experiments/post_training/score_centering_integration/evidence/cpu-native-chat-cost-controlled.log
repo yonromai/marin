@@ -1,0 +1,16 @@
+{
+  "legacy": {
+    "representation_seconds": 2.7598662660457194,
+    "pickle_roundtrip_seconds": 0.3255324987694621,
+    "client_seconds": 0.39915797021239996,
+    "total_seconds": 3.508342233952135,
+    "pickle_bytes": 19210004
+  },
+  "compact": {
+    "representation_seconds": 0.06051591690629721,
+    "pickle_roundtrip_seconds": 0.0010185488499701023,
+    "client_seconds": 1.0509975254535675e-06,
+    "total_seconds": 0.06165520381182432,
+    "pickle_bytes": 4231457
+  }
+}

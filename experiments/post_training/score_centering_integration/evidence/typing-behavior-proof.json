@@ -1,0 +1,6 @@
+{
+  "worker_qualified_behavior_product": "db5227d4814086c5a71ca669b8c0dbb19563705b",
+  "typing_followup_product": "c44e390a5236079b116c28dc27f84db2ec90c2cb",
+  "generation_client_ast_equal_ignoring_annotations": true,
+  "change": "SamplingParams structural protocol and annotation only; no changed generate/selection operation"
+}

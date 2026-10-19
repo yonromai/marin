@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-19T15:44:47.580809+00:00",
+  "cluster": "cw-rno2a",
+  "resource": "pods",
+  "projection": "{range .items[*]}{.metadata.name}{\"\\t\"}{.metadata.annotations.iris\\.task_id}{\"\\t\"}{.metadata.uid}{\"\\t\"}{.status.phase}{\"\\t\"}{.status.startTime}{\"\\t\"}{.spec.nodeName}{\"\\t\"}{.status.containerStatuses[*].imageID}{\"\\n\"}{end}",
+  "owned_rows": [
+    "iris-romain-sc-integration-qwen-can-1064bc7f-0-bc627ee06e2787be\t/romain/sc-integration-qwen-candidate-a0-rno-01a146a3/1\t98692e6c-70f4-4c70-b371-60d07c57f8f1\tRunning\t2026-10-19T15:31:13Z\tg1cc242\tghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+    "iris-romain-sc-integration-qwen-can-a2065d5b-0-d8ea5570b9e6a036\t/romain/sc-integration-qwen-candidate-a0-rno-01a146a3/0\t37f3f9fa-157d-45b8-9f99-52e5b9bf1db6\tRunning\t2026-10-19T15:31:10Z\tg1cbf32\tghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+  ]
+}
