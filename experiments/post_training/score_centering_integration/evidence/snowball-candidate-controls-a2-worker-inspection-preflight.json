@@ -1,0 +1,13 @@
+{
+  "mode": "list",
+  "workers": [
+    {
+      "pid": 14009,
+      "role": "ray::skyrl_entrypoint",
+      "state": "State:\tS (sleeping)"
+    }
+  ],
+  "pyspy": "/app/.venv/bin/py-spy",
+  "dumps": [],
+  "pyspy_version": "py-spy 0.4.2"
+}

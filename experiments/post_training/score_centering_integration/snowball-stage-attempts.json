@@ -1,15 +1,15 @@
 {
-  "saved_at_utc": "2026-10-19T23:07:53.101610+00:00",
+  "saved_at_utc": "2026-10-19T23:25:45.182914+00:00",
   "protocol": "snowball-staged-protocol-r3.json",
   "candidate_controls": {
-    "attempts_submitted": 2,
+    "attempts_submitted": 3,
     "manual_attempt_limit": 3,
-    "latest_job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
-    "outcome": "rollout handoff timeout; two actual attempts spent",
-    "reported_applied_updates": 4,
-    "submitted_at": "2026-10-19T22:08:42.249Z",
-    "admitted_at": "2026-10-19T22:08:42.621248Z",
-    "queue_inclusive_deadline_at": "2026-10-20T04:08:42.249Z",
+    "latest_job": "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3",
+    "outcome": "active; admitted with all five Pods running",
+    "reported_applied_updates": null,
+    "submitted_at": "2026-10-19T23:18:33.592Z",
+    "admitted_at": "2026-10-19T23:18:33.784812Z",
+    "queue_inclusive_deadline_at": "2026-10-20T05:18:33.592Z",
     "automatic_retries": 0,
     "previous_attempt_record": {
       "attempts_submitted": 1,
@@ -35,10 +35,16 @@
       "admission_evidence": "evidence/snowball-candidate-controls-a1-rno-workload-events.json"
     },
     "complete": false,
-    "controller_terminal_at": "2026-10-19T22:38:08.325Z",
-    "provider_absence_at": "2026-10-19T22:46:07.752491Z",
-    "prepared_retry": "snowball-candidate-controls-a2-rno-prepare.yaml",
-    "attempt_limit_revision": "One reserved asynchronous retry moved to controls in r3; global candidate limit remains four. No attempt was reset."
+    "attempt_limit_revision": "One reserved asynchronous retry moved to controls in r3; global candidate limit remains four. No attempt was reset.",
+    "last_failed_rno_attempt": {
+      "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+      "reported_applied_updates": 4,
+      "complete": false,
+      "controller_terminal_at": "2026-10-19T22:38:08.325Z",
+      "provider_absence_at": "2026-10-19T22:46:07.752491Z",
+      "evidence": "evidence/snowball-candidate-controls-a1-rno-failure-summary.json"
+    },
+    "last_submitted_config": "snowball-candidate-controls-a2-rno-detach.yaml"
   },
   "asynchronous_stages": {
     "baseline_actual_attempts": 0,
@@ -46,8 +52,10 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "Complete candidate controls and real-reward asynchronous comparisons remain pending. The failed candidate warmup is not pooled into performance estimates.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3"
+  ],
+  "limit": "Candidate controls a2 is active. All three controls submissions are counted; no further controls retry is armed. Both fresh asynchronous stages remain unsubmitted; candidate async has one submission under the unchanged global limit of four.",
   "primary_cluster": "cw-rno2a",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {

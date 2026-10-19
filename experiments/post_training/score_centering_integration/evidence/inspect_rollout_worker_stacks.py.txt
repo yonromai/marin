@@ -1,0 +1,76 @@
+"""Inspect this session's own Ray worker processes through a finite Iris exec."""
+
+import argparse
+import json
+from pathlib import Path
+import re
+import subprocess
+
+
+REMOTE = r'''
+from pathlib import Path
+import json, shutil, subprocess, time
+
+mode = MODE_LITERAL
+workers = []
+for item in Path('/proc').iterdir():
+    if not item.name.isdigit():
+        continue
+    try:
+        command = (item / 'cmdline').read_bytes().split(b'\0', 1)[0].decode(errors='replace')
+        if not command.startswith(('ray::RolloutWorker', 'ray::skyrl_entrypoint')):
+            continue
+        state = next(line for line in (item / 'status').read_text().splitlines() if line.startswith('State:'))
+        workers.append({'pid': int(item.name), 'role': command, 'state': state})
+    except (FileNotFoundError, PermissionError, ProcessLookupError):
+        continue
+assert len(workers) <= 5, workers
+tool = shutil.which('py-spy')
+if tool is None:
+    tool = next((p for p in ['/opt/venv/bin/py-spy', '/app/.venv/bin/py-spy', '/usr/local/bin/py-spy'] if Path(p).is_file()), None)
+result = {'mode': mode, 'workers': workers, 'pyspy': tool, 'dumps': []}
+if tool:
+    version = subprocess.run([tool, '--version'], capture_output=True, text=True, timeout=5)
+    result['pyspy_version'] = version.stdout.strip()
+if mode == 'dump':
+    assert tool is not None, 'Use the task-image profiling tool; do not install or patch a service.'
+    assert any(w['role'].startswith('ray::RolloutWorker') for w in workers)
+    for worker in workers:
+        started = time.monotonic()
+        # Nonblocking mode avoids ptrace process stops. The in-container watchdog
+        # also reaps the profiler if the exec client disconnects.
+        captured = subprocess.run(['timeout', '--signal=KILL', '10s', tool, 'dump', '--pid', str(worker['pid']), '--nonblocking'],
+                                  capture_output=True, text=True, timeout=13)
+        result['dumps'].append({**worker, 'seconds': time.monotonic() - started, 'returncode': captured.returncode,
+                                'stdout': captured.stdout, 'stderr': captured.stderr})
+print('WORKER_CAPTURE ' + json.dumps(result), flush=True)
+'''
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--job', required=True)
+    parser.add_argument('--mode', choices=('list', 'dump'), default='list')
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    assert re.fullmatch(r'/romain/sc-integration-[a-z0-9-]+-01a146a3', args.job)
+    assert not args.output.exists()
+    program = REMOTE.replace('MODE_LITERAL', repr(args.mode))
+    command = ['marin-env', 'uv', 'run', '--frozen', '--no-sync', 'iris', '--cluster=cw-rno2a',
+               'task', 'exec', args.job + '/0', '--timeout', '70', '--', 'python', '-c', program]
+    completed = subprocess.run(command, capture_output=True, text=True, timeout=80,
+                               cwd='/home/romain/work/marin-community/marin/score-centering-integration-01a146a3')
+    args.output.with_suffix('.stdout.txt').write_text(completed.stdout)
+    args.output.with_suffix('.stderr.txt').write_text(completed.stderr)
+    assert completed.returncode == 0, f'Iris exec failed; inspect {args.output.with_suffix(".stderr.txt")}'
+    lines = [line.removeprefix('WORKER_CAPTURE ') for line in completed.stdout.splitlines() if line.startswith('WORKER_CAPTURE ')]
+    assert len(lines) == 1
+    result = json.loads(lines[0])
+    args.output.write_text(json.dumps(result, indent=2) + '\n')
+    print(json.dumps({'output': str(args.output), 'mode': result['mode'], 'workers': result['workers'],
+                      'pyspy_version': result.get('pyspy_version'),
+                      'captures': [(d['pid'], d['returncode'], len(d['stdout'])) for d in result['dumps']]}))
+
+
+if __name__ == '__main__':
+    main()

@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T23:14:12.775078+00:00",
+  "saved_at": "2026-10-19T23:25:46.213360+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 19052,
-      "sha256": "c09340dbe7dd6e47edb630a89c21282c265671030d9180a5e3aaeb48dec6496a"
+      "bytes": 19620,
+      "sha256": "fd50082d4a8ebeb4ba8b19ce722ca78300f50812002399787840d64acc28e9b6"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 11093,
-      "sha256": "9743462a9f2dda5fd36c9aaeea971550173ed671df92a33694bef0bcece17d8a"
+      "bytes": 11917,
+      "sha256": "f0251dd05e517a38cb8d9e34ebc941301786beb4e4175d83a68dbd4149a807e3"
     },
     {
       "path": "analyze.py",
@@ -115,6 +115,11 @@
       "path": "evidence/handoff-r3-preflight.zip",
       "bytes": 3372,
       "sha256": "778821941277a0ea7ef5410909b549e8c4523961810e9b149eeee4558188b529"
+    },
+    {
+      "path": "evidence/inspect_rollout_worker_stacks.py.txt",
+      "bytes": 3841,
+      "sha256": "31389ab0cf452440e1a2e50977c3e4d63205602cafe18efeaf3c910a243e8e7b"
     },
     {
       "path": "evidence/matched-harness-proof.json",
@@ -522,6 +527,26 @@
       "sha256": "c754d64724e4b48d01f612b969948f6df6911c727d62e1c5399acba477a24f9e"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a2-rno-provider-first.json",
+      "bytes": 10622,
+      "sha256": "1f7d593932ddc5cb21d538b3b4b2d8d672c811893a6349bf9e2c2218f0d2e935"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a2-rno-start-receipts.zip",
+      "bytes": 2371,
+      "sha256": "efb400172b33e55a3ffe90cf131b8949093ac1ea82fbb78def34f8a9dc9b8414"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a2-rno-workload-events.json",
+      "bytes": 2602,
+      "sha256": "81c4ed4b0b8b37cc389f61839de8aa4cb9ddf5365a2febc8d2bef17bf84d5da9"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a2-worker-inspection-preflight.json",
+      "bytes": 236,
+      "sha256": "975fd816971313eb8c6d55901c46b839ac7f8bc84796e14dc32dba4d80a682b8"
+    },
+    {
       "path": "evidence/snowball-real-grader-preflight.json",
       "bytes": 7734,
       "sha256": "c1663c987d1f5f72e6ecc022bd268fb7bc84d1fa323891d693cfead44b2747bc"
@@ -843,8 +868,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 4717,
-      "sha256": "9a82b95407f2ca1da79e2cc8d7d9bd40128aede1f616eadc36075643efe9bba1"
+      "bytes": 5155,
+      "sha256": "2f24cb30828e307e1cc746c931e3a82b3536123e2057091d01f9a6495ed1a4ec"
     },
     {
       "path": "snowball-staged-protocol-r2.json",

@@ -114,7 +114,7 @@ finished with the expected lengths, valid masks and no task error. Twenty-five g
 seven long-response groups did not. All tasks were terminal at 22:38:08 and Pods absent at 22:46:07.
 [The failure record](evidence/snowball-candidate-controls-a1-rno-failure-summary.json) retains the incomplete
 report, native outcomes, regional telemetry and task archives. Its exact handoff-stall cause is unresolved.
-Both primary arms used ordinary BATCH priority; native Kueue admitted them by preempting priority-one workloads.
+The baseline and failed candidate a1 used ordinary BATCH priority; native Kueue admitted them by preempting priority-one workloads.
 No priority or shared-service setting was changed. Candidate results and both asynchronous stages remain pending.
 [Current-head CI](evidence/pr968-097192b4-ci-check-03.json) is terminal with all six checks successful on
 product `097192b463e48552383fe27fc8c42b135bf2c20a`, whose only difference from qualified source `87f13fcd` is documentation.
@@ -128,6 +128,12 @@ existing 600-second S3 request deadline and retry path to surface. Both unsubmit
 the same guard. Source, workload, sampling, K128, cadence and measurement windows remain unchanged. If the
 controlled warmup stalls again, capture live worker stacks before its guard; keep extra profiling out of real
 asynchronous throughput windows. No further undeclared controls retry is armed.
+
+Candidate controls a2 was submitted at 23:18:33.592 UTC and admitted at 23:18:33.784812. All five Pods were
+running on attempt zero at 23:19:22, with the same task and logshipper images as the baseline. This is actual
+GPU submission ten overall and candidate submission three of four. Both asynchronous stages remain unsubmitted.
+An Iris task-exec preflight found the Ray trainer process and the existing py-spy 0.4.2 tool; bounded captures
+will target actor PIDs in nonblocking mode if controlled warmup stalls. No capture has been requested yet.
 
 The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
 Without it, a head concentrated on one token could select different IDs when the remaining scores become ties

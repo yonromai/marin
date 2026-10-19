@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T23:14:12.773643+00:00",
+  "saved_at": "2026-10-19T23:25:46.211940+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -212,6 +212,27 @@
       "queue_seconds": 0.372248,
       "gpu_hours_to_controller_terminal_proxy": 19.618930577777775,
       "gpu_hours_through_verified_absence_upper_bound": 24.945902699999998
+    },
+    {
+      "job": "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T23:18:33.592Z",
+      "admitted_at": "2026-10-19T23:18:33.784812Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; third controls submission under r3, global candidate limit unchanged at four",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r3.json",
+        "evidence/snowball-candidate-controls-a2-rno-provider-first.json",
+        "evidence/snowball-candidate-controls-a2-rno-workload-events.json",
+        "evidence/snowball-candidate-controls-a2-rno-start-receipts.zip"
+      ],
+      "queue_seconds": 0.192812
     }
   ],
   "prepared_but_not_submitted": [
@@ -236,7 +257,6 @@
   },
   "staged_limit_revision": "r3 reallocates one reserved candidate-async retry to one additional controls attempt; global candidate limit remains four, with all earlier attempts retained.",
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-controls-a2-rno",
     "snowball-baseline-async-a0-rno",
     "snowball-candidate-async-a0-rno"
   ],
