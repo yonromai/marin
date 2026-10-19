@@ -19,6 +19,7 @@ def main():
     parser.add_argument("--runtime", required=True)
     parser.add_argument("--product", required=True)
     parser.add_argument("--attempt", default="a0")
+    parser.add_argument("--timeout-seconds", type=int)
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     retained = root.parent / "score_centering_performance"
@@ -40,7 +41,7 @@ def main():
         job_name=run_id,
         priority="interactive" if short else "batch",
         max_retries=0,
-        timeout=3600 if short else 10800,
+        timeout=args.timeout_seconds if args.timeout_seconds is not None else (3600 if short else 10800),
     )
     trainer = cfg["skyrl"]["trainer"]
     trainer["max_steps"] = 128

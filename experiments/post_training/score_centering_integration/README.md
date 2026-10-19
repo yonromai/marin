@@ -25,8 +25,9 @@ generation and selection operations are unchanged. Runtime-only measurement code
 PR. [The harness proof](evidence/matched-harness-proof.json) checks identical benchmark files, inference
 measurement methods, lock and task image between the Snowball arms.
 
-[The initial protocol](protocol.json) records the Qwen exposure. [The Snowball protocol](snowball-protocol.json)
-records final pins before its first submission. Each Snowball arm uses five BATCH nodes, with four 8-H100
+[The initial protocol](protocol.json) records the Qwen exposure. [The first Snowball protocol](snowball-protocol.json)
+records final pins before its first submission; [revision a1](snowball-protocol-a1.json) extends future queue deadlines
+after a provider preemption. Each Snowball arm uses five BATCH nodes, with four 8-H100
 learners at PP2/EP8/DP16, TP/CP/SP1, and one 8-H100 inference node at DP8/EP8. It retains the Snowball 67B/A2B
 SFT checkpoint and tokenizer revision from the prior evidence. The real grader preflight reproduced all 192
 selected tasks, their order and their source hash, including the ten incompatible references excluded before
@@ -46,9 +47,16 @@ ordinary bookkeeping; profiles, forced memory synchronization, initial warmup an
 outside these windows. Prefetch at finite boundaries, ordered modes, changing weights and response variation
 limit inference from a short comparison. No learning benefit is claimed.
 
-Each attempt has a 10800-second queue-inclusive deadline, zero automatic failure or preemption retries and an
-initial manual limit of two attempts per arm. Matched arms use the same cluster sequentially. Provider admission,
+The first Snowball attempt had a 10800-second queue-inclusive deadline. Future submissions use 21600 seconds,
+with the same finite measurement windows, zero automatic failure or preemption retries and an initial manual
+limit of two attempts per arm. Matched arms use the same cluster sequentially. Provider admission,
 task state and verified Pod absence determine allocation accounting; Iris RUNNING alone does not prove admission.
+
+Baseline a0 waited 40 minutes for RNO admission at 16:55:59 UTC. Kueue evicted its driver at 17:05:08 to admit
+another workload; all five tasks became terminal by 17:05:41 and their Pods were absent at 17:11:26. No report
+was written. The harness writes its first report before its first optimizer update, so this was a startup-only
+attempt with zero applied updates. Its allocation is included in accounting. Baseline a1 is the second submitted
+baseline attempt; the prepared candidate a0 was never submitted, and candidate a1 is its first planned attempt.
 
 ## Qwen interface qualification
 

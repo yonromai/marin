@@ -67,9 +67,29 @@
       "sha256": "a67dcc56c39ff93b1ae23d199441876eab421881bb115c3b45c7653f66fb98f9"
     },
     {
+      "path": "evidence/snowball-baseline-a0-preemptor-projection.json",
+      "bytes": 747,
+      "sha256": "acc38df1f155cae5a0a0c3d4667a0ec2bb7e4cd6ac9eccc2673214cd5454ec1d"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-provider-preempted.json",
+      "bytes": 200,
+      "sha256": "287128461a0bf38244dd2fbcd291e08063a979a649a88bf058c5cf71ae2903f9"
+    },
+    {
       "path": "evidence/snowball-baseline-a0-provider-queued-02.json",
       "bytes": 4167,
       "sha256": "8fad264da25b723afc5d73d92405bf3aa486654c99cfb83e7c338a79877b4466"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-provider-queued-05.json",
+      "bytes": 10562,
+      "sha256": "609dc66298e47848785d8ab840d14ae295a73a81e969f2af35dd61f113d0a5c7"
+    },
+    {
+      "path": "evidence/snowball-baseline-a0-startup.zip",
+      "bytes": 1969,
+      "sha256": "7fc3b2b7bb99615ff9406fd9b19ca74226abc00b873382b93d303ee7d991aef8"
     },
     {
       "path": "evidence/snowball-baseline-a0-state-initial.csv",
@@ -77,9 +97,24 @@
       "sha256": "ad76e10f8f9d2fef7037235fe56474921a17f9935c85d32dd926d42bbf9159df"
     },
     {
+      "path": "evidence/snowball-baseline-a1-launch-preflight.json",
+      "bytes": 9323,
+      "sha256": "babb56152d1d730e00eba0801887e1a7999f1a7ed044ea2a59ebc1788a61d7f4"
+    },
+    {
+      "path": "evidence/snowball-baseline-a1-provider-first.json",
+      "bytes": 4167,
+      "sha256": "42071524261fc063728d9e12a4c2e1463b8c2e8e7312fcabca107de4ee2ce80c"
+    },
+    {
       "path": "evidence/snowball-candidate-a0-launch-preflight.json",
       "bytes": 9329,
       "sha256": "6568b32986955df7e1f2381a4517911e2bdd632fe7e317f4fb8433e9218dfc01"
+    },
+    {
+      "path": "evidence/snowball-candidate-a1-launch-preflight.json",
+      "bytes": 9329,
+      "sha256": "31bfbdc0134f7dc9eb46869e8baed8c49424c99a4c783e4b03a2446018992a02"
     },
     {
       "path": "evidence/snowball-real-grader-preflight.json",
@@ -167,5 +202,30 @@
     ],
     "original_revision": "4cc7ca743d430e5ef377e76e64c3b0163ce2ef9b",
     "scope": "Original bytes from the task artifacts and first immutable evidence commit; archived to preserve raw whitespace under repository text checks."
+  },
+  "startup_attempt_archive": {
+    "path": "evidence/snowball-baseline-a0-startup.zip",
+    "members": [
+      {
+        "name": "snowball-baseline-a0-preemption-events.txt",
+        "bytes": 1223,
+        "sha256": "fbc150c718b63b5c75511ab585290ba2c24e621429ddfdb90083def1654f5592"
+      },
+      {
+        "name": "snowball-baseline-a0-state-startup-02.csv",
+        "bytes": 933,
+        "sha256": "c337e6f6fc1d4f6ee20ea893ec802aca06a16b773e5b96037f54d4981c0ff432"
+      },
+      {
+        "name": "snowball-baseline-a0-startup-logs.txt",
+        "bytes": 750,
+        "sha256": "c52ca414e9a3708e4fd7002367ffaa39a7cccb569633a76702bf4f432a49d56f"
+      },
+      {
+        "name": "snowball-baseline-a0-startup-final-logs.txt",
+        "bytes": 750,
+        "sha256": "9748100aca3a2d3e83c1c911c0d2c9230a349bba9c22fec6dab2d2097f4446ec"
+      }
+    ]
   }
 }

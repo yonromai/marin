@@ -1,0 +1,27 @@
+[
+  {
+    "name": "pod-iris-dml-eval-20261019-170424-grug-290dac2f-0-445640dc8f798f42-e15db",
+    "uid": "5c43ea2d-cc8c-4f92-b649-ca6d18d47bf1",
+    "priority_class": null,
+    "priority": 11,
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-10-19T17:05:36Z",
+        "message": "Quota reserved in ClusterQueue iris-cq",
+        "observedGeneration": 1,
+        "reason": "QuotaReserved",
+        "status": "True",
+        "type": "QuotaReserved"
+      },
+      {
+        "lastTransitionTime": "2026-10-19T17:05:36Z",
+        "message": "The workload is admitted",
+        "observedGeneration": 1,
+        "reason": "Admitted",
+        "status": "True",
+        "type": "Admitted"
+      }
+    ],
+    "resource_requests": null
+  }
+]
