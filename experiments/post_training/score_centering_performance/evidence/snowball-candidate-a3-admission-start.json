@@ -1,0 +1,21 @@
+{
+  "group": "iris-pg-0eec8a5b52280cfd-0",
+  "conditions": [
+    {
+      "lastTransitionTime": "2026-10-19T01:40:41Z",
+      "message": "Quota reserved in ClusterQueue iris-cq",
+      "observedGeneration": 1,
+      "reason": "QuotaReserved",
+      "status": "True",
+      "type": "QuotaReserved"
+    },
+    {
+      "lastTransitionTime": "2026-10-19T01:40:41Z",
+      "message": "The workload is admitted",
+      "observedGeneration": 1,
+      "reason": "Admitted",
+      "status": "True",
+      "type": "Admitted"
+    }
+  ]
+}

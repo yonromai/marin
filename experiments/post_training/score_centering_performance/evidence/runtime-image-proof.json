@@ -1,0 +1,17 @@
+{
+  "same_resolved_task_and_controller_images": true,
+  "images_by_receipt": {
+    "snowball-baseline-a2-pod-projection-start.json": [
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+    ],
+    "snowball-candidate-a3-pod-projection-start.json": [
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+    ],
+    "qwen-a2-east-pod-projection-start.json": [
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e",
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+    ]
+  }
+}

@@ -1,0 +1,3364 @@
+{
+  "file": "sc-performance-snowball-baseline-a2-01a146a3.json",
+  "sha256": "a4f52aee7aee0f1fad8844d844fd59b526cc0b88338902b82c31d9c6c42f27d2",
+  "stored_sha256": "a4f52aee7aee0f1fad8844d844fd59b526cc0b88338902b82c31d9c6c42f27d2",
+  "workload": "snowball",
+  "variant": "baseline",
+  "product": "325f819f94c3ed14a550ef5bc502fb6ff2d5b5d8",
+  "applied_updates": 21,
+  "prompt_sha256": "fac21d6f62e5ff00a0f150244b150ec25f1ab8cb6bab3e3d96df04c8b44c72e5",
+  "source_selection": {
+    "campaign_source_rows": [
+      5195,
+      5078,
+      12943,
+      1664,
+      20499,
+      15908,
+      3078,
+      11383,
+      23037,
+      2305,
+      17982,
+      6189,
+      12473,
+      12517,
+      14509,
+      7286,
+      12060,
+      8365,
+      22398,
+      5527,
+      3521,
+      20369,
+      20526,
+      8275,
+      1324,
+      9858,
+      4203,
+      9897,
+      725,
+      988,
+      15911,
+      13528,
+      1017,
+      16100,
+      13279,
+      2360,
+      15994,
+      12837,
+      22386,
+      21145,
+      9313,
+      1417,
+      14620,
+      14956,
+      11405,
+      5554,
+      19012,
+      5683,
+      3715,
+      15731,
+      9612,
+      4555,
+      3887,
+      15919,
+      6826,
+      16543,
+      22772,
+      10134,
+      21866,
+      9431,
+      10569,
+      12220,
+      21936,
+      19062,
+      18824,
+      22434,
+      11611,
+      19215,
+      13203,
+      7462,
+      22599,
+      5572,
+      22247,
+      18366,
+      1835,
+      2313,
+      14451,
+      3374,
+      14610,
+      18641,
+      22137,
+      22054,
+      6358,
+      8969,
+      18880,
+      9055,
+      18852,
+      20005,
+      2316,
+      7242,
+      1425,
+      17324,
+      10129,
+      14406,
+      5621,
+      4085,
+      19401,
+      16317,
+      23206,
+      16270,
+      11521,
+      5330,
+      4469,
+      8120,
+      13432,
+      22711,
+      98,
+      7734,
+      17516,
+      5264,
+      9466,
+      5803,
+      2320,
+      9924,
+      18584,
+      10340,
+      3238,
+      10170,
+      17657,
+      4783,
+      1011,
+      18555,
+      19187,
+      12105,
+      5553,
+      4100,
+      5911,
+      19708,
+      19023,
+      8692,
+      10481,
+      4768,
+      4119,
+      10353,
+      20860,
+      2835,
+      1650,
+      6086,
+      22996,
+      7061,
+      20893,
+      9978,
+      958,
+      8870,
+      3575,
+      16533,
+      1060,
+      22320,
+      7680,
+      15419,
+      17848,
+      12743,
+      8289,
+      4493,
+      18731,
+      6576,
+      3593,
+      14975,
+      8999,
+      1071,
+      13423,
+      17859,
+      19451,
+      10789,
+      13063,
+      14976,
+      4852,
+      7700,
+      21100,
+      18916,
+      15031,
+      5878,
+      10682,
+      12436,
+      14951,
+      13749,
+      4297,
+      2198,
+      14030,
+      20424,
+      6204,
+      12168,
+      16314,
+      10270,
+      2352,
+      22027,
+      7060,
+      952,
+      9115,
+      19137,
+      20625,
+      22984
+    ],
+    "source_data_sha256": "df971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd"
+  },
+  "runtime": {
+    "lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+    "versions": {
+      "torch": "2.13.0+cu132",
+      "vllm": "0.0.0.dev20260929+marin.39e62869693c.cu132",
+      "megatron-core": "0.18.0",
+      "transformers": "5.16.1",
+      "marin-iris": "0.2.191.dev38826191626"
+    },
+    "policy_parallelism": {
+      "tensor_model_parallel_size": 1,
+      "pipeline_model_parallel_size": 2,
+      "context_parallel_size": 1,
+      "expert_model_parallel_size": 8,
+      "expert_tensor_parallel_size": 1,
+      "ddp_config": {
+        "grad_reduce_in_fp32": true,
+        "overlap_grad_reduce": false,
+        "overlap_param_gather": false,
+        "average_in_collective": true
+      },
+      "model_config_kwargs": {},
+      "torch_profiler_config": {
+        "enable": false,
+        "ranks": [],
+        "save_path": null
+      },
+      "optimizer_config_kwargs": {
+        "overlap_cpu_optimizer_d2h_h2d": false,
+        "use_precision_aware_optimizer": false,
+        "optimizer_cpu_offload": false,
+        "optimizer_offload_fraction": 0.0
+      },
+      "transformer_config_kwargs": {
+        "recompute_granularity": "full",
+        "recompute_modules": [
+          "core_attn"
+        ],
+        "recompute_method": "uniform",
+        "recompute_num_layers": 1
+      },
+      "empty_cuda_cache": true,
+      "logprob_chunk_size": 512,
+      "optimizer_checkpoint_sharding_type": "dp_reshardable",
+      "check_train_eval_parity": false,
+      "moe_router_replay": false,
+      "check_dp_weight_consistency": false
+    },
+    "sampling": {
+      "max_generate_length": 4096,
+      "repetition_penalty": 1.0,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "top_k": -1,
+      "logprobs": 128,
+      "stop": null,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "min_tokens": 0
+    }
+  },
+  "setup_sync_timings": {
+    "expert_block_sync/plan": 0.4445806711446494,
+    "expert_block_sync/bind": 1.4333070998545736,
+    "init_weight_sync_state": 1.8836126609239727,
+    "offload_policy_optimizer_to_cpu": 6.367146915988997,
+    "sync_weights": 9.620898847002536
+  },
+  "tokens_per_window": 174080,
+  "loss_tokens_per_window": 164484,
+  "sequence_shape": [
+    128,
+    4549
+  ],
+  "response_length_counts": {
+    "64": 32,
+    "256": 32,
+    "1024": 32,
+    "4096": 32
+  },
+  "modes": {
+    "ordinary": {
+      "measured_windows": 5,
+      "total_seconds": {
+        "mean": 58.55318301017396,
+        "min": 58.074781083036214,
+        "max": 59.094098003115505,
+        "values": [
+          58.074781083036214,
+          59.016877447022125,
+          59.094098003115505,
+          58.20769913983531,
+          58.37245937786065
+        ],
+        "descriptive_t95_mean": [
+          57.96798830238801,
+          59.13837771795991
+        ]
+      },
+      "timings_seconds": {
+        "wait_for_generation_buffer": {
+          "mean": 43.367667741468175,
+          "min": 43.26841818308458,
+          "max": 43.49964722711593,
+          "values": [
+            43.26841818308458,
+            43.42490865197033,
+            43.31927036005072,
+            43.326094285119325,
+            43.49964722711593
+          ],
+          "descriptive_t95_mean": [
+            43.252159215794116,
+            43.483176267142234
+          ]
+        },
+        "assemble_generation_group_mini_batch": {
+          "mean": 0.018168310821056365,
+          "min": 0.017375719035044312,
+          "max": 0.019034106051549315,
+          "values": [
+            0.017751689068973064,
+            0.017375719035044312,
+            0.018458019942045212,
+            0.018222020007669926,
+            0.019034106051549315
+          ],
+          "descriptive_t95_mean": [
+            0.017373696098749617,
+            0.018962925543363113
+          ]
+        },
+        "postprocess_trajectory_batch": {
+          "mean": 0.024133652448654175,
+          "min": 0.023401512065902352,
+          "max": 0.024757674895226955,
+          "values": [
+            0.023401512065902352,
+            0.023612469201907516,
+            0.024536842945963144,
+            0.024757674895226955,
+            0.024359763134270906
+          ],
+          "descriptive_t95_mean": [
+            0.02339625817350265,
+            0.0248710467238057
+          ]
+        },
+        "convert_to_training_input": {
+          "mean": 0.09818905075080693,
+          "min": 0.09645989397540689,
+          "max": 0.10130470688454807,
+          "values": [
+            0.09683654992841184,
+            0.09645989397540689,
+            0.09895283193327487,
+            0.10130470688454807,
+            0.09739127103239298
+          ],
+          "descriptive_t95_mean": [
+            0.09572548416570582,
+            0.10065261733590804
+          ]
+        },
+        "fwd_logprobs_values_reward": {
+          "mean": 1.0011724869720637,
+          "min": 0.9243930699303746,
+          "max": 1.0905609410256147,
+          "values": [
+            0.9777788720093668,
+            0.9243930699303746,
+            1.041929011931643,
+            1.0905609410256147,
+            0.9712005399633199
+          ],
+          "descriptive_t95_mean": [
+            0.9202448325140387,
+            1.0821001414300888
+          ]
+        },
+        "train_critic_and_policy": {
+          "mean": 6.952080648159608,
+          "min": 6.6956282909959555,
+          "max": 7.251122154993936,
+          "values": [
+            6.881035577040166,
+            7.144153554923832,
+            7.251122154993936,
+            6.6956282909959555,
+            6.788463662844151
+          ],
+          "descriptive_t95_mean": [
+            6.658312579057526,
+            7.2458487172616906
+          ]
+        },
+        "policy_train": {
+          "mean": 3.9487239089794457,
+          "min": 3.7135346978902817,
+          "max": 4.272634925087914,
+          "values": [
+            3.909776195883751,
+            4.020980000961572,
+            4.272634925087914,
+            3.7135346978902817,
+            3.82669372507371
+          ],
+          "descriptive_t95_mean": [
+            3.6839686894888892,
+            4.213479128470002
+          ]
+        },
+        "backload_policy_optimizer_to_gpu": {
+          "mean": 2.9941594699863345,
+          "min": 2.94827120215632,
+          "max": 3.1181027239654213,
+          "values": [
+            2.9651395638938993,
+            3.1181027239654213,
+            2.9704371539410204,
+            2.968846705975011,
+            2.94827120215632
+          ],
+          "descriptive_t95_mean": [
+            2.9074354336288493,
+            3.08088350634382
+          ]
+        },
+        "offload_policy_optimizer_to_cpu": {
+          "mean": 3.9410794290248305,
+          "min": 3.701328553026542,
+          "max": 4.24799696309492,
+          "values": [
+            3.701328553026542,
+            4.24799696309492,
+            4.160362164024264,
+            3.7647118598688394,
+            3.8309976051095873
+          ],
+          "descriptive_t95_mean": [
+            3.6350481048185674,
+            4.247110753231094
+          ]
+        },
+        "sync_weights": {
+          "mean": 7.042460077442229,
+          "min": 6.760154715972021,
+          "max": 7.340752508025616,
+          "values": [
+            6.760154715972021,
+            7.340752508025616,
+            7.289085570955649,
+            6.89978828211315,
+            6.922519310144708
+          ],
+          "descriptive_t95_mean": [
+            6.723325946508022,
+            7.361594208376435
+          ]
+        },
+        "score_centering_probe_collation": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        },
+        "score_centering_probe_summary": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "response_tokens_per_second": 2973.0236863425953,
+      "loss_tokens_per_second": 2809.1384881914946,
+      "excluding_sync_seconds": {
+        "mean": 51.51072293273173,
+        "min": 51.30791085772216,
+        "max": 51.805012432159856,
+        "values": [
+          51.31462636706419,
+          51.67612493899651,
+          51.805012432159856,
+          51.30791085772216,
+          51.44994006771594
+        ],
+        "descriptive_t95_mean": [
+          51.234997126773116,
+          51.786448738690346
+        ]
+      },
+      "optimizer_tensor_bytes": {
+        "sequences": 4658176,
+        "attention_mask": 4658176,
+        "response_mask": 4194304,
+        "loss_mask": 2097152,
+        "rollout_logprobs": 2097152,
+        "action_log_probs": 2097152,
+        "correction_weights": 2097152,
+        "returns": 2097152,
+        "advantages": 2097152
+      },
+      "driver_rss_current_max": 9832972288,
+      "driver_rss_cumulative_peak": 11314032640,
+      "metric_emission_seconds": {
+        "mean": 0.008674026932567358,
+        "min": 0.008258578833192587,
+        "max": 0.009288992965593934,
+        "values": [
+          0.008717621909454465,
+          0.008519947994500399,
+          0.008584992960095406,
+          0.008258578833192587,
+          0.009288992965593934
+        ],
+        "descriptive_t95_mean": [
+          0.008199446353987158,
+          0.009148607511147558
+        ]
+      },
+      "learner_memory_bytes": {
+        "peak_allocated": 58578883072,
+        "peak_reserved": 63623397376,
+        "sampled_device_peak_used": 81270800384
+      },
+      "learner_host_bytes": {
+        "rss_current": 38514294784,
+        "rss_cumulative_peak": 38528126976
+      },
+      "inference_memory_bytes": {
+        "peak_allocated": 62608780800,
+        "peak_reserved": 63218647040,
+        "sampled_device_peak_used": 69153390592
+      },
+      "inference_host_bytes": {
+        "rss_current": 4820946944,
+        "rss_cumulative_peak": 20633210880
+      }
+    },
+    "capture": {
+      "measured_windows": 5,
+      "total_seconds": {
+        "mean": 111.81775752916,
+        "min": 110.27825523004867,
+        "max": 113.64847270981409,
+        "values": [
+          111.48194367205724,
+          113.64847270981409,
+          110.27825523004867,
+          111.78030777699314,
+          111.8998082568869
+        ],
+        "descriptive_t95_mean": [
+          110.31712925449604,
+          113.31838580382397
+        ]
+      },
+      "timings_seconds": {
+        "wait_for_generation_buffer": {
+          "mean": 92.33309889794327,
+          "min": 90.95338015188463,
+          "max": 94.64239148399793,
+          "values": [
+            90.95338015188463,
+            94.64239148399793,
+            90.98998749395832,
+            92.33590331696905,
+            92.74383204290643
+          ],
+          "descriptive_t95_mean": [
+            90.44908971463748,
+            94.21710808124907
+          ]
+        },
+        "assemble_generation_group_mini_batch": {
+          "mean": 0.017897176602855325,
+          "min": 0.01643693307414651,
+          "max": 0.019136305898427963,
+          "values": [
+            0.018464230932295322,
+            0.019136305898427963,
+            0.017283764202147722,
+            0.01643693307414651,
+            0.018164648907259107
+          ],
+          "descriptive_t95_mean": [
+            0.01658942683747899,
+            0.01920492636823166
+          ]
+        },
+        "postprocess_trajectory_batch": {
+          "mean": 0.024518913822248578,
+          "min": 0.024005512008443475,
+          "max": 0.026248436886817217,
+          "values": [
+            0.024083551950752735,
+            0.024225778179243207,
+            0.024031290085986257,
+            0.024005512008443475,
+            0.026248436886817217
+          ],
+          "descriptive_t95_mean": [
+            0.02331378362783165,
+            0.025724044016665507
+          ]
+        },
+        "convert_to_training_input": {
+          "mean": 1.6273916650097817,
+          "min": 1.6128671769984066,
+          "max": 1.6428032389376312,
+          "values": [
+            1.6128671769984066,
+            1.6428032389376312,
+            1.6303183590061963,
+            1.6312625780701637,
+            1.6197069720365107
+          ],
+          "descriptive_t95_mean": [
+            1.6130844656507684,
+            1.641698864368795
+          ]
+        },
+        "fwd_logprobs_values_reward": {
+          "mean": 2.190662086335942,
+          "min": 2.0700404478702694,
+          "max": 2.3697165318299085,
+          "values": [
+            2.1283204208593816,
+            2.147260378114879,
+            2.3697165318299085,
+            2.237972653005272,
+            2.0700404478702694
+          ],
+          "descriptive_t95_mean": [
+            2.0455698422234962,
+            2.335754330448388
+          ]
+        },
+        "train_critic_and_policy": {
+          "mean": 8.49286200660281,
+          "min": 8.267054064199328,
+          "max": 9.10885930689983,
+          "values": [
+            9.10885930689983,
+            8.30775889288634,
+            8.327476544072852,
+            8.453161224955693,
+            8.267054064199328
+          ],
+          "descriptive_t95_mean": [
+            8.056671272959939,
+            8.92905274024568
+          ]
+        },
+        "policy_train": {
+          "mean": 5.405125260585919,
+          "min": 5.244634963106364,
+          "max": 5.867267215857282,
+          "values": [
+            5.867267215857282,
+            5.267614950891584,
+            5.389143055072054,
+            5.244634963106364,
+            5.25696611800231
+          ],
+          "descriptive_t95_mean": [
+            5.07634915730309,
+            5.733901363868748
+          ]
+        },
+        "backload_policy_optimizer_to_gpu": {
+          "mean": 3.0740217925980686,
+          "min": 2.9163285840768367,
+          "max": 3.2344179949723184,
+          "values": [
+            3.2344179949723184,
+            3.03292306791991,
+            2.9163285840768367,
+            3.1840453250333667,
+            3.002393990987912
+          ],
+          "descriptive_t95_mean": [
+            2.9103304975306954,
+            3.237713087665442
+          ]
+        },
+        "offload_policy_optimizer_to_cpu": {
+          "mean": 3.981230756221339,
+          "min": 3.783743357984349,
+          "max": 4.3440950710792094,
+          "values": [
+            4.3440950710792094,
+            3.783743357984349,
+            3.8112470048945397,
+            3.9493396100588143,
+            4.017728737089783
+          ],
+          "descriptive_t95_mean": [
+            3.702259908142034,
+            4.260201604300644
+          ]
+        },
+        "sync_weights": {
+          "mean": 7.081117238337174,
+          "min": 6.819097753847018,
+          "max": 7.581888516899198,
+          "values": [
+            7.581888516899198,
+            6.819097753847018,
+            6.866869157878682,
+            7.031457966892049,
+            7.106272796168923
+          ],
+          "descriptive_t95_mean": [
+            6.704283379286393,
+            7.457951097387955
+          ]
+        },
+        "score_centering_probe_collation": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        },
+        "score_centering_probe_summary": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "response_tokens_per_second": 1556.81891540888,
+      "loss_tokens_per_second": 1471.000703596704,
+      "excluding_sync_seconds": {
+        "mean": 104.73664029082283,
+        "min": 103.41138607216999,
+        "max": 106.82937495596707,
+        "values": [
+          103.90005515515804,
+          106.82937495596707,
+          103.41138607216999,
+          104.74884981010109,
+          104.79353546071798
+        ],
+        "descriptive_t95_mean": [
+          103.11306099276851,
+          106.36021958887716
+        ]
+      },
+      "optimizer_tensor_bytes": {
+        "sequences": 4658176,
+        "attention_mask": 4658176,
+        "response_mask": 4194304,
+        "loss_mask": 2097152,
+        "rollout_logprobs": 2097152,
+        "score_topk_indices": 536870912,
+        "score_behavior_logprobs": 268435456,
+        "score_old_logprobs": 268435456,
+        "action_log_probs": 2097152,
+        "correction_weights": 2097152,
+        "returns": 2097152,
+        "advantages": 2097152
+      },
+      "driver_rss_current_max": 10873847808,
+      "driver_rss_cumulative_peak": 11314032640,
+      "metric_emission_seconds": {
+        "mean": 0.008634795155376195,
+        "min": 0.008152541005983949,
+        "max": 0.009436253923922777,
+        "values": [
+          0.008542231982573867,
+          0.008152541005983949,
+          0.008742942940443754,
+          0.009436253923922777,
+          0.008300005923956633
+        ],
+        "descriptive_t95_mean": [
+          0.008011715796480821,
+          0.009257874514271569
+        ]
+      },
+      "learner_memory_bytes": {
+        "peak_allocated": 58657872384,
+        "peak_reserved": 62604181504,
+        "sampled_device_peak_used": 81008721920
+      },
+      "learner_host_bytes": {
+        "rss_current": 38514294784,
+        "rss_cumulative_peak": 38528126976
+      },
+      "inference_memory_bytes": {
+        "peak_allocated": 62608780800,
+        "peak_reserved": 63218647040,
+        "sampled_device_peak_used": 69153390592
+      },
+      "inference_host_bytes": {
+        "rss_current": 4820946944,
+        "rss_cumulative_peak": 20633210880
+      }
+    },
+    "sc": {
+      "measured_windows": 5,
+      "total_seconds": {
+        "mean": 109.78011365355924,
+        "min": 106.85244570788927,
+        "max": 112.24206578079611,
+        "values": [
+          109.70364761096425,
+          110.21229710197076,
+          112.24206578079611,
+          106.85244570788927,
+          109.89011206617579
+        ],
+        "descriptive_t95_mean": [
+          107.38872737013286,
+          112.17149993698563
+        ]
+      },
+      "timings_seconds": {
+        "wait_for_generation_buffer": {
+          "mean": 89.91606064238586,
+          "min": 87.3217911568936,
+          "max": 92.70343535905704,
+          "values": [
+            88.2702331400942,
+            91.0640667960979,
+            92.70343535905704,
+            87.3217911568936,
+            90.22077675978653
+          ],
+          "descriptive_t95_mean": [
+            87.2371716321798,
+            92.59494965259192
+          ]
+        },
+        "assemble_generation_group_mini_batch": {
+          "mean": 0.020582173811271788,
+          "min": 0.01774076488800347,
+          "max": 0.026824610074982047,
+          "values": [
+            0.019323703134432435,
+            0.01855222904123366,
+            0.01774076488800347,
+            0.020469561917707324,
+            0.026824610074982047
+          ],
+          "descriptive_t95_mean": [
+            0.016072748253010777,
+            0.0250915993695328
+          ]
+        },
+        "postprocess_trajectory_batch": {
+          "mean": 0.028271051589399576,
+          "min": 0.023873507045209408,
+          "max": 0.04185937694273889,
+          "values": [
+            0.025403042091056705,
+            0.02560058794915676,
+            0.023873507045209408,
+            0.024618743918836117,
+            0.04185937694273889
+          ],
+          "descriptive_t95_mean": [
+            0.018801029363383494,
+            0.03774107381541566
+          ]
+        },
+        "convert_to_training_input": {
+          "mean": 1.654652983462438,
+          "min": 1.616302999900654,
+          "max": 1.69580836314708,
+          "values": [
+            1.6638925750739872,
+            1.616302999900654,
+            1.69580836314708,
+            1.6320433770306408,
+            1.665217602159828
+          ],
+          "descriptive_t95_mean": [
+            1.6160181635095334,
+            1.6932878034153425
+          ]
+        },
+        "fwd_logprobs_values_reward": {
+          "mean": 2.2957076977938415,
+          "min": 2.112894846126437,
+          "max": 2.460307410918176,
+          "values": [
+            2.3003323189914227,
+            2.2177610169164836,
+            2.112894846126437,
+            2.387242896016687,
+            2.460307410918176
+          ],
+          "descriptive_t95_mean": [
+            2.1256979030823193,
+            2.4657174925053638
+          ]
+        },
+        "train_critic_and_policy": {
+          "mean": 8.761564781144262,
+          "min": 8.293471074895933,
+          "max": 9.714590094983578,
+          "values": [
+            9.714590094983578,
+            8.293471074895933,
+            8.853442506864667,
+            8.44312911410816,
+            8.503191114868969
+          ],
+          "descriptive_t95_mean": [
+            8.052627723848671,
+            9.470501838439853
+          ]
+        },
+        "policy_train": {
+          "mean": 5.601853618212044,
+          "min": 5.376715764170513,
+          "max": 6.146415151888505,
+          "values": [
+            6.146415151888505,
+            5.376715764170513,
+            5.522794886957854,
+            5.511842411011457,
+            5.4514998770318925
+          ],
+          "descriptive_t95_mean": [
+            5.217041499134286,
+            5.986665737289803
+          ]
+        },
+        "backload_policy_optimizer_to_gpu": {
+          "mean": 3.1385078242048623,
+          "min": 2.9020150168798864,
+          "max": 3.561486550141126,
+          "values": [
+            3.561486550141126,
+            2.909752195002511,
+            3.3166098829824477,
+            2.9020150168798864,
+            3.0026754760183394
+          ],
+          "descriptive_t95_mean": [
+            2.7779226567196638,
+            3.499092991690061
+          ]
+        },
+        "offload_policy_optimizer_to_cpu": {
+          "mean": 3.9692112725693733,
+          "min": 3.7344895259011537,
+          "max": 4.489083742024377,
+          "values": [
+            4.489083742024377,
+            3.8718538070097566,
+            3.7344895259011537,
+            3.8762128739617765,
+            3.8744164139498025
+          ],
+          "descriptive_t95_mean": [
+            3.600625805400067,
+            4.33779673973868
+          ]
+        },
+        "sync_weights": {
+          "mean": 7.0541534314863386,
+          "min": 6.7857807031832635,
+          "max": 7.658973922021687,
+          "values": [
+            7.658973922021687,
+            6.931481901090592,
+            6.7857807031832635,
+            6.965533792041242,
+            6.928996839094907
+          ],
+          "descriptive_t95_mean": [
+            6.6256454602192925,
+            7.482661402753385
+          ]
+        },
+        "score_centering_probe_collation": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        },
+        "score_centering_probe_summary": {
+          "mean": 0,
+          "min": 0,
+          "max": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "descriptive_t95_mean": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "response_tokens_per_second": 1585.715246655295,
+      "loss_tokens_per_second": 1498.3041511422882,
+      "excluding_sync_seconds": {
+        "mean": 102.7259602220729,
+        "min": 99.88691191584803,
+        "max": 105.45628507761285,
+        "values": [
+          102.04467368894257,
+          103.28081520088017,
+          105.45628507761285,
+          99.88691191584803,
+          102.96111522708088
+        ],
+        "descriptive_t95_mean": [
+          100.21621798462722,
+          105.23570245951858
+        ]
+      },
+      "optimizer_tensor_bytes": {
+        "sequences": 4658176,
+        "attention_mask": 4658176,
+        "response_mask": 4194304,
+        "loss_mask": 2097152,
+        "rollout_logprobs": 2097152,
+        "score_topk_indices": 536870912,
+        "score_behavior_logprobs": 268435456,
+        "score_old_logprobs": 268435456,
+        "action_log_probs": 2097152,
+        "correction_weights": 2097152,
+        "returns": 2097152,
+        "advantages": 2097152
+      },
+      "driver_rss_current_max": 11161923584,
+      "driver_rss_cumulative_peak": 11314032640,
+      "metric_emission_seconds": {
+        "mean": 0.008540148567408323,
+        "min": 0.008330560056492686,
+        "max": 0.00885717198252678,
+        "values": [
+          0.00885717198252678,
+          0.008623681962490082,
+          0.008362527936697006,
+          0.008526800898835063,
+          0.008330560056492686
+        ],
+        "descriptive_t95_mean": [
+          0.008274467093812016,
+          0.008805830041004629
+        ]
+      },
+      "learner_memory_bytes": {
+        "peak_allocated": 59647407616,
+        "peak_reserved": 65370324992,
+        "sampled_device_peak_used": 83265257472
+      },
+      "learner_host_bytes": {
+        "rss_current": 38513246208,
+        "rss_cumulative_peak": 38528126976
+      },
+      "inference_memory_bytes": {
+        "peak_allocated": 62608780800,
+        "peak_reserved": 63218647040,
+        "sampled_device_peak_used": 69153390592
+      },
+      "inference_host_bytes": {
+        "rss_current": 4820946944,
+        "rss_cumulative_peak": 20633210880
+      }
+    }
+  },
+  "comparisons": {
+    "capture_versus_ordinary": {
+      "cycle": {
+        "ratio_of_means_percent": 90.9678548299091,
+        "geometric_percent": 90.9638952917786,
+        "descriptive_t95_percent": [
+          87.91004515505898,
+          94.06737556216055
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      },
+      "excluding_sync": {
+        "ratio_of_means_percent": 103.32978131096948,
+        "geometric_percent": 103.31868703914215,
+        "descriptive_t95_percent": [
+          100.12180052283124,
+          106.56664287109719
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      }
+    },
+    "sc_versus_capture": {
+      "cycle": {
+        "ratio_of_means_percent": -1.822290055378173,
+        "geometric_percent": -1.8298536900144755,
+        "descriptive_t95_percent": [
+          -4.627431289469901,
+          1.0497856650462674
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      },
+      "excluding_sync": {
+        "ratio_of_means_percent": -1.9197484883674565,
+        "geometric_percent": -1.9288783809339898,
+        "descriptive_t95_percent": [
+          -4.939630810448018,
+          1.1772306127203445
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      }
+    },
+    "sc_versus_ordinary": {
+      "cycle": {
+        "ratio_of_means_percent": 87.48786660237462,
+        "geometric_percent": 87.46953540718661,
+        "descriptive_t95_percent": [
+          84.40881719609861,
+          90.58105377040467
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      },
+      "excluding_sync": {
+        "ratio_of_means_percent": 99.42636090785129,
+        "geometric_percent": 99.3969168404453,
+        "descriptive_t95_percent": [
+          95.47028264005162,
+          103.40242981430498
+        ],
+        "degrees_of_freedom": 4,
+        "pairing": "same-repetition within allocation"
+      }
+    }
+  },
+  "qualification": {
+    "reference": [
+      {
+        "positions": 21,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 5.960464477539062e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 7.152557373046875e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 5.960464477539062e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 1.430511474609375e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 9.5367431640625e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 6.556510925292969e-07,
+        "head_max_error": 9.5367431640625e-07
+      }
+    ],
+    "matching_weights_tim": {
+      "tokens": 168386,
+      "abs_mean": 0.03792385011911392,
+      "abs_p99": 0.3592151701450348,
+      "abs_max": 3.8808531761169434
+    },
+    "matching_weights_head_tim": {
+      "entries": 21553408,
+      "abs_mean": 0.1590930074453354,
+      "abs_max": 11.105300903320312,
+      "sampled_abs_p99": 0.9484450817108154
+    },
+    "temperature_0_7_reference": [
+      {
+        "positions": 21,
+        "chosen_max_error": 3.3527612686157227e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.761386662721634e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 3.3527612686157227e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 1.7881393432617188e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 3.427267074584961e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.2351741790771484e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 4.76837158203125e-07,
+        "head_max_error": 9.5367431640625e-07
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      },
+      {
+        "positions": 24,
+        "chosen_max_error": 2.384185791015625e-07,
+        "head_max_error": 1.9073486328125e-06
+      }
+    ],
+    "calibration_updates": [
+      {
+        "forward_seconds": 2.4089492519851774,
+        "update_seconds": 18.006075956858695,
+        "status": {
+          "final_loss": 0.0005604922771453857,
+          "policy_loss": 0.0005604922771453857,
+          "policy_entropy": 1.4924009591341019,
+          "ppo_clip_ratio": 0.0,
+          "ppo_clip_ratio_low": 0.0,
+          "ppo_clip_ratio_high": 0.0,
+          "ppo_clip_pressure_low": 0.0,
+          "ppo_clip_pressure_high": 0.0,
+          "ppo_ratio_exact_unit_fraction": 0.9921875,
+          "policy_lr": 9.999999974752427e-07,
+          "log_ratio_abs_mean": 0.0,
+          "log_ratio_abs_max": 0.0,
+          "n_tokens_dp_gt_1pct": 0.0,
+          "n_tokens_dp_gt_10pct": 0.0,
+          "n_tokens_dp_gt_50pct": 0.0,
+          "log_ratio_abs_p99": 0.0,
+          "log_ratio_diagnostics_failed": 0.0,
+          "log_ratio_abs_pos00": 0.0,
+          "log_ratio_abs_pos10": 0.0,
+          "log_ratio_abs_pos20": 0.0,
+          "log_ratio_abs_pos30": 0.0,
+          "log_ratio_abs_pos40": 0.0,
+          "log_ratio_abs_pos50": 0.0,
+          "log_ratio_abs_pos60": 0.0,
+          "log_ratio_abs_pos70": 0.0,
+          "log_ratio_abs_pos80": 0.0,
+          "log_ratio_abs_pos90": 0.0,
+          "log_ratio_mean": 0.0,
+          "log_ratio_abs_p999": 0.0,
+          "log_ratio_frac_outside_0_5_2": 0.0,
+          "log_ratio_ess_fraction": 1.0,
+          "log_ratio_kl_k3": 0.0,
+          "log_ratio_chi2": 0.0,
+          "log_ratio_statistics_valid": 1.0,
+          "log_ratio_p999_valid": 1.0,
+          "log_ratio_pos_first256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_last256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_middle/log_ratio_abs_mean": 0.0,
+          "skipped_steps": 0.0,
+          "raw_grad_norm": 0.6861276030540466,
+          "policy_update_steps": 1
+        },
+        "learner_memory": [
+          {
+            "rank": 0,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113137664,
+            "reserved": 10670309376,
+            "peak_allocated": 55632596480,
+            "peak_reserved": 56650366976,
+            "device_used": 29343154176,
+            "sampled_device_peak_used": 75281268736,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37225103360,
+              "rss_cumulative_peak": 37225103360
+            }
+          },
+          {
+            "rank": 1,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113553920,
+            "reserved": 10670309376,
+            "peak_allocated": 55631371264,
+            "peak_reserved": 56646172672,
+            "device_used": 29513089024,
+            "sampled_device_peak_used": 75447009280,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37445427200,
+              "rss_cumulative_peak": 37445427200
+            }
+          },
+          {
+            "rank": 2,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113418752,
+            "reserved": 10676600832,
+            "peak_allocated": 55633991680,
+            "peak_reserved": 56654561280,
+            "device_used": 29450174464,
+            "sampled_device_peak_used": 75386191872,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37382807552,
+              "rss_cumulative_peak": 37382807552
+            }
+          },
+          {
+            "rank": 3,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10112951296,
+            "reserved": 10674503680,
+            "peak_allocated": 55630485504,
+            "peak_reserved": 56662949888,
+            "device_used": 29515186176,
+            "sampled_device_peak_used": 75461689344,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37713412096,
+              "rss_cumulative_peak": 37713412096
+            }
+          },
+          {
+            "rank": 4,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10142972928,
+            "reserved": 10714349568,
+            "peak_allocated": 55652451328,
+            "peak_reserved": 56763613184,
+            "device_used": 29490020352,
+            "sampled_device_peak_used": 75497340928,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37472342016,
+              "rss_cumulative_peak": 37472342016
+            }
+          },
+          {
+            "rank": 5,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10146018304,
+            "reserved": 10726932480,
+            "peak_allocated": 55661111296,
+            "peak_reserved": 56772001792,
+            "device_used": 29569646592,
+            "sampled_device_peak_used": 75572772864,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37402656768,
+              "rss_cumulative_peak": 37402656768
+            }
+          },
+          {
+            "rank": 6,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10141320704,
+            "reserved": 10443816960,
+            "peak_allocated": 55658209280,
+            "peak_reserved": 56774098944,
+            "device_used": 29217390592,
+            "sampled_device_peak_used": 75505729536,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37665386496,
+              "rss_cumulative_peak": 37665386496
+            }
+          },
+          {
+            "rank": 7,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10141638656,
+            "reserved": 10466885632,
+            "peak_allocated": 55658318336,
+            "peak_reserved": 56769904640,
+            "device_used": 28804186112,
+            "sampled_device_peak_used": 75065262080,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37642104832,
+              "rss_cumulative_peak": 37642104832
+            }
+          },
+          {
+            "rank": 8,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10285445632,
+            "reserved": 14420017152,
+            "peak_allocated": 55846881280,
+            "peak_reserved": 56887345152,
+            "device_used": 33776533504,
+            "sampled_device_peak_used": 76201918464,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37365293056,
+              "rss_cumulative_peak": 37365293056
+            }
+          },
+          {
+            "rank": 9,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10290687488,
+            "reserved": 11215568896,
+            "peak_allocated": 55848478208,
+            "peak_reserved": 56881053696,
+            "device_used": 30639259648,
+            "sampled_device_peak_used": 76262801408,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37712048128,
+              "rss_cumulative_peak": 37712048128
+            }
+          },
+          {
+            "rank": 10,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10284518400,
+            "reserved": 11098128384,
+            "peak_allocated": 55824747520,
+            "peak_reserved": 56883150848,
+            "device_used": 30555373568,
+            "sampled_device_peak_used": 76298452992,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37587845120,
+              "rss_cumulative_peak": 37587845120
+            }
+          },
+          {
+            "rank": 11,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10288116736,
+            "reserved": 11184111616,
+            "peak_allocated": 55828198400,
+            "peak_reserved": 56937676800,
+            "device_used": 30607736832,
+            "sampled_device_peak_used": 76319358976,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37742096384,
+              "rss_cumulative_peak": 37742096384
+            }
+          },
+          {
+            "rank": 12,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10835877888,
+            "reserved": 12144607232,
+            "peak_allocated": 56370535424,
+            "peak_reserved": 57478742016,
+            "device_used": 31601852416,
+            "sampled_device_peak_used": 76894044160,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37295427584,
+              "rss_cumulative_peak": 37295427584
+            }
+          },
+          {
+            "rank": 13,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10832457216,
+            "reserved": 12106858496,
+            "peak_allocated": 56373821952,
+            "peak_reserved": 57501810688,
+            "device_used": 31530483712,
+            "sampled_device_peak_used": 76883492864,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37565382656,
+              "rss_cumulative_peak": 37565382656
+            }
+          },
+          {
+            "rank": 14,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10835916800,
+            "reserved": 12496928768,
+            "peak_allocated": 56365478400,
+            "peak_reserved": 57608765440,
+            "device_used": 31954108416,
+            "sampled_device_peak_used": 77024002048,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37032833024,
+              "rss_cumulative_peak": 37032833024
+            }
+          },
+          {
+            "rank": 15,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10832460288,
+            "reserved": 12459180032,
+            "peak_allocated": 56355976704,
+            "peak_reserved": 57541656576,
+            "device_used": 31379554304,
+            "sampled_device_peak_used": 76420087808,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37284675584,
+              "rss_cumulative_peak": 37284675584
+            }
+          },
+          {
+            "rank": 16,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114393088,
+            "reserved": 13977518080,
+            "peak_allocated": 55623386112,
+            "peak_reserved": 56650366976,
+            "device_used": 32671399936,
+            "sampled_device_peak_used": 75302305792,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37712384000,
+              "rss_cumulative_peak": 37712384000
+            }
+          },
+          {
+            "rank": 17,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114809344,
+            "reserved": 13981712384,
+            "peak_allocated": 55623587840,
+            "peak_reserved": 56654561280,
+            "device_used": 32992264192,
+            "sampled_device_peak_used": 75623170048,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37466079232,
+              "rss_cumulative_peak": 37466079232
+            }
+          },
+          {
+            "rank": 18,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114674176,
+            "reserved": 13973323776,
+            "peak_allocated": 55622966784,
+            "peak_reserved": 56660852736,
+            "device_used": 32765771776,
+            "sampled_device_peak_used": 75411357696,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37980758016,
+              "rss_cumulative_peak": 37980758016
+            }
+          },
+          {
+            "rank": 19,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113969664,
+            "reserved": 14015266816,
+            "peak_allocated": 55623021568,
+            "peak_reserved": 56644075520,
+            "device_used": 33025818624,
+            "sampled_device_peak_used": 75612684288,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37363924992,
+              "rss_cumulative_peak": 37363924992
+            }
+          },
+          {
+            "rank": 20,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10141153280,
+            "reserved": 10601103360,
+            "peak_allocated": 55649854464,
+            "peak_reserved": 56740544512,
+            "device_used": 29395648512,
+            "sampled_device_peak_used": 75493146624,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37896364032,
+              "rss_cumulative_peak": 37896364032
+            }
+          },
+          {
+            "rank": 21,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10149983232,
+            "reserved": 10542383104,
+            "peak_allocated": 55658550784,
+            "peak_reserved": 56746835968,
+            "device_used": 29555097600,
+            "sampled_device_peak_used": 75717607424,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37861195776,
+              "rss_cumulative_peak": 37861195776
+            }
+          },
+          {
+            "rank": 22,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10140903936,
+            "reserved": 10475274240,
+            "peak_allocated": 55654445056,
+            "peak_reserved": 56765710336,
+            "device_used": 29269819392,
+            "sampled_device_peak_used": 75518312448,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38037643264,
+              "rss_cumulative_peak": 38037643264
+            }
+          },
+          {
+            "rank": 23,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10145053696,
+            "reserved": 10471079936,
+            "peak_allocated": 55664577536,
+            "peak_reserved": 56740544512,
+            "device_used": 28980477952,
+            "sampled_device_peak_used": 75207999488,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37902979072,
+              "rss_cumulative_peak": 37902979072
+            }
+          },
+          {
+            "rank": 24,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10291135488,
+            "reserved": 11251220480,
+            "peak_allocated": 55847382528,
+            "peak_reserved": 56795070464,
+            "device_used": 29553000448,
+            "sampled_device_peak_used": 75054907392,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37429497856,
+              "rss_cumulative_peak": 37429497856
+            }
+          },
+          {
+            "rank": 25,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10296265216,
+            "reserved": 11062476800,
+            "peak_allocated": 55861223936,
+            "peak_reserved": 56837013504,
+            "device_used": 29213196288,
+            "sampled_device_peak_used": 74945789952,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38074605568,
+              "rss_cumulative_peak": 38074605568
+            }
+          },
+          {
+            "rank": 26,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10292148736,
+            "reserved": 10999562240,
+            "peak_allocated": 55859491328,
+            "peak_reserved": 56830722048,
+            "device_used": 29402005504,
+            "sampled_device_peak_used": 75191222272,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37915910144,
+              "rss_cumulative_peak": 37915910144
+            }
+          },
+          {
+            "rank": 27,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10293379072,
+            "reserved": 14665383936,
+            "peak_allocated": 55850336768,
+            "peak_reserved": 56809750528,
+            "device_used": 32816103424,
+            "sampled_device_peak_used": 74918526976,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37874782208,
+              "rss_cumulative_peak": 37874782208
+            }
+          },
+          {
+            "rank": 28,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10857660928,
+            "reserved": 11676942336,
+            "peak_allocated": 56426799104,
+            "peak_reserved": 57447284736,
+            "device_used": 30081482752,
+            "sampled_device_peak_used": 75809882112,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37576081408,
+              "rss_cumulative_peak": 37576081408
+            }
+          },
+          {
+            "rank": 29,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10860030976,
+            "reserved": 11869880320,
+            "peak_allocated": 56430780928,
+            "peak_reserved": 57568919552,
+            "device_used": 30020665344,
+            "sampled_device_peak_used": 75677761536,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37721128960,
+              "rss_cumulative_peak": 37721128960
+            }
+          },
+          {
+            "rank": 30,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10851943424,
+            "reserved": 12761169920,
+            "peak_allocated": 56398003200,
+            "peak_reserved": 57405341696,
+            "device_used": 31165710336,
+            "sampled_device_peak_used": 75767939072,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37576060928,
+              "rss_cumulative_peak": 37576060928
+            }
+          },
+          {
+            "rank": 31,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10859944448,
+            "reserved": 12849250304,
+            "peak_allocated": 56391471616,
+            "peak_reserved": 57415827456,
+            "device_used": 30496653312,
+            "sampled_device_peak_used": 75021287424,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37386825728,
+              "rss_cumulative_peak": 37386825728
+            }
+          }
+        ],
+        "mismatch": {
+          "policy/mismatch/pooled/selected_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_fraction": 1.0,
+          "policy/mismatch/pooled/log_ratio_mean": -0.003702584054066278,
+          "policy/mismatch/pooled/log_ratio_abs_mean": 0.03792385267550282,
+          "policy/mismatch/pooled/log_ratio_abs_p95": 0.16717252135276794,
+          "policy/mismatch/pooled/log_ratio_abs_p99": 0.3592139720916737,
+          "policy/mismatch/pooled/log_ratio_abs_p999": 0.8128860402107058,
+          "policy/mismatch/pooled/log_ratio_abs_max": 3.8808531761169434,
+          "policy/mismatch/pooled/lower_clip_pressure": 0.017489577518321,
+          "policy/mismatch/pooled/upper_clip_pressure": 0.018148777214257717,
+          "policy/mismatch/pooled/frac_outside_0_5_2": 0.001603458719846068,
+          "policy/mismatch/pooled/frac_below_1e_5": 0.0,
+          "policy/mismatch/pooled/ess_fraction": 0.9921037228522528,
+          "policy/mismatch/pooled/kl_k1": 0.003702584054066278,
+          "policy/mismatch/pooled/kl_k3": 0.0037531433573856354,
+          "policy/mismatch/pooled/chi2": 0.008061050600270958,
+          "policy/mismatch/pooled/log_ratio_mean_squared": 0.007864555069846622,
+          "policy/mismatch/pooled/missing_behavior": 0.0,
+          "policy/mismatch/pooled/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/log_ratio_abs_mean": 0.04158070024062437,
+          "policy/mismatch/pooled/pos_first256/frac_outside_0_5_2": 0.003862058203947882,
+          "policy/mismatch/pooled/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/log_ratio_abs_mean": 0.038269643923181385,
+          "policy/mismatch/pooled/pos_last256/frac_outside_0_5_2": 0.002076708417158803,
+          "policy/mismatch/pooled/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/log_ratio_abs_mean": 0.03744528426819031,
+          "policy/mismatch/pooled/pos_middle/frac_outside_0_5_2": 0.0012319316688567674,
+          "policy/mismatch/staleness0/selected_tokens": 168386.0,
+          "policy/mismatch/staleness0/finite_tokens": 168386.0,
+          "policy/mismatch/staleness0/finite_fraction": 1.0,
+          "policy/mismatch/staleness0/log_ratio_mean": -0.003702584054066278,
+          "policy/mismatch/staleness0/log_ratio_abs_mean": 0.03792385267550282,
+          "policy/mismatch/staleness0/log_ratio_abs_p95": 0.16717252135276794,
+          "policy/mismatch/staleness0/log_ratio_abs_p99": 0.3592139720916737,
+          "policy/mismatch/staleness0/log_ratio_abs_p999": 0.8128860402107058,
+          "policy/mismatch/staleness0/log_ratio_abs_max": 3.8808531761169434,
+          "policy/mismatch/staleness0/lower_clip_pressure": 0.017489577518321,
+          "policy/mismatch/staleness0/upper_clip_pressure": 0.018148777214257717,
+          "policy/mismatch/staleness0/frac_outside_0_5_2": 0.001603458719846068,
+          "policy/mismatch/staleness0/frac_below_1e_5": 0.0,
+          "policy/mismatch/staleness0/ess_fraction": 0.9921037228522528,
+          "policy/mismatch/staleness0/kl_k1": 0.003702584054066278,
+          "policy/mismatch/staleness0/kl_k3": 0.0037531433573856354,
+          "policy/mismatch/staleness0/chi2": 0.008061050600270958,
+          "policy/mismatch/staleness0/log_ratio_mean_squared": 0.007864555069846622,
+          "policy/mismatch/staleness0/missing_behavior": 0.0,
+          "policy/mismatch/staleness0/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/staleness0/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/staleness0/pos_first256/log_ratio_abs_mean": 0.04158070024062437,
+          "policy/mismatch/staleness0/pos_first256/frac_outside_0_5_2": 0.003862058203947882,
+          "policy/mismatch/staleness0/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/staleness0/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/staleness0/pos_last256/log_ratio_abs_mean": 0.038269643923181385,
+          "policy/mismatch/staleness0/pos_last256/frac_outside_0_5_2": 0.002076708417158803,
+          "policy/mismatch/staleness0/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/staleness0/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/staleness0/pos_middle/log_ratio_abs_mean": 0.03744528426819031,
+          "policy/mismatch/staleness0/pos_middle/frac_outside_0_5_2": 0.0012319316688567674,
+          "policy/mismatch/staleness1/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/missing_behavior": 0.0,
+          "policy/mismatch/staleness1/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/missing_behavior": 0.0,
+          "policy/mismatch/staleness2/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/missing_behavior": 0.0,
+          "policy/mismatch/staleness3/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/missing_behavior": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/missing_behavior": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/finite_tokens": 0.0
+        }
+      },
+      {
+        "forward_seconds": 2.2439408670179546,
+        "update_seconds": 8.974167388863862,
+        "status": {
+          "final_loss": -0.001390896737575531,
+          "policy_loss": -0.001390896737575531,
+          "policy_entropy": 1.4939245283603668,
+          "ppo_clip_ratio": 0.0,
+          "ppo_clip_ratio_low": 0.0,
+          "ppo_clip_ratio_high": 0.0,
+          "ppo_clip_pressure_low": 0.0,
+          "ppo_clip_pressure_high": 0.0,
+          "ppo_ratio_exact_unit_fraction": 0.9921875,
+          "policy_lr": 9.999999974752427e-07,
+          "log_ratio_abs_mean": 0.0,
+          "log_ratio_abs_max": 0.0,
+          "n_tokens_dp_gt_1pct": 0.0,
+          "n_tokens_dp_gt_10pct": 0.0,
+          "n_tokens_dp_gt_50pct": 0.0,
+          "log_ratio_abs_p99": 0.0,
+          "log_ratio_diagnostics_failed": 0.0,
+          "log_ratio_abs_pos00": 0.0,
+          "log_ratio_abs_pos10": 0.0,
+          "log_ratio_abs_pos20": 0.0,
+          "log_ratio_abs_pos30": 0.0,
+          "log_ratio_abs_pos40": 0.0,
+          "log_ratio_abs_pos50": 0.0,
+          "log_ratio_abs_pos60": 0.0,
+          "log_ratio_abs_pos70": 0.0,
+          "log_ratio_abs_pos80": 0.0,
+          "log_ratio_abs_pos90": 0.0,
+          "log_ratio_mean": 0.0,
+          "log_ratio_abs_p999": 0.0,
+          "log_ratio_frac_outside_0_5_2": 0.0,
+          "log_ratio_ess_fraction": 1.0,
+          "log_ratio_kl_k3": 0.0,
+          "log_ratio_chi2": 0.0,
+          "log_ratio_statistics_valid": 1.0,
+          "log_ratio_p999_valid": 1.0,
+          "log_ratio_pos_first256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_last256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_middle/log_ratio_abs_mean": 0.0,
+          "skipped_steps": 0.0,
+          "raw_grad_norm": 0.7935824990272522,
+          "policy_update_steps": 1
+        },
+        "learner_memory": [
+          {
+            "rank": 0,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113137664,
+            "reserved": 10672406528,
+            "peak_allocated": 56322507264,
+            "peak_reserved": 58076430336,
+            "device_used": 29345251328,
+            "sampled_device_peak_used": 76749275136,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37293867008,
+              "rss_cumulative_peak": 37358870528
+            }
+          },
+          {
+            "rank": 1,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113553920,
+            "reserved": 10672406528,
+            "peak_allocated": 56364191744,
+            "peak_reserved": 58059653120,
+            "device_used": 29515186176,
+            "sampled_device_peak_used": 76902432768,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37497827328,
+              "rss_cumulative_peak": 37580300288
+            }
+          },
+          {
+            "rank": 2,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113418752,
+            "reserved": 10678697984,
+            "peak_allocated": 56307521536,
+            "peak_reserved": 58074333184,
+            "device_used": 29452271616,
+            "sampled_device_peak_used": 76847906816,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37435060224,
+              "rss_cumulative_peak": 37518159872
+            }
+          },
+          {
+            "rank": 3,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10112951296,
+            "reserved": 10684989440,
+            "peak_allocated": 56313598976,
+            "peak_reserved": 58097401856,
+            "device_used": 29525671936,
+            "sampled_device_peak_used": 76938084352,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37762957312,
+              "rss_cumulative_peak": 37845524480
+            }
+          },
+          {
+            "rank": 4,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10142187520,
+            "reserved": 10445914112,
+            "peak_allocated": 56369596416,
+            "peak_reserved": 58156122112,
+            "device_used": 29221584896,
+            "sampled_device_peak_used": 76931792896,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37523234816,
+              "rss_cumulative_peak": 37607055360
+            }
+          },
+          {
+            "rank": 5,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10142011392,
+            "reserved": 10456399872,
+            "peak_allocated": 56421088768,
+            "peak_reserved": 58179190784,
+            "device_used": 29299113984,
+            "sampled_device_peak_used": 77021904896,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37453467648,
+              "rss_cumulative_peak": 37536870400
+            }
+          },
+          {
+            "rank": 6,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10139907584,
+            "reserved": 10674503680,
+            "peak_allocated": 56353430528,
+            "peak_reserved": 58558775296,
+            "device_used": 29448077312,
+            "sampled_device_peak_used": 77332348928,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37701582848,
+              "rss_cumulative_peak": 37783949312
+            }
+          },
+          {
+            "rank": 7,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10140079616,
+            "reserved": 10464788480,
+            "peak_allocated": 56354341376,
+            "peak_reserved": 58156122112,
+            "device_used": 28802088960,
+            "sampled_device_peak_used": 76493422592,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37691383808,
+              "rss_cumulative_peak": 37774827520
+            }
+          },
+          {
+            "rank": 8,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10289569792,
+            "reserved": 11182014464,
+            "peak_allocated": 56773026304,
+            "peak_reserved": 59036925952,
+            "device_used": 30538530816,
+            "sampled_device_peak_used": 78393442304,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37400539136,
+              "rss_cumulative_peak": 37483278336
+            }
+          },
+          {
+            "rank": 9,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10287776256,
+            "reserved": 11356078080,
+            "peak_allocated": 56840823808,
+            "peak_reserved": 58768490496,
+            "device_used": 30779768832,
+            "sampled_device_peak_used": 78192181248,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37752135680,
+              "rss_cumulative_peak": 37829492736
+            }
+          },
+          {
+            "rank": 10,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10284985856,
+            "reserved": 11226054656,
+            "peak_allocated": 56818380800,
+            "peak_reserved": 59317944320,
+            "device_used": 30683299840,
+            "sampled_device_peak_used": 78775189504,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37657214976,
+              "rss_cumulative_peak": 37723107328
+            }
+          },
+          {
+            "rank": 11,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10285740544,
+            "reserved": 11276386304,
+            "peak_allocated": 56743094784,
+            "peak_reserved": 58860765184,
+            "device_used": 30700011520,
+            "sampled_device_peak_used": 78284390400,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37801418752,
+              "rss_cumulative_peak": 37878083584
+            }
+          },
+          {
+            "rank": 12,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10832955904,
+            "reserved": 15464398848,
+            "peak_allocated": 57951558656,
+            "peak_reserved": 59924021248,
+            "device_used": 34921644032,
+            "sampled_device_peak_used": 79381266432,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37264576512,
+              "rss_cumulative_peak": 37397016576
+            }
+          },
+          {
+            "rank": 13,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10835217408,
+            "reserved": 11888754688,
+            "peak_allocated": 58058212352,
+            "peak_reserved": 60137930752,
+            "device_used": 31312379904,
+            "sampled_device_peak_used": 79561555968,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37603663872,
+              "rss_cumulative_peak": 37683122176
+            }
+          },
+          {
+            "rank": 14,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10833805312,
+            "reserved": 15516827648,
+            "peak_allocated": 57949327872,
+            "peak_reserved": 60496543744,
+            "device_used": 34974007296,
+            "sampled_device_peak_used": 79953723392,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37084385280,
+              "rss_cumulative_peak": 37167800320
+            }
+          },
+          {
+            "rank": 15,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10831696384,
+            "reserved": 15625879552,
+            "peak_allocated": 57957302784,
+            "peak_reserved": 59986935808,
+            "device_used": 34546253824,
+            "sampled_device_peak_used": 78907310080,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37359022080,
+              "rss_cumulative_peak": 37419700224
+            }
+          },
+          {
+            "rank": 16,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114393088,
+            "reserved": 13979615232,
+            "peak_allocated": 56357285888,
+            "peak_reserved": 58216939520,
+            "device_used": 32673497088,
+            "sampled_device_peak_used": 76910821376,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37714501632,
+              "rss_cumulative_peak": 37831241728
+            }
+          },
+          {
+            "rank": 17,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114809344,
+            "reserved": 13952352256,
+            "peak_allocated": 56442953216,
+            "peak_reserved": 58198065152,
+            "device_used": 32962904064,
+            "sampled_device_peak_used": 77208616960,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37608042496,
+              "rss_cumulative_peak": 37670727680
+            }
+          },
+          {
+            "rank": 18,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114674176,
+            "reserved": 13952352256,
+            "peak_allocated": 56331557376,
+            "peak_reserved": 58204356608,
+            "device_used": 32744800256,
+            "sampled_device_peak_used": 76996804608,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38033420288,
+              "rss_cumulative_peak": 38116024320
+            }
+          },
+          {
+            "rank": 19,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114204672,
+            "reserved": 13954449408,
+            "peak_allocated": 56335309824,
+            "peak_reserved": 58227425280,
+            "device_used": 32965001216,
+            "sampled_device_peak_used": 77237977088,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37552160768,
+              "rss_cumulative_peak": 37615890432
+            }
+          },
+          {
+            "rank": 20,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10144867840,
+            "reserved": 10586423296,
+            "peak_allocated": 56438340096,
+            "peak_reserved": 58363740160,
+            "device_used": 29380968448,
+            "sampled_device_peak_used": 77158285312,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38084304896,
+              "rss_cumulative_peak": 38150131712
+            }
+          },
+          {
+            "rank": 21,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10151702528,
+            "reserved": 10586423296,
+            "peak_allocated": 56513115136,
+            "peak_reserved": 58355351552,
+            "device_used": 29599137792,
+            "sampled_device_peak_used": 77368066048,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37986258944,
+              "rss_cumulative_peak": 38048354304
+            }
+          },
+          {
+            "rank": 22,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10141296640,
+            "reserved": 10550771712,
+            "peak_allocated": 56413143040,
+            "peak_reserved": 58370031616,
+            "device_used": 29345316864,
+            "sampled_device_peak_used": 77164576768,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38172975104,
+              "rss_cumulative_peak": 38256627712
+            }
+          },
+          {
+            "rank": 23,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10145316864,
+            "reserved": 10573840384,
+            "peak_allocated": 56417794560,
+            "peak_reserved": 58393100288,
+            "device_used": 29083238400,
+            "sampled_device_peak_used": 76902498304,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37978427392,
+              "rss_cumulative_peak": 38040059904
+            }
+          },
+          {
+            "rank": 24,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10291639808,
+            "reserved": 14229176320,
+            "peak_allocated": 56836827136,
+            "peak_reserved": 60662218752,
+            "device_used": 32530956288,
+            "sampled_device_peak_used": 78963998720,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37492580352,
+              "rss_cumulative_peak": 37575073792
+            }
+          },
+          {
+            "rank": 25,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10293345792,
+            "reserved": 11121197056,
+            "peak_allocated": 57005266432,
+            "peak_reserved": 60796436480,
+            "device_used": 29271916544,
+            "sampled_device_peak_used": 78947155968,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38109585408,
+              "rss_cumulative_peak": 38209126400
+            }
+          },
+          {
+            "rank": 26,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10292042240,
+            "reserved": 11051991040,
+            "peak_allocated": 56778702848,
+            "peak_reserved": 60152610816,
+            "device_used": 29454434304,
+            "sampled_device_peak_used": 78555054080,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37984288768,
+              "rss_cumulative_peak": 38050115584
+            }
+          },
+          {
+            "rank": 27,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10291423232,
+            "reserved": 11452547072,
+            "peak_allocated": 56774682624,
+            "peak_reserved": 60397977600,
+            "device_used": 29603266560,
+            "sampled_device_peak_used": 78548697088,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37960941568,
+              "rss_cumulative_peak": 38026756096
+            }
+          },
+          {
+            "rank": 28,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10853408256,
+            "reserved": 12591300608,
+            "peak_allocated": 59623059968,
+            "peak_reserved": 66798485504,
+            "device_used": 30993743872,
+            "sampled_device_peak_used": 85203025920,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37661519872,
+              "rss_cumulative_peak": 37727952896
+            }
+          },
+          {
+            "rank": 29,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10855752704,
+            "reserved": 12643729408,
+            "peak_allocated": 59803025920,
+            "peak_reserved": 66754445312,
+            "device_used": 30794514432,
+            "sampled_device_peak_used": 82657083392,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37793751040,
+              "rss_cumulative_peak": 37873061888
+            }
+          },
+          {
+            "rank": 30,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10853905408,
+            "reserved": 17328766976,
+            "peak_allocated": 59526811136,
+            "peak_reserved": 64405635072,
+            "device_used": 35733307392,
+            "sampled_device_peak_used": 82810175488,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37666476032,
+              "rss_cumulative_peak": 37728088064
+            }
+          },
+          {
+            "rank": 31,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10855322112,
+            "reserved": 12847153152,
+            "peak_allocated": 59566208000,
+            "peak_reserved": 64321748992,
+            "device_used": 30494556160,
+            "sampled_device_peak_used": 81969152000,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37455667200,
+              "rss_cumulative_peak": 37521498112
+            }
+          }
+        ],
+        "mismatch": {
+          "policy/mismatch/pooled/selected_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_fraction": 1.0,
+          "policy/mismatch/pooled/log_ratio_mean": -0.003751779341237301,
+          "policy/mismatch/pooled/log_ratio_abs_mean": 0.038102017398162887,
+          "policy/mismatch/pooled/log_ratio_abs_p95": 0.16902011632919312,
+          "policy/mismatch/pooled/log_ratio_abs_p99": 0.36415539979934686,
+          "policy/mismatch/pooled/log_ratio_abs_p999": 0.8310915136337276,
+          "policy/mismatch/pooled/log_ratio_abs_max": 3.5082350075244904,
+          "policy/mismatch/pooled/lower_clip_pressure": 0.01744206763032556,
+          "policy/mismatch/pooled/upper_clip_pressure": 0.01900989393417505,
+          "policy/mismatch/pooled/frac_outside_0_5_2": 0.0017341109118335254,
+          "policy/mismatch/pooled/frac_below_1e_5": 0.0,
+          "policy/mismatch/pooled/ess_fraction": 0.9921585420974575,
+          "policy/mismatch/pooled/kl_k1": 0.003751779341237301,
+          "policy/mismatch/pooled/kl_k3": 0.003788914419319056,
+          "policy/mismatch/pooled/chi2": 0.00797829086970947,
+          "policy/mismatch/pooled/log_ratio_mean_squared": 0.007967569572777307,
+          "policy/mismatch/pooled/missing_behavior": 0.0,
+          "policy/mismatch/pooled/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/log_ratio_abs_mean": 0.04161857863590546,
+          "policy/mismatch/pooled/pos_first256/frac_outside_0_5_2": 0.0035889833814465163,
+          "policy/mismatch/pooled/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/log_ratio_abs_mean": 0.03870444817525745,
+          "policy/mismatch/pooled/pos_last256/frac_outside_0_5_2": 0.0021740541242131223,
+          "policy/mismatch/pooled/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/log_ratio_abs_mean": 0.03760099784692528,
+          "policy/mismatch/pooled/pos_middle/frac_outside_0_5_2": 0.0014126149802890934,
+          "policy/mismatch/staleness0/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/finite_fraction": 1.0,
+          "policy/mismatch/staleness0/log_ratio_mean": -0.003702584054066278,
+          "policy/mismatch/staleness0/log_ratio_abs_mean": 0.03792385267550282,
+          "policy/mismatch/staleness0/log_ratio_abs_p95": 0.16717252135276794,
+          "policy/mismatch/staleness0/log_ratio_abs_p99": 0.3592139720916737,
+          "policy/mismatch/staleness0/log_ratio_abs_p999": 0.8128860402107058,
+          "policy/mismatch/staleness0/log_ratio_abs_max": 3.8808531761169434,
+          "policy/mismatch/staleness0/lower_clip_pressure": 0.017489577518321,
+          "policy/mismatch/staleness0/upper_clip_pressure": 0.018148777214257717,
+          "policy/mismatch/staleness0/frac_outside_0_5_2": 0.001603458719846068,
+          "policy/mismatch/staleness0/frac_below_1e_5": 0.0,
+          "policy/mismatch/staleness0/ess_fraction": 0.9921037228522528,
+          "policy/mismatch/staleness0/kl_k1": 0.003702584054066278,
+          "policy/mismatch/staleness0/kl_k3": 0.0037531433573856354,
+          "policy/mismatch/staleness0/chi2": 0.008061050600270958,
+          "policy/mismatch/staleness0/log_ratio_mean_squared": 0.007864555069846622,
+          "policy/mismatch/staleness0/missing_behavior": 0.0,
+          "policy/mismatch/staleness0/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_first256/log_ratio_abs_mean": 0.04158070024062437,
+          "policy/mismatch/staleness0/pos_first256/frac_outside_0_5_2": 0.003862058203947882,
+          "policy/mismatch/staleness0/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_last256/log_ratio_abs_mean": 0.038269643923181385,
+          "policy/mismatch/staleness0/pos_last256/frac_outside_0_5_2": 0.002076708417158803,
+          "policy/mismatch/staleness0/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_middle/log_ratio_abs_mean": 0.03744528426819031,
+          "policy/mismatch/staleness0/pos_middle/frac_outside_0_5_2": 0.0012319316688567674,
+          "policy/mismatch/staleness1/selected_tokens": 168386.0,
+          "policy/mismatch/staleness1/finite_tokens": 168386.0,
+          "policy/mismatch/staleness1/missing_behavior": 0.0,
+          "policy/mismatch/staleness1/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/staleness1/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/staleness1/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/staleness1/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/staleness1/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/staleness1/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/staleness2/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/missing_behavior": 0.0,
+          "policy/mismatch/staleness2/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness2/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/missing_behavior": 0.0,
+          "policy/mismatch/staleness3/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/missing_behavior": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/missing_behavior": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/finite_fraction": 1.0,
+          "policy/mismatch/staleness1/log_ratio_mean": -0.003751779341237301,
+          "policy/mismatch/staleness1/log_ratio_abs_mean": 0.03810201739816292,
+          "policy/mismatch/staleness1/frac_outside_0_5_2": 0.0017341109118335254,
+          "policy/mismatch/staleness1/pos_first256/log_ratio_abs_mean": 0.04161857863590546,
+          "policy/mismatch/staleness1/pos_first256/frac_outside_0_5_2": 0.0035889833814465163,
+          "policy/mismatch/staleness1/pos_last256/log_ratio_abs_mean": 0.03870444817525745,
+          "policy/mismatch/staleness1/pos_last256/frac_outside_0_5_2": 0.0021740541242131223,
+          "policy/mismatch/staleness1/pos_middle/log_ratio_abs_mean": 0.03760099784692528,
+          "policy/mismatch/staleness1/pos_middle/frac_outside_0_5_2": 0.0014126149802890934
+        }
+      },
+      {
+        "forward_seconds": 2.2124998751096427,
+        "update_seconds": 8.454192695906386,
+        "status": {
+          "final_loss": -0.00608941912651062,
+          "policy_loss": -0.00608941912651062,
+          "policy_entropy": 1.49481713026762,
+          "ppo_clip_ratio": 0.0,
+          "ppo_clip_ratio_low": 0.0,
+          "ppo_clip_ratio_high": 0.0,
+          "ppo_clip_pressure_low": 0.0,
+          "ppo_clip_pressure_high": 0.0,
+          "ppo_ratio_exact_unit_fraction": 0.9921875,
+          "policy_lr": 9.999999974752427e-07,
+          "log_ratio_abs_mean": 0.0,
+          "log_ratio_abs_max": 0.0,
+          "n_tokens_dp_gt_1pct": 0.0,
+          "n_tokens_dp_gt_10pct": 0.0,
+          "n_tokens_dp_gt_50pct": 0.0,
+          "log_ratio_abs_p99": 0.0,
+          "log_ratio_diagnostics_failed": 0.0,
+          "log_ratio_abs_pos00": 0.0,
+          "log_ratio_abs_pos10": 0.0,
+          "log_ratio_abs_pos20": 0.0,
+          "log_ratio_abs_pos30": 0.0,
+          "log_ratio_abs_pos40": 0.0,
+          "log_ratio_abs_pos50": 0.0,
+          "log_ratio_abs_pos60": 0.0,
+          "log_ratio_abs_pos70": 0.0,
+          "log_ratio_abs_pos80": 0.0,
+          "log_ratio_abs_pos90": 0.0,
+          "log_ratio_mean": 0.0,
+          "log_ratio_abs_p999": 0.0,
+          "log_ratio_frac_outside_0_5_2": 0.0,
+          "log_ratio_ess_fraction": 1.0,
+          "log_ratio_kl_k3": 0.0,
+          "log_ratio_chi2": 0.0,
+          "log_ratio_statistics_valid": 1.0,
+          "log_ratio_p999_valid": 1.0,
+          "log_ratio_pos_first256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_last256/log_ratio_abs_mean": 0.0,
+          "log_ratio_pos_middle/log_ratio_abs_mean": 0.0,
+          "skipped_steps": 0.0,
+          "raw_grad_norm": 0.6890928745269775,
+          "policy_update_steps": 1
+        },
+        "learner_memory": [
+          {
+            "rank": 0,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113137664,
+            "reserved": 10672406528,
+            "peak_allocated": 56321918464,
+            "peak_reserved": 58074333184,
+            "device_used": 29345251328,
+            "sampled_device_peak_used": 76749275136,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37329559552,
+              "rss_cumulative_peak": 37361537024
+            }
+          },
+          {
+            "rank": 1,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113553920,
+            "reserved": 10672406528,
+            "peak_allocated": 56366450688,
+            "peak_reserved": 58059653120,
+            "device_used": 29515186176,
+            "sampled_device_peak_used": 76902432768,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37548523520,
+              "rss_cumulative_peak": 37582045184
+            }
+          },
+          {
+            "rank": 2,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10113418752,
+            "reserved": 10678697984,
+            "peak_allocated": 56307521536,
+            "peak_reserved": 58076430336,
+            "device_used": 29452271616,
+            "sampled_device_peak_used": 76850003968,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37485391872,
+              "rss_cumulative_peak": 37518938112
+            }
+          },
+          {
+            "rank": 3,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10112951296,
+            "reserved": 10687086592,
+            "peak_allocated": 56313598976,
+            "peak_reserved": 58101596160,
+            "device_used": 29527769088,
+            "sampled_device_peak_used": 76942278656,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37811712000,
+              "rss_cumulative_peak": 37845786624
+            }
+          },
+          {
+            "rank": 4,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10145139712,
+            "reserved": 10462691328,
+            "peak_allocated": 56370784256,
+            "peak_reserved": 58156122112,
+            "device_used": 29238362112,
+            "sampled_device_peak_used": 76931792896,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37574496256,
+              "rss_cumulative_peak": 37608189952
+            }
+          },
+          {
+            "rank": 5,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10146874880,
+            "reserved": 10481565696,
+            "peak_allocated": 56419964928,
+            "peak_reserved": 58179190784,
+            "device_used": 29324279808,
+            "sampled_device_peak_used": 77021904896,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37502255104,
+              "rss_cumulative_peak": 37536870400
+            }
+          },
+          {
+            "rank": 6,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10139963904,
+            "reserved": 10443816960,
+            "peak_allocated": 56356743168,
+            "peak_reserved": 58137247744,
+            "device_used": 29217390592,
+            "sampled_device_peak_used": 77332348928,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37702848512,
+              "rss_cumulative_peak": 37787197440
+            }
+          },
+          {
+            "rank": 7,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10140722176,
+            "reserved": 10653532160,
+            "peak_allocated": 56355303936,
+            "peak_reserved": 58575552512,
+            "device_used": 28990832640,
+            "sampled_device_peak_used": 76912852992,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37739925504,
+              "rss_cumulative_peak": 37774827520
+            }
+          },
+          {
+            "rank": 8,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10284928512,
+            "reserved": 11125391360,
+            "peak_allocated": 56767284224,
+            "peak_reserved": 59039023104,
+            "device_used": 30481907712,
+            "sampled_device_peak_used": 78395539456,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37401583616,
+              "rss_cumulative_peak": 37485469696
+            }
+          },
+          {
+            "rank": 9,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10287611904,
+            "reserved": 14661189632,
+            "peak_allocated": 56843949568,
+            "peak_reserved": 59240349696,
+            "device_used": 34084880384,
+            "sampled_device_peak_used": 78664040448,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37755162624,
+              "rss_cumulative_peak": 37838671872
+            }
+          },
+          {
+            "rank": 10,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10284363264,
+            "reserved": 11163140096,
+            "peak_allocated": 56819681280,
+            "peak_reserved": 59322138624,
+            "device_used": 30620385280,
+            "sampled_device_peak_used": 78779383808,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37692284928,
+              "rss_cumulative_peak": 37725368320
+            }
+          },
+          {
+            "rank": 11,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10282178560,
+            "reserved": 11079254016,
+            "peak_allocated": 56741804032,
+            "peak_reserved": 58860765184,
+            "device_used": 30502879232,
+            "sampled_device_peak_used": 78284390400,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37854355456,
+              "rss_cumulative_peak": 37886447616
+            }
+          },
+          {
+            "rank": 12,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10834887168,
+            "reserved": 15229517824,
+            "peak_allocated": 57950662656,
+            "peak_reserved": 60343451648,
+            "device_used": 34686763008,
+            "sampled_device_peak_used": 79800696832,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37265956864,
+              "rss_cumulative_peak": 37398065152
+            }
+          },
+          {
+            "rank": 13,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10836244992,
+            "reserved": 11907629056,
+            "peak_allocated": 58061549568,
+            "peak_reserved": 60536389632,
+            "device_used": 31331254272,
+            "sampled_device_peak_used": 79960014848,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37655191552,
+              "rss_cumulative_peak": 37688750080
+            }
+          },
+          {
+            "rank": 14,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10830806016,
+            "reserved": 12369002496,
+            "peak_allocated": 57954781696,
+            "peak_reserved": 60490252288,
+            "device_used": 31826182144,
+            "sampled_device_peak_used": 79953723392,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37134712832,
+              "rss_cumulative_peak": 37168263168
+            }
+          },
+          {
+            "rank": 15,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10830808064,
+            "reserved": 15835594752,
+            "peak_allocated": 57951755264,
+            "peak_reserved": 59963867136,
+            "device_used": 34755969024,
+            "sampled_device_peak_used": 78907310080,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37410164736,
+              "rss_cumulative_peak": 37442912256
+            }
+          },
+          {
+            "rank": 16,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114393088,
+            "reserved": 13979615232,
+            "peak_allocated": 56357347328,
+            "peak_reserved": 58216939520,
+            "device_used": 32673497088,
+            "sampled_device_peak_used": 76910821376,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37733695488,
+              "rss_cumulative_peak": 37849841664
+            }
+          },
+          {
+            "rank": 17,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10115126784,
+            "reserved": 10670309376,
+            "peak_allocated": 56441985536,
+            "peak_reserved": 58195968000,
+            "device_used": 29680861184,
+            "sampled_device_peak_used": 77208616960,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37676519424,
+              "rss_cumulative_peak": 37757980672
+            }
+          },
+          {
+            "rank": 18,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114674176,
+            "reserved": 13960740864,
+            "peak_allocated": 56331557376,
+            "peak_reserved": 58200162304,
+            "device_used": 32753188864,
+            "sampled_device_peak_used": 76996804608,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38099443712,
+              "rss_cumulative_peak": 38131978240
+            }
+          },
+          {
+            "rank": 19,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10114204672,
+            "reserved": 13956546560,
+            "peak_allocated": 56335309824,
+            "peak_reserved": 58229522432,
+            "device_used": 32967098368,
+            "sampled_device_peak_used": 77240074240,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37670653952,
+              "rss_cumulative_peak": 37704200192
+            }
+          },
+          {
+            "rank": 20,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10144867328,
+            "reserved": 10664017920,
+            "peak_allocated": 56439651840,
+            "peak_reserved": 58353254400,
+            "device_used": 29458563072,
+            "sampled_device_peak_used": 77158285312,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38135566336,
+              "rss_cumulative_peak": 38218838016
+            }
+          },
+          {
+            "rank": 21,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10153446400,
+            "reserved": 10586423296,
+            "peak_allocated": 56514003456,
+            "peak_reserved": 58357448704,
+            "device_used": 29599137792,
+            "sampled_device_peak_used": 77370163200,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38005268480,
+              "rss_cumulative_peak": 38070898688
+            }
+          },
+          {
+            "rank": 22,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10141065216,
+            "reserved": 10573840384,
+            "peak_allocated": 56407752192,
+            "peak_reserved": 58367934464,
+            "device_used": 29368385536,
+            "sampled_device_peak_used": 77164576768,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38239510528,
+              "rss_cumulative_peak": 38273073152
+            }
+          },
+          {
+            "rank": 23,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10149223424,
+            "reserved": 10655629312,
+            "peak_allocated": 56418001408,
+            "peak_reserved": 58367934464,
+            "device_used": 29165027328,
+            "sampled_device_peak_used": 76902498304,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38033137664,
+              "rss_cumulative_peak": 38098268160
+            }
+          },
+          {
+            "rank": 24,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10290618368,
+            "reserved": 11133779968,
+            "peak_allocated": 56836120064,
+            "peak_reserved": 60668510208,
+            "device_used": 29435559936,
+            "sampled_device_peak_used": 78970290176,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37543464960,
+              "rss_cumulative_peak": 37577023488
+            }
+          },
+          {
+            "rank": 25,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10292210176,
+            "reserved": 11054088192,
+            "peak_allocated": 56997596672,
+            "peak_reserved": 60800630784,
+            "device_used": 29204807680,
+            "sampled_device_peak_used": 78951350272,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38114754560,
+              "rss_cumulative_peak": 38210605056
+            }
+          },
+          {
+            "rank": 26,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10292063744,
+            "reserved": 11079254016,
+            "peak_allocated": 56780929024,
+            "peak_reserved": 60228108288,
+            "device_used": 29481697280,
+            "sampled_device_peak_used": 78630551552,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 38050439168,
+              "rss_cumulative_peak": 38083436544
+            }
+          },
+          {
+            "rank": 27,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10289795584,
+            "reserved": 14577303552,
+            "peak_allocated": 56778485248,
+            "peak_reserved": 60397977600,
+            "device_used": 32728023040,
+            "sampled_device_peak_used": 78548697088,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37999812608,
+              "rss_cumulative_peak": 38033313792
+            }
+          },
+          {
+            "rank": 28,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10856213504,
+            "reserved": 12467568640,
+            "peak_allocated": 59621694976,
+            "peak_reserved": 66800582656,
+            "device_used": 30870011904,
+            "sampled_device_peak_used": 85203025920,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37668507648,
+              "rss_cumulative_peak": 37727952896
+            }
+          },
+          {
+            "rank": 29,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10856344064,
+            "reserved": 12660506624,
+            "peak_allocated": 59801056768,
+            "peak_reserved": 66894954496,
+            "device_used": 30811291648,
+            "sampled_device_peak_used": 82797592576,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37867106304,
+              "rss_cumulative_peak": 37899669504
+            }
+          },
+          {
+            "rank": 30,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10855234560,
+            "reserved": 12849250304,
+            "peak_allocated": 59528727552,
+            "peak_reserved": 64420315136,
+            "device_used": 31253790720,
+            "sampled_device_peak_used": 82824855552,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37685665792,
+              "rss_cumulative_peak": 37750382592
+            }
+          },
+          {
+            "rank": 31,
+            "device": "NVIDIA H100 80GB HBM3",
+            "allocated": 10853291520,
+            "reserved": 12775849984,
+            "peak_allocated": 59564514304,
+            "peak_reserved": 64325943296,
+            "device_used": 30423252992,
+            "sampled_device_peak_used": 81973346304,
+            "device_sampling_interval": 0.1,
+            "host": {
+              "rss_current": 37511229440,
+              "rss_cumulative_peak": 37544792064
+            }
+          }
+        ],
+        "mismatch": {
+          "policy/mismatch/pooled/selected_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_tokens": 168386.0,
+          "policy/mismatch/pooled/finite_fraction": 1.0,
+          "policy/mismatch/pooled/log_ratio_mean": -0.003659437994314394,
+          "policy/mismatch/pooled/log_ratio_abs_mean": 0.03934832240553873,
+          "policy/mismatch/pooled/log_ratio_abs_p95": 0.17452901601791382,
+          "policy/mismatch/pooled/log_ratio_abs_p99": 0.3780989706516238,
+          "policy/mismatch/pooled/log_ratio_abs_p999": 0.8419969028234452,
+          "policy/mismatch/pooled/log_ratio_abs_max": 2.963761568069458,
+          "policy/mismatch/pooled/lower_clip_pressure": 0.018356632974237765,
+          "policy/mismatch/pooled/upper_clip_pressure": 0.020120437566068437,
+          "policy/mismatch/pooled/frac_outside_0_5_2": 0.001852885631822123,
+          "policy/mismatch/pooled/frac_below_1e_5": 0.0,
+          "policy/mismatch/pooled/ess_fraction": 0.9911743663457186,
+          "policy/mismatch/pooled/kl_k1": 0.003659437994314394,
+          "policy/mismatch/pooled/kl_k3": 0.004069848589052905,
+          "policy/mismatch/pooled/chi2": 0.00973251892719973,
+          "policy/mismatch/pooled/log_ratio_mean_squared": 0.008386773001264312,
+          "policy/mismatch/pooled/missing_behavior": 0.0,
+          "policy/mismatch/pooled/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/pooled/pos_first256/log_ratio_abs_mean": 0.04286583653137641,
+          "policy/mismatch/pooled/pos_first256/frac_outside_0_5_2": 0.004096122337520481,
+          "policy/mismatch/pooled/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/pooled/pos_last256/log_ratio_abs_mean": 0.04033466505439533,
+          "policy/mismatch/pooled/pos_last256/frac_outside_0_5_2": 0.002466091245376079,
+          "policy/mismatch/pooled/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/pooled/pos_middle/log_ratio_abs_mean": 0.03881278059825272,
+          "policy/mismatch/pooled/pos_middle/frac_outside_0_5_2": 0.0014454664914586072,
+          "policy/mismatch/staleness0/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/finite_fraction": 1.0,
+          "policy/mismatch/staleness0/log_ratio_mean": -0.003702584054066278,
+          "policy/mismatch/staleness0/log_ratio_abs_mean": 0.03792385267550282,
+          "policy/mismatch/staleness0/log_ratio_abs_p95": 0.16717252135276794,
+          "policy/mismatch/staleness0/log_ratio_abs_p99": 0.3592139720916737,
+          "policy/mismatch/staleness0/log_ratio_abs_p999": 0.8128860402107058,
+          "policy/mismatch/staleness0/log_ratio_abs_max": 3.8808531761169434,
+          "policy/mismatch/staleness0/lower_clip_pressure": 0.017489577518321,
+          "policy/mismatch/staleness0/upper_clip_pressure": 0.018148777214257717,
+          "policy/mismatch/staleness0/frac_outside_0_5_2": 0.001603458719846068,
+          "policy/mismatch/staleness0/frac_below_1e_5": 0.0,
+          "policy/mismatch/staleness0/ess_fraction": 0.9921037228522528,
+          "policy/mismatch/staleness0/kl_k1": 0.003702584054066278,
+          "policy/mismatch/staleness0/kl_k3": 0.0037531433573856354,
+          "policy/mismatch/staleness0/chi2": 0.008061050600270958,
+          "policy/mismatch/staleness0/log_ratio_mean_squared": 0.007864555069846622,
+          "policy/mismatch/staleness0/missing_behavior": 0.0,
+          "policy/mismatch/staleness0/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_first256/log_ratio_abs_mean": 0.04158070024062437,
+          "policy/mismatch/staleness0/pos_first256/frac_outside_0_5_2": 0.003862058203947882,
+          "policy/mismatch/staleness0/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_last256/log_ratio_abs_mean": 0.038269643923181385,
+          "policy/mismatch/staleness0/pos_last256/frac_outside_0_5_2": 0.002076708417158803,
+          "policy/mismatch/staleness0/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness0/pos_middle/log_ratio_abs_mean": 0.03744528426819031,
+          "policy/mismatch/staleness0/pos_middle/frac_outside_0_5_2": 0.0012319316688567674,
+          "policy/mismatch/staleness1/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/missing_behavior": 0.0,
+          "policy/mismatch/staleness1/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness1/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness2/selected_tokens": 168386.0,
+          "policy/mismatch/staleness2/finite_tokens": 168386.0,
+          "policy/mismatch/staleness2/missing_behavior": 0.0,
+          "policy/mismatch/staleness2/pos_first256/selected_tokens": 25634.0,
+          "policy/mismatch/staleness2/pos_first256/finite_tokens": 25634.0,
+          "policy/mismatch/staleness2/pos_last256/selected_tokens": 30818.0,
+          "policy/mismatch/staleness2/pos_last256/finite_tokens": 30818.0,
+          "policy/mismatch/staleness2/pos_middle/selected_tokens": 121760.0,
+          "policy/mismatch/staleness2/pos_middle/finite_tokens": 121760.0,
+          "policy/mismatch/staleness3/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/missing_behavior": 0.0,
+          "policy/mismatch/staleness3/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness3/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/missing_behavior": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness4-7/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/missing_behavior": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_first256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_last256/finite_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/selected_tokens": 0.0,
+          "policy/mismatch/staleness8+/pos_middle/finite_tokens": 0.0,
+          "policy/mismatch/staleness1/finite_fraction": 1.0,
+          "policy/mismatch/staleness1/log_ratio_mean": -0.003751779341237301,
+          "policy/mismatch/staleness1/log_ratio_abs_mean": 0.03810201739816292,
+          "policy/mismatch/staleness1/frac_outside_0_5_2": 0.0017341109118335254,
+          "policy/mismatch/staleness1/pos_first256/log_ratio_abs_mean": 0.04161857863590546,
+          "policy/mismatch/staleness1/pos_first256/frac_outside_0_5_2": 0.0035889833814465163,
+          "policy/mismatch/staleness1/pos_last256/log_ratio_abs_mean": 0.03870444817525745,
+          "policy/mismatch/staleness1/pos_last256/frac_outside_0_5_2": 0.0021740541242131223,
+          "policy/mismatch/staleness1/pos_middle/log_ratio_abs_mean": 0.03760099784692528,
+          "policy/mismatch/staleness1/pos_middle/frac_outside_0_5_2": 0.0014126149802890934,
+          "policy/mismatch/staleness2/finite_fraction": 1.0,
+          "policy/mismatch/staleness2/log_ratio_mean": -0.003659437994314393,
+          "policy/mismatch/staleness2/log_ratio_abs_mean": 0.03934832240553876,
+          "policy/mismatch/staleness2/frac_outside_0_5_2": 0.001852885631822123,
+          "policy/mismatch/staleness2/pos_first256/log_ratio_abs_mean": 0.04286583653137641,
+          "policy/mismatch/staleness2/pos_first256/frac_outside_0_5_2": 0.004096122337520481,
+          "policy/mismatch/staleness2/pos_last256/log_ratio_abs_mean": 0.04033466505439533,
+          "policy/mismatch/staleness2/pos_last256/frac_outside_0_5_2": 0.002466091245376079,
+          "policy/mismatch/staleness2/pos_middle/log_ratio_abs_mean": 0.03881278059825272,
+          "policy/mismatch/staleness2/pos_middle/frac_outside_0_5_2": 0.0014454664914586072
+        }
+      }
+    ],
+    "trainer_weight_drift_on_identical_tokens": {
+      "abs_mean": 0.038421161472797394,
+      "abs_max": 3.5314993858337402,
+      "changed_fraction": 0.9956647157669067
+    },
+    "native_initial_sync_seconds": 4.975800083950162,
+    "prefix_replay": {
+      "prefixes": 24,
+      "prefix_ids_sha256": "64541cdc3c30eea2635d014bb5ff7d7625c6cc03bc2776d3dd02d9bca5ec3207",
+      "support_ids_sha256": "c7e69ba8f8b2b0de006a8ecbdb1150665676b17f7dccb03d5c9692acbbe8b49f",
+      "temperature": 1.0,
+      "same_engine_decode_prefill_gap_abs_mean": 0.23965492489490092,
+      "same_engine_decode_prefill_gap_abs_max": 2.0457754135131836,
+      "one_token_shift_control_gap_abs_mean": 6.634541502776785,
+      "policy_steps": [
+        1
+      ]
+    },
+    "temperature_0_7_prefix_replay": {
+      "prefixes": 24,
+      "prefix_ids_sha256": "b8a6bec6c76e839eba30ad45e545692c237f44b7424a4f045cbf151d6bbf070c",
+      "support_ids_sha256": "16f15f5f7ebe4c0783b87d128d4dc64b869b329b0d1831d8c15b08e6863c1c18",
+      "temperature": 0.7,
+      "same_engine_decode_prefill_gap_abs_mean": 0.30887489747843294,
+      "same_engine_decode_prefill_gap_abs_max": 3.4409408569335938,
+      "one_token_shift_control_gap_abs_mean": 10.865610394349483,
+      "policy_steps": [
+        1
+      ]
+    },
+    "stale_prefix_replay": {
+      "prefixes": 24,
+      "prefix_ids_sha256": "64541cdc3c30eea2635d014bb5ff7d7625c6cc03bc2776d3dd02d9bca5ec3207",
+      "support_ids_sha256": "c7e69ba8f8b2b0de006a8ecbdb1150665676b17f7dccb03d5c9692acbbe8b49f",
+      "temperature": 1.0,
+      "same_engine_decode_prefill_gap_abs_mean": 0.26163595916738736,
+      "same_engine_decode_prefill_gap_abs_max": 3.1235361099243164,
+      "one_token_shift_control_gap_abs_mean": 6.634541502776785,
+      "policy_steps": [
+        1
+      ]
+    }
+  }
+}

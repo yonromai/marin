@@ -1,0 +1,82 @@
+{
+  "recorded_at_utc": "2026-10-19T02:49:02.065598+00:00",
+  "qualified_product": "f6b6ccb1d763486af190da0ff7005ed169285cdc",
+  "qualified_runtime": "021666fc1b04d9e425321a6279ca19849b4da90f",
+  "baseline_product": "325f819f94c3ed14a550ef5bc502fb6ff2d5b5d8",
+  "baseline_runtime": "7aad2b37e134a26b1eb78a4375c1f400c25a3661",
+  "gpu": {
+    "qwen-a2-east": {
+      "report": "../reports/sc-performance-qwen-a2-east-01a146a3.json.gz",
+      "applied_updates": 19,
+      "exact_raw_and_native_chat_AB_temperatures": [
+        1.0,
+        0.7
+      ],
+      "actual_head_decode_suppression": true
+    },
+    "snowball-baseline-a2": {
+      "report": "../reports/sc-performance-snowball-baseline-a2-01a146a3.json.gz",
+      "applied_updates": 21,
+      "native_windows": 18
+    },
+    "snowball-candidate-a3": {
+      "report": "../reports/sc-performance-snowball-candidate-a3-01a146a3.json.zip",
+      "applied_updates": 39,
+      "native_timing_windows": 30,
+      "natural_windows": 6,
+      "repeated_periodic_observations": 3,
+      "temperatures": [
+        1.0,
+        0.7
+      ],
+      "compact_native_temperature": 0.7
+    }
+  },
+  "recent_commands": [
+    "uv run --frozen --no-sync pytest skyrl-train/tests/cpu/trajectory_runners/test_model_clients.py skyrl-train/tests/cpu/inf_engines/test_inference_engine_client.py skyrl-train/tests/cpu/inf_engines/test_response_topk.py skyrl-train/tests/cpu/inf_engines/vllm/test_openai_kwargs.py",
+    "uv run --frozen --no-sync pytest skyrl-train/tests/cpu/rollouts/test_training_context.py::test_periodic_probe_dispatch_is_bounded_across_many_groups_and_repeated_steps skyrl-train/tests/cpu/objective/test_score_centering.py"
+  ],
+  "local_log_receipts": {
+    "broad-cpu-tests.log": {
+      "sha256": "370e0b8a0051801cd3163f1c329ac47a30c9daf69674992663298a9e7cba6b20",
+      "outcome": "2708 passed,4 skipped,15 deselected;4 fixture failures repaired in the affected suite"
+    },
+    "affected-tests.log": {
+      "sha256": "d45b82fe58b95bd0d1a213c040bcdad6cd21d49fb1d343e0d32e14f5706ccd1f",
+      "outcome": "261 passed,3 skipped after fixture repairs"
+    },
+    "values-only-sort-tests.log": {
+      "sha256": "c29ddec08e995095f37c67fb2070e1c25838618008573a17a7c952666863a2e2",
+      "outcome": "384 objective/causal value and gradient tests passed; reused unchanged numerical paths"
+    },
+    "native-chat-client-tests.log": {
+      "sha256": "1b06745d01c6b115cba5d09a1ef9ac3bbd7891f979da5ddafb89a734629c16ba",
+      "outcome": "119 passed, including13 response-topk/parser cases"
+    },
+    "native-chat-heads-cpu-proof.log": {
+      "sha256": "d7fb31ead0268bc57a6dd22441096043bfaa971ec321d87d914ee09a608773b3",
+      "outcome": "Pinned formatter/request-ID CPU contract cases passed; GPU I/O replaced at boundary"
+    },
+    "final-cadence-and-probe-tests.log": {
+      "sha256": "831bbdb80e77cc57508602562ae3443124a19b295a97f0ee4ba56af9ddd8e19d",
+      "outcome": "6 passed: bounded scheduling plus hypothetical diagnostics, compact collation and SC-off optimizer parity"
+    }
+  },
+  "required_lint_catalog": {
+    "completed_once": true,
+    "lanes": 6,
+    "findings": 3,
+    "disposition": "Shared geometry predicate, NamedTuple output type and numerical docstring fixed; narrow follow-ups checked mechanically and with targeted tests. Final High GOAL review is separate.",
+    "native_review_directory": "reviews/LINT-20261018T213921Z"
+  },
+  "default_cadence": {
+    "interval": 10,
+    "provisional_before_qualification": 100,
+    "unchanged_runtime_paths": "Due/non-due behavior measured explicitly; the root default and docs are the only post-qualification product changes. Scheduling and numerical/optimizer parity checked after the default edit."
+  },
+  "limits": [
+    "The broad CPU suite was not rerun after each narrow follow-up; the four discovered fixture failures were repaired and the affected suite passed.",
+    "CPU proofs and isolated microbenchmarks are not GPU performance evidence.",
+    "No tolerance weakening, learning-benefit trial, model-parameter gradient comparison or dependency migration."
+  ]
+}

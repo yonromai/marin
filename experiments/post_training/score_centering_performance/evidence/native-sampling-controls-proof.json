@@ -1,0 +1,43 @@
+{
+  "measured_temperature1_controls_unchanged": true,
+  "candidate_compact_temperature0_7_fixed": true,
+  "cases": [
+    {
+      "declared_temperature": 1.0,
+      "old_effective_temperature": 1.0,
+      "effective_parameters": {
+        "temperature": 1.0,
+        "logprobs": true,
+        "top_logprobs": 129,
+        "top_p": 1.0,
+        "top_k": -1,
+        "min_p": 0.0
+      },
+      "engine_parameters": {
+        "temperature": 1.0,
+        "top_p": 1.0,
+        "top_k": -1,
+        "min_p": 0.0
+      }
+    },
+    {
+      "declared_temperature": 0.7,
+      "old_effective_temperature": 1.0,
+      "effective_parameters": {
+        "temperature": 0.7,
+        "logprobs": true,
+        "top_logprobs": 129,
+        "top_p": 1.0,
+        "top_k": -1,
+        "min_p": 0.0
+      },
+      "engine_parameters": {
+        "temperature": 0.7,
+        "top_p": 1.0,
+        "top_k": -1,
+        "min_p": 0.0
+      }
+    }
+  ],
+  "scope": "CPU real serving parameter override, GPU I/O absent"
+}

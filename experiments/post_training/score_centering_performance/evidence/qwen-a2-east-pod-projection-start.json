@@ -1,0 +1,58 @@
+[
+  {
+    "name": "iris-romain-sc-performance-qwen-a2-65ecc09a-0-08799f3053084d06",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-qwen-a2-east-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "65ecc09a5b422468",
+      "iris.task_id": "romain.sc-performance-qwen-a2-east-01a146a3.1",
+      "kueue.x-k8s.io/cluster-queue-name": "iris-cq",
+      "kueue.x-k8s.io/local-queue-name": "cw-use02a-lq",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-356c822bb412b4b4-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "1",
+      "kueue.x-k8s.io/podset": "8a4ca633",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T01:27:52Z",
+    "start": null,
+    "node": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  },
+  {
+    "name": "iris-romain-sc-performance-qwen-a2-a190ddc6-0-9ec5424b98a86bbd",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-qwen-a2-east-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "a190ddc6b9553624",
+      "iris.task_id": "romain.sc-performance-qwen-a2-east-01a146a3.0",
+      "kueue.x-k8s.io/cluster-queue-name": "iris-cq",
+      "kueue.x-k8s.io/local-queue-name": "cw-use02a-lq",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-356c822bb412b4b4-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "0",
+      "kueue.x-k8s.io/podset": "8a4ca633",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T01:27:52Z",
+    "start": null,
+    "node": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  }
+]

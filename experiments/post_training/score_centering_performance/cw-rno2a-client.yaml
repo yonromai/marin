@@ -1,0 +1,41 @@
+# Client connection facts only; this file is not a deployment configuration.
+name: cw-rno2a
+dashboard_url: https://iris-cw-rno2a.oa.dev
+platform:
+  label_prefix: cw-rno2a
+  coreweave:
+    region: RNO2A
+    namespace: iris
+    kubeconfig_path: ~/.kube/coreweave-iris
+    kube_context: marin-rn02a_RNO2A
+    object_storage_endpoint: http://cwlota.com
+    external_object_storage_endpoint: https://cwobject.com
+storage:
+  remote_state_dir: s3://marin-us-east-02a/iris/cw-rno2a/state
+  local_state_dir: /mnt/local/iris-controller-state
+controller:
+  image: ghcr.io/marin-community/iris-controller:latest
+  checkpoint_interval_seconds: 600
+  coreweave:
+    port: 10000
+    service_name: iris-controller-svc
+    scale_group: cpu-turin
+kubernetes_provider:
+  namespace: iris
+  host_network: true
+  cache_dir: /mnt/local/iris-cache
+  cache_max_age:
+    seconds: 604800
+  controller_address: http://iris-controller-svc.iris.svc.cluster.local:10000
+  kueue:
+    cluster_queue: iris-cq
+defaults:
+  worker:
+    docker_image: ghcr.io/marin-community/iris-worker:latest
+    port: 10001
+    cache_dir: /mnt/local/iris-cache
+    runtime: kubernetes
+    default_task_image: ghcr.io/marin-community/iris-task:latest
+  task_env:
+    MARIN_PREFIX: s3://marin-us-east-02a/marin
+    NCCL_SOCKET_IFNAME: ^ibs,ibp,lo,docker,veth,cilium,lxc

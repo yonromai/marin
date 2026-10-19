@@ -1,0 +1,127 @@
+[
+  {
+    "name": "iris-romain-sc-performance-snowball-124f57c6-0-c792484af7d28b87",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-snowball-baseline-a2-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "124f57c6cb6c858a",
+      "iris.task_id": "romain.sc-performance-snowball-baseline-a2-01a146a3.1",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-48f72dcc067cc669-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "1",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T00:29:51Z",
+    "node": null,
+    "start": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  },
+  {
+    "name": "iris-romain-sc-performance-snowball-a5df5454-0-9041cfdc7737413f",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-snowball-baseline-a2-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "a5df5454c94b5af3",
+      "iris.task_id": "romain.sc-performance-snowball-baseline-a2-01a146a3.0",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-48f72dcc067cc669-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "0",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T00:29:51Z",
+    "node": null,
+    "start": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  },
+  {
+    "name": "iris-romain-sc-performance-snowball-b65b4784-0-500d513e0495c6c5",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-snowball-baseline-a2-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "b65b4784efc31e10",
+      "iris.task_id": "romain.sc-performance-snowball-baseline-a2-01a146a3.2",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-48f72dcc067cc669-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "2",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T00:29:51Z",
+    "node": null,
+    "start": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  },
+  {
+    "name": "iris-romain-sc-performance-snowball-d5e12b69-0-b5c7fe4a98d59278",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-snowball-baseline-a2-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "d5e12b694b30ace0",
+      "iris.task_id": "romain.sc-performance-snowball-baseline-a2-01a146a3.4",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-48f72dcc067cc669-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "4",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T00:29:51Z",
+    "node": null,
+    "start": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  },
+  {
+    "name": "iris-romain-sc-performance-snowball-eba6c295-0-370b4e9cc4fb8056",
+    "labels": {
+      "iris-cw-use02a-managed": "true",
+      "iris.attempt_id": "0",
+      "iris.job_id": "romain.sc-performance-snowball-baseline-a2-01a146a3",
+      "iris.managed": "true",
+      "iris.runtime": "iris-kubernetes",
+      "iris.task_hash": "eba6c29587acffdb",
+      "iris.task_id": "romain.sc-performance-snowball-baseline-a2-01a146a3.3",
+      "kueue.x-k8s.io/managed": "true",
+      "kueue.x-k8s.io/pod-group-name": "iris-pg-48f72dcc067cc669-0",
+      "kueue.x-k8s.io/pod-group-pod-index": "3",
+      "kueue.x-k8s.io/priority-class": "iris-coscheduled-batch",
+      "kueue.x-k8s.io/queue-name": "cw-use02a-lq"
+    },
+    "created": "2026-10-19T00:29:51Z",
+    "node": null,
+    "start": null,
+    "phase": "Pending",
+    "images": [
+      "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8",
+      "ghcr.io/marin-community/iris-controller@sha256:fae807cbc87b0c493236733401882094478f8fa9cf7541f6c164cc50e6e82d7e"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "baseline_runtime": "7aad2b37e134a26b1eb78a4375c1f400c25a3661",
+  "candidate_runtime": "ca5d2066a6ba83698b9142457c80b9f367bd47c4",
+  "baseline_entrypoint_sha256": "2f187bb085ee74fb65692254bbe3b1392192054e0b790237a868b5c8ca5c25df",
+  "candidate_entrypoint_sha256": "0da4946f1aef6322e198c32ac57c4cf4736ba24c05e7ff7b28aa1cd780d5b32d",
+  "common_instrumentation_ast_identical_except_declared_flat_flag": true,
+  "request_controls_proof": "request-controls-proof.json",
+  "source_selection": "source-selection.json",
+  "dataset_preflight": "selected-dataset-preflight.json"
+}

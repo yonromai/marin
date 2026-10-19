@@ -1,0 +1,15 @@
+I20261018 17:23:50 139654015919936 iris.cli.main Resolved cluster 'cw-rno2a' to config: /home/romain/work/marin-community/marin/score-centering-performance-01a146a3/lib/iris/config/cw-rno2a.yaml
+I20261018 17:23:50 139654015919936 iris.cluster.config Loading config from /home/romain/work/marin-community/marin/score-centering-performance-01a146a3/lib/iris/config/cw-rno2a.yaml
+I20261018 17:23:50 139654015919936 iris.cli.connect Establishing tunnel to controller...
+I20261018 17:23:51 139654015919936 iris.cluster.platforms.k8s.service Tunnel ready: 127.0.0.1:10001 -> iris-controller-svc:10000
+Job: /romain/sc-performance-snowball-baseline-rno-a1-01a146a3 (/romain/sc-performance-snowball-baseline-rno-a1-01a146a3)
+State: worker_failed  exit=0  failures=0  preemptions=1
+Tasks: 0/5 completed  cosched_failed=4  preempted=1
+Error: WorkloadEvictedDueToPreempted: Preempted to accommodate a workload (UID: 6ccaef28-02c1-4998-afd1-bd8f940d891b, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq
+
+  TASK  STATE             EXIT  DURATION                      PEAK MEM    CUR MEM    DIAGNOSTIC
+     0  cosched_failed       0  17 minutes and 38.39 seconds  -           -          Coscheduled sibling /romain/sc-performance-snowball-baseline-rno-a1-01a146a3/1 failed
+     1  preempted          137  17 minutes and 38.39 seconds  -           -          WorkloadEvictedDueToPreempted: Preempted to accommodate a workload (UID: 6ccaef28-02c1-4998-afd1-bd8f940d891b, JobUID...
+     2  cosched_failed       0  17 minutes and 38.39 seconds  -           -          Coscheduled sibling /romain/sc-performance-snowball-baseline-rno-a1-01a146a3/1 failed
+     3  cosched_failed       0  17 minutes and 38.39 seconds  -           -          Coscheduled sibling /romain/sc-performance-snowball-baseline-rno-a1-01a146a3/1 failed
+     4  cosched_failed       0  17 minutes and 38.39 seconds  -           -          Coscheduled sibling /romain/sc-performance-snowball-baseline-rno-a1-01a146a3/1 failed

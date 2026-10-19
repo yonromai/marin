@@ -1,0 +1,29 @@
+{
+  "at_utc": "2026-10-19T02:41:52.513028+00:00",
+  "clusters": {
+    "cw-us-east-02a": {
+      "identity": {
+        "user_id": "anonymous",
+        "role": "admin"
+      },
+      "job_count": 10,
+      "task_count": 32,
+      "all_jobs_and_tasks_finished": true,
+      "owned_pods": [],
+      "controller_evidence": "cw-us-east-02a-all-owned-terminal.csv",
+      "provider_evidence": "cw-us-east-02a-all-owned-pods-terminal.json"
+    },
+    "cw-rno2a": {
+      "identity": {
+        "user_id": "anonymous",
+        "role": "admin"
+      },
+      "job_count": 4,
+      "task_count": 14,
+      "all_jobs_and_tasks_finished": true,
+      "owned_pods": [],
+      "controller_evidence": "cw-rno2a-all-owned-terminal.csv",
+      "provider_evidence": "cw-rno2a-all-owned-pods-terminal.json"
+    }
+  }
+}

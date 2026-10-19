@@ -1,0 +1,13 @@
+{
+  "group": "iris-pg-48f72dcc067cc669-0",
+  "conditions": [
+    {
+      "lastTransitionTime": "2026-10-19T00:29:51Z",
+      "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 40 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 40 more needed",
+      "observedGeneration": 1,
+      "reason": "Pending",
+      "status": "False",
+      "type": "QuotaReserved"
+    }
+  ]
+}

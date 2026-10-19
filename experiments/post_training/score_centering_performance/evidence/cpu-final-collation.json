@@ -1,0 +1,38 @@
+{
+  "scope": "CPU production collator on24 retained Snowball heads, repeated into8x4096 K128 arrays; masks, int32 IDs. Same inputs and guards; no GPU performance inference.",
+  "threads": 1,
+  "exact_return_parity": true,
+  "comparisons": {
+    "torch_values_and_indices_sort": {
+      "seconds": [
+        0.16550531378015876,
+        0.1645073122344911,
+        0.16614108765497804,
+        0.15983114996924996,
+        0.16279068402945995,
+        0.1657403837889433,
+        0.16563235921785235
+      ],
+      "median": 0.16550531378015876,
+      "profile": "         32998 function calls in 0.167 seconds\n\n   Ordered by: cumulative time\n   List reduced from 38 to 16 due to restriction <16>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.004    0.004    0.167    0.167 /home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/performance-20261018/profile_final_collation.py:32(run)\n        1    0.041    0.041    0.164    0.164 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/objective/score_centering.py:148(collate_score_centering)\n        1    0.080    0.080    0.080    0.080 {method 'sort' of 'torch._C.TensorBase' objects}\n        1    0.003    0.003    0.019    0.019 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:199(collate_student_selected_rollout)\n        1    0.012    0.012    0.012    0.012 {built-in method torch.isfinite}\n        2    0.007    0.004    0.007    0.004 {method 'masked_fill_' of 'torch._C.TensorBase' objects}\n        4    0.006    0.002    0.006    0.002 {built-in method torch.any}\n        4    0.002    0.001    0.004    0.001 {built-in method builtins.any}\n       17    0.003    0.000    0.003    0.000 {built-in method torch.tensor}\n        2    0.002    0.001    0.002    0.001 {built-in method torch.full}\n        1    0.002    0.002    0.002    0.002 {method 'all' of 'torch._C.TensorBase' objects}\n    32769    0.002    0.000    0.002    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:217(<genexpr>)\n        1    0.002    0.002    0.002    0.002 {method 'exp' of 'torch._C.TensorBase' objects}\n        1    0.000    0.000    0.002    0.002 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:190(_pad_token_rows)\n        1    0.001    0.001    0.001    0.001 {method 'sum' of 'torch._C.TensorBase' objects}\n        1    0.000    0.000    0.000    0.000 {built-in method torch.allclose}\n\n\n"
+    },
+    "numpy_values_only_sort": {
+      "seconds": [
+        0.10867313295602798,
+        0.11261656694114208,
+        0.11553428508341312,
+        0.11030499776825309,
+        0.11559760617092252,
+        0.11515116831287742,
+        0.11948592122644186
+      ],
+      "median": 0.11515116831287742,
+      "profile": "         33004 function calls in 0.117 seconds\n\n   Ordered by: cumulative time\n   List reduced from 43 to 16 due to restriction <16>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.004    0.004    0.117    0.117 /home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/performance-20261018/profile_final_collation.py:32(run)\n        1    0.043    0.043    0.113    0.113 <string>:1(collate_score_centering)\n        1    0.020    0.020    0.020    0.020 {built-in method torch.isfinite}\n        1    0.004    0.004    0.019    0.019 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:199(collate_student_selected_rollout)\n        1    0.000    0.000    0.018    0.018 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/.venv/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:968(sort)\n        1    0.014    0.014    0.014    0.014 {method 'copy' of 'numpy.ndarray' objects}\n        2    0.007    0.003    0.007    0.003 {method 'masked_fill_' of 'torch._C.TensorBase' objects}\n        4    0.007    0.002    0.007    0.002 {built-in method torch.any}\n        4    0.002    0.001    0.004    0.001 {built-in method builtins.any}\n        1    0.004    0.004    0.004    0.004 {method 'sort' of 'numpy.ndarray' objects}\n       17    0.003    0.000    0.003    0.000 {built-in method torch.tensor}\n        2    0.002    0.001    0.002    0.001 {built-in method torch.full}\n        1    0.002    0.002    0.002    0.002 {method 'all' of 'torch._C.TensorBase' objects}\n    32769    0.002    0.000    0.002    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:217(<genexpr>)\n        1    0.002    0.002    0.002    0.002 {method 'exp' of 'torch._C.TensorBase' objects}\n        1    0.000    0.000    0.002    0.002 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/skyrl-train/skyrl_train/distillation_adapters.py:190(_pad_token_rows)\n\n\n"
+    }
+  },
+  "decision": {
+    "product": "d0ae54530bf4ddee497b6328a732f9ad1767ef9f",
+    "reason": "Values-only CPU sort preserves guards/output and avoids an unused int64 permutation.30.43% median collation reduction on retained-head CPU profile; no GPU/cycle inference.384 objective and causal-position tests pass.",
+    "relative_cpu_change_percent": -30.424488686911232
+  }
+}

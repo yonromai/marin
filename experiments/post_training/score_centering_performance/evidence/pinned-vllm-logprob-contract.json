@@ -1,0 +1,16 @@
+{
+  "runtime_commit": "39e62869693c",
+  "evidence_kind": "Pinned source inspection, not a separate engine-capability allocation experiment",
+  "sources": {
+    "sampling_params": "https://github.com/marin-community/vllm/blob/39e62869693c/vllm/sampling_params.py#L302",
+    "cap_validation": "https://github.com/marin-community/vllm/blob/39e62869693c/vllm/sampling_params.py#L839",
+    "request_state": "https://github.com/marin-community/vllm/blob/39e62869693c/vllm/v1/worker/gpu/sample/states.py#L37",
+    "batch_width": "https://github.com/marin-community/vllm/blob/39e62869693c/vllm/v1/worker/gpu/sample/sampler.py#L106"
+  },
+  "observations": [
+    "SamplingParams.flat_logprobs defaultsFalse. Product selectsTrue only for positive response-head requests; corrected candidate benchmark matches that contract.",
+    "Model max_logprobs is a request-validation cap. V2 sampling states store one int32 requested width per request; the request-set maximum drives compute_topk_scores. No head canvas is allocated from the positive cap in these paths. Both ordinary and head-capable modes use the same warmed engine for cycle comparisons.",
+    "A positive-width probe can make the sampler compute that maximum width over all rows of its mixed decode batch. Limiting exported evidence to one prompt group does not bound GPU top-K work to that group."
+  ],
+  "measurement_implication": "The complete4096-token probe cycle measures mixed-batch amplification, capture, processing, transfers, old scoring, scalar summaries and normal metric emission. Do not estimate probe cost by multiplying full-SC cost by selected token coverage. No extra background probe collector or timer is introduced."
+}

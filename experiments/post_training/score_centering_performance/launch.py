@@ -1,0 +1,25 @@
+# Copyright The Marin Authors
+# SPDX-License-Identifier: Apache-2.0
+
+"""Use the native pinned SkyRL launch lifecycle and regional S3 setup."""
+
+import argparse
+from pathlib import Path
+
+from cloud.iris.launch import execute_launch
+from cloud.iris.launch_config import load_launch_config
+from rigging.filesystem.s3_compat import configure_coreweave_s3
+from skyrl_train.utils.utils import validate_batch_sizes
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path, required=True)
+    args = parser.parse_args()
+    configure_coreweave_s3()
+    validate_batch_sizes(load_launch_config(args.config).skyrl)
+    print(execute_launch(args.config))
+
+
+if __name__ == "__main__":
+    main()

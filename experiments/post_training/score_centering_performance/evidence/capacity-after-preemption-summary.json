@@ -1,0 +1,697 @@
+{
+  "observed_at_utc": "2026-10-19T00:26:36.496093+00:00",
+  "east": {
+    "availability": {
+      "version": 3,
+      "observation_epoch_ms": "1792369548477",
+      "amounts": {
+        "h100": "0"
+      },
+      "total_amounts": {
+        "h100": "256"
+      },
+      "held_by_band": [
+        {
+          "band": "PRIORITY_BAND_INTERACTIVE",
+          "amounts": {
+            "h100": "112"
+          }
+        },
+        {
+          "band": "PRIORITY_BAND_BATCH",
+          "amounts": {
+            "h100": "152"
+          }
+        }
+      ]
+    },
+    "groups": {
+      "admitted_priority_12": {
+        "workloads": 1,
+        "requested_gpus": 40
+      },
+      "admitted_priority_2": {
+        "workloads": 4,
+        "requested_gpus": 112
+      },
+      "pending_priority_2": {
+        "workloads": 1,
+        "requested_gpus": 64
+      },
+      "pending_priority_1": {
+        "workloads": 12,
+        "requested_gpus": 96
+      },
+      "admitted_priority_11": {
+        "workloads": 9,
+        "requested_gpus": 72
+      },
+      "admitted_priority_1": {
+        "workloads": 4,
+        "requested_gpus": 32
+      }
+    },
+    "pending_gpu_workloads": [
+      {
+        "name": "pod-iris-bizon-exp362-depth4-train-a02-0b38b41f-15-f8aea7a9f7b1ff96-472e8",
+        "created": "2026-10-18T21:58:28Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-221008-pivot-fe17f7ba-0-b5f4e5e4673c654e-bef5c",
+        "created": "2026-10-18T22:10:43Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161734-pivot-dc86c1b6-1-9c9e6257fd265f39-64119",
+        "created": "2026-10-18T22:11:49Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-222031-pivot-12799864-0-02da2f0a4a3e3c5b-d5627",
+        "created": "2026-10-18T22:21:05Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161803-pivot-9329bf1c-1-fa57604517992362-c4e42",
+        "created": "2026-10-18T22:25:13Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161828-pivot-8aaf08ed-1-dd0585047ecfc43a-1cdd8",
+        "created": "2026-10-18T22:32:05Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-karan-glm-harbor-212-swe-relay-69d90bcb-0-da4b5749c45f51da-ad06f",
+        "created": "2026-10-18T22:35:57Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-karan-glm-harbor-212-swe-relay-b9b32660-0-d21ec0fcf720903b-9bd32",
+        "created": "2026-10-18T22:55:09Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-karan-glm-harbor-212-tmax-rela-3f7e1f86-0-907a9ee6a206dbad-304fc",
+        "created": "2026-10-18T23:51:36Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161915-pivot-47ef8b50-1-4e7fedf736920fa2-5f43b",
+        "created": "2026-10-19T00:20:28Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161711-pivot-d0ac713b-1-9d314b0342732843-95dbd",
+        "created": "2026-10-19T00:20:34Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-161852-pivot-4a438a26-1-5521f4768f7ae57b-4a412",
+        "created": "2026-10-19T00:20:34Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "iris-pg-9e79a5f71adff3a2-10",
+        "created": "2026-10-19T00:22:55Z",
+        "priority": 2,
+        "gpus": 64
+      }
+    ],
+    "queue_status": {
+      "admittedWorkloads": 139,
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-06-09T03:21:30Z",
+          "message": "Can admit new workloads",
+          "observedGeneration": 4,
+          "reason": "Ready",
+          "status": "True",
+          "type": "Active"
+        }
+      ],
+      "flavorsReservation": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "1151250m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "24862Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "20474560Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "256"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "256"
+            }
+          ]
+        }
+      ],
+      "flavorsUsage": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "1151250m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "24862Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "20474560Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "256"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "256"
+            }
+          ]
+        }
+      ],
+      "pendingWorkloads": 14,
+      "reservingWorkloads": 139
+    }
+  },
+  "rno": {
+    "availability": {
+      "version": 3,
+      "observation_epoch_ms": "1792369546626",
+      "amounts": {
+        "h100": "10"
+      },
+      "total_amounts": {
+        "h100": "512"
+      },
+      "held_by_band": [
+        {
+          "band": "PRIORITY_BAND_INTERACTIVE",
+          "amounts": {
+            "h100": "314"
+          }
+        },
+        {
+          "band": "PRIORITY_BAND_BATCH",
+          "amounts": {
+            "h100": "188"
+          }
+        }
+      ]
+    },
+    "groups": {
+      "admitted_priority_2": {
+        "workloads": 4,
+        "requested_gpus": 176
+      },
+      "admitted_priority_12": {
+        "workloads": 3,
+        "requested_gpus": 248
+      },
+      "admitted_priority_11": {
+        "workloads": 11,
+        "requested_gpus": 58
+      },
+      "pending_priority_1": {
+        "workloads": 59,
+        "requested_gpus": 472
+      },
+      "admitted_priority_1": {
+        "workloads": 4,
+        "requested_gpus": 20
+      }
+    },
+    "pending_gpu_workloads": [
+      {
+        "name": "pod-iris-rav-lv-d512-no-web-s2-grug-tra-5588c4f4-1-7ebcf8c21ff4abac-6fce0",
+        "created": "2026-10-19T00:07:08Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-web-only-s1-grug-t-5ebfd3e3-0-b7e68113efb471cc-ff6a3",
+        "created": "2026-10-19T00:07:08Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-web-only-s2-grug-t-a61b67fd-0-9d241794a5b81153-0a5de",
+        "created": "2026-10-19T00:07:19Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-dirty-web-s0-grug-bb852dcb-0-b004b42293cd4870-35ab2",
+        "created": "2026-10-19T00:07:32Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-dirty-web-s1-grug-4aa0e38d-0-45831b716501c8d4-da4de",
+        "created": "2026-10-19T00:07:42Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-dirty-web-s2-grug-5d5921d3-0-a432adc0ab9b180f-a2d50",
+        "created": "2026-10-19T00:07:53Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-nemotron-tier-s0-g-d13dfe46-1-495a02685f3d0cf7-e5d72",
+        "created": "2026-10-19T00:08:04Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-nemotron-tier-s1-g-2d544ad8-1-c5f8cb1c353038f9-c501e",
+        "created": "2026-10-19T00:08:04Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-nemotron-tier-s2-g-538a1324-1-96eb5ceaf8333abd-7fe48",
+        "created": "2026-10-19T00:08:04Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-inverted-s0-grug-t-a87b4713-0-38f7f28ddedd3188-b05a3",
+        "created": "2026-10-19T00:08:04Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-dirty-web-s0-grug-4245d0ac-1-b6707f2712081af1-c4617",
+        "created": "2026-10-19T00:08:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-dirty-web-s1-grug-e70bd429-1-1a3f2efae90e3cdd-c7092",
+        "created": "2026-10-19T00:08:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-dirty-web-s2-grug-bd0e6bc2-1-e8b121775c072e57-52cfa",
+        "created": "2026-10-19T00:08:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-no-web-s0-grug-tra-e483900a-1-253671cdff46d50f-08e6f",
+        "created": "2026-10-19T00:08:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-no-web-s1-grug-tra-6e129fb6-1-186459e32749677e-08fe6",
+        "created": "2026-10-19T00:08:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-inverted-s1-grug-t-3beddb23-0-625e0f7b432ba07c-a8ab0",
+        "created": "2026-10-19T00:08:17Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-192108-pivot-0537c0ad-4-817fd802ac250de1-c4e56",
+        "created": "2026-10-19T00:08:22Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-192126-pivot-efdb5c77-3-9a0a57357f830184-bab39",
+        "created": "2026-10-19T00:08:22Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261018-231157-pivot-58338d95-1-411f112f08260da9-eb342",
+        "created": "2026-10-19T00:08:22Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-longest-s2-grug-tr-5b989df9-1-6596abbe44a32fe9-619f4",
+        "created": "2026-10-19T00:08:22Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-longest-s0-grug-tr-2f91d7f3-0-5eca7cb8d2ac519d-1054f",
+        "created": "2026-10-19T00:08:54Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-longest-s1-grug-tr-570904ff-0-2bea6d4616249c97-92b33",
+        "created": "2026-10-19T00:08:55Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-longest-s2-grug-tr-84c76abb-0-0d1bcaaf9a2b2aed-e9599",
+        "created": "2026-10-19T00:09:01Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-nemotron-tier-s0-g-40ccd3cc-0-a1c1c73f8c2b3211-490d6",
+        "created": "2026-10-19T00:09:20Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-nemotron-tier-s2-g-fee84390-0-8ad8c8ce8cfe4a01-52111",
+        "created": "2026-10-19T00:09:52Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-no-web-s0-grug-tra-31efba57-0-da6d56aa43b93de0-6b499",
+        "created": "2026-10-19T00:10:03Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-no-web-s1-grug-tra-7014ecd2-0-7fed56baf09b39f1-9d112",
+        "created": "2026-10-19T00:10:10Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-no-web-s2-grug-tra-ee05cc91-0-2d0f33a3fd8c50c7-806b4",
+        "created": "2026-10-19T00:10:23Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-inverted-s2-grug-t-0d09b5ba-0-88f27a2938b0facb-69806",
+        "created": "2026-10-19T00:10:37Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-nemotron-tier-s1-g-c6f07d3b-0-64bb8786a325cfaa-66ee5",
+        "created": "2026-10-19T00:10:39Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-random-t0-s0-grug-25299a5b-0-3bc2c2653671436f-49691",
+        "created": "2026-10-19T00:10:39Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-random-t0-s1-grug-a5d7d227-0-ed615986cb50522a-f5f41",
+        "created": "2026-10-19T00:11:02Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-random-t0-s2-grug-3362e9e6-0-fb60d327de71d278-2af84",
+        "created": "2026-10-19T00:11:02Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-random-t1-s0-grug-76c32746-0-e4e3427b983d8095-e4498",
+        "created": "2026-10-19T00:11:11Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-random-t2-s0-grug-072c42d0-0-6feebf2d5d0cf79f-64bb4",
+        "created": "2026-10-19T00:11:24Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-quota-s0-gru-7329588a-0-18ec88cebdb0fa65-c6da9",
+        "created": "2026-10-19T00:11:39Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-quota-s1-gru-62a427ba-0-e5dd2933ec7d992b-5892b",
+        "created": "2026-10-19T00:11:47Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-quota-s2-gru-ae5b86eb-0-3484ebfb4c21ff76-b0831",
+        "created": "2026-10-19T00:12:07Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-s1-grug-trai-a2c29e02-0-41566972f2a79903-058f3",
+        "created": "2026-10-19T00:12:18Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-s0-grug-trai-03cad418-0-533772c95e2b599d-2a752",
+        "created": "2026-10-19T00:12:19Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-ridge-s2-grug-trai-d2c66b6e-0-faf411f0512c9380-80bf6",
+        "created": "2026-10-19T00:12:31Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-shortest-s0-grug-t-95e6c669-0-c74ce7abc82de3f6-ba9ff",
+        "created": "2026-10-19T00:12:36Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-shortest-s1-grug-t-838a457c-0-856c2b8622ac81c4-396f5",
+        "created": "2026-10-19T00:12:48Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-shortest-s2-grug-t-325f3929-0-33b6a53d5606c1b0-98335",
+        "created": "2026-10-19T00:13:03Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-web-only-s0-grug-t-3a3072b7-0-86c19572f516b5ed-9d9db",
+        "created": "2026-10-19T00:13:09Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-web-only-s1-grug-t-9330523b-0-cc2062dfb84163aa-e7837",
+        "created": "2026-10-19T00:13:16Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d768-web-only-s2-grug-t-91e93bfd-0-d33c8703069dad0f-abd85",
+        "created": "2026-10-19T00:13:34Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-ridge-quota-s2-gru-2f9ac823-1-7435140429ada576-81a5e",
+        "created": "2026-10-19T00:16:22Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-ridge-quota-s1-gru-59a3dfda-1-a88ed07caa53a045-95d7a",
+        "created": "2026-10-19T00:16:34Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-rav-lv-d512-ridge-quota-s0-gru-fb7845fc-1-bf3af0463a86b694-35ece",
+        "created": "2026-10-19T00:16:42Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-bizon-sparsa-pairformer-v1-p-1b5a8ccf-245-f49455c331f5c320-4bdd2",
+        "created": "2026-10-19T00:16:54Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-karan-eval-20261018-230802-tas-5c4d755f-2-acba183b00cbcff2-faa19",
+        "created": "2026-10-19T00:16:54Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-karan-v0-student-212-tmax-lane-94f4d708-2-e76440ff17e582fb-13d0b",
+        "created": "2026-10-19T00:22:29Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002340-pivot-5f80a165-0-a4005804f3018265-1171d",
+        "created": "2026-10-19T00:24:25Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002350-pivot-bad2211c-0-a647ea4f856128d9-291ae",
+        "created": "2026-10-19T00:24:30Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002416-pivot-3370f143-0-ff59fffb74a135dd-febf8",
+        "created": "2026-10-19T00:24:54Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002406-pivot-a8df2a32-0-0db45584b7822844-6d957",
+        "created": "2026-10-19T00:24:58Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002440-pivot-4f7ac0b8-0-4da714da9ad2e8ed-a18a1",
+        "created": "2026-10-19T00:25:12Z",
+        "priority": 1,
+        "gpus": 8
+      },
+      {
+        "name": "pod-iris-dml-eval-20261019-002431-pivot-5e801b11-0-eea3f93e4637f5e6-faee2",
+        "created": "2026-10-19T00:25:18Z",
+        "priority": 1,
+        "gpus": 8
+      }
+    ],
+    "queue_status": {
+      "admittedWorkloads": 109,
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-08-13T03:42:52Z",
+          "message": "Can admit new workloads",
+          "observedGeneration": 4,
+          "reason": "Ready",
+          "status": "True",
+          "type": "Active"
+        }
+      ],
+      "flavorsReservation": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "2583250m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "522938Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "81837120Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "502"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "502"
+            }
+          ]
+        }
+      ],
+      "flavorsUsage": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "2583250m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "522938Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "81837120Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "502"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "502"
+            }
+          ]
+        }
+      ],
+      "pendingWorkloads": 59,
+      "reservingWorkloads": 109
+    }
+  }
+}

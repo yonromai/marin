@@ -1,0 +1,24 @@
+{
+  "scope": "CPU synthetic native chat K128 parser,4096 positions,5 interleaved repetitions; no GPU or learning claim",
+  "results": {
+    "regex": [
+      0.45986770233139396,
+      0.46244241297245026,
+      0.42750083189457655,
+      0.4344824720174074,
+      0.4215036020614207
+    ],
+    "prefix": [
+      0.271691394969821,
+      0.27308825124055147,
+      0.2735953936353326,
+      0.26830662600696087,
+      0.2732083536684513
+    ]
+  },
+  "medians": {
+    "regex": 0.4344824720174074,
+    "prefix": 0.27308825124055147
+  },
+  "valid_values_exact": true
+}

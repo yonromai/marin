@@ -1,0 +1,25 @@
+{
+  "source": "vllm@39e62869693c",
+  "tokenizer_revision": "a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2",
+  "retained_snowball_head_positions": 24,
+  "positions_per_repetition": 192,
+  "scope": "CPU production LogprobsProcessor on retained actual Snowball K128 heads; no GPU timings",
+  "decoded_head": {
+    "seconds": [
+      0.06975110806524754,
+      0.06907128216698766,
+      0.06685287179425359
+    ],
+    "median": 0.06907128216698766,
+    "profile": "         639933 function calls (639742 primitive calls) in 0.190 seconds\n\n   Ordered by: cumulative time\n   List reduced from 32 to 18 due to restriction <18>\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.190    0.190 /home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/performance-20261018/profile_head_decoding.py:53(process)\n      192    0.001    0.000    0.190    0.001 vllm/v1/engine/logprobs.py:69(_update_sample_logprobs)\n      192    0.008    0.000    0.156    0.001 vllm/tokenizers/detokenizer_utils.py:143(convert_ids_list_to_tokens)\n    25371    0.026    0.000    0.153    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py:2853(decode)\n    25371    0.037    0.000    0.064    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_tokenizers.py:1086(_decode)\n    25371    0.021    0.000    0.056    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/.venv/lib/python3.12/site-packages/transformers/utils/generic.py:346(to_py_obj)\n   204855    0.021    0.000    0.029    0.000 {built-in method builtins.isinstance}\n      192    0.000    0.000    0.020    0.000 vllm/logprobs.py:180(append_logprobs_for_next_position)\n      192    0.011    0.000    0.019    0.000 vllm/logprobs.py:74(append_fast)\n    25371    0.018    0.000    0.018    0.000 {method 'decode' of 'tokenizers.Tokenizer' objects}\n    25371    0.007    0.000    0.017    0.000 {built-in method builtins.all}\n      192    0.003    0.000    0.012    0.000 vllm/v1/engine/logprobs.py:312(_verify_tokens)\n    52246    0.008    0.000    0.010    0.000 /home/romain/work/marin-community/MarinSkyRL/score-centering-performance-01a146a3/.venv/lib/python3.12/site-packages/transformers/utils/generic.py:356(<genexpr>)\n    99456    0.008    0.000    0.008    0.000 {method 'append' of 'list' objects}\n    25371    0.004    0.000    0.008    0.000 <frozen abc>:117(__instancecheck__)\n      152    0.001    0.000    0.006    0.000 vllm/v1/engine/logprobs.py:249(_correct_decoded_token)\n    25371    0.004    0.000    0.004    0.000 {built-in method _abc._abc_instancecheck}\n    25371    0.003    0.000    0.003    0.000 {method 'endswith' of 'str' objects}\n\n\n"
+  },
+  "ids_only_head": {
+    "seconds": [
+      0.002892610151320696,
+      0.00336286798119545,
+      0.0033583780750632286
+    ],
+    "median": 0.0033583780750632286,
+    "profile": "         101187 function calls in 0.020 seconds\n\n   Ordered by: cumulative time\n\n   ncalls  tottime  percall  cumtime  percall filename:lineno(function)\n        1    0.000    0.000    0.020    0.020 /home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/performance-20261018/profile_head_decoding.py:53(process)\n      192    0.000    0.000    0.020    0.000 vllm/v1/engine/logprobs.py:69(_update_sample_logprobs)\n      192    0.000    0.000    0.019    0.000 vllm/logprobs.py:180(append_logprobs_for_next_position)\n      192    0.011    0.000    0.019    0.000 vllm/logprobs.py:74(append_fast)\n    99456    0.008    0.000    0.008    0.000 {method 'append' of 'list' objects}\n      384    0.000    0.000    0.000    0.000 {method 'tolist' of 'numpy.ndarray' objects}\n      192    0.000    0.000    0.000    0.000 {method 'tolist' of 'numpy.generic' objects}\n      384    0.000    0.000    0.000    0.000 {built-in method builtins.len}\n        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}\n      192    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}\n        1    0.000    0.000    0.000    0.000 <string>:2(__init__)\n\n\n"
+  }
+}

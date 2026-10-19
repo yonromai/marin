@@ -1,0 +1,45 @@
+{
+  "pinned_vllm": "39e62869693c",
+  "skyrl_source_sha256": "d647b28855756e714a093d7cce480610f9ee309d7abe987a19bbe154170657e5",
+  "formatter_cases": [
+    {
+      "width": null,
+      "all_ids": false,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    },
+    {
+      "width": 0,
+      "all_ids": false,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    },
+    {
+      "width": 2,
+      "all_ids": false,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    },
+    {
+      "width": 3,
+      "all_ids": false,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    },
+    {
+      "width": -1,
+      "all_ids": false,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    },
+    {
+      "width": null,
+      "all_ids": true,
+      "numeric_fields_exact": true,
+      "public_response_exact": true
+    }
+  ],
+  "success_and_failure_release_request_and_prompt_scope": true,
+  "scope": "Actual pinned formatter and request-ID functions; GPU serving I/O replaced at boundary",
+  "gpu_evidence": false
+}

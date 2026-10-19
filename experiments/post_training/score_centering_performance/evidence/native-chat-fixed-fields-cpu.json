@@ -1,0 +1,28 @@
+{
+  "pinned_vllm": "39e62869693c",
+  "positions": 1024,
+  "width": 129,
+  "interleaved_repetitions": 5,
+  "seconds": {
+    "validated": [
+      0.5430075819604099,
+      0.5136893447488546,
+      0.5018098102882504,
+      0.5133019611239433,
+      0.5448638969101012
+    ],
+    "fixed_fields_subclass": [
+      0.47854307387024164,
+      0.502577368170023,
+      0.5011775377206504,
+      0.4984451341442764,
+      0.4991955831646919
+    ]
+  },
+  "median_seconds": {
+    "validated": 0.5136893447488546,
+    "fixed_fields_subclass": 0.4991955831646919
+  },
+  "parent_validation_and_dump_exact": true,
+  "scope": "CPU actual pinned models plus nested parent validation and serialization; no GPU claim"
+}

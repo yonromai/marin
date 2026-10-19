@@ -1,0 +1,57 @@
+[
+  {
+    "file": "sc-performance-qwen-a0-01a146a3.json.gz",
+    "original_bytes": 511041,
+    "original_sha256": "3ebfc02af27b583b3d226981c875ccabe61978fa969394b88838f8ccd2151fe2",
+    "stored_bytes": 67992,
+    "stored_sha256": "5896c37013794d15db1b60544e55928ec14c6659a0040bd820ab57f7d795a9c8"
+  },
+  {
+    "file": "sc-performance-qwen-a1-01a146a3.json.gz",
+    "original_bytes": 3387820,
+    "original_sha256": "95d46200f0969799f0e2d384d5264fe30548ae91eec3d27713a64e1d045b751a",
+    "stored_bytes": 340796,
+    "stored_sha256": "ec821c3fe9825fb65462f56fa17dbf71ab4256e5f4f9c18c4c79683c5bda8632"
+  },
+  {
+    "file": "sc-performance-snowball-baseline-rno-a0-01a146a3.json.gz",
+    "original_bytes": 755721,
+    "original_sha256": "33d6d905d2ae1b9fb291e6cfeddfb2cef0d5d0be4a5679d251d4cf1a8e7d1543",
+    "stored_bytes": 117181,
+    "stored_sha256": "f9ce4e238e94a226791d5bbbda1fc0c02f7343f354ded40950f7637e862b683d",
+    "state": "partial:3 calibration updates;0 completed native windows; canceled on invalid task reference"
+  },
+  {
+    "file": "sc-performance-snowball-baseline-rno-a1-01a146a3.json.gz",
+    "original_bytes": 750694,
+    "original_sha256": "21edefbed6805adfd4161185f6a37e3c91b0214c908c254d280d9036932e3086",
+    "stored_bytes": 124098,
+    "stored_sha256": "3245be0062500a11fcb2fd1824e5e5deb3781557d8fd4dbbba77e64cd9cdfb9e",
+    "state": "partial:3 calibration updates; first native old forward interrupted by external Kueue preemption"
+  },
+  {
+    "file": "sc-performance-snowball-baseline-a2-01a146a3.json.gz",
+    "original_bytes": 2166109,
+    "original_sha256": "a4f52aee7aee0f1fad8844d844fd59b526cc0b88338902b82c31d9c6c42f27d2",
+    "stored_bytes": 225643,
+    "stored_sha256": "19f0ef69006e87b2b53e856d56d183a667c3afa69d370aafbf41f735cfc941f7",
+    "state": "complete:21 applied updates;18 native windows; all five tasks succeeded; provider pods absent"
+  },
+  {
+    "file": "sc-performance-qwen-a2-east-01a146a3.json.gz",
+    "original_bytes": 3413708,
+    "original_sha256": "cb16538d6a5366c0129a6a9358c33c1db9fb44b698ebb99c1d0e7fffe89c44b4",
+    "stored_bytes": 345541,
+    "stored_sha256": "f842643d496d7742523e9341dcc4ea0a9c6b97928756a30b130e6dd93af52090",
+    "state": "complete:19 applied updates; native chat exact A/B at1.0 and0.7; all tasks succeeded and provider pods absent"
+  },
+  {
+    "file": "sc-performance-snowball-candidate-a3-01a146a3.json.zip",
+    "original_bytes": 5877957,
+    "original_sha256": "7cfc0fd53ac2597585dfdce79a9b71fc98d86d24128c509788e298a015fe1e03",
+    "stored_bytes": 404853,
+    "stored_sha256": "83f1b4e8487d26bf9b274c8c4850432aa146cf65b5fd566da25f065e12ca39bc",
+    "state": "complete:39 applied updates;30 native timing windows;6 natural updates with3 observations; all tasks succeeded and pods absent",
+    "zip_compression": "LZMA"
+  }
+]
