@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T21:38:37.412090+00:00",
+  "saved_at": "2026-10-19T22:12:29.040266+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -172,18 +172,42 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-19T21:29:29.956Z",
       "admitted_at": "2026-10-19T21:29:31.374099Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "active; admitted fresh matched Reno controls stage, first report pending at 21:39 UTC",
+      "controller_terminal_at": "2026-10-19T22:05:07.321Z",
+      "provider_absence_at": "2026-10-19T22:07:35.659458Z",
+      "applied_updates": 18,
+      "outcome": "success; complete fresh matched Reno controls stage, 15 serialized windows",
       "automatic_retries": 0,
       "evidence": [
         "snowball-baseline-queue-checkpoint.json",
         "evidence/snowball-baseline-controls-a0-rno-provider-first.json",
-        "evidence/snowball-baseline-controls-a0-rno-provider-02.json",
-        "evidence/snowball-baseline-controls-a0-rno-workload-events.json"
+        "evidence/snowball-baseline-controls-a0-rno-provider-absence.json",
+        "evidence/snowball-baseline-controls-a0-rno-workload-events-final.json",
+        "evidence/snowball-baseline-controls-a0-rno-receipts.zip",
+        "reports/sc-integration-snowball-baseline-controls-a0-rno-01a146a3.json.zip"
       ],
-      "queue_seconds": 1.418099
+      "queue_seconds": 1.418099,
+      "gpu_hours_to_controller_terminal_proxy": 23.73274334444444,
+      "gpu_hours_through_verified_absence_upper_bound": 25.380948433333334
+    },
+    {
+      "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T22:08:42.249Z",
+      "admitted_at": "2026-10-19T22:08:42.621248Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; admitted matched Reno candidate controls stage, second and final controls attempt",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/snowball-candidate-controls-a1-rno-provider-first.json",
+        "evidence/snowball-candidate-controls-a1-rno-provider-02.json",
+        "evidence/snowball-candidate-controls-a1-rno-workload-events.json"
+      ],
+      "queue_seconds": 0.372248
     }
   ],
   "prepared_but_not_submitted": [
@@ -207,7 +231,6 @@
     "candidate_async": 2
   },
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-controls-a1-rno",
     "snowball-baseline-async-a0-rno",
     "snowball-candidate-async-a0-rno"
   ],
@@ -218,7 +241,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 46.35631528888889,
-    "gpu_hours_through_verified_absence_upper_bound": 71.99952083777778
+    "gpu_hours_to_controller_terminal_proxy": 70.08905863333332,
+    "gpu_hours_through_verified_absence_upper_bound": 97.38046927111111
   }
 }

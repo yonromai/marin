@@ -1,0 +1,328 @@
+{
+  "checked_at": "2026-10-19T22:09:57.043134+00:00",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+  "pods": [
+    {
+      "pod": "iris-romain-sc-integration-snowball-3d461624-0-c5b65c65839b701a",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/4",
+      "created": "2026-10-19T22:08:42Z",
+      "node": "gb95f50",
+      "phase": "Running",
+      "start": "2026-10-19T22:09:16Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:16Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:18Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:19Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:19Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:16Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:088139e59f47c24722b7795477536b1fabbe91a41752ad34849c07823d0c564f",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-6c289050-0-bdfaa997a18ea4b7",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/1",
+      "created": "2026-10-19T22:08:42Z",
+      "node": "g82a648",
+      "phase": "Running",
+      "start": "2026-10-19T22:09:14Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:15Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:16Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:17Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:17Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:14Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:088139e59f47c24722b7795477536b1fabbe91a41752ad34849c07823d0c564f",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-7e03ad11-0-49f15e128046fe04",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/2",
+      "created": "2026-10-19T22:08:42Z",
+      "node": "g830782",
+      "phase": "Running",
+      "start": "2026-10-19T22:09:14Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:15Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:16Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:17Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:17Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:14Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:088139e59f47c24722b7795477536b1fabbe91a41752ad34849c07823d0c564f",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-998b43c5-0-731bc6ce18b5d693",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/0",
+      "created": "2026-10-19T22:08:42Z",
+      "node": "g53c548",
+      "phase": "Running",
+      "start": "2026-10-19T22:09:14Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:15Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:16Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:18Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:18Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:14Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:088139e59f47c24722b7795477536b1fabbe91a41752ad34849c07823d0c564f",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-b7db324e-0-b05e5adfbb58ce7e",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/3",
+      "created": "2026-10-19T22:08:42Z",
+      "node": "g8364ba",
+      "phase": "Running",
+      "start": "2026-10-19T22:09:12Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:13Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:14Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:15Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:15Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:09:12Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": [
+        "ghcr.io/marin-community/iris-controller@sha256:088139e59f47c24722b7795477536b1fabbe91a41752ad34849c07823d0c564f",
+        "ghcr.io/marin-community/iris-task@sha256:13519c59442bd70ed5ec2902869f15094992d6849d7e34e353f1338dec7ff5f8"
+      ]
+    }
+  ],
+  "workloads": [
+    {
+      "name": "iris-pg-b74e9c0cff0d7e14-0",
+      "status": {
+        "admission": {
+          "clusterQueue": "iris-cq",
+          "podSetAssignments": [
+            {
+              "count": 5,
+              "flavors": {
+                "cpu": "cw-tas",
+                "ephemeral-storage": "cw-tas",
+                "memory": "cw-tas",
+                "nvidia.com/gpu": "cw-tas",
+                "rdma/ib": "cw-tas"
+              },
+              "name": "7b098820",
+              "resourceUsage": {
+                "cpu": "160750m",
+                "ephemeral-storage": "2500Gi",
+                "memory": "9216960Mi",
+                "nvidia.com/gpu": "40",
+                "rdma/ib": "40"
+              },
+              "topologyAssignment": {
+                "levels": [
+                  "kubernetes.io/hostname"
+                ],
+                "slices": [
+                  {
+                    "domainCount": 5,
+                    "podCounts": {
+                      "universal": 1
+                    },
+                    "valuesPerLevel": [
+                      {
+                        "individual": {
+                          "prefix": "g",
+                          "roots": [
+                            "53c548",
+                            "82a648",
+                            "830782",
+                            "8364ba",
+                            "b95f50"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T22:08:42Z",
+            "message": "Quota reserved in ClusterQueue iris-cq",
+            "observedGeneration": 1,
+            "reason": "QuotaReserved",
+            "status": "True",
+            "type": "QuotaReserved"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T22:08:42Z",
+            "message": "The workload is admitted",
+            "observedGeneration": 1,
+            "reason": "Admitted",
+            "status": "True",
+            "type": "Admitted"
+          }
+        ]
+      }
+    }
+  ],
+  "absent": false
+}

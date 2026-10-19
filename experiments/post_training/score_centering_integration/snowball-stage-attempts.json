@@ -1,36 +1,65 @@
 {
-  "saved_at_utc": "2026-10-19T21:10:33.810599+00:00",
+  "saved_at_utc": "2026-10-19T22:12:29.004298+00:00",
   "protocol": "snowball-staged-protocol-r2.json",
   "candidate_controls": {
-    "attempts_submitted": 1,
+    "attempts_submitted": 2,
     "manual_attempt_limit": 2,
-    "latest_job": "/romain/sc-integration-snowball-candidate-controls-a0-east-01a146a3",
-    "outcome": "preempted during startup",
-    "reported_applied_updates": 0,
-    "report_present": false,
-    "admitted_at": "2026-10-19T19:44:38.890061Z",
-    "evicted_at": "2026-10-19T19:49:18.185623Z",
-    "controller_terminal_at": "2026-10-19T19:49:52.612Z",
-    "provider_absence_at": "2026-10-19T20:02:01.290979Z",
-    "preemptor_uid": "3838dcde-1367-46dc-af6c-3144eb69f964",
-    "preemptor_priority": 12,
-    "prepared_retry": "snowball-candidate-controls-a1-rno-prepare.yaml",
-    "submission_guard": "Require full corrected-source Qwen success/shutdown and successful primary baseline controls/shutdown, then a fresh five-whole-node fit and at least 40 unused GPU/RDMA quota units on RNO."
+    "latest_job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+    "outcome": "active; admitted, all five Pods running",
+    "reported_applied_updates": null,
+    "submitted_at": "2026-10-19T22:08:42.249Z",
+    "admitted_at": "2026-10-19T22:08:42.621248Z",
+    "queue_inclusive_deadline_at": "2026-10-20T04:08:42.249Z",
+    "automatic_retries": 0,
+    "previous_attempt_record": {
+      "attempts_submitted": 1,
+      "manual_attempt_limit": 2,
+      "latest_job": "/romain/sc-integration-snowball-candidate-controls-a0-east-01a146a3",
+      "outcome": "preempted during startup",
+      "reported_applied_updates": 0,
+      "report_present": false,
+      "admitted_at": "2026-10-19T19:44:38.890061Z",
+      "evicted_at": "2026-10-19T19:49:18.185623Z",
+      "controller_terminal_at": "2026-10-19T19:49:52.612Z",
+      "provider_absence_at": "2026-10-19T20:02:01.290979Z",
+      "preemptor_uid": "3838dcde-1367-46dc-af6c-3144eb69f964",
+      "preemptor_priority": 12,
+      "prepared_retry": "snowball-candidate-controls-a1-rno-prepare.yaml",
+      "submission_guard": "Require full corrected-source Qwen success/shutdown and successful primary baseline controls/shutdown, then a fresh five-whole-node fit and at least 40 unused GPU/RDMA quota units on RNO."
+    },
+    "submission_guard": "Full corrected-source Qwen success/shutdown and complete primary baseline controls success/shutdown. The latest queue checkpoint prefers released five-node fit; native BATCH admission controls allocation. No remaining candidate-controls attempt after this submission.",
+    "operating_observation": {
+      "prior_derived_guard_met": false,
+      "clarification": "The older status record required a fresh free five-node/40-quota snapshot. The 21:27 queue checkpoint instead says to prefer the released five-node fit after baseline success/shutdown. At 22:07:59 the free-only fit was zero and unused GPU/RDMA quota was 12; candidate was submitted after verified baseline release and admitted by ordinary priority-2 BATCH preemption of priority-1 work. Production settings, priority, deadlines and attempt limits did not change.",
+      "capacity_evidence": "evidence/capacity-rno-before-candidate-controls-a1.json",
+      "admission_evidence": "evidence/snowball-candidate-controls-a1-rno-workload-events.json"
+    }
   },
   "asynchronous_stages": {
     "baseline_actual_attempts": 0,
     "candidate_actual_attempts": 0,
     "applied_updates_per_arm": 67
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "No candidate Snowball correctness or throughput result exists yet. Qwen and CPU evidence cannot substitute for the required primary Snowball qualification.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3"
+  ],
+  "limit": "Primary baseline controls are complete. Candidate controls is active with no result yet; asynchronous comparison remains unsubmitted. Qwen/CPU evidence cannot substitute for full primary Snowball qualification.",
   "primary_cluster": "cw-rno2a",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
-    "actual_attempts": 0,
+    "actual_attempts": 1,
     "manual_attempt_limit": 2,
     "prepared": "snowball-baseline-controls-a0-rno-prepare.yaml",
-    "submission_guard": "First bounded native-queue attempt may be submitted without an immediate five-node fit after completed Qwen shutdown; the gang scheduler controls actual admission."
+    "submission_guard": "First bounded native-queue attempt may be submitted without an immediate five-node fit after completed Qwen shutdown; the gang scheduler controls actual admission.",
+    "latest_job": "/romain/sc-integration-snowball-baseline-controls-a0-rno-01a146a3",
+    "outcome": "success",
+    "complete": true,
+    "reported_applied_updates": 18,
+    "source_sha256": "c5606772fe268927f7d9ed2ed826f80baf9a28b7518151b984c772c4568a6a1a",
+    "submitted_at": "2026-10-19T21:29:29.956Z",
+    "admitted_at": "2026-10-19T21:29:31.374099Z",
+    "controller_terminal_at": "2026-10-19T22:05:07.321Z",
+    "provider_absence_at": "2026-10-19T22:07:35.659458Z"
   },
   "qwen_corrected_source": {
     "job": "/romain/sc-integration-qwen-candidate-a2-rno-01a146a3",

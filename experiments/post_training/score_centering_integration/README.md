@@ -103,10 +103,14 @@ This catches admission openings between manual checks. It consumes no GPUs while
 five-node BATCH geometry, six-hour queue-inclusive deadline, two-attempt stage limit and zero automatic retries.
 The final candidate controls retry remains unsubmitted until the baseline qualifies and stops.
 
-The fresh baseline controls job was submitted at 21:29:29.956 UTC and admitted at 21:29:31.374099 on October 19.
-All five Pods were running on attempt zero at 21:37:41. Native Kueue events show its ordinary BATCH priority
-preempted a priority-one workload; no priority or shared-service setting was changed. The actual task and
-logshipper images match the corrected Qwen run. Its first report was still pending at 21:38 UTC.
+The fresh RNO baseline controls completed all 18 updates and 15 serialized windows. All five tasks succeeded on
+attempt zero by 22:05:07 UTC on October 19; their Pods and queue were absent at 22:07:35. Full-normalization
+references at both temperatures were within 1.91e-6. The complete raw report is retained in
+[reports](reports/), with a [standalone analysis](evidence/snowball-baseline-controls-a0-rno-analysis.json).
+The matched candidate controls was submitted at 22:08:42.249 UTC and admitted at 22:08:42.621248. All five Pods
+were running at 22:09:57. Its actual task and logshipper images match the baseline and corrected Qwen run.
+Both primary arms used ordinary BATCH priority; native Kueue admitted them by preempting priority-one workloads.
+No priority or shared-service setting was changed. Candidate results and both asynchronous stages remain pending.
 [Current-head CI](evidence/pr968-097192b4-ci-check-03.json) is terminal with all six checks successful on
 product `097192b463e48552383fe27fc8c42b135bf2c20a`, whose only difference from qualified source `87f13fcd` is documentation.
 

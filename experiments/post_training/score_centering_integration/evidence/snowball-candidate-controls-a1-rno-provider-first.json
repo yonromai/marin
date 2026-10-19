@@ -1,0 +1,183 @@
+{
+  "checked_at": "2026-10-19T22:09:01.494109+00:00",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
+  "pods": [
+    {
+      "pod": "iris-romain-sc-integration-snowball-3d461624-0-c5b65c65839b701a",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/4",
+      "created": "2026-10-19T22:08:42Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:08:42Z",
+          "message": "0/65 nodes are available: 1 Insufficient memory, 1 Insufficient nvidia.com/gpu, 1 node(s) were unschedulable, 63 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/65 nodes are available: 1 No preemption victims found for incoming pod, 64 Preemption is not helpful for scheduling.",
+          "observedGeneration": 3,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-6c289050-0-bdfaa997a18ea4b7",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/1",
+      "created": "2026-10-19T22:08:42Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:08:42Z",
+          "message": "0/65 nodes are available: 1 Insufficient memory, 1 Insufficient nvidia.com/gpu, 1 node(s) were unschedulable, 63 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/65 nodes are available: 1 No preemption victims found for incoming pod, 64 Preemption is not helpful for scheduling.",
+          "observedGeneration": 3,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-7e03ad11-0-49f15e128046fe04",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/2",
+      "created": "2026-10-19T22:08:42Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:08:42Z",
+          "message": "0/65 nodes are available: 1 Insufficient memory, 1 Insufficient nvidia.com/gpu, 1 node(s) were unschedulable, 63 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/65 nodes are available: 1 No preemption victims found for incoming pod, 64 Preemption is not helpful for scheduling.",
+          "observedGeneration": 3,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-998b43c5-0-731bc6ce18b5d693",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/0",
+      "created": "2026-10-19T22:08:42Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:08:42Z",
+          "message": "0/65 nodes are available: 1 Insufficient memory, 1 Insufficient nvidia.com/gpu, 1 node(s) were unschedulable, 63 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/65 nodes are available: 1 No preemption victims found for incoming pod, 64 Preemption is not helpful for scheduling.",
+          "observedGeneration": 3,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    },
+    {
+      "pod": "iris-romain-sc-integration-snowball-b7db324e-0-b05e5adfbb58ce7e",
+      "task": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3/3",
+      "created": "2026-10-19T22:08:42Z",
+      "node": null,
+      "phase": "Pending",
+      "start": null,
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-19T22:08:42Z",
+          "message": "0/65 nodes are available: 1 Insufficient memory, 1 Insufficient nvidia.com/gpu, 1 node(s) were unschedulable, 63 node(s) didn't match Pod's node affinity/selector. no new claims to deallocate, preemption: 0/65 nodes are available: 1 No preemption victims found for incoming pod, 64 Preemption is not helpful for scheduling.",
+          "observedGeneration": 3,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "images": []
+    }
+  ],
+  "workloads": [
+    {
+      "name": "iris-pg-b74e9c0cff0d7e14-0",
+      "status": {
+        "admission": {
+          "clusterQueue": "iris-cq",
+          "podSetAssignments": [
+            {
+              "count": 5,
+              "flavors": {
+                "cpu": "cw-tas",
+                "ephemeral-storage": "cw-tas",
+                "memory": "cw-tas",
+                "nvidia.com/gpu": "cw-tas",
+                "rdma/ib": "cw-tas"
+              },
+              "name": "7b098820",
+              "resourceUsage": {
+                "cpu": "160750m",
+                "ephemeral-storage": "2500Gi",
+                "memory": "9216960Mi",
+                "nvidia.com/gpu": "40",
+                "rdma/ib": "40"
+              },
+              "topologyAssignment": {
+                "levels": [
+                  "kubernetes.io/hostname"
+                ],
+                "slices": [
+                  {
+                    "domainCount": 5,
+                    "podCounts": {
+                      "universal": 1
+                    },
+                    "valuesPerLevel": [
+                      {
+                        "individual": {
+                          "prefix": "g",
+                          "roots": [
+                            "53c548",
+                            "82a648",
+                            "830782",
+                            "8364ba",
+                            "b95f50"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T22:08:42Z",
+            "message": "Quota reserved in ClusterQueue iris-cq",
+            "observedGeneration": 1,
+            "reason": "QuotaReserved",
+            "status": "True",
+            "type": "QuotaReserved"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T22:08:42Z",
+            "message": "The workload is admitted",
+            "observedGeneration": 1,
+            "reason": "Admitted",
+            "status": "True",
+            "type": "Admitted"
+          }
+        ]
+      }
+    }
+  ],
+  "absent": false
+}
