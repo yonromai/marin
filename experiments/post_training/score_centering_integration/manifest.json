@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-19T19:14:43.281453+00:00",
+  "saved_at": "2026-10-19T20:06:17.086917+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 13195,
-      "sha256": "95d7631635b150e17241181e7392207edde92207e82f03318c3f79b13ef8f2cd"
+      "bytes": 13730,
+      "sha256": "79e688d6064446a89c2252614bf06ee93bbac568a544418413873e7418b30e01"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 6099,
-      "sha256": "7e777aae114fb80f547b407cacd6855b631d61f99fe5630dc146a9111d94c453"
+      "bytes": 7168,
+      "sha256": "180df4828ed42beedef7ecd8e4d810c6122579420255a18b55e9658f87103bca"
     },
     {
       "path": "analyze.py",
@@ -257,6 +257,36 @@
       "sha256": "22475b8233ce1c729894e4d6082d87847e10fa54b2ccb3162d5a43cb9383f0e8"
     },
     {
+      "path": "evidence/snowball-candidate-controls-a0-provider-check-02.json",
+      "bytes": 4239,
+      "sha256": "7ee7c1125b76c81e32bf5289af8833fe364e40d3a831003fc2f051582eaddb27"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a0-provider-check-03.json",
+      "bytes": 217,
+      "sha256": "f220a04fab9e457ce7579f8af55dbcda6becc409c3bf0b5b5ec88b05ec99d0bd"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a0-provider-first.json",
+      "bytes": 4239,
+      "sha256": "4ceadf74c720d3eadddad0f4e6f999f15cefa86ce370695e0ae9047267a4f077"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a0-receipts.zip",
+      "bytes": 1847,
+      "sha256": "c63636a64946d3e6d0f46a27b0ddcfa6255eb9b0b0b540c9e8ec33b95b6969a1"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a0-workload-events.json",
+      "bytes": 14143,
+      "sha256": "c418a9069e57dc6d92869eaeee066389111e78f0b1abf896f0d75c2f31286b23"
+    },
+    {
+      "path": "evidence/snowball-candidate-controls-a1-launch-preflight.json",
+      "bytes": 9445,
+      "sha256": "1a26166657b2171a2baf4ab45f33cb66a69098d02ed16bac5a253d277e1a20e5"
+    },
+    {
       "path": "evidence/snowball-real-grader-preflight.json",
       "bytes": 7734,
       "sha256": "c1663c987d1f5f72e6ecc022bd268fb7bc84d1fa323891d693cfead44b2747bc"
@@ -432,6 +462,16 @@
       "sha256": "ec0de68f68620d96fad3c750375a298b78af9388433ae98166fb77cba869a923"
     },
     {
+      "path": "snowball-candidate-controls-a1-east-detach.yaml",
+      "bytes": 10018,
+      "sha256": "7891b4d89a8b9569535231886f2bc0e07c1962e9f8c1a4cab405cdaa32ee8f32"
+    },
+    {
+      "path": "snowball-candidate-controls-a1-east-prepare.yaml",
+      "bytes": 10019,
+      "sha256": "a882532d6c22f6476eef0c3571f24b2de80e82928dc33b178483d829b47a2759"
+    },
+    {
       "path": "snowball-protocol-a1.json",
       "bytes": 7083,
       "sha256": "c57ffd9fbc29d3e472c9da3e0ee7244a8c7422d0ea811ed6aadaeeb428870dd4"
@@ -445,6 +485,11 @@
       "path": "snowball-protocol.json",
       "bytes": 4853,
       "sha256": "999c5ab0d97b7363c4c1cab54839d3f838d9908728e1747bac311601f0bd20f0"
+    },
+    {
+      "path": "snowball-stage-attempts.json",
+      "bytes": 1313,
+      "sha256": "776379602f6d0ec35ffe394f0455c60f561286c5c1e32fa6960db8579b8a2541"
     },
     {
       "path": "snowball-staged-protocol.json",

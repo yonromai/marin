@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-19T19:14:43.280832+00:00",
+  "saved_at": "2026-10-19T20:06:17.086038+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -116,6 +116,29 @@
       "queue_seconds": 0.808,
       "gpu_hours_to_controller_terminal_proxy": 4.205262222222222,
       "gpu_hours_through_verified_absence_upper_bound": 4.825225204444444
+    },
+    {
+      "job": "/romain/sc-integration-snowball-candidate-controls-a0-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-19T19:15:52.229Z",
+      "admitted_at": "2026-10-19T19:44:38.890061Z",
+      "controller_terminal_at": "2026-10-19T19:49:52.612Z",
+      "provider_absence_at": "2026-10-19T20:02:01.290979Z",
+      "applied_updates": 0,
+      "outcome": "external priority-12 preemption during startup; no report before first update",
+      "automatic_retries": 0,
+      "evidence": [
+        "evidence/snowball-candidate-controls-a0-provider-first.json",
+        "evidence/snowball-candidate-controls-a0-provider-check-03.json",
+        "evidence/snowball-candidate-controls-a0-workload-events.json",
+        "evidence/snowball-candidate-controls-a0-receipts.zip"
+      ],
+      "queue_seconds": 1726.661061,
+      "gpu_hours_to_controller_terminal_proxy": 3.4857993222222223,
+      "gpu_hours_through_verified_absence_upper_bound": 11.582232422222223
     }
   ],
   "prepared_but_not_submitted": [
@@ -134,13 +157,13 @@
     "candidate_async": 2
   },
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-controls-a0-east",
+    "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",
     "snowball-candidate-async-a0-east"
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 38.85466094444444,
-    "gpu_hours_through_verified_absence_upper_bound": 54.67989969555555
+    "gpu_hours_to_controller_terminal_proxy": 42.34046026666667,
+    "gpu_hours_through_verified_absence_upper_bound": 66.26213211777777
   }
 }

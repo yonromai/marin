@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-10-19T20:02:01.290979+00:00",
+  "cluster": "cw-us-east-02a",
+  "job": "/romain/sc-integration-snowball-candidate-controls-a0-east-01a146a3",
+  "pods": [],
+  "workloads": [],
+  "absent": true
+}

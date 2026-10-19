@@ -80,7 +80,14 @@ measurement functions, serialized loop and periodic body are AST-identical; see
 [the staged harness proof](evidence/staged-harness-proof.json). No partial training checkpoint is recovered.
 All three future stages stay on East, run sequentially, allow at most two actual submissions each, retain a
 21600-second queue-inclusive deadline and zero automatic retries. Product code, K128, SC application frequency
-and the asynchronous admission/publication controls are unchanged. These stages have not yet been submitted.
+and the asynchronous admission/publication controls are unchanged.
+
+Candidate controls a0 was admitted at 19:44:38 UTC, then preempted by a priority-12 workload at 19:49:18,
+before its first report or optimizer update. All tasks were terminal at 19:49:52 and Pods absent at 20:02:01.
+The remaining controls retry is prepared but held until East has room for five whole nodes and sufficient
+admission quota. [The stage attempt record](snowball-stage-attempts.json) keeps this failed start and the
+remaining limits explicit. Both asynchronous stages remain unsubmitted. No candidate Snowball performance
+or correctness result is established yet.
 
 ## Qwen interface qualification
 

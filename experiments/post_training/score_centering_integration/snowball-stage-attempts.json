@@ -1,0 +1,27 @@
+{
+  "saved_at_utc": "2026-10-19T20:05:18.095818+00:00",
+  "protocol": "snowball-staged-protocol.json",
+  "candidate_controls": {
+    "attempts_submitted": 1,
+    "manual_attempt_limit": 2,
+    "latest_job": "/romain/sc-integration-snowball-candidate-controls-a0-east-01a146a3",
+    "outcome": "preempted during startup",
+    "reported_applied_updates": 0,
+    "report_present": false,
+    "admitted_at": "2026-10-19T19:44:38.890061Z",
+    "evicted_at": "2026-10-19T19:49:18.185623Z",
+    "controller_terminal_at": "2026-10-19T19:49:52.612Z",
+    "provider_absence_at": "2026-10-19T20:02:01.290979Z",
+    "preemptor_uid": "3838dcde-1367-46dc-af6c-3144eb69f964",
+    "preemptor_priority": 12,
+    "prepared_retry": "snowball-candidate-controls-a1-east-prepare.yaml",
+    "submission_guard": "Do not submit the remaining retry until East has five whole-node request fits and at least40 GPUs of unused quota; board and provider are advisory/current, not a reservation."
+  },
+  "asynchronous_stages": {
+    "baseline_actual_attempts": 0,
+    "candidate_actual_attempts": 0,
+    "applied_updates_per_arm": 67
+  },
+  "owned_active_jobs_or_queues": [],
+  "limit": "No candidate Snowball correctness or throughput result exists yet. Shorter measurement stages do not remove exposure to preemption during model startup."
+}

@@ -1,0 +1,315 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:15:52.427848Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139076502",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 36 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 36 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:15:52Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e00446799a9111",
+                "namespace": "iris",
+                "resourceVersion": "139076505",
+                "uid": "8218081a-f3d8-4a9a-85f4-7a39a587270b"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:15:54.652368Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139076504",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 36 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 36 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:15:54Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e00446fe320a2c",
+                "namespace": "iris",
+                "resourceVersion": "139090345",
+                "uid": "b5fdfa28-24c5-4b1b-b0b4-5789ce866596"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "series": {
+                "count": 379,
+                "lastObservedTime": "2026-10-19T19:30:35.554335Z"
+            },
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:30:37.039768Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139088888",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 40 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 40 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:30:37Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e00514709540af",
+                "namespace": "iris",
+                "resourceVersion": "139088933",
+                "uid": "be0c1fc5-55e7-400d-8631-77005d2ba86e"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:30:38.251649Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139088932",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 40 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 40 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:30:38Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e00514b8d10ea7",
+                "namespace": "iris",
+                "resourceVersion": "139102780",
+                "uid": "3de5c91a-1cac-4db9-b567-69cca569403e"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "series": {
+                "count": 324,
+                "lastObservedTime": "2026-10-19T19:44:28.477491Z"
+            },
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:44:29.549912Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139097966",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 32 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 32 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:44:29Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e005d6460de709",
+                "namespace": "iris",
+                "resourceVersion": "139102772",
+                "uid": "ac9a5c99-ddc4-44de-9e0f-7ab56fecfa35"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "series": {
+                "count": 3,
+                "lastObservedTime": "2026-10-19T19:44:32.750734Z"
+            },
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:44:33.810670Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139098050",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 24 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 24 more needed",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:44:33Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e005d74403ed37",
+                "namespace": "iris",
+                "resourceVersion": "139098136",
+                "uid": "948a3b5b-b6ad-4530-9508-ba88e5c241dd"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "series": {
+                "count": 2,
+                "lastObservedTime": "2026-10-19T19:44:37.706308Z"
+            },
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "QuotaReserved",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:44:38.890046Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139098180",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Quota reserved in ClusterQueue iris-cq, wait time since queued was 1727s",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:44:38Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e005d872c50c12",
+                "namespace": "iris",
+                "resourceVersion": "139098182",
+                "uid": "dc386e57-5c53-43e8-8dc0-f63c841d2eba"
+            },
+            "reason": "QuotaReserved",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Admitted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:44:38.890061Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139098180",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Admitted by ClusterQueue iris-cq, wait time since reservation was 0s",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:44:38Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e005d872c542a5",
+                "namespace": "iris",
+                "resourceVersion": "139098183",
+                "uid": "3e3907d6-b207-47b5-a4f3-12286092a06f"
+            },
+            "reason": "Admitted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "EvictedDueToPreempted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:49:18.185623Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139101371",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Preempted to accommodate a workload (UID: 3838dcde-1367-46dc-af6c-3144eb69f964, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:49:18Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e006197a155d74",
+                "namespace": "iris",
+                "resourceVersion": "139101374",
+                "uid": "75885a1f-79cc-488d-adfd-2dac2da745c4"
+            },
+            "reason": "EvictedDueToPreempted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Preempted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-19T19:49:18.185689Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-5aae6b2a0ee659e6-0",
+                "namespace": "iris",
+                "resourceVersion": "139098180",
+                "uid": "d0cf940c-75db-4758-89af-b73ee6701d50"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Preempted to accommodate a workload (UID: 3838dcde-1367-46dc-af6c-3144eb69f964, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq; preemptor effective priority: 12 (base: 12, boost: 0); preemptee effective priority: 2 (base: 2, boost: 0)",
+            "metadata": {
+                "creationTimestamp": "2026-10-19T19:49:18Z",
+                "name": "iris-pg-5aae6b2a0ee659e6-0.18e006197a165627",
+                "namespace": "iris",
+                "resourceVersion": "139101372",
+                "uid": "c5ab1f58-0535-4c19-9828-322567a97e4f"
+            },
+            "reason": "Preempted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
