@@ -1,0 +1,95 @@
+{
+  "revision": "r9",
+  "supersedes": "snowball-staged-protocol-r8.json",
+  "declared_at_utc": "2026-10-20T08:37:42.540791+00:00",
+  "reason": "The repaired Reno baseline was externally preempted by the existing 24-node priority-12 hero workload. Report21/native23 applied updates are retained; later in-flight completion is unknown. The completed ordinary async mode is partial qualification, excluded from the primary pair. All 15 submissions are terminal and absent. Explicitly declare one additional fresh East baseline, raising the agent baseline allowance from 9 to 10; candidate stays 4. Keep the same repaired runtime, real rewards, data, sampling, 67-update workload and timing code. No vLLM or grader change is needed. Both fresh arms remain on East.",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 10,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 6,
+    "candidate_async": 1
+  },
+  "actual_submissions_before_revision": {
+    "qwen": 3,
+    "snowball_baseline": 9,
+    "snowball_candidate": 3,
+    "total": 15,
+    "all_terminal_and_absent": true
+  },
+  "decision_by": "Agent operating-plan revision under the original no-GPU-hour-cap goal, before any next submission; no new user acceptance inferred.",
+  "grader_repair": {
+    "old_commit": "b3206ac1c46cee3079441f394b5a6a13bb923d0e",
+    "new_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+    "source_change": "One noncommutative-scalar rejection before SymPy finiteness. Existing invalid-candidate zero scoring and invalid-reference failure remain. No broad exception catch.",
+    "old_lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+    "new_lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+    "lock_changes": "Only four shared Marin Git revisions. Other3Marin package trees, all package versions/other sources/wheels and vLLM pin are unchanged.",
+    "grader_tests_passed": 437,
+    "product_cpu_tests_passed": 477,
+    "product_dependency_skips": 3,
+    "reproducer": "evidence/grader-cpu-reproducer.json",
+    "proof": "evidence/matched-grader-runtime-proof.json",
+    "task_replay": "evidence/grader-repair-task-parity.json",
+    "task_replay_scope": "All 192 fixed reference-like replies have exactly equal old/new grades: 191 positive and one existing negative symbolic-inequality format case. No row was edited or filtered. All 145 AIME sessions grade the known nonscalar wrong candidate incorrect under the repair. Full native grading and source lowering were used. These CPU fixtures do not establish generated-answer quality or training throughput."
+  },
+  "future_stages_in_order": [
+    {
+      "variant": "baseline",
+      "product_integration": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime_with_common_grader_fix": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "prepare": "snowball-baseline-async-a5-east-r9-prepare.yaml",
+      "detach": "snowball-baseline-async-a5-east-r9-detach.yaml",
+      "stage_attempt_number": 6,
+      "overall_baseline_submission_number": 10,
+      "applied_updates": 67
+    },
+    {
+      "variant": "candidate",
+      "product": "c36e8594cbbbe55362945debfa6f75887a96361f",
+      "runtime_with_common_grader_fix": "56e187219994288b50463d8505f822329beb0795",
+      "prepare": "snowball-candidate-async-a0-east-r7-prepare.yaml",
+      "detach": "snowball-candidate-async-a0-east-r7-detach.yaml",
+      "stage_attempt_number": 1,
+      "overall_candidate_submission_number": 4,
+      "applied_updates": 67
+    }
+  ],
+  "configurations": [
+    {
+      "path": "snowball-baseline-async-a5-east-r9-prepare.yaml",
+      "sha256": "157a9fff47811146ce42df982aeec5c6f65f5f9439b1b301f7298c9a2c617d4e"
+    },
+    {
+      "path": "snowball-baseline-async-a5-east-r9-detach.yaml",
+      "sha256": "5083beef5798ddbb37f2a36889019956517df74e54197f7093e815b5e2cc4d35"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r7-prepare.yaml",
+      "sha256": "ab75389efb8f0ac8c82c16ae4ecae922e76b3dcfd9af6c57a9b6743d1e777110"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r7-detach.yaml",
+      "sha256": "9c37227533fec255655e04cf79a7bdd3528728dff4f2fa6f1f40fd6fe9f6c5be"
+    }
+  ],
+  "cluster": "cw-us-east-02a",
+  "priority": "BATCH",
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "learner": "4nodes PP2/EP8/DP16/TP1/CP1/SP1",
+  "inference": "1node DP8/EP8",
+  "automatic_retries": 0,
+  "queue_inclusive_deadline_seconds": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "unchanged": "Original SFT/tokenizer, same192selectedtasks andsourceparquetdf971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd, seed0, realrewards/normalEOS,67updates(3calibration+6native+12/12/12/22async),2warmupdatespermode, K128 andSCfrequency, probeinterval10/32positions, fullbatch/sourceage4/inflight64, per-update publication andkeep policy. No vLLM changes. Report-only runtime version metadata is added outside timing windows; measurement methods are AST-identical.",
+  "comparison_scope": "Both fresh async arms use East, the identical repaired grader and new lock. Complete Reno controls and partial repaired Reno async timings remain separate, with no pooled samples across stages, clusters or runtime revisions. No learning benefit claim.",
+  "operating_rule": "All 15 previous allocations are terminal and absent. Reuse the successful real-source grader parity and matched-runtime proof; require an actual backend dry run of the renamed baseline configuration. Check the board and both clusters sequentially. Enter one native East BATCH queue with a six-hour queue-inclusive deadline, no duplicate/move or automatic retry. Keep healthy allocations. Verify all 67 applied baseline updates and shutdown before the one candidate submission. Count every actual attempt, including queue-only failures. Do not interfere with the active higher-priority Reno workload.",
+  "failure_rule": "No automatic or undeclared further attempt. Retain any incomplete outcome and its exact source, applied-update evidence and allocation bounds before reassessing.",
+  "previous_attempt_evidence": "evidence/snowball-baseline-async-a4-rno-preemption-summary.json"
+}

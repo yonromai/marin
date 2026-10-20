@@ -1,0 +1,23 @@
+{
+  "job": "/romain/sc-integration-snowball-baseline-async-a4-rno-01a146a3",
+  "outcome": "External priority-12 preemption during capture/rescore; no code or grader error observed.",
+  "report_applied_updates": 21,
+  "known_applied_update_lower_bound": 23,
+  "total_applied_updates_established": false,
+  "limits": "The report saves at phase boundaries. Native metric logs confirm steps 4 through 23, all with one applied update, no skips and nonzero gradients. The last native log starts admission for step 24 at 08:20:30.981. Its completion and any later in-flight work are unestablished. No partial checkpoint is recovered.",
+  "complete_ordinary_async_updates": 12,
+  "capture_updates_with_native_metrics": 2,
+  "sc_async_updates_established": 0,
+  "repair_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+  "runtime_commit": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+  "submitted_at": "2026-10-20T07:47:21.940Z",
+  "admitted_at": "2026-10-20T07:47:22.116408Z",
+  "evicted_at": "2026-10-20T08:24:47.094246Z",
+  "controller_terminal_at": "2026-10-20T08:25:24.914Z",
+  "provider_absence_at": "2026-10-20T08:30:57.347646Z",
+  "preemptor_uid": "d2fa7bcd-2bf5-4817-abb8-4320199a8071",
+  "preemptor_priority": 12,
+  "preemptor_job": "/romain/hero-rl-single-example-a0-01a15157",
+  "preemptor_nodes": 24,
+  "scope": "Partial qualification only, excluded from the complete primary asynchronous comparison. All 15 actual submissions are terminal and absent."
+}

@@ -1,0 +1,183 @@
+{
+  "uid": "d2fa7bcd-2bf5-4817-abb8-4320199a8071",
+  "found": [
+    {
+      "name": "iris-pg-a0ec51308b71d956-0",
+      "uid": "d2fa7bcd-2bf5-4817-abb8-4320199a8071",
+      "labels": null,
+      "ownerReferences": [
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-2218fdc9-0-2313434591b1b340",
+          "uid": "5855efa7-e561-4cca-acb6-33375d4f69fe"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-596b673d-0-977ab9308317e5cc",
+          "uid": "500bada9-916d-4e57-b0a0-b6c9171e61e7"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-cb49fd21-0-e367482be7bffb23",
+          "uid": "2f067027-4aa3-40d8-b9ee-01cc5a5aed29"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-31bf602d-0-ec05f0fe54a1d241",
+          "uid": "d68bce41-ccc3-4a50-8aea-5bc1dbe8998f"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-c2be43f4-0-7dd69fd2ae2987be",
+          "uid": "37bd9d79-fee4-4bf3-84bc-d5f80717fdec"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-c680cef3-0-250118acd304f3dd",
+          "uid": "7e662712-24d0-4274-abd6-c4f6eb8c8b55"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-3c13c248-0-9dc7d475f84c58a4",
+          "uid": "098bd5b0-84cd-4c9f-b0d0-e41610d344ad"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-86c5f1d1-0-8b85a4564eb9eefc",
+          "uid": "9e1ad2a8-08db-4114-8ec7-4c907eda16f8"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-1a00a01c-0-5b5020ec73414b81",
+          "uid": "9b50415a-8ec5-411a-94e5-23c94852417a"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-cbf5c14b-0-74fc763980da3bb8",
+          "uid": "7fe60220-6e75-482c-a453-270684ed95bd"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-b054e11b-0-f932223ee6d4001d",
+          "uid": "8fea3107-8561-4659-a2b8-6c5133365bc0"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-4c70ff05-0-7cf3b16376b213e9",
+          "uid": "147d0063-b3e6-4518-b18f-bae5b7f0faf6"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-7c395b6f-0-9d11c33f14a8820a",
+          "uid": "fbdea2f6-e70e-4148-a467-1a8a933b74b2"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-b1ed9c97-0-08ad4dd192b0c935",
+          "uid": "5e7cd196-96d8-4352-9a08-5941cb083a50"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-b62ba417-0-d8bb0cf65173fb83",
+          "uid": "c2188736-d638-425c-9ebd-15c5ff03f706"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-20472bf0-0-9a792600440f6892",
+          "uid": "ad530721-f05f-4ef7-8d5b-475ed1633397"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-d975da96-0-5c350e6c972282b8",
+          "uid": "dc1f921d-50e1-4219-a4a2-3ce1cf3a71bb"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-725dd454-0-af5391ed780e6979",
+          "uid": "73b3070e-f365-4fe3-8555-05766883dc1e"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-caf48037-0-3782553668b52d9c",
+          "uid": "2736e37c-36eb-43f5-977d-1becc05927e7"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-19d10c7c-0-fe242588f2d2d559",
+          "uid": "0ac77652-016d-464b-a7f2-69d917ac59fe"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-7a3a7a47-0-18da7721101fc5d0",
+          "uid": "92bd250b-ffd4-41eb-a898-4f0ce47a023f"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-288b5bbf-0-d980e21a245215fd",
+          "uid": "a39bedde-e738-4b33-b73c-d2aac3621f61"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-3c950bd3-0-6f366634abdd2a66",
+          "uid": "722c1eef-35cf-4628-86bc-74364059b370"
+        },
+        {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "name": "iris-romain-hero-rl-single-example-e7013602-0-7726c12230359db0",
+          "uid": "0efee288-5a46-4b52-92fc-898cd50791ca"
+        }
+      ],
+      "priority": 12,
+      "podsets": [
+        {
+          "count": 24,
+          "metadata": {}
+        }
+      ],
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-10-20T08:25:29Z",
+          "message": "Quota reserved in ClusterQueue iris-cq",
+          "observedGeneration": 1,
+          "reason": "QuotaReserved",
+          "status": "True",
+          "type": "QuotaReserved"
+        },
+        {
+          "lastTransitionTime": "2026-10-20T08:25:29Z",
+          "message": "The workload is admitted",
+          "observedGeneration": 1,
+          "reason": "Admitted",
+          "status": "True",
+          "type": "Admitted"
+        }
+      ]
+    }
+  ],
+  "preemptor_task_id": "/romain/hero-rl-single-example-a0-01a15157/5",
+  "preemptor_owner_pod": "iris-romain-hero-rl-single-example-2218fdc9-0-2313434591b1b340"
+}

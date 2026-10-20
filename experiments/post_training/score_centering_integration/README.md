@@ -240,6 +240,26 @@ overall baseline nine/nine and async baseline five/five. It starts fresh from SF
 The queue-inclusive deadline is 13:47:21.940 UTC, with zero automatic retries. The one candidate attempt
 remains held until complete baseline validation and verified release.
 
+
+The repaired Reno baseline was preempted at 08:24:47.094246 UTC by the existing 24-node, priority-12
+`/romain/hero-rl-single-example-a0-01a15157` workload. Its report retains 21 applied updates, including all
+12 ordinary async updates. Native metrics confirm 23 applied updates: three calibrations and 20 real-reward
+updates, all with nonzero gradients and no skips. The two capture/rescore updates are warmups. The last
+native log starts admission for update 24; completion of that or later work is unestablished. No code or grader
+error was observed. The [preemption record](evidence/snowball-baseline-async-a4-rno-preemption-summary.json)
+links the partial report and native logs. These partial timings are excluded from the primary async pair.
+Controller terminal was 08:25:24.914, with verified provider absence at 08:30:57.347646. All fifteen actual
+submissions are closed. Both complete asynchronous reports remain required.
+
+
+[Revision r9](snowball-staged-protocol-r9.json) explicitly declares one additional fresh baseline on East,
+raising the agent's overall baseline allowance from nine to ten and its async stage allowance from five to six.
+The candidate allowance stays four and Qwen stays three. No spent attempt is reset. Both fresh repaired arms
+will stay on East, with the same runtimes, lock, source tasks, real rewards, 67 updates, measurement code,
+six-hour deadline and zero automatic retries. The existing higher-priority Reno workload is left untouched.
+The candidate uses its already-preflighted r7 configuration; the renamed baseline receives a fresh backend
+dry run. Fresh resource-board and sequential capacity checks precede submission. No new GPU job is yet submitted.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

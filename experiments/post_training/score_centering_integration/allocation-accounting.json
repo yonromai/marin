@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T07:49:31.381502+00:00",
+  "saved_at": "2026-10-20T08:39:00.054422+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -351,18 +351,28 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-20T07:47:21.940Z",
       "admitted_at": "2026-10-20T07:47:22.116408Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "active; repaired real-reward async baseline admitted, all five Pods running on attempt zero",
+      "controller_terminal_at": "2026-10-20T08:25:24.914Z",
+      "provider_absence_at": "2026-10-20T08:30:57.347646Z",
+      "applied_updates": 23,
+      "outcome": "external priority-12 preemption; report21/native23 known applied updates, next in-flight completion unestablished",
       "automatic_retries": 0,
       "evidence": [
         "snowball-staged-protocol-r8.json",
         "evidence/snowball-baseline-async-a4-rno-provider-first.json",
         "evidence/snowball-baseline-async-a4-rno-workload-events.json",
-        "evidence/snowball-baseline-async-a4-rno-start-receipts.zip"
+        "evidence/snowball-baseline-async-a4-rno-start-receipts.zip",
+        "evidence/snowball-baseline-async-a4-rno-provider-terminal.json",
+        "evidence/snowball-baseline-async-a4-rno-preemption-summary.json",
+        "evidence/snowball-baseline-async-a4-rno-preemption.zip",
+        "reports/sc-integration-snowball-baseline-async-a4-rno-01a146a3.partial.json.zip"
       ],
-      "queue_seconds": 0.176408
+      "queue_seconds": 0.176408,
+      "gpu_hours_to_controller_terminal_proxy": 25.364417688888885,
+      "gpu_hours_through_verified_absence_upper_bound": 29.058124866666667,
+      "reported_applied_updates": 21,
+      "known_applied_update_lower_bound": 23,
+      "total_applied_updates_established": false,
+      "applied_updates_semantics": "Known lower bound from native metrics; next in-flight completion is unestablished."
     }
   ],
   "prepared_but_not_submitted": [
@@ -375,21 +385,22 @@
     "snowball_candidate": 2
   },
   "global_manual_submission_limits": {
-    "snowball_baseline": 9,
+    "snowball_baseline": 10,
     "snowball_candidate": 4,
     "qwen": 3
   },
   "staged_attempt_limits": {
     "baseline_controls": 1,
     "candidate_controls": 3,
-    "baseline_async": 5,
+    "baseline_async": 6,
     "candidate_async": 1
   },
-  "staged_limit_revision": "r7 explicitly adds one baseline async attempt after the diagnosed scalar-grader failure and matched repair. Global baseline allowance rises from eight to nine before submission. Candidate stays four; all earlier attempts remain counted.",
+  "staged_limit_revision": "r9 explicitly adds one baseline after the external priority-12 Reno preemption. Baseline allowance rises from nine to ten before submission; async stage allowance from five to six. Candidate stays four, Qwen three; all 15 earlier attempts stay counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-async-a0-rno-r8"
+    "snowball-baseline-async-a5-east-r9",
+    "snowball-candidate-async-a0-east-r7"
   ],
-  "placement_revision": "r8 routes both unsubmitted repaired async arms to the observed seven-node Reno opening before any new GPU submission. Limits remain those of r7; complete controls and repaired async timings stay separate.",
+  "placement_revision": "r9 returns both fresh repaired async arms to East after the known higher-priority 192-H100 Reno workload preempted the baseline. Native East BATCH queue is allowed with the same six-hour deadline. Earlier Reno partial and controls timings remain separate.",
   "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",
@@ -397,7 +408,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 132.77031408888888,
-    "gpu_hours_through_verified_absence_upper_bound": 184.56172247111112
+    "gpu_hours_to_controller_terminal_proxy": 158.13473177777777,
+    "gpu_hours_through_verified_absence_upper_bound": 213.61984733777777
   }
 }
