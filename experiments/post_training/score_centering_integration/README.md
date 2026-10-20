@@ -4,8 +4,8 @@ The native task adapter can carry K128 behavior heads as numeric arrays through 
 vLLM still renders messages, parses tools, samples tokens and handles aborts. Our adapter asks its public
 `generate` interface for flat logprobs and attaches the selected arrays to the internal Ray response. It avoids
 constructing, serializing and reparsing one chat object per candidate. Public HTTP chat responses keep their
-existing shape. This record contains the completed Qwen interface qualifications and the preregistered Snowball
-comparison; Qwen and CPU measurements do not establish Snowball throughput.
+existing shape. This record contains the completed Qwen interface qualifications and matched Snowball controls.
+Real-reward asynchronous throughput remains pending.
 
 The [prior performance evidence](../score_centering_performance/README.md) remains unchanged. The active
 product is [draft #968](https://github.com/marin-community/MarinSkyRL/pull/968); #996 remains research.
@@ -129,11 +129,72 @@ the same guard. Source, workload, sampling, K128, cadence and measurement window
 controlled warmup stalls again, capture live worker stacks before its guard; keep extra profiling out of real
 asynchronous throughput windows. No further undeclared controls retry is armed.
 
-Candidate controls a2 was submitted at 23:18:33.592 UTC and admitted at 23:18:33.784812. All five Pods were
-running on attempt zero at 23:19:22, with the same task and logshipper images as the baseline. This is actual
-GPU submission ten overall and candidate submission three of four. Both asynchronous stages remain unsubmitted.
-An Iris task-exec preflight found the Ray trainer process and the existing py-spy 0.4.2 tool; bounded captures
-will target actor PIDs in nonblocking mode if controlled warmup stalls. No capture has been requested yet.
+Candidate controls a2 completed all 18 applied updates and 15 serialized windows. All five tasks succeeded on
+attempt zero by 23:51:03 UTC, and Pods and queue were absent at 23:54:27. Its three full-normalization reference
+sets, including the native compact-position temperature-0.7 check, were within 1.91e-6. The declared warmup
+profiles were sufficient; no extra diagnostic capture was needed. Both primary controls reports are complete.
+
+The first fresh asynchronous baseline was submitted at 23:57:02.376 UTC and admitted at 23:57:02.812013 on October 19.
+A priority-12 workload evicted it at 00:01:05.666032 on October 20, before its first report or optimizer update.
+The preemptor's owner is unknown. All tasks were terminal by 00:01:38.958, and Pods and queue were absent at
+00:15:45.497607. Its zero updates and allocation time remain in the attempt record.
+
+The second and last declared baseline asynchronous attempt was submitted at 00:21:53.775 UTC on October 20
+and admitted at 00:21:55. It changes only the run namespace from the first attempt. It starts from the original
+SFT checkpoint and plans 67 applied updates with real task rewards, normal EOS and per-update publication.
+This is actual GPU submission twelve; eleven are closed. The asynchronous candidate remains unsubmitted,
+with one allowed submission under the global candidate limit of four.
+
+## Complete controlled Snowball cost
+
+[The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
+implementation, with one profiled warmup and two measured rotating cycles per mode. It excludes East and failed
+starts. Both arms used the same task image, packages, checkpoint, tokenizer, tasks, sampling, topology and
+174080-response-token / 164484-loss-token batch. All included cycles finished within the original 600-second guard.
+
+| Mode | Prior chat objects, seconds | Numeric arrays, seconds |
+| --- | ---: | ---: |
+| Ordinary TIS | 57.766 | 56.970 |
+| Capture/rescore, SC off | 88.132 | 62.982 |
+| TIS + SC | 88.381 | 62.248 |
+| Probes armed, no observation | 57.683 | 56.993 |
+| Complete probe | 63.356 | 57.706 |
+
+SC cycles are 29.57% shorter, with a descriptive Welch log-time interval of 19.51% to 38.38% shorter. Relative
+to ordinary TIS within each allocation, SC adoption overhead falls from 53.00% to 9.27%; the new paired
+descriptive interval is 7.40% to 11.17%. Normalizing both allocations to their ordinary TIS cycles gives a
+28.59% reduction in the SC/ordinary ratio, with a descriptive interval of 21.29% to 35.20%. These are small-sample
+descriptions of this controlled workload, not population confidence or asynchronous throughput results.
+
+![Controlled cycle means, descriptive intervals and exclusive phase walls](controlled-cycle-costs.svg)
+
+The exclusive SC batch-admission wait falls from 71.69 to 45.42 seconds. That wait includes generation and its
+rollout handoff. The remaining array SC cycle spends about 1.12 seconds assembling the batch, 1.91 preparing
+old-policy scores, 7.65 training and 6.13 publishing weights. Full capture/rescore and SC have nearly the same
+cost; their small observed difference is unresolved by two repetitions. Nested timers and concurrent actor
+profiles are retained separately and are not added to these exclusive walls.
+
+During the profiled SC warmup, the prior frontends made 128 chat-logprob builder calls and 174080 per-token
+head-formatter calls. Both are absent from the array path. Its numeric selector ran 128 times, with 3.03 seconds
+of cumulative time summed across concurrent frontends. Native sample-logprob updates still ran 174080 times.
+These call-tree totals overlap and are not cycle walls. The CPU/Ray evidence below isolates representation and
+transport costs; the complete cycles establish their practical serialized effect.
+
+The full probe captured 16384 engine response tokens and produced 96 valid sampled positions after masks.
+At interval ten, combining armed and complete-probe cycles gives a modeled 0.166% overhead and 570.64 seconds
+between observations. Its paired descriptive interval is very wide, -15.84% to 19.23%, with only two repetitions.
+This does not establish a sub-1% ceiling. Cadence remains ten, K128 and 32 exported positions per response.
+Actual asynchronous coverage and elapsed time between consumed observations remain to be measured.
+
+Both arms retain three 256 MiB dense head matrices in the full-SC optimizer batch: IDs, behavior scores and
+old-policy scores. Learner peak allocated memory is 55.53 GiB in both arms; inference peak allocated memory is
+58.31 GiB in both. Driver RSS after SC is 8.35 GiB with objects and 7.22 GiB with arrays, but the ordinary TIS
+snapshots also differ (7.35 and 6.44 GiB). Cumulative frontend peaks include earlier qualification work and do
+not isolate the formatter's transient heap. Cached/device-used peaks vary; no GPU memory reduction is established.
+
+The first RNO candidate handoff timeout remains an unresolved operational observation. Its incomplete report,
+normal task records and allocation cost remain separate; the completed follow-up used unchanged source.
+No failed or incomplete cycle contributes to the table. Real-reward asynchronous throughput is still pending.
 
 The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
 Without it, a head concentrated on one token could select different IDs when the remaining scores become ties

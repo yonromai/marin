@@ -1,12 +1,12 @@
 {
-  "saved_at_utc": "2026-10-19T23:25:45.182914+00:00",
+  "saved_at_utc": "2026-10-20T00:22:52.496868+00:00",
   "protocol": "snowball-staged-protocol-r3.json",
   "candidate_controls": {
     "attempts_submitted": 3,
     "manual_attempt_limit": 3,
     "latest_job": "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3",
-    "outcome": "active; admitted with all five Pods running",
-    "reported_applied_updates": null,
+    "outcome": "success; all 18 applied updates and 15 serialized cycles complete",
+    "reported_applied_updates": 18,
     "submitted_at": "2026-10-19T23:18:33.592Z",
     "admitted_at": "2026-10-19T23:18:33.784812Z",
     "queue_inclusive_deadline_at": "2026-10-20T05:18:33.592Z",
@@ -34,7 +34,7 @@
       "capacity_evidence": "evidence/capacity-rno-before-candidate-controls-a1.json",
       "admission_evidence": "evidence/snowball-candidate-controls-a1-rno-workload-events.json"
     },
-    "complete": false,
+    "complete": true,
     "attempt_limit_revision": "One reserved asynchronous retry moved to controls in r3; global candidate limit remains four. No attempt was reset.",
     "last_failed_rno_attempt": {
       "job": "/romain/sc-integration-snowball-candidate-controls-a1-rno-01a146a3",
@@ -44,18 +44,41 @@
       "provider_absence_at": "2026-10-19T22:46:07.752491Z",
       "evidence": "evidence/snowball-candidate-controls-a1-rno-failure-summary.json"
     },
-    "last_submitted_config": "snowball-candidate-controls-a2-rno-detach.yaml"
+    "last_submitted_config": "snowball-candidate-controls-a2-rno-detach.yaml",
+    "controller_terminal_at": "2026-10-19T23:51:03.483Z",
+    "provider_absence_at": "2026-10-19T23:54:27.795357Z",
+    "report_sha256": "bbbb7616fda9a9673eafc2e92162f2b07fb816d8f65f9c2de4059d8133033cde"
   },
   "asynchronous_stages": {
-    "baseline_actual_attempts": 0,
+    "baseline_actual_attempts": 2,
     "candidate_actual_attempts": 0,
     "applied_updates_per_arm": 67,
-    "candidate_manual_attempt_limit": 1
+    "candidate_manual_attempt_limit": 1,
+    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
+    "baseline_outcome": "admitted; all five Pods Running on attempt zero at00:23:12",
+    "baseline_submitted_at": "2026-10-20T00:21:53.775000Z",
+    "baseline_admitted_at": "2026-10-20T00:21:55.095418Z",
+    "baseline_queue_inclusive_deadline_at": "2026-10-20T06:21:53.775Z",
+    "baseline_prior_attempt": {
+      "baseline_actual_attempts": 1,
+      "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
+      "baseline_outcome": "active; admitted and all five Pods running",
+      "baseline_submitted_at": "2026-10-19T23:57:02.376Z",
+      "baseline_admitted_at": "2026-10-19T23:57:02.812013Z",
+      "baseline_queue_inclusive_deadline_at": "2026-10-20T05:57:02.376Z",
+      "outcome": "external priority-12 preemption before first report/update",
+      "applied_updates": 0,
+      "controller_terminal_at": "2026-10-20T00:01:38.958Z",
+      "provider_absence_at": "2026-10-20T00:15:45.497607Z",
+      "preemptor_uid": "e0dc44d9-8e1e-4b5f-b283-3e91c1221c83",
+      "preemptor_owner": "unknown"
+    },
+    "baseline_manual_attempt_limit": 2
   },
   "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-candidate-controls-a2-rno-01a146a3"
+    "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3"
   ],
-  "limit": "Candidate controls a2 is active. All three controls submissions are counted; no further controls retry is armed. Both fresh asynchronous stages remain unsubmitted; candidate async has one submission under the unchanged global limit of four.",
+  "limit": "Both primary RNO controls stages are complete. Baseline async attempt one was externally preempted before its first report/update; its second and last declared attempt is admitted. Candidate async remains unsubmitted with one allowed submission. Controlled estimates do not establish asynchronous throughput.",
   "primary_cluster": "cw-rno2a",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {

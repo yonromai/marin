@@ -1,0 +1,34 @@
+{
+  "declared_at_utc": "2026-10-20T00:18:08.451148+00:00",
+  "protocol": "snowball-staged-protocol-r3.json",
+  "reason": "First asynchronous baseline was externally preempted during startup, before its first report or optimizer update. Use the already declared second baseline-async attempt, with no source/workload/guard change.",
+  "previous_job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
+  "submitted_at": "2026-10-19T23:57:02.376Z",
+  "admitted_at": "2026-10-19T23:57:02.812013Z",
+  "evicted_at": "2026-10-20T00:01:05.666032Z",
+  "preemptor_uid": "e0dc44d9-8e1e-4b5f-b283-3e91c1221c83",
+  "preemptor_priority": 12,
+  "preemptor_owner": "unknown; no attribution inferred from resource-board projects",
+  "controller_terminal_at": "2026-10-20T00:01:38.958Z",
+  "provider_absence_at": "2026-10-20T00:15:45.497607Z",
+  "reported_applied_updates": 0,
+  "report_present": false,
+  "future_job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
+  "actual_stage_attempt_number": 2,
+  "stage_manual_attempt_limit": 2,
+  "overall_baseline_submission_number": 6,
+  "baseline_global_limit": 7,
+  "queue_inclusive_deadline_seconds": 21600,
+  "automatic_retries": 0,
+  "configs": [
+    {
+      "path": "snowball-baseline-async-a1-rno-prepare.yaml",
+      "sha256": "cfb357be15a7824d741d5a86a28469ebb742142dc83501333eefddbdb1c81048"
+    },
+    {
+      "path": "snowball-baseline-async-a1-rno-detach.yaml",
+      "sha256": "741d470a0e621ea9671f88320a30cfa399298f4159c9e9284ba11a387eab51a0"
+    }
+  ],
+  "invariants": "Only the unsubmitted retry namespace changes. Original SFT, 67 updates, real rewards/EOS, sampling, source, K128/cadence, topology, BATCH priority, publication, max age4 and 64 in-flight groups remain r3. Keep matched primary arms on RNO; verify old shutdown before submission."
+}
