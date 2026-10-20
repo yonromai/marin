@@ -260,6 +260,14 @@ six-hour deadline and zero automatic retries. The existing higher-priority Reno 
 The candidate uses its already-preflighted r7 configuration; the renamed baseline receives a fresh backend
 dry run. Fresh resource-board and sequential capacity checks precede submission. No new GPU job is yet submitted.
 
+
+The r9 baseline was submitted at 08:40:37.126 UTC on October 20 and admitted at 08:40:37.866072.
+Native BATCH scheduling released one priority-one workload to obtain the missing GPU/RDMA unit; no shared
+policy or priority was changed. All five East Pods were Running on attempt zero at 08:40:54, with task and
+logshipper image digests matching the qualified controls. This is actual submission sixteen, overall baseline
+ten/ten and async baseline six/six. It plans 67 fresh applied updates, with a queue-inclusive deadline of
+14:40:37.126 UTC and zero automatic retries. The candidate remains held for full validation and release.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

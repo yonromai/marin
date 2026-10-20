@@ -50,15 +50,15 @@
     "report_sha256": "bbbb7616fda9a9673eafc2e92162f2b07fb816d8f65f9c2de4059d8133033cde"
   },
   "asynchronous_stages": {
-    "baseline_actual_attempts": 5,
+    "baseline_actual_attempts": 6,
     "candidate_actual_attempts": 0,
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
-    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a4-rno-01a146a3",
-    "baseline_outcome": "External priority-12 preemption during capture/rescore; no code or grader error observed.",
-    "baseline_submitted_at": "2026-10-20T07:47:21.940Z",
-    "baseline_admitted_at": "2026-10-20T07:47:22.116408Z",
-    "baseline_queue_inclusive_deadline_at": "2026-10-20T13:47:21.940Z",
+    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
+    "baseline_outcome": "Admitted; all five East Pods Running on attempt zero at 08:40:54 UTC. Applied-update progress not yet observed.",
+    "baseline_submitted_at": "2026-10-20T08:40:37.126Z",
+    "baseline_admitted_at": "2026-10-20T08:40:37.866072Z",
+    "baseline_queue_inclusive_deadline_at": "2026-10-20T14:40:37.126Z",
     "baseline_prior_attempt": {
       "baseline_actual_attempts": 1,
       "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
@@ -90,8 +90,8 @@
       "preemptor_owner": "unknown"
     },
     "candidate_cluster": "cw-us-east-02a",
-    "baseline_controller_terminal_at": "2026-10-20T08:25:24.914Z",
-    "baseline_provider_absence_at": "2026-10-20T08:30:57.347646Z",
+    "baseline_controller_terminal_at": null,
+    "baseline_provider_absence_at": null,
     "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
     "baseline_previous_grader_failure": {
@@ -103,13 +103,20 @@
       "evidence": "evidence/snowball-baseline-async-a3-east-failure-summary.json"
     },
     "baseline_runtime_commit": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
-    "baseline_reported_applied_updates": 21,
-    "baseline_known_applied_update_lower_bound": 23,
-    "baseline_total_applied_updates_established": false,
-    "next_baseline_config": "snowball-baseline-async-a5-east-r9-detach.yaml"
+    "baseline_previous_preemption": {
+      "job": "/romain/sc-integration-snowball-baseline-async-a4-rno-01a146a3",
+      "report_applied_updates": 21,
+      "known_applied_update_lower_bound": 23,
+      "total_applied_updates_established": false,
+      "controller_terminal_at": "2026-10-20T08:25:24.914Z",
+      "provider_absence_at": "2026-10-20T08:30:57.347646Z",
+      "evidence": "evidence/snowball-baseline-async-a4-rno-preemption-summary.json"
+    }
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "All 15 actual submissions are terminal and absent. R9 declares one extra fresh East baseline, overall baseline 10/10 and async baseline 6/6, before the one candidate attempt. No new GPU submission has occurred. Both full asynchronous arms and final review remain pending.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3"
+  ],
+  "limit": "Actual GPU submission 16, overall baseline 10/10 and async baseline 6/6. Fifteen previous attempts remain terminal and absent. The repaired baseline is running on East; the candidate remains unsubmitted with one attempt allowed after all 67 baseline updates and verified release. No automatic retries or undeclared further submission.",
   "primary_cluster": "Reno completed controls; East planned fresh repaired async pair. Repaired Reno partial excluded from primary comparison.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {

@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T08:39:00.056321+00:00",
+  "saved_at": "2026-10-20T08:42:48.525458+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 34685,
-      "sha256": "7e2f4a92df6cb32d966862822db8aaf674fd6da2b4810a789fad976a818cabc2"
+      "bytes": 35318,
+      "sha256": "a29b619eb917061dce143b2a95b475cf8fd74a6b407d5ed4750d5955ef4ea6cd"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 19507,
-      "sha256": "18c8c7ff6188787c43d3b7ba7e66a066e8caa2f3f130143e15775401d3e100c0"
+      "bytes": 20322,
+      "sha256": "4c1a430d16a13efb36f14ee4f6a7078b9d9097c7e9a10c01b376c209279f2283"
     },
     {
       "path": "analyze.py",
@@ -662,9 +662,24 @@
       "sha256": "e2171b0444c8d6b48bf49fc7c0f8da51bfe077a15842d43cb7098f717ba96c8a"
     },
     {
+      "path": "evidence/snowball-baseline-async-a5-east-provider-first.json",
+      "bytes": 10610,
+      "sha256": "2447db748078375dcec6d5a5ee2805b78cb0c5bc3bab5c1bc12fd5ea5a2933c3"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a5-east-r9-launch-preflight.json",
       "bytes": 9425,
       "sha256": "aa74fae9865191e9110219aad7627ebead3de40562a3872edd4bbe3e5433e18b"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a5-east-start-receipts.zip",
+      "bytes": 4290,
+      "sha256": "b9bec7dd94ca84084daa98519c56ae41167724680c0b5d671958ee22d7f0b573"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a5-east-workload-events.json",
+      "bytes": 5587,
+      "sha256": "6b26c83b57c245829476ca56891ba398c53ce5c6b767faada1631725e0b81e18"
     },
     {
       "path": "evidence/snowball-baseline-controls-a0-rno-analysis.json",
@@ -1353,8 +1368,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 8506,
-      "sha256": "afe7f1c59c6dd0e28258e82dfe494f8c4448ec9b9e7e67c1ab16d6f923062023"
+      "bytes": 8845,
+      "sha256": "53e4a137c16f82639960557af352606253a6ad0ef0bd0be6e54b1006f87c05d5"
     },
     {
       "path": "snowball-staged-protocol-r2.json",

@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T08:39:00.054422+00:00",
+  "saved_at": "2026-10-20T08:42:48.523280+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -373,6 +373,27 @@
       "known_applied_update_lower_bound": 23,
       "total_applied_updates_established": false,
       "applied_updates_semantics": "Known lower bound from native metrics; next in-flight completion is unestablished."
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T08:40:37.126Z",
+      "admitted_at": "2026-10-20T08:40:37.866072Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; repaired fresh East async baseline, all five Pods running on attempt zero",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r9.json",
+        "evidence/snowball-baseline-async-a5-east-provider-first.json",
+        "evidence/snowball-baseline-async-a5-east-workload-events.json",
+        "evidence/snowball-baseline-async-a5-east-start-receipts.zip"
+      ],
+      "queue_seconds": 0.740072
     }
   ],
   "prepared_but_not_submitted": [
@@ -397,7 +418,6 @@
   },
   "staged_limit_revision": "r9 explicitly adds one baseline after the external priority-12 Reno preemption. Baseline allowance rises from nine to ten before submission; async stage allowance from five to six. Candidate stays four, Qwen three; all 15 earlier attempts stay counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a5-east-r9",
     "snowball-candidate-async-a0-east-r7"
   ],
   "placement_revision": "r9 returns both fresh repaired async arms to East after the known higher-priority 192-H100 Reno workload preempted the baseline. Native East BATCH queue is allowed with the same six-hour deadline. Earlier Reno partial and controls timings remain separate.",
