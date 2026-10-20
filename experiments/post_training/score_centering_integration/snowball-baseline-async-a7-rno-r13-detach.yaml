@@ -1,0 +1,398 @@
+artifacts:
+  attempts_root: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/attempts
+  checkpoint_root: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/checkpoints
+  export_root: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/exports
+  resolved_config_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/resolved-launch.yaml
+  terminal_manifest_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/terminal.json
+inputs:
+  data_kind: parquet
+  model:
+    identity: models/snowball-67b-a2b-sft-s2-thinking@2026.08.30:c6168770
+    local_path: /tmp/marinskyrl/models/snowball-67b-a2b-sft-s2-thinking
+    tokenizer_revision: a5ca45f2feb6c959bd87b81689aa7279b5bdcaa2
+    tokenizer_uri: marin-community/marin-tokenizer
+    uri: s3://marin-us-east-02a/marin/exports/grug/june-67b-a2b-sft-s2-thinking/step-630/hf-bf16-vllm/
+  train_data:
+  - identity: curriculum-rl-pool@2026.09.18:seed0:01a126ce
+    kind: directory
+    local_path: /tmp/marinskyrl/data/snowball-curriculum-s0
+    relative_path: train.parquet
+    uri: s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/snowball-inputs-01a126ce/seed0
+  validation_data:
+  - identity: curriculum-rl-pool@2026.09.18:seed0:01a126ce
+    kind: directory
+    local_path: /tmp/marinskyrl/data/snowball-curriculum-s0
+    relative_path: validation.parquet
+    uri: s3://marin-us-east-02a/marin/users/romain/score-centering-overnight-01a123c0/snowball-inputs-01a126ce/seed0
+iris:
+  allocation:
+    cpu: 32
+    disk: 500GB
+    gpu_variant: H100
+    gpus_per_node: 8
+    memory: 1800GB
+    num_nodes: 5
+  cluster: cw-rno2a
+  cluster_config: /home/romain/work/marin-community/marin/score-centering-integration-01a146a3/experiments/post_training/score_centering_integration/cw-rno2a-client.yaml
+  job_name: sc-integration-snowball-baseline-async-a7-rno-01a146a3
+  max_retries: 0
+  priority: batch
+  timeout: 21600
+ray:
+  log_dir: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/ray-logs
+  rendezvous_dir: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/rendezvous
+  spill_dir: /tmp/skyrl-ray-spill
+run:
+  attempt_id: initial
+  export_hf: false
+  id: sc-integration-snowball-baseline-async-a7-rno-01a146a3
+  seed: 0
+  submission: detach
+runtime:
+  launcher_commit: dffd2c4b318bad910e532dea19f05a3cc1f9916e
+  profile: megatron
+schema_version: 1
+skyrl:
+  context_budget:
+    max_new_tokens_per_turn: 4096
+    max_turns: 1
+    request_window_tokens: 8192
+  data:
+    shuffle: false
+  entrypoint: standard
+  environment:
+    env_class: gsm8k
+    task_sessions:
+      gsm8k:
+        reward_method: strict
+  extra_env:
+    NVTE_FLASH_ATTN: '1'
+    NVTE_FUSED_ATTN: '0'
+    NVTE_UNFUSED_ATTN: '0'
+    PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+  generator:
+    backend: vllm
+    chat_template_kwargs: {}
+    enable_chunked_prefill: true
+    enable_http_endpoint: true
+    enable_prefix_caching: true
+    enforce_eager: false
+    engine_init_kwargs:
+      generation_config: vllm
+      logprobs_mode: processed_logprobs
+      moe_backend: triton
+    eval_n_samples_per_prompt: 4
+    eval_sampling_params:
+      logprobs: null
+      temperature: 1.0
+      top_k: -1
+      top_p: 1.0
+    expert_block_sync:
+      timeout_seconds: 600
+      verify: true
+    gpu_memory_utilization: 0.75
+    inference_engine_data_parallel_size: 8
+    inference_engine_expert_parallel_size: 8
+    inference_engine_tensor_parallel_size: 1
+    max_num_batched_tokens: 8192
+    max_num_seqs: 1024
+    model_dtype: bfloat16
+    n_samples_per_prompt: 4
+    num_inference_engines: 1
+    run_engines_locally: true
+    sampling_params:
+      logprobs: 0
+      min_p: 0.0
+      temperature: 1.0
+      top_k: -1
+      top_p: 1.0
+    vllm_attention_backend: FLASH_ATTN
+    weight_sync_backend: nccl
+    weight_sync_pause:
+      clear_cache: true
+      mode: keep
+    weight_sync_transport: expert_block
+  trainer:
+    algorithm:
+      advantage_batch_normalize: false
+      advantage_estimator: grpo
+      eps_clip_high: 0.2
+      eps_clip_low: 0.2
+      grpo_norm_by_std: true
+      kl_estimator_type: k3_unbiased_gradient
+      loss_reduction: token_mean
+      off_policy_correction: custom
+      off_policy_correction_rules:
+      - action: truncate
+        high: 2.0
+        kind: token
+      policy_loss_type: regular
+      score_centering_diagnostic_tokens: 0
+      score_centering_enabled: false
+      score_centering_probe:
+        interval: 2
+        tokens_per_response: 32
+        topk: 128
+      score_centering_topk: 0
+      use_kl_in_reward: false
+      use_kl_loss: false
+    callbacks: []
+    ckpt_interval: -1
+    dump_data_batch: false
+    epochs: 50
+    eval_before_train: false
+    eval_interval: -1
+    flash_attn: true
+    gradient_checkpointing: true
+    logger: console
+    max_steps: 128
+    micro_forward_batch_size_per_gpu: 1
+    micro_train_batch_size_per_gpu: 1
+    offload_optimizer_during_rollouts: true
+    placement:
+      colocate_all: false
+      colocate_policy_ref: true
+      policy_num_gpus_per_node: 8
+      policy_num_nodes: 4
+      ref_num_gpus_per_node: 8
+      ref_num_nodes: 4
+    policy:
+      megatron_config:
+        context_parallel_size: 1
+        expert_model_parallel_size: 8
+        expert_tensor_parallel_size: 1
+        logprob_chunk_size: 512
+        optimizer_checkpoint_sharding_type: dp_reshardable
+        pipeline_model_parallel_size: 2
+        tensor_model_parallel_size: 1
+      optimizer_config:
+        lr: 1.0e-06
+        max_grad_norm: 1.0
+        optimizer: AdamW
+        weight_decay: 0.01
+      sequence_parallel_size: 1
+    policy_mini_batch_size: 32
+    policy_train_spans: true
+    resume_mode: none
+    rollout_buffer:
+      batch_policy: full_batch
+      max_in_flight: 32
+      max_staleness_steps: 0
+      object_store_root: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/groups
+    rollout_spans: true
+    score_centering_performance:
+      async_phase_timeout_seconds: 2400
+      async_probe_steps: 22
+      async_steps: 12
+      async_warmup_steps: 2
+      candidate: 964a602e995b16943dc34db036d25d2b7c5b7310
+      output_uri: s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/performance.json
+      repetitions: 6
+      scope: async
+      source_data_sha256: df971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd
+      source_rows:
+      - 5195
+      - 5078
+      - 12943
+      - 1664
+      - 20499
+      - 15908
+      - 3078
+      - 11383
+      - 23037
+      - 2305
+      - 17982
+      - 6189
+      - 12473
+      - 12517
+      - 14509
+      - 7286
+      - 12060
+      - 8365
+      - 22398
+      - 5527
+      - 3521
+      - 20369
+      - 20526
+      - 8275
+      - 1324
+      - 9858
+      - 4203
+      - 9897
+      - 725
+      - 988
+      - 15911
+      - 13528
+      - 1017
+      - 16100
+      - 13279
+      - 2360
+      - 15994
+      - 12837
+      - 22386
+      - 21145
+      - 9313
+      - 1417
+      - 14620
+      - 14956
+      - 11405
+      - 5554
+      - 19012
+      - 5683
+      - 3715
+      - 15731
+      - 9612
+      - 4555
+      - 3887
+      - 15919
+      - 6826
+      - 16543
+      - 22772
+      - 10134
+      - 21866
+      - 9431
+      - 10569
+      - 12220
+      - 21936
+      - 19062
+      - 18824
+      - 22434
+      - 11611
+      - 19215
+      - 13203
+      - 7462
+      - 22599
+      - 5572
+      - 22247
+      - 18366
+      - 1835
+      - 2313
+      - 14451
+      - 3374
+      - 14610
+      - 18641
+      - 22137
+      - 22054
+      - 6358
+      - 8969
+      - 18880
+      - 9055
+      - 18852
+      - 20005
+      - 2316
+      - 7242
+      - 1425
+      - 17324
+      - 10129
+      - 14406
+      - 5621
+      - 4085
+      - 19401
+      - 16317
+      - 23206
+      - 16270
+      - 11521
+      - 5330
+      - 4469
+      - 8120
+      - 13432
+      - 22711
+      - 98
+      - 7734
+      - 17516
+      - 5264
+      - 9466
+      - 5803
+      - 2320
+      - 9924
+      - 18584
+      - 10340
+      - 3238
+      - 10170
+      - 17657
+      - 4783
+      - 1011
+      - 18555
+      - 19187
+      - 12105
+      - 5553
+      - 4100
+      - 5911
+      - 19708
+      - 19023
+      - 8692
+      - 10481
+      - 4768
+      - 4119
+      - 10353
+      - 20860
+      - 2835
+      - 1650
+      - 6086
+      - 22996
+      - 7061
+      - 20893
+      - 9978
+      - 958
+      - 8870
+      - 3575
+      - 16533
+      - 1060
+      - 22320
+      - 7680
+      - 15419
+      - 17848
+      - 12743
+      - 8289
+      - 4493
+      - 18731
+      - 6576
+      - 3593
+      - 14975
+      - 8999
+      - 1071
+      - 13423
+      - 17859
+      - 19451
+      - 10789
+      - 13063
+      - 14976
+      - 4852
+      - 7700
+      - 21100
+      - 18916
+      - 15031
+      - 5878
+      - 10682
+      - 12436
+      - 14951
+      - 13749
+      - 4297
+      - 2198
+      - 14030
+      - 20424
+      - 6204
+      - 12168
+      - 16314
+      - 10270
+      - 2352
+      - 22027
+      - 7060
+      - 952
+      - 9115
+      - 19137
+      - 20625
+      - 22984
+      variant: baseline
+      window_timeout_seconds: 1800
+      workload: snowball
+    strategy: megatron
+    train_batch_size: 32
+    training_metrics: true
+    update_epochs_per_batch: 1
+    use_sample_packing: false
+  trajectory_runner:
+    rollout_workers:
+      cpus_per_worker: 4
+      executor_threads: 64
+      num_workers: 4

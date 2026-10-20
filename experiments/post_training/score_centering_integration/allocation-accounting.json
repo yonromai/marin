@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T10:04:55.439034+00:00",
+  "saved_at": "2026-10-20T10:52:49.538317+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -442,22 +442,23 @@
     "snowball_candidate": 2
   },
   "global_manual_submission_limits": {
-    "snowball_baseline": 11,
+    "snowball_baseline": 12,
     "snowball_candidate": 4,
     "qwen": 3
   },
   "staged_attempt_limits": {
     "baseline_controls": 1,
     "candidate_controls": 3,
-    "baseline_async": 7,
+    "baseline_async": 8,
     "candidate_async": 1
   },
-  "staged_limit_revision": "r11 explicitly adds one baseline after two stable East readiness checks following both repaired external preemptions. Global baseline10\u219211 and async6\u21927 are declared before submission; candidate4 and Qwen3 are unchanged. All 16 earlier attempts remain counted.",
+  "staged_limit_revision": "r13 declares one new baseline after a large RNO release. Baseline allowance11 to12 and async7 to8 before actual submission. Candidate4 and Qwen3 unchanged; all17previous attempts remain counted. Original resource boundaries unchanged.",
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-async-a0-east-r7"
+    "snowball-baseline-async-a7-rno-r13",
+    "snowball-candidate-async-a0-rno-r8"
   ],
   "prepared_candidate_routes_are_mutually_exclusive": true,
-  "placement_revision": "r11 selects East after two qualifying checks at least five minutes apart. Both fresh repaired async arms remain there. Require a fresh still-qualifying prelaunch check; normal BATCH policy and zero automatic retries remain unchanged.",
+  "placement_revision": "r13 chooses the large newly released RNO opening, with both fresh arms at BATCH and the original four-Interactive cap. Require two qualifying observations at least five minutes apart. The Interactive proposal remains unapproved and unused.",
   "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",

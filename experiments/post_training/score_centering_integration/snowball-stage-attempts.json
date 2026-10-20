@@ -73,7 +73,7 @@
       "preemptor_uid": "e0dc44d9-8e1e-4b5f-b283-3e91c1221c83",
       "preemptor_owner": "unknown"
     },
-    "baseline_manual_attempt_limit": 7,
+    "baseline_manual_attempt_limit": 8,
     "baseline_latest_closed_attempt": {
       "baseline_actual_attempts": 2,
       "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
@@ -89,7 +89,7 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a",
+    "candidate_cluster": "cw-rno2a",
     "baseline_controller_terminal_at": "2026-10-20T09:46:18.236Z",
     "baseline_provider_absence_at": "2026-10-20T09:56:59.465014Z",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
@@ -115,13 +115,14 @@
       "cw-rno2a": "snowball-candidate-async-a0-rno-r8-detach.yaml"
     },
     "candidate_route_alternatives_are_mutually_exclusive": true,
-    "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml",
+    "next_candidate_config": "snowball-candidate-async-a0-rno-r8-detach.yaml",
     "baseline_reported_applied_updates": 0,
-    "baseline_complete": false
+    "baseline_complete": false,
+    "next_baseline_config": "snowball-baseline-async-a7-rno-r13-detach.yaml"
   },
   "owned_active_jobs_or_queues": [],
-  "limit": "All 17 actual submissions are stopped. Baseline11/11 and async7/7 are spent. Six async starts were externally preempted and one failed in the now-repaired grader. No further GPU submission is declared. R12 is an unapproved proposal only: current cap remains four Interactive nodes and Snowball remains BATCH until explicit user approval. Both full async reports, final documentation/head CI and High GOAL review remain required.",
-  "primary_cluster": "Reno completed controls; East fresh repaired asynchronous pair under r11. All partial timings remain excluded.",
+  "limit": "All17actualsubmissions are stopped. R13 declares one new full67-update batch baseline under the original resource boundaries, overall baseline12 and async8, after a large RNO release. No new job submitted yet. Candidate remains held for full baseline/release. No automatic retry.",
+  "primary_cluster": "RNO for both fresh repaired asynchronous arms under r13; completed controls remain a separate stage.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
     "actual_attempts": 1,
@@ -183,5 +184,5 @@
     "evidence": "evidence/pr968-435ee98f-ci-final.json",
     "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39407226185"
   },
-  "resource_choice_status": "Explicit approval requested but not received. Original Interactive cap4 and Snowball BATCH boundary remain in force; no r12 job is submitted."
+  "resource_choice_status": "Interactive exception is still unapproved and unused. A large RNO batch opening now permits progress within the original limits. Require second readiness confirmation before submission."
 }

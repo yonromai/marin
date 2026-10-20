@@ -1,0 +1,100 @@
+{
+  "revision": "r13",
+  "supersedes": "r11 actual batch plan; r12 remains an unapproved alternative",
+  "declared_at_utc": "2026-10-20T10:51:41.034017+00:00",
+  "reason": "The active goal continuation found a substantially larger RNO batch opening: 44 fully free H100 nodes, 45 node candidates available to normal BATCH, 379 GPU/RDMA quota units and no higher-priority pending GPU work. The previously active 192-H100 qualification owner has completed its GPU work and reserves no further work. Continue within the original BATCH/four-Interactive-node boundary. Explicitly declare one fresh batch baseline, raising the agent baseline allowance11 to12 and async allowance7 to8, before any actual submission. The Interactive proposal remains unapproved and unused. Preserve the complete67-update workload; no scientific or correctness requirement is reduced.",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 12,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 8,
+    "candidate_async": 1
+  },
+  "actual_submissions_before_revision": {
+    "qwen": 3,
+    "snowball_baseline": 11,
+    "snowball_candidate": 3,
+    "total": 17,
+    "all_terminal_and_absent": true
+  },
+  "decision_by": "Agent operating-plan revision under the original no-GPU-hour-cap goal, before any next submission; no new user acceptance inferred.",
+  "grader_repair": {
+    "old_commit": "b3206ac1c46cee3079441f394b5a6a13bb923d0e",
+    "new_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+    "source_change": "One noncommutative-scalar rejection before SymPy finiteness. Existing invalid-candidate zero scoring and invalid-reference failure remain. No broad exception catch.",
+    "old_lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+    "new_lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+    "lock_changes": "Only four shared Marin Git revisions. Other3Marin package trees, all package versions/other sources/wheels and vLLM pin are unchanged.",
+    "grader_tests_passed": 437,
+    "product_cpu_tests_passed": 477,
+    "product_dependency_skips": 3,
+    "reproducer": "evidence/grader-cpu-reproducer.json",
+    "proof": "evidence/matched-grader-runtime-proof.json",
+    "task_replay": "evidence/grader-repair-task-parity.json",
+    "task_replay_scope": "All 192 fixed reference-like replies have exactly equal old/new grades: 191 positive and one existing negative symbolic-inequality format case. No row was edited or filtered. All 145 AIME sessions grade the known nonscalar wrong candidate incorrect under the repair. Full native grading and source lowering were used. These CPU fixtures do not establish generated-answer quality or training throughput."
+  },
+  "future_stages_in_order": [
+    {
+      "variant": "baseline",
+      "product_integration": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime_with_common_grader_fix": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "prepare": "snowball-baseline-async-a7-rno-r13-prepare.yaml",
+      "detach": "snowball-baseline-async-a7-rno-r13-detach.yaml",
+      "stage_attempt_number": 8,
+      "overall_baseline_submission_number": 12,
+      "applied_updates": 67
+    },
+    {
+      "variant": "candidate",
+      "product": "c36e8594cbbbe55362945debfa6f75887a96361f",
+      "runtime_with_common_grader_fix": "56e187219994288b50463d8505f822329beb0795",
+      "prepare": "snowball-candidate-async-a0-rno-r8-prepare.yaml",
+      "detach": "snowball-candidate-async-a0-rno-r8-detach.yaml",
+      "stage_attempt_number": 1,
+      "overall_candidate_submission_number": 4,
+      "applied_updates": 67
+    }
+  ],
+  "configurations": [
+    {
+      "path": "snowball-baseline-async-a7-rno-r13-prepare.yaml",
+      "sha256": "fc40a756903530f433e76d01a99e5979be68faaf5862d4234a956f0861d6bdf9"
+    },
+    {
+      "path": "snowball-baseline-async-a7-rno-r13-detach.yaml",
+      "sha256": "c1b4e1d354da79419dce4865be80f85c0318f2814a19e7b296d3d4bc4097a6e8"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-r8-prepare.yaml",
+      "sha256": "5e0a65c5c5b870ec54d6a9efd10891e4fe0e6329b86e0536cf550c657e32bf85"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-r8-detach.yaml",
+      "sha256": "ed28ce94f3e457e886e8d04e206a174696b90a7bd0d1130345b681d0f63999bb"
+    }
+  ],
+  "cluster": "cw-rno2a",
+  "priority": "BATCH",
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "learner": "4nodes PP2/EP8/DP16/TP1/CP1/SP1",
+  "inference": "1node DP8/EP8",
+  "automatic_retries": 0,
+  "queue_inclusive_deadline_seconds": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "unchanged": "Original SFT/tokenizer, same192selectedtasks andsourceparquetdf971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd, seed0, realrewards/normalEOS,67updates(3calibration+6native+12/12/12/22async),2warmupdatespermode, K128 andSCfrequency, probeinterval10/32positions, fullbatch/sourceage4/inflight64, per-update publication andkeep policy. No vLLM changes. Report-only runtime version metadata is added outside timing windows; measurement methods are AST-identical.",
+  "comparison_scope": "Both fresh async arms use the identical repaired grader and lock on RNO. Complete RNO controls at the prior grader revision and all interrupted attempts remain separate. No timing samples are pooled across stages or revisions. No learning benefit claim.",
+  "operating_rule": "Both fresh arms use RNO at normal BATCH priority, five8-H100 nodes, six-hour queue-inclusive deadlines and zero automatic retries. Require the second readiness confirmation, actual backend dry run and fresh resource-board announcement before baseline submission. Keep a healthy allocation. Candidate only after all67baselineupdates qualify and its allocation is verified released. Count every actual submission; no undeclared retry. The original four-Interactive-node limit remains in force; neither unapproved r12 job is submitted.",
+  "failure_rule": "No automatic or undeclared further attempt. Retain any incomplete outcome and its exact source, applied-update evidence and allocation bounds before reassessing.",
+  "previous_attempt_evidence": "evidence/snowball-baseline-async-a5-east-preemption-summary.json",
+  "readiness_evidence": [
+    "evidence/batch-readiness-continuation-01-cw-rno2a.json"
+  ],
+  "qualification_scope": "67 applied updates per full arm: 3 calibration, 6 real-reward periodic and 58 real-reward asynchronous updates. Native timing/training functions, source192 and sampling/publication/admission settings remain unchanged. Earlier partial reports are excluded from primary throughput.",
+  "readiness_requirements": "Require a second still-qualifying RNO observation at least300seconds after10:49:35.366126UTC before the one actual submission. If readiness is lost, hold without submission. No owned active job or queue may exist. Check both clusters sequentially."
+}

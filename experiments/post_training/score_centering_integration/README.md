@@ -324,6 +324,16 @@ all 67 updates, source pins, data, sampling, timing, math, deadlines and zero au
 This proposal can preempt lower-priority batch work under the existing policy; it changes no shared policy
 or service. No proposal job has been submitted. Current limits remain in force pending a user decision.
 
+
+[Revision r13](snowball-staged-protocol-r13.json) continues within the original resource boundaries after
+a large RNO release. At 10:49:35 UTC, RNO had 44 fully free eight-H100 nodes, 45 GPU-node candidates available
+to normal BATCH, 379 GPU/RDMA quota units and no higher-priority GPU work pending. The large qualification
+owner has finished its GPU work and reserves none. Declare one new fresh baseline, overall allowance twelve
+and async allowance eight, with all seventeen prior attempts retained. Both fresh full 67-update arms stay
+on RNO at BATCH; source, dependency and measurement settings are unchanged. Require another qualifying
+observation at least five minutes later, backend dry run and fresh board announcement before submission.
+The Interactive proposal remains unapproved and unused. No new GPU attempt is yet submitted.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
