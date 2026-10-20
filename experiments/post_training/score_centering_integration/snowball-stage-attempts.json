@@ -50,15 +50,15 @@
     "report_sha256": "bbbb7616fda9a9673eafc2e92162f2b07fb816d8f65f9c2de4059d8133033cde"
   },
   "asynchronous_stages": {
-    "baseline_actual_attempts": 6,
+    "baseline_actual_attempts": 7,
     "candidate_actual_attempts": 0,
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
-    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
-    "baseline_outcome": "External priority-12 preemption during the first calibration update; subsequent actor-loss cleanup is retained.",
-    "baseline_submitted_at": "2026-10-20T08:40:37.126Z",
-    "baseline_admitted_at": "2026-10-20T08:40:37.866072Z",
-    "baseline_queue_inclusive_deadline_at": "2026-10-20T14:40:37.126Z",
+    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3",
+    "baseline_outcome": "Admitted; all five East Pods Running on attempt zero at 09:40:20 UTC. Applied-update progress not yet observed.",
+    "baseline_submitted_at": "2026-10-20T09:39:22.130Z",
+    "baseline_admitted_at": "2026-10-20T09:39:22.379935Z",
+    "baseline_queue_inclusive_deadline_at": "2026-10-20T15:39:22.130Z",
     "baseline_prior_attempt": {
       "baseline_actual_attempts": 1,
       "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
@@ -90,8 +90,8 @@
       "preemptor_owner": "unknown"
     },
     "candidate_cluster": "cw-us-east-02a",
-    "baseline_controller_terminal_at": "2026-10-20T08:51:53.106Z",
-    "baseline_provider_absence_at": "2026-10-20T08:59:06.675577Z",
+    "baseline_controller_terminal_at": null,
+    "baseline_provider_absence_at": null,
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
     "baseline_previous_grader_failure": {
       "job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
@@ -103,26 +103,24 @@
     },
     "baseline_runtime_commit": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
     "baseline_previous_preemption": {
-      "job": "/romain/sc-integration-snowball-baseline-async-a4-rno-01a146a3",
-      "report_applied_updates": 21,
-      "known_applied_update_lower_bound": 23,
+      "job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
+      "report_applied_updates": 0,
       "total_applied_updates_established": false,
-      "controller_terminal_at": "2026-10-20T08:25:24.914Z",
-      "provider_absence_at": "2026-10-20T08:30:57.347646Z",
-      "evidence": "evidence/snowball-baseline-async-a4-rno-preemption-summary.json"
+      "controller_terminal_at": "2026-10-20T08:51:53.106Z",
+      "provider_absence_at": "2026-10-20T08:59:06.675577Z",
+      "evidence": "evidence/snowball-baseline-async-a5-east-preemption-summary.json"
     },
-    "baseline_reported_applied_updates": 0,
-    "baseline_total_applied_updates_established": false,
     "prepared_candidate_route_alternatives": {
       "cw-us-east-02a": "snowball-candidate-async-a0-east-r7-detach.yaml",
       "cw-rno2a": "snowball-candidate-async-a0-rno-r8-detach.yaml"
     },
     "candidate_route_alternatives_are_mutually_exclusive": true,
-    "next_baseline_config": "snowball-baseline-async-a6-east-r11-detach.yaml",
     "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml"
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "All 16 actual submissions remain terminal and absent. R11 allows one new baseline, but it is held and unsubmitted after capacity fell below the readiness guard. Baseline actual10/limit11, async actual6/limit7. Candidate remains unsubmitted. Full67-update workload and all final validation remain required.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3"
+  ],
+  "limit": "Actual submission17, overall baseline11/11 and async baseline7/7. Sixteen earlier attempts are terminal and absent. The full67-update repaired baseline is running on East with native retry counts0. Candidate remains unsubmitted until full baseline validation and release; no further undeclared submission.",
   "primary_cluster": "Reno completed controls; East fresh repaired asynchronous pair under r11. All partial timings remain excluded.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
@@ -156,7 +154,7 @@
   "readiness_wait": {
     "starts_at_utc": "2026-10-20T09:10:36.122304+00:00",
     "ends_at_utc": "2026-10-20T11:10:36.122304+00:00",
-    "next_check_at_utc": "2026-10-20T09:31:46.273079+00:00",
+    "next_check_at_utc": null,
     "unchanged_backoff_seconds": [
       300,
       600,
@@ -170,7 +168,7 @@
       "confirmations": 1,
       "required": 2
     },
-    "outcome": "Readiness lost at the final prelaunch check; r11 a6 held without submission.",
+    "outcome": "Fulfilled by two fresh qualifying checks at09:32:38 and09:39:14,395.306711s apart. R11 baseline submitted immediately after the final check and admitted09:39:22. No further capacity waiting while this healthy allocation runs.",
     "qualifying_confirmations_since_loss": 0,
     "last_readiness_checkpoint": "r11-readiness-checkpoint.json"
   }

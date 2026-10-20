@@ -1,17 +1,21 @@
 {
   "revision": "r11",
-  "state": "held, not submitted",
-  "actual_GPU_submissions": 16,
-  "actual_baseline_submissions": 10,
+  "state": "submitted and admitted; all five Pods Running",
+  "actual_GPU_submissions": 17,
+  "actual_baseline_submissions": 11,
   "declared_baseline_limit": 11,
-  "new_attempt_remaining": 1,
-  "owned_active_jobs_or_queues": [],
-  "checked_at": "2026-10-20T09:26:46.273079+00:00",
-  "usable_whole_H100_nodes": 2,
-  "GPU_RDMA_quota_available_to_batch": 23,
-  "higher_priority_pending_GPU_workloads": 0,
-  "qualifying_confirmations_since_capacity_loss": 0,
-  "next_check_at": "2026-10-20T09:31:46.273079+00:00",
-  "requirement": "Reconfirm twice at least five minutes apart before actual submission. Preserve the full 67-update workload and chosen East route. No automatic retries.",
-  "evidence": "evidence/r11-prelaunch-readiness-held.zip"
+  "new_attempt_remaining": 0,
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3"
+  ],
+  "qualifying_check_times": [
+    "2026-10-20T09:32:38.854269Z",
+    "2026-10-20T09:39:14.160980Z"
+  ],
+  "gap_seconds": 395.306711,
+  "submitted_at": "2026-10-20T09:39:22.130Z",
+  "admitted_at": "2026-10-20T09:39:22.379935Z",
+  "deadline_at": "2026-10-20T15:39:22.130Z",
+  "evidence": "evidence/snowball-baseline-async-a6-east-start-receipts.zip",
+  "next_action": "Keep the healthy allocation; validate all67 applied updates and release before the one candidate. No automatic retries."
 }

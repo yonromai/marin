@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T09:24:31.065485+00:00",
+  "saved_at": "2026-10-20T09:46:17.172812+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -404,6 +404,27 @@
       "total_applied_updates_established": false,
       "calibration_policy_train_returned": true,
       "applied_updates_semantics": "Report counter only; final optimizer completion after first calibration policy_train is unestablished."
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T09:39:22.130Z",
+      "admitted_at": "2026-10-20T09:39:22.379935Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; repaired East async baseline admitted after two fresh readiness checks, all five Pods running on attempt zero",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r11.json",
+        "evidence/snowball-baseline-async-a6-east-provider-first.json",
+        "evidence/snowball-baseline-async-a6-east-workload-events.json",
+        "evidence/snowball-baseline-async-a6-east-start-receipts.zip"
+      ],
+      "queue_seconds": 0.249935
     }
   ],
   "prepared_but_not_submitted": [
@@ -428,7 +449,6 @@
   },
   "staged_limit_revision": "r11 explicitly adds one baseline after two stable East readiness checks following both repaired external preemptions. Global baseline10\u219211 and async6\u21927 are declared before submission; candidate4 and Qwen3 are unchanged. All 16 earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a6-east-r11",
     "snowball-candidate-async-a0-east-r7"
   ],
   "prepared_candidate_routes_are_mutually_exclusive": true,

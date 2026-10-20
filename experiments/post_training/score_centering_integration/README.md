@@ -297,6 +297,16 @@ and Qwen stays three. All sixteen spent attempts remain counted. The complete 67
 unchanged repaired runtimes remain required. A fresh backend dry run, still-qualifying capacity check and
 resource-board announcement precede the one actual submission. No new GPU job is yet submitted.
 
+
+The final prelaunch opening closed at 09:26:46 UTC, so a6 was held without submission. East then qualified
+again at 09:32:38.854269 and 09:39:14.160980, 395.306711 seconds apart. The already-preflighted a6 baseline
+was submitted immediately after the latter check, at 09:39:22.130, and admitted at 09:39:22.379935.
+All five East Pods were Running on attempt zero at 09:40:20, with the qualified task/sidecar images and
+native failure/preemption retry counts zero. Normal BATCH scheduling released one priority-one workload;
+no priority or shared policy changed. This is actual submission seventeen, overall baseline eleven/eleven,
+async baseline seven/seven. Sixteen earlier attempts are stopped. The complete 67-update workload remains
+required, with deadline 15:39:22.130 UTC. The candidate remains held until full validation and release.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
