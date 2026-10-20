@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T11:04:34.501095+00:00",
+  "saved_at_utc": "2026-10-20T11:52:58.206327+00:00",
   "protocol": "snowball-staged-protocol-r13.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -55,7 +55,7 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a7-rno-01a146a3",
-    "baseline_outcome": "Admitted at BATCH priority; all five RNO Pods Running on attempt zero at10:56:01 UTC. No applied-update progress observed at11:04.",
+    "baseline_outcome": "Success; all67applied updates, full strict analysis passed, all5tasks SUCCEEDED and allocation verified released.",
     "baseline_submitted_at": "2026-10-20T10:55:22.841Z",
     "baseline_admitted_at": "2026-10-20T10:55:23.864850Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T16:55:22.841Z",
@@ -90,8 +90,8 @@
       "preemptor_owner": "unknown"
     },
     "candidate_cluster": "cw-rno2a",
-    "baseline_controller_terminal_at": null,
-    "baseline_provider_absence_at": null,
+    "baseline_controller_terminal_at": "2026-10-20T11:48:29.700000Z",
+    "baseline_provider_absence_at": "2026-10-20T11:50:45.550387+00:00",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
     "baseline_previous_grader_failure": {
       "job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
@@ -116,12 +116,13 @@
     },
     "candidate_route_alternatives_are_mutually_exclusive": true,
     "next_candidate_config": "snowball-candidate-async-a0-rno-r8-detach.yaml",
-    "baseline_complete": false
+    "baseline_complete": true,
+    "baseline_reported_applied_updates": 67,
+    "baseline_total_applied_updates_established": true,
+    "baseline_report_sha256": "5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2"
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a7-rno-01a146a3"
-  ],
-  "limit": "Actual submission18, overall baseline12/12 and async baseline8/8. All17previous attempts are terminal and absent. Full67-update repaired baseline running on RNO BATCH with native retry counts0. Candidate held until complete baseline validation and verified release, then same RNO BATCH. No further undeclared submission.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All18actual submissions are terminal and absent. Overall baseline12/12, async baseline8/8 complete. One predeclared candidate async attempt remains, overall candidate4/4, same RNO BATCH/runtime/source/67updates. No automatic retry.",
   "primary_cluster": "RNO for both fresh repaired asynchronous arms under r13; completed controls remain a separate stage.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {

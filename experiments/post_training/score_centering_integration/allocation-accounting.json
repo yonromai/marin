@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T11:04:35.565993+00:00",
+  "saved_at": "2026-10-20T11:52:58.732107+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -439,18 +439,24 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-20T10:55:22.841Z",
       "admitted_at": "2026-10-20T10:55:23.864850Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "active; repaired RNO baseline after large pool release, all five Pods running on attempt zero, original BATCH limits",
+      "controller_terminal_at": "2026-10-20T11:48:29.700000Z",
+      "provider_absence_at": "2026-10-20T11:50:45.550387+00:00",
+      "applied_updates": 67,
+      "outcome": "success; all67 applied updates including58real-reward async, strict analysis passes, all five tasks succeeded and Pods absent",
       "automatic_retries": 0,
       "evidence": [
         "snowball-staged-protocol-r13.json",
         "evidence/snowball-baseline-async-a7-rno-provider-first.json",
         "evidence/snowball-baseline-async-a7-rno-workload-events.json",
-        "evidence/snowball-baseline-async-a7-rno-start-receipts.zip"
+        "evidence/snowball-baseline-async-a7-rno-start-receipts.zip",
+        "evidence/snowball-baseline-async-a7-rno-provider-terminal.json",
+        "evidence/snowball-baseline-async-a7-rno-terminal-receipts.zip",
+        "evidence/snowball-baseline-async-a7-rno-success-summary.json",
+        "reports/sc-integration-snowball-baseline-async-a7-rno-01a146a3.json.zip"
       ],
-      "queue_seconds": 1.02385
+      "queue_seconds": 1.02385,
+      "gpu_hours_to_controller_terminal_proxy": 35.39816833333333,
+      "gpu_hours_through_verified_absence_upper_bound": 36.90761707777777
     }
   ],
   "prepared_but_not_submitted": [
@@ -486,7 +492,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 170.25802058888888,
-    "gpu_hours_through_verified_absence_upper_bound": 237.68534271555555
+    "gpu_hours_to_controller_terminal_proxy": 205.6561889222222,
+    "gpu_hours_through_verified_absence_upper_bound": 274.5929597933333
   }
 }

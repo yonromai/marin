@@ -342,6 +342,15 @@ async baseline eight/eight. The earlier seventeen attempts are stopped. All 67 u
 with a 16:55:22.841 UTC deadline. The candidate stays held until full baseline validation and release, then
 uses the same RNO BATCH route. [The start checkpoint](r13-start-checkpoint.json) links the receipts.
 
+
+Baseline a7 completed all 67 applied updates: three calibration, six real-reward native periodic updates and
+58 real-reward asynchronous updates. The strict complete-report analysis passes with the common repaired
+grader and lock. All 64 real-reward updates had nonzero gradients and none was skipped. Every task succeeded
+on attempt zero; the controller finished at 2026-10-20T11:48:29.700000Z and all Pods were absent at 2026-10-20T11:50:45.550387+00:00.
+The native report is retained byte-for-byte in a compact LZMA ZIP, SHA-256 `5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2`.
+[The success summary](evidence/snowball-baseline-async-a7-rno-success-summary.json) records qualifications,
+allocation release and the baseline metrics. The one matched RNO BATCH candidate remains to be run.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

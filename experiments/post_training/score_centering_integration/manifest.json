@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T11:04:35.568784+00:00",
+  "saved_at": "2026-10-20T11:52:58.736756+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 41781,
-      "sha256": "5001ab9d08b538434e8620310ae122d122a5c2ee7d866daf79ce7053d4ad94ab"
+      "bytes": 42591,
+      "sha256": "a9395e34efe9e011a6cffc76d6109b98adbaf32b1cc7b49f828ead0e4f3c37ce"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 23343,
-      "sha256": "1a0ba7a5d679078c106f1176893c2049cca5aa964f4ac8133d077cd670bca16d"
+      "bytes": 23847,
+      "sha256": "fd3c6dd52a106769f52ee1f67f8945b6d19c60d1046917e471a7825aacf9fb4f"
     },
     {
       "path": "analyze.py",
@@ -837,6 +837,11 @@
       "sha256": "d91bcaa541063cc1c436bc35c378fcc6e084f147ae300bd5f5ceb04388f3a1a2"
     },
     {
+      "path": "evidence/snowball-baseline-async-a7-rno-provider-terminal.json",
+      "bytes": 206,
+      "sha256": "c2b070780a47f07fdd0dfa246dc42f694ca2f7562d543cb7db19aeaf7ab6a603"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a7-rno-r13-launch-preflight.json",
       "bytes": 9409,
       "sha256": "6218522b36da7bda6b935000b276b01a4390685c8db06087c60254e5d2876af8"
@@ -845,6 +850,16 @@
       "path": "evidence/snowball-baseline-async-a7-rno-start-receipts.zip",
       "bytes": 7044,
       "sha256": "0b47af18e040b5d632c8c99be3dbfe75f82471aa0f7847f317fb0f79bd907eb8"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a7-rno-success-summary.json",
+      "bytes": 5855,
+      "sha256": "d2109946f22583b30fcccc7d94e03e62957a9044c46e74d0341ae3507f32d129"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a7-rno-terminal-receipts.zip",
+      "bytes": 366,
+      "sha256": "328c958d96a8f922d4310bd1ae36fd1b199b581603abcc67cad341d97c62e179"
     },
     {
       "path": "evidence/snowball-baseline-async-a7-rno-workload-events.json",
@@ -1252,6 +1267,11 @@
       "sha256": "cf358afd037f829dcc6878be91fd4f4de1c9986cf0fa97b1856f226c99f079f1"
     },
     {
+      "path": "reports/sc-integration-snowball-baseline-async-a7-rno-01a146a3.json.zip",
+      "bytes": 426070,
+      "sha256": "bf1952a56e65812ff75b06160dbd7693710bec0f7dc59ca6f0dd0124e6c820ea"
+    },
+    {
       "path": "reports/sc-integration-snowball-baseline-controls-a0-rno-01a146a3.json.zip",
       "bytes": 366419,
       "sha256": "e552b6cd8584ff8cac701f68f1d791ea0f8d923c8c249ffb0c9bb703fd4106b6"
@@ -1608,8 +1628,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 10651,
-      "sha256": "a11483fe09c2c7465db86eb519a78cbf3b35bca3c2c6f2585b25428bcb3b1762"
+      "bytes": 10726,
+      "sha256": "2c14f2a3ade3ffc5c7115faaf6d2cdf4b548443022b658af59c27723fb1e1798"
     },
     {
       "path": "snowball-staged-protocol-r10.json",
@@ -1805,6 +1825,19 @@
       "applied_updates_semantics": "Report counter only; first calibration policy_train returned before offload failed after eviction. Final optimizer completion unestablished.",
       "total_applied_updates_established": false,
       "envelope": "ZIP with repository-required trailing newline; original bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-snowball-baseline-async-a7-rno-01a146a3.json.zip",
+      "original_bytes": 5569238,
+      "original_sha256": "5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2",
+      "stored_bytes": 426070,
+      "stored_sha256": "bf1952a56e65812ff75b06160dbd7693710bec0f7dc59ca6f0dd0124e6c820ea",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/performance.json",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "complete": true,
+      "applied_updates": 67,
+      "envelope": "ZIP LZMA with repository-required trailing newline; original bytes unchanged"
     }
   ],
   "validation_log_archive": {
