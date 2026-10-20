@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T06:07:46.013418+00:00",
+  "saved_at": "2026-10-20T07:16:29.380709+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 28151,
-      "sha256": "90be1d73ad1e1d4c27719a73b43165f031dcc9a753ec01c324c635ebdab94c9a"
+      "bytes": 29674,
+      "sha256": "9aa7a6d6a6a1bd180b8c685c1bbc9d350a71a9533961c7834153eb0a02e55fce"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 17242,
-      "sha256": "4949abca200efcaf31234d7623a0d38f5127585b4d800a8d583820b307a98215"
+      "bytes": 17772,
+      "sha256": "f4d6c33c6b5cba8bf37fb559f4d3cf722236becf1db6a5295f99e93957f99bc6"
     },
     {
       "path": "analyze.py",
@@ -160,6 +160,16 @@
       "path": "evidence/followup-receipts.zip",
       "bytes": 1242,
       "sha256": "6b1efe70a6d529a51edafde8a069f6492486cd819f5306e32c6bdecdd0244cc2"
+    },
+    {
+      "path": "evidence/grader-cpu-reproducer.json",
+      "bytes": 3128,
+      "sha256": "a76f73f099d91f65cffe2bd9a68e0368f8a35de7c69bd51b12cfda89a6aa7a6f"
+    },
+    {
+      "path": "evidence/grader-dependency-pin-proof.json",
+      "bytes": 48022,
+      "sha256": "be6e9b29e5d1154984267a046bbf2deda3c4ee8e853b8381eec28549990c6858"
     },
     {
       "path": "evidence/handoff-r3-preflight.zip",
@@ -517,6 +527,16 @@
       "sha256": "e64cffea2342c1cb9634ce4d92ef0e0aa8ee2fcddc654472759eca2e0cbf54ec"
     },
     {
+      "path": "evidence/snowball-baseline-async-a3-east-failure-summary.json",
+      "bytes": 1703,
+      "sha256": "b91cd7ad2a871874c9ebede18eebdeb53cfd2e407ae744ae612b8359230e61d2"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-grader-failure.zip",
+      "bytes": 33109,
+      "sha256": "300a8ed81643cddcbeec7e4ffae9777d194a118b5f05c2169022a1f51268af65"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a3-east-provider-02.json",
       "bytes": 10610,
       "sha256": "4148a1712dd1a1c5f952ee9f375141834b8ba883c33c40cbbaf2ecff53b50cbf"
@@ -525,6 +545,11 @@
       "path": "evidence/snowball-baseline-async-a3-east-provider-first.json",
       "bytes": 9865,
       "sha256": "1b4b94d46b8f8dbb46c6679fc39d6b00a789e63e70bd2fe7b17afc2be9f6b02a"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-provider-terminal.json",
+      "bytes": 213,
+      "sha256": "447baafa8728afab978741bdb6d036df239b0ea546edbf886668fb3c5cbc4c8a"
     },
     {
       "path": "evidence/snowball-baseline-async-a3-east-start-receipts.zip",
@@ -877,6 +902,11 @@
       "sha256": "a2cc4b71853c6527a519911ae8f63826d0e075a8254e63436a89aafc2709e57d"
     },
     {
+      "path": "reports/sc-integration-snowball-baseline-async-a3-east-01a146a3.partial.json.zip",
+      "bytes": 359999,
+      "sha256": "49e35e050087165b1f21defc45ff57cc0af29f1bb8ff86ba12979c0814ad680b"
+    },
+    {
       "path": "reports/sc-integration-snowball-baseline-controls-a0-rno-01a146a3.json.zip",
       "bytes": 366419,
       "sha256": "e552b6cd8584ff8cac701f68f1d791ea0f8d923c8c249ffb0c9bb703fd4106b6"
@@ -1138,8 +1168,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 7466,
-      "sha256": "55204ba1a62d8a94880e105b7303920bd609e706d4fda61223a29db538f430d5"
+      "bytes": 7584,
+      "sha256": "27643dbc11d74a56389b0679b1055023603f82ebb471c49a8d6f52c65099a106"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
@@ -1261,6 +1291,19 @@
       "complete": true,
       "applied_updates": 18,
       "envelope": "ZIP with repository-required trailing newline; original report bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-snowball-baseline-async-a3-east-01a146a3.partial.json.zip",
+      "original_bytes": 2880621,
+      "original_sha256": "d6be3ff1f90c1403a534bf162f9d8c717380f1c98c1787e93367a9505ee9bb18",
+      "stored_bytes": 359999,
+      "stored_sha256": "49e35e050087165b1f21defc45ff57cc0af29f1bb8ff86ba12979c0814ad680b",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a3-east-01a146a3/performance.json",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+      "complete": false,
+      "applied_updates": 9,
+      "envelope": "ZIP with repository-required trailing newline; original bytes unchanged"
     }
   ],
   "validation_log_archive": {

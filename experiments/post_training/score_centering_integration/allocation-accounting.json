@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T06:07:46.011539+00:00",
+  "saved_at": "2026-10-20T07:16:29.379033+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -323,19 +323,25 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-20T06:06:14.078Z",
       "admitted_at": "2026-10-20T06:06:14.372367Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "admitted; r6 additional baseline attempt, fresh SFT and67realreward updates planned",
+      "controller_terminal_at": "2026-10-20T06:26:13.274Z",
+      "provider_absence_at": "2026-10-20T06:30:51.606126Z",
+      "applied_updates": 9,
+      "outcome": "existing AIME grader TypeError at first async admission;3calibration+6realreward periodic updates, no async update",
       "automatic_retries": 0,
       "evidence": [
         "snowball-staged-protocol-r6.json",
         "evidence/snowball-baseline-async-a3-east-provider-first.json",
         "evidence/snowball-baseline-async-a3-east-provider-02.json",
         "evidence/snowball-baseline-async-a3-east-workload-events.json",
-        "evidence/snowball-baseline-async-a3-east-start-receipts.zip"
+        "evidence/snowball-baseline-async-a3-east-start-receipts.zip",
+        "evidence/snowball-baseline-async-a3-east-provider-terminal.json",
+        "evidence/snowball-baseline-async-a3-east-failure-summary.json",
+        "evidence/snowball-baseline-async-a3-east-grader-failure.zip",
+        "reports/sc-integration-snowball-baseline-async-a3-east-01a146a3.partial.json.zip"
       ],
-      "queue_seconds": 0.294367
+      "queue_seconds": 0.294367,
+      "gpu_hours_to_controller_terminal_proxy": 13.321129255555554,
+      "gpu_hours_through_verified_absence_upper_bound": 16.413708433333333
     }
   ],
   "prepared_but_not_submitted": [
@@ -370,7 +376,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 119.44918483333332,
-    "gpu_hours_through_verified_absence_upper_bound": 168.14801403777778
+    "gpu_hours_to_controller_terminal_proxy": 132.77031408888888,
+    "gpu_hours_through_verified_absence_upper_bound": 184.56172247111112
   }
 }

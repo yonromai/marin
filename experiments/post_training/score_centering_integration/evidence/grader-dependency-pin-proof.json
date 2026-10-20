@@ -1,0 +1,1588 @@
+{
+  "old_lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+  "new_lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+  "lock_text_changes_only_Marin_git_commit_references": true,
+  "old_Marin_commit": "b3206ac1c46cee3079441f394b5a6a13bb923d0e",
+  "new_Marin_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+  "package_versions_and_all_other_sources_unchanged": true,
+  "uv_lock_check_exit_code": 0,
+  "vllm_package_and_wheel_unchanged": true,
+  "vllm_package": [
+    {
+      "name": "vllm",
+      "version": "0.0.0.dev20260929+marin.39e62869693c.cu132",
+      "source": {
+        "url": "https://github.com/marin-community/vllm/releases/download/marin-vllm-gpu-20260929-39e62869693c/vllm-0.0.0.dev20260929+marin.39e62869693c.cu132-cp38-abi3-manylinux_2_28_aarch64.whl"
+      },
+      "resolution-markers": [
+        "platform_machine == 'aarch64' and sys_platform == 'linux'"
+      ],
+      "dependencies": [
+        {
+          "name": "aiohttp",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "anthropic",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "apache-tvm-ffi",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "blake3",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cachetools",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cbor2",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cloudpickle",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "compressed-tensors",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "depyf",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "einops",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "fastapi",
+          "extra": [
+            "standard"
+          ],
+          "marker": "(platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "fastsafetensors",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "filelock",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "flashinfer-python",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "huggingface-hub",
+          "version": "1.32.0",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "humming-kernels",
+          "extra": [
+            "cu13"
+          ],
+          "marker": "(platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "ijson",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "instanttensor",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "jsonschema",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "lark",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "llguidance",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "lm-format-enforcer",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "mcp",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "mistral-common",
+          "extra": [
+            "image"
+          ],
+          "marker": "(platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "model-hosting-container-standards",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "msgspec",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "ninja",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "numba",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.5",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "nvidia-cudnn-frontend",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "nvidia-cutlass-dsl",
+          "extra": [
+            "cu13"
+          ],
+          "marker": "(platform_machine != 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "nvtx",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "openai",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "openai-harmony",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opencv-python-headless",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-api",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-exporter-otlp",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-sdk",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-semantic-conventions-ai",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "outlines-core",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "partial-json-parser",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pillow",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "prometheus-client",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "prometheus-fastapi-instrumentator",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "protobuf",
+          "version": "6.33.6",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "psutil",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "py-cpuinfo",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pybase64",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pydantic",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pynvvideocodec",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "python-json-logger",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pyyaml",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pyzmq",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "quack-kernels",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "regex",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "requests",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "safetensors",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "sentencepiece",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "setproctitle",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "setuptools",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "six",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "starlette",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tiktoken",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tilelang",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tokenizers",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tokenspeed-mla",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torch",
+          "version": "2.13.0+cu132",
+          "source": {
+            "registry": "https://download.pytorch.org/whl/cu132"
+          },
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchaudio",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchcodec",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchvision",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tqdm",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "transformers",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "typing-extensions",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "watchfiles",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "xgrammar",
+          "marker": "platform_machine != 'x86_64' and sys_platform == 'linux'"
+        }
+      ],
+      "wheels": [
+        {
+          "url": "https://github.com/marin-community/vllm/releases/download/marin-vllm-gpu-20260929-39e62869693c/vllm-0.0.0.dev20260929+marin.39e62869693c.cu132-cp38-abi3-manylinux_2_28_aarch64.whl",
+          "hash": "sha256:8a3ba6d09d43c779d67775ee9be0e54febcad724bce5192021b005407df0fdf8"
+        }
+      ],
+      "metadata": {
+        "requires-dist": [
+          {
+            "name": "aiohttp",
+            "specifier": ">=3.13.3"
+          },
+          {
+            "name": "anthropic",
+            "specifier": ">=0.71.0"
+          },
+          {
+            "name": "apache-tvm-ffi",
+            "specifier": "==0.1.12"
+          },
+          {
+            "name": "av",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "b12x",
+            "marker": "extra == 'b12x'",
+            "specifier": "==1.3.0"
+          },
+          {
+            "name": "blake3"
+          },
+          {
+            "name": "cachetools"
+          },
+          {
+            "name": "cbor2"
+          },
+          {
+            "name": "cloudpickle"
+          },
+          {
+            "name": "compressed-tensors",
+            "specifier": "==0.17.0"
+          },
+          {
+            "name": "datasets",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "depyf",
+            "specifier": "==0.20.0"
+          },
+          {
+            "name": "einops"
+          },
+          {
+            "name": "fastapi",
+            "extras": [
+              "standard"
+            ],
+            "specifier": ">=0.133.0,<0.137.0"
+          },
+          {
+            "name": "fastsafetensors",
+            "specifier": ">=0.3.3"
+          },
+          {
+            "name": "fastsafetensors",
+            "marker": "extra == 'fastsafetensors'",
+            "specifier": ">=0.3.3"
+          },
+          {
+            "name": "filelock",
+            "specifier": ">=3.16.1"
+          },
+          {
+            "name": "flashinfer-python",
+            "specifier": "==0.6.18.post1"
+          },
+          {
+            "name": "helion",
+            "marker": "extra == 'helion'",
+            "specifier": "==1.4.0"
+          },
+          {
+            "name": "huggingface-hub",
+            "specifier": ">=1.31.0"
+          },
+          {
+            "name": "humming-kernels",
+            "extras": [
+              "cu13"
+            ],
+            "specifier": "==0.1.12"
+          },
+          {
+            "name": "ijson"
+          },
+          {
+            "name": "instanttensor",
+            "specifier": ">=0.1.9"
+          },
+          {
+            "name": "instanttensor",
+            "marker": "extra == 'instanttensor'",
+            "specifier": ">=0.1.9"
+          },
+          {
+            "name": "jsonschema",
+            "specifier": ">=4.23.0"
+          },
+          {
+            "name": "lark",
+            "specifier": "==1.2.2"
+          },
+          {
+            "name": "llguidance",
+            "marker": "platform_machine == 'aarch64' or platform_machine == 'arm64' or platform_machine == 'ppc64le' or platform_machine == 's390x' or platform_machine == 'x86_64'",
+            "specifier": ">=1.7.0,<1.8.0"
+          },
+          {
+            "name": "lm-format-enforcer",
+            "specifier": "==0.11.3"
+          },
+          {
+            "name": "matplotlib",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "mcp",
+            "specifier": ">=2.0.0,<3.0.0"
+          },
+          {
+            "name": "mistral-common",
+            "extras": [
+              "audio"
+            ],
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "mistral-common",
+            "extras": [
+              "image"
+            ],
+            "specifier": ">=1.11.6"
+          },
+          {
+            "name": "model-hosting-container-standards",
+            "specifier": ">=0.1.14,<1.0.0"
+          },
+          {
+            "name": "msgspec"
+          },
+          {
+            "name": "ninja"
+          },
+          {
+            "name": "numba",
+            "specifier": "==0.65.0"
+          },
+          {
+            "name": "numpy"
+          },
+          {
+            "name": "nvidia-cudnn-frontend",
+            "specifier": ">=1.19.1"
+          },
+          {
+            "name": "nvidia-cutlass-dsl",
+            "extras": [
+              "cu13"
+            ],
+            "specifier": "==4.6.2"
+          },
+          {
+            "name": "nvidia-deepstream-videodecode-cu13",
+            "marker": "extra == 'deepstream'",
+            "specifier": ">=9.0.2"
+          },
+          {
+            "name": "nvtx",
+            "specifier": "==0.2.15"
+          },
+          {
+            "name": "openai",
+            "specifier": ">=2.25.0"
+          },
+          {
+            "name": "openai-harmony",
+            "specifier": ">=0.0.3"
+          },
+          {
+            "name": "opencv-python-headless",
+            "specifier": ">=4.13.0"
+          },
+          {
+            "name": "opentelemetry-api",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-api",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-exporter-otlp",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-exporter-otlp",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-sdk",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-sdk",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-semantic-conventions-ai",
+            "specifier": ">=0.4.1"
+          },
+          {
+            "name": "opentelemetry-semantic-conventions-ai",
+            "marker": "extra == 'otel'",
+            "specifier": ">=0.4.1"
+          },
+          {
+            "name": "outlines-core",
+            "specifier": "==0.2.14"
+          },
+          {
+            "name": "pandas",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "partial-json-parser"
+          },
+          {
+            "name": "pillow"
+          },
+          {
+            "name": "plotly",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "prometheus-client",
+            "specifier": ">=0.18.0"
+          },
+          {
+            "name": "prometheus-fastapi-instrumentator",
+            "specifier": ">=8.0.0"
+          },
+          {
+            "name": "protobuf",
+            "specifier": ">=5.29.6,!=6.30.*,!=6.31.*,!=6.32.*,!=6.33.0.*,!=6.33.1.*,!=6.33.2.*,!=6.33.3.*,!=6.33.4.*"
+          },
+          {
+            "name": "psutil"
+          },
+          {
+            "name": "py-cpuinfo"
+          },
+          {
+            "name": "pybase64"
+          },
+          {
+            "name": "pydantic",
+            "specifier": ">=2.12.0"
+          },
+          {
+            "name": "pynvvideocodec",
+            "specifier": "==2.0.4"
+          },
+          {
+            "name": "python-json-logger"
+          },
+          {
+            "name": "pyyaml"
+          },
+          {
+            "name": "pyzmq",
+            "specifier": ">=25.0.0"
+          },
+          {
+            "name": "quack-kernels",
+            "specifier": "==0.6.4"
+          },
+          {
+            "name": "regex"
+          },
+          {
+            "name": "requests",
+            "specifier": ">=2.26.0"
+          },
+          {
+            "name": "runai-model-streamer",
+            "extras": [
+              "azure",
+              "gcs",
+              "s3"
+            ],
+            "marker": "extra == 'runai'",
+            "specifier": ">=0.15.7"
+          },
+          {
+            "name": "safetensors",
+            "specifier": ">=0.6.2"
+          },
+          {
+            "name": "scipy",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "scipy",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "seaborn",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "sentencepiece"
+          },
+          {
+            "name": "setproctitle"
+          },
+          {
+            "name": "setuptools",
+            "marker": "python_full_version >= '3.12'",
+            "specifier": ">=77.0.3"
+          },
+          {
+            "name": "six",
+            "marker": "python_full_version >= '3.12'",
+            "specifier": ">=1.16.0"
+          },
+          {
+            "name": "smg-grpc-servicer",
+            "extras": [
+              "vllm"
+            ],
+            "marker": "extra == 'grpc'",
+            "specifier": ">=0.5.2"
+          },
+          {
+            "name": "soundfile",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "soxr",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "starlette",
+            "specifier": ">=1.0.1"
+          },
+          {
+            "name": "tensorizer",
+            "marker": "extra == 'tensorizer'",
+            "specifier": "==2.10.1"
+          },
+          {
+            "name": "tiktoken",
+            "specifier": ">=0.6.0"
+          },
+          {
+            "name": "tilelang",
+            "specifier": "==0.1.14"
+          },
+          {
+            "name": "tokenizers",
+            "specifier": ">=0.21.1"
+          },
+          {
+            "name": "tokenspeed-mla",
+            "marker": "sys_platform == 'linux'",
+            "specifier": "==0.1.9"
+          },
+          {
+            "name": "torch",
+            "specifier": "==2.13.0"
+          },
+          {
+            "name": "torchaudio",
+            "specifier": "==2.11.0"
+          },
+          {
+            "name": "torchcodec",
+            "specifier": ">=0.14"
+          },
+          {
+            "name": "torchvision",
+            "specifier": "==0.28.0"
+          },
+          {
+            "name": "tqdm"
+          },
+          {
+            "name": "transformers",
+            "specifier": ">=5.10.4"
+          },
+          {
+            "name": "typing-extensions",
+            "specifier": ">=4.10"
+          },
+          {
+            "name": "vllm-gguf-plugin",
+            "marker": "extra == 'extra-quant'",
+            "specifier": ">=0.0.2"
+          },
+          {
+            "name": "watchfiles"
+          },
+          {
+            "name": "xgrammar",
+            "marker": "platform_machine == 'aarch64' or platform_machine == 'arm64' or platform_machine == 'ppc64le' or platform_machine == 's390x' or platform_machine == 'x86_64'",
+            "specifier": ">=0.2.1,<1.0.0"
+          },
+          {
+            "name": "zentorch",
+            "marker": "extra == 'zen'",
+            "specifier": "==2.13.0.0"
+          }
+        ],
+        "provides-extras": [
+          "zen",
+          "bench",
+          "tensorizer",
+          "fastsafetensors",
+          "instanttensor",
+          "runai",
+          "audio",
+          "video",
+          "deepstream",
+          "flashinfer",
+          "b12x",
+          "helion",
+          "grpc",
+          "otel",
+          "extra-quant"
+        ]
+      }
+    },
+    {
+      "name": "vllm",
+      "version": "0.0.0.dev20260929+marin.39e62869693c.cu132",
+      "source": {
+        "url": "https://github.com/marin-community/vllm/releases/download/marin-vllm-gpu-20260929-39e62869693c/vllm-0.0.0.dev20260929+marin.39e62869693c.cu132-cp38-abi3-manylinux_2_28_x86_64.whl"
+      },
+      "resolution-markers": [
+        "platform_machine == 'x86_64' and sys_platform == 'linux'"
+      ],
+      "dependencies": [
+        {
+          "name": "aiohttp",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "anthropic",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "apache-tvm-ffi",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "blake3",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cachetools",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cbor2",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "cloudpickle",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "compressed-tensors",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "depyf",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "einops",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "fastapi",
+          "extra": [
+            "standard"
+          ],
+          "marker": "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "fastsafetensors",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "filelock",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "flashinfer-python",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "huggingface-hub",
+          "version": "1.32.0",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "humming-kernels",
+          "extra": [
+            "cu13"
+          ],
+          "marker": "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "ijson",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "instanttensor",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "jsonschema",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "lark",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "llguidance",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "lm-format-enforcer",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "mcp",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "mistral-common",
+          "extra": [
+            "image"
+          ],
+          "marker": "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "model-hosting-container-standards",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "msgspec",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "ninja",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "numba",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "numpy",
+          "version": "2.3.5",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "nvidia-cudnn-frontend",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "nvidia-cutlass-dsl",
+          "extra": [
+            "cu13"
+          ],
+          "marker": "(platform_machine == 'x86_64' and sys_platform == 'linux' and extra != 'extra-10-marinskyrl-cpu') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-cuda') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-megatron') or (extra == 'extra-10-marinskyrl-cpu' and extra == 'extra-10-marinskyrl-vllm')"
+        },
+        {
+          "name": "nvtx",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "openai",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "openai-harmony",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opencv-python-headless",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-api",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-exporter-otlp",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-sdk",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "opentelemetry-semantic-conventions-ai",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "outlines-core",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "partial-json-parser",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pillow",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "prometheus-client",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "prometheus-fastapi-instrumentator",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "protobuf",
+          "version": "6.33.6",
+          "source": {
+            "registry": "https://pypi.org/simple"
+          },
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "psutil",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "py-cpuinfo",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pybase64",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pydantic",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pynvvideocodec",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "python-json-logger",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pyyaml",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "pyzmq",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "quack-kernels",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "regex",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "requests",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "safetensors",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "sentencepiece",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "setproctitle",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "setuptools",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "six",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "starlette",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tiktoken",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tilelang",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tokenizers",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tokenspeed-mla",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torch",
+          "version": "2.13.0+cu132",
+          "source": {
+            "registry": "https://download.pytorch.org/whl/cu132"
+          },
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchaudio",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchcodec",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "torchvision",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "tqdm",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "transformers",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "typing-extensions",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "watchfiles",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        },
+        {
+          "name": "xgrammar",
+          "marker": "platform_machine == 'x86_64' and sys_platform == 'linux'"
+        }
+      ],
+      "wheels": [
+        {
+          "url": "https://github.com/marin-community/vllm/releases/download/marin-vllm-gpu-20260929-39e62869693c/vllm-0.0.0.dev20260929+marin.39e62869693c.cu132-cp38-abi3-manylinux_2_28_x86_64.whl",
+          "hash": "sha256:93da77d0d4bb6f2f5ac8611efd09aa2e4654d4cacb5d21eab5dd2ec34186e27b"
+        }
+      ],
+      "metadata": {
+        "requires-dist": [
+          {
+            "name": "aiohttp",
+            "specifier": ">=3.13.3"
+          },
+          {
+            "name": "anthropic",
+            "specifier": ">=0.71.0"
+          },
+          {
+            "name": "apache-tvm-ffi",
+            "specifier": "==0.1.12"
+          },
+          {
+            "name": "av",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "b12x",
+            "marker": "extra == 'b12x'",
+            "specifier": "==1.3.0"
+          },
+          {
+            "name": "blake3"
+          },
+          {
+            "name": "cachetools"
+          },
+          {
+            "name": "cbor2"
+          },
+          {
+            "name": "cloudpickle"
+          },
+          {
+            "name": "compressed-tensors",
+            "specifier": "==0.17.0"
+          },
+          {
+            "name": "datasets",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "depyf",
+            "specifier": "==0.20.0"
+          },
+          {
+            "name": "einops"
+          },
+          {
+            "name": "fastapi",
+            "extras": [
+              "standard"
+            ],
+            "specifier": ">=0.133.0,<0.137.0"
+          },
+          {
+            "name": "fastsafetensors",
+            "specifier": ">=0.3.3"
+          },
+          {
+            "name": "fastsafetensors",
+            "marker": "extra == 'fastsafetensors'",
+            "specifier": ">=0.3.3"
+          },
+          {
+            "name": "filelock",
+            "specifier": ">=3.16.1"
+          },
+          {
+            "name": "flashinfer-python",
+            "specifier": "==0.6.18.post1"
+          },
+          {
+            "name": "helion",
+            "marker": "extra == 'helion'",
+            "specifier": "==1.4.0"
+          },
+          {
+            "name": "huggingface-hub",
+            "specifier": ">=1.31.0"
+          },
+          {
+            "name": "humming-kernels",
+            "extras": [
+              "cu13"
+            ],
+            "specifier": "==0.1.12"
+          },
+          {
+            "name": "ijson"
+          },
+          {
+            "name": "instanttensor",
+            "specifier": ">=0.1.9"
+          },
+          {
+            "name": "instanttensor",
+            "marker": "extra == 'instanttensor'",
+            "specifier": ">=0.1.9"
+          },
+          {
+            "name": "jsonschema",
+            "specifier": ">=4.23.0"
+          },
+          {
+            "name": "lark",
+            "specifier": "==1.2.2"
+          },
+          {
+            "name": "llguidance",
+            "marker": "platform_machine == 'aarch64' or platform_machine == 'arm64' or platform_machine == 'ppc64le' or platform_machine == 's390x' or platform_machine == 'x86_64'",
+            "specifier": ">=1.7.0,<1.8.0"
+          },
+          {
+            "name": "lm-format-enforcer",
+            "specifier": "==0.11.3"
+          },
+          {
+            "name": "matplotlib",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "mcp",
+            "specifier": ">=2.0.0,<3.0.0"
+          },
+          {
+            "name": "mistral-common",
+            "extras": [
+              "audio"
+            ],
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "mistral-common",
+            "extras": [
+              "image"
+            ],
+            "specifier": ">=1.11.6"
+          },
+          {
+            "name": "model-hosting-container-standards",
+            "specifier": ">=0.1.14,<1.0.0"
+          },
+          {
+            "name": "msgspec"
+          },
+          {
+            "name": "ninja"
+          },
+          {
+            "name": "numba",
+            "specifier": "==0.65.0"
+          },
+          {
+            "name": "numpy"
+          },
+          {
+            "name": "nvidia-cudnn-frontend",
+            "specifier": ">=1.19.1"
+          },
+          {
+            "name": "nvidia-cutlass-dsl",
+            "extras": [
+              "cu13"
+            ],
+            "specifier": "==4.6.2"
+          },
+          {
+            "name": "nvidia-deepstream-videodecode-cu13",
+            "marker": "extra == 'deepstream'",
+            "specifier": ">=9.0.2"
+          },
+          {
+            "name": "nvtx",
+            "specifier": "==0.2.15"
+          },
+          {
+            "name": "openai",
+            "specifier": ">=2.25.0"
+          },
+          {
+            "name": "openai-harmony",
+            "specifier": ">=0.0.3"
+          },
+          {
+            "name": "opencv-python-headless",
+            "specifier": ">=4.13.0"
+          },
+          {
+            "name": "opentelemetry-api",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-api",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-exporter-otlp",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-exporter-otlp",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-sdk",
+            "specifier": ">=1.27.0"
+          },
+          {
+            "name": "opentelemetry-sdk",
+            "marker": "extra == 'otel'",
+            "specifier": ">=1.26.0"
+          },
+          {
+            "name": "opentelemetry-semantic-conventions-ai",
+            "specifier": ">=0.4.1"
+          },
+          {
+            "name": "opentelemetry-semantic-conventions-ai",
+            "marker": "extra == 'otel'",
+            "specifier": ">=0.4.1"
+          },
+          {
+            "name": "outlines-core",
+            "specifier": "==0.2.14"
+          },
+          {
+            "name": "pandas",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "partial-json-parser"
+          },
+          {
+            "name": "pillow"
+          },
+          {
+            "name": "plotly",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "prometheus-client",
+            "specifier": ">=0.18.0"
+          },
+          {
+            "name": "prometheus-fastapi-instrumentator",
+            "specifier": ">=8.0.0"
+          },
+          {
+            "name": "protobuf",
+            "specifier": ">=5.29.6,!=6.30.*,!=6.31.*,!=6.32.*,!=6.33.0.*,!=6.33.1.*,!=6.33.2.*,!=6.33.3.*,!=6.33.4.*"
+          },
+          {
+            "name": "psutil"
+          },
+          {
+            "name": "py-cpuinfo"
+          },
+          {
+            "name": "pybase64"
+          },
+          {
+            "name": "pydantic",
+            "specifier": ">=2.12.0"
+          },
+          {
+            "name": "pynvvideocodec",
+            "specifier": "==2.0.4"
+          },
+          {
+            "name": "python-json-logger"
+          },
+          {
+            "name": "pyyaml"
+          },
+          {
+            "name": "pyzmq",
+            "specifier": ">=25.0.0"
+          },
+          {
+            "name": "quack-kernels",
+            "specifier": "==0.6.4"
+          },
+          {
+            "name": "regex"
+          },
+          {
+            "name": "requests",
+            "specifier": ">=2.26.0"
+          },
+          {
+            "name": "runai-model-streamer",
+            "extras": [
+              "azure",
+              "gcs",
+              "s3"
+            ],
+            "marker": "extra == 'runai'",
+            "specifier": ">=0.15.7"
+          },
+          {
+            "name": "safetensors",
+            "specifier": ">=0.6.2"
+          },
+          {
+            "name": "scipy",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "scipy",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "seaborn",
+            "marker": "extra == 'bench'"
+          },
+          {
+            "name": "sentencepiece"
+          },
+          {
+            "name": "setproctitle"
+          },
+          {
+            "name": "setuptools",
+            "marker": "python_full_version >= '3.12'",
+            "specifier": ">=77.0.3"
+          },
+          {
+            "name": "six",
+            "marker": "python_full_version >= '3.12'",
+            "specifier": ">=1.16.0"
+          },
+          {
+            "name": "smg-grpc-servicer",
+            "extras": [
+              "vllm"
+            ],
+            "marker": "extra == 'grpc'",
+            "specifier": ">=0.5.2"
+          },
+          {
+            "name": "soundfile",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "soxr",
+            "marker": "extra == 'audio'"
+          },
+          {
+            "name": "starlette",
+            "specifier": ">=1.0.1"
+          },
+          {
+            "name": "tensorizer",
+            "marker": "extra == 'tensorizer'",
+            "specifier": "==2.10.1"
+          },
+          {
+            "name": "tiktoken",
+            "specifier": ">=0.6.0"
+          },
+          {
+            "name": "tilelang",
+            "specifier": "==0.1.14"
+          },
+          {
+            "name": "tokenizers",
+            "specifier": ">=0.21.1"
+          },
+          {
+            "name": "tokenspeed-mla",
+            "marker": "sys_platform == 'linux'",
+            "specifier": "==0.1.9"
+          },
+          {
+            "name": "torch",
+            "specifier": "==2.13.0"
+          },
+          {
+            "name": "torchaudio",
+            "specifier": "==2.11.0"
+          },
+          {
+            "name": "torchcodec",
+            "specifier": ">=0.14"
+          },
+          {
+            "name": "torchvision",
+            "specifier": "==0.28.0"
+          },
+          {
+            "name": "tqdm"
+          },
+          {
+            "name": "transformers",
+            "specifier": ">=5.10.4"
+          },
+          {
+            "name": "typing-extensions",
+            "specifier": ">=4.10"
+          },
+          {
+            "name": "vllm-gguf-plugin",
+            "marker": "extra == 'extra-quant'",
+            "specifier": ">=0.0.2"
+          },
+          {
+            "name": "watchfiles"
+          },
+          {
+            "name": "xgrammar",
+            "marker": "platform_machine == 'aarch64' or platform_machine == 'arm64' or platform_machine == 'ppc64le' or platform_machine == 's390x' or platform_machine == 'x86_64'",
+            "specifier": ">=0.2.1,<1.0.0"
+          },
+          {
+            "name": "zentorch",
+            "marker": "extra == 'zen'",
+            "specifier": "==2.13.0.0"
+          }
+        ],
+        "provides-extras": [
+          "zen",
+          "bench",
+          "tensorizer",
+          "fastsafetensors",
+          "instanttensor",
+          "runai",
+          "audio",
+          "video",
+          "deepstream",
+          "flashinfer",
+          "b12x",
+          "helion",
+          "grpc",
+          "otel",
+          "extra-quant"
+        ]
+      }
+    }
+  ]
+}

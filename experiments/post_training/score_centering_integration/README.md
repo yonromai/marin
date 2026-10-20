@@ -185,6 +185,22 @@ Running on attempt zero by 06:07:13, with the same task and logshipper images as
 This is actual submission fourteen, baseline submission eight/eight. It plans 67 fresh real-reward updates with
 a queue-inclusive deadline of 12:06:14.078 UTC and no automatic retry. The candidate is still unsubmitted.
 
+The r6 baseline saved nine applied updates: three calibrations and six real-reward periodic updates, each with
+a nonzero gradient. It failed at the first asynchronous admission before optimizer update ten. Native metric
+logs end at step nine. The existing AIME grader raised a SymPy matrix/scalar `TypeError`. The original answer
+was not retained; a CPU square-root-of-matrix candidate reproduces that failure mode during finiteness validation.
+Controller terminal was 06:26:13.274 UTC, with verified absence at 06:30:51.606126. All fourteen submissions are
+closed. No asynchronous throughput estimate comes from this failed run.
+
+[The failure and repair record](evidence/snowball-baseline-async-a3-east-failure-summary.json) links the partial
+report, native errors and bounded-grader regression. Marin commit `5ef1e703d3bae94d510d8cf3f50d902958e10d20`
+adds one scalar validation predicate before the failing finiteness query. Unsupported candidates still receive
+the existing zero-credit result; invalid references fail validation. The regression failed before the change;
+437 affected grader tests pass after it. Product commit `c36e8594cbbbe55362945debfa6f75887a96361f` pins that exact
+repair and passes 477 CPU checks with three dependency skips. The lock changes only four shared Marin Git
+revisions; the other package trees, versions, wheels and vLLM pin are unchanged. Both next fresh asynchronous
+arms will share this repair. Their timings remain separate from completed RNO controls at the prior grader revision.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

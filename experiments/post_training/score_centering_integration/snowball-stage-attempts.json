@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T06:07:45.427511+00:00",
+  "saved_at_utc": "2026-10-20T07:16:28.838831+00:00",
   "protocol": "snowball-staged-protocol-r6.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -55,7 +55,7 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
-    "baseline_outcome": "admitted;allfivePodsRunningat06:07:13UTC,attemptzero",
+    "baseline_outcome": "Existing AIME scalar grader TypeError;9applied updates verified by report and native metric log;0async updates.",
     "baseline_submitted_at": "2026-10-20T06:06:14.078Z",
     "baseline_admitted_at": "2026-10-20T06:06:14.372367Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T12:06:14.078Z",
@@ -89,12 +89,12 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a"
+    "candidate_cluster": "cw-us-east-02a",
+    "baseline_controller_terminal_at": "2026-10-20T06:26:13.274Z",
+    "baseline_provider_absence_at": "2026-10-20T06:30:51.606126Z"
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3"
-  ],
-  "limit": "Fourteen actualGPUsubmissions:thirteenclosed andr6additionalbaselineasyncactiveonEast. Baseline8/8allowanceincludingallpreemptions;candidateasyncstilloneunsubmittedattempt. Bothrealrewardasyncreportsremainpending;completeRNOcontrolsunchanged.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All14actualGPUsubmissions terminal/absent. CPU scalar-grader repair5ef1e703 and productc36e8594 are published and matching runtime branches prepared. No further GPU attempt submitted. Both full async reports and final review remain pending.",
   "primary_cluster": "RNO controlled pair; East fresh asynchronous pair under r5",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
