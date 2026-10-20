@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T04:37:06.266816+00:00",
+  "saved_at": "2026-10-20T06:05:20.330039+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -297,19 +297,23 @@
       "gpus_per_node": 8,
       "priority": "BATCH",
       "submitted_at": "2026-10-20T04:36:07.291Z",
-      "admitted_at": null,
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "queued under r5; third/final baseline async submission and global baseline seventh/seven",
+      "admitted_at": "2026-10-20T05:58:03.244151Z",
+      "controller_terminal_at": "2026-10-20T06:00:00.030Z",
+      "provider_absence_at": "2026-10-20T06:01:52.272332Z",
+      "applied_updates": 0,
+      "outcome": "external priority-11 preemption101seconds after admission, before first report/update",
       "automatic_retries": 0,
       "evidence": [
         "snowball-staged-protocol-r5.json",
         "evidence/snowball-baseline-async-a2-east-provider-first.json",
-        "evidence/snowball-baseline-async-a2-east-start-receipts.zip"
+        "evidence/snowball-baseline-async-a2-east-start-receipts.zip",
+        "evidence/snowball-baseline-async-a2-east-provider-04.json",
+        "evidence/snowball-baseline-async-a2-east-workload-events.json",
+        "evidence/snowball-baseline-async-a2-east-terminal-receipts.zip"
       ],
-      "queue_seconds": null,
-      "admission_limit": "Not admitted at04:36:24.440980UTC provider checkpoint; queue consumes no admitted GPU-hours."
+      "queue_seconds": 4915.953151,
+      "gpu_hours_to_controller_terminal_proxy": 1.2976205444444446,
+      "gpu_hours_through_verified_absence_upper_bound": 2.5447575666666666
     }
   ],
   "prepared_but_not_submitted": [
@@ -322,18 +326,19 @@
     "snowball_candidate": 2
   },
   "global_manual_submission_limits": {
-    "snowball_baseline": 7,
+    "snowball_baseline": 8,
     "snowball_candidate": 4,
     "qwen": 3
   },
   "staged_attempt_limits": {
     "baseline_controls": 1,
     "candidate_controls": 3,
-    "baseline_async": 3,
+    "baseline_async": 4,
     "candidate_async": 1
   },
-  "staged_limit_revision": "r4 moves the unused baseline-controls retry to one final baseline-async attempt after two external startup preemptions. Baseline total remains seven; candidate remains four under r3.",
+  "staged_limit_revision": "r6 explicitly adds one baseline async attempt after all three prior async starts were externally preempted before any report/update. Global baseline allowance rises from seven to eight, declared before submission. Candidate stays four; all earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
+    "snowball-baseline-async-a3-east",
     "snowball-candidate-async-a0-east"
   ],
   "placement_revision": "r5 lets native East BATCH queue control admission after r4 four-hour free-only readiness window expired. Both fresh async arms remain East; complete RNO controls are separate.",
@@ -344,7 +349,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 118.15156428888888,
-    "gpu_hours_through_verified_absence_upper_bound": 165.6032564711111
+    "gpu_hours_to_controller_terminal_proxy": 119.44918483333332,
+    "gpu_hours_through_verified_absence_upper_bound": 168.14801403777778
   }
 }

@@ -168,6 +168,18 @@ Kueue needed 33 more GPU/RDMA quota units. This is actual submission thirteen, b
 seven, including all queue/startup failures. The queue-inclusive deadline is 10:36:07.291 UTC; no automatic retry
 is enabled. Candidate async remains unsubmitted, with one submission allowed after baseline completion/release.
 
+East admitted the baseline at 05:58:03.244151 UTC after 82 minutes in queue. A priority-11 workload preempted it
+at 05:59:44.252496, 101 seconds later, before any report or update. Controller terminal was 06:00:00.030; all
+Pods and queue were absent at 06:01:52.272332. The preemptor owner and live container images were not observed.
+All thirteen actual submissions are closed.
+
+[Revision r6](snowball-staged-protocol-r6.json) explicitly declares one additional fresh baseline attempt after
+three external asynchronous startup preemptions. It raises the overall baseline allowance from seven to eight;
+the candidate allowance stays four. The original goal has no GPU-hour cap. Every spent attempt remains counted,
+and no automatic retry is enabled. This changes only the run namespace; the model, source, task/reward behavior,
+67 updates, batch geometry, K/cadence and six-hour queue-inclusive deadline are unchanged. The candidate still
+requires a complete fresh East baseline and verified shutdown before submission.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

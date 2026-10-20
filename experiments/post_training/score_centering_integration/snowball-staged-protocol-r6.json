@@ -1,0 +1,64 @@
+{
+  "revision": "r6",
+  "supersedes": "snowball-staged-protocol-r5.json",
+  "declared_at_utc": "2026-10-20T06:04:45.397390+00:00",
+  "reason": "The third baseline async submission waited82minutes, was admitted05:58:03.244151UTC and externally preempted101seconds later by priority11, before any report/update. All three async baseline starts were externally preempted; they did not exercise the implementation. The goal allows no GPU-hour cap while requiring finite declared windows/retries. Explicitly raise the overall baseline allowance from seven to eight for one additional fresh attempt, preserving every spent attempt and all product/resource boundaries. Candidate allowance remains four with one unsubmitted attempt. No automatic retry is enabled.",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 8,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 4,
+    "candidate_async": 1
+  },
+  "actual_submissions_before_revision": {
+    "qwen": 3,
+    "snowball_baseline": 7,
+    "snowball_candidate": 3,
+    "total": 13,
+    "all_terminal_and_absent": true
+  },
+  "future_baseline_configurations": [
+    {
+      "path": "snowball-baseline-async-a3-east-r6-prepare.yaml",
+      "sha256": "63693dd07d440265729e1c6099c5a808cfc38bbd2bc23deb8d41fa70f632b855",
+      "namespace_only_change": true
+    },
+    {
+      "path": "snowball-baseline-async-a3-east-r6-detach.yaml",
+      "sha256": "d75f7d06391d5f3911e97de4896f8b30d1c830e3d5c47e1a1474ec8dd02ded5c",
+      "namespace_only_change": true
+    }
+  ],
+  "candidate_configuration": "snowball-candidate-async-a0-east-r4-prepare.yaml",
+  "cluster": "cw-us-east-02a",
+  "priority": "BATCH",
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "queue_inclusive_deadline_seconds": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "automatic_retries": 0,
+  "unchanged": "All r3/r5 sources, lock/packages, original SFT/tokenizer,192tasks, real rewards and normal EOS,67applied updates, K128/SC frequency/probeinterval10/32positions,4x8H100learner PP2EP8DP16TP/CP/SP1 and1x8inference DP8EP8, fullbatch/sourceage4/inflight64, per-update publication and keep pause policy. Only run namespace changes.",
+  "operating_rule": "Enter one native East BATCH queue after verified prior shutdown and a fresh board/capacity check. Query clusters sequentially while pending; lengthen unchanged waits. No duplicated or moved queue. Keep both async arms East, retain healthy allocations, and verify baseline success plus release before candidate submission. All pending/failed submissions count.",
+  "previous_attempt": {
+    "job": "/romain/sc-integration-snowball-baseline-async-a2-east-01a146a3",
+    "admitted_at": "2026-10-20T05:58:03.244151Z",
+    "evicted_at": "2026-10-20T05:59:44.252496Z",
+    "controller_terminal_at": "2026-10-20T06:00:00.030Z",
+    "provider_absence_at": "2026-10-20T06:01:52.272332Z",
+    "preemptor_priority": 11,
+    "preemptor_uid": "373add77-f964-4891-b153-4facb5d86adf",
+    "preemptor_job_uid": "d21624a8-2ee7-4261-95a8-176b7282862e",
+    "owner": "unknown",
+    "report_present": false,
+    "reported_updates": 0,
+    "images_observed_while_running": false
+  },
+  "failure_rule": "No automatic or undeclared further attempt. If this additional baseline attempt or the remaining candidate attempt cannot qualify, preserve the exact missing outcome and seek a stable resource window before any further expansion.",
+  "additional_declared_scope": "One additional baseline allocation only, declared before submission under the existing no-GPU-hour-cap goal. No new algorithm, diagnostic, checkpoint recovery, priority or service change.",
+  "decision_by": "Agent operating-plan revision within the original no-GPU-hour-cap goal; no new user acceptance is inferred."
+}

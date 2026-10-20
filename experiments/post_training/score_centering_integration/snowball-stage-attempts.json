@@ -1,6 +1,6 @@
 {
-  "saved_at_utc": "2026-10-20T04:37:05.724782+00:00",
-  "protocol": "snowball-staged-protocol-r5.json",
+  "saved_at_utc": "2026-10-20T06:04:45.397954+00:00",
+  "protocol": "snowball-staged-protocol-r6.json",
   "candidate_controls": {
     "attempts_submitted": 3,
     "manual_attempt_limit": 3,
@@ -55,9 +55,9 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a2-east-01a146a3",
-    "baseline_outcome": "queued under r5; not admitted at04:36:24UTC;33moreGPU/RDMAquota units needed",
+    "baseline_outcome": "third async startup externally priority11-preempted101seconds after admission; zero reports/updates; one additional unsubmitted baseline attempt declared inr6",
     "baseline_submitted_at": "2026-10-20T04:36:07.291Z",
-    "baseline_admitted_at": null,
+    "baseline_admitted_at": "2026-10-20T05:58:03.244151Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T10:36:07.291Z",
     "baseline_prior_attempt": {
       "baseline_actual_attempts": 1,
@@ -73,7 +73,7 @@
       "preemptor_uid": "e0dc44d9-8e1e-4b5f-b283-3e91c1221c83",
       "preemptor_owner": "unknown"
     },
-    "baseline_manual_attempt_limit": 3,
+    "baseline_manual_attempt_limit": 4,
     "baseline_latest_closed_attempt": {
       "baseline_actual_attempts": 2,
       "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
@@ -89,12 +89,12 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a"
+    "candidate_cluster": "cw-us-east-02a",
+    "baseline_controller_terminal_at": "2026-10-20T06:00:00.030Z",
+    "baseline_provider_absence_at": "2026-10-20T06:01:52.272332Z"
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a2-east-01a146a3"
-  ],
-  "limit": "Thirteen actual GPU submissions: twelve closed and final baseline async queued on East. All seven baseline submissions are spent including queue-only attempts. Candidate async remains unsubmitted with one allowed submission. Complete RNO controls remain separate; both fresh real-reward East async results are pending.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All13actualGPUsubmissions terminal/absent. r6 explicitly adds one fresh baseline attempt, raising overall baseline allowance7to8; candidate remains4. Both real-reward async results remain pending; complete RNO controls unchanged.",
   "primary_cluster": "RNO controlled pair; East fresh asynchronous pair under r5",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
