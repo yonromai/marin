@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T09:16:20.860439+00:00",
+  "saved_at": "2026-10-20T09:24:31.065485+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -416,23 +416,23 @@
     "snowball_candidate": 2
   },
   "global_manual_submission_limits": {
-    "snowball_baseline": 10,
+    "snowball_baseline": 11,
     "snowball_candidate": 4,
     "qwen": 3
   },
   "staged_attempt_limits": {
     "baseline_controls": 1,
     "candidate_controls": 3,
-    "baseline_async": 6,
+    "baseline_async": 7,
     "candidate_async": 1
   },
-  "staged_limit_revision": "r9 explicitly adds one baseline after the external priority-12 Reno preemption. Baseline allowance rises from nine to ten before submission; async stage allowance from five to six. Candidate stays four, Qwen three; all 15 earlier attempts stay counted.",
+  "staged_limit_revision": "r11 explicitly adds one baseline after two stable East readiness checks following both repaired external preemptions. Global baseline10\u219211 and async6\u21927 are declared before submission; candidate4 and Qwen3 are unchanged. All 16 earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-candidate-async-a0-east-r7",
-    "snowball-candidate-async-a0-rno-r8"
+    "snowball-baseline-async-a6-east-r11",
+    "snowball-candidate-async-a0-east-r7"
   ],
   "prepared_candidate_routes_are_mutually_exclusive": true,
-  "placement_revision": "r10 is a two-hour readiness wait after both repaired runs were preempted. No further GPU attempt is declared. Require five whole GPU-node candidates available to normal BATCH, sufficient quota, no higher-priority pending GPU work, confirmed twice at least five minutes apart. Future route and attempt allowance require a separate explicit plan.",
+  "placement_revision": "r11 selects East after two qualifying checks at least five minutes apart. Both fresh repaired async arms remain there. Require a fresh still-qualifying prelaunch check; normal BATCH policy and zero automatic retries remain unchanged.",
   "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",

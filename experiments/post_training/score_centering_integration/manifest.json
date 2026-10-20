@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T09:16:20.862386+00:00",
+  "saved_at": "2026-10-20T09:24:31.067772+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 36907,
-      "sha256": "2f5a9cd922bd85d21d3219e98549b83cf7c7063070d46c0969144e692f767392"
+      "bytes": 37852,
+      "sha256": "173cb3488e85b65a898512a619442aba17f3c2ced6ab5cb583b0c0f4089f6db4"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 21344,
-      "sha256": "d637e6bbbbc113c33b29669b3ac2c224f3bea7a4fbb3abbf57d830ab4a9ba079"
+      "bytes": 21251,
+      "sha256": "1c23c051e842a8da3dba26379f68c0952ff7fdd50fe8deddd923665186acec9b"
     },
     {
       "path": "analyze.py",
@@ -45,6 +45,16 @@
       "path": "evidence/batch-readiness-check-01-cw-us-east-02a.json",
       "bytes": 11025,
       "sha256": "4514f8e9ae92e682bc3f5ab5f524080207372c66360ecab359f027034ec988cb"
+    },
+    {
+      "path": "evidence/batch-readiness-check-02-cw-rno2a.json",
+      "bytes": 20397,
+      "sha256": "f66871d32e8717aa6e3bd53f76848e4fa1d7f169ce1aad5aae3b4afba6cfba87"
+    },
+    {
+      "path": "evidence/batch-readiness-check-02-cw-us-east-02a.json",
+      "bytes": 11025,
+      "sha256": "bc4227c4b54da7852e77f1c9dc2de39f1f079e59cee4df288d114156bb54dd1f"
     },
     {
       "path": "evidence/batch-readiness-initial-cw-rno2a.json",
@@ -350,6 +360,11 @@
       "path": "evidence/qwen-real-grader-preflight.json",
       "bytes": 1668,
       "sha256": "0149fad74e1f38957b1cfd440775c838ffe74e274fca430c1e8cab1913f1c691"
+    },
+    {
+      "path": "evidence/r11-launch-preflight-log.zip",
+      "bytes": 1122,
+      "sha256": "283743b78f7b224bdb39738260900085a754913fd2cfd8c3c43f67668c59337e"
     },
     {
       "path": "evidence/r4-backend-preflight.zip",
@@ -727,6 +742,11 @@
       "sha256": "6b26c83b57c245829476ca56891ba398c53ce5c6b767faada1631725e0b81e18"
     },
     {
+      "path": "evidence/snowball-baseline-async-a6-east-r11-launch-preflight.json",
+      "bytes": 9426,
+      "sha256": "ba4e5fae58e8a073f0a5705c011ca4dfe23b82594d2edb4041922cb943af0d8d"
+    },
+    {
       "path": "evidence/snowball-baseline-controls-a0-rno-analysis.json",
       "bytes": 175470,
       "sha256": "f9246a31321ed7be8b81a1176d91b733fadd290bc87e9cf96195ab6c45f043ed"
@@ -955,6 +975,11 @@
       "path": "evidence/snowball-real-grader-preflight.json",
       "bytes": 7734,
       "sha256": "c1663c987d1f5f72e6ecc022bd268fb7bc84d1fa323891d693cfead44b2747bc"
+    },
+    {
+      "path": "evidence/staged-config-match-r11.json",
+      "bytes": 4646,
+      "sha256": "3319903f9029f54742194d72e6b5bc9aa0df87270ac71ca36ac79ce33fd8e8dc"
     },
     {
       "path": "evidence/staged-config-match-r2.json",
@@ -1257,6 +1282,16 @@
       "sha256": "157a9fff47811146ce42df982aeec5c6f65f5f9439b1b301f7298c9a2c617d4e"
     },
     {
+      "path": "snowball-baseline-async-a6-east-r11-detach.yaml",
+      "bytes": 9971,
+      "sha256": "dc49b18a18550697903ee8b508b2cf073b1c86624ead80d2848e0f8e6d148d4f"
+    },
+    {
+      "path": "snowball-baseline-async-a6-east-r11-prepare.yaml",
+      "bytes": 9972,
+      "sha256": "2c16a6dd74afa7d2a40ec79cc26a3c6237477a8711c3f579a11c777f28572597"
+    },
+    {
       "path": "snowball-baseline-controls-a0-rno-detach.yaml",
       "bytes": 9983,
       "sha256": "7b92202e3b1ca4c132f053067970acddfcddf08ab33d36684c8e1a8c04bdaf19"
@@ -1418,13 +1453,18 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 9656,
-      "sha256": "3c8ceb6eea548733be92a38b4b086be71a9439b506849f95165137845b0ea759"
+      "bytes": 9952,
+      "sha256": "5f01445ba6c185295db670adb6bd9be11d29110b70c94d0e2e64ffa53383a3d4"
     },
     {
       "path": "snowball-staged-protocol-r10.json",
       "bytes": 3812,
       "sha256": "590f250a3242ddc4edc5764970e8003166a6625468797b2bb793b547a7161efb"
+    },
+    {
+      "path": "snowball-staged-protocol-r11.json",
+      "bytes": 6864,
+      "sha256": "b4e64581fa7b968606def1a2e92287bfb17fd86f30052ab199fd82087d75f940"
     },
     {
       "path": "snowball-staged-protocol-r2.json",

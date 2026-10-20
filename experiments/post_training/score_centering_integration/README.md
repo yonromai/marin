@@ -286,6 +286,17 @@ policy. This does not change any priority, reserve nodes or protect against futu
 sequentially, with unchanged waits growing from five to ten to twenty minutes. Before any future GPU start,
 publish an explicit new finite attempt plan and chosen route, preflight it and announce it on the resource board.
 
+
+East met r10 readiness twice, at 09:15:10.543405 and 09:20:40.828711 UTC: six whole eight-H100 GPU-node
+candidates available to normal BATCH, 63 GPU/RDMA quota units and no higher-priority GPU work pending.
+Three nodes were fully free; three were occupied only by lower-priority owners in the same queue. The checks
+are 330.285306 seconds apart. This estimates normal-policy admission capacity and does not reserve a slot.
+[Revision r11](snowball-staged-protocol-r11.json) explicitly adds one fresh East baseline, raising the agent's
+overall baseline allowance from ten to eleven and async allowance from six to seven. Candidate stays four
+and Qwen stays three. All sixteen spent attempts remain counted. The complete 67-update workload and
+unchanged repaired runtimes remain required. A fresh backend dry run, still-qualifying capacity check and
+resource-board announcement precede the one actual submission. No new GPU job is yet submitted.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
