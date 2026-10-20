@@ -175,5 +175,13 @@
   "interactive_priority_proposal": {
     "path": "snowball-interactive-pair-r12-proposal.json",
     "status": "Requires explicit user approval; not submitted"
-  }
+  },
+  "current_product_head": "435ee98f86ca75e206f30ac939bc757889ba6e58",
+  "current_product_CI": {
+    "checks": 6,
+    "all_success": true,
+    "evidence": "evidence/pr968-435ee98f-ci-final.json",
+    "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39407226185"
+  },
+  "resource_choice_status": "Explicit approval requested but not received. Original Interactive cap4 and Snowball BATCH boundary remain in force; no r12 job is submitted."
 }

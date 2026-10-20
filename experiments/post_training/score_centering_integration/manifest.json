@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T10:04:55.443653+00:00",
+  "saved_at": "2026-10-20T10:43:23.642130+00:00",
   "records": [
     {
       "path": "README.md",
@@ -262,6 +262,11 @@
       "sha256": "2c84f91f009ce73d03ab1946242ab4abcc0b4771a81ce234b65d0c61540f46cb"
     },
     {
+      "path": "evidence/pr968-435ee98f-ci-final.json",
+      "bytes": 11304,
+      "sha256": "0ad3bb73ebf61ab2fd9dc5e85ab658ee25286534565e55815c10fbb639b5a4c4"
+    },
+    {
       "path": "evidence/pr968-c36e-ci-check-02.json",
       "bytes": 11304,
       "sha256": "6c5b446dc410f840874afafbcf818f8f58cab7f2cf372faae134d6403808de3d"
@@ -445,6 +450,11 @@
       "path": "evidence/replay_candidate_payload_storage.py.txt",
       "bytes": 3678,
       "sha256": "11e06b830e7a8151bd7e55fefb3c5decf0cdbd0fb89639d6a06dd76361acdb70"
+    },
+    {
+      "path": "evidence/resource-choice-checkpoint.zip",
+      "bytes": 12833,
+      "sha256": "cd71b24c82f5b20b854047cdcfca68caa645304f933467bf2183fc7d5b253059"
     },
     {
       "path": "evidence/snowball-baseline-a0-launch-preflight.json",
@@ -1543,8 +1553,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 10235,
-      "sha256": "3f48181ab2773ae28592209665f8d599086a64b0544bc7d3a3f8e676802144cc"
+      "bytes": 10692,
+      "sha256": "1da3ff4d8a93a50f33486e4a6890b71c8d2715e09ee09f1277aa37232a8a1808"
     },
     {
       "path": "snowball-staged-protocol-r10.json",
