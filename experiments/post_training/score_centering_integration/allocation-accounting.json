@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T07:46:31.276600+00:00",
+  "saved_at": "2026-10-20T07:49:31.381502+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -342,6 +342,27 @@
       "queue_seconds": 0.294367,
       "gpu_hours_to_controller_terminal_proxy": 13.321129255555554,
       "gpu_hours_through_verified_absence_upper_bound": 16.413708433333333
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a4-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T07:47:21.940Z",
+      "admitted_at": "2026-10-20T07:47:22.116408Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; repaired real-reward async baseline admitted, all five Pods running on attempt zero",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r8.json",
+        "evidence/snowball-baseline-async-a4-rno-provider-first.json",
+        "evidence/snowball-baseline-async-a4-rno-workload-events.json",
+        "evidence/snowball-baseline-async-a4-rno-start-receipts.zip"
+      ],
+      "queue_seconds": 0.176408
     }
   ],
   "prepared_but_not_submitted": [
@@ -366,7 +387,6 @@
   },
   "staged_limit_revision": "r7 explicitly adds one baseline async attempt after the diagnosed scalar-grader failure and matched repair. Global baseline allowance rises from eight to nine before submission. Candidate stays four; all earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a4-rno-r8",
     "snowball-candidate-async-a0-rno-r8"
   ],
   "placement_revision": "r8 routes both unsubmitted repaired async arms to the observed seven-node Reno opening before any new GPU submission. Limits remain those of r7; complete controls and repaired async timings stay separate.",

@@ -232,6 +232,14 @@ The change affects only the cluster route and run namespace. R7's source pins, t
 submission limits and deadlines are unchanged. Complete controls and fresh repaired async results remain
 separate stages, even though both use Reno. Both actual Reno backend dry runs passed without submission. No repaired GPU attempt has yet been submitted.
 
+
+The repaired r8 baseline was submitted at 07:47:21.940 UTC on October 20 and admitted at
+07:47:22.116408, after 0.176 seconds. All five Reno Pods were Running on attempt zero at 07:47:52, using
+the same task and logshipper image digests as the completed controls. This is actual GPU submission fifteen,
+overall baseline nine/nine and async baseline five/five. It starts fresh from SFT and plans 67 applied updates.
+The queue-inclusive deadline is 13:47:21.940 UTC, with zero automatic retries. The one candidate attempt
+remains held until complete baseline validation and verified release.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

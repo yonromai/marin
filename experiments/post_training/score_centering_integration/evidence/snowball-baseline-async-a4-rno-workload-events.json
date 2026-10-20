@@ -1,0 +1,67 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "action": "QuotaReserved",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T07:47:22.116386Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-55cfff2a98f45cb5-0",
+                "namespace": "iris",
+                "resourceVersion": "161645525",
+                "uid": "865409b7-e025-448a-ae39-e1549319c045"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Quota reserved in ClusterQueue iris-cq, wait time since queued was 0s",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T07:47:22Z",
+                "name": "iris-pg-55cfff2a98f45cb5-0.18e02d48bc78dc77",
+                "namespace": "iris",
+                "resourceVersion": "161645526",
+                "uid": "c7cbad06-d77f-4d38-abf2-2ca6496f85a3"
+            },
+            "reason": "QuotaReserved",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-zbbpn",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Admitted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T07:47:22.116408Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-55cfff2a98f45cb5-0",
+                "namespace": "iris",
+                "resourceVersion": "161645525",
+                "uid": "865409b7-e025-448a-ae39-e1549319c045"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Admitted by ClusterQueue iris-cq, wait time since reservation was 0s",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T07:47:22Z",
+                "name": "iris-pg-55cfff2a98f45cb5-0.18e02d48bc7929cf",
+                "namespace": "iris",
+                "resourceVersion": "161645527",
+                "uid": "20ff453c-4df4-43a9-ba57-1277cf5f05d2"
+            },
+            "reason": "Admitted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-zbbpn",
+            "source": {},
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
