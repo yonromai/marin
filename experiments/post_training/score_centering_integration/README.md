@@ -332,7 +332,15 @@ owner has finished its GPU work and reserves none. Declare one new fresh baselin
 and async allowance eight, with all seventeen prior attempts retained. Both fresh full 67-update arms stay
 on RNO at BATCH; source, dependency and measurement settings are unchanged. Require another qualifying
 observation at least five minutes later, backend dry run and fresh board announcement before submission.
-The Interactive proposal remains unapproved and unused. No new GPU attempt is yet submitted.
+The Interactive proposal remains unapproved and unused. Both fresh RNO checks at 10:49:35.366126 and
+10:55:08.850765 UTC found 44 fully free H100 nodes, 45 BATCH-usable nodes, 379 GPU/RDMA quota units and no
+higher-priority GPU queue. The checks were 333.484639 seconds apart. Baseline a7 was submitted at
+10:55:22.841 and admitted at 10:55:23.864850, under the original BATCH rule and four-Interactive-node cap.
+All five Pods were Running on attempt zero at 10:56:01.117304, with the qualified task/sidecar images and
+native failure/preemption retry counts zero. This is actual submission eighteen, overall baseline twelve/twelve,
+async baseline eight/eight. The earlier seventeen attempts are stopped. All 67 updates remain required,
+with a 16:55:22.841 UTC deadline. The candidate stays held until full baseline validation and release, then
+uses the same RNO BATCH route. [The start checkpoint](r13-start-checkpoint.json) links the receipts.
 
 ## Complete controlled Snowball cost
 

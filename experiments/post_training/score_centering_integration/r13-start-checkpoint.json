@@ -1,0 +1,30 @@
+{
+  "revision": "r13",
+  "state": "submitted and admitted; all five Pods Running",
+  "actual_GPU_submissions": 18,
+  "actual_baseline_submissions": 12,
+  "declared_baseline_limit": 12,
+  "new_attempt_remaining": 0,
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-baseline-async-a7-rno-01a146a3"
+  ],
+  "qualifying_check_times": [
+    "2026-10-20T10:49:35.366126Z",
+    "2026-10-20T10:55:08.850765Z"
+  ],
+  "gap_seconds": 333.484639,
+  "fully_free_H100_nodes_each_check": 44,
+  "batch_usable_nodes_each_check": 45,
+  "GPU_RDMA_quota_units_each_check": 379,
+  "higher_priority_GPU_pending_each_check": 0,
+  "submitted_at": "2026-10-20T10:55:22.841Z",
+  "admitted_at": "2026-10-20T10:55:23.864850Z",
+  "deadline_at": "2026-10-20T16:55:22.841Z",
+  "priority": "BATCH",
+  "native_failure_retries": 0,
+  "native_preemption_retries": 0,
+  "interactive_exception_approved": false,
+  "interactive_exception_used": false,
+  "evidence": "evidence/snowball-baseline-async-a7-rno-start-receipts.zip",
+  "next_action": "Keep the healthy allocation; validate all67 applied updates and release before the one matched RNO BATCH candidate. No automatic retries."
+}

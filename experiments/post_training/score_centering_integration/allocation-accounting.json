@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T10:52:49.538317+00:00",
+  "saved_at": "2026-10-20T11:04:35.565993+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -430,6 +430,27 @@
       "queue_seconds": 0.249935,
       "gpu_hours_to_controller_terminal_proxy": 4.620622944444444,
       "gpu_hours_through_verified_absence_upper_bound": 11.745389766666667
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a7-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T10:55:22.841Z",
+      "admitted_at": "2026-10-20T10:55:23.864850Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; repaired RNO baseline after large pool release, all five Pods running on attempt zero, original BATCH limits",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r13.json",
+        "evidence/snowball-baseline-async-a7-rno-provider-first.json",
+        "evidence/snowball-baseline-async-a7-rno-workload-events.json",
+        "evidence/snowball-baseline-async-a7-rno-start-receipts.zip"
+      ],
+      "queue_seconds": 1.02385
     }
   ],
   "prepared_but_not_submitted": [
@@ -454,7 +475,6 @@
   },
   "staged_limit_revision": "r13 declares one new baseline after a large RNO release. Baseline allowance11 to12 and async7 to8 before actual submission. Candidate4 and Qwen3 unchanged; all17previous attempts remain counted. Original resource boundaries unchanged.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a7-rno-r13",
     "snowball-candidate-async-a0-rno-r8"
   ],
   "prepared_candidate_routes_are_mutually_exclusive": true,

@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T10:52:49.540960+00:00",
+  "saved_at": "2026-10-20T11:04:35.568784+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 40929,
-      "sha256": "6d364b26aea545d3cd2650682e07cbc522e025e6be32d689183169876337a6ba"
+      "bytes": 41781,
+      "sha256": "5001ab9d08b538434e8620310ae122d122a5c2ee7d866daf79ce7053d4ad94ab"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 22503,
-      "sha256": "e6f32a0d3c0c34d3bebb99a0b190123ecdef827c4ebc8ff982140e56192d30d4"
+      "bytes": 23343,
+      "sha256": "1a0ba7a5d679078c106f1176893c2049cca5aa964f4ac8133d077cd670bca16d"
     },
     {
       "path": "analyze.py",
@@ -832,9 +832,24 @@
       "sha256": "92639f38aa7c2c9eda753c9a135e15603259379b5a4059cd79b6a7748ed664d8"
     },
     {
+      "path": "evidence/snowball-baseline-async-a7-rno-provider-first.json",
+      "bytes": 10598,
+      "sha256": "d91bcaa541063cc1c436bc35c378fcc6e084f147ae300bd5f5ceb04388f3a1a2"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a7-rno-r13-launch-preflight.json",
       "bytes": 9409,
       "sha256": "6218522b36da7bda6b935000b276b01a4390685c8db06087c60254e5d2876af8"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a7-rno-start-receipts.zip",
+      "bytes": 7044,
+      "sha256": "0b47af18e040b5d632c8c99be3dbfe75f82471aa0f7847f317fb0f79bd907eb8"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a7-rno-workload-events.json",
+      "bytes": 2602,
+      "sha256": "36aa7ea38eb2e69547769c199345c5bfb188533cbcbf1e31b2c4418cfd1cbf6e"
     },
     {
       "path": "evidence/snowball-baseline-controls-a0-rno-analysis.json",
@@ -1195,6 +1210,11 @@
       "path": "r11-readiness-checkpoint.json",
       "bytes": 927,
       "sha256": "9fec272733968d1df2c7feab6463be15ace3fd7962647d7f6a9dcbe51a6564d0"
+    },
+    {
+      "path": "r13-start-checkpoint.json",
+      "bytes": 1171,
+      "sha256": "f9372c5c04f5af3ce859cbfc3bf682d9af1779f6a25df5fb6d96602ecaa45859"
     },
     {
       "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
@@ -1588,8 +1608,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 10648,
-      "sha256": "9679bb59efbb72dbc0cbe2a4198250cb6414ddfc22554d1dc9d10206efdb3fd8"
+      "bytes": 10651,
+      "sha256": "a11483fe09c2c7465db86eb519a78cbf3b35bca3c2c6f2585b25428bcb3b1762"
     },
     {
       "path": "snowball-staged-protocol-r10.json",
