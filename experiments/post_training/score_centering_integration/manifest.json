@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T08:42:48.525458+00:00",
+  "saved_at": "2026-10-20T09:16:20.862386+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 35318,
-      "sha256": "a29b619eb917061dce143b2a95b475cf8fd74a6b407d5ed4750d5955ef4ea6cd"
+      "bytes": 36907,
+      "sha256": "2f5a9cd922bd85d21d3219e98549b83cf7c7063070d46c0969144e692f767392"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 20322,
-      "sha256": "4c1a430d16a13efb36f14ee4f6a7078b9d9097c7e9a10c01b376c209279f2283"
+      "bytes": 21344,
+      "sha256": "d637e6bbbbc113c33b29669b3ac2c224f3bea7a4fbb3abbf57d830ab4a9ba079"
     },
     {
       "path": "analyze.py",
@@ -35,6 +35,31 @@
       "path": "cw-us-east-02a-client.yaml",
       "bytes": 1345,
       "sha256": "e0861f962da0c7b39eef6cc2efcee692dd352e21d7cf4c619dc4178047bb7a1a"
+    },
+    {
+      "path": "evidence/batch-readiness-check-01-cw-rno2a.json",
+      "bytes": 20397,
+      "sha256": "b855f28b718c0235abf3fa9323beace71dc546a53c2301cdfee7ef1dab2a3ecb"
+    },
+    {
+      "path": "evidence/batch-readiness-check-01-cw-us-east-02a.json",
+      "bytes": 11025,
+      "sha256": "4514f8e9ae92e682bc3f5ab5f524080207372c66360ecab359f027034ec988cb"
+    },
+    {
+      "path": "evidence/batch-readiness-initial-cw-rno2a.json",
+      "bytes": 20310,
+      "sha256": "9d334043ebffd44183e6b5f9a4b77ae555a1d502eb6fcb0fc3655b18c3f397a0"
+    },
+    {
+      "path": "evidence/batch-readiness-initial-cw-us-east-02a.json",
+      "bytes": 10842,
+      "sha256": "6ab981fe7c449daa1aad4474082826dd5926fd6fee955d985a117337ef3dd34b"
+    },
+    {
+      "path": "evidence/batch-readiness-reader-and-initial-snapshots.zip",
+      "bytes": 9391,
+      "sha256": "8a97f1a4befeacbea3c238d9867f42c536f75c7115c3726cbce7bcc719a5b3ed"
     },
     {
       "path": "evidence/capacity-after-async-preempt-east-01.json",
@@ -662,9 +687,24 @@
       "sha256": "e2171b0444c8d6b48bf49fc7c0f8da51bfe077a15842d43cb7098f717ba96c8a"
     },
     {
+      "path": "evidence/snowball-baseline-async-a5-east-preemption-summary.json",
+      "bytes": 1346,
+      "sha256": "c2ef45d245ec84ba097c66c811eab5e4e78d44b1c16261c538985ac364bc6e9a"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a5-east-preemption.zip",
+      "bytes": 73194,
+      "sha256": "cafb0ba038fa51a8777acedff27ea062e063e7d42839a5ce3772a161650d4bd7"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a5-east-provider-first.json",
       "bytes": 10610,
       "sha256": "2447db748078375dcec6d5a5ee2805b78cb0c5bc3bab5c1bc12fd5ea5a2933c3"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a5-east-provider-terminal.json",
+      "bytes": 213,
+      "sha256": "e2aa4f3139a2ce77ecb85bfa80d297853d48998c94fd93b76d4bd46fb710dfb3"
     },
     {
       "path": "evidence/snowball-baseline-async-a5-east-r9-launch-preflight.json",
@@ -675,6 +715,11 @@
       "path": "evidence/snowball-baseline-async-a5-east-start-receipts.zip",
       "bytes": 4290,
       "sha256": "b9bec7dd94ca84084daa98519c56ae41167724680c0b5d671958ee22d7f0b573"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a5-east-workload-events-final.json",
+      "bytes": 8435,
+      "sha256": "6aa705b128206441ac30e35c4574f92131a78aec6542ecf1287d5d7b396d0f6c"
     },
     {
       "path": "evidence/snowball-baseline-async-a5-east-workload-events.json",
@@ -1057,6 +1102,11 @@
       "sha256": "b361727ac59ccea78ddc8055a1e674c5f08f30b92c213c33ddab8b079b697486"
     },
     {
+      "path": "reports/sc-integration-snowball-baseline-async-a5-east-01a146a3.partial.json.zip",
+      "bytes": 72291,
+      "sha256": "cf358afd037f829dcc6878be91fd4f4de1c9986cf0fa97b1856f226c99f079f1"
+    },
+    {
       "path": "reports/sc-integration-snowball-baseline-controls-a0-rno-01a146a3.json.zip",
       "bytes": 366419,
       "sha256": "e552b6cd8584ff8cac701f68f1d791ea0f8d923c8c249ffb0c9bb703fd4106b6"
@@ -1368,8 +1418,13 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 8845,
-      "sha256": "53e4a137c16f82639960557af352606253a6ad0ef0bd0be6e54b1006f87c05d5"
+      "bytes": 9656,
+      "sha256": "3c8ceb6eea548733be92a38b4b086be71a9439b506849f95165137845b0ea759"
+    },
+    {
+      "path": "snowball-staged-protocol-r10.json",
+      "bytes": 3812,
+      "sha256": "590f250a3242ddc4edc5764970e8003166a6625468797b2bb793b547a7161efb"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
@@ -1533,6 +1588,21 @@
       "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
       "applied_updates": 21,
       "known_applied_update_lower_bound": 23,
+      "total_applied_updates_established": false,
+      "envelope": "ZIP with repository-required trailing newline; original bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-snowball-baseline-async-a5-east-01a146a3.partial.json.zip",
+      "stored_bytes": 72291,
+      "stored_sha256": "cf358afd037f829dcc6878be91fd4f4de1c9986cf0fa97b1856f226c99f079f1",
+      "original_bytes": 435392,
+      "original_sha256": "d26cd8fa996d41b8b4346d8f8013556c45da322f968611c196c861f30ce2f0c1",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a5-east-01a146a3/performance.json",
+      "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "complete": false,
+      "applied_updates": 0,
+      "applied_updates_semantics": "Report counter only; first calibration policy_train returned before offload failed after eviction. Final optimizer completion unestablished.",
       "total_applied_updates_established": false,
       "envelope": "ZIP with repository-required trailing newline; original bytes unchanged"
     }

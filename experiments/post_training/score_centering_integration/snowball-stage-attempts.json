@@ -55,7 +55,7 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
-    "baseline_outcome": "Admitted; all five East Pods Running on attempt zero at 08:40:54 UTC. Applied-update progress not yet observed.",
+    "baseline_outcome": "External priority-12 preemption during the first calibration update; subsequent actor-loss cleanup is retained.",
     "baseline_submitted_at": "2026-10-20T08:40:37.126Z",
     "baseline_admitted_at": "2026-10-20T08:40:37.866072Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T14:40:37.126Z",
@@ -89,10 +89,9 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a",
-    "baseline_controller_terminal_at": null,
-    "baseline_provider_absence_at": null,
-    "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml",
+    "candidate_cluster": null,
+    "baseline_controller_terminal_at": "2026-10-20T08:51:53.106Z",
+    "baseline_provider_absence_at": "2026-10-20T08:59:06.675577Z",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
     "baseline_previous_grader_failure": {
       "job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
@@ -111,13 +110,18 @@
       "controller_terminal_at": "2026-10-20T08:25:24.914Z",
       "provider_absence_at": "2026-10-20T08:30:57.347646Z",
       "evidence": "evidence/snowball-baseline-async-a4-rno-preemption-summary.json"
-    }
+    },
+    "baseline_reported_applied_updates": 0,
+    "baseline_total_applied_updates_established": false,
+    "prepared_candidate_route_alternatives": {
+      "cw-us-east-02a": "snowball-candidate-async-a0-east-r7-detach.yaml",
+      "cw-rno2a": "snowball-candidate-async-a0-rno-r8-detach.yaml"
+    },
+    "candidate_route_alternatives_are_mutually_exclusive": true
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3"
-  ],
-  "limit": "Actual GPU submission 16, overall baseline 10/10 and async baseline 6/6. Fifteen previous attempts remain terminal and absent. The repaired baseline is running on East; the candidate remains unsubmitted with one attempt allowed after all 67 baseline updates and verified release. No automatic retries or undeclared further submission.",
-  "primary_cluster": "Reno completed controls; East planned fresh repaired async pair. Repaired Reno partial excluded from primary comparison.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All 16 actual submissions are terminal and absent. Baseline 10/10 and async baseline 6/6 are spent. R10 declares a two-hour readiness wait and no new GPU submission. Candidate remains unsubmitted with one reserved attempt. Both complete async reports, final documentation/head CI and High GOAL review remain required.",
+  "primary_cluster": "Reno completed controls. Future repaired async route unchosen during r10 readiness wait; both full arms will share the chosen cluster.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
     "actual_attempts": 1,
@@ -146,5 +150,23 @@
     "provider_absence_at": "2026-10-19T20:55:37.833082Z",
     "source_sha256": "02d80e1877adf95f0d97419e7a1cf18afef3573b00ed4df4d76e0e28b72eed8f"
   },
-  "operating_checkpoint": "snowball-baseline-queue-checkpoint.json"
+  "operating_checkpoint": "snowball-baseline-queue-checkpoint.json",
+  "readiness_wait": {
+    "starts_at_utc": "2026-10-20T09:10:36.122304+00:00",
+    "ends_at_utc": "2026-10-20T11:10:36.122304+00:00",
+    "next_check_at_utc": "2026-10-20T09:20:10.543405+00:00",
+    "unchanged_backoff_seconds": [
+      300,
+      600,
+      1200
+    ],
+    "maximum_check_gap_seconds": 1200,
+    "first_qualifying_observation": {
+      "cluster": "cw-us-east-02a",
+      "checked_at": "2026-10-20T09:15:10.543405+00:00",
+      "evidence": "evidence/batch-readiness-check-01-cw-us-east-02a.json",
+      "confirmations": 1,
+      "required": 2
+    }
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "job": "/romain/sc-integration-snowball-baseline-async-a5-east-01a146a3",
+  "outcome": "External priority-12 preemption during the first calibration update; subsequent actor-loss cleanup is retained.",
+  "reported_applied_updates": 0,
+  "total_applied_updates_established": false,
+  "inflight_limit": "Native policy_train returned at 08:51:28.717; the following optimizer offload failed after eviction. The report counter did not advance, and no train-step metrics were emitted. Complete optimizer-update completion is unestablished. Zero reported updates must not be read as proof that no parameters changed. No checkpoint recovery is attempted.",
+  "complete_async_windows": 0,
+  "submitted_at": "2026-10-20T08:40:37.126Z",
+  "admitted_at": "2026-10-20T08:40:37.866072Z",
+  "evicted_at": "2026-10-20T08:51:27.166180Z",
+  "controller_terminal_at": "2026-10-20T08:51:53.106Z",
+  "provider_absence_at": "2026-10-20T08:59:06.675577Z",
+  "preemptor_uid": "2e81639d-4097-40f5-b916-a7d5b5bd5a7b",
+  "preemptor_priority": 12,
+  "preemptor_owner": "unknown; no owner inferred from workload names",
+  "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+  "grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+  "scope": "Censored qualification attempt, excluded from throughput. All 16 actual submissions are terminal and absent."
+}

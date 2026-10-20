@@ -1,0 +1,976 @@
+{
+  "checked_at": "2026-10-20T09:15:04.605623+00:00",
+  "cluster": "cw-rno2a",
+  "free_whole_gpu_nodes": 1,
+  "whole_gpu_nodes_available_to_batch": 2,
+  "gpu_quota_available_to_batch": 35.0,
+  "rdma_quota_available_to_batch": 35.0,
+  "higher_priority_pending_gpu_workloads": 0,
+  "ready_for_five_node_batch": false,
+  "reader_sha256": "8d4230774d5a10abe6f44f16d5c5eeadc09de946b3ac822e05e60d1143bf7275",
+  "within_queue_preemption_policy": "LowerPriority",
+  "queue_active": true,
+  "nominal_quota": {
+    "nvidia.com/gpu": 512.0,
+    "rdma/ib": 512.0
+  },
+  "reserved_quota": {
+    "nvidia.com/gpu": 489.0,
+    "rdma/ib": 489.0
+  },
+  "admitted_lower_priority_quota": {
+    "nvidia.com/gpu": 12.0,
+    "rdma/ib": 12.0
+  },
+  "higher_pending": [],
+  "by_priority": {
+    "12": {
+      "admitted_gpus": 408.0,
+      "pending_gpus": 0,
+      "workloads": 3
+    },
+    "2": {
+      "admitted_gpus": 0,
+      "pending_gpus": 64.0,
+      "workloads": 2
+    },
+    "0": {
+      "admitted_gpus": 0.0,
+      "pending_gpus": 0,
+      "workloads": 8
+    },
+    "10": {
+      "admitted_gpus": 0.0,
+      "pending_gpus": 0,
+      "workloads": 15
+    },
+    "11": {
+      "admitted_gpus": 5.0,
+      "pending_gpus": 0,
+      "workloads": 2
+    },
+    "1": {
+      "admitted_gpus": 12.0,
+      "pending_gpus": 96.0,
+      "workloads": 15
+    },
+    "1000": {
+      "admitted_gpus": 64.0,
+      "pending_gpus": 0,
+      "workloads": 23
+    }
+  },
+  "excluded": {
+    "finished_inactive_or_deleting": 16
+  },
+  "owned_active_pods": [],
+  "nodes": [
+    {
+      "name": "g1c67f2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cb6c2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cbf32",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cc242",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cc352",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cc6b2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g1cc872",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g31cfa4",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g322ffa",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g3232cc",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g463dd6",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g4ead54",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5303b8",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g530748",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g530bbc",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g538100",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g538126",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g538230",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 4.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g538314",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g53c548",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g53ee66",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g543ab2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5b3bc4",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5b3dfe",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5b9592",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5ba762",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5ba7d4",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g5c0474",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g7596c2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g779de0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g80f608",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g82196a",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g82267a",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g82a648",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g830782",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g8364ba",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g86299e",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ga8afb0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ga8b3d8",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "ga98aa2",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gaa0e72",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 1.0,
+      "nonreclaimable_gpus": 1.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb958b0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95a00",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95a50",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95c40",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95d00",
+      "ready": true,
+      "schedulable": false,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        },
+        {
+          "effect": "NoSchedule",
+          "key": "node.kubernetes.io/unschedulable",
+          "timeAdded": "2026-10-14T21:53:37Z"
+        }
+      ]
+    },
+    {
+      "name": "gb95de0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95e10",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95e20",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95ea0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95eb0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95ef0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95f20",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb95f50",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb960a0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb960f0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb97250",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb975c0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb976f0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 0.0,
+      "nonreclaimable_gpus": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.coreweave.cloud/reserved",
+          "value": "09c90fd352b4a8d71a3a2a63f15b1d0f685b50ad"
+        }
+      ]
+    },
+    {
+      "name": "gb977f0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb978d0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb99af0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gb9a8e0",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "gf62afe",
+      "ready": true,
+      "schedulable": true,
+      "used_gpus": 8.0,
+      "nonreclaimable_gpus": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "scope": "Read-only GPU slot and quota estimate under the current normal LowerPriority policy. Counts only admitted lower-priority owners in the same queue as reclaimable. Excludes finished/inactive/deleting work. Unknown-priority pending GPU work blocks readiness. Node taints, CPU/memory and scheduler timing still constrain actual placement; this is not a reservation or protection from future higher-priority arrivals."
+}

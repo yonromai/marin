@@ -1,0 +1,62 @@
+{
+  "revision": "r10",
+  "supersedes": "snowball-staged-protocol-r9.json",
+  "declared_at_utc": "2026-10-20T09:10:36.122304+00:00",
+  "kind": "Finite readiness wait only; no additional GPU attempt is declared.",
+  "reason": "R8 and r9 were both externally preempted by priority-12 work. A free-node snapshot is not protection against a queued higher-priority gang. Wait for a better observed opening before spending another startup. Retain all previous attempts and the full 67-update workload.",
+  "readiness_window": {
+    "starts_at_utc": "2026-10-20T09:10:36.122304+00:00",
+    "ends_at_utc": "2026-10-20T11:10:36.122304+00:00",
+    "next_check_at_utc": "2026-10-20T09:20:10.543405+00:00",
+    "unchanged_backoff_seconds": [
+      300,
+      600,
+      1200
+    ],
+    "maximum_check_gap_seconds": 1200
+  },
+  "clusters_checked_sequentially": [
+    "cw-rno2a",
+    "cw-us-east-02a"
+  ],
+  "readiness_requirements_on_chosen_cluster": {
+    "whole_eight_H100_node_candidates_available_to_normal_batch": 5,
+    "GPU_quota_available_to_normal_batch": 40,
+    "RDMA_quota_available_to_normal_batch": 40,
+    "pending_higher_priority_positive_GPU_workloads": 0,
+    "confirmations": 2,
+    "minimum_seconds_between_confirmations": 300,
+    "no_owned_active_pods_or_queues": true
+  },
+  "fit_definition": "Free GPU slots plus admitted lower-priority Pod owners in the same queue, only when its existing withinClusterQueue policy is LowerPriority. Quota adds only those same lower-priority admitted reservations. Finished/inactive/deleting workloads and fully terminal Pod owners are excluded. Unknown-priority pending GPU work blocks readiness. CPU/memory, taints and future arrivals still constrain actual admission; no reservation or uninterrupted-time guarantee is asserted.",
+  "selection": "Choose the first cluster with two qualifying observations at least five minutes apart. Prefer East if both qualify simultaneously. Keep both eventual fresh matched arms on the chosen cluster. Preserve all other owners and normal priorities.",
+  "actual_submissions": {
+    "total": 16,
+    "qwen": 3,
+    "snowball_baseline": 10,
+    "snowball_candidate": 3,
+    "all_terminal_and_absent": true
+  },
+  "unchanged_global_limits": {
+    "qwen": 3,
+    "snowball_baseline": 10,
+    "snowball_candidate": 4
+  },
+  "baseline_remaining_under_current_limit": 0,
+  "new_GPU_submissions_declared_by_this_revision": 0,
+  "before_any_future_GPU_submission": "Publish a separate finite one-attempt plan with an explicit revised baseline allowance, chosen route, namespace and exact backend dry run; commit it and make a fresh resource-board announcement before actual submission. No automatic launch, retry, queue or wait_for.py is created by r10.",
+  "candidate_guard": "One candidate submission remains, only after a complete fresh 67-update baseline and verified release, on that same cluster.",
+  "unchanged_workload": "Same original SFT, 192 tasks, real rewards and normal EOS, 67 updates per full arm, K128 and SC frequency, interval-ten/32-position probes, source-age4/full-batch/inflight64, each-update publication and keep pause policy. Same repaired runtime pair dffd2c4b/56e18721 and lock1343407b. No source, dependency, sampler, math, measurement or acceptance tolerance changes.",
+  "initial_evidence": [
+    "evidence/batch-readiness-initial-cw-rno2a.json",
+    "evidence/batch-readiness-initial-cw-us-east-02a.json"
+  ],
+  "after_deadline": "Retain the final capacity observations and reassess explicitly. Do not silently extend this wait or submit another GPU attempt.",
+  "first_qualifying_observation": {
+    "cluster": "cw-us-east-02a",
+    "checked_at": "2026-10-20T09:15:10.543405+00:00",
+    "evidence": "evidence/batch-readiness-check-01-cw-us-east-02a.json",
+    "confirmations": 1,
+    "required": 2
+  }
+}

@@ -1,0 +1,187 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "action": "PreemptedWorkload",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:40:37.795510Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139653217",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Preempted workload iris/pod-iris-timodonnell-exp347-qwen35-4b-f06eb15f-23-2c03d0ccfb6d2ae2-343de (UID: 1ca00eb6-c29e-40cc-8310-b83d30a1e76d) in ClusterQueue iris-cq; preemptor effective priority: 2 (base: 2, boost: 0); preemptee effective priority: 1 (base: 1, boost: 0)",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:40:37Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e03030c9ca8b11",
+                "namespace": "iris",
+                "resourceVersion": "139653221",
+                "uid": "365eca29-3336-4d22-83cf-7c1cffbfbf85"
+            },
+            "reason": "PreemptedWorkload",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Pending",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:40:37.814907Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139653217",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "couldn't assign flavors to pod set ff1bdb03: insufficient unused quota for nvidia.com/gpu in flavor cw-tas, 1 more needed, insufficient unused quota for rdma/ib in flavor cw-tas, 1 more needed. Pending the preemption of 1 workload(s)",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:40:37Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e03030caf282bf",
+                "namespace": "iris",
+                "resourceVersion": "139653234",
+                "uid": "75288beb-9223-4f79-9f1b-cda9f9fc0fd1"
+            },
+            "reason": "Pending",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "series": {
+                "count": 2,
+                "lastObservedTime": "2026-10-20T08:40:37.841817Z"
+            },
+            "source": {},
+            "type": "Warning"
+        },
+        {
+            "action": "QuotaReserved",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:40:37.866049Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139653240",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Quota reserved in ClusterQueue iris-cq, wait time since queued was 1s",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:40:37Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e03030cdfed54e",
+                "namespace": "iris",
+                "resourceVersion": "139653242",
+                "uid": "f88bce67-b6f5-49be-9a19-a286ff18d21d"
+            },
+            "reason": "QuotaReserved",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Admitted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:40:37.866072Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139653240",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Admitted by ClusterQueue iris-cq, wait time since reservation was 0s",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:40:37Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e03030cdff2db8",
+                "namespace": "iris",
+                "resourceVersion": "139653243",
+                "uid": "048e16e3-5f8b-44b0-8f36-af01fa77805e"
+            },
+            "reason": "Admitted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "EvictedDueToPreempted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:51:27.166180Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139660264",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Preempted to accommodate a workload (UID: 2e81639d-4097-40f5-b916-a7d5b5bd5a7b, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:51:27Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e030c7fb4c98d1",
+                "namespace": "iris",
+                "resourceVersion": "139660266",
+                "uid": "a709cf6f-b7c7-40ee-856a-52a6ef53b7e5"
+            },
+            "reason": "EvictedDueToPreempted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        },
+        {
+            "action": "Preempted",
+            "apiVersion": "v1",
+            "eventTime": "2026-10-20T08:51:27.166249Z",
+            "firstTimestamp": null,
+            "involvedObject": {
+                "apiVersion": "kueue.x-k8s.io/v1beta2",
+                "kind": "Workload",
+                "name": "iris-pg-9301c444fc504bc2-0",
+                "namespace": "iris",
+                "resourceVersion": "139653240",
+                "uid": "a90e307a-f4d8-4e2c-bcf2-7b5e51813f83"
+            },
+            "kind": "Event",
+            "lastTimestamp": null,
+            "message": "Preempted to accommodate a workload (UID: 2e81639d-4097-40f5-b916-a7d5b5bd5a7b, JobUID: UNKNOWN) due to prioritization in the ClusterQueue; preemptor path: /iris-cq; preemptee path: /iris-cq; preemptor effective priority: 12 (base: 12, boost: 0); preemptee effective priority: 2 (base: 2, boost: 0)",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T08:51:27Z",
+                "name": "iris-pg-9301c444fc504bc2-0.18e030c7fb4da4a6",
+                "namespace": "iris",
+                "resourceVersion": "139660267",
+                "uid": "74b7f86d-a13e-42ae-a106-19f2230bda61"
+            },
+            "reason": "Preempted",
+            "reportingComponent": "kueue-admission",
+            "reportingInstance": "kueue-admission-kueue-controller-manager-79d84984c6-qtbxc",
+            "source": {},
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

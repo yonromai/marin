@@ -268,6 +268,24 @@ logshipper image digests matching the qualified controls. This is actual submiss
 ten/ten and async baseline six/six. It plans 67 fresh applied updates, with a queue-inclusive deadline of
 14:40:37.126 UTC and zero automatic retries. The candidate remains held for full validation and release.
 
+
+The r9 East baseline was evicted at 08:51:27.166180 UTC by a priority-12 workload, whose owner is unknown.
+Controller terminal was 08:51:53.106; provider absence was verified at 08:59:06.675577. Its report retains
+zero applied updates. Native `policy_train` returned during the first calibration, followed by actor loss
+and optimizer-offload failure. The report counter did not advance; complete optimizer-update completion is
+unestablished. Zero reported updates does not prove that no parameters changed. The
+[preemption record](evidence/snowball-baseline-async-a5-east-preemption-summary.json) preserves this distinction.
+All sixteen actual submissions are terminal and absent. This attempt supplies no async throughput sample.
+
+[Revision r10](snowball-staged-protocol-r10.json) declares a two-hour readiness window ending
+2026-10-20T11:10:36.122304+00:00, with no additional GPU submission or retry. It retains the full 67-update workload.
+Require five whole eight-H100 GPU-node candidates available under normal BATCH policy, 40 GPU/RDMA quota
+units and no higher-priority pending GPU workload, confirmed twice at least five minutes apart. Available
+slots may include admitted lower-priority owners in the same queue under its existing `LowerPriority`
+policy. This does not change any priority, reserve nodes or protect against future arrivals. Check clusters
+sequentially, with unchanged waits growing from five to ten to twenty minutes. Before any future GPU start,
+publish an explicit new finite attempt plan and chosen route, preflight it and announce it on the resource board.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
