@@ -1,20 +1,30 @@
 {
-  "saved_at": "2026-10-20T11:56:41.248648+00:00",
+  "saved_at": "2026-10-20T13:06:43.074273+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 43313,
-      "sha256": "1b0e8fdf12fb37bfed6da90ba7d62164098340c4937fd8195116928a2e3b2251"
+      "bytes": 51146,
+      "sha256": "bd83da7d5c3774213aa3e32a43d8ead9df55c663dcf6ccd5dc14d8e530b47417"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 24712,
-      "sha256": "afb0be0b17f9a31641ecfbac44f8871ac855723963457a98c699626ca7ac50a4"
+      "bytes": 25232,
+      "sha256": "c6c4b8c2871467ede001d9cd6451ea85e04e58735f35b0c7d9f8abc2f1145791"
     },
     {
       "path": "analyze.py",
       "bytes": 19457,
       "sha256": "c8b96fb74fe302ce79bbc15ddfd270ba8d09ce2f7f0c6af4ab1edbedcf350bc5"
+    },
+    {
+      "path": "asynchronous-throughput.png",
+      "bytes": 172641,
+      "sha256": "a2951eacec85681ad1315a7e533f2316d89c831d203927811bc23270e1ce40b7"
+    },
+    {
+      "path": "asynchronous-throughput.svg",
+      "bytes": 117823,
+      "sha256": "6252e365476613a08c74d4046dc9bf5c6f1614d7966b149a6524a6e0c32f08d5"
     },
     {
       "path": "controlled-cycle-costs.png",
@@ -200,6 +210,16 @@
       "path": "evidence/cpu-native-chat-cost.json",
       "bytes": 4643,
       "sha256": "6fe4bb2ccb6fc2f2d89e9c041825bb2e3db1a7748cd3d04ce143ab27f7013852"
+    },
+    {
+      "path": "evidence/final-async-shutdown-receipts.zip",
+      "bytes": 5948,
+      "sha256": "c844367742b589e2743e2fd6ff07dcac43eafdf6a7a90fd82b0eee26390422b9"
+    },
+    {
+      "path": "evidence/final-async-shutdown-summary.json",
+      "bytes": 1674,
+      "sha256": "d78d58c4e3b4deb5055b62aa2d68591267492e2dfee662e119951c0d9993cc83"
     },
     {
       "path": "evidence/followup-receipts.zip",
@@ -470,6 +490,11 @@
       "path": "evidence/resource-choice-checkpoint.zip",
       "bytes": 12833,
       "sha256": "cd71b24c82f5b20b854047cdcfca68caa645304f933467bf2183fc7d5b253059"
+    },
+    {
+      "path": "evidence/snowball-asynchronous-matched-rno.json",
+      "bytes": 294855,
+      "sha256": "103ef1fa9a1c822db7b9b17cefa725c5c7c7c4fbe981681a67d6dd1b361dd211"
     },
     {
       "path": "evidence/snowball-baseline-a0-launch-preflight.json",
@@ -947,6 +972,11 @@
       "sha256": "815b7f5db485394a1df6a929b1e2ebe21e90a80e2905bfdf98582f366a9537b2"
     },
     {
+      "path": "evidence/snowball-candidate-async-a0-rno-provider-terminal.json",
+      "bytes": 207,
+      "sha256": "3d40ea38293d1b19b8bfed1c4cc1f7dd2f76ea3f0c2572a1e8f13113c8a00b0c"
+    },
+    {
       "path": "evidence/snowball-candidate-async-a0-rno-r3-launch-preflight.json",
       "bytes": 9414,
       "sha256": "c6908555fa4351cdd5dfcf3cd43aa2b4f92c70bf9f02b367dd3c842ba3a4ca8b"
@@ -960,6 +990,16 @@
       "path": "evidence/snowball-candidate-async-a0-rno-start-receipts.zip",
       "bytes": 4490,
       "sha256": "4309b8ed3160e43dba8bcbda3142ec7e14b19be89818fe8ac7de5f89dc7bb64f"
+    },
+    {
+      "path": "evidence/snowball-candidate-async-a0-rno-success-summary.json",
+      "bytes": 3543,
+      "sha256": "7f0c60e4d8c55858bc0f4a79a600bd413ad8361eed39a36a59a05133fb23d783"
+    },
+    {
+      "path": "evidence/snowball-candidate-async-a0-rno-terminal-receipts.zip",
+      "bytes": 397,
+      "sha256": "2d9ff7f3141c081e6411a4e525026f40d77ded641712571d268b5843e771f266"
     },
     {
       "path": "evidence/snowball-candidate-async-a0-rno-workload-events.json",
@@ -1182,6 +1222,11 @@
       "sha256": "ef0fd53e378481ffb37f628ec3ddf86564d711f1adc70f22dee80fb4d879a50a"
     },
     {
+      "path": "plot_async.py",
+      "bytes": 3623,
+      "sha256": "4d31b5e561b9c73913bb2f11fd0539900008570fb05e09be689d9d45f8c6b468"
+    },
+    {
       "path": "plot_controls.py",
       "bytes": 5051,
       "sha256": "fdc63cdf1d94130746f4949cf6356924fae07cee6ad71bbc0289115042194c08"
@@ -1290,6 +1335,11 @@
       "path": "reports/sc-integration-snowball-baseline-controls-a0-rno-01a146a3.json.zip",
       "bytes": 366419,
       "sha256": "e552b6cd8584ff8cac701f68f1d791ea0f8d923c8c249ffb0c9bb703fd4106b6"
+    },
+    {
+      "path": "reports/sc-integration-snowball-candidate-async-a0-rno-01a146a3.json.zip",
+      "bytes": 441305,
+      "sha256": "f82bd8c4d88cb4cc94a799c8e7467d0123f8f1745a18021bc87cd8493d3c9643"
     },
     {
       "path": "reports/sc-integration-snowball-candidate-controls-a1-rno-01a146a3.partial.json.zip",
@@ -1643,8 +1693,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 11375,
-      "sha256": "bd3b27cb59bc4a5fe3cb2d09d160f16d343da31fa069ca6bba5f503b29893da5"
+      "bytes": 11564,
+      "sha256": "b28d251abbcca4a26add7b771e41dc98b61f5e0ee8e58ce5d06be586f147a7dc"
     },
     {
       "path": "snowball-staged-protocol-r10.json",
@@ -1850,6 +1900,19 @@
       "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-rno-01a146a3/performance.json",
       "product": "964a602e995b16943dc34db036d25d2b7c5b7310",
       "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "complete": true,
+      "applied_updates": 67,
+      "envelope": "ZIP LZMA with repository-required trailing newline; original bytes unchanged"
+    },
+    {
+      "path": "reports/sc-integration-snowball-candidate-async-a0-rno-01a146a3.json.zip",
+      "original_bytes": 5630353,
+      "original_sha256": "4f1a7cb34ff966c25b84db1729689914d7b4415a44a95045945124b6bf28d44a",
+      "stored_bytes": 441305,
+      "stored_sha256": "f82bd8c4d88cb4cc94a799c8e7467d0123f8f1745a18021bc87cd8493d3c9643",
+      "source_uri": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-rno-01a146a3/performance.json",
+      "product": "c36e8594cbbbe55362945debfa6f75887a96361f",
+      "runtime": "56e187219994288b50463d8505f822329beb0795",
       "complete": true,
       "applied_updates": 67,
       "envelope": "ZIP LZMA with repository-required trailing newline; original bytes unchanged"

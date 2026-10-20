@@ -4,8 +4,11 @@ The native task adapter can carry K128 behavior heads as numeric arrays through 
 vLLM still renders messages, parses tools, samples tokens and handles aborts. Our adapter asks its public
 `generate` interface for flat logprobs and attaches the selected arrays to the internal Ray response. It avoids
 constructing, serializing and reparsing one chat object per candidate. Public HTTP chat responses keep their
-existing shape. This record contains the completed Qwen interface qualifications and matched Snowball controls.
-Real-reward asynchronous throughput remains pending.
+existing shape. This record contains completed Qwen interface qualifications, matched Snowball controls and
+two complete 67-update real-reward asynchronous arms. All nineteen actual GPU submissions are stopped.
+The controlled SC cycle is 29.57% shorter. In the asynchronous comparison, SC response tokens/s rose from
+3007 to 6864 while updates/hour fell from 118.2 to 102.5 and mean reply length grew from 716 to 1883 tokens.
+The changed response lengths prevent an isolated causal throughput claim; both rates are reported below.
 
 The [prior performance evidence](../score_centering_performance/README.md) remains unchanged. The active
 product is [draft #968](https://github.com/marin-community/MarinSkyRL/pull/968); #996 remains research.
@@ -51,6 +54,11 @@ normal EOS, applied updates, per-update weight publication, full-batch admission
 ordinary bookkeeping; profiles, forced memory synchronization, initial warmup and final context teardown stay
 outside these windows. Prefetch at finite boundaries, ordered modes, changing weights and response variation
 limit inference from a short comparison. No learning benefit is claimed.
+
+## Operating history
+
+The entries below retain the state and decisions at each dated checkpoint. Their held, unsubmitted and pending
+states are historical. Both final asynchronous arms are complete; their measurements follow the controlled results.
 
 The first Snowball attempt had a 10800-second queue-inclusive deadline. Future submissions use 21600 seconds,
 with the same finite measurement windows, zero automatic failure or preemption retries and an initial manual
@@ -358,6 +366,15 @@ and async candidate one/one. Runtime `56e187219994288b50463d8505f822329beb0795` 
 grader, lock, 192 source tasks and 67-update workload. Deadline: 2026-10-20T17:54:42.928Z. The earlier eighteen
 attempts are stopped. The Interactive proposal is still unapproved and unused.
 
+The candidate then completed all 67 applied updates. All 64 real-reward updates had nonzero gradients and
+none was skipped. Every task succeeded on attempt zero; the controller finished at 12:52:53.989 UTC and
+all candidate Pods and its workload were absent at 12:55:27.708574 UTC. The original report has SHA-256
+`4f1a7cb34ff966c25b84db1729689914d7b4415a44a95045945124b6bf28d44a` and is retained unchanged in a compact
+LZMA ZIP. The strict paired analysis passes for both complete reports, their common repaired dependency
+runtime, source selection, parallelism, admission controls, actual sampling and reference checks. All nineteen
+submissions are terminal and absent. No further GPU work or retry is planned. The Interactive proposal was
+never approved or used; both complete arms ran under the original BATCH and four-Interactive-node limits.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
@@ -397,7 +414,7 @@ The full probe captured 16384 engine response tokens and produced 96 valid sampl
 At interval ten, combining armed and complete-probe cycles gives a modeled 0.166% overhead and 570.64 seconds
 between observations. Its paired descriptive interval is very wide, -15.84% to 19.23%, with only two repetitions.
 This does not establish a sub-1% ceiling. Cadence remains ten, K128 and 32 exported positions per response.
-Actual asynchronous coverage and elapsed time between consumed observations remain to be measured.
+Actual asynchronous coverage and elapsed time between consumed observations are reported in the next section.
 
 Both arms retain three 256 MiB dense head matrices in the full-SC optimizer batch: IDs, behavior scores and
 old-policy scores. Learner peak allocated memory is 55.53 GiB in both arms; inference peak allocated memory is
@@ -407,7 +424,8 @@ not isolate the formatter's transient heap. Cached/device-used peaks vary; no GP
 
 The first RNO candidate handoff timeout remains an unresolved operational observation. Its incomplete report,
 normal task records and allocation cost remain separate; the completed follow-up used unchanged source.
-No failed or incomplete cycle contributes to the table. Real-reward asynchronous throughput is still pending.
+No failed or incomplete cycle contributes to the table. The following asynchronous comparison uses separate,
+fresh allocations with the repaired grader and does not pool these timing samples.
 
 The corrected source reproduces the pinned chat formatter's -9999 score floor before token-ID tie ordering.
 Without it, a head concentrated on one token could select different IDs when the remaining scores become ties
@@ -415,7 +433,85 @@ under the display floor. Two regression cases failed before the fix; 126 adapter
 comparisons with the actual pinned Pydantic formatter, including sampled scores and the display limit, match exactly.
 [The floor proof](evidence/chat-floor-after-proof.json) retains the source hashes and synthetic contract cases.
 Raw-generation selection and the SC kernel are unchanged. Actual Qwen qualification of this corrected source
-completed all 35 updates; Snowball qualification remains pending. Earlier qualified source pins remain separate.
+completed all 35 updates. The completed Snowball controls and both full asynchronous arms qualify the
+corrected source at their recorded runtime pins. Earlier qualified source pins remain separate.
+
+## Complete real-reward asynchronous comparison
+
+[The paired analysis](evidence/snowball-asynchronous-matched-rno.json) uses only the complete RNO baseline a7
+and candidate a0. Both start from the original SFT checkpoint with the same 192 selected source tasks and
+repaired grader/lock. Each applies 67 updates: three calibration, six real-reward periodic and 58 real-reward
+asynchronous updates. All 64 real-reward updates per arm have nonzero gradients and none is skipped. Ordinary,
+capture/rescore and SC each have two warmups and ten measured updates; probes have two warmups and twenty
+measured updates. Continuous measured windows exclude initial warmup and final context teardown, include
+ordinary bookkeeping and use normal EOS. No profile or forced synchronization is added to these windows.
+
+| Mode | Objects updates/h | Arrays updates/h | Objects response tokens/s | Arrays response tokens/s | Objects wait | Arrays wait |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Ordinary TIS | 152.85 | 100.58 | 6067 | 7820 | 39.95% | 60.52% |
+| Capture/rescore, SC off | 111.09 | 102.95 | 3138 | 7481 | 4.55% | 46.18% |
+| TIS + SC | 118.15 | 102.54 | 3007 | 6864 | 4.88% | 47.34% |
+| Interval-ten probes | 168.22 | 116.94 | 5997 | 7285 | 34.65% | 54.48% |
+
+Wait is the learner's generation-buffer wait divided by the complete measured window. Loss-token rates match
+response-token rates to within 0.006 tokens/s. In SC, response throughput is 128.28% higher while the update
+rate is 13.21% lower. These rates describe different generated workloads: candidate SC responses average
+1882.82 tokens versus 715.79, or 2.63 times as many tokens. Even ordinary TIS replies differ substantially.
+The short runs establish operation with real rewards and applied updates; they do not isolate a causal
+training speedup or learning benefit.
+
+![Asynchronous rates, response lengths and learner waiting](asynchronous-throughput.svg)
+
+| Mode | Objects length mean ± SD | Arrays length mean ± SD | Objects loss-weighted age | Arrays loss-weighted age |
+| --- | ---: | ---: | ---: | ---: |
+| Ordinary TIS | 1116 ± 1467 | 2187 ± 1560 | 2.67 | 1.57 |
+| Capture/rescore, SC off | 794 ± 1232 | 2044 ± 1548 | 3.47 | 1.94 |
+| TIS + SC | 716 ± 1142 | 1883 ± 1508 | 3.35 | 2.02 |
+| Interval-ten probes | 1003 ± 1365 | 1752 ± 1502 | 2.85 | 2.01 |
+
+Lengths vary from 1–4096 tokens across the modes. SC cycle times range from 25.82–38.42 seconds with objects
+and 20.93–47.51 with arrays. Length stops affect 100/1280 SC responses with objects and 313/1280 with arrays;
+all stop reasons are known. Minimum verifier-score coverage is 127/128 responses in both arms, with other
+batches fully covered. Consumed loss tokens are source-stamped throughout. Maximum token age is four in every mode
+except candidate ordinary TIS, where it is three. Responses spanning source versions account for 9.69% of
+baseline SC and 61.56% of candidate SC; per-token versions remain available throughout.
+
+The exclusive SC walls move from 6.92 to 2.46 seconds in batch assembly and from 12.32 to 6.24 in weight
+publication. Old-policy preparation is 1.84 versus 1.92 seconds and policy training 7.82 versus 7.79. Generation
+buffer wait rises from 1.49 to 16.62 seconds. The pipeline overlaps generation, frontend work and publication;
+these shifts, together with longer replies, explain why a serialized saving does not translate directly into
+updates/hour. They do not independently identify the cause of the response-length difference. Exclusive walls
+partition each cycle; nested timers are not added. One allocation per arm, ordered modes, changing weights,
+stochastic responses, finite prefetch and shared hardware limit causal inference. Per-cycle values and ranges
+remain in the analysis; no population confidence interval is inferred from these correlated windows.
+
+Each probe arm consumed two observations, including one during warmup and one in the measured window.
+Both sampled 128 valid positions from one four-response group per observation, with 32 positions per response.
+Baseline coverage was 0.0985% and 0.0857% of its observed batches' loss tokens; candidate coverage was 0.0613%
+and 0.0666%. Completion spacing was 295.97 seconds with objects and 399.05 with arrays. The observations
+landed at updates 46/60 and 46/59: interval ten schedules group capture, while asynchronous admission and
+source age affect when it is consumed. Candidate engine collection covered 3124 and 1295 response tokens;
+export remained bounded at 128 positions. Both candidate observed groups had zero advantages, so their
+hypothetical loss is zero even though unit-advantage corrections are nonzero. This is sparse scalar evidence,
+not a parameter-gradient or learning result. The measured probe window has one consumed observation and
+does not establish a periodic overhead ceiling. Defaults remain interval ten, K128 and 32 positions.
+
+Both allocations and every earlier attempt are included in [allocation accounting](allocation-accounting.json).
+The nineteen attempts total 244.44 H100-hours from admission to controller terminal, or 315.09 through
+verified provider absence. These are allocation proxies and upper bounds, not billing. They include failed
+starts, nonmeasurement work and teardown. The previous goal's accounting remains separate.
+[The shutdown summary](evidence/final-async-shutdown-summary.json) links native states, verified provider
+absence on both clusters and the local launcher check. The old-grader controlled stage and all interrupted
+attempts remain separate from this complete repaired-runtime pair.
+
+Reproduce the complete paired summary from this checkout with the qualified runtime environment:
+
+```bash
+PYTHONPATH=. python experiments/post_training/score_centering_integration/analyze.py \
+  --baseline experiments/post_training/score_centering_integration/reports/sc-integration-snowball-baseline-async-a7-rno-01a146a3.json.zip \
+  --candidate experiments/post_training/score_centering_integration/reports/sc-integration-snowball-candidate-async-a0-rno-01a146a3.json.zip \
+  --cadence 10 --output /tmp/score-centering-async-summary.json
+```
 
 ## Qwen interface qualification
 
@@ -443,7 +539,8 @@ All three complete raw reports are compressed without editing in [reports](repor
 [The manifest](manifest.json) retains source locations, sizes and hashes. Both final Qwen tasks succeeded with
 attempt zero; a fresh provider check verified their absence at 20:55:37 UTC on October 19. The task image and
 Python package versions match the prior qualification. The cluster logshipper changed externally to `088139e5`;
-both actual images are retained in the provider evidence, and fresh primary Snowball arms will record theirs.
+both actual images are retained in the provider evidence. Both complete primary Snowball arms also record
+the same qualified task and sidecar images.
 
 The [current scalar replay](evidence/qwen-floor-a2-probe-precision.json) matches recorded values within 1.63e-9
 using the independent FP32 formula; FP64 evaluation of the same quantized heads differs by up to 5.40e-5.

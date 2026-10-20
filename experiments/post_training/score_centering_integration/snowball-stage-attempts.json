@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T11:56:40.218633+00:00",
+  "saved_at_utc": "2026-10-20T12:59:24.635811+00:00",
   "protocol": "snowball-staged-protocol-r13.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -120,19 +120,20 @@
     "baseline_total_applied_updates_established": true,
     "baseline_report_sha256": "5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2",
     "candidate_latest_job": "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3",
-    "candidate_outcome": "Admitted after complete baseline validation and release; allfiveRNO PodsRunning attempt0, native failure/preemption retries0.",
+    "candidate_outcome": "Success; full67updates, all64real-reward gradients nonzero, no skips. Strict matched analysis passed; allfiveTasksSucceeded attempt0 and provider absence verified.",
     "candidate_submitted_at": "2026-10-20T11:54:42.928Z",
     "candidate_admitted_at": "2026-10-20T11:54:43.117064Z",
     "candidate_queue_inclusive_deadline_at": "2026-10-20T17:54:42.928Z",
     "candidate_runtime_commit": "56e187219994288b50463d8505f822329beb0795",
-    "candidate_controller_terminal_at": null,
-    "candidate_provider_absence_at": null,
-    "candidate_complete": false
+    "candidate_controller_terminal_at": "2026-10-20T12:52:53.989000Z",
+    "candidate_provider_absence_at": "2026-10-20T12:55:27.708574+00:00",
+    "candidate_complete": true,
+    "candidate_reported_applied_updates": 67,
+    "candidate_total_applied_updates_established": true,
+    "candidate_report_sha256": "4f1a7cb34ff966c25b84db1729689914d7b4415a44a95045945124b6bf28d44a"
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3"
-  ],
-  "limit": "Actual19, earlier18terminal/absent. Overall Qwen3/3, baseline12/12, candidate4/4; async baseline8/8 complete and candidate1/1running. Full67updates each, original BATCH/four-Interactive limits, native retries0. No further undeclared attempt.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All19actual submissions are terminal and absent: Qwen3/3, overall baseline12/12 and candidate4/4. Both full67-update async arms complete. No further GPU work or retry planned. Original BATCH/four-Interactive limits satisfied.",
   "primary_cluster": "RNO for both fresh repaired asynchronous arms under r13; completed controls remain a separate stage.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
@@ -186,7 +187,7 @@
   },
   "interactive_priority_proposal": {
     "path": "snowball-interactive-pair-r12-proposal.json",
-    "status": "Requires explicit user approval; not submitted"
+    "status": "Unapproved and unused; no longer needed after both full BATCH arms succeeded."
   },
   "current_product_head": "435ee98f86ca75e206f30ac939bc757889ba6e58",
   "current_product_CI": {
@@ -195,5 +196,5 @@
     "evidence": "evidence/pr968-435ee98f-ci-final.json",
     "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39407226185"
   },
-  "resource_choice_status": "Matched candidate running at original BATCH priority on RNO after complete baseline and verified release. Fresh RNO fit39fully free/40BATCH-usable nodes,336GPU/RDMA quota,0higherpending. Interactive exception remains unapproved and unused."
+  "resource_choice_status": "Both fresh matched RNO BATCH arms completed under the original resource boundaries. Interactive exception never approved or used and no longer needed; retain original proposal only as history."
 }

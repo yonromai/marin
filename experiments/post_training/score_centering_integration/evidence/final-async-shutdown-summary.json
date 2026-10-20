@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-10-20T13:04:51.338205+00:00",
+  "clusters": {
+    "cw-rno2a": {
+      "native_owned_jobs_including_prior_goal": 17,
+      "integration_goal_jobs": 13,
+      "all_parent_jobs_terminal": true,
+      "task_state_counts": {
+        "10": 6,
+        "11": 29,
+        "4": 28,
+        "5": 2,
+        "6": 5
+      },
+      "provider_checked_at": "2026-10-20T12:58:19.656887+00:00",
+      "direct_Kueue_checked_at": "2026-10-20T13:04:04.776580+00:00",
+      "known_owned_Kueue_groups_checked": 12,
+      "owned_active_Pods": [],
+      "owned_Kueue_workloads": []
+    },
+    "cw-us-east-02a": {
+      "native_owned_jobs_including_prior_goal": 16,
+      "integration_goal_jobs": 6,
+      "all_parent_jobs_terminal": true,
+      "task_state_counts": {
+        "10": 5,
+        "11": 30,
+        "4": 14,
+        "5": 4,
+        "6": 9
+      },
+      "provider_checked_at": "2026-10-20T12:59:31.900821+00:00",
+      "direct_Kueue_checked_at": "2026-10-20T13:04:06.604157+00:00",
+      "known_owned_Kueue_groups_checked": 6,
+      "owned_active_Pods": [],
+      "owned_Kueue_workloads": []
+    }
+  },
+  "owned_active_jobs": 0,
+  "owned_active_Pods": 0,
+  "owned_Kueue_workloads": 0,
+  "active_retries": 0,
+  "new_GPU_work_planned": false,
+  "wait_for_started_or_rearmed": false,
+  "owned_local_launchers": [],
+  "native_state_limit": "Historical children can retain PREEMPTED(10) or COSCHEDULING(11) labels under terminal parent jobs. These labels alone do not establish an active task. Every parent is terminal, no own Pod or known/annotated Kueue workload remains, and no local launcher remains.",
+  "evidence": "evidence/final-async-shutdown-receipts.zip"
+}

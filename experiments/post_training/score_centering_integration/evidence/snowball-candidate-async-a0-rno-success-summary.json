@@ -1,0 +1,103 @@
+{
+  "job": "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3",
+  "outcome": "success",
+  "complete": true,
+  "applied_updates": 67,
+  "calibration_updates": 3,
+  "real_reward_native_updates": 6,
+  "real_reward_async_updates": 58,
+  "real_reward_nonzero_gradient_updates": 64,
+  "skipped_updates": 0.0,
+  "strict_matched_analysis_exit_code": 0,
+  "strict_analysis_scope": "Both complete67-update arms; all phases, source stamps, sampling, common repaired lock/grader, reference/scalar replay and matched source/parallelism/versions/admission controls.",
+  "report": "reports/sc-integration-snowball-candidate-async-a0-rno-01a146a3.json.zip",
+  "report_sha256": "4f1a7cb34ff966c25b84db1729689914d7b4415a44a95045945124b6bf28d44a",
+  "original_bytes": 5630353,
+  "runtime_commit": "56e187219994288b50463d8505f822329beb0795",
+  "runtime": {
+    "lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+    "versions": {
+      "torch": "2.13.0+cu132",
+      "vllm": "0.0.0.dev20260929+marin.39e62869693c.cu132",
+      "megatron-core": "0.18.0",
+      "transformers": "5.16.1",
+      "marin-iris": "0.2.191.dev38826191626",
+      "marin-verifyit": "0.1.0",
+      "math-verify": "0.9.0",
+      "latex2sympy2-extended": "1.11.0",
+      "sympy": "1.14.0"
+    },
+    "grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+    "policy_parallelism": {
+      "tensor_model_parallel_size": 1,
+      "pipeline_model_parallel_size": 2,
+      "context_parallel_size": 1,
+      "expert_model_parallel_size": 8,
+      "expert_tensor_parallel_size": 1,
+      "ddp_config": {
+        "grad_reduce_in_fp32": true,
+        "overlap_grad_reduce": false,
+        "overlap_param_gather": false,
+        "average_in_collective": true
+      },
+      "model_config_kwargs": {},
+      "torch_profiler_config": {
+        "enable": false,
+        "ranks": [],
+        "save_path": null
+      },
+      "optimizer_config_kwargs": {
+        "overlap_cpu_optimizer_d2h_h2d": false,
+        "use_precision_aware_optimizer": false,
+        "optimizer_cpu_offload": false,
+        "optimizer_offload_fraction": 0.0
+      },
+      "transformer_config_kwargs": {
+        "recompute_granularity": "full",
+        "recompute_modules": [
+          "core_attn"
+        ],
+        "recompute_method": "uniform",
+        "recompute_num_layers": 1
+      },
+      "empty_cuda_cache": true,
+      "logprob_chunk_size": 512,
+      "optimizer_checkpoint_sharding_type": "dp_reshardable",
+      "check_train_eval_parity": false,
+      "moe_router_replay": false,
+      "check_dp_weight_consistency": false
+    },
+    "sampling": {
+      "max_generate_length": 4096,
+      "repetition_penalty": 1.0,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "top_k": -1,
+      "logprobs": 0,
+      "stop": null,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "min_tokens": 0
+    }
+  },
+  "controller_terminal_at": "2026-10-20T12:52:53.989000Z",
+  "provider_absence_at": "2026-10-20T12:55:27.708574+00:00",
+  "task_states": [
+    "4",
+    "4",
+    "4",
+    "4",
+    "4"
+  ],
+  "native_attempts": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "qualification_reference_max_error": 1.9073486328125e-06,
+  "matched_analysis": "evidence/snowball-asynchronous-matched-rno.json",
+  "limits": "One allocation per arm, ordered modes, changing weights, stochastic response lengths and finite prefetch. Tokens/s and updates/h must be reported together. No isolated causal throughput or learning benefit claim."
+}
