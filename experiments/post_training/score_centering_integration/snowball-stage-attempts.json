@@ -55,7 +55,7 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3",
-    "baseline_outcome": "Admitted; all five East Pods Running on attempt zero at 09:40:20 UTC. Applied-update progress not yet observed.",
+    "baseline_outcome": "External priority-12 preemption during initialization, before the first performance report.",
     "baseline_submitted_at": "2026-10-20T09:39:22.130Z",
     "baseline_admitted_at": "2026-10-20T09:39:22.379935Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T15:39:22.130Z",
@@ -90,8 +90,8 @@
       "preemptor_owner": "unknown"
     },
     "candidate_cluster": "cw-us-east-02a",
-    "baseline_controller_terminal_at": null,
-    "baseline_provider_absence_at": null,
+    "baseline_controller_terminal_at": "2026-10-20T09:46:18.236Z",
+    "baseline_provider_absence_at": "2026-10-20T09:56:59.465014Z",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
     "baseline_previous_grader_failure": {
       "job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
@@ -115,12 +115,12 @@
       "cw-rno2a": "snowball-candidate-async-a0-rno-r8-detach.yaml"
     },
     "candidate_route_alternatives_are_mutually_exclusive": true,
-    "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml"
+    "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml",
+    "baseline_reported_applied_updates": 0,
+    "baseline_complete": false
   },
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3"
-  ],
-  "limit": "Actual submission17, overall baseline11/11 and async baseline7/7. Sixteen earlier attempts are terminal and absent. The full67-update repaired baseline is running on East with native retry counts0. Candidate remains unsubmitted until full baseline validation and release; no further undeclared submission.",
+  "owned_active_jobs_or_queues": [],
+  "limit": "All 17 actual submissions are stopped. Baseline11/11 and async7/7 are spent. Six async starts were externally preempted and one failed in the now-repaired grader. No further GPU submission is declared. R12 is an unapproved proposal only: current cap remains four Interactive nodes and Snowball remains BATCH until explicit user approval. Both full async reports, final documentation/head CI and High GOAL review remain required.",
   "primary_cluster": "Reno completed controls; East fresh repaired asynchronous pair under r11. All partial timings remain excluded.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
@@ -171,5 +171,9 @@
     "outcome": "Fulfilled by two fresh qualifying checks at09:32:38 and09:39:14,395.306711s apart. R11 baseline submitted immediately after the final check and admitted09:39:22. No further capacity waiting while this healthy allocation runs.",
     "qualifying_confirmations_since_loss": 0,
     "last_readiness_checkpoint": "r11-readiness-checkpoint.json"
+  },
+  "interactive_priority_proposal": {
+    "path": "snowball-interactive-pair-r12-proposal.json",
+    "status": "Requires explicit user approval; not submitted"
   }
 }

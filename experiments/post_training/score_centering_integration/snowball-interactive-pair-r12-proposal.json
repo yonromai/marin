@@ -1,0 +1,57 @@
+{
+  "revision": "r12-proposal",
+  "status": "Requires explicit user approval; no submission authorized",
+  "declared_at": "2026-10-20T09:59:51.338917+00:00",
+  "current_user_boundary": {
+    "Snowball_priority": "BATCH",
+    "maximum_owned_Interactive_nodes_including_queued": 4
+  },
+  "proposed_exception": {
+    "priority": "INTERACTIVE (normal priority12)",
+    "maximum_owned_Interactive_nodes_including_queued": 5,
+    "scope": "Only this sequential baseline/candidate asynchronous pair, one five-node job at a time; return to the original limit afterward."
+  },
+  "evidence": "Six of seven baseline asynchronous starts were externally preempted; one earlier grader failure was repaired. Latest a6 was evicted391seconds after admission even after two qualifying readiness observations. The full asynchronous pair remains incomplete.",
+  "actual_submissions_so_far": {
+    "total": 17,
+    "baseline": 11,
+    "candidate": 3,
+    "qwen": 3,
+    "all_stopped": true
+  },
+  "proposed_future_limits": {
+    "baseline": 12,
+    "candidate": 4,
+    "qwen": 3,
+    "new_baseline_attempts": 1,
+    "new_candidate_attempts": 1
+  },
+  "cluster": "cw-us-east-02a",
+  "configuration_files": [
+    {
+      "path": "snowball-baseline-async-a7-east-i12-r12-proposal-prepare.yaml",
+      "sha256": "ec119e86639830e48cd63a59293c8257bce7c61e162877a43f81168c800e8738"
+    },
+    {
+      "path": "snowball-baseline-async-a7-east-i12-r12-proposal-detach.yaml",
+      "sha256": "0ec0d31dadec8dbf54155560a3c811566567af920e8b1dfc7b9c70aeb258251f"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-i12-r12-proposal-prepare.yaml",
+      "sha256": "0f083db52a984d9bee9df7c4e4a156b34224f1b4db227c6fa8c9ff8e72f18d9d"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-i12-r12-proposal-detach.yaml",
+      "sha256": "7f0f9148f34edb1975ef13b77f0724a45fca288ecfa01c8a1b4f3808222b20ab"
+    }
+  ],
+  "unchanged": "Same source commits, common grader5ef1e703, lock1343407b, vLLM39e62869693c, original SFT and192tasks, seed0, 67appliedupdates perarm (3calibration+6realperiodic+58realasync), K128, SCfrequency, interval10/32-position probes, topology4learner+1inference x8H100, PP2/EP8/DP16/TP/CP/SP1, sourceage4/fullbatch/inflight64, each-update publication and keep pause policy. No measurement or correctness threshold changes.",
+  "queue_inclusive_deadline_seconds_each": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "automatic_failure_or_preemption_retries": 0,
+  "sequential_gate": "Candidate only after all67baselineupdates pass analysis and its allocation is verified released.",
+  "scheduling_effect": "Uses the existing normal Interactive class and current LowerPriority policy. It can preempt lower-priority batch work; no shared queue policy or service is changed. It is not an absolute protection from all higher-priority work.",
+  "alternative": "Keep the original BATCH boundary and wait for a quieter window. No new batch attempt is silently launched.",
+  "permission_gate": "Do not submit either proposal configuration unless Romain explicitly approves the five-Interactive-node exception and Interactive priority for this pair."
+}

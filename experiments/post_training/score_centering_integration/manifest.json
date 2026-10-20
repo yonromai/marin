@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T09:46:17.175301+00:00",
+  "saved_at": "2026-10-20T10:04:55.443653+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 38695,
-      "sha256": "8a7ae4a91f2f66c5da6c824e67487468562748b4ddf659ce3121b481b5134028"
+      "bytes": 40087,
+      "sha256": "9f9d41324a44fd8ad3a4f182b572f170274e841408e8de388dd45f776f7baac9"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 22102,
-      "sha256": "e79d78de63ee13c6784db4da7255e2925b18d389f301d620a7ab740bd7ef6063"
+      "bytes": 22491,
+      "sha256": "a4e4298eef705e77be2687337afc3a7915bc60a56d2e55c6ac02ba480d355b56"
     },
     {
       "path": "analyze.py",
@@ -225,6 +225,26 @@
       "path": "evidence/inspect_rollout_worker_stacks.py.txt",
       "bytes": 3841,
       "sha256": "31389ab0cf452440e1a2e50977c3e4d63205602cafe18efeaf3c910a243e8e7b"
+    },
+    {
+      "path": "evidence/interactive-baseline-r12-proposal-preflight.json",
+      "bytes": 9604,
+      "sha256": "62a4ac7d905ad2a0fd91a21a40086a0a561ba60241210b050129afce9e87b2c6"
+    },
+    {
+      "path": "evidence/interactive-candidate-r12-proposal-preflight.json",
+      "bytes": 9610,
+      "sha256": "69f245a679d096e83dac053f39015552ca7dd2c1b042b55fb5c1729773bd31b0"
+    },
+    {
+      "path": "evidence/interactive-pair-r12-proposal-config-match.json",
+      "bytes": 4872,
+      "sha256": "2c3df97ace9cd96079cfba879cd450faba4ef4e7c165d1cf33de64b97679459a"
+    },
+    {
+      "path": "evidence/interactive-pair-r12-proposal-preflights.zip",
+      "bytes": 3703,
+      "sha256": "230c4f867a62f882edd7752b45309d2f744f7fe00e365acc0a40e9e6b77674af"
     },
     {
       "path": "evidence/matched-grader-runtime-proof.json",
@@ -747,9 +767,24 @@
       "sha256": "6b26c83b57c245829476ca56891ba398c53ce5c6b767faada1631725e0b81e18"
     },
     {
+      "path": "evidence/snowball-baseline-async-a6-east-preemption-summary.json",
+      "bytes": 1447,
+      "sha256": "de0addd85f33e22370054b539513c4d338259443addb6b6aa2ac23b9248a258f"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a6-east-preemption.zip",
+      "bytes": 70701,
+      "sha256": "ac6300b9a2899f643b9d2a99381b0b4be50d1382cc828410bb85fa85b0a46191"
+    },
+    {
       "path": "evidence/snowball-baseline-async-a6-east-provider-first.json",
       "bytes": 10610,
       "sha256": "30e78981542456f6a1977ab6567962e5d9bd1b096bb239eab5b50b285e1029f5"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a6-east-provider-terminal.json",
+      "bytes": 213,
+      "sha256": "70fbfd414d4d3d7d0caf28982a8bbdf2a8dbcffb3ce66f9156c0858e627d1b5d"
     },
     {
       "path": "evidence/snowball-baseline-async-a6-east-r11-launch-preflight.json",
@@ -760,6 +795,11 @@
       "path": "evidence/snowball-baseline-async-a6-east-start-receipts.zip",
       "bytes": 7264,
       "sha256": "04a4ae71eac208c96c7f90ffd43aa2b8262880b3146d5d793de6e81d91d4bd90"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a6-east-workload-events-final.json",
+      "bytes": 8435,
+      "sha256": "f57b544dc498e33d5fe3382ae0742228a78cd12641e210e220771c66daf194e6"
     },
     {
       "path": "evidence/snowball-baseline-async-a6-east-workload-events.json",
@@ -1118,8 +1158,8 @@
     },
     {
       "path": "r11-readiness-checkpoint.json",
-      "bytes": 815,
-      "sha256": "9b5492bb1c891b9c2a071c7e27a000041d56c8b9739a4ca0a7e319d592e5e48b"
+      "bytes": 927,
+      "sha256": "9fec272733968d1df2c7feab6463be15ace3fd7962647d7f6a9dcbe51a6564d0"
     },
     {
       "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
@@ -1317,6 +1357,16 @@
       "sha256": "2c16a6dd74afa7d2a40ec79cc26a3c6237477a8711c3f579a11c777f28572597"
     },
     {
+      "path": "snowball-baseline-async-a7-east-i12-r12-proposal-detach.yaml",
+      "bytes": 10021,
+      "sha256": "0ec0d31dadec8dbf54155560a3c811566567af920e8b1dfc7b9c70aeb258251f"
+    },
+    {
+      "path": "snowball-baseline-async-a7-east-i12-r12-proposal-prepare.yaml",
+      "bytes": 10022,
+      "sha256": "ec119e86639830e48cd63a59293c8257bce7c61e162877a43f81168c800e8738"
+    },
+    {
       "path": "snowball-baseline-controls-a0-rno-detach.yaml",
       "bytes": 9983,
       "sha256": "7b92202e3b1ca4c132f053067970acddfcddf08ab33d36684c8e1a8c04bdaf19"
@@ -1365,6 +1415,16 @@
       "path": "snowball-candidate-async-a0-east-detach.yaml",
       "bytes": 9982,
       "sha256": "903a4c2dcac298c07db524f34a6d1b083d66b308dc09b818e0ef554917e9aebc"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-i12-r12-proposal-detach.yaml",
+      "bytes": 10033,
+      "sha256": "7f0f9148f34edb1975ef13b77f0724a45fca288ecfa01c8a1b4f3808222b20ab"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-i12-r12-proposal-prepare.yaml",
+      "bytes": 10034,
+      "sha256": "0f083db52a984d9bee9df7c4e4a156b34224f1b4db227c6fa8c9ff8e72f18d9d"
     },
     {
       "path": "snowball-candidate-async-a0-east-prepare.yaml",
@@ -1462,6 +1522,11 @@
       "sha256": "fe6e12123d3a5f9d0949e749d3a128a9273d56b1a8386a23ec28439d1f71ee42"
     },
     {
+      "path": "snowball-interactive-pair-r12-proposal.json",
+      "bytes": 3175,
+      "sha256": "549c69a2cd47a8db4ef7054e99bc932fd7ceaa3e4264e01f28973ae35faa9a9b"
+    },
+    {
       "path": "snowball-protocol-a1.json",
       "bytes": 7083,
       "sha256": "c57ffd9fbc29d3e472c9da3e0ee7244a8c7422d0ea811ed6aadaeeb428870dd4"
@@ -1478,8 +1543,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 9918,
-      "sha256": "a54e0824f7afdf6f0bc10e2227e41d0199fdc8f2820082dc376ad496cac3ac62"
+      "bytes": 10235,
+      "sha256": "3f48181ab2773ae28592209665f8d599086a64b0544bc7d3a3f8e676802144cc"
     },
     {
       "path": "snowball-staged-protocol-r10.json",

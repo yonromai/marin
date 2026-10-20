@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T09:46:17.172812+00:00",
+  "saved_at": "2026-10-20T10:04:55.439034+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -413,18 +413,23 @@
       "priority": "BATCH",
       "submitted_at": "2026-10-20T09:39:22.130Z",
       "admitted_at": "2026-10-20T09:39:22.379935Z",
-      "controller_terminal_at": null,
-      "provider_absence_at": null,
-      "applied_updates": null,
-      "outcome": "active; repaired East async baseline admitted after two fresh readiness checks, all five Pods running on attempt zero",
+      "controller_terminal_at": "2026-10-20T09:46:18.236Z",
+      "provider_absence_at": "2026-10-20T09:56:59.465014Z",
+      "applied_updates": 0,
+      "outcome": "external priority-12 preemption during initialization; no first report or completed benchmark update",
       "automatic_retries": 0,
       "evidence": [
         "snowball-staged-protocol-r11.json",
         "evidence/snowball-baseline-async-a6-east-provider-first.json",
         "evidence/snowball-baseline-async-a6-east-workload-events.json",
-        "evidence/snowball-baseline-async-a6-east-start-receipts.zip"
+        "evidence/snowball-baseline-async-a6-east-start-receipts.zip",
+        "evidence/snowball-baseline-async-a6-east-provider-terminal.json",
+        "evidence/snowball-baseline-async-a6-east-preemption-summary.json",
+        "evidence/snowball-baseline-async-a6-east-preemption.zip"
       ],
-      "queue_seconds": 0.249935
+      "queue_seconds": 0.249935,
+      "gpu_hours_to_controller_terminal_proxy": 4.620622944444444,
+      "gpu_hours_through_verified_absence_upper_bound": 11.745389766666667
     }
   ],
   "prepared_but_not_submitted": [
@@ -460,7 +465,7 @@
   ],
   "limits": "These are allocation-time proxies, not billing. Exact Kueue admission starts known allocations. Controller terminal can precede physical release; verified Pod absence gives an upper bound. Startup, nonmeasurement idle and teardown are retained. Queues consume no admitted GPU-hours. No attempt is silently retried.",
   "closed_attempt_totals": {
-    "gpu_hours_to_controller_terminal_proxy": 165.63739764444443,
-    "gpu_hours_through_verified_absence_upper_bound": 225.9399529488889
+    "gpu_hours_to_controller_terminal_proxy": 170.25802058888888,
+    "gpu_hours_through_verified_absence_upper_bound": 237.68534271555555
   }
 }

@@ -307,6 +307,23 @@ no priority or shared policy changed. This is actual submission seventeen, overa
 async baseline seven/seven. Sixteen earlier attempts are stopped. The complete 67-update workload remains
 required, with deadline 15:39:22.130 UTC. The candidate remains held until full validation and release.
 
+
+The a6 baseline was evicted at 09:45:53.648064 UTC by another priority-12 workload, 391 seconds after
+admission, before its first report or completed benchmark update. Controller terminal was 09:46:18.236;
+provider absence was verified at 09:56:59.465014. The
+[preemption record](evidence/snowball-baseline-async-a6-east-preemption-summary.json) retains native startup
+logs and exact events. All seventeen actual submissions are stopped. Six of seven async baseline starts
+were externally preempted; the other encountered the separately repaired grader bug. Stable readiness
+snapshots did not protect the allocation from a new higher-priority arrival.
+
+[The r12 proposal](snowball-interactive-pair-r12-proposal.json) prepares one baseline and one candidate,
+sequentially on East, at normal Interactive priority with five eight-H100 nodes each. It requires explicit
+user approval to change the goal's four-Interactive-node cap and BATCH-only Snowball rule. Both actual
+backend dry runs pass without submission. Only priority and namespaces differ from the existing templates;
+all 67 updates, source pins, data, sampling, timing, math, deadlines and zero automatic retries remain.
+This proposal can preempt lower-priority batch work under the existing policy; it changes no shared policy
+or service. No proposal job has been submitted. Current limits remain in force pending a user decision.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per

@@ -1,13 +1,11 @@
 {
   "revision": "r11",
-  "state": "submitted and admitted; all five Pods Running",
+  "state": "Terminal after external preemption; all owned allocations released",
   "actual_GPU_submissions": 17,
   "actual_baseline_submissions": 11,
   "declared_baseline_limit": 11,
   "new_attempt_remaining": 0,
-  "owned_active_jobs_or_queues": [
-    "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3"
-  ],
+  "owned_active_jobs_or_queues": [],
   "qualifying_check_times": [
     "2026-10-20T09:32:38.854269Z",
     "2026-10-20T09:39:14.160980Z"
@@ -17,5 +15,7 @@
   "admitted_at": "2026-10-20T09:39:22.379935Z",
   "deadline_at": "2026-10-20T15:39:22.130Z",
   "evidence": "evidence/snowball-baseline-async-a6-east-start-receipts.zip",
-  "next_action": "Keep the healthy allocation; validate all67 applied updates and release before the one candidate. No automatic retries."
+  "next_action": "No further GPU job is authorized by r11. R12 proposal needs explicit approval for five Interactive nodes and Interactive priority; preserve original constraints meanwhile.",
+  "controller_terminal_at": "2026-10-20T09:46:18.236Z",
+  "provider_absence_at": "2026-10-20T09:56:59.465014Z"
 }

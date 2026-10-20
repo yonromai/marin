@@ -1,0 +1,19 @@
+{
+  "job": "/romain/sc-integration-snowball-baseline-async-a6-east-01a146a3",
+  "outcome": "External priority-12 preemption during initialization, before the first performance report.",
+  "submitted_at": "2026-10-20T09:39:22.130Z",
+  "admitted_at": "2026-10-20T09:39:22.379935Z",
+  "evicted_at": "2026-10-20T09:45:53.648064Z",
+  "controller_terminal_at": "2026-10-20T09:46:18.236Z",
+  "provider_absence_at": "2026-10-20T09:56:59.465014Z",
+  "preemptor_uid": "9c9af1b4-ab83-442a-bd4d-1eb915890ebd",
+  "preemptor_effective_priority": 12,
+  "preemptor_owner": "unknown; no owner inferred",
+  "report_present": false,
+  "completed_benchmark_updates": 0,
+  "update_evidence": "The harness writes its initial report before its first optimizer update. No report exists. Native entrypoint logs contain initialization and actor-loss cleanup, with no PPO train call or train-step metrics. This is a startup-only attempt.",
+  "runtime": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+  "automatic_failure_or_preemption_retries": 0,
+  "readiness_limit": "East had no higher-priority GPU workload pending and qualified at two fresh observations 395 seconds apart. This did not protect against a new priority-12 arrival after admission.",
+  "scope": "No throughput sample. All 17 actual submissions are terminal and absent. Six of seven asynchronous baseline starts were externally preempted; the remaining one encountered the separately repaired grader error."
+}

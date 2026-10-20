@@ -1,0 +1,79 @@
+{
+  "matched_all_training_data_sampling_timing_and_admission_settings": true,
+  "only_changes_from_batch_templates": "Priority and run namespace.",
+  "expected_arm_differences": [
+    {
+      "path": ".artifacts.attempts_root",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/attempts",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/attempts"
+    },
+    {
+      "path": ".artifacts.checkpoint_root",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/checkpoints",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/checkpoints"
+    },
+    {
+      "path": ".artifacts.export_root",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/exports",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/exports"
+    },
+    {
+      "path": ".artifacts.resolved_config_uri",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/resolved-launch.yaml",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/resolved-launch.yaml"
+    },
+    {
+      "path": ".artifacts.terminal_manifest_uri",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/terminal.json",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/terminal.json"
+    },
+    {
+      "path": ".iris.job_name",
+      "baseline": "sc-integration-snowball-baseline-async-a7-east-i12-01a146a3",
+      "candidate": "sc-integration-snowball-candidate-async-a0-east-i12-01a146a3"
+    },
+    {
+      "path": ".ray.log_dir",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/ray-logs",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/ray-logs"
+    },
+    {
+      "path": ".ray.rendezvous_dir",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/rendezvous",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/rendezvous"
+    },
+    {
+      "path": ".run.id",
+      "baseline": "sc-integration-snowball-baseline-async-a7-east-i12-01a146a3",
+      "candidate": "sc-integration-snowball-candidate-async-a0-east-i12-01a146a3"
+    },
+    {
+      "path": ".runtime.launcher_commit",
+      "baseline": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "candidate": "56e187219994288b50463d8505f822329beb0795"
+    },
+    {
+      "path": ".skyrl.trainer.rollout_buffer.object_store_root",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/groups",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/groups"
+    },
+    {
+      "path": ".skyrl.trainer.score_centering_performance.candidate",
+      "baseline": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "candidate": "c36e8594cbbbe55362945debfa6f75887a96361f"
+    },
+    {
+      "path": ".skyrl.trainer.score_centering_performance.output_uri",
+      "baseline": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-baseline-async-a7-east-i12-01a146a3/performance.json",
+      "candidate": "s3://marin-us-east-02a/marin/users/romain/score-centering-integration-01a146a3/sc-integration-snowball-candidate-async-a0-east-i12-01a146a3/performance.json"
+    },
+    {
+      "path": ".skyrl.trainer.score_centering_performance.variant",
+      "baseline": "baseline",
+      "candidate": "candidate"
+    }
+  ],
+  "actual_backend_dry_runs_passed": 2,
+  "GPU_submissions": 0,
+  "requires_explicit_approval": true
+}
