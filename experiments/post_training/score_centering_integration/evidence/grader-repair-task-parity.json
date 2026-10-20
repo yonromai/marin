@@ -1,0 +1,30 @@
+{
+  "selected_groups": 192,
+  "existing_reference_reply_grades_identical": true,
+  "existing_reference_reply_grade_counts": {
+    "1.0": 191,
+    "-1.0": 1
+  },
+  "known_nonscalar_candidates_graded_incorrect": 145,
+  "actual_task_sessions": {
+    "aime": 145,
+    "reasoning_gym": 28,
+    "gsm8k": 19
+  },
+  "source_sha256": "df971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd",
+  "versions_unchanged": {
+    "marin-verifyit": "0.1.0",
+    "math-verify": "0.9.0",
+    "latex2sympy2-extended": "1.11.0",
+    "sympy": "1.14.0"
+  },
+  "old_grader_source_commit": "b3206ac1c46cee3079441f394b5a6a13bb923d0e",
+  "new_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+  "existing_format_limit": {
+    "campaign_source_row": 8692,
+    "reference": "d < \\mu < M",
+    "reference_like_reply_grade_in_both": -1.0,
+    "reason": "Legacy answer extraction stops at literal<; exact symbolic spelling also limits equivalent escape forms. This pre-existing behavior is preserved, not silently repaired or filtered."
+  },
+  "scope": "Exact old/new real-grader parity for192fixed reference-like replies, plus145known matrix-root wrong-answer regressions. No task/source edits, generated-output selection, GPU timing or learning claim."
+}

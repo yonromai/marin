@@ -1,0 +1,37 @@
+{
+  "runtime_commits": {
+    "baseline": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+    "candidate": "56e187219994288b50463d8505f822329beb0795"
+  },
+  "product_candidate": "c36e8594cbbbe55362945debfa6f75887a96361f",
+  "grader_patch": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+  "lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+  "matched_benchmark_file": "skyrl-train/skyrl_train/entrypoints/score_centering_performance.py",
+  "benchmark_file_sha256": "0eecb9e5c59530644912693520e612672add81c9d11e96dfd870319be72785d9",
+  "measurement_methods_unchanged": {
+    "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b": [
+      "native_window",
+      "asynchronous_comparison",
+      "native_periodic_comparison",
+      "settings",
+      "get_train_dataset"
+    ],
+    "92d057c561b0893a3d922e42f221eb8d5b1e68fb": [
+      "native_window",
+      "asynchronous_comparison",
+      "native_periodic_comparison",
+      "settings",
+      "get_train_dataset"
+    ]
+  },
+  "other_Marin_package_trees_identical": {
+    "rolloutengine": "2928dfdbbea041a313edd15ed86011c767ac3558",
+    "shellbox": "4c6cda369bc991f2928de82715d00d9bd2b3c6e4",
+    "taskcompendium": "97f9fea9fd3f52b3fe2d1a41aa2f0c257c9adf28"
+  },
+  "Marin_patch_changed_files": [
+    "lib/verifyit/src/verifyit/modes/grade_math.py",
+    "lib/verifyit/tests/test_skyrl_adapter.py"
+  ],
+  "product_code_tree_unchanged_since_native_floor_qualification": true
+}

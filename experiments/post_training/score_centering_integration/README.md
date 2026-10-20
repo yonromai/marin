@@ -20,7 +20,9 @@ hooks are unchanged. No new vLLM subclass, override, monkey patch, fork patch or
 | Qwen boundary-corrected qualification | `db5227d4814086c5a71ca669b8c0dbb19563705b` | `a3cf30b6598de5a6de8ca45e720d5db8c47784d0` |
 | Snowball prior integration | `964a602e995b16943dc34db036d25d2b7c5b7310` | `bdb8b3134ca0b7322d889f2634dd1bfc6a126beb` |
 | Current Qwen/Snowball candidate target | `87f13fcd82b4677545816e0789c685d10cf051a0` | `92d057c561b0893a3d922e42f221eb8d5b1e68fb` |
-| Snowball staged async baseline | `964a602e995b16943dc34db036d25d2b7c5b7310` | `3b5de0c201a8ab7034aa53d9be3645d1e5372a8b` |
+| Original Snowball staged async baseline | `964a602e995b16943dc34db036d25d2b7c5b7310` | `3b5de0c201a8ab7034aa53d9be3645d1e5372a8b` |
+| Repaired async baseline | `964a602e995b16943dc34db036d25d2b7c5b7310` plus common grader repair | `dffd2c4b318bad910e532dea19f05a3cc1f9916e` |
+| Repaired async candidate | `c36e8594cbbbe55362945debfa6f75887a96361f` | `56e187219994288b50463d8505f822329beb0795` |
 
 The later product commit `c44e390a5236079b116c28dc27f84db2ec90c2cb` adds a structural sampling type; its
 generation and selection operations are unchanged. Runtime-only measurement code stays outside the product
@@ -116,7 +118,7 @@ seven long-response groups did not. All tasks were terminal at 22:38:08 and Pods
 report, native outcomes, regional telemetry and task archives. Its exact handoff-stall cause is unresolved.
 The baseline and failed candidate a1 used ordinary BATCH priority; native Kueue admitted them by preempting priority-one workloads.
 No priority or shared-service setting was changed. Candidate results and both asynchronous stages remain pending.
-[Current-head CI](evidence/pr968-097192b4-ci-check-03.json) is terminal with all six checks successful on
+[The earlier documentation-head CI](evidence/pr968-097192b4-ci-check-03.json) is terminal with all six checks successful on
 product `097192b463e48552383fe27fc8c42b135bf2c20a`, whose only difference from qualified source `87f13fcd` is documentation.
 
 [Revision r3](snowball-staged-protocol-r3.json) moves one reserved candidate asynchronous retry to one additional
@@ -200,6 +202,27 @@ the existing zero-credit result; invalid references fail validation. The regress
 repair and passes 477 CPU checks with three dependency skips. The lock changes only four shared Marin Git
 revisions; the other package trees, versions, wheels and vLLM pin are unchanged. Both next fresh asynchronous
 arms will share this repair. Their timings remain separate from completed RNO controls at the prior grader revision.
+
+
+[Revision r7](snowball-staged-protocol-r7.json) declares one fresh repaired asynchronous pair. It explicitly
+raises the agent's baseline submission allowance from eight to nine; the candidate allowance remains four.
+Both arms use the same grader repair and lock. Their training and measurement functions are unchanged;
+[the runtime proof](evidence/matched-grader-runtime-proof.json) checks this against the prior instrumented
+heads and confirms the other three shared Marin package trees are identical. Both actual backend dry runs
+passed without submission. All fourteen prior allocations remain counted and closed.
+
+[The real-source task replay](evidence/grader-repair-task-parity.json) confirms exact old/new grades for all
+192 fixed reference-like replies. There are 191 positive replies and one existing negative symbolic-inequality
+format case at campaign source row 8692, whose reference is `d < \mu < M`. The legacy extraction stops at a
+literal `<`, and equivalent escaped forms also fail its literal symbolic comparison. This existing limitation
+is preserved: no task is edited or filtered. The repair also grades a known matrix-root wrong candidate
+incorrect in all 145 AIME sessions. This is a regression and parity check, not evidence of model answer quality.
+The [replay archive](evidence/grader-repair-task-replay.zip) preserves complete CPU outputs and the helpers.
+
+The baseline must complete all 67 fresh applied updates and stop before the one candidate submission. Each
+uses East BATCH priority, five eight-H100 nodes, a six-hour queue-inclusive deadline and zero automatic retries.
+Fresh board and sequential capacity checks precede submission. Both complete asynchronous reports and the
+final goal review remain pending.
 
 ## Complete controlled Snowball cost
 

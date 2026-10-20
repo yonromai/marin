@@ -20,6 +20,8 @@ from experiments.post_training.score_centering_performance.analyze import compar
 
 MODES = ("ordinary", "capture", "sc", "armed", "probe")
 LOCK_SHA256 = "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99"
+ASYNC_LOCK_SHA256 = "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f"
+GRADER_SOURCE_COMMIT = "5ef1e703d3bae94d510d8cf3f50d902958e10d20"
 
 
 def read_report(path):
@@ -73,7 +75,9 @@ def summarize(path, cadence, controls_repetitions=None):
         assert all(row["applied_updates"] <= expected for row in serialized)
     else:
         assert data["applied_updates"] == expected
-    assert data["runtime"]["lock_sha256"] == LOCK_SHA256
+    assert data["runtime"]["lock_sha256"] == (ASYNC_LOCK_SHA256 if scope == "async" else LOCK_SHA256)
+    if scope == "async":
+        assert data["runtime"]["grader_source_commit"] == GRADER_SOURCE_COMMIT
     shape_keys = ("tokens", "loss_tokens", "sequence_shape")
     if serialized:
         for key in shape_keys:
