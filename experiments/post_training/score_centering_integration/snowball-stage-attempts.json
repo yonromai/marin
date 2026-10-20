@@ -89,16 +89,16 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a",
+    "candidate_cluster": "cw-rno2a",
     "baseline_controller_terminal_at": "2026-10-20T06:26:13.274Z",
     "baseline_provider_absence_at": "2026-10-20T06:30:51.606126Z",
-    "next_baseline_config": "snowball-baseline-async-a4-east-r7-detach.yaml",
-    "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml",
+    "next_baseline_config": "snowball-baseline-async-a4-rno-r8-detach.yaml",
+    "next_candidate_config": "snowball-candidate-async-a0-rno-r8-detach.yaml",
     "common_grader_source_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20"
   },
   "owned_active_jobs_or_queues": [],
-  "limit": "All 14 actual GPU submissions are terminal and absent. R7 declares one additional fresh baseline, overall baseline 9/9 and async 5/5, before the one candidate async attempt, overall candidate 4/4. Both repaired runtimes pass exact source-task parity and actual backend dry runs. No new GPU submission has occurred; both full async reports and final review remain pending.",
-  "primary_cluster": "RNO controlled pair; East fresh asynchronous pair under r7 with common grader repair",
+  "limit": "All 14 actual GPU submissions are terminal and absent. R8 preserves the r7 declaration of one additional fresh baseline, overall baseline 9/9 and async 5/5, before the one candidate async attempt, overall candidate 4/4. Both repaired runtimes pass exact source-task parity; both actual Reno backend dry runs passed without submission. No new GPU submission has occurred; both full async reports and final review remain pending.",
+  "primary_cluster": "Reno controlled pair and fresh repaired asynchronous pair; separate stages and locks",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
     "actual_attempts": 1,

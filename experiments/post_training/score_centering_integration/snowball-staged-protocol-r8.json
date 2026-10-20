@@ -1,0 +1,98 @@
+{
+  "revision": "r8",
+  "supersedes": "snowball-staged-protocol-r7.json",
+  "declared_at_utc": "2026-10-20T07:45:23.747353+00:00",
+  "reason": "The fresh sequential capacity check found 7 free whole H100 nodes and 71 unused GPU/RDMA quota units on Reno, versus 1 free node and 15 quota units on East. No repaired GPU job has been submitted. Route both fresh repaired arms to Reno before submission; keep the r7 limits, source pins, data, training, measurement and deadlines unchanged. All 14 prior attempts remain counted and stopped.",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 9,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 5,
+    "candidate_async": 1
+  },
+  "actual_submissions_before_revision": {
+    "qwen": 3,
+    "snowball_baseline": 8,
+    "snowball_candidate": 3,
+    "total": 14,
+    "all_terminal_and_absent": true
+  },
+  "decision_by": "Agent operating-plan revision under the original no-GPU-hour-cap goal, before any next submission; no new user acceptance inferred.",
+  "grader_repair": {
+    "old_commit": "b3206ac1c46cee3079441f394b5a6a13bb923d0e",
+    "new_commit": "5ef1e703d3bae94d510d8cf3f50d902958e10d20",
+    "source_change": "One noncommutative-scalar rejection before SymPy finiteness. Existing invalid-candidate zero scoring and invalid-reference failure remain. No broad exception catch.",
+    "old_lock_sha256": "a9686c1263fae6e77f560c22ab8faa99b694747ac57e09f816ae7ce923c19f99",
+    "new_lock_sha256": "1343407b293a89cbc921d1e3f31ab4a701d0ef8b1ab3b9f2dbda39204955969f",
+    "lock_changes": "Only four shared Marin Git revisions. Other3Marin package trees, all package versions/other sources/wheels and vLLM pin are unchanged.",
+    "grader_tests_passed": 437,
+    "product_cpu_tests_passed": 477,
+    "product_dependency_skips": 3,
+    "reproducer": "evidence/grader-cpu-reproducer.json",
+    "proof": "evidence/matched-grader-runtime-proof.json",
+    "task_replay": "evidence/grader-repair-task-parity.json",
+    "task_replay_scope": "All 192 fixed reference-like replies have exactly equal old/new grades: 191 positive and one existing negative symbolic-inequality format case. No row was edited or filtered. All 145 AIME sessions grade the known nonscalar wrong candidate incorrect under the repair. Full native grading and source lowering were used. These CPU fixtures do not establish generated-answer quality or training throughput."
+  },
+  "future_stages_in_order": [
+    {
+      "variant": "baseline",
+      "product_integration": "964a602e995b16943dc34db036d25d2b7c5b7310",
+      "runtime_with_common_grader_fix": "dffd2c4b318bad910e532dea19f05a3cc1f9916e",
+      "prepare": "snowball-baseline-async-a4-rno-r8-prepare.yaml",
+      "detach": "snowball-baseline-async-a4-rno-r8-detach.yaml",
+      "stage_attempt_number": 5,
+      "overall_baseline_submission_number": 9,
+      "applied_updates": 67
+    },
+    {
+      "variant": "candidate",
+      "product": "c36e8594cbbbe55362945debfa6f75887a96361f",
+      "runtime_with_common_grader_fix": "56e187219994288b50463d8505f822329beb0795",
+      "prepare": "snowball-candidate-async-a0-rno-r8-prepare.yaml",
+      "detach": "snowball-candidate-async-a0-rno-r8-detach.yaml",
+      "stage_attempt_number": 1,
+      "overall_candidate_submission_number": 4,
+      "applied_updates": 67
+    }
+  ],
+  "configurations": [
+    {
+      "path": "snowball-baseline-async-a4-rno-r8-prepare.yaml",
+      "sha256": "cd2a63bc8296284757f99b4e0b0e1f07dd7b2dd913daecf8ba101e09732189d9"
+    },
+    {
+      "path": "snowball-baseline-async-a4-rno-r8-detach.yaml",
+      "sha256": "556128cf1f9a715f4ebe4a35f9cd807555c53b8af82163cc6015a81f0c5188b6"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-r8-prepare.yaml",
+      "sha256": "5e0a65c5c5b870ec54d6a9efd10891e4fe0e6329b86e0536cf550c657e32bf85"
+    },
+    {
+      "path": "snowball-candidate-async-a0-rno-r8-detach.yaml",
+      "sha256": "ed28ce94f3e457e886e8d04e206a174696b90a7bd0d1130345b681d0f63999bb"
+    }
+  ],
+  "cluster": "cw-rno2a",
+  "priority": "BATCH",
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "learner": "4nodes PP2/EP8/DP16/TP1/CP1/SP1",
+  "inference": "1node DP8/EP8",
+  "automatic_retries": 0,
+  "queue_inclusive_deadline_seconds": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "unchanged": "Original SFT/tokenizer, same192selectedtasks andsourceparquetdf971071e94b3efaa8c39a97beb1020dca6240dff71651fe263f620fc57c5bcd, seed0, realrewards/normalEOS,67updates(3calibration+6native+12/12/12/22async),2warmupdatespermode, K128 andSCfrequency, probeinterval10/32positions, fullbatch/sourceage4/inflight64, per-update publication andkeep policy. No vLLM changes. Report-only runtime version metadata is added outside timing windows; measurement methods are AST-identical.",
+  "comparison_scope": "Both fresh async arms use Reno and the identical repaired grader and new lock. Complete Reno controls at the prior grader revision remain a separate stage; no timing samples are pooled across runtime revisions or stages. No learning benefit claim.",
+  "operating_rule": "All 14 previous allocations are terminal and absent. Require successful real-source grader replay, matched-runtime proof and actual Reno backend dry runs before GPU submission. Check the resource board and both clusters sequentially. Enter one native Reno BATCH queue with a six-hour deadline, no duplicate/move or automatic retry. Keep healthy allocations. Verify all 67 applied baseline updates and shutdown before the one candidate submission. Count every actual attempt, including queue-only failures.",
+  "failure_rule": "No automatic or undeclared further attempt. Retain any incomplete outcome and its exact source, applied-update evidence and allocation bounds before reassessing.",
+  "placement_evidence": [
+    "evidence/r8-prelaunch-capacity-cw-rno2a.json",
+    "evidence/r8-prelaunch-capacity-cw-us-east-02a.json"
+  ]
+}

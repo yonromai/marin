@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T07:42:31.198555+00:00",
+  "saved_at": "2026-10-20T07:46:31.276600+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -366,10 +366,10 @@
   },
   "staged_limit_revision": "r7 explicitly adds one baseline async attempt after the diagnosed scalar-grader failure and matched repair. Global baseline allowance rises from eight to nine before submission. Candidate stays four; all earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a4-east-r7",
-    "snowball-candidate-async-a0-east-r7"
+    "snowball-baseline-async-a4-rno-r8",
+    "snowball-candidate-async-a0-rno-r8"
   ],
-  "placement_revision": "r5 lets native East BATCH queue control admission after r4 four-hour free-only readiness window expired. Both fresh async arms remain East; complete RNO controls are separate.",
+  "placement_revision": "r8 routes both unsubmitted repaired async arms to the observed seven-node Reno opening before any new GPU submission. Limits remain those of r7; complete controls and repaired async timings stay separate.",
   "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",

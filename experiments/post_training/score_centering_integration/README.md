@@ -224,6 +224,14 @@ uses East BATCH priority, five eight-H100 nodes, a six-hour queue-inclusive dead
 Fresh board and sequential capacity checks precede submission. Both complete asynchronous reports and the
 final goal review remain pending.
 
+
+[Revision r8](snowball-staged-protocol-r8.json) routes both still-unsubmitted repaired asynchronous arms to
+Reno. The sequential capacity check found seven free whole H100 nodes and 71 unused GPU/RDMA quota units
+there, versus one node and 15 quota units on East. All fourteen prior jobs were absent on both clusters.
+The change affects only the cluster route and run namespace. R7's source pins, task/measurement settings,
+submission limits and deadlines are unchanged. Complete controls and fresh repaired async results remain
+separate stages, even though both use Reno. Both actual Reno backend dry runs passed without submission. No repaired GPU attempt has yet been submitted.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
