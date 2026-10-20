@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T00:36:05.350289+00:00",
+  "saved_at": "2026-10-20T04:35:29.121282+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 25492,
-      "sha256": "2660c6c5d08168b0e8ba3616da159a7c5bb04654458343e40e2ebbd8347256a5"
+      "bytes": 26245,
+      "sha256": "0b354a1723cbc08591c5075dc0bf7b10c3f30edf7b54fac07e3c202aabc7a368"
     },
     {
       "path": "allocation-accounting.json",
       "bytes": 14904,
-      "sha256": "e8bc606a4f9fec98dca2db343b20fc3b9d2187e8f09031da94c08b2136292503"
+      "sha256": "7b3251037ffd0929d709874d24d0d0d5c60328c1c8ff93d3fd423f90b48ad7e0"
     },
     {
       "path": "analyze.py",
@@ -65,6 +65,16 @@
       "path": "evidence/capacity-east-before-qwen-floor.json",
       "bytes": 11570,
       "sha256": "dbd070cfd7b87c0979c139f39e8f693013458f76d1f64d539b0583bd1f6fc31e"
+    },
+    {
+      "path": "evidence/capacity-r4-east-deadline.json",
+      "bytes": 11569,
+      "sha256": "9ea297aff3bd7c0306875553b6f6e361cf6b4f3685e5277deb66975c121b1259"
+    },
+    {
+      "path": "evidence/capacity-r4-rno-deadline.json",
+      "bytes": 19656,
+      "sha256": "34d01a1781d007ed12bfc3d24082998fc82596073db8c83faf98c4d3d586c9ff"
     },
     {
       "path": "evidence/capacity-rno-after-a2.json",
@@ -160,6 +170,16 @@
       "path": "evidence/pr968-097192b4-ci-check-03.json",
       "bytes": 1896,
       "sha256": "2c84f91f009ce73d03ab1946242ab4abcc0b4771a81ce234b65d0c61540f46cb"
+    },
+    {
+      "path": "evidence/queue-priorities-r4-east-deadline.json",
+      "bytes": 1111,
+      "sha256": "ec8c062f8df24b5498586c76e3f9eb96f9f6726f62e5d07975e2b1007150a1d2"
+    },
+    {
+      "path": "evidence/queue-priorities-r4-rno-deadline.json",
+      "bytes": 1248,
+      "sha256": "4a60ca0aef15966866b5984211983d8b660df0964f3cd9669aa2af3bb1a90760"
     },
     {
       "path": "evidence/qwen-a0-analysis.json",
@@ -270,6 +290,11 @@
       "path": "evidence/r4-backend-preflight.zip",
       "bytes": 13364,
       "sha256": "43ab3bad81890ef51e1c7ca9abe5d2120c43d2804065f9583d0427cd0a34c902"
+    },
+    {
+      "path": "evidence/r4-capacity-window.zip",
+      "bytes": 29117,
+      "sha256": "d3e46c145451b35b47aa2026552ddc7ca90286a6bee257b8fe04adb1d428c0b3"
     },
     {
       "path": "evidence/r4-config-proof.json",
@@ -1043,8 +1068,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 7633,
-      "sha256": "1bfef71eea19ca5a263af55a949c79d8658988a7110bde47595e717c9cd539c2"
+      "bytes": 7437,
+      "sha256": "950c33ebe8409aa6cc50f35e039be73461265de459e1117dac5ec3d08dc281c2"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
@@ -1060,6 +1085,11 @@
       "path": "snowball-staged-protocol-r4.json",
       "bytes": 6144,
       "sha256": "9b4b2b53710b05ed55f7a6080808490d3aec62c62ecf9b883f3a6ce7a2361de0"
+    },
+    {
+      "path": "snowball-staged-protocol-r5.json",
+      "bytes": 3140,
+      "sha256": "16906a786ccaa1a3b7976a879dd04f6d5398e4ed1d9859579ef856ae724af9ce"
     },
     {
       "path": "snowball-staged-protocol.json",

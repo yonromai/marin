@@ -1,6 +1,6 @@
 {
-  "saved_at_utc": "2026-10-20T00:33:45.464193+00:00",
-  "protocol": "snowball-staged-protocol-r4.json",
+  "saved_at_utc": "2026-10-20T04:35:28.580189+00:00",
+  "protocol": "snowball-staged-protocol-r5.json",
   "candidate_controls": {
     "attempts_submitted": 3,
     "manual_attempt_limit": 3,
@@ -55,7 +55,7 @@
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
-    "baseline_outcome": "both r3 attempts externally preempted during startup; zero updates; r4 final unsubmitted retry awaits capacity",
+    "baseline_outcome": "r4 capacity window expired; final unsubmitted baseline attempt will enter native East BATCH queue under r5",
     "baseline_submitted_at": "2026-10-20T00:21:53.775000Z",
     "baseline_admitted_at": "2026-10-20T00:21:55.095418Z",
     "baseline_queue_inclusive_deadline_at": "2026-10-20T06:21:53.775Z",
@@ -91,8 +91,8 @@
     }
   },
   "owned_active_jobs_or_queues": [],
-  "limit": "All12actual accelerator submissions are terminal and absent. Complete RNO controls remain fixed. r4 reallocates one unused baseline-controls retry to a third and last baseline-async attempt without raising global baseline7/candidate4 limits. No GPU submission until five free whole-node fits and40unusedGPU/RDMAquota; choose first fit across RNO/East and keep both asynchronous arms there. No result is pooled across clusters.",
-  "primary_cluster": "cw-rno2a for completed controls; asynchronous cluster selected under r4, then fixed for both arms",
+  "limit": "All12actual GPU submissions remain terminal and absent. r5 replaces the expired free-only readiness guard with native East BATCH queue admission; baseline7/candidate4 global and baselineasync3/candidateasync1 limits unchanged. Neither fresh asynchronous report is complete.",
+  "primary_cluster": "RNO controlled pair; East fresh asynchronous pair under r5",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
     "actual_attempts": 1,

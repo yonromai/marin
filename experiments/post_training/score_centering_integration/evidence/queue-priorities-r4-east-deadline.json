@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-20T04:34:38.324923+00:00",
+  "context": "marin-gpu_US-EAST-02A",
+  "by_priority": {
+    "2": {
+      "admitted_workloads": 4,
+      "admitted_gpus": 112,
+      "pending_workloads": 1,
+      "pending_gpus_requested": 64
+    },
+    "0": {
+      "admitted_workloads": 10,
+      "admitted_gpus": 0,
+      "pending_workloads": 0,
+      "pending_gpus_requested": 0
+    },
+    "1": {
+      "admitted_workloads": 1,
+      "admitted_gpus": 8,
+      "pending_workloads": 2,
+      "pending_gpus_requested": 16
+    },
+    "11": {
+      "admitted_workloads": 17,
+      "admitted_gpus": 129,
+      "pending_workloads": 0,
+      "pending_gpus_requested": 0
+    },
+    "10": {
+      "admitted_workloads": 51,
+      "admitted_gpus": 0,
+      "pending_workloads": 1,
+      "pending_gpus_requested": 0
+    },
+    "1000": {
+      "admitted_workloads": 9,
+      "admitted_gpus": 0,
+      "pending_workloads": 0,
+      "pending_gpus_requested": 0
+    }
+  },
+  "scope": "Read-only aggregate of unfinished Workloads; pending includes evicted/suspended workloads. No names, owner inference or credentials."
+}

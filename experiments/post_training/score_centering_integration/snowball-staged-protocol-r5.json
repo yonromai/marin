@@ -1,0 +1,53 @@
+{
+  "revision": "r5",
+  "supersedes": "snowball-staged-protocol-r4.json",
+  "declared_at_utc": "2026-10-20T04:35:28.579792+00:00",
+  "reason": "The four-hour readiness window expired without five free whole nodes on either cluster. At04:34 RNO had408 admitted priority12 GPUs and120requested by pending priority12 workloads; East had no priority12 workload and129admitted priority11 GPUs,112BATCH GPUs and8priority1 GPUs. Waiting for a free-only snapshot cannot catch openings between checks. Reassess the derived operating guard, keeping every original resource and training boundary and both remaining actual-submission limits.",
+  "capacity_evidence": "evidence/r4-capacity-window.zip",
+  "cluster": "cw-us-east-02a",
+  "priority": "BATCH",
+  "nodes": 5,
+  "gpus_per_node": 8,
+  "operating_rule": "Enter the native East BATCH queue without requiring a current free-only five-node fit. Keep both fresh async arms on East. The scheduler controls admission; zero GPU use while queued. Query both clusters sequentially for whole-node fit and quota while queued, lengthen unchanged waits, and do not move or duplicate this job. Verify all baseline tasks, Pods and queues stopped before candidate submission. Keep healthy allocations. Do not cancel another owner.",
+  "future_stages_in_order": [
+    {
+      "variant": "baseline",
+      "scope": "async",
+      "prepare": "snowball-baseline-async-a2-east-r4-prepare.yaml",
+      "detach": "snowball-baseline-async-a2-east-r4-detach.yaml",
+      "actual_stage_attempt_number": 3,
+      "overall_baseline_submission_number": 7,
+      "manual_stage_attempt_limit": 3,
+      "global_baseline_limit": 7,
+      "updates": 67
+    },
+    {
+      "variant": "candidate",
+      "scope": "async",
+      "prepare": "snowball-candidate-async-a0-east-r4-prepare.yaml",
+      "detach": "snowball-candidate-async-a0-east-r4-detach.yaml",
+      "actual_stage_attempt_number": 1,
+      "overall_candidate_submission_number": 4,
+      "manual_stage_attempt_limit": 1,
+      "global_candidate_limit": 4,
+      "updates": 67
+    }
+  ],
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 7,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 3,
+    "candidate_async": 1
+  },
+  "automatic_retries": 0,
+  "queue_inclusive_deadline_seconds": 21600,
+  "window_timeout_seconds": 1800,
+  "async_phase_timeout_seconds": 2400,
+  "unchanged": "r3/r4 product/runtime pins, task image/lock/packages, original SFT, tokenizer,192valid tasks, normal real rewards/EOS,67updates, fullbatch, maxage4,64inflight groups, per-update publication/keep policy, K128, SC frequency, probeinterval10/32positions, PP2 EP8 DP16 TP/CP/SP1 learner and DP8/EP8 inference. No recovery or source change.",
+  "inference_limits": "Controlled RNO and asynchronous East allocations are separate stages and trajectories. No cross-cluster timing pooling. Only a complete fresh East baseline/candidate pair can establish the requested async comparison. Failed/preempted and queue-only submissions count. No additional retry is armed."
+}

@@ -155,6 +155,14 @@ r3 training and measurement settings, including fresh SFT, real rewards, 67 appl
 retries. Check clusters sequentially with longer waits while unchanged; reassess after the four-hour capacity
 window at 04:34 UTC. No further GPU job is submitted until the capacity guard is met.
 
+[Revision r5](snowball-staged-protocol-r5.json) follows the four-hour readiness window, which ended without a
+five-node opening. At 04:34 UTC, RNO held 408 GPUs in admitted priority-12 workloads and another 120 requested
+by pending priority-12 work. East had no priority-12 workload. Both had zero free whole-node fits. The final
+baseline async attempt will enter East's native BATCH queue, then the candidate will use the same cluster after
+verified baseline shutdown. This replaces the derived free-only guard and catches openings between checks.
+It adds no attempt and changes no training setting. Queue-inclusive deadlines remain six hours, with zero
+automatic retries. The controlled RNO and asynchronous East timing samples will remain separate.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
