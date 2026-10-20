@@ -1,0 +1,561 @@
+{
+  "checked_at": "2026-10-20T06:06:05.637002+00:00",
+  "cluster": "cw-us-east-02a",
+  "whole_gpu_node_candidates": 2,
+  "nodes": [
+    {
+      "name": "g7387bc",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g739e00",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73a62a",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73b716",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73b7ae",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73b892",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73bb8a",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73df9c",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73e294",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g73e352",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g8247ba",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g82d828",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83a1bc",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83b4e8",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83b852",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83bf4c",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83c00a",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d0f6",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d11c",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d142",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d3c8",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d56a",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g83d862",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g845f76",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 7.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g845f9c",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g849532",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g8498e8",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g849be0",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g853134",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g853b26",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g853b4c",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 8.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "name": "g856b8a",
+      "ready": true,
+      "schedulable": true,
+      "gpu_free": 0.0,
+      "taints": [
+        {
+          "effect": "PreferNoSchedule",
+          "key": "is_gpu",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "owned_active_pods": [],
+  "queue": {
+    "name": "iris-cq",
+    "spec": {
+      "flavorFungibility": {
+        "whenCanBorrow": "MayStopSearch",
+        "whenCanPreempt": "TryNextFlavor"
+      },
+      "namespaceSelector": {},
+      "preemption": {
+        "borrowWithinCohort": {
+          "policy": "Never"
+        },
+        "reclaimWithinCohort": "Never",
+        "withinClusterQueue": "LowerPriority"
+      },
+      "queueingStrategy": "BestEffortFIFO",
+      "resourceGroups": [
+        {
+          "coveredResources": [
+            "cpu",
+            "memory",
+            "ephemeral-storage",
+            "nvidia.com/gpu",
+            "rdma/ib"
+          ],
+          "flavors": [
+            {
+              "name": "cw-tas",
+              "resources": [
+                {
+                  "name": "cpu",
+                  "nominalQuota": "1G"
+                },
+                {
+                  "name": "memory",
+                  "nominalQuota": "1Pi"
+                },
+                {
+                  "name": "ephemeral-storage",
+                  "nominalQuota": "1Pi"
+                },
+                {
+                  "name": "nvidia.com/gpu",
+                  "nominalQuota": "256"
+                },
+                {
+                  "name": "rdma/ib",
+                  "nominalQuota": "256"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "stopPolicy": "None"
+    },
+    "status": {
+      "admittedWorkloads": 119,
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-06-09T03:21:30Z",
+          "message": "Can admit new workloads",
+          "observedGeneration": 4,
+          "reason": "Ready",
+          "status": "True",
+          "type": "Active"
+        }
+      ],
+      "flavorsReservation": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "1473450m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "19292Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "13287616Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "233"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "233"
+            }
+          ]
+        }
+      ],
+      "flavorsUsage": [
+        {
+          "name": "cw-tas",
+          "resources": [
+            {
+              "borrowed": "0",
+              "name": "cpu",
+              "total": "1473450m"
+            },
+            {
+              "borrowed": "0",
+              "name": "ephemeral-storage",
+              "total": "19292Gi"
+            },
+            {
+              "borrowed": "0",
+              "name": "memory",
+              "total": "13287616Mi"
+            },
+            {
+              "borrowed": "0",
+              "name": "nvidia.com/gpu",
+              "total": "233"
+            },
+            {
+              "borrowed": "0",
+              "name": "rdma/ib",
+              "total": "233"
+            }
+          ]
+        }
+      ],
+      "pendingWorkloads": 2,
+      "reservingWorkloads": 119
+    }
+  },
+  "scope": "GPU resource-request fit across all namespaces; readiness, taints and Kueue admission still constrain placement. Not a reservation."
+}

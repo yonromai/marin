@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T06:04:45.397954+00:00",
+  "saved_at_utc": "2026-10-20T06:07:45.427511+00:00",
   "protocol": "snowball-staged-protocol-r6.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -50,15 +50,15 @@
     "report_sha256": "bbbb7616fda9a9673eafc2e92162f2b07fb816d8f65f9c2de4059d8133033cde"
   },
   "asynchronous_stages": {
-    "baseline_actual_attempts": 3,
+    "baseline_actual_attempts": 4,
     "candidate_actual_attempts": 0,
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
-    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a2-east-01a146a3",
-    "baseline_outcome": "third async startup externally priority11-preempted101seconds after admission; zero reports/updates; one additional unsubmitted baseline attempt declared inr6",
-    "baseline_submitted_at": "2026-10-20T04:36:07.291Z",
-    "baseline_admitted_at": "2026-10-20T05:58:03.244151Z",
-    "baseline_queue_inclusive_deadline_at": "2026-10-20T10:36:07.291Z",
+    "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
+    "baseline_outcome": "admitted;allfivePodsRunningat06:07:13UTC,attemptzero",
+    "baseline_submitted_at": "2026-10-20T06:06:14.078Z",
+    "baseline_admitted_at": "2026-10-20T06:06:14.372367Z",
+    "baseline_queue_inclusive_deadline_at": "2026-10-20T12:06:14.078Z",
     "baseline_prior_attempt": {
       "baseline_actual_attempts": 1,
       "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
@@ -89,12 +89,12 @@
       "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
       "preemptor_owner": "unknown"
     },
-    "candidate_cluster": "cw-us-east-02a",
-    "baseline_controller_terminal_at": "2026-10-20T06:00:00.030Z",
-    "baseline_provider_absence_at": "2026-10-20T06:01:52.272332Z"
+    "candidate_cluster": "cw-us-east-02a"
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "All13actualGPUsubmissions terminal/absent. r6 explicitly adds one fresh baseline attempt, raising overall baseline allowance7to8; candidate remains4. Both real-reward async results remain pending; complete RNO controls unchanged.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3"
+  ],
+  "limit": "Fourteen actualGPUsubmissions:thirteenclosed andr6additionalbaselineasyncactiveonEast. Baseline8/8allowanceincludingallpreemptions;candidateasyncstilloneunsubmittedattempt. Bothrealrewardasyncreportsremainpending;completeRNOcontrolsunchanged.",
   "primary_cluster": "RNO controlled pair; East fresh asynchronous pair under r5",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {

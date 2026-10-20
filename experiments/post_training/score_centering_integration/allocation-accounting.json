@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T06:05:20.330039+00:00",
+  "saved_at": "2026-10-20T06:07:46.011539+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -314,6 +314,28 @@
       "queue_seconds": 4915.953151,
       "gpu_hours_to_controller_terminal_proxy": 1.2976205444444446,
       "gpu_hours_through_verified_absence_upper_bound": 2.5447575666666666
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a3-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T06:06:14.078Z",
+      "admitted_at": "2026-10-20T06:06:14.372367Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "admitted; r6 additional baseline attempt, fresh SFT and67realreward updates planned",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r6.json",
+        "evidence/snowball-baseline-async-a3-east-provider-first.json",
+        "evidence/snowball-baseline-async-a3-east-provider-02.json",
+        "evidence/snowball-baseline-async-a3-east-workload-events.json",
+        "evidence/snowball-baseline-async-a3-east-start-receipts.zip"
+      ],
+      "queue_seconds": 0.294367
     }
   ],
   "prepared_but_not_submitted": [
@@ -338,7 +360,6 @@
   },
   "staged_limit_revision": "r6 explicitly adds one baseline async attempt after all three prior async starts were externally preempted before any report/update. Global baseline allowance rises from seven to eight, declared before submission. Candidate stays four; all earlier attempts remain counted.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a3-east",
     "snowball-candidate-async-a0-east"
   ],
   "placement_revision": "r5 lets native East BATCH queue control admission after r4 four-hour free-only readiness window expired. Both fresh async arms remain East; complete RNO controls are separate.",

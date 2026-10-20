@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T06:05:20.332999+00:00",
+  "saved_at": "2026-10-20T06:07:46.013418+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 27713,
-      "sha256": "32fd0e6c9c405be93b9103534d62aa4269faf902e5e689a43a11da58c07dbfa8"
+      "bytes": 28151,
+      "sha256": "90be1d73ad1e1d4c27719a73b43165f031dcc9a753ec01c324c635ebdab94c9a"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 16353,
-      "sha256": "e0898947013923653504a443a9b31f8b093f57f08cb3a61116de6dfab7e79666"
+      "bytes": 17242,
+      "sha256": "4949abca200efcaf31234d7623a0d38f5127585b4d800a8d583820b307a98215"
     },
     {
       "path": "analyze.py",
@@ -75,6 +75,16 @@
       "path": "evidence/capacity-r4-rno-deadline.json",
       "bytes": 19656,
       "sha256": "34d01a1781d007ed12bfc3d24082998fc82596073db8c83faf98c4d3d586c9ff"
+    },
+    {
+      "path": "evidence/capacity-r6-east-before.json",
+      "bytes": 11571,
+      "sha256": "6cc4add61358cde1b29601dbb1a005df3cbde8eada14a1205b48914b7f9c3340"
+    },
+    {
+      "path": "evidence/capacity-r6-rno-before.json",
+      "bytes": 19811,
+      "sha256": "b98ce80d90e4ae9163596d9e4d7495977f50e2e0b053b9e744fdc33dc72e8d66"
     },
     {
       "path": "evidence/capacity-rno-after-a2.json",
@@ -505,6 +515,26 @@
       "path": "evidence/snowball-baseline-async-a2-east-workload-events.json",
       "bytes": 45880,
       "sha256": "e64cffea2342c1cb9634ce4d92ef0e0aa8ee2fcddc654472759eca2e0cbf54ec"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-provider-02.json",
+      "bytes": 10610,
+      "sha256": "4148a1712dd1a1c5f952ee9f375141834b8ba883c33c40cbbaf2ecff53b50cbf"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-provider-first.json",
+      "bytes": 9865,
+      "sha256": "1b4b94d46b8f8dbb46c6679fc39d6b00a789e63e70bd2fe7b17afc2be9f6b02a"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-start-receipts.zip",
+      "bytes": 1505,
+      "sha256": "2105001c8ba4619704bbd0dd0d1cfd724bd4a3d240d091d26c43a47a3b80889c"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a3-east-workload-events.json",
+      "bytes": 7118,
+      "sha256": "ad101d6258870779c2b8d28bd11313107ce67461637e79bd9e79fb8c44579faa"
     },
     {
       "path": "evidence/snowball-baseline-controls-a0-rno-analysis.json",
@@ -1108,8 +1138,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 7620,
-      "sha256": "7e6faa0a87f69240544bd9da27b4f2d48172dad41e2768039ef5aeddbc5e0862"
+      "bytes": 7466,
+      "sha256": "55204ba1a62d8a94880e105b7303920bd609e706d4fda61223a29db538f430d5"
     },
     {
       "path": "snowball-staged-protocol-r2.json",

@@ -180,6 +180,11 @@ and no automatic retry is enabled. This changes only the run namespace; the mode
 67 updates, batch geometry, K/cadence and six-hour queue-inclusive deadline are unchanged. The candidate still
 requires a complete fresh East baseline and verified shutdown before submission.
 
+The r6 baseline was submitted at 06:06:14.078 UTC and admitted at 06:06:14.372367. All five East Pods were
+Running on attempt zero by 06:07:13, with the same task and logshipper images as the complete controlled pair.
+This is actual submission fourteen, baseline submission eight/eight. It plans 67 fresh real-reward updates with
+a queue-inclusive deadline of 12:06:14.078 UTC and no automatic retry. The candidate is still unsubmitted.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
