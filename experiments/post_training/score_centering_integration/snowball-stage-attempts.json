@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T11:52:58.206327+00:00",
+  "saved_at_utc": "2026-10-20T11:56:40.218633+00:00",
   "protocol": "snowball-staged-protocol-r13.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -51,7 +51,7 @@
   },
   "asynchronous_stages": {
     "baseline_actual_attempts": 8,
-    "candidate_actual_attempts": 0,
+    "candidate_actual_attempts": 1,
     "applied_updates_per_arm": 67,
     "candidate_manual_attempt_limit": 1,
     "baseline_latest_job": "/romain/sc-integration-snowball-baseline-async-a7-rno-01a146a3",
@@ -115,14 +115,24 @@
       "cw-rno2a": "snowball-candidate-async-a0-rno-r8-detach.yaml"
     },
     "candidate_route_alternatives_are_mutually_exclusive": true,
-    "next_candidate_config": "snowball-candidate-async-a0-rno-r8-detach.yaml",
     "baseline_complete": true,
     "baseline_reported_applied_updates": 67,
     "baseline_total_applied_updates_established": true,
-    "baseline_report_sha256": "5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2"
+    "baseline_report_sha256": "5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2",
+    "candidate_latest_job": "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3",
+    "candidate_outcome": "Admitted after complete baseline validation and release; allfiveRNO PodsRunning attempt0, native failure/preemption retries0.",
+    "candidate_submitted_at": "2026-10-20T11:54:42.928Z",
+    "candidate_admitted_at": "2026-10-20T11:54:43.117064Z",
+    "candidate_queue_inclusive_deadline_at": "2026-10-20T17:54:42.928Z",
+    "candidate_runtime_commit": "56e187219994288b50463d8505f822329beb0795",
+    "candidate_controller_terminal_at": null,
+    "candidate_provider_absence_at": null,
+    "candidate_complete": false
   },
-  "owned_active_jobs_or_queues": [],
-  "limit": "All18actual submissions are terminal and absent. Overall baseline12/12, async baseline8/8 complete. One predeclared candidate async attempt remains, overall candidate4/4, same RNO BATCH/runtime/source/67updates. No automatic retry.",
+  "owned_active_jobs_or_queues": [
+    "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3"
+  ],
+  "limit": "Actual19, earlier18terminal/absent. Overall Qwen3/3, baseline12/12, candidate4/4; async baseline8/8 complete and candidate1/1running. Full67updates each, original BATCH/four-Interactive limits, native retries0. No further undeclared attempt.",
   "primary_cluster": "RNO for both fresh repaired asynchronous arms under r13; completed controls remain a separate stage.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
@@ -185,5 +195,5 @@
     "evidence": "evidence/pr968-435ee98f-ci-final.json",
     "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39407226185"
   },
-  "resource_choice_status": "Interactive exception remains unapproved and unused. A large RNO release gave44fully free H100 nodes and379GPU/RDMA quota units on two checks333.484639s apart. Original BATCH allocation admitted immediately; keep healthy allocation."
+  "resource_choice_status": "Matched candidate running at original BATCH priority on RNO after complete baseline and verified release. Fresh RNO fit39fully free/40BATCH-usable nodes,336GPU/RDMA quota,0higherpending. Interactive exception remains unapproved and unused."
 }

@@ -349,7 +349,14 @@ grader and lock. All 64 real-reward updates had nonzero gradients and none was s
 on attempt zero; the controller finished at 2026-10-20T11:48:29.700000Z and all Pods were absent at 2026-10-20T11:50:45.550387+00:00.
 The native report is retained byte-for-byte in a compact LZMA ZIP, SHA-256 `5949a8304c5b26e01d2d5bb2a65e08ddbb02819692a3ab21a5a758eb2a080ad2`.
 [The success summary](evidence/snowball-baseline-async-a7-rno-success-summary.json) records qualifications,
-allocation release and the baseline metrics. The one matched RNO BATCH candidate remains to be run.
+allocation release and the baseline metrics. The one matched RNO BATCH candidate was submitted at
+2026-10-20T11:54:42.928Z and admitted at 2026-10-20T11:54:43.117064Z, after fresh sequential checks found
+39 fully free RNO H100 nodes, 40 BATCH-usable nodes, 336 GPU/RDMA quota units and no higher-priority GPU
+queue. All five candidate Pods were Running on attempt zero at 11:55:12.842904 UTC, with matching task and
+sidecar images and native retry counts zero. This is actual submission nineteen, overall candidate four/four
+and async candidate one/one. Runtime `56e187219994288b50463d8505f822329beb0795` retains the same repaired
+grader, lock, 192 source tasks and 67-update workload. Deadline: 2026-10-20T17:54:42.928Z. The earlier eighteen
+attempts are stopped. The Interactive proposal is still unapproved and unused.
 
 ## Complete controlled Snowball cost
 

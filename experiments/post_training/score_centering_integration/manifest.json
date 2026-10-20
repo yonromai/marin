@@ -1,15 +1,15 @@
 {
-  "saved_at": "2026-10-20T11:52:58.736756+00:00",
+  "saved_at": "2026-10-20T11:56:41.248648+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 42591,
-      "sha256": "a9395e34efe9e011a6cffc76d6109b98adbaf32b1cc7b49f828ead0e4f3c37ce"
+      "bytes": 43313,
+      "sha256": "1b0e8fdf12fb37bfed6da90ba7d62164098340c4937fd8195116928a2e3b2251"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 23847,
-      "sha256": "fd3c6dd52a106769f52ee1f67f8945b6d19c60d1046917e471a7825aacf9fb4f"
+      "bytes": 24712,
+      "sha256": "afb0be0b17f9a31641ecfbac44f8871ac855723963457a98c699626ca7ac50a4"
     },
     {
       "path": "analyze.py",
@@ -942,6 +942,11 @@
       "sha256": "72d5def2150e49906356514b95d31a0614c23709c43ec0071c625ca82c3f65cc"
     },
     {
+      "path": "evidence/snowball-candidate-async-a0-rno-provider-first.json",
+      "bytes": 10604,
+      "sha256": "815b7f5db485394a1df6a929b1e2ebe21e90a80e2905bfdf98582f366a9537b2"
+    },
+    {
       "path": "evidence/snowball-candidate-async-a0-rno-r3-launch-preflight.json",
       "bytes": 9414,
       "sha256": "c6908555fa4351cdd5dfcf3cd43aa2b4f92c70bf9f02b367dd3c842ba3a4ca8b"
@@ -950,6 +955,16 @@
       "path": "evidence/snowball-candidate-async-a0-rno-r8-launch-preflight.json",
       "bytes": 9414,
       "sha256": "993d114d504bad45be54e7d9c4014b5bab3a0259742889da9df505cbd094997f"
+    },
+    {
+      "path": "evidence/snowball-candidate-async-a0-rno-start-receipts.zip",
+      "bytes": 4490,
+      "sha256": "4309b8ed3160e43dba8bcbda3142ec7e14b19be89818fe8ac7de5f89dc7bb64f"
+    },
+    {
+      "path": "evidence/snowball-candidate-async-a0-rno-workload-events.json",
+      "bytes": 2602,
+      "sha256": "59511a526e04f7dfaad36922d0a77f326bdadae1b5878c2117fa49a35434bf0d"
     },
     {
       "path": "evidence/snowball-candidate-controls-a0-launch-preflight.json",
@@ -1628,8 +1643,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 10726,
-      "sha256": "2c14f2a3ade3ffc5c7115faaf6d2cdf4b548443022b658af59c27723fb1e1798"
+      "bytes": 11375,
+      "sha256": "bd3b27cb59bc4a5fe3cb2d09d160f16d343da31fa069ca6bba5f503b29893da5"
     },
     {
       "path": "snowball-staged-protocol-r10.json",

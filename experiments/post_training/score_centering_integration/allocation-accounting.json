@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T11:52:58.732107+00:00",
+  "saved_at": "2026-10-20T11:56:41.245875+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -457,6 +457,27 @@
       "queue_seconds": 1.02385,
       "gpu_hours_to_controller_terminal_proxy": 35.39816833333333,
       "gpu_hours_through_verified_absence_upper_bound": 36.90761707777777
+    },
+    {
+      "job": "/romain/sc-integration-snowball-candidate-async-a0-rno-01a146a3",
+      "cluster": "cw-rno2a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T11:54:42.928Z",
+      "admitted_at": "2026-10-20T11:54:43.117064Z",
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "active; matched repaired RNO candidate after complete67-update baseline and verified release; allfivePodsRunning attempt0, native retries0",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r13.json",
+        "evidence/snowball-candidate-async-a0-rno-provider-first.json",
+        "evidence/snowball-candidate-async-a0-rno-workload-events.json",
+        "evidence/snowball-candidate-async-a0-rno-start-receipts.zip"
+      ],
+      "queue_seconds": 0.189064
     }
   ],
   "prepared_but_not_submitted": [
@@ -480,9 +501,7 @@
     "candidate_async": 1
   },
   "staged_limit_revision": "r13 declares one new baseline after a large RNO release. Baseline allowance11 to12 and async7 to8 before actual submission. Candidate4 and Qwen3 unchanged; all17previous attempts remain counted. Original resource boundaries unchanged.",
-  "staged_prepared_but_not_submitted": [
-    "snowball-candidate-async-a0-rno-r8"
-  ],
+  "staged_prepared_but_not_submitted": [],
   "prepared_candidate_routes_are_mutually_exclusive": true,
   "placement_revision": "r13 chooses the large newly released RNO opening, with both fresh arms at BATCH and the original four-Interactive cap. Require two qualifying observations at least five minutes apart. The Interactive proposal remains unapproved and unused.",
   "superseded_prepared_stages": [
