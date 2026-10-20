@@ -1,0 +1,133 @@
+{
+  "revision": "r4",
+  "supersedes": "snowball-staged-protocol-r3.json",
+  "declared_at_utc": "2026-10-20T00:34:34.808056+00:00",
+  "reason": "Both r3 baseline async attempts were externally preempted by priority12 workloads within five minutes of admission, before any report/update. Complete matched RNO controls are already retained. Move the one unused baseline-controls retry to a third and final baseline-async attempt without increasing the global baseline allowance. Wait for actual whole-node and quota headroom before the remaining submissions.",
+  "global_finite_submission_limits": {
+    "qwen": 3,
+    "snowball_baseline": 7,
+    "snowball_candidate": 4
+  },
+  "staged_attempt_limits": {
+    "baseline_controls": 1,
+    "candidate_controls": 3,
+    "baseline_async": 3,
+    "candidate_async": 1
+  },
+  "actual_submissions_before_revision": {
+    "qwen": 3,
+    "snowball_baseline": 6,
+    "snowball_candidate": 3,
+    "all_terminal_and_absent": true
+  },
+  "remaining_submissions": {
+    "baseline_async": 1,
+    "candidate_async": 1,
+    "additional_controls": 0
+  },
+  "capacity_rule": {
+    "eligible_clusters": [
+      "cw-rno2a",
+      "cw-us-east-02a"
+    ],
+    "required_free_whole_h100_nodes": 5,
+    "required_unused_gpu_and_rdma_quota": 40,
+    "selection": "Choose the first eligible cluster with a fresh five-node fit and40unusedGPU/RDMA units; prefer RNO if both qualify. No outstanding owned GPU jobs or queues may remain. Prepare both routes but submit exactly one baseline job. Keep the successful baseline cluster fixed for the candidate, and require fresh capacity after verified baseline shutdown. Do not pool with older cross-cluster or incomplete attempts.",
+    "check_order": "RNO then East, sequential queries. Increase unchanged waits from ten to twenty to thirty minutes.",
+    "capacity_wait_deadline_utc": "2026-10-20T04:34:00Z",
+    "capacity_wait_limit": "No GPU submission if the readiness guard is not met; preserve results and reassess finite operating plan at the deadline."
+  },
+  "future_configurations": [
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-prepare.yaml",
+      "sha256": "497dcfd97e6e3b23c0a7df2e60a77bbac44c5b8d6e23d8483193b7f705086037"
+    },
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-detach.yaml",
+      "sha256": "7d3b1520006ce0449406fcbd45b9bf2c7bfd25556af7d641d3c1fa5b511b17a1"
+    },
+    {
+      "path": "snowball-baseline-async-a2-east-r4-prepare.yaml",
+      "sha256": "b6a676567f7ac7eeda307e0a54bf7e5c896909bcb5c4aaee8ebd2f7f0583e889"
+    },
+    {
+      "path": "snowball-baseline-async-a2-east-r4-detach.yaml",
+      "sha256": "3f2ada5ead3531f20b5e2957d6b38fbcc64babe690cbbb2949b4002d5c23e8dd"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-prepare.yaml",
+      "sha256": "b4d3d7b2c4b342f6f9b3f00de80939b87b9d3d21dd19b88d6c78bd4608dc1120"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-detach.yaml",
+      "sha256": "f158de5d9bf940adeda9fa2ab16a3959ec2547a757855042b5e4e1b8fa5f42a6"
+    }
+  ],
+  "unchanged_r3_controls": {
+    "applied_updates_per_arm": 67,
+    "calibration_updates": 3,
+    "natural_periodic_updates": 6,
+    "async_mode_updates": [
+      12,
+      12,
+      12,
+      22
+    ],
+    "async_warmup_per_mode": 2,
+    "fresh_original_sft": true,
+    "real_rewards_and_normal_eos": true,
+    "full_batch_max_age4_inflight64": true,
+    "publication": "each applied update, existing keep pause policy",
+    "SC": "K128, every full-SC update, same kernel",
+    "probes": "interval10, K128,32positions per response",
+    "nodes": 5,
+    "H100s_per_node": 8,
+    "learner": "4nodes PP2 EP8 DP16 TP/CP/SP1",
+    "inference": "1node DP8 EP8",
+    "priority": "BATCH",
+    "window_timeout_seconds": 1800,
+    "async_phase_timeout_seconds": 2400,
+    "queue_inclusive_job_deadline_seconds": 21600,
+    "automatic_failure_or_preemption_retries": 0
+  },
+  "completed_controls": {
+    "cluster": "cw-rno2a",
+    "baseline_report_sha256": "c5606772fe268927f7d9ed2ed826f80baf9a28b7518151b984c772c4568a6a1a",
+    "candidate_report_sha256": "bbbb7616fda9a9673eafc2e92162f2b07fb816d8f65f9c2de4059d8133033cde",
+    "updates_each": 18,
+    "pooled_with_async": false
+  },
+  "source_invariants": {
+    "baseline_product": "964a602e995b16943dc34db036d25d2b7c5b7310",
+    "baseline_runtime": "3b5de0c201a8ab7034aa53d9be3645d1e5372a8b",
+    "candidate_product": "87f13fcd82b4677545816e0789c685d10cf051a0",
+    "candidate_runtime": "92d057c561b0893a3d922e42f221eb8d5b1e68fb",
+    "changes": "Only job namespace and cluster route; no source, model, tokenizer, task selection, sampling, reward, workload or measurement change."
+  },
+  "failed_async_attempts": [
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a0-rno-01a146a3",
+      "admitted_at": "2026-10-19T23:57:02.812013Z",
+      "evicted_at": "2026-10-20T00:01:05.666032Z",
+      "preemptor_uid": "e0dc44d9-8e1e-4b5f-b283-3e91c1221c83",
+      "preemptor_priority": 12,
+      "owner": "unknown",
+      "controller_terminal_at": "2026-10-20T00:01:38.958Z",
+      "provider_absence_at": "2026-10-20T00:15:45.497607Z",
+      "reported_updates": 0
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
+      "admitted_at": "2026-10-20T00:21:55.095418Z",
+      "evicted_at": "2026-10-20T00:26:51.532574Z",
+      "preemptor_uid": "c14094fb-0d1d-4d0f-9bfa-af38fcb58591",
+      "preemptor_priority": 12,
+      "owner": "unknown",
+      "controller_terminal_at": "2026-10-20T00:27:29.173Z",
+      "provider_absence_at": "2026-10-20T00:32:13.318884Z",
+      "reported_updates": 0
+    }
+  ],
+  "analysis_addendum": "Use already recorded raw gradient norms to count nonzero-gradient measured updates, exclusive phase walls and consumed stop counts to explain waiting/overlap and workload differences. No new GPU diagnostic or gradient campaign.",
+  "failure_rule": "Every actual submission counts, including queue-only cancellation. No automatic or additional undeclared retry. If the last baseline or candidate attempt fails, retain all evidence and expose the exact missing qualification before any further expansion."
+}

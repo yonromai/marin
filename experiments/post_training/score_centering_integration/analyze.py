@@ -203,6 +203,7 @@ def summarize(path, cadence, controls_repetitions=None):
         tokens = sum(row["tokens"] for row in rows)
         losses = sum(row["loss_tokens"] for row in rows)
         lengths = np.asarray([length for row in rows for length in row["response_lengths"]])
+        exclusive = sorted(key for key in rows[0]["metrics"] if key.startswith("timing/step_wall/"))
         observed = [row for row in rows if row["metrics"]["score_centering_probe/observed"]]
         all_observed = [row for row in phase_rows if row["metrics"]["score_centering_probe/observed"]]
         result["asynchronous"][phase["mode"]] = {
@@ -216,6 +217,10 @@ def summarize(path, cadence, controls_repetitions=None):
             "cycle_seconds": observed_range(row["total_seconds"] for row in rows),
             "learner_wait_seconds": observed_range(row["timings"]["wait_for_generation_buffer"] for row in rows),
             "learner_wait_fraction": sum(row["timings"]["wait_for_generation_buffer"] for row in rows) / seconds,
+            "exclusive_wall_seconds": {key: observed_range(row["metrics"][key] for row in rows) for key in exclusive},
+            "exclusive_wall_fractions": {key: sum(row["metrics"][key] for row in rows) / seconds for key in exclusive},
+            "nonzero_gradient_updates": sum(row["metrics"]["policy/raw_grad_norm"] > 0 for row in rows),
+            "gradient_norm": observed_range(row["metrics"]["policy/raw_grad_norm"] for row in rows),
             "token_age_mean": (
                 sum(row["metrics"]["async/staleness_tokens_mean"] * row["loss_tokens"] for row in rows) / losses
             ),
@@ -228,6 +233,9 @@ def summarize(path, cadence, controls_repetitions=None):
             "response_length_std": float(lengths.std()),
             "response_length_range": [int(lengths.min()), int(lengths.max())],
             "response_length_p50_p90": np.percentile(lengths, [50, 90]).tolist(),
+            "length_stopped_responses": sum(row["metrics"]["consumed/length_stop_count"] for row in rows),
+            "known_stopped_responses": sum(row["metrics"]["consumed/known_stop_count"] for row in rows),
+            "unknown_stopped_responses": sum(row["metrics"]["consumed/unknown_stop_count"] for row in rows),
             "raw_reward": observed_range(row["metrics"]["reward/avg_raw_reward"] for row in rows),
             "verifier_score_coverage": min(row["metrics"]["reward/verifier_score_coverage"] for row in rows),
             "observations": len(observed),
@@ -344,8 +352,8 @@ def main():
         }
     result["limits"] = (
         "Serialized intervals describe the measured rotating repetitions of these allocations only. "
-        "A preregistered incomplete baseline prefix retains two complete measured rotations after warmup; "
-        "the raw complete flag and extra completed phases remain explicit. This limits precision. "
+        "Any preregistered incomplete baseline prefix retains two complete measured rotations after warmup; "
+        "its raw complete flag and extra completed phases remain explicit. This limits precision. "
         "Asynchronous modes use continuous windows, normal task rewards and EOS with declared warmup/measured counts; "
         "Phase boundaries exclude initial warmup and final context teardown, retain finite prefetch, "
         "and can bias short windows. "

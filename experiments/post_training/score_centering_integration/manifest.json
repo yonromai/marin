@@ -1,20 +1,20 @@
 {
-  "saved_at": "2026-10-20T00:23:36.845240+00:00",
+  "saved_at": "2026-10-20T00:36:05.350289+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 24297,
-      "sha256": "172261f8ce588c6095092ebedad7513dd8c889343d3f9ed8aa38a40afb3abc31"
+      "bytes": 25492,
+      "sha256": "2660c6c5d08168b0e8ba3616da159a7c5bb04654458343e40e2ebbd8347256a5"
     },
     {
       "path": "allocation-accounting.json",
-      "bytes": 14314,
-      "sha256": "cfd57d89b6356ae544272377d9e2fa392a52ed95040de16f81d60445402dbca4"
+      "bytes": 14904,
+      "sha256": "e8bc606a4f9fec98dca2db343b20fc3b9d2187e8f09031da94c08b2136292503"
     },
     {
       "path": "analyze.py",
-      "bytes": 18286,
-      "sha256": "af905bcd76a9b84b2fcb77c3328b88e01ed917b66d50860f2ea030236f365054"
+      "bytes": 19155,
+      "sha256": "15494d21d80d58a2149de1ec87c96f7d09ec000745c5babe72b1373227c365e9"
     },
     {
       "path": "controlled-cycle-costs.png",
@@ -35,6 +35,16 @@
       "path": "cw-us-east-02a-client.yaml",
       "bytes": 1345,
       "sha256": "e0861f962da0c7b39eef6cc2efcee692dd352e21d7cf4c619dc4178047bb7a1a"
+    },
+    {
+      "path": "evidence/capacity-after-async-preempt-east-01.json",
+      "bytes": 11569,
+      "sha256": "b9dd54739a47a0dde41274a30716264e0cb53691e7797af6639f3bf6c9c35f57"
+    },
+    {
+      "path": "evidence/capacity-after-async-preempt-rno-01.json",
+      "bytes": 19656,
+      "sha256": "0ac6d11a91a6624c00839d6bb28d5bc47e503fd68c544c9f609055f8fe0acfd5"
     },
     {
       "path": "evidence/capacity-baseline-async-a1-east-before.json",
@@ -257,6 +267,16 @@
       "sha256": "0149fad74e1f38957b1cfd440775c838ffe74e274fca430c1e8cab1913f1c691"
     },
     {
+      "path": "evidence/r4-backend-preflight.zip",
+      "bytes": 13364,
+      "sha256": "43ab3bad81890ef51e1c7ca9abe5d2120c43d2804065f9583d0427cd0a34c902"
+    },
+    {
+      "path": "evidence/r4-config-proof.json",
+      "bytes": 1805,
+      "sha256": "fa763f9664f12da108f3e246f7c502f2aa0caddfcc22328bac73ca4714de4e38"
+    },
+    {
       "path": "evidence/replay_candidate_payload_storage.py.txt",
       "bytes": 3678,
       "sha256": "11e06b830e7a8151bd7e55fefb3c5decf0cdbd0fb89639d6a06dd76361acdb70"
@@ -410,6 +430,21 @@
       "path": "evidence/snowball-baseline-async-a1-rno-provider-first.json",
       "bytes": 8453,
       "sha256": "3a54d1e9e170e1bc6c082a60ad6ab79ec172b3accce530773576fde2a4eab0b7"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a1-rno-provider-preempted.json",
+      "bytes": 206,
+      "sha256": "e9dabcfb909353732cfd89df584fb1c4700c59891a819cb48ecd24f3730af690"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a1-rno-terminal-receipts.zip",
+      "bytes": 350,
+      "sha256": "6c3b5eae67cbf5d9ae0d220ad6f72c4367f82074c4101a3fbeecb165bbb8ce23"
+    },
+    {
+      "path": "evidence/snowball-baseline-async-a1-rno-workload-events-final.json",
+      "bytes": 10102,
+      "sha256": "9ee4b0a6df995d9bad41fec4c5e5e977df7da99396e027539abd0dc60d8b4ac6"
     },
     {
       "path": "evidence/snowball-baseline-async-a1-rno-workload-events.json",
@@ -847,6 +882,26 @@
       "sha256": "cfb357be15a7824d741d5a86a28469ebb742142dc83501333eefddbdb1c81048"
     },
     {
+      "path": "snowball-baseline-async-a2-east-r4-detach.yaml",
+      "bytes": 9971,
+      "sha256": "3f2ada5ead3531f20b5e2957d6b38fbcc64babe690cbbb2949b4002d5c23e8dd"
+    },
+    {
+      "path": "snowball-baseline-async-a2-east-r4-prepare.yaml",
+      "bytes": 9972,
+      "sha256": "b6a676567f7ac7eeda307e0a54bf7e5c896909bcb5c4aaee8ebd2f7f0583e889"
+    },
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-detach.yaml",
+      "bytes": 9948,
+      "sha256": "7d3b1520006ce0449406fcbd45b9bf2c7bfd25556af7d641d3c1fa5b511b17a1"
+    },
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-prepare.yaml",
+      "bytes": 9949,
+      "sha256": "497dcfd97e6e3b23c0a7df2e60a77bbac44c5b8d6e23d8483193b7f705086037"
+    },
+    {
       "path": "snowball-baseline-controls-a0-rno-detach.yaml",
       "bytes": 9983,
       "sha256": "7b92202e3b1ca4c132f053067970acddfcddf08ab33d36684c8e1a8c04bdaf19"
@@ -900,6 +955,16 @@
       "path": "snowball-candidate-async-a0-east-prepare.yaml",
       "bytes": 9983,
       "sha256": "00fecd381d43f7dc7f6d85c387f893c2843112fefe16083da80e77593759f42b"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-detach.yaml",
+      "bytes": 9983,
+      "sha256": "f158de5d9bf940adeda9fa2ab16a3959ec2547a757855042b5e4e1b8fa5f42a6"
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-prepare.yaml",
+      "bytes": 9984,
+      "sha256": "b4d3d7b2c4b342f6f9b3f00de80939b87b9d3d21dd19b88d6c78bd4608dc1120"
     },
     {
       "path": "snowball-candidate-async-a0-rno-detach.yaml",
@@ -978,8 +1043,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 6615,
-      "sha256": "26891b13d3cd763aaadf69c418d857e9570ac1b8942ab2a9568adf489a80cce9"
+      "bytes": 7633,
+      "sha256": "1bfef71eea19ca5a263af55a949c79d8658988a7110bde47595e717c9cd539c2"
     },
     {
       "path": "snowball-staged-protocol-r2.json",
@@ -990,6 +1055,11 @@
       "path": "snowball-staged-protocol-r3.json",
       "bytes": 9934,
       "sha256": "96aa03ef36e89e7247fc5d87f7ea4ac4237593292d541376efae6841e02ebcac"
+    },
+    {
+      "path": "snowball-staged-protocol-r4.json",
+      "bytes": 6144,
+      "sha256": "9b4b2b53710b05ed55f7a6080808490d3aec62c62ecf9b883f3a6ce7a2361de0"
     },
     {
       "path": "snowball-staged-protocol.json",

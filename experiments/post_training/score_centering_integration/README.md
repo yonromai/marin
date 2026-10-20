@@ -139,11 +139,21 @@ A priority-12 workload evicted it at 00:01:05.666032 on October 20, before its f
 The preemptor's owner is unknown. All tasks were terminal by 00:01:38.958, and Pods and queue were absent at
 00:15:45.497607. Its zero updates and allocation time remain in the attempt record.
 
-The second and last declared baseline asynchronous attempt was submitted at 00:21:53.775 UTC on October 20
+The second baseline asynchronous attempt, last under r3, was submitted at 00:21:53.775 UTC on October 20
 and admitted at 00:21:55. It changes only the run namespace from the first attempt. It starts from the original
 SFT checkpoint and plans 67 applied updates with real task rewards, normal EOS and per-update publication.
-This is actual GPU submission twelve; eleven are closed. The asynchronous candidate remains unsubmitted,
-with one allowed submission under the global candidate limit of four.
+It was preempted by another priority-12 workload at 00:26:51.532574, before its first report or update. All tasks
+were terminal at 00:27:29.173; Pods and queue were absent at 00:32:13.318884. All twelve actual GPU submissions
+are now closed. The preemptor's owner is unknown.
+
+[Revision r4](snowball-staged-protocol-r4.json) moves the unused baseline-controls retry to one final asynchronous
+baseline attempt. The overall baseline limit remains seven; the candidate limit remains four, with one
+asynchronous submission left. A fresh capacity guard requires five free whole H100 nodes and 40 unused GPU/RDMA
+quota units. Choose the first fit on RNO or East, then keep both asynchronous arms on that cluster. The completed
+RNO controls remain separate. This changes only the run namespace and optional cluster route. It preserves all
+r3 training and measurement settings, including fresh SFT, real rewards, 67 applied updates and zero automatic
+retries. Check clusters sequentially with longer waits while unchanged; reassess after the four-hour capacity
+window at 04:34 UTC. No further GPU job is submitted until the capacity guard is met.
 
 ## Complete controlled Snowball cost
 
@@ -272,7 +282,9 @@ result does not measure vLLM integration overhead. Upstream
 documented contract and was closed on October 19; it is not adopted by this integration.
 
 `analyze.py` checks complete worker reports and the declared complete rotations from the interrupted baseline.
-It produces serialized, asynchronous, memory and cadence summaries.
+It produces serialized, asynchronous, memory and cadence summaries. Asynchronous summaries also count
+nonzero gradients from ordinary retained metrics, consumed stop reasons and exclusive phase walls. These
+explain applied updates and workload variation without adding a gradient diagnostic campaign.
 It reuses the retained independent NumPy FP64 scalar replay and descriptive paired/Welch log-time comparisons.
 Only exclusive StepWallTime fields partition a cycle. Nested timers and process CPU profiles can overlap.
 Two measured Snowball repetitions per mode and one allocation per implementation do not measure

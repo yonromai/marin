@@ -1,0 +1,44 @@
+{
+  "configs": [
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-prepare.yaml",
+      "sha256": "497dcfd97e6e3b23c0a7df2e60a77bbac44c5b8d6e23d8483193b7f705086037",
+      "namespace_and_optional_cluster_route_only": true
+    },
+    {
+      "path": "snowball-baseline-async-a2-rno-r4-detach.yaml",
+      "sha256": "7d3b1520006ce0449406fcbd45b9bf2c7bfd25556af7d641d3c1fa5b511b17a1",
+      "namespace_and_optional_cluster_route_only": true
+    },
+    {
+      "path": "snowball-baseline-async-a2-east-r4-prepare.yaml",
+      "sha256": "b6a676567f7ac7eeda307e0a54bf7e5c896909bcb5c4aaee8ebd2f7f0583e889",
+      "namespace_and_optional_cluster_route_only": true
+    },
+    {
+      "path": "snowball-baseline-async-a2-east-r4-detach.yaml",
+      "sha256": "3f2ada5ead3531f20b5e2957d6b38fbcc64babe690cbbb2949b4002d5c23e8dd",
+      "namespace_and_optional_cluster_route_only": true
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-prepare.yaml",
+      "sha256": "b4d3d7b2c4b342f6f9b3f00de80939b87b9d3d21dd19b88d6c78bd4608dc1120",
+      "namespace_and_cluster_route_only": true
+    },
+    {
+      "path": "snowball-candidate-async-a0-east-r4-detach.yaml",
+      "sha256": "f158de5d9bf940adeda9fa2ab16a3959ec2547a757855042b5e4e1b8fa5f42a6",
+      "namespace_and_cluster_route_only": true
+    }
+  ],
+  "full_backend_dry_runs": [
+    "snowball-baseline-async-a2-rno-r4-preflight.json",
+    "snowball-baseline-async-a2-rno-r4-preflight.log",
+    "snowball-baseline-async-a2-east-r4-preflight.json",
+    "snowball-baseline-async-a2-east-r4-preflight.log",
+    "snowball-candidate-async-a0-east-r4-preflight.json",
+    "snowball-candidate-async-a0-east-r4-preflight.log"
+  ],
+  "submitted": false,
+  "prior_rno_candidate_dry_run": "evidence/snowball-candidate-async-a0-rno-r3-launch-preflight.json"
+}

@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-10-20T00:32:13.318884+00:00",
+  "cluster": "cw-rno2a",
+  "job": "/romain/sc-integration-snowball-baseline-async-a1-rno-01a146a3",
+  "pods": [],
+  "workloads": [],
+  "absent": true
+}
