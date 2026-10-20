@@ -1,0 +1,17 @@
+{
+  "revision": "r11",
+  "state": "held, not submitted",
+  "actual_GPU_submissions": 16,
+  "actual_baseline_submissions": 10,
+  "declared_baseline_limit": 11,
+  "new_attempt_remaining": 1,
+  "owned_active_jobs_or_queues": [],
+  "checked_at": "2026-10-20T09:26:46.273079+00:00",
+  "usable_whole_H100_nodes": 2,
+  "GPU_RDMA_quota_available_to_batch": 23,
+  "higher_priority_pending_GPU_workloads": 0,
+  "qualifying_confirmations_since_capacity_loss": 0,
+  "next_check_at": "2026-10-20T09:31:46.273079+00:00",
+  "requirement": "Reconfirm twice at least five minutes apart before actual submission. Preserve the full 67-update workload and chosen East route. No automatic retries.",
+  "evidence": "evidence/r11-prelaunch-readiness-held.zip"
+}

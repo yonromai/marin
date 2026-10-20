@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T09:24:31.067772+00:00",
+  "saved_at": "2026-10-20T09:29:12.482152+00:00",
   "records": [
     {
       "path": "README.md",
@@ -365,6 +365,11 @@
       "path": "evidence/r11-launch-preflight-log.zip",
       "bytes": 1122,
       "sha256": "283743b78f7b224bdb39738260900085a754913fd2cfd8c3c43f67668c59337e"
+    },
+    {
+      "path": "evidence/r11-prelaunch-readiness-held.zip",
+      "bytes": 2753,
+      "sha256": "71e03d10bef7cbf9f6f0890ef85d49046c8fee43b0510b391571108661756cf6"
     },
     {
       "path": "evidence/r4-backend-preflight.zip",
@@ -1097,6 +1102,11 @@
       "sha256": "ad3832cb47d18cb667d0cbfd4fa7345ee4ce79cd4a335bc24c59125dbf141578"
     },
     {
+      "path": "r11-readiness-checkpoint.json",
+      "bytes": 739,
+      "sha256": "d532355bc5fdc80c7cdb4e181a469cb529dca7f6c43efba8379874ebd03a084b"
+    },
+    {
       "path": "reports/sc-integration-qwen-candidate-a0-rno-01a146a3.json.zip",
       "bytes": 441491,
       "sha256": "4c6732304d6df639d4120aca88211ce5fa16607ac01b01ed9dfea451dc65a4f6"
@@ -1453,8 +1463,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 9952,
-      "sha256": "5f01445ba6c185295db670adb6bd9be11d29110b70c94d0e2e64ffa53383a3d4"
+      "bytes": 9998,
+      "sha256": "367aada6fbb991964c3fb16510009b1f51515139b1137635d75fc68b7db51022"
     },
     {
       "path": "snowball-staged-protocol-r10.json",

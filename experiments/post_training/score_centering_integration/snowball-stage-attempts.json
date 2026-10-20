@@ -122,7 +122,7 @@
     "next_candidate_config": "snowball-candidate-async-a0-east-r7-detach.yaml"
   },
   "owned_active_jobs_or_queues": [],
-  "limit": "All 16 actual submissions are terminal and absent. R11 declares one new fresh East baseline, overall baseline11/11 and async7/7, after two stable readiness checks. No new GPU submission yet. Candidate remains unsubmitted with one reserved attempt after all 67 baseline updates and release. No automatic retries.",
+  "limit": "All 16 actual submissions remain terminal and absent. R11 allows one new baseline, but it is held and unsubmitted after capacity fell below the readiness guard. Baseline actual10/limit11, async actual6/limit7. Candidate remains unsubmitted. Full67-update workload and all final validation remain required.",
   "primary_cluster": "Reno completed controls; East fresh repaired asynchronous pair under r11. All partial timings remain excluded.",
   "east_prefix_role": "Secondary evidence only; not pooled with primary RNO arms.",
   "baseline_controls": {
@@ -156,7 +156,7 @@
   "readiness_wait": {
     "starts_at_utc": "2026-10-20T09:10:36.122304+00:00",
     "ends_at_utc": "2026-10-20T11:10:36.122304+00:00",
-    "next_check_at_utc": "2026-10-20T09:20:10.543405+00:00",
+    "next_check_at_utc": "2026-10-20T09:31:46.273079+00:00",
     "unchanged_backoff_seconds": [
       300,
       600,
@@ -170,6 +170,8 @@
       "confirmations": 1,
       "required": 2
     },
-    "outcome": "East qualified twice at 09:15:10.543405 and09:20:40.828711 UTC; r11 declares one future baseline. No GPU was used by the readiness wait."
+    "outcome": "Readiness lost at the final prelaunch check; r11 a6 held without submission.",
+    "qualifying_confirmations_since_loss": 0,
+    "last_readiness_checkpoint": "r11-readiness-checkpoint.json"
   }
 }
