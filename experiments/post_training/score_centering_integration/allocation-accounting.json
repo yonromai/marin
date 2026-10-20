@@ -1,5 +1,5 @@
 {
-  "saved_at": "2026-10-20T04:35:29.117910+00:00",
+  "saved_at": "2026-10-20T04:37:06.266816+00:00",
   "scope": "All actual accelerator submissions owned by this integration goal; prior-goal attempts remain in the linked immutable performance evidence.",
   "attempts": [
     {
@@ -289,6 +289,27 @@
       "queue_seconds": 1.320418,
       "gpu_hours_to_controller_terminal_proxy": 3.7119731333333332,
       "gpu_hours_through_verified_absence_upper_bound": 6.869149622222222
+    },
+    {
+      "job": "/romain/sc-integration-snowball-baseline-async-a2-east-01a146a3",
+      "cluster": "cw-us-east-02a",
+      "nodes": 5,
+      "gpus_per_node": 8,
+      "priority": "BATCH",
+      "submitted_at": "2026-10-20T04:36:07.291Z",
+      "admitted_at": null,
+      "controller_terminal_at": null,
+      "provider_absence_at": null,
+      "applied_updates": null,
+      "outcome": "queued under r5; third/final baseline async submission and global baseline seventh/seven",
+      "automatic_retries": 0,
+      "evidence": [
+        "snowball-staged-protocol-r5.json",
+        "evidence/snowball-baseline-async-a2-east-provider-first.json",
+        "evidence/snowball-baseline-async-a2-east-start-receipts.zip"
+      ],
+      "queue_seconds": null,
+      "admission_limit": "Not admitted at04:36:24.440980UTC provider checkpoint; queue consumes no admitted GPU-hours."
     }
   ],
   "prepared_but_not_submitted": [
@@ -313,9 +334,9 @@
   },
   "staged_limit_revision": "r4 moves the unused baseline-controls retry to one final baseline-async attempt after two external startup preemptions. Baseline total remains seven; candidate remains four under r3.",
   "staged_prepared_but_not_submitted": [
-    "snowball-baseline-async-a2-rno-or-east-exclusive",
-    "snowball-candidate-async-a0-matched-to-baseline-cluster"
+    "snowball-candidate-async-a0-east"
   ],
+  "placement_revision": "r5 lets native East BATCH queue control admission after r4 four-hour free-only readiness window expired. Both fresh async arms remain East; complete RNO controls are separate.",
   "superseded_prepared_stages": [
     "snowball-candidate-controls-a1-east",
     "snowball-baseline-async-a0-east",

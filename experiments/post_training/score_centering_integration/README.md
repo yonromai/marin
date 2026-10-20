@@ -163,6 +163,11 @@ verified baseline shutdown. This replaces the derived free-only guard and catche
 It adds no attempt and changes no training setting. Queue-inclusive deadlines remain six hours, with zero
 automatic retries. The controlled RNO and asynchronous East timing samples will remain separate.
 
+The final baseline async job was submitted to East at 04:36:07.291 UTC. At 04:36:24 all five Pods were pending;
+Kueue needed 33 more GPU/RDMA quota units. This is actual submission thirteen, baseline submission seven of
+seven, including all queue/startup failures. The queue-inclusive deadline is 10:36:07.291 UTC; no automatic retry
+is enabled. Candidate async remains unsubmitted, with one submission allowed after baseline completion/release.
+
 ## Complete controlled Snowball cost
 
 [The primary matched analysis](evidence/snowball-controlled-cost-matched-rno.json) uses one RNO allocation per
