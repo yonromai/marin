@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-20T13:39:32.848401+00:00",
+  "clusters": {
+    "cw-rno2a": {
+      "native_owned_jobs_including_prior_goal": 17,
+      "integration_goal_jobs": 13,
+      "all_parent_jobs_terminal": true,
+      "provider_checked_at": "2026-10-20T13:37:25.175620+00:00",
+      "direct_Kueue_checked_at": "2026-10-20T13:37:22.163982+00:00",
+      "known_owned_Kueue_groups_checked": 12,
+      "owned_active_Pods": [],
+      "owned_Kueue_workloads": []
+    },
+    "cw-us-east-02a": {
+      "native_owned_jobs_including_prior_goal": 16,
+      "integration_goal_jobs": 6,
+      "all_parent_jobs_terminal": true,
+      "provider_checked_at": "2026-10-20T13:37:38.758953+00:00",
+      "direct_Kueue_checked_at": "2026-10-20T13:37:37.124000+00:00",
+      "known_owned_Kueue_groups_checked": 6,
+      "owned_active_Pods": [],
+      "owned_Kueue_workloads": []
+    }
+  },
+  "owned_active_jobs": 0,
+  "owned_active_Pods": 0,
+  "owned_Kueue_workloads": 0,
+  "active_retries": 0,
+  "new_GPU_work_planned": false,
+  "wait_for_started_or_rearmed": false,
+  "owned_local_launchers": [],
+  "review_processes_stopped": true,
+  "review_process_PIDs": [
+    3165186,
+    3165185,
+    3165635
+  ],
+  "owned_open_resource_board_rows": [],
+  "native_state_limit": "Historical children can retain PREEMPTED/COSCHEDULING labels under terminal parents. Every owned parent is terminal, no owned active Pod or known/annotated Kueue workload remains, and no launcher/review process remains.",
+  "evidence": "evidence/handback-shutdown-receipts.zip"
+}

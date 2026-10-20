@@ -513,6 +513,28 @@ PYTHONPATH=. python experiments/post_training/score_centering_integration/analyz
   --cadence 10 --output /tmp/score-centering-async-summary.json
 ```
 
+
+## Delivery validation
+
+Product head `ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212` has all six substantive
+[CI checks](https://github.com/marin-community/MarinSkyRL/actions/runs/39427943026) successful; the disabled
+cleanup request is skipped. The single final High GOAL batch completed Codex and Gemini reviews with no
+material findings or required fixes. Claude's OAuth session expired before a model authenticated, so no
+Claude review was produced. The dependency and requested/observed model metadata are retained, with no
+substitute model or repeated panel. [Adjudication](evidence/final-goal-review-adjudication.json) preserves the
+parent's narrower interpretation of several reviewer overstatements; the authored reviews remain unchanged.
+
+[Fresh handback checks](evidence/handback-shutdown-summary.json) at 13:37 UTC again found no owned active
+jobs, Pods or Kueue workloads on either cluster. Every current-goal submission and older job under this
+native owner is terminal. No launcher, review process or open resource-board row remains. No further GPU
+work is planned. Draft #968 has no actionable comments or reviews and remains unmerged; #996 is untouched.
+
+GitHub still reports the draft as conflicting, although its own comparison says the current head is 28
+commits ahead and zero behind main, and local ancestry plus a read-only three-tree inspection find no source
+conflict. [The exact proof](evidence/pr968-readonly-mergeability-ef1adaf25.json) retains that inconsistency.
+No merge, rebase, base move, force-push or shared policy change was attempted. The
+[delivery record](evidence/final-delivery-validation.json) links exact heads, terminal CI, review and shutdown.
+
 ## Qwen interface qualification
 
 The corrected-source two-node RNO Qwen run completed 35 applied updates, all ten serialized windows, six natural periodic updates

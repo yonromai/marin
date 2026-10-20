@@ -1,10 +1,10 @@
 {
-  "saved_at": "2026-10-20T13:06:43.074273+00:00",
+  "saved_at": "2026-10-20T13:39:52.504158+00:00",
   "records": [
     {
       "path": "README.md",
-      "bytes": 51146,
-      "sha256": "bd83da7d5c3774213aa3e32a43d8ead9df55c663dcf6ccd5dc14d8e530b47417"
+      "bytes": 52831,
+      "sha256": "f66b019def0f6d7dc8569015289880c8be539312c67976658eefac902d404e76"
     },
     {
       "path": "allocation-accounting.json",
@@ -222,6 +222,21 @@
       "sha256": "d78d58c4e3b4deb5055b62aa2d68591267492e2dfee662e119951c0d9993cc83"
     },
     {
+      "path": "evidence/final-delivery-validation.json",
+      "bytes": 2361,
+      "sha256": "18cefdba2d4e0b8cb1a85ae9a143912fd20b8080fb2c3287d4a5a8e0386f1b73"
+    },
+    {
+      "path": "evidence/final-goal-review-adjudication.json",
+      "bytes": 3101,
+      "sha256": "822952c08afcc80033ac6bc0ae273cd1d744e1b9e0c214009443781892409e21"
+    },
+    {
+      "path": "evidence/final-goal-review-receipts.zip",
+      "bytes": 31225,
+      "sha256": "264bb1261b3fb2cb3024fb41bd3e135eac6be8bea8dac6128a75af231b5384d1"
+    },
+    {
       "path": "evidence/followup-receipts.zip",
       "bytes": 1242,
       "sha256": "6b1efe70a6d529a51edafde8a069f6492486cd819f5306e32c6bdecdd0244cc2"
@@ -245,6 +260,16 @@
       "path": "evidence/grader-repair-task-replay.zip",
       "bytes": 15649,
       "sha256": "1f06d94db4c96b6251120154d4c877c2d35407df87cd24b3e1bbef14d4c7b561"
+    },
+    {
+      "path": "evidence/handback-shutdown-receipts.zip",
+      "bytes": 5887,
+      "sha256": "dcd9621006a078c54127399b6cd3e371f9221d9deac77c38a9808024f6b4ae8e"
+    },
+    {
+      "path": "evidence/handback-shutdown-summary.json",
+      "bytes": 1532,
+      "sha256": "eb9c7424b286b2349b5a5cc7082d159a56cc9968b2eb9f27a2f9b644699f85b6"
     },
     {
       "path": "evidence/handoff-r3-preflight.zip",
@@ -300,6 +325,16 @@
       "path": "evidence/pr968-c36e-ci-check-02.json",
       "bytes": 11304,
       "sha256": "6c5b446dc410f840874afafbcf818f8f58cab7f2cf372faae134d6403808de3d"
+    },
+    {
+      "path": "evidence/pr968-ef1adaf25-ci-final.json",
+      "bytes": 11454,
+      "sha256": "06d9417cb8355ba3766fa6d7f64c2f23f5e6e853d9fd00a97c08cbf86e578e18"
+    },
+    {
+      "path": "evidence/pr968-readonly-mergeability-ef1adaf25.json",
+      "bytes": 920,
+      "sha256": "a68eb10a5bcf22d6b8ec969f7a569620a321b41c18a038db09791c96cedad65d"
     },
     {
       "path": "evidence/queue-priorities-r4-east-deadline.json",
@@ -1693,8 +1728,8 @@
     },
     {
       "path": "snowball-stage-attempts.json",
-      "bytes": 11564,
-      "sha256": "b28d251abbcca4a26add7b771e41dc98b61f5e0ee8e58ce5d06be586f147a7dc"
+      "bytes": 12319,
+      "sha256": "3083994f62f134c89234057a6d48de90705e06c4ab963ff9feefe8516b51de68"
     },
     {
       "path": "snowball-staged-protocol-r10.json",

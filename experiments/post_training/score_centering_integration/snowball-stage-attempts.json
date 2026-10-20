@@ -1,5 +1,5 @@
 {
-  "saved_at_utc": "2026-10-20T12:59:24.635811+00:00",
+  "saved_at_utc": "2026-10-20T13:39:32.864310+00:00",
   "protocol": "snowball-staged-protocol-r13.json",
   "candidate_controls": {
     "attempts_submitted": 3,
@@ -189,12 +189,35 @@
     "path": "snowball-interactive-pair-r12-proposal.json",
     "status": "Unapproved and unused; no longer needed after both full BATCH arms succeeded."
   },
-  "current_product_head": "435ee98f86ca75e206f30ac939bc757889ba6e58",
+  "current_product_head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
   "current_product_CI": {
+    "head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
     "checks": 6,
     "all_success": true,
-    "evidence": "evidence/pr968-435ee98f-ci-final.json",
-    "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39407226185"
+    "terminal": true,
+    "evidence": "evidence/pr968-ef1adaf25-ci-final.json",
+    "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39427943026"
   },
-  "resource_choice_status": "Both fresh matched RNO BATCH arms completed under the original resource boundaries. Interactive exception never approved or used and no longer needed; retain original proposal only as history."
+  "resource_choice_status": "Both fresh matched RNO BATCH arms completed under the original resource boundaries. Interactive exception never approved or used and no longer needed; retain original proposal only as history.",
+  "final_goal_review": {
+    "kind": "GOAL",
+    "tier": "High",
+    "product_head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+    "completed_reviewers": [
+      "codex",
+      "agy"
+    ],
+    "material_findings": 0,
+    "required_fixes": 0,
+    "claude_dependency": "OAuth session expired; no model authenticated or review produced; recorded once.",
+    "evidence": "evidence/final-goal-review-adjudication.json"
+  },
+  "handback_shutdown": {
+    "owned_active_jobs_or_queues": [],
+    "owned_active_Pods": [],
+    "owned_Kueue_workloads": [],
+    "owned_launchers": [],
+    "review_processes_stopped": true,
+    "evidence": "evidence/handback-shutdown-summary.json"
+  }
 }

@@ -1,0 +1,65 @@
+{
+  "kind": "GOAL",
+  "tier": "High",
+  "product_head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+  "measurement_head": "622314c9bf1d689230fb0717dc536e0c3d907b5a",
+  "completed_reviewers": [
+    "codex",
+    "agy"
+  ],
+  "provider_dependency": {
+    "claude": "OAuth session expired and could not be refreshed; attempted once, no model used or review produced."
+  },
+  "material_findings": [],
+  "required_fixes": [],
+  "additional_review_batches": 0,
+  "source_changes_after_review": false,
+  "parent_assessment": "No blocking gap or required code change remains. Existing ordinary validation and the retained complete pair satisfy the engineering outcome, with the limits stated in product documentation and evidence. Final refresh and delivery metadata remain before handback.",
+  "tool_action_audit": {
+    "codex": "56 completed shell commands; reads and one designated review-file write, no tests/linters/formatters/source/GitHub writes. Full audit retained.",
+    "agy": "55 calls:27read_file,27run_command,1write_file to the assigned review path. No tests/linters/formatters/source/GitHub writes. Full native protobuf tool calls decoded read-only; audit retained.",
+    "worktrees": "Product and evidence clean at supplied heads after both reviewers exited."
+  },
+  "reviewer_overstatements_not_adopted": [
+    {
+      "reviewer": "agy",
+      "claim": "Both clusters completely idle",
+      "correction": "Only owned jobs, Pods and Kueue workloads were verified absent. Other owners remain unaffected."
+    },
+    {
+      "reviewer": "agy",
+      "claim": "FP32 tail sensitivity does not affect parameter gradients",
+      "correction": "No parameter-gradient impact or lack of impact is established. The kernel is unchanged; preserved scalar rounding limits remain documented."
+    },
+    {
+      "reviewer": "agy",
+      "claim": "Native a3 offender was a matrix-root answer",
+      "correction": "Original offending candidate was not retained. The bounded CPU matrix-root reproducer establishes the same error family, not the original answer."
+    },
+    {
+      "reviewer": "agy",
+      "claim": "Every attempt had a six-hour deadline",
+      "correction": "Initial Snowball deadline was three hours; later finite revisions used six hours. Each actual attempt retains its own plan and receipt."
+    },
+    {
+      "reviewer": "agy",
+      "claim": "Authors used a single-node GPU pool",
+      "correction": "Retained evidence establishes sequential use of their GPU pool; no single-node constraint is inferred."
+    },
+    {
+      "reviewer": "agy",
+      "claim": "Response length alone caused the update-rate difference",
+      "correction": "Response lengths, scheduling, changing weights, finite prefetch and allocation variation confound causal attribution. Both measured rates and workloads are reported."
+    }
+  ],
+  "evidence": [
+    "native-review-metadata.json",
+    "codex_tool_action_audit.json",
+    "agy_tool_action_audit.json",
+    "CODEX_GOAL_REVIEW.md",
+    "AGY_GOAL_REVIEW.md",
+    "claude_dependency.json",
+    "batch_exit.json"
+  ],
+  "execution_host": "devbox"
+}

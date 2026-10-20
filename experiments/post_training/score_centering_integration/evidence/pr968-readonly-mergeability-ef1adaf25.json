@@ -1,0 +1,19 @@
+{
+  "base": "32edb00f784dac6995136d034ad7231a9b985bc0",
+  "head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+  "GitHub_mergeable": "CONFLICTING",
+  "GitHub_mergeStateStatus": "DIRTY",
+  "GitHub_compare": {
+    "ahead_by": 28,
+    "behind_by": 0,
+    "merge_base": "32edb00f784dac6995136d034ad7231a9b985bc0",
+    "status": "ahead",
+    "total_commits": 28
+  },
+  "local_merge_base": "32edb00f784dac6995136d034ad7231a9b985bc0",
+  "three_tree_read_only_exit": 0,
+  "conflict_marker_count": 0,
+  "both_changed_sections": 0,
+  "read_only_output_sha256": "9b0e5421b37eacebfd5fb411e81cf86dec1443d11b153a8863f8337f16249035",
+  "interpretation": "GitHub PR mergeability is inconsistent with its own ahead-only compare result and local ancestry. No source conflict was found by the read-only three-tree inspection. The PR remains draft and unmerged; no merge/rebase/base move/force-push or shared policy change was attempted."
+}

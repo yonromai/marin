@@ -1,0 +1,54 @@
+{
+  "product_head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+  "measurement_head": "622314c9bf1d689230fb0717dc536e0c3d907b5a",
+  "PR": {
+    "url": "https://github.com/marin-community/MarinSkyRL/pull/968",
+    "state": "OPEN",
+    "draft": true,
+    "comments": 0,
+    "reviews": 0,
+    "GitHub_mergeable": "CONFLICTING",
+    "GitHub_mergeStateStatus": "DIRTY",
+    "mergeability_evidence": "evidence/pr968-readonly-mergeability-ef1adaf25.json"
+  },
+  "current_head_CI": {
+    "head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+    "checks": 6,
+    "all_success": true,
+    "terminal": true,
+    "evidence": "evidence/pr968-ef1adaf25-ci-final.json",
+    "url": "https://github.com/marin-community/MarinSkyRL/actions/runs/39427943026"
+  },
+  "review": {
+    "kind": "GOAL",
+    "tier": "High",
+    "product_head": "ef1adaf25ad2aedfb346bb71aeaa92e0d9cd6212",
+    "completed_reviewers": [
+      "codex",
+      "agy"
+    ],
+    "material_findings": 0,
+    "required_fixes": 0,
+    "claude_dependency": "OAuth session expired; no model authenticated or review produced; recorded once.",
+    "evidence": "evidence/final-goal-review-adjudication.json"
+  },
+  "shutdown": {
+    "owned_active_jobs_or_queues": [],
+    "owned_active_Pods": [],
+    "owned_Kueue_workloads": [],
+    "owned_launchers": [],
+    "review_processes_stopped": true,
+    "evidence": "evidence/handback-shutdown-summary.json"
+  },
+  "all_actual_submissions": 19,
+  "all_closed": 19,
+  "no_merge_or_force_push": true,
+  "no_wait_for_started_or_rearmed": true,
+  "external_results_readback": {
+    "PR_body_sha256_at_review": "5e620e9e9d4defab63f6677b733745cd6cf6e7a9b3d4a7b3fd8fef0802bc6a2f",
+    "Echo_design_URL": "https://echo.oa.dev/wiki/608",
+    "Echo_body_snapshot_at_review": "/home/romain/data/sessions/devbox/codex/01a146a3-0842-7e33-a843-b6727eec150d/artifacts/integration-20261019/echo-design608-final-summary.md",
+    "Echo_body_sha256_at_review": "cfc70d54eba3b047ddc80a81ae711ada3bcebfd0e20610e151e5ac2d1395ca40"
+  },
+  "limits": "Both short async arms complete with real rewards; changed lengths prevent a causal speedup claim. Sparse probes and inherited scalar precision limits remain. Read-only mergeability proof conflicts with GitHub cached PR field; draft remains unmerged. Closing CI/review status notes on PR/Echo will point to this immutable handoff once committed."
+}
