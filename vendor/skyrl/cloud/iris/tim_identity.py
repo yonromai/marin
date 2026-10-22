@@ -13,6 +13,8 @@ paths = [
     "vendor/skyrl/uv.lock",
     "vendor/skyrl/skyrl-train/skyrl_train/objective/score_centering.py",
     "vendor/skyrl/skyrl-train/skyrl_train/trajectory_runners/selected_topk.py",
+    "vendor/skyrl/skyrl-train/skyrl_train/trajectory_runners/model_clients.py",
+    "vendor/skyrl/skyrl-train/skyrl_train/inference_engines/vllm/vllm_engine.py",
     "vendor/skyrl/skyrl-train/skyrl_train/rollouts/task_worker.py",
     "vendor/skyrl/skyrl-train/skyrl_train/trainer.py",
     "vendor/skyrl/skyrl-train/skyrl_train/entrypoints/score_centering_performance.py",
