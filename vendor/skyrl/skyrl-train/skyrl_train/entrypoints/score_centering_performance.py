@@ -871,6 +871,7 @@ class PerformanceTrainer(RayPPOTrainer):
             "source_selection": {"campaign_source_rows": OmegaConf.to_container(spec.source_rows),
                                  "source_data_sha256": spec.source_data_sha256},
             "runtime": {
+                "measurement_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "lock_sha256": hashlib.sha256((Path(__file__).resolve().parents[3] / "uv.lock").read_bytes()).hexdigest(),
                 "versions": {name: importlib.metadata.version(name) for name in ("torch", "vllm", "megatron-core", "transformers", "marin-iris")},
                 "policy_parallelism": OmegaConf.to_container(self.cfg.trainer.policy.megatron_config),

@@ -15,6 +15,7 @@ paths = [
     "vendor/skyrl/skyrl-train/skyrl_train/trajectory_runners/selected_topk.py",
     "vendor/skyrl/skyrl-train/skyrl_train/rollouts/task_worker.py",
     "vendor/skyrl/skyrl-train/skyrl_train/trainer.py",
+    "vendor/skyrl/skyrl-train/skyrl_train/entrypoints/score_centering_performance.py",
     "lib/verifyit/src/verifyit/modes/grade_math.py",
 ]
 grader = Path(importlib.util.find_spec("verifyit.modes.grade_math").origin)

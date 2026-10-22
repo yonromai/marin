@@ -54,7 +54,13 @@ def snowball(version: str, scope: str) -> ArtifactStep:
         n_samples_per_prompt=4,
     )
     trainer = config["trainer"]
-    megatron = {**asdict(geometry), "transformer_config_kwargs": {"num_layers_in_first_pipeline_stage": 10}}
+    megatron = {
+        **asdict(geometry),
+        "transformer_config_kwargs": {
+            "num_layers_in_first_pipeline_stage": 9,
+            "num_layers_in_last_pipeline_stage": 8,
+        },
+    }
     trainer["policy"]["megatron_config"].update(megatron)
     trainer.setdefault("ref", {})["megatron_config"] = megatron
     _materialize_role_plan_config(config, plan)
