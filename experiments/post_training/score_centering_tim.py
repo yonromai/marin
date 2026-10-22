@@ -68,6 +68,11 @@ def snowball(version: str, scope: str) -> ArtifactStep:
     trainer["policy"]["optimizer_config"].update(
         lr=0.0 if scope == "controls" else 1.0e-6,
     )
+    if scope == "coverage":
+        # The previous allocation failed during parallel S3 streaming, although
+        # bounded native reads passed. Allow a longer stall, then fail directly.
+        config["extra_env"]["RUNAI_STREAMER_S3_REQUEST_TIMEOUT_MS"] = "60000"
+        trainer["model_load_retry"] = {"max_retries": 0}
     data = ArtifactStep.adopt(
         "users/romain/documents/score-centering-snowball-retained",
         "2026.09.18",
@@ -103,6 +108,7 @@ def snowball(version: str, scope: str) -> ArtifactStep:
             max_retries=0,
             coordinator_timeout_hours=5,
             job_timeout_seconds=14400,
+            required_env_vars=("MARIN_PREFIX", "MARIN_TEMP_PREFIX"),
         ),
         export_hf=False,
     )
