@@ -58,4 +58,5 @@ bash {shlex.quote(bootstrap_script)} \
   {shlex.quote(profile.value)} \
   production
 source {shlex.quote(activation_file)}
+python /app/vendor/skyrl/cloud/iris/tim_identity.py
 """
