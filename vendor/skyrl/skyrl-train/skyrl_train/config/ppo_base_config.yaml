@@ -43,6 +43,19 @@ checkpoint_export:
   hf_upload_mode: latest
 
 trainer:
+  # Finite experiment-only instrumentation; absent from the product branch.
+  score_centering_performance:
+    workload: null
+    scope: controls
+    variant: candidate
+    output_uri: null
+    repetitions: 6
+    default_interval: 10
+    async_max_steps: 32
+    source_rows: null
+    source_data_sha256: null
+    window_timeout_seconds: 1800
+
   evaluation_runner: training # task or harbor selects generated validation for offline preference training
   trajectory_selector:
     type: null # null | best_of_n; selection runs after reward postprocessing and before teacher scoring

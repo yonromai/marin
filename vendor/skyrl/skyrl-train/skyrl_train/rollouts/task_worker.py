@@ -705,7 +705,7 @@ class TaskRolloutWorkerSpec:
                     factories[HARBOR_EVAL_MACHINE_BACKEND] = harbor.machine_factory(phase="eval")
             elif Backend.DOCKER in factories:
                 factories[HARBOR_MACHINE_BACKEND] = factories[Backend.DOCKER]
-        return TaskRolloutWorker(
+        worker = TaskRolloutWorker(
             runner_config,
             (
                 StepTaskProjection(runner_config, tokenizer)
@@ -723,3 +723,10 @@ class TaskRolloutWorkerSpec:
             installed_agents=installed_agents,
             judge_connection=judge,
         )
+
+        if (self.config.trainer.score_centering_performance.workload == "snowball"
+                and self.config.trainer.score_centering_performance.scope == "controls"):
+            from skyrl_train.entrypoints.score_centering_performance import profile_rollout_worker
+
+            worker = profile_rollout_worker(worker)
+        return worker
