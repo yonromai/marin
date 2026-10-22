@@ -71,9 +71,9 @@ def startup(version: str, *, probes: bool = False) -> ArtifactStep:
     )
     trainer["algorithm"].update(
         advantage_estimator="grpo" if probes else "uniform",
-        score_centering_topk=128,
+        score_centering_topk=0 if probes else 128,
         score_centering_enabled=not probes,
-        score_centering_diagnostic_tokens=32,
+        score_centering_diagnostic_tokens=0 if probes else 32,
     )
     trainer["algorithm"].setdefault("score_centering_probe", {})["interval"] = 2 if probes else 10
     config["generator"].update(
