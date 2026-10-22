@@ -31,7 +31,7 @@ MODEL = "Qwen/Qwen3-0.6B"
 REVISION = "c1899de289a04d12100db370d81485cdf75e47ca"
 
 
-def startup(version: str) -> ArtifactStep:
+def startup(version: str, *, probes: bool = False) -> ArtifactStep:
     data = cat_count_data_step(
         user_owned_name("documents/score-centering-tim-cat-count"),
         version,
@@ -51,7 +51,11 @@ def startup(version: str) -> ArtifactStep:
         seed=17,
         checkpoint=False,
         export=False,
-        settings=("trainer.max_steps=2", "trainer.update_epochs_per_batch=1", "trainer.logger=console"),
+        settings=(
+            f"trainer.max_steps={4 if probes else 2}",
+            "trainer.update_epochs_per_batch=1",
+            "trainer.logger=console",
+        ),
     )
     _materialize_role_plan_config(config, plan)
     config["context_budget"] = {"request_window_tokens": 512, "max_new_tokens_per_turn": 128, "max_turns": 1}
@@ -66,19 +70,22 @@ def startup(version: str) -> ArtifactStep:
         offload_optimizer_during_rollouts=False,
     )
     trainer["algorithm"].update(
-        advantage_estimator="uniform",
+        advantage_estimator="grpo" if probes else "uniform",
         score_centering_topk=128,
-        score_centering_enabled=True,
+        score_centering_enabled=not probes,
         score_centering_diagnostic_tokens=32,
     )
+    trainer["algorithm"].setdefault("score_centering_probe", {})["interval"] = 2 if probes else 10
     config["generator"].update(
         gpu_memory_utilization=0.35, max_num_seqs=16, max_num_batched_tokens=512, enable_http_endpoint=False
     )
-    config["generator"]["sampling_params"].update(logprobs=128, temperature=1.0, top_p=1.0, top_k=-1, min_p=0.0)
+    config["generator"]["sampling_params"].update(
+        logprobs=0 if probes else 128, temperature=1.0, top_p=1.0, top_k=-1, min_p=0.0
+    )
     config["trajectory_runner"] = {"rollout_workers": {"num_workers": 2, "cpus_per_worker": 2}}
     return skyrl_step(
         SkyRLSpec(
-            name=user_owned_name("checkpoints/score-centering-tim/startup"),
+            name=user_owned_name(f"checkpoints/score-centering-tim/{'probe-startup' if probes else 'startup'}"),
             version=version,
             config_yaml=yaml.safe_dump(config),
             model=ArtifactHfModel(step=qwen3_0_6b, relative_path="", tokenizer_uri=MODEL, tokenizer_revision=REVISION),
@@ -106,9 +113,10 @@ def startup(version: str) -> ArtifactStep:
 
 
 @click.command(help=__doc__)
+@click.option("--stage", type=click.Choice(["startup", "probe-startup"]), default="startup")
 @rl_build_options
-def main() -> ArtifactStep:
-    return startup(resolve_version("score-centering-tim", None))
+def main(stage: str) -> ArtifactStep:
+    return startup(resolve_version("score-centering-tim", None), probes=stage == "probe-startup")
 
 
 if __name__ == "__main__":
